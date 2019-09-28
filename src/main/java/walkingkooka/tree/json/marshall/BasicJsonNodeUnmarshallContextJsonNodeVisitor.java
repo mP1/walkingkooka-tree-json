@@ -89,7 +89,7 @@ final class BasicJsonNodeUnmarshallContextJsonNodeVisitor extends JsonNodeVisito
         } catch (final NullPointerException | JsonNodeUnmarshallException cause) {
             throw cause;
         } catch (final RuntimeException cause) {
-            throw new JsonNodeUnmarshallException(cause.getMessage(), node, cause);
+            throw new JsonNodeUnmarshallException("Failed to unmarshall json object", node, cause);
         }
         return Visiting.SKIP;
     }

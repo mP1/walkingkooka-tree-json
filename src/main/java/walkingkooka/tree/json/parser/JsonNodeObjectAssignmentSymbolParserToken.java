@@ -32,44 +32,7 @@ public final class JsonNodeObjectAssignmentSymbolParserToken extends JsonNodeSym
         super(value, text);
     }
 
-    // is ...............................................................................................
-
-    @Override
-    public boolean isArrayBeginSymbol() {
-        return false;
-    }
-
-    @Override
-    public boolean isArrayEndSymbol() {
-        return false;
-    }
-
-    @Override
-    public boolean isObjectAssignmentSymbol() {
-        return true;
-    }
-
-    @Override
-    public boolean isObjectBeginSymbol() {
-        return false;
-    }
-
-    @Override
-    public boolean isObjectEndSymbol() {
-        return false;
-    }
-
-    @Override
-    public boolean isSeparatorSymbol() {
-        return false;
-    }
-
-    @Override
-    public boolean isWhitespace() {
-        return false;
-    }
-
-    // visitor ...............................................................................................
+    // visitor .........................................................................................................
 
     @Override
     public void accept(final JsonNodeParserTokenVisitor visitor) {

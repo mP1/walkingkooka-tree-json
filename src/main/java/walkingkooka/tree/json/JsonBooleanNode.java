@@ -84,29 +84,12 @@ public final class JsonBooleanNode extends JsonLeafNonNullNode<Boolean> {
         return SearchNode.text(text, text);
     }
 
-    // isXXX............................................................................................................
-
-    @Override
-    public boolean isBoolean() {
-        return true;
-    }
-
-    @Override
-    public boolean isNumber() {
-        return false;
-    }
-
-    @Override
-    public boolean isString() {
-        return false;
-    }
-
     @Override
     JsonNodeName defaultName() {
         return NAME;
     }
 
-    // Visitor .................................................................................................
+    // Visitor ........................................................................................................
 
     @Override
     public void accept(final JsonNodeVisitor visitor) {

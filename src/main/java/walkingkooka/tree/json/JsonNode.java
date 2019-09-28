@@ -322,17 +322,29 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
 
     // isXXX............................................................................................................
 
-    abstract public boolean isArray();
+    public final boolean isArray() {
+        return this instanceof JsonArrayNode;
+    }
 
-    abstract public boolean isBoolean();
+    public final boolean isBoolean() {
+        return this instanceof JsonBooleanNode;
+    }
 
-    abstract public boolean isNumber();
+    public final boolean isNull() {
+        return this instanceof JsonNullNode;
+    }
 
-    abstract public boolean isNull();
+    public final boolean isNumber(){
+        return this instanceof JsonNumberNode;
+    }
 
-    abstract public boolean isObject();
+    public final boolean isObject() {
+        return this instanceof JsonObjectNode;
+    }
 
-    abstract public boolean isString();
+    public final boolean isString() {
+        return this instanceof JsonStringNode;
+    }
 
     /**
      * Unsafe cast to a sub class of {@link JsonNode}.

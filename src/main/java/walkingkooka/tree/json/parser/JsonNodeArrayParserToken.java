@@ -38,16 +38,6 @@ public final class JsonNodeArrayParserToken extends JsonNodeParentParserToken<Js
     }
 
     @Override
-    public boolean isArray() {
-        return true;
-    }
-
-    @Override
-    public boolean isObject() {
-        return false;
-    }
-
-    @Override
     JsonNode marshallOrNull() {
         final List<JsonNode> children = Lists.array();
         this.addJsonNode(children);

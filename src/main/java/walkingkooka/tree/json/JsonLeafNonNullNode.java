@@ -28,14 +28,7 @@ abstract class JsonLeafNonNullNode<V> extends JsonLeafNode<V> {
         super(name, index, value);
     }
 
-    // isXXX..................................................................................................
-
-    @Override
-    public final boolean isNull() {
-        return false;
-    }
-
-    // Object......................................................................................................
+    // Object...........................................................................................................
 
     @Override
     public final int hashCode() {

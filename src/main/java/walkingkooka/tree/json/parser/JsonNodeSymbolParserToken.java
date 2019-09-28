@@ -30,31 +30,6 @@ abstract class JsonNodeSymbolParserToken extends JsonNodeLeafParserToken<String>
     }
 
     @Override
-    public final boolean isBoolean() {
-        return false;
-    }
-
-    @Override
-    public final boolean isNull() {
-        return false;
-    }
-
-    @Override
-    public final boolean isNumber() {
-        return false;
-    }
-
-    @Override
-    public final boolean isString() {
-        return false;
-    }
-
-    @Override
-    public final boolean isSymbol() {
-        return true;
-    }
-
-    @Override
     public final boolean isNoise() {
         return true;
     }

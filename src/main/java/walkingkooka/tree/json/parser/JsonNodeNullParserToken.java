@@ -36,28 +36,6 @@ public final class JsonNodeNullParserToken extends JsonNodeValueParserToken<Void
         super(value, text);
     }
 
-    // is ..............................................................................................................
-
-    @Override
-    public boolean isBoolean() {
-        return false;
-    }
-
-    @Override
-    public boolean isNull() {
-        return true;
-    }
-
-    @Override
-    public boolean isNumber() {
-        return false;
-    }
-
-    @Override
-    public boolean isString() {
-        return false;
-    }
-
     // JsonNodeParserTokenVisitor.......................................................................................
 
     @Override

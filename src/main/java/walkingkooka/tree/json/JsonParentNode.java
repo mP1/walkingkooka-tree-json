@@ -100,29 +100,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
 
     abstract SearchNode toSearchNode0();
 
-    // isXXX...............................................................................................
-
-    @Override
-    public final boolean isBoolean() {
-        return false;
-    }
-
-    @Override
-    public final boolean isNull() {
-        return false;
-    }
-
-    @Override
-    public final boolean isNumber() {
-        return false;
-    }
-
-    @Override
-    public final boolean isString() {
-        return false;
-    }
-
-    // Visitor .................................................................................................
+    // Visitor ........................................................................................................
 
     final void acceptValues(final JsonNodeVisitor visitor) {
         for (JsonNode node : this.children()) {

@@ -62,16 +62,6 @@ abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
 
     abstract JsonLeafNode replace0(final JsonNodeName name, final int index, final V value);
 
-    @Override
-    public final boolean isArray() {
-        return false;
-    }
-
-    @Override
-    public final boolean isObject() {
-        return false;
-    }
-
     /**
      * leaf nodes are not an array and always fail.
      */

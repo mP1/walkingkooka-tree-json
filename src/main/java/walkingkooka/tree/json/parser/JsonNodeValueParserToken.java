@@ -24,41 +24,4 @@ abstract class JsonNodeValueParserToken<V> extends JsonNodeLeafParserToken<V> {
     JsonNodeValueParserToken(final V value, final String text) {
         super(value, text);
     }
-
-    // isXXX............................................................................................................
-
-    @Override
-    public final boolean isArrayBeginSymbol() {
-        return false;
-    }
-
-    @Override
-    public final boolean isArrayEndSymbol() {
-        return false;
-    }
-
-    @Override
-    public final boolean isObjectBeginSymbol() {
-        return false;
-    }
-
-    @Override
-    public final boolean isObjectEndSymbol() {
-        return false;
-    }
-
-    @Override
-    public final boolean isObjectAssignmentSymbol() {
-        return false;
-    }
-
-    @Override
-    public final boolean isSeparatorSymbol() {
-        return false;
-    }
-
-    @Override
-    public final boolean isSymbol() {
-        return false;
-    }
 }

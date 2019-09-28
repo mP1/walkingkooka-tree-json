@@ -82,23 +82,6 @@ public final class JsonStringNode extends JsonLeafNonNullNode<String> {
         return SearchNode.text(text, this.value());
     }
 
-    // isXXX......................................................................................................
-
-    @Override
-    public boolean isBoolean() {
-        return false;
-    }
-
-    @Override
-    public boolean isNumber() {
-        return false;
-    }
-
-    @Override
-    public boolean isString() {
-        return true;
-    }
-
     // JsonNodeVisitor .................................................................................................
 
     @Override

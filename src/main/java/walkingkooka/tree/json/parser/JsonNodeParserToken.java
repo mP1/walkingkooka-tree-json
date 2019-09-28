@@ -158,69 +158,102 @@ public abstract class JsonNodeParserToken implements ParserToken {
     /**
      * Only {@link JsonNodeArrayParserToken} return true
      */
-    public abstract boolean isArray();
+    public final boolean isArray() {
+        return this instanceof JsonNodeArrayParserToken;
+    }
 
     /**
      * Only {@link JsonNodeArrayBeginSymbolParserToken} return true
      */
-    public abstract boolean isArrayBeginSymbol();
+    public final boolean isArrayBeginSymbol() {
+        return this instanceof JsonNodeArrayBeginSymbolParserToken;
+    }
 
     /**
      * Only {@link JsonNodeArrayEndSymbolParserToken} return true
      */
-    public abstract boolean isArrayEndSymbol();
+    public final boolean isArrayEndSymbol() {
+        return this instanceof JsonNodeArrayEndSymbolParserToken;
+    }
 
     /**
      * Only {@link JsonNodeBooleanParserToken} return true
      */
-    public abstract boolean isBoolean();
+    public final boolean isBoolean() {
+        return this instanceof JsonNodeBooleanParserToken;
+    }
 
     /**
      * Only {@link JsonNodeNullParserToken} return true
      */
-    public abstract boolean isNull();
+    public final boolean isNull() {
+        return this instanceof JsonNodeNullParserToken;
+    }
 
     /**
      * Only {@link JsonNodeNumberParserToken} return true
      */
-    public abstract boolean isNumber();
+    public final boolean isNumber() {
+        return this instanceof JsonNodeNumberParserToken;
+    }
 
     /**
      * Only {@link JsonNodeObjectParserToken} return true
      */
-    public abstract boolean isObject();
+    public final boolean isObject() {
+        return this instanceof JsonNodeObjectParserToken;
+    }
 
     /**
      * Only {@link JsonNodeObjectAssignmentSymbolParserToken} return true
      */
-    public abstract boolean isObjectAssignmentSymbol();
+    public final boolean isObjectAssignmentSymbol() {
+        return this instanceof JsonNodeObjectAssignmentSymbolParserToken;
+    }
 
     /**
      * Only {@link JsonNodeObjectBeginSymbolParserToken} return true
      */
-    public abstract boolean isObjectBeginSymbol();
+    public final boolean isObjectBeginSymbol() {
+        return this instanceof JsonNodeObjectBeginSymbolParserToken;
+    }
 
     /**
      * Only {@link JsonNodeObjectEndSymbolParserToken} return true
      */
-    public abstract boolean isObjectEndSymbol();
+    public final boolean isObjectEndSymbol() {
+        return this instanceof JsonNodeObjectEndSymbolParserToken;
+    }
 
     /**
      * Only {@link JsonNodeSeparatorSymbolParserToken} return true
      */
-    public abstract boolean isSeparatorSymbol();
+    public final boolean isSeparatorSymbol() {
+        return this instanceof JsonNodeSeparatorSymbolParserToken;
+    }
 
     /**
      * Only {@link JsonNodeSymbolParserToken} return true
      */
-    public abstract boolean isSymbol();
+    public final boolean isSymbol() {
+        return this instanceof JsonNodeSymbolParserToken;
+    }
 
     /**
      * Only {@link JsonNodeStringParserToken} return true
      */
-    public abstract boolean isString();
+    public final boolean isString() {
+        return this instanceof JsonNodeStringParserToken;
+    }
 
-    // Visitor ......................................................................................................
+    /**
+     * Only {@link JsonNodeWhitespaceParserToken} return true
+     */
+    public final boolean isWhitespace() {
+        return this instanceof JsonNodeWhitespaceParserToken;
+    }
+
+    // Visitor .........................................................................................................
 
     /**
      * Begins the visiting process.

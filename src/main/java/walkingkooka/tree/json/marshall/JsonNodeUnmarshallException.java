@@ -27,8 +27,6 @@ import java.util.Objects;
  */
 public class JsonNodeUnmarshallException extends JsonNodeMapException {
 
-    private static final long serialVersionUID = 1L;
-
     protected JsonNodeUnmarshallException() {
         super();
     }

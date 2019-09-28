@@ -63,7 +63,7 @@ public final class JsonNodeObjectParserToken extends JsonNodeParentParserToken<J
     }
 
     @Override
-    JsonNode marshallOrNull() {
+    JsonNode toJsonNodeOrNull() {
         JsonNodeStringParserToken key = null;
 
         final JsonObjectNode object = JsonNode.object();
@@ -78,7 +78,7 @@ public final class JsonNodeObjectParserToken extends JsonNodeParentParserToken<J
                 if (null == key) {
                     key = j.cast();
                 } else {
-                    final JsonNode node = j.marshall().get();
+                    final JsonNode node = j.toJsonNode().get();
                     objectChildren.add(node.setName(JsonNodeName.with(key.value())));
                     key = null;
                 }
@@ -90,7 +90,7 @@ public final class JsonNodeObjectParserToken extends JsonNodeParentParserToken<J
 
     @Override
     final void addJsonNode(final List<JsonNode> children) {
-        children.add(this.marshallOrNull());
+        children.add(this.toJsonNodeOrNull());
     }
 
     // visitor ...............................................................................................

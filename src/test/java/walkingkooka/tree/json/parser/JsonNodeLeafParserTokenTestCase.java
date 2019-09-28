@@ -25,7 +25,7 @@ public abstract class JsonNodeLeafParserTokenTestCase<T extends JsonNodeLeafPars
     }
 
     @Test
-    public abstract void testMarshall();
+    public abstract void testToJsonNode();
 
     @Override
     public final T createToken(final String text) {

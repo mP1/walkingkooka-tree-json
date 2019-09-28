@@ -276,14 +276,14 @@ public abstract class JsonNodeParserToken implements ParserToken {
      * Converts this token to its {@link JsonNode} equivalent. Note that {@link JsonNodeWhitespaceParserToken} will
      * be removed
      */
-    final public Optional<JsonNode> marshall() {
-        return Optional.ofNullable(this.marshallOrNull());
+    final public Optional<JsonNode> toJsonNode() {
+        return Optional.ofNullable(this.toJsonNodeOrNull());
     }
 
     /**
      * Returns the {@link JsonNode} form or null.
      */
-    abstract JsonNode marshallOrNull();
+    abstract JsonNode toJsonNodeOrNull();
 
     /**
      * Sub classes should add themselves to the list of children.

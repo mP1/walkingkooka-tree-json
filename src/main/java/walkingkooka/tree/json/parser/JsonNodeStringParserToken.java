@@ -39,7 +39,7 @@ public final class JsonNodeStringParserToken extends JsonNodeValueParserToken<St
     }
 
     @Override
-    JsonNode marshallOrNull() {
+    JsonNode toJsonNodeOrNull() {
         return JsonNode.string(this.value());
     }
 

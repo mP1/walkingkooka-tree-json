@@ -29,8 +29,8 @@ public abstract class JsonNodeSymbolParserTokenTestCase<T extends JsonNodeSymbol
     }
 
     @Test
-    public final void testMarshall() {
+    public final void testToJsonNode() {
         final T token = this.createToken();
-        assertEquals(Optional.empty(), token.marshall());
+        assertEquals(Optional.empty(), token.toJsonNode());
     }
 }

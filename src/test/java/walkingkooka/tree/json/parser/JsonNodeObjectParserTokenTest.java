@@ -86,14 +86,14 @@ public final class JsonNodeObjectParserTokenTest extends JsonNodeParentParserTok
 
     @Test
     public void testMarshallEmpty() {
-        assertEquals(Optional.of(JsonNode.object()), JsonNodeObjectParserToken.with(Lists.empty(), "{}").marshall());
+        assertEquals(Optional.of(JsonNode.object()), JsonNodeObjectParserToken.with(Lists.empty(), "{}").toJsonNode());
     }
 
     @Test
     public void testMarshall() {
         assertEquals(Optional.of(JsonNode.object().set(JsonNodeName.with("key1"), JsonNode.number(123))),
                 object(string("key1"), number(123))
-                        .marshall());
+                        .toJsonNode());
     }
 
     @Test
@@ -104,14 +104,14 @@ public final class JsonNodeObjectParserTokenTest extends JsonNodeParentParserTok
         final JsonObjectNode objectNode = JsonNode.object().set(JsonNodeName.with("key1"), JsonNode.number(123));
         final JsonArrayNode arrayNode = JsonNode.array().appendChild(objectNode);
 
-        assertEquals(Optional.of(arrayNode), arrayToken.marshall());
+        assertEquals(Optional.of(arrayNode), arrayToken.toJsonNode());
     }
 
     @Test
     public void testMarshallWhitespace() {
         assertEquals(Optional.of(JsonNode.object().set(JsonNodeName.with("key1"), JsonNode.number(123))),
                 object(whitespace(), string("key1"), whitespace(), number(123))
-                        .marshall());
+                        .toJsonNode());
     }
 
     @Test

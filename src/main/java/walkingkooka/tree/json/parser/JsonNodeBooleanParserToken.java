@@ -38,7 +38,7 @@ public final class JsonNodeBooleanParserToken extends JsonNodeValueParserToken<B
     }
 
     @Override
-    final JsonNode marshallOrNull() {
+    final JsonNode toJsonNodeOrNull() {
         return JsonNode.booleanNode(this.value);
     }
 

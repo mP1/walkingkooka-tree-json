@@ -35,7 +35,7 @@ abstract class JsonNodeSymbolParserToken extends JsonNodeLeafParserToken<String>
     }
 
     @Override
-    final JsonNode marshallOrNull() {
+    final JsonNode toJsonNodeOrNull() {
         return null;
     }
 

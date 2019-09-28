@@ -78,29 +78,7 @@ public final class JsonNullNode extends JsonLeafNode<Void> {
         return SearchNode.text(text, text);
     }
 
-    // isXXX............................................................................................................
-
-    @Override
-    public boolean isBoolean() {
-        return false;
-    }
-
-    @Override
-    public boolean isNull() {
-        return true;
-    }
-
-    @Override
-    public boolean isNumber() {
-        return false;
-    }
-
-    @Override
-    public boolean isString() {
-        return false;
-    }
-
-    // HasText......................................................................................................
+    // HasText..........................................................................................................
 
     @Override
     public final String text() {

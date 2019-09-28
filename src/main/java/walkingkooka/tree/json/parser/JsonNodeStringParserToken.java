@@ -38,28 +38,6 @@ public final class JsonNodeStringParserToken extends JsonNodeValueParserToken<St
         super(value, text);
     }
 
-    // is ...............................................................................................
-
-    @Override
-    public boolean isBoolean() {
-        return false;
-    }
-
-    @Override
-    public boolean isNull() {
-        return false;
-    }
-
-    @Override
-    public boolean isNumber() {
-        return false;
-    }
-
-    @Override
-    public boolean isString() {
-        return true;
-    }
-
     @Override
     JsonNode marshallOrNull() {
         return JsonNode.string(this.value());

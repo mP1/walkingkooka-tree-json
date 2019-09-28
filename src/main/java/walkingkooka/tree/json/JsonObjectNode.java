@@ -258,27 +258,6 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
         return NAME;
     }
 
-    // HasSearchNode...............................................................................................
-
-    @Override
-    SearchNode toSearchNode0() {
-        return SearchNode.sequence(this.children.stream()
-                .map(c -> c.toSearchNode().setName(c.name().toSearchNodeName()))
-                .collect(Collectors.toList()));
-    }
-
-    // isXXX......................................................................................................
-
-    @Override
-    public boolean isArray() {
-        return false;
-    }
-
-    @Override
-    public boolean isObject() {
-        return true;
-    }
-
     /**
      * Objects are not an array so fail.
      */
@@ -290,6 +269,15 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
     @Override
     public JsonObjectNode objectOrFail() {
         return this;
+    }
+
+    // HasSearchNode...............................................................................................
+
+    @Override
+    SearchNode toSearchNode0() {
+        return SearchNode.sequence(this.children.stream()
+                .map(c -> c.toSearchNode().setName(c.name().toSearchNodeName()))
+                .collect(Collectors.toList()));
     }
 
     // JsonNodeVisitor .................................................................................................

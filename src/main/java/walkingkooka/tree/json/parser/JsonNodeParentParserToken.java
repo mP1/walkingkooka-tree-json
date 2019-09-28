@@ -31,68 +31,6 @@ abstract class JsonNodeParentParserToken<T extends JsonNodeParentParserToken<T>>
         this.value = value;
     }
 
-    // isXXX............................................................................................................
-
-    @Override
-    public final boolean isArrayBeginSymbol() {
-        return false;
-    }
-
-    @Override
-    public final boolean isArrayEndSymbol() {
-        return false;
-    }
-
-    @Override
-    public final boolean isBoolean() {
-        return false;
-    }
-
-    @Override
-    public final boolean isNull() {
-        return false;
-    }
-
-    @Override
-    public final boolean isNumber() {
-        return false;
-    }
-
-    @Override
-    public final boolean isObjectBeginSymbol() {
-        return false;
-    }
-
-    @Override
-    public final boolean isObjectEndSymbol() {
-        return false;
-    }
-
-    @Override
-    public final boolean isObjectAssignmentSymbol() {
-        return false;
-    }
-
-    @Override
-    public final boolean isSeparatorSymbol() {
-        return false;
-    }
-
-    @Override
-    public final boolean isString() {
-        return false;
-    }
-
-    @Override
-    public final boolean isSymbol() {
-        return false;
-    }
-
-    @Override
-    public final boolean isWhitespace() {
-        return false;
-    }
-
     @Override
     public final List<ParserToken> value() {
         return this.value;

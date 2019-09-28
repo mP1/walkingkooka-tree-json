@@ -220,7 +220,7 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
         return NAME;
     }
 
-    // HasSearchNode............................................................................................................
+    // HasSearchNode....................................................................................................
 
     @Override
     SearchNode toSearchNode0() {
@@ -230,16 +230,6 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
     }
 
     // isXXX............................................................................................................
-
-    @Override
-    public boolean isArray() {
-        return true;
-    }
-
-    @Override
-    public boolean isObject() {
-        return false;
-    }
 
     /**
      * Is an array return this.

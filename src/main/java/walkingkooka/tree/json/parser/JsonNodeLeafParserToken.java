@@ -41,15 +41,5 @@ abstract class JsonNodeLeafParserToken<T> extends JsonNodeParserToken implements
 
     final T value;
 
-    @Override
-    public final boolean isArray() {
-        return false;
-    }
-
-    @Override
-    public final boolean isObject() {
-        return false;
-    }
-
     abstract public void accept(final JsonNodeParserTokenVisitor visitor);
 }

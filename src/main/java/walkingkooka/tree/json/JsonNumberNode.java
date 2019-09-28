@@ -79,24 +79,7 @@ public final class JsonNumberNode extends JsonLeafNonNullNode<Double> {
         return SearchNode.doubleNode(text, this.value());
     }
 
-    // isXXX............................................................................................................
-
-    @Override
-    public boolean isBoolean() {
-        return false;
-    }
-
-    @Override
-    public boolean isNumber() {
-        return true;
-    }
-
-    @Override
-    public boolean isString() {
-        return false;
-    }
-
-    // Visitor .................................................................................................
+    // Visitor .........................................................................................................
 
     @Override
     public void accept(final JsonNodeVisitor visitor) {

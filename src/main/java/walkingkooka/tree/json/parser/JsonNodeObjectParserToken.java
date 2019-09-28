@@ -63,16 +63,6 @@ public final class JsonNodeObjectParserToken extends JsonNodeParentParserToken<J
     }
 
     @Override
-    public boolean isArray() {
-        return false;
-    }
-
-    @Override
-    public boolean isObject() {
-        return true;
-    }
-
-    @Override
     JsonNode marshallOrNull() {
         JsonNodeStringParserToken key = null;
 

@@ -24,8 +24,6 @@ import walkingkooka.tree.NodeException;
  */
 public class JsonNodeException extends NodeException {
 
-    private static final long serialVersionUID = 1L;
-
     protected JsonNodeException() {
         super();
     }

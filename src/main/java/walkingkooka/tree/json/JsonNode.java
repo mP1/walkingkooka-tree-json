@@ -422,7 +422,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
     @Override
     public final String toString() {
         final StringBuilder b = new StringBuilder();
-        try(final IndentingPrinter printer = IndentingPrinters.printer(Printers.stringBuilder(b, LineEnding.SYSTEM))) {
+        try(final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM).indenting()) {
             this.printJson(printer);
         }
         return b.toString();

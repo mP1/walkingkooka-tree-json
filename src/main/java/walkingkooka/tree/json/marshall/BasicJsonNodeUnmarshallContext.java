@@ -117,18 +117,13 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
 
         final Map<K, V> map = Maps.ordered();
 
-        try {
-            for (JsonNode entry : node.children()) {
-                final JsonObjectNode entryObject = entry.objectOrFail();
+        for (JsonNode entry : node.children()) {
+            final JsonObjectNode entryObject = entry.objectOrFail();
 
-                map.put(keyMapper.unmarshall(this.preProcess(entryObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_KEY), keyType), this),
-                        valueMapper.unmarshall(this.preProcess(entryObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_VALUE), valueType), this));
-            }
-            return map;
-
-        } catch (final RuntimeException cause) {
-            throw cause;
+            map.put(keyMapper.unmarshall(this.preProcess(entryObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_KEY), keyType), this),
+                    valueMapper.unmarshall(this.preProcess(entryObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_VALUE), valueType), this));
         }
+        return map;
     }
 
     // unmarshallWithType.............................................................................................

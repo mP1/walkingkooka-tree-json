@@ -237,11 +237,10 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
         final Parser<NodeSelectorParserContext> parser = NodeSelectorParsers.predicate()
                 .orReport(ParserReporters.basic())
                 .cast();
-        final NodeSelectorPredicateParserToken token = parser.parse(TextCursors.charSequence(expression), NodeSelectorParserContexts.basic(BasicJsonMarshallerTypedNodeSelector::hasMathContext))
+        return parser.parse(TextCursors.charSequence(expression), NodeSelectorParserContexts.basic(BasicJsonMarshallerTypedNodeSelector::hasMathContext))
                 .get()
-                .cast();
-
-        return token.toExpressionNode(Predicates.always());
+                .cast(NodeSelectorPredicateParserToken.class)
+                .toExpressionNode(Predicates.always());
     }
 
     private static MathContext hasMathContext() {

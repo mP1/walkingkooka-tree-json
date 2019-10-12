@@ -91,18 +91,20 @@ final class JsonNodeEbnfParserCombinatorSyntaxTreeTransformer implements EbnfPar
 
     private static ParserToken array(final ParserToken token,
                                      final ParserContext context) {
-        return JsonNodeParserToken.array(JsonNodeEbnfParserCombinatorSyntaxTreeTransformer.clean(token.cast()),
+        return JsonNodeParserToken.array(JsonNodeEbnfParserCombinatorSyntaxTreeTransformer.clean(token),
                 token.text());
     }
 
     private static ParserToken object(final ParserToken token,
                                       final ParserContext context) {
-        return JsonNodeParserToken.object(JsonNodeEbnfParserCombinatorSyntaxTreeTransformer.clean(token.cast()),
+        return JsonNodeParserToken.object(JsonNodeEbnfParserCombinatorSyntaxTreeTransformer.clean(token),
                 token.text());
     }
 
-    private static List<ParserToken> clean(final SequenceParserToken token) {
-        return token.flat().value();
+    private static List<ParserToken> clean(final ParserToken token) {
+        return token.cast(SequenceParserToken.class)
+                .flat()
+                .value();
     }
 
     private Parser<ParserContext> requiredCheck(final EbnfIdentifierName name,

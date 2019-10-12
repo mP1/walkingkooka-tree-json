@@ -118,11 +118,11 @@ public final class JsonNodeObjectParserTokenTest extends JsonNodeParentParserTok
     public void testAccept() {
         final StringBuilder b = new StringBuilder();
         final JsonNodeObjectParserToken token = this.createToken();
-        final JsonNodeObjectBeginSymbolParserToken begin = token.value.get(0).cast();
-        final JsonNodeStringParserToken string1 = token.value.get(1).cast();
-        final JsonNodeObjectAssignmentSymbolParserToken assignment = token.value.get(2).cast();
-        final JsonNodeStringParserToken string2 = token.value.get(3).cast();
-        final JsonNodeObjectEndSymbolParserToken end = token.value.get(4).cast();
+        final JsonNodeObjectBeginSymbolParserToken begin = token.value.get(0).cast(JsonNodeObjectBeginSymbolParserToken.class);
+        final JsonNodeStringParserToken string1 = token.value.get(1).cast(JsonNodeStringParserToken.class);
+        final JsonNodeObjectAssignmentSymbolParserToken assignment = token.value.get(2).cast(JsonNodeObjectAssignmentSymbolParserToken.class);
+        final JsonNodeStringParserToken string2 = token.value.get(3).cast(JsonNodeStringParserToken.class);
+        final JsonNodeObjectEndSymbolParserToken end = token.value.get(4).cast(JsonNodeObjectEndSymbolParserToken.class);
 
         new FakeJsonNodeParserTokenVisitor() {
             @Override
@@ -204,7 +204,8 @@ public final class JsonNodeObjectParserTokenTest extends JsonNodeParentParserTok
 
     @Override
     public JsonNodeObjectParserToken createDifferentToken() {
-        return object(objectBegin(), string("different-key"), objectAssignment(), string("different-value"), objectEnd()).cast();
+        return object(objectBegin(), string("different-key"), objectAssignment(), string("different-value"), objectEnd())
+                .cast(JsonNodeObjectParserToken.class);
     }
 
     @Override

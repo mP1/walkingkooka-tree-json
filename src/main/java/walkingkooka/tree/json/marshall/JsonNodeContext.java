@@ -29,7 +29,7 @@ import java.util.function.BiFunction;
  */
 public interface JsonNodeContext extends Context {
     /**
-     * Registers a factory that parses a {@link JsonNode} into a value for the given {@link Class}. The {@class Runnable}
+     * Registers a factory that parses a {@link JsonNode} into a value for the given {@link Class}. The {@link Runnable}
      * when executed removes the just registered mapping.
      */
     static <T> Runnable register(final String typeName,

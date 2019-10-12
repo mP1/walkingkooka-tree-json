@@ -50,6 +50,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     // register.........................................................................................................
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testRegisterNullTypeNameFails() {
         assertThrows(NullPointerException.class, () -> BasicJsonMarshaller.register(null,
@@ -58,6 +59,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
                 TestJsonNodeValue.class));
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testRegisterEmptyTypeNameFails() {
         assertThrows(IllegalArgumentException.class, () -> BasicJsonMarshaller.register("",
@@ -66,6 +68,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
                 TestJsonNodeValue.class));
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testRegisterNullFromFunctionFails() {
         assertThrows(NullPointerException.class, () -> BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
@@ -74,6 +77,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
                 TestJsonNodeValue.class));
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testRegisterNullToFunctionFails() {
         assertThrows(NullPointerException.class, () -> BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
@@ -82,6 +86,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
                 TestJsonNodeValue.class));
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testRegisterNullTypeFails() {
         assertThrows(NullPointerException.class, () -> BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
@@ -95,6 +100,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
         TestJsonNodeValue.register();
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testRegisterTwiceFails() {
         TestJsonNodeValue.register();

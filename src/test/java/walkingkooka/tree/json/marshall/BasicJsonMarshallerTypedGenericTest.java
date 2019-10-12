@@ -34,6 +34,7 @@ public final class BasicJsonMarshallerTypedGenericTest extends BasicJsonMarshall
         TestJsonNodeValue.unregister();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     BasicJsonMarshallerTypedGeneric<TestJsonNodeValue> marshaller() {
         return BasicJsonMarshallerTypedGeneric.with(TestJsonNodeValue.TYPE_NAME,

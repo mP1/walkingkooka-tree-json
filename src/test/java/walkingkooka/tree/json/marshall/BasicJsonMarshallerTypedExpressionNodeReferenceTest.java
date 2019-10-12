@@ -28,6 +28,7 @@ import walkingkooka.tree.json.JsonNode;
 public final class BasicJsonMarshallerTypedExpressionNodeReferenceTest extends BasicJsonMarshallerTypedExpressionNodeTestCase<BasicJsonMarshallerTypedExpressionNodeReference, ExpressionReferenceNode> {
 
     @BeforeAll
+    @SuppressWarnings("unchecked")
     public static void beforeAll() {
         remover = BasicJsonMarshaller.register(REFERENCE_TYPE_NAME,
                 (n, c) -> REFERENCE,

@@ -254,6 +254,7 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
         throw new IllegalArgumentException("Unknown component: " + CharSequences.quoteAndEscape(component) + " in " + from);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     JsonNode marshallNonNull(final NodeSelector value,
                              final JsonNodeMarshallContext context) {

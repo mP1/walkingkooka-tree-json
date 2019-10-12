@@ -115,6 +115,7 @@ final class BasicJsonMarshallerTypedRange extends BasicJsonMarshallerTyped<Range
         return bound;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     JsonNode marshallNonNull(final Range value,
                              final JsonNodeMarshallContext context) {

@@ -28,6 +28,7 @@ import walkingkooka.tree.json.JsonObjectNode;
  */
 final class BasicJsonMarshallerTypedRangeRangeVisitor<C extends Comparable<C>> extends RangeVisitor<C> {
 
+    @SuppressWarnings("unchecked")
     static <C extends Comparable<C>> JsonNode marshall(final Range<C> range,
                                                        final JsonNodeMarshallContext context) {
         final BasicJsonMarshallerTypedRangeRangeVisitor<C> visitor = new BasicJsonMarshallerTypedRangeRangeVisitor(context);

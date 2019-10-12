@@ -32,7 +32,7 @@ final class BasicJsonMarshallerTypedExpressionNodeValue<N extends ExpressionNode
                                                                                                            final Class<N> expressionNodeType,
                                                                                                            final Class<V> valueType) {
 
-        return new BasicJsonMarshallerTypedExpressionNodeValue(from,
+        return new BasicJsonMarshallerTypedExpressionNodeValue<>(from,
                 expressionNodeType,
                 valueType);
     }

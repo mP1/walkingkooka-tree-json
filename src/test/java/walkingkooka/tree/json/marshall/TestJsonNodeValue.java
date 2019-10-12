@@ -67,6 +67,7 @@ public final class TestJsonNodeValue extends TestJsonNodeValueAbstract {
 
     final static JsonNodeName KEY = JsonNodeName.with("string");
 
+    @SuppressWarnings("unchecked")
     public static void register() {
         remover = JsonNodeContext.register(TYPE_NAME,
                 TestJsonNodeValue::unmarshall,

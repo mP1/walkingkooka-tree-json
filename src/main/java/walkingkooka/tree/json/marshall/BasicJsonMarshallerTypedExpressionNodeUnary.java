@@ -30,7 +30,7 @@ final class BasicJsonMarshallerTypedExpressionNodeUnary<N extends ExpressionNode
     static <N extends ExpressionNode> BasicJsonMarshallerTypedExpressionNodeUnary<N> with(final Function<ExpressionNode, N> from,
                                                                                           final Class<N> expressionNodeType) {
 
-        return new BasicJsonMarshallerTypedExpressionNodeUnary(from, expressionNodeType);
+        return new BasicJsonMarshallerTypedExpressionNodeUnary<>(from, expressionNodeType);
     }
 
     private BasicJsonMarshallerTypedExpressionNodeUnary(final Function<ExpressionNode, N> from,

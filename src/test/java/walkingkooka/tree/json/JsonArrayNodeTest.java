@@ -224,16 +224,12 @@ public final class JsonArrayNodeTest extends JsonParentNodeTestCase<JsonArrayNod
 
     @Test
     public void testRemoveNegativeIndexFails() {
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            this.createJsonNode().remove(-1);
-        });
+        assertThrows(IndexOutOfBoundsException.class, () -> this.createJsonNode().remove(-1));
     }
 
     @Test
     public void testRemoveInvalidIndexFails() {
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            this.createJsonNode().remove(0);
-        });
+        assertThrows(IndexOutOfBoundsException.class, () -> this.createJsonNode().remove(0));
     }
 
     @Test
@@ -260,9 +256,7 @@ public final class JsonArrayNodeTest extends JsonParentNodeTestCase<JsonArrayNod
         final JsonArrayNode array = JsonNode.array()
                 .appendChild(this.value1())
                 .appendChild(this.value2());
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            array.remove(2);
-        });
+        assertThrows(IndexOutOfBoundsException.class, () -> array.remove(2));
         this.childrenCheck(array);
         this.childCountCheck(array, 2);
     }

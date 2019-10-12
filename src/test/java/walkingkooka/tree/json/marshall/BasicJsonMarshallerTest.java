@@ -52,52 +52,42 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     @Test
     public void testRegisterNullTypeNameFails() {
-        assertThrows(NullPointerException.class, () -> {
-            BasicJsonMarshaller.register(null,
-                    TestJsonNodeValue::unmarshall,
-                    TestJsonNodeValue::marshall,
-                    TestJsonNodeValue.class);
-        });
+        assertThrows(NullPointerException.class, () -> BasicJsonMarshaller.register(null,
+                TestJsonNodeValue::unmarshall,
+                TestJsonNodeValue::marshall,
+                TestJsonNodeValue.class));
     }
 
     @Test
     public void testRegisterEmptyTypeNameFails() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            BasicJsonMarshaller.register("",
-                    TestJsonNodeValue::unmarshall,
-                    TestJsonNodeValue::marshall,
-                    TestJsonNodeValue.class);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BasicJsonMarshaller.register("",
+                TestJsonNodeValue::unmarshall,
+                TestJsonNodeValue::marshall,
+                TestJsonNodeValue.class));
     }
 
     @Test
     public void testRegisterNullFromFunctionFails() {
-        assertThrows(NullPointerException.class, () -> {
-            BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
-                    null,
-                    TestJsonNodeValue::marshall,
-                    TestJsonNodeValue.class);
-        });
+        assertThrows(NullPointerException.class, () -> BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
+                null,
+                TestJsonNodeValue::marshall,
+                TestJsonNodeValue.class));
     }
 
     @Test
     public void testRegisterNullToFunctionFails() {
-        assertThrows(NullPointerException.class, () -> {
-            BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
-                    TestJsonNodeValue::unmarshall,
-                    null,
-                    TestJsonNodeValue.class);
-        });
+        assertThrows(NullPointerException.class, () -> BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
+                TestJsonNodeValue::unmarshall,
+                null,
+                TestJsonNodeValue.class));
     }
 
     @Test
     public void testRegisterNullTypeFails() {
-        assertThrows(NullPointerException.class, () -> {
-            BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
-                    TestJsonNodeValue::unmarshall,
-                    TestJsonNodeValue::marshall,
-                    null);
-        });
+        assertThrows(NullPointerException.class, () -> BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
+                TestJsonNodeValue::unmarshall,
+                TestJsonNodeValue::marshall,
+                null));
     }
 
     @Test
@@ -109,19 +99,15 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     public void testRegisterTwiceFails() {
         TestJsonNodeValue.register();
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
-                    TestJsonNodeValue::unmarshall,
-                    TestJsonNodeValue::marshall,
-                    TestJsonNodeValue.class);
-        });
+        assertThrows(IllegalArgumentException.class, () -> BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
+                TestJsonNodeValue::unmarshall,
+                TestJsonNodeValue::marshall,
+                TestJsonNodeValue.class));
     }
 
     @Test
     public void testRegisteredTypeNullFails() {
-        assertThrows(NullPointerException.class, () -> {
-            BasicJsonMarshaller.registeredType(null);
-        });
+        assertThrows(NullPointerException.class, () -> BasicJsonMarshaller.registeredType(null));
     }
 
     @Test
@@ -138,9 +124,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     @Test
     public void testTypeNameNullClassFails() {
-        assertThrows(NullPointerException.class, () -> {
-            BasicJsonMarshaller.typeName(null);
-        });
+        assertThrows(NullPointerException.class, () -> BasicJsonMarshaller.typeName(null));
     }
 
     @Test
@@ -170,16 +154,12 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     @Test
     public void testMarshallerOrFailStringUnknownTypeFails() {
-        assertThrows(UnsupportedTypeJsonNodeException.class, () -> {
-            BasicJsonMarshaller.marshaller("???");
-        });
+        assertThrows(UnsupportedTypeJsonNodeException.class, () -> BasicJsonMarshaller.marshaller("???"));
     }
 
     @Test
     public void testMarshallerOrFailClassUnknownTypeFails() {
-        assertThrows(UnsupportedTypeJsonNodeException.class, () -> {
-            BasicJsonMarshaller.marshaller(this.getClass());
-        });
+        assertThrows(UnsupportedTypeJsonNodeException.class, () -> BasicJsonMarshaller.marshaller(this.getClass()));
     }
 
     // Expression.......................................................................................................

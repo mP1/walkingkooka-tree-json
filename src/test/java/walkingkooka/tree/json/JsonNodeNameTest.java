@@ -31,9 +31,7 @@ public final class JsonNodeNameTest implements ClassTesting2<JsonNodeName>,
 
     @Test
     public void testWithNegativeIndexFails() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            JsonNodeName.index(-1);
-        });
+        assertThrows(IllegalArgumentException.class, () -> JsonNodeName.index(-1));
     }
 
     @Test

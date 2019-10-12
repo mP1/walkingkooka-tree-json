@@ -20,6 +20,7 @@ package walkingkooka.tree.json;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.text.CharacterConstant;
 import walkingkooka.text.printer.IndentingPrinter;
+import walkingkooka.tree.search.HasSearchNode;
 import walkingkooka.tree.search.SearchNode;
 import walkingkooka.visit.Visiting;
 
@@ -225,7 +226,7 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
     @Override
     SearchNode toSearchNode0() {
         return SearchNode.sequence(this.children.stream()
-                .map(c -> c.toSearchNode())
+                .map(HasSearchNode::toSearchNode)
                 .collect(Collectors.toList()));
     }
 

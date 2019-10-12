@@ -181,7 +181,7 @@ abstract class BasicJsonMarshaller<T> {
     static Optional<Class<?>> registeredType(final JsonStringNode name) {
         Objects.requireNonNull(name, "name");
 
-        return Optional.ofNullable(TYPENAME_TO_MARSHALLER.get(name.value())).map(m -> m.type());
+        return Optional.ofNullable(TYPENAME_TO_MARSHALLER.get(name.value())).map(BasicJsonMarshaller::type);
     }
 
     /**

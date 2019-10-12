@@ -18,6 +18,7 @@
 package walkingkooka.tree.json;
 
 import walkingkooka.Cast;
+import walkingkooka.text.HasText;
 import walkingkooka.tree.search.SearchNode;
 
 import java.util.List;
@@ -116,7 +117,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
     @Override
     public String text() {
         return this.children().stream()
-                .map(c -> c.text())
+                .map(HasText::text)
                 .collect(Collectors.joining());
     }
 
@@ -125,7 +126,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
     @Override
     public int textLength() {
         return this.children().stream()
-                .mapToInt(c -> c.textLength())
+                .mapToInt(HasText::textLength)
                 .sum();
     }
 

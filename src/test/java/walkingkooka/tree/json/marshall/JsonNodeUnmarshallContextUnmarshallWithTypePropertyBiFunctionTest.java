@@ -49,16 +49,12 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
 
     @Test
     public void testWithNullSourceFails() {
-        assertThrows(NullPointerException.class, () -> {
-            JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(this.typeNameProperty(), null, this.valueType());
-        });
+        assertThrows(NullPointerException.class, () -> JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(this.typeNameProperty(), null, this.valueType()));
     }
 
     @Test
     public void testWithNullTypeFails() {
-        assertThrows(NullPointerException.class, () -> {
-            JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(this.typeNameProperty(), JsonNode.object(), null);
-        });
+        assertThrows(NullPointerException.class, () -> JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(this.typeNameProperty(), JsonNode.object(), null));
     }
 
     @Test
@@ -98,10 +94,8 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
 
     @Test
     public void testApplyTypeMissingFromSource() {
-        final JsonNodeUnmarshallException thrown = assertThrows(JsonNodeUnmarshallException.class, () -> {
-            this.createBiFunction(JsonNode.object())
-                    .apply(this.value().marshall(this.marshallContext()), this.unmarshallContext());
-        });
+        final JsonNodeUnmarshallException thrown = assertThrows(JsonNodeUnmarshallException.class, () -> this.createBiFunction(JsonNode.object())
+                .apply(this.value().marshall(this.marshallContext()), this.unmarshallContext()));
         checkMessage(thrown, "Unknown property \"typeNameProperty1\" in {}");
     }
 

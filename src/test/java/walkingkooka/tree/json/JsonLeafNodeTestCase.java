@@ -122,9 +122,7 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
 
     @Test
     public final void testSetChildrenFails() {
-        assertThrows(UnsupportedOperationException.class, () -> {
-            this.createJsonNode().setChildren(Lists.empty());
-        });
+        assertThrows(UnsupportedOperationException.class, () -> this.createJsonNode().setChildren(Lists.empty()));
     }
 
     @Override
@@ -139,16 +137,12 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
 
     @Test
     public final void testArrayOrFailFails() {
-        assertThrows(JsonNodeException.class, () -> {
-            this.createJsonNode().arrayOrFail();
-        });
+        assertThrows(JsonNodeException.class, () -> this.createJsonNode().arrayOrFail());
     }
 
     @Test
     public final void testObjectOrFailFails() {
-        assertThrows(JsonNodeException.class, () -> {
-            this.createJsonNode().objectOrFail();
-        });
+        assertThrows(JsonNodeException.class, () -> this.createJsonNode().objectOrFail());
     }
 
     @Override

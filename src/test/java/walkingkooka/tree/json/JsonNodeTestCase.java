@@ -65,9 +65,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
 
     @Test
     public final void testSetNameNullFails() {
-        assertThrows(NullPointerException.class, () -> {
-            this.createJsonNode().setName(null);
-        });
+        assertThrows(NullPointerException.class, () -> this.createJsonNode().setName(null));
     }
 
     @Test
@@ -81,31 +79,23 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
 
     @Test
     public final void testSetAttributesFails() {
-        assertThrows(UnsupportedOperationException.class, () -> {
-            this.createJsonNode().setAttributes(Maps.empty());
-        });
+        assertThrows(UnsupportedOperationException.class, () -> this.createJsonNode().setAttributes(Maps.empty()));
     }
 
     // ToXXXValueOrFail.................................................................................................
     @Test
     public void testBooleanValueOrFail() {
-        assertThrows(JsonNodeException.class, () -> {
-            this.createNode().booleanValueOrFail();
-        });
+        assertThrows(JsonNodeException.class, () -> this.createNode().booleanValueOrFail());
     }
 
     @Test
     public void testNumberValueOrFail() {
-        assertThrows(JsonNodeException.class, () -> {
-            this.createNode().numberValueOrFail();
-        });
+        assertThrows(JsonNodeException.class, () -> this.createNode().numberValueOrFail());
     }
 
     @Test
     public void testStringValueOrFail() {
-        assertThrows(JsonNodeException.class, () -> {
-            this.createNode().stringValueOrFail();
-        });
+        assertThrows(JsonNodeException.class, () -> this.createNode().stringValueOrFail());
     }
 
     @Test
@@ -162,9 +152,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
 
     @Test
     public void testPrintJsonNullPrinterFails() {
-        assertThrows(NullPointerException.class, () -> {
-            this.createJsonNode().printJson(null);
-        });
+        assertThrows(NullPointerException.class, () -> this.createJsonNode().printJson(null));
     }
 
     @Test

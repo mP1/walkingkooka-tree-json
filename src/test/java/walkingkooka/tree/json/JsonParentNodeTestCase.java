@@ -77,9 +77,7 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
     }
 
     public final void testValueFails() {
-        assertThrows(UnsupportedOperationException.class, () -> {
-            this.createJsonNode().value();
-        });
+        assertThrows(UnsupportedOperationException.class, () -> this.createJsonNode().value());
     }
 
     @Override

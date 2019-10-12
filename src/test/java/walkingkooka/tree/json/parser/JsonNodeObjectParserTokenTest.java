@@ -37,51 +37,37 @@ public final class JsonNodeObjectParserTokenTest extends JsonNodeParentParserTok
 
     @Test
     public void testWithArrayKeyFails() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            JsonNodeObjectParserToken.with(Lists.of(array()), "{[]}");
-        });
+        assertThrows(IllegalArgumentException.class, () -> JsonNodeObjectParserToken.with(Lists.of(array()), "{[]}"));
     }
 
     @Test
     public void testWithBooleanKeyFails() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            JsonNodeObjectParserToken.with(Lists.of(booleanToken(true)), "{true}");
-        });
+        assertThrows(IllegalArgumentException.class, () -> JsonNodeObjectParserToken.with(Lists.of(booleanToken(true)), "{true}"));
     }
 
     @Test
     public void testWithNullKeyFails() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            JsonNodeObjectParserToken.with(Lists.of(nul()), "{null}");
-        });
+        assertThrows(IllegalArgumentException.class, () -> JsonNodeObjectParserToken.with(Lists.of(nul()), "{null}"));
     }
 
     @Test
     public void testWithIndexKeyFails() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            JsonNodeObjectParserToken.with(Lists.of(number(123)), "{123}");
-        });
+        assertThrows(IllegalArgumentException.class, () -> JsonNodeObjectParserToken.with(Lists.of(number(123)), "{123}"));
     }
 
     @Test
     public void testWithObjectKeyFails() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            JsonNodeObjectParserToken.with(Lists.of(object()), "{{}}");
-        });
+        assertThrows(IllegalArgumentException.class, () -> JsonNodeObjectParserToken.with(Lists.of(object()), "{{}}"));
     }
 
     @Test
     public void testWithMissingValueFails() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            JsonNodeObjectParserToken.with(Lists.of(string("key")), "{\"key\":}");
-        });
+        assertThrows(IllegalArgumentException.class, () -> JsonNodeObjectParserToken.with(Lists.of(string("key")), "{\"key\":}"));
     }
 
     @Test
     public void testWithMissingValueFails2() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            JsonNodeObjectParserToken.with(Lists.of(string("key1"), number(123), string("key2")), "{\"key1\":123,\"key2\"}");
-        });
+        assertThrows(IllegalArgumentException.class, () -> JsonNodeObjectParserToken.with(Lists.of(string("key1"), number(123), string("key2")), "{\"key1\":123,\"key2\"}"));
     }
 
     @Test

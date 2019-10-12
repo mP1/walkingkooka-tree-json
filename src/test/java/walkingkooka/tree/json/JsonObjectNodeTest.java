@@ -142,9 +142,7 @@ public final class JsonObjectNodeTest extends JsonParentNodeTestCase<JsonObjectN
 
     @Test
     public void testGetOrFailFails() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            this.createJsonNode().getOrFail(JsonNodeName.with("unknown-property"));
-        });
+        assertThrows(IllegalArgumentException.class, () -> this.createJsonNode().getOrFail(JsonNodeName.with("unknown-property")));
     }
 
     @Test
@@ -176,20 +174,16 @@ public final class JsonObjectNodeTest extends JsonParentNodeTestCase<JsonObjectN
 
     @Test
     public void testSetNullNameFails() {
-        assertThrows(NullPointerException.class, () -> {
-            JsonNode.object().set(
-                    null,
-                    this.value1());
-        });
+        assertThrows(NullPointerException.class, () -> JsonNode.object().set(
+                null,
+                this.value1()));
     }
 
     @Test
     public void testSetNullValueFails() {
-        assertThrows(NullPointerException.class, () -> {
-            JsonNode.object().set(
-                    this.key1(),
-                    null);
-        });
+        assertThrows(NullPointerException.class, () -> JsonNode.object().set(
+                this.key1(),
+                null));
     }
 
     @Test
@@ -351,9 +345,7 @@ public final class JsonObjectNodeTest extends JsonParentNodeTestCase<JsonObjectN
 
     @Test
     public void testRemoveNullKeyFails() {
-        assertThrows(NullPointerException.class, () -> {
-            this.createJsonNode().remove(null);
-        });
+        assertThrows(NullPointerException.class, () -> this.createJsonNode().remove(null));
     }
 
     @Test
@@ -507,9 +499,7 @@ public final class JsonObjectNodeTest extends JsonParentNodeTestCase<JsonObjectN
 
     @Test
     public void testMapWhenReadonly() {
-        assertThrows(UnsupportedOperationException.class, () -> {
-            JsonNode.object().asMap().put(this.key1(), this.value1());
-        });
+        assertThrows(UnsupportedOperationException.class, () -> JsonNode.object().asMap().put(this.key1(), this.value1()));
     }
 
     @Test
@@ -518,9 +508,7 @@ public final class JsonObjectNodeTest extends JsonParentNodeTestCase<JsonObjectN
         final JsonObjectNode value1 = JsonNode.object()
                 .set(key1, this.value1());
 
-        assertThrows(UnsupportedOperationException.class, () -> {
-            value1.asMap().remove(key1);
-        });
+        assertThrows(UnsupportedOperationException.class, () -> value1.asMap().remove(key1));
     }
 
     @Test
@@ -654,9 +642,7 @@ public final class JsonObjectNodeTest extends JsonParentNodeTestCase<JsonObjectN
 
     @Test
     public void testArrayOrFail() {
-        assertThrows(JsonNodeException.class, () -> {
-            this.createJsonNode().arrayOrFail();
-        });
+        assertThrows(JsonNodeException.class, () -> this.createJsonNode().arrayOrFail());
     }
 
     // Text ...........................................................................................................

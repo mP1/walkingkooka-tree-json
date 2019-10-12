@@ -47,9 +47,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
 
     @Test
     public final void testFromJsonNodeNullFails() {
-        assertThrows(NullPointerException.class, () -> {
-            this.marshaller().unmarshall(null, this.unmarshallContext());
-        });
+        assertThrows(NullPointerException.class, () -> this.marshaller().unmarshall(null, this.unmarshallContext()));
     }
 
     @Test
@@ -225,13 +223,9 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         final JsonNodeUnmarshallContext context = this.unmarshallContext();
 
         if (NullPointerException.class == wrapped) {
-            assertThrows(NullPointerException.class, () -> {
-                this.marshaller().unmarshall(node, context);
-            });
+            assertThrows(NullPointerException.class, () -> this.marshaller().unmarshall(node, context));
         } else {
-            final JsonNodeUnmarshallException from = assertThrows(JsonNodeUnmarshallException.class, () -> {
-                this.marshaller().unmarshall(node, context);
-            });
+            final JsonNodeUnmarshallException from = assertThrows(JsonNodeUnmarshallException.class, () -> this.marshaller().unmarshall(node, context));
             final Throwable cause = from.getCause();
             if (null == wrapped) {
                 from.printStackTrace();
@@ -266,9 +260,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
 
     final void marshallWithTypeFailed(final T value,
                                       final Class<? extends Throwable> thrown) {
-        assertThrows(thrown, () -> {
-            this.marshaller().marshallWithType(value, this.marshallContext());
-        });
+        assertThrows(thrown, () -> this.marshaller().marshallWithType(value, this.marshallContext()));
     }
 
     final void marshallAndCheck(final T value,

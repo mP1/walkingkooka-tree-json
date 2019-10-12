@@ -110,9 +110,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
     @Test
     default void testFromJsonNodeNullFails() {
-        assertThrows(NullPointerException.class, () -> {
-            this.unmarshall(null);
-        });
+        assertThrows(NullPointerException.class, () -> this.unmarshall(null));
     }
 
     default void unmarshallAndCheck(final String from,
@@ -142,9 +140,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
     default void unmarshallFails(final JsonNode from,
                                  final Class<? extends Throwable> thrown,
                                  final JsonNodeUnmarshallContext context) {
-        assertThrows(JsonNodeUnmarshallException.class, () -> {
-            context.unmarshall(from, this.type());
-        });
+        assertThrows(JsonNodeUnmarshallException.class, () -> context.unmarshall(from, this.type()));
     }
 
     @Test

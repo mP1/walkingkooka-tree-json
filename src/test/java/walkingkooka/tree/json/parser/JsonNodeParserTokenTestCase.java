@@ -48,9 +48,7 @@ public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken>
 
     @Test
     public final void testEmptyTextFails() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            this.createToken("");
-        });
+        assertThrows(IllegalArgumentException.class, () -> this.createToken(""));
     }
 
     @Test

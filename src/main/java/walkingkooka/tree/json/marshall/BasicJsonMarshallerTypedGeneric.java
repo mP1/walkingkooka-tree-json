@@ -33,6 +33,7 @@ import java.util.stream.Stream;
  */
 final class BasicJsonMarshallerTypedGeneric<T> extends BasicJsonMarshallerTyped<T> {
 
+    @SafeVarargs
     static <T> BasicJsonMarshallerTypedGeneric<T> with(final String typeName,
                                                        final BiFunction<JsonNode, JsonNodeUnmarshallContext, T> from,
                                                        final BiFunction<T, JsonNodeMarshallContext, JsonNode> to,

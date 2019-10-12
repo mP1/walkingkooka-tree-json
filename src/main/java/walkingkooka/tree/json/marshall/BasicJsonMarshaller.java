@@ -166,6 +166,7 @@ abstract class BasicJsonMarshaller<T> {
     /**
      * Registers the {@link BasicJsonMarshaller} for the given types.
      */
+    @SafeVarargs
     static synchronized <T> Runnable register(final String typeName,
                                               final BiFunction<JsonNode, JsonNodeUnmarshallContext, T> from,
                                               final BiFunction<T, JsonNodeMarshallContext, JsonNode> to,

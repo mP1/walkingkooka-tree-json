@@ -31,7 +31,7 @@ final class BasicJsonMarshallerTypedExpressionNodeBinary<N extends ExpressionNod
     static <N extends ExpressionNode> BasicJsonMarshallerTypedExpressionNodeBinary<N> with(final BiFunction<ExpressionNode, ExpressionNode, N> from,
                                                                                            final Class<N> expressionNodeType) {
 
-        return new BasicJsonMarshallerTypedExpressionNodeBinary(from, expressionNodeType);
+        return new BasicJsonMarshallerTypedExpressionNodeBinary<>(from, expressionNodeType);
     }
 
     private BasicJsonMarshallerTypedExpressionNodeBinary(final BiFunction<ExpressionNode, ExpressionNode, N> from,

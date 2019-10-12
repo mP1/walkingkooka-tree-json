@@ -43,6 +43,7 @@ public final class BasicJsonMarshallerTypedExpressionNodeBinaryTest extends Basi
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     BasicJsonMarshallerTypedExpressionNodeBinary marshaller() {
         return BasicJsonMarshallerTypedExpressionNodeBinary.with(ExpressionNode::addition, ExpressionAdditionNode.class);
     }

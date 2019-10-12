@@ -43,9 +43,12 @@ public final class BasicJsonMarshallerTypedExpressionNodeValueTest extends Basic
         this.unmarshallFailed(JsonNode.object(), JsonNodeException.class);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     BasicJsonMarshallerTypedExpressionNodeValue marshaller() {
-        return BasicJsonMarshallerTypedExpressionNodeValue.with(ExpressionNode::bigInteger, ExpressionBigIntegerNode.class, BigInteger.class);
+        return BasicJsonMarshallerTypedExpressionNodeValue.with(ExpressionNode::bigInteger,
+                ExpressionBigIntegerNode.class,
+                BigInteger.class);
     }
 
     @Override

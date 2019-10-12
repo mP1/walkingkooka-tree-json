@@ -23,6 +23,7 @@ import walkingkooka.test.ToStringTesting;
 public final class BasicJsonMarshallerTypedGenericRunnableTest extends BasicJsonMarshallerTestCase<BasicJsonMarshallerTypedGenericRunnable>
         implements ToStringTesting<BasicJsonMarshallerTypedGenericRunnable> {
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testToString() {
         final BasicJsonMarshallerTypedGeneric marshaller = BasicJsonMarshallerTypedGeneric.with("test-type",

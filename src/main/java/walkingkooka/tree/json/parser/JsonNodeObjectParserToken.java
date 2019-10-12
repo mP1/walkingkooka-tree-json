@@ -76,7 +76,7 @@ public final class JsonNodeObjectParserToken extends JsonNodeParentParserToken<J
                     continue;
                 }
                 if (null == key) {
-                    key = j.cast();
+                    key = j.cast(JsonNodeStringParserToken.class);
                 } else {
                     final JsonNode node = j.toJsonNode().get();
                     objectChildren.add(node.setName(JsonNodeName.with(key.value())));

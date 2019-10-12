@@ -59,7 +59,7 @@ final class BasicJsonMarshallerTypedNumberLong extends BasicJsonMarshallerTyped<
         if (doubleValue != longValue) {
             throw new NumericLossJsonNodeException("Unable to convert " + number + " to Long");
         }
-        return Long.valueOf(longValue);
+        return longValue;
     }
 
     private Long unmarshallString(final JsonNode node) {

@@ -32,6 +32,7 @@ public interface JsonNodeContext extends Context {
      * Registers a factory that parses a {@link JsonNode} into a value for the given {@link Class}. The {@link Runnable}
      * when executed removes the just registered mapping.
      */
+    @SafeVarargs
     static <T> Runnable register(final String typeName,
                                  final BiFunction<JsonNode, JsonNodeUnmarshallContext, T> from,
                                  final BiFunction<T, JsonNodeMarshallContext, JsonNode> to,

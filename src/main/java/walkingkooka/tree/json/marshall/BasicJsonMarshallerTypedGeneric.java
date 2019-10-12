@@ -45,22 +45,21 @@ final class BasicJsonMarshallerTypedGeneric<T> extends BasicJsonMarshallerTyped<
         Objects.requireNonNull(type, "type");
         Objects.requireNonNull(types, "types");
 
-        Class<?> first = type;
         final List<Class<?>> all = Stream.concat(Stream.of(type), Stream.of(types))
                 .peek(t -> Objects.requireNonNull(t, "null type"))
                 .collect(Collectors.toList());
 
         if (all.size() > 1) {
-            if (false == ClassAttributes.ABSTRACT.is(first)) {
-                throw new IllegalArgumentException("Class " + CharSequences.quoteAndEscape(first.getName()) + " must be abstract");
+            if (false == ClassAttributes.ABSTRACT.is(type)) {
+                throw new IllegalArgumentException("Class " + CharSequences.quoteAndEscape(type.getName()) + " must be abstract");
             }
             final String notSubclasses = all.stream()
                     .skip(1)
-                    .filter(t -> !first.isAssignableFrom(t))
+                    .filter(t -> !type.isAssignableFrom(t))
                     .map(t -> CharSequences.quoteAndEscape(t.getName()))
                     .collect(Collectors.joining(", "));
             if (!notSubclasses.isEmpty()) {
-                throw new IllegalArgumentException("Several classes " + notSubclasses + " are not sub classes of " + CharSequences.quoteAndEscape(first.getName()));
+                throw new IllegalArgumentException("Several classes " + notSubclasses + " are not sub classes of " + CharSequences.quoteAndEscape(type.getName()));
             }
         }
 

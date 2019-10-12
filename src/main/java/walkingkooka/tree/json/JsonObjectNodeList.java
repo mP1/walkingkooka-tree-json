@@ -24,7 +24,6 @@ import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * An immutable {@link List} view of elements belonging to a {@link JsonObjectNode}.

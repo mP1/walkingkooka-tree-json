@@ -21,6 +21,7 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 
 import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -77,7 +78,7 @@ final class JsonObjectNodeList extends AbstractList<JsonNode> {
      */
     private List<JsonNode> list() {
         if (null == this.list) {
-            this.list = this.nameToValues.values().stream().collect(Collectors.toList());
+            this.list = new ArrayList<>(this.nameToValues.values());
         }
         return this.list;
     }

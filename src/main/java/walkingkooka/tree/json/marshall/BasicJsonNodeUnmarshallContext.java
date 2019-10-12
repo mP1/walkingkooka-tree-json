@@ -126,8 +126,6 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
             }
             return map;
 
-        } catch (final NullPointerException | JsonNodeUnmarshallException cause) {
-            throw cause;
         } catch (final RuntimeException cause) {
             throw cause;
         }

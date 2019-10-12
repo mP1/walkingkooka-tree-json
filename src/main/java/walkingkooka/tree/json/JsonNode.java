@@ -293,20 +293,6 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
     public abstract JsonObjectNode objectOrFail();
 
     /**
-     * Reports a json node is not an object during a unmarshall
-     */
-    final <V> V reportInvalidNodeObject() {
-        throw new JsonNodeException("Node is not an JSON Object =" + this);
-    }
-
-    /**
-     * Reports a json node is not an array during a unmarshall operation.
-     */
-    final <V> V reportInvalidNodeArray() {
-        throw new JsonNodeException("Node is not an JSON Array =" + this);
-    }
-
-    /**
      * Reports a failed attempt to extract a value or cast a node.
      */
     final <V> V reportInvalidNode(final Class<?> type) {

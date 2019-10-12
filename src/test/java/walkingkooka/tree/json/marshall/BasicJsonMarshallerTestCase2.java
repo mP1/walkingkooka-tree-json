@@ -145,7 +145,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         try {
             set.equals(this.unmarshallContext().unmarshallSet(jsonNode, value.getClass()));
         } catch (final Exception e) {
-            e.printStackTrace();;
+            e.printStackTrace();
         }
 
 

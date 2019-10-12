@@ -80,7 +80,8 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
      */
     @Override
     public JsonObjectNode removeParent() {
-        return this.removeParent0().cast();
+        return this.removeParent0()
+                .cast(JsonObjectNode.class);
     }
 
     @Override
@@ -163,7 +164,8 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
             i++;
         }
 
-        return this.setChildren0(JsonObjectNodeList.with(children)).cast();
+        return this.setChildren0(JsonObjectNodeList.with(children))
+                .cast(JsonObjectNode.class);
     }
 
     private JsonObjectNode addChild(final JsonNodeName name, final JsonNode value) {
@@ -171,7 +173,8 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
         children.putAll(this.children.nameToValues);
         children.put(name, value.setName0(name));
 
-        return this.replaceChildren(JsonObjectNodeList.with(children)).cast();
+        return this.replaceChildren(JsonObjectNodeList.with(children))
+                .cast(JsonObjectNode.class);
     }
 
     /**
@@ -190,13 +193,15 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
                             nameAndValue.getValue());
         }
 
-        return this.replaceChildren(JsonObjectNodeList.with(newChildren)).cast();
+        return this.replaceChildren(JsonObjectNodeList.with(newChildren))
+                .cast(JsonObjectNode.class);
     }
 
     @Override
     public JsonObjectNode setName(final JsonNodeName name) {
         checkName(name);
-        return this.setName0(name).cast();
+        return this.setName0(name)
+                .cast(JsonObjectNode.class);
     }
 
     @Override
@@ -208,7 +213,8 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
             copy.put(child.name(), child);
         }
 
-        return this.setChildren0(JsonObjectNodeList.with(copy)).cast();
+        return this.setChildren0(JsonObjectNodeList.with(copy))
+                .cast(JsonObjectNode.class);
     }
 
     @Override
@@ -231,7 +237,7 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
         copy.remove(name);
 
         return this.setChildren0(JsonObjectNodeList.with(copy))
-                .cast();
+                .cast(JsonObjectNode.class);
     }
 
     /**

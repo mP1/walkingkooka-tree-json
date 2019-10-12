@@ -333,10 +333,10 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
     }
 
     /**
-     * Unsafe cast to a sub class of {@link JsonNode}.
+     * Unsafe cast to a sub class of {@link JsonNode}, if this fails a {@link ClassCastException} will be thrown.
      */
-    public final <T extends JsonNode> T cast() {
-        return Cast.to(this);
+    public final <T extends JsonNode> T cast(final Class<T> type) {
+        return (T)this;
     }
 
     abstract void accept(final JsonNodeVisitor visitor);

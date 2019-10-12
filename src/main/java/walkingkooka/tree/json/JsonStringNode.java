@@ -42,11 +42,13 @@ public final class JsonStringNode extends JsonLeafNonNullNode<String> {
     @Override
     public JsonStringNode setName(final JsonNodeName name) {
         checkName(name);
-        return this.setName0(name).cast();
+        return this.setName0(name)
+                .cast(JsonStringNode.class);
     }
 
     public JsonStringNode setValue(final String value) {
-        return this.setValue0(value).cast();
+        return this.setValue0(value)
+                .cast(JsonStringNode.class);
     }
 
     @Override
@@ -59,7 +61,8 @@ public final class JsonStringNode extends JsonLeafNonNullNode<String> {
      */
     @Override
     public JsonStringNode removeParent() {
-        return this.removeParent0().cast();
+        return this.removeParent0()
+                .cast(JsonStringNode.class);
     }
 
     @Override

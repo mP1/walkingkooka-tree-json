@@ -415,9 +415,9 @@ public final class JsonObjectNodeTest extends JsonParentNodeTestCase<JsonObjectN
                         .set(key1, this.value1()));
         this.childCountCheck(root, 2);
 
-        final JsonObjectNode nested = root.get(key3).get().cast();
+        final JsonObjectNode nested = root.get(key3).get().cast(JsonObjectNode.class);
         final JsonObjectNode updated = nested.set(key1, value3());
-        final JsonObjectNode updatedRoot = updated.root().cast();
+        final JsonObjectNode updatedRoot = updated.root().cast(JsonObjectNode.class);
 
         this.childCountCheck(updatedRoot, 2);
         this.getAndCheck(updatedRoot, key2, VALUE2);
@@ -434,7 +434,7 @@ public final class JsonObjectNodeTest extends JsonParentNodeTestCase<JsonObjectN
         final JsonNodeName key2 = this.key2();
         final JsonStringNode value2 = this.value2().setName(key2);
         final JsonObjectNode updated = root.replaceChild(root.get(key1).get(), value2)
-                .cast();
+                .cast(JsonObjectNode.class);
 
         this.childCountCheck(updated, 1);
         this.getAndCheck(updated, key2, VALUE2);
@@ -691,8 +691,8 @@ public final class JsonObjectNodeTest extends JsonParentNodeTestCase<JsonObjectN
         final JsonObjectNode object = this.createJsonNode()
                 .set(key1(), value1())
                 .set(key2(), value2());
-        final JsonStringNode string1 = object.children().get(0).cast();
-        final JsonStringNode string2 = object.children().get(1).cast();
+        final JsonStringNode string1 = object.children().get(0).cast(JsonStringNode.class);
+        final JsonStringNode string2 = object.children().get(1).cast(JsonStringNode.class);
 
         new FakeJsonNodeVisitor() {
             @Override

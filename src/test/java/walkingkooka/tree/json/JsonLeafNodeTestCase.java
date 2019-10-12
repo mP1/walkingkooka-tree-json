@@ -47,7 +47,7 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
         final V value = node.value();
 
         final JsonNodeName differentName = JsonNodeName.with("different");
-        final N different = node.setName(differentName).cast();
+        final N different = (N)node.setName(differentName);
         assertEquals(differentName, different.name(), "name");
         this.checkValue(different, value);
 

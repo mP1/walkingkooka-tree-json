@@ -76,7 +76,7 @@ public final class JsonArrayNodeTest extends JsonParentNodeTestCase<JsonArrayNod
         this.childrenCheck(array);
 
         for (int i = 0; i < 2; i++) {
-            final JsonStringNode element = array.children().get(i).cast();
+            final JsonStringNode element = array.children().get(i).cast(JsonStringNode.class);
             assertEquals(values[i], element.value(), "value");
         }
 
@@ -268,7 +268,7 @@ public final class JsonArrayNodeTest extends JsonParentNodeTestCase<JsonArrayNod
         this.childCountCheck(root, 1);
 
         final JsonArrayNode updated = root.replaceChild(root.get(0), this.value2())
-                .cast();
+                .cast(JsonArrayNode.class);
 
         this.childCountCheck(updated, 1);
         assertEquals(VALUE2, JsonStringNode.class.cast(updated.get(0)).value());
@@ -287,10 +287,10 @@ public final class JsonArrayNodeTest extends JsonParentNodeTestCase<JsonArrayNod
         final JsonNode grandChild1New = JsonNode.string("GC1-new");
         final JsonArrayNode updatedChild = root.get(1)
                 .setChildren(Lists.of(grandChild1New))
-                .cast();
+                .cast(JsonArrayNode.class);
         this.childCountCheck(updatedChild, 1);
 
-        final JsonArrayNode updatedRoot = updatedChild.parentOrFail().cast();
+        final JsonArrayNode updatedRoot = updatedChild.parentOrFail().cast(JsonArrayNode.class);
         this.childCountCheck(updatedRoot, 2);
         assertEquals(JsonNode.array()
                         .appendChild(child1)
@@ -477,8 +477,10 @@ public final class JsonArrayNodeTest extends JsonParentNodeTestCase<JsonArrayNod
         final JsonArrayNode array = this.createJsonNode()
                 .appendChild(this.value1())
                 .appendChild(this.value2());
-        final JsonStringNode string1 = array.get(0).cast();
-        final JsonStringNode string2 = array.get(1).cast();
+        final JsonStringNode string1 = array.get(0)
+                .cast(JsonStringNode.class);
+        final JsonStringNode string2 = array.get(1)
+                .cast(JsonStringNode.class);
 
         new FakeJsonNodeVisitor() {
             @Override
@@ -648,7 +650,8 @@ public final class JsonArrayNodeTest extends JsonParentNodeTestCase<JsonArrayNod
     @Override
     public JsonArrayNode appendChildAndCheck(final JsonNode parent,
                                              final JsonNode child) {
-        final JsonArrayNode newParent = parent.appendChild(child).cast();
+        final JsonArrayNode newParent = parent.appendChild(child)
+                .cast(JsonArrayNode.class);
         assertNotSame(newParent, parent, "appendChild must not return the same node");
 
         final List<JsonNode> children = newParent.children();

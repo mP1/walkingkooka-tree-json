@@ -50,11 +50,13 @@ public final class JsonBooleanNode extends JsonLeafNonNullNode<Boolean> {
     @Override
     public JsonBooleanNode setName(final JsonNodeName name) {
         checkName(name);
-        return this.setName0(name).cast();
+        return this.setName0(name)
+                .cast(JsonBooleanNode.class);
     }
 
     public JsonBooleanNode setValue(final boolean value) {
-        return this.setValue0(value).cast();
+        return this.setValue0(value)
+                .cast(JsonBooleanNode.class);
     }
 
     final JsonBooleanNode replace0(final JsonNodeName name, final int index, final Boolean value) {
@@ -66,7 +68,8 @@ public final class JsonBooleanNode extends JsonLeafNonNullNode<Boolean> {
      */
     @Override
     public JsonBooleanNode removeParent() {
-        return this.removeParent0().cast();
+        return this.removeParent0()
+                .cast(JsonBooleanNode.class);
     }
 
     // HasText......................................................................................................

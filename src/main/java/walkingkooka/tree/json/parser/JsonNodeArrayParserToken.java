@@ -49,7 +49,7 @@ public final class JsonNodeArrayParserToken extends JsonNodeParentParserToken<Js
     final void addJsonNode(final List<JsonNode> children) {
         for (ParserToken element : this.value()) {
             if (element instanceof JsonNodeParserToken) {
-                JsonNodeParserToken.class.cast(element).addJsonNode(children);
+                element.cast(JsonNodeParserToken.class).addJsonNode(children);
             }
         }
     }

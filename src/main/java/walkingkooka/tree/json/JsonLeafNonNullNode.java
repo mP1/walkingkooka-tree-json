@@ -42,6 +42,6 @@ abstract class JsonLeafNonNullNode<V> extends JsonLeafNode<V> {
 
     @Override
     final boolean equalsValue(final JsonNode other) {
-        return Objects.equals(this.value, JsonLeafNonNullNode.class.cast(other).value);
+        return Objects.equals(this.value, other.cast(JsonLeafNonNullNode.class).value);
     }
 }

@@ -70,7 +70,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
     final JsonParentNode<C> replaceChildren(final C children) {
         return this.replace0(this.name, this.index, children)
                 .replaceChild(this.parent(), this.index)
-                .cast();
+                .cast(JsonParentNode.class);
     }
 
     @Override

@@ -39,11 +39,13 @@ public final class JsonNumberNode extends JsonLeafNonNullNode<Double> {
     @Override
     public JsonNumberNode setName(final JsonNodeName name) {
         checkName(name);
-        return this.setName0(name).cast();
+        return this.setName0(name)
+                .cast(JsonNumberNode.class);
     }
 
     public JsonNumberNode setValue(final double value) {
-        return this.setValue0(value).cast();
+        return this.setValue0(value)
+                .cast(JsonNumberNode.class);
     }
 
     @Override
@@ -56,7 +58,8 @@ public final class JsonNumberNode extends JsonLeafNonNullNode<Double> {
      */
     @Override
     public JsonNumberNode removeParent() {
-        return this.removeParent0().cast();
+        return this.removeParent0()
+                .cast(JsonNumberNode.class);
     }
 
     @Override

@@ -67,7 +67,8 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
     @Override
     public JsonArrayNode setName(final JsonNodeName name) {
         checkName(name);
-        return this.setName0(name).cast();
+        return this.setName0(name)
+                .cast(JsonArrayNode.class);
     }
 
     /**
@@ -75,7 +76,8 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
      */
     @Override
     public JsonArrayNode removeParent() {
-        return this.removeParent0().cast();
+        return this.removeParent0()
+                .cast(JsonArrayNode.class);
     }
 
     /**
@@ -85,7 +87,8 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
     public final JsonArrayNode setChildren(final List<JsonNode> children) {
         Objects.requireNonNull(children, "children");
 
-        return this.setChildren0(children).cast();
+        return this.setChildren0(children)
+                .cast(JsonArrayNode.class);
     }
 
     /**
@@ -130,7 +133,8 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
             children.set(index, element);
         }
 
-        return this.setChildren0(children).cast();
+        return this.setChildren0(children)
+                .cast(JsonArrayNode.class);
     }
 
     /**
@@ -143,7 +147,8 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
         final List<JsonNode> children = this.copyChildren();
         children.add(element);
 
-        return this.replace0(this.name, this.index, children).cast();
+        return this.replace0(this.name, this.index, children)
+                .cast(JsonArrayNode.class);
     }
 
     /**
@@ -179,7 +184,8 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
         while (length != children.size()) {
             children.remove(length);
         }
-        return this.setChildren0(children).cast();
+        return this.setChildren0(children)
+                .cast(JsonArrayNode.class);
     }
 
     private JsonArrayNode setLengthLonger(final int length) {
@@ -188,7 +194,8 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
         while (length != children.size()) {
             children.add(nullNode());
         }
-        return this.setChildren0(children).cast();
+        return this.setChildren0(children)
+                .cast(JsonArrayNode.class);
     }
 
     /**

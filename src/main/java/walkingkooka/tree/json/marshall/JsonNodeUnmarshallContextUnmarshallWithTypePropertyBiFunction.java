@@ -62,7 +62,7 @@ final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<T> imp
             if (!typeName.isString()) {
                 throw new JsonNodeUnmarshallException("Property " + property + " contains invalid type name", source);
             }
-            final JsonStringNode stringTypeName = typeName.cast();
+            final JsonStringNode stringTypeName = typeName.cast(JsonStringNode.class);
             final Class<?> type = context.registeredType(stringTypeName)
                     .orElseThrow(() -> new JsonNodeUnmarshallException("Unknown type " + CharSequences.quoteAndEscape(stringTypeName.value()), this.source));
 

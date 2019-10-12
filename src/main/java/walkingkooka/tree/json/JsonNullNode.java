@@ -42,7 +42,8 @@ public final class JsonNullNode extends JsonLeafNode<Void> {
     @Override
     public JsonNullNode setName(final JsonNodeName name) {
         checkName(name);
-        return this.setName0(name).cast();
+        return this.setName0(name)
+                .cast(JsonNullNode.class);
     }
 
     /**

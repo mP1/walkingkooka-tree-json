@@ -105,7 +105,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
                         .filter(MethodAttributes.STATIC::is)
                         .filter(m -> m.getName().startsWith("unmarshall"))
                         .collect(Collectors.toList()),
-                () -> "static unmarshall methods must not be public");
+                "static unmarshall methods must not be public");
     }
 
     @Test

@@ -24,6 +24,7 @@ import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
+import walkingkooka.tree.Node;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonStringNode;
 import walkingkooka.type.MethodAttributes;
@@ -73,7 +74,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
         final JsonNode node = context.marshallWithType(value);
         if (node.isObject()) {
-            assertEquals(node.objectOrFail().get(BasicJsonNodeContext.TYPE).map(n -> n.removeParent()),
+            assertEquals(node.objectOrFail().get(BasicJsonNodeContext.TYPE).map(Node::removeParent),
                     context.typeName(value.getClass()),
                     () -> value + " & " + node);
         }

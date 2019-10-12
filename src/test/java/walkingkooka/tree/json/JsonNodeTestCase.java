@@ -114,9 +114,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         if (node instanceof JsonObjectNode) {
             assertSame(node, node.objectOrFail());
         } else {
-            assertThrows(JsonNodeException.class, () -> {
-                node.objectOrFail();
-            });
+            assertThrows(JsonNodeException.class, node::objectOrFail);
         }
     }
 

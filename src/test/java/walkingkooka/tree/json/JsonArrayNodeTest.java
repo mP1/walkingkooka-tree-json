@@ -144,8 +144,8 @@ public final class JsonArrayNodeTest extends JsonParentNodeTestCase<JsonArrayNod
 
         assertNotSame(array, different);
         this.childrenCheck(different);
-        assertEquals(differentValue, JsonStringNode.class.cast(different.children().get(0)).value(), "child[0].value");
-        assertEquals(VALUE2, JsonStringNode.class.cast(different.children().get(1)).value(), "child[1].value");
+        assertEquals(differentValue, different.children().get(0).cast(JsonStringNode.class).value(), "child[0].value");
+        assertEquals(VALUE2, different.children().get(1).cast(JsonStringNode.class).value(), "child[1].value");
 
         // verify originals were not mutated.
         this.parentMissingCheck(value1);
@@ -168,8 +168,8 @@ public final class JsonArrayNodeTest extends JsonParentNodeTestCase<JsonArrayNod
 
         assertNotSame(array, different);
         this.childrenCheck(different);
-        assertEquals(VALUE1, JsonStringNode.class.cast(different.children().get(0)).value(), "child[0].value");
-        assertEquals(differentValue, JsonStringNode.class.cast(different.children().get(1)).value(), "child[1].value");
+        assertEquals(VALUE1, different.children().get(0).cast(JsonStringNode.class).value(), "child[0].value");
+        assertEquals(differentValue, different.children().get(1).cast(JsonStringNode.class).value(), "child[1].value");
 
         // verify originals were not mutated.
         this.parentMissingCheck(value1);
@@ -244,7 +244,7 @@ public final class JsonArrayNodeTest extends JsonParentNodeTestCase<JsonArrayNod
 
         assertNotSame(array, removed);
         this.childrenCheck(removed);
-        assertEquals(VALUE2, JsonStringNode.class.cast(removed.children().get(0)).value(), "child[0].value");
+        assertEquals(VALUE2, removed.children().get(0).cast(JsonStringNode.class).value(), "child[0].value");
 
         // verify originals were not mutated.
         this.parentMissingCheck(first);
@@ -271,7 +271,7 @@ public final class JsonArrayNodeTest extends JsonParentNodeTestCase<JsonArrayNod
                 .cast(JsonArrayNode.class);
 
         this.childCountCheck(updated, 1);
-        assertEquals(VALUE2, JsonStringNode.class.cast(updated.get(0)).value());
+        assertEquals(VALUE2, updated.get(0).cast(JsonStringNode.class).value());
     }
 
     @Test

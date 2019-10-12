@@ -123,7 +123,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
             .setToString(JsonNodeNumberParserToken.class.getSimpleName());
 
     private static ParserToken transformNumber(final ParserToken token, final ParserContext context) {
-        return JsonNodeParserToken.number(DoubleParserToken.class.cast(token).value(), token.text());
+        return JsonNodeParserToken.number(token.cast(DoubleParserToken.class).value(), token.text());
     }
 
     /**
@@ -138,7 +138,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
             .setToString(JsonNodeStringParserToken.class.getSimpleName());
 
     private static ParserToken transformString(final ParserToken token, final ParserContext context) {
-        return JsonNodeParserToken.string(DoubleQuotedParserToken.class.cast(token).value(), token.text());
+        return JsonNodeParserToken.string(token.cast(DoubleQuotedParserToken.class).value(), token.text());
     }
 
     /**
@@ -153,7 +153,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
             .setToString(JsonNodeWhitespaceParserToken.class.getSimpleName());
 
     private static ParserToken transformWhitespace(final ParserToken token, final ParserContext context) {
-        return JsonNodeParserToken.whitespace(StringParserToken.class.cast(token).value(), token.text());
+        return JsonNodeParserToken.whitespace(token.cast(StringParserToken.class).value(), token.text());
     }
 
     /**
@@ -163,7 +163,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
                                                 final BiFunction<String, String, ParserToken> factory,
                                                 final Class<? extends JsonNodeSymbolParserToken> tokenClass) {
         return Parsers.character(CharPredicates.is(c))
-                .transform((charParserToken, context) -> factory.apply(CharacterParserToken.class.cast(charParserToken).value().toString(), charParserToken.text()))
+                .transform((charParserToken, context) -> factory.apply(charParserToken.cast(CharacterParserToken.class).value().toString(), charParserToken.text()))
                 .setToString(tokenClass.getSimpleName());
     }
 

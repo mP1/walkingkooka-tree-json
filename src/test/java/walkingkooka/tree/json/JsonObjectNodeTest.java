@@ -333,11 +333,11 @@ public final class JsonObjectNodeTest extends JsonParentNodeTestCase<JsonObjectN
 
         // JsonStringNode retrieved will include the key component so a new JsonStringNode cant be created and assertEqual'd.
         assertEquals(value,
-                JsonStringNode.class.cast(object.get(key).get()).value(),
+                object.get(key).get().cast(JsonStringNode.class).value(),
                 "incorrect string value for get key=" + key);
 
         assertEquals(value,
-                JsonStringNode.class.cast(object.getOrFail(key)).value(),
+                object.getOrFail(key).cast(JsonStringNode.class).value(),
                 "incorrect JsonNode for getOrFail " + key);
     }
 

@@ -48,7 +48,7 @@ public final class JsonNodeObjectParserToken extends JsonNodeParentParserToken<J
             JsonNodeParserToken j = null;
 
             for (ParserToken t : without) {
-                j = JsonNodeParserToken.class.cast(t);
+                j = t.cast(JsonNodeParserToken.class);
                 if ((i & 1) == 0) {
                     if (!j.isString()) {
                         throw new IllegalArgumentException("Expected string key token, but got " + j + "=" + text);
@@ -71,7 +71,7 @@ public final class JsonNodeObjectParserToken extends JsonNodeParentParserToken<J
 
         for (ParserToken element : ParentParserToken.filterWithoutNoise(this.value)) {
             if (element instanceof JsonNodeParserToken) {
-                final JsonNodeParserToken j = JsonNodeParserToken.class.cast(element);
+                final JsonNodeParserToken j = element.cast(JsonNodeParserToken.class);
                 if (j.isNoise()) {
                     continue;
                 }

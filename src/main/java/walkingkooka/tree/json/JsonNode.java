@@ -128,9 +128,6 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
     }
 
     final JsonNode setName0(final JsonNodeName name) {
-        if(null==this.name) {
-            System.err.println("@@" + name + " -> " + this.value());
-        }
         return this.name.equals(name) ?
                 this :
                 this.replaceName(name);

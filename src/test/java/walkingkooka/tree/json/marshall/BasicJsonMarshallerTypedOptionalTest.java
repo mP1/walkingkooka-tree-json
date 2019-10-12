@@ -210,6 +210,7 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
 
     private final static String JAVA_VALUE = "abc123";
 
+    @SuppressWarnings("OptionalAssignedToNull")
     @Override
     Optional<?> jsonNullNode() {
         return null;

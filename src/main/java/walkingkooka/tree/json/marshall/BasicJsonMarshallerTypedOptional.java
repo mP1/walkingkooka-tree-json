@@ -56,6 +56,7 @@ final class BasicJsonMarshallerTypedOptional extends BasicJsonMarshallerTyped<Op
     }
 
     @Override
+    @SuppressWarnings("OptionalAssignedToNull")
     Optional<?> unmarshallNull(final JsonNodeUnmarshallContext context) {
         return null;
     }

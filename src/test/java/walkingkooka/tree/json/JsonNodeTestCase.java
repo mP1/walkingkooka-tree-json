@@ -28,7 +28,6 @@ import walkingkooka.test.PublicStaticFactoryTesting;
 import walkingkooka.text.HasTextTesting;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.printer.IndentingPrinter;
-import walkingkooka.text.printer.IndentingPrinters;
 import walkingkooka.text.printer.Printers;
 import walkingkooka.tree.HasTextOffsetTesting;
 import walkingkooka.tree.Node;

@@ -17,9 +17,9 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.reflect.ClassAttributes;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.type.ClassAttributes;
 
 import java.util.List;
 import java.util.Objects;

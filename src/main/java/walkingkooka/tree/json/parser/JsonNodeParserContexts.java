@@ -17,7 +17,7 @@
 
 package walkingkooka.tree.json.parser;
 
-import walkingkooka.type.PublicStaticHelper;
+import walkingkooka.reflect.PublicStaticHelper;
 
 public final class JsonNodeParserContexts implements PublicStaticHelper {
 

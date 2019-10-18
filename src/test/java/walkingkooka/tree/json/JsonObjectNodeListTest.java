@@ -18,9 +18,9 @@
 package walkingkooka.tree.json;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.ToStringTesting;
 import walkingkooka.collect.list.ListTesting2;
 import walkingkooka.collect.map.Maps;
-import walkingkooka.test.ToStringTesting;
 
 public final class JsonObjectNodeListTest implements ListTesting2<JsonObjectNodeList, JsonNode>,
         ToStringTesting<JsonObjectNodeList> {

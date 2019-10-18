@@ -18,11 +18,11 @@
 package walkingkooka.tree.json;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.test.ClassTesting2;
+import walkingkooka.reflect.ClassTesting2;
+import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.cursor.parser.ParserException;
 import walkingkooka.tree.HasTextOffsetTesting;
-import walkingkooka.type.JavaVisibility;
 
 public final class JsonNodeTest implements ClassTesting2<JsonNode>,
         HasTextOffsetTesting,

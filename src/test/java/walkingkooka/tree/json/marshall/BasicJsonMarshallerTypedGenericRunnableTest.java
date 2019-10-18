@@ -18,7 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.test.ToStringTesting;
+import walkingkooka.ToStringTesting;
 
 public final class BasicJsonMarshallerTypedGenericRunnableTest extends BasicJsonMarshallerTestCase<BasicJsonMarshallerTypedGenericRunnable>
         implements ToStringTesting<BasicJsonMarshallerTypedGenericRunnable> {

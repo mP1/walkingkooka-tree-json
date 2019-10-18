@@ -18,9 +18,9 @@
 package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.test.StandardThrowableTesting;
+import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.StandardThrowableTesting;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.type.JavaVisibility;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

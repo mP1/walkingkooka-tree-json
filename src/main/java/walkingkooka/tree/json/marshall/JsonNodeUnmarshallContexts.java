@@ -17,7 +17,7 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.type.PublicStaticHelper;
+import walkingkooka.reflect.PublicStaticHelper;
 
 /**
  * Collection of static factory methods for numerous {@link JsonNodeUnmarshallContext}.

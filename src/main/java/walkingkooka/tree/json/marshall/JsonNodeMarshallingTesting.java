@@ -22,12 +22,12 @@ import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
+import walkingkooka.reflect.MethodAttributes;
 import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.Node;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonStringNode;
-import walkingkooka.type.MethodAttributes;
 
 import java.util.Arrays;
 import java.util.List;

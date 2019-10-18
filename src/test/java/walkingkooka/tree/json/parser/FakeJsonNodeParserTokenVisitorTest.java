@@ -17,8 +17,8 @@
 
 package walkingkooka.tree.json.parser;
 
+import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.test.Fake;
-import walkingkooka.type.JavaVisibility;
 
 public final class FakeJsonNodeParserTokenVisitorTest implements JsonNodeParserTokenVisitorTesting<FakeJsonNodeParserTokenVisitor> {
 

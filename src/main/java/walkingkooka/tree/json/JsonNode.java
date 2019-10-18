@@ -20,7 +20,6 @@ package walkingkooka.tree.json;
 import walkingkooka.Cast;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.naming.Name;
-import walkingkooka.test.HashCodeEqualsDefined;
 import walkingkooka.text.HasText;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
@@ -54,7 +53,6 @@ import java.util.function.Predicate;
 public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Object>,
         HasSearchNode,
         HasText,
-        HashCodeEqualsDefined,
         TraversableHasTextOffset<JsonNode> {
 
     /**

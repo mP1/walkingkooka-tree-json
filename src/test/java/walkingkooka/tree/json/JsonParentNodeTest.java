@@ -17,8 +17,8 @@
 
 package walkingkooka.tree.json;
 
-import walkingkooka.test.ClassTesting2;
-import walkingkooka.type.JavaVisibility;
+import walkingkooka.reflect.ClassTesting2;
+import walkingkooka.reflect.JavaVisibility;
 
 public final class JsonParentNodeTest implements ClassTesting2<JsonParentNode> {
     @Override

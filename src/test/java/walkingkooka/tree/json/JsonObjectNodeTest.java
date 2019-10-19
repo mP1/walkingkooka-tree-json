@@ -778,7 +778,7 @@ public final class JsonObjectNodeTest extends JsonParentNodeTestCase<JsonObjectN
                 .set(key3(), JsonNode.string("third"));
 
         final StringBuilder b = new StringBuilder();
-        final IndentingPrinter printer = IndentingPrinters.fixed(Printers.stringBuilder(b, LineEnding.NONE), Indentation.EMPTY);
+        final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.NONE).indenting(Indentation.EMPTY);
         object.printJson(printer);
 
         assertEquals("{\"key1\": true,\"key2\": 2,\"key3\": \"third\"}", b.toString());

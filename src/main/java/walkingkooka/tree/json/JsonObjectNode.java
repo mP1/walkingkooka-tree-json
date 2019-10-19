@@ -47,7 +47,6 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
 
     private final static CharacterConstant BEGIN = CharacterConstant.with('{');
     private final static CharacterConstant END = CharacterConstant.with('}');
-    private final static Indentation INDENT = Indentation.with("  ");
     private final static String KEY_VALUE_SEPARATOR = ": ";
     private final static String AFTER = ",";
 
@@ -320,7 +319,7 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
         final int size = this.children.size();
         if (size > 0) {
             printer.print(eol);
-            printer.indent(INDENT);
+            printer.indent();
 
             int i = size - 1;
             for (JsonNode child : this.children) {

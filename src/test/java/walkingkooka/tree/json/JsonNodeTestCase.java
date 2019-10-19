@@ -27,6 +27,7 @@ import walkingkooka.reflect.IsMethodTesting;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticFactoryTesting;
 import walkingkooka.text.HasTextTesting;
+import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.Printers;
@@ -158,7 +159,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     public void testPrintJson() {
         final N node = this.createJsonNode();
         final StringBuilder b = new StringBuilder();
-        try(final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM).indenting()) {
+        try(final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM).indenting(Indentation.with("  "))) {
             node.printJson(printer);
         }
 

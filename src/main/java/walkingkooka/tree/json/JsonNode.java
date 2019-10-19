@@ -27,8 +27,6 @@ import walkingkooka.text.cursor.TextCursors;
 import walkingkooka.text.cursor.parser.Parser;
 import walkingkooka.text.cursor.parser.ParserReporters;
 import walkingkooka.text.printer.IndentingPrinter;
-import walkingkooka.text.printer.IndentingPrinters;
-import walkingkooka.text.printer.Printer;
 import walkingkooka.text.printer.Printers;
 import walkingkooka.tree.Node;
 import walkingkooka.tree.TraversableHasTextOffset;
@@ -397,13 +395,15 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
      */
     abstract boolean equalsValue(final JsonNode other);
 
+    final static Indentation INDENTATION = Indentation.with("  ");
+
     /**
      * Pretty prints the entire json graph.
      */
     @Override
     public final String toString() {
         final StringBuilder b = new StringBuilder();
-        try(final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM).indenting()) {
+        try(final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM).indenting(INDENTATION)) {
             this.printJson(printer);
         }
         return b.toString();
@@ -411,7 +411,6 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
 
     /**
      * Prints this node to the printer.<br>
-     * To control indentation amount try {@link IndentingPrinters#fixed(Printer, Indentation)}.
      * Other combinations of printers can be used to ignore printing all possible optional whitespace.
      */
     public final void printJson(final IndentingPrinter printer) {

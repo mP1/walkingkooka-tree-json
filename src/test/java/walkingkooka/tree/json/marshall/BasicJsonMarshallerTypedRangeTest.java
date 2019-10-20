@@ -19,7 +19,7 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
-import walkingkooka.compare.Range;
+import walkingkooka.math.Range;
 import walkingkooka.tree.json.JsonNode;
 
 

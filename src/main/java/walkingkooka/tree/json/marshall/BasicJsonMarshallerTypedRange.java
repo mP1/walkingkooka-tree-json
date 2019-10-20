@@ -18,8 +18,8 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Cast;
-import walkingkooka.compare.Range;
-import walkingkooka.compare.RangeBound;
+import walkingkooka.math.Range;
+import walkingkooka.math.RangeBound;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonNodeName;
 

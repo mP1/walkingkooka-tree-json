@@ -17,8 +17,8 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.compare.Range;
-import walkingkooka.compare.RangeVisitor;
+import walkingkooka.math.Range;
+import walkingkooka.math.RangeVisitor;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonNodeName;
 import walkingkooka.tree.json.JsonObjectNode;

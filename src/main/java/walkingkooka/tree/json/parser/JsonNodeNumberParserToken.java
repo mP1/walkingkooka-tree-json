@@ -46,13 +46,6 @@ public final class JsonNodeNumberParserToken extends JsonNodeValueParserToken<Do
         children.add(JsonNode.number(value()));
     }
 
-    // HasSearchNode ...............................................................................................
-
-    @Override
-    public SearchNode toSearchNode() {
-        return SearchNode.doubleNode(this.text(), this.value());
-    }
-
     // visitor ...............................................................................................
 
     @Override

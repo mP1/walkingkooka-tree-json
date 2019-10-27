@@ -48,13 +48,6 @@ public final class JsonNodeStringParserToken extends JsonNodeValueParserToken<St
         children.add(JsonNode.string(value()));
     }
 
-    // HasSearchNode ...............................................................................................
-
-    @Override
-    public SearchNode toSearchNode() {
-        return SearchNode.text(this.text(), this.value());
-    }
-
     // visitor ...............................................................................................
 
     @Override

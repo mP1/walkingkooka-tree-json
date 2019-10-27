@@ -41,13 +41,6 @@ public final class JsonNumberNodeTest extends JsonLeafNonNullNodeTestCase<JsonNu
                 JsonNumberNode.with(2).numberValueOrFail());
     }
 
-    // toSearchNode.........................................................................................
-
-    @Test
-    public void testToSearchNode() {
-        this.toSearchNodeAndCheck(this.createJsonNode(123.5), SearchNode.doubleNode("123.5", 123.5));
-    }
-
     @Test
     public void testAccept() {
         final StringBuilder b = new StringBuilder();

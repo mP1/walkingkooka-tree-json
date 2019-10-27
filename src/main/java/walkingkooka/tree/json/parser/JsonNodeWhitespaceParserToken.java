@@ -35,13 +35,6 @@ public final class JsonNodeWhitespaceParserToken extends JsonNodeSymbolParserTok
         super(value, text);
     }
 
-    // HasSearchNode ...................................................................................................
-
-    @Override
-    public SearchNode toSearchNode() {
-        return SearchNode.text(this.text(), this.value());
-    }
-
     // Visitor ...............................................................................................
 
     @Override

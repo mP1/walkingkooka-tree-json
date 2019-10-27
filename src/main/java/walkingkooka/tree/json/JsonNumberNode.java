@@ -79,7 +79,7 @@ public final class JsonNumberNode extends JsonLeafNonNullNode<Double> {
     @Override
     public SearchNode toSearchNode() {
         final String text = this.text();
-        return SearchNode.doubleNode(text, this.value());
+        return SearchNode.doubleSearchNode(text, this.value());
     }
 
     // Visitor .........................................................................................................

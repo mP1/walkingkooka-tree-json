@@ -47,13 +47,6 @@ public final class JsonNodeBooleanParserToken extends JsonNodeValueParserToken<B
         children.add(JsonNode.booleanNode(this.value));
     }
 
-    // HasSearchNode ...............................................................................................
-
-    @Override
-    public SearchNode toSearchNode() {
-        return SearchNode.text(this.text(), String.valueOf(this.value()));
-    }
-
     // visitor ...............................................................................................
 
     @Override

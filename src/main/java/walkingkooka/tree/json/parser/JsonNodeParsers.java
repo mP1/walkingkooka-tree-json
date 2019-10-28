@@ -84,8 +84,10 @@ public final class JsonNodeParsers implements PublicStaticHelper {
         return BOOLEAN;
     }
 
-    private final static Parser<ParserContext> BOOLEAN = CaseSensitivity.SENSITIVE.parser("false").transform(JsonNodeParsers::transformBooleanFalse)
-            .or(CaseSensitivity.SENSITIVE.parser("true").transform(JsonNodeParsers::transformBooleanTrue))
+    private final static Parser<ParserContext> BOOLEAN = Parsers.string("false", CaseSensitivity.SENSITIVE)
+            .transform(JsonNodeParsers::transformBooleanFalse)
+            .or(Parsers.string("true", CaseSensitivity.SENSITIVE)
+                    .transform(JsonNodeParsers::transformBooleanTrue))
             .setToString(JsonNodeBooleanParserToken.class.getSimpleName());
 
     private static ParserToken transformBooleanFalse(final ParserToken token, final ParserContext context) {
@@ -103,7 +105,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
         return NULL;
     }
 
-    private final static Parser<ParserContext> NULL = CaseSensitivity.SENSITIVE.parser("null")
+    private final static Parser<ParserContext> NULL = Parsers.string("null", CaseSensitivity.SENSITIVE)
             .transform(JsonNodeParsers::transformNull)
             .setToString(JsonNodeNullParserToken.class.getSimpleName());
 

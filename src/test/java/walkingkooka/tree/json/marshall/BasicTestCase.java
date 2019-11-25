@@ -21,7 +21,7 @@ import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonObject;
 
 public abstract class BasicTestCase<T> implements ClassTesting2<T>, TypeNameTesting<T> {
 
@@ -29,8 +29,8 @@ public abstract class BasicTestCase<T> implements ClassTesting2<T>, TypeNameTest
         super();
     }
 
-    final JsonObjectNode typeAndValue(final String type,
-                                      final JsonNode value) {
+    final JsonObject typeAndValue(final String type,
+                                  final JsonNode value) {
         return JsonNode.object()
                 .set(BasicJsonNodeContext.TYPE, JsonNode.string(type))
                 .set(BasicJsonNodeContext.VALUE, value);

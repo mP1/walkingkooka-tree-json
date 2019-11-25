@@ -25,7 +25,7 @@ import walkingkooka.tree.TestNode;
 import walkingkooka.tree.expression.ExpressionNode;
 import walkingkooka.tree.expression.ExpressionNodeName;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.select.NodeSelector;
 import walkingkooka.tree.select.parser.NodeSelectorAttributeName;
 
@@ -390,7 +390,7 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
         return jsonNode(JsonNode.string("self"));
     }
 
-    private JsonObjectNode jsonNode(final JsonNode... components) {
+    private JsonObject jsonNode(final JsonNode... components) {
         return JsonNode.object()
                 .set(BasicJsonMarshallerTypedNodeSelector.COMPONENTS_PROPERTY,
                         JsonNode.array()

@@ -20,11 +20,11 @@ package walkingkooka.tree.json;
 import java.util.Objects;
 
 /**
- * Base type for all the leaf json nodes that are not {@link JsonNullNode}
+ * Base type for all the leaf json nodes that are not {@link JsonNull}
  */
 abstract class JsonLeafNonNullNode<V> extends JsonLeafNode<V> {
 
-    JsonLeafNonNullNode(final JsonNodeName name, final int index, final V value) {
+    JsonLeafNonNullNode(final JsonPropertyName name, final int index, final V value) {
         super(name, index, value);
     }
 

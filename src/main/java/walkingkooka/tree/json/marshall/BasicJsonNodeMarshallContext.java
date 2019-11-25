@@ -18,9 +18,9 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Cast;
-import walkingkooka.tree.json.JsonArrayNode;
+import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonObject;
 
 import java.util.Collection;
 import java.util.List;
@@ -45,14 +45,14 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     /**
      * Private ctor
      */
-    private BasicJsonNodeMarshallContext(final BiFunction<Object, JsonObjectNode, JsonObjectNode> processor) {
+    private BasicJsonNodeMarshallContext(final BiFunction<Object, JsonObject, JsonObject> processor) {
         super();
         this.processor = processor;
     }
 
     // marshall. .....................................................................................................
 
-    public JsonNodeMarshallContext setObjectPostProcessor(final BiFunction<Object, JsonObjectNode, JsonObjectNode> processor) {
+    public JsonNodeMarshallContext setObjectPostProcessor(final BiFunction<Object, JsonObject, JsonObject> processor) {
         Objects.requireNonNull(processor, "processor");
 
         return this.processor.equals(processor) ?
@@ -80,10 +80,10 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
                 json;
     }
 
-    private final BiFunction<Object, JsonObjectNode, JsonObjectNode> processor;
+    private final BiFunction<Object, JsonObject, JsonObject> processor;
 
     /**
-     * Accepts a {@link List} of elements which are assumed to be the same type and creates a {@link JsonArrayNode}.
+     * Accepts a {@link List} of elements which are assumed to be the same type and creates a {@link JsonArray}.
      */
     @Override
     public JsonNode marshallList(final List<?> list) {
@@ -91,7 +91,7 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     }
 
     /**
-     * Accepts a {@link Set} of elements which are assumed to be the same type and creates a {@link JsonArrayNode}.
+     * Accepts a {@link Set} of elements which are assumed to be the same type and creates a {@link JsonArray}.
      */
     @Override
     public JsonNode marshallSet(final Set<?> set) {
@@ -101,21 +101,21 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     private JsonNode marshallCollection(final Collection<?> collection) {
         return null == collection ?
                 JsonNode.nullNode() :
-                JsonObjectNode.array()
+                JsonObject.array()
                         .setChildren(collection.stream()
                                 .map(this::marshall)
                                 .collect(Collectors.toList()));
     }
 
     /**
-     * Accepts a {@link Map} of elements creating a {@link JsonArrayNode} holding the entries with the raw key and values,
+     * Accepts a {@link Map} of elements creating a {@link JsonArray} holding the entries with the raw key and values,
      * without recording the types for either.
      */
     @Override
     public JsonNode marshallMap(final Map<?, ?> map) {
         return null == map ?
                 JsonNode.nullNode() :
-                JsonObjectNode.array()
+                JsonObject.array()
                         .setChildren(map.entrySet()
                                 .stream()
                                 .map(this::entry)
@@ -142,7 +142,7 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     }
 
     /**
-     * Accepts a {@link List} of elements which are assumed to be the same type and creates a {@link JsonArrayNode}.
+     * Accepts a {@link List} of elements which are assumed to be the same type and creates a {@link JsonArray}.
      */
     @Override
     public JsonNode marshallWithTypeList(final List<?> list) {
@@ -150,7 +150,7 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     }
 
     /**
-     * Accepts a {@link Set} of elements which are assumed to be the same type and creates a {@link JsonArrayNode}.
+     * Accepts a {@link Set} of elements which are assumed to be the same type and creates a {@link JsonArray}.
      */
     @Override
     public JsonNode marshallWithTypeSet(final Set<?> set) {

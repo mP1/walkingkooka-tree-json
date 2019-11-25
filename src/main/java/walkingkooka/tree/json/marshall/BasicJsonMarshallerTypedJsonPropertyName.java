@@ -18,15 +18,15 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeName;
+import walkingkooka.tree.json.JsonPropertyName;
 
-final class BasicJsonMarshallerTypedJsonNodeName extends BasicJsonMarshallerTyped<JsonNodeName> {
+final class BasicJsonMarshallerTypedJsonPropertyName extends BasicJsonMarshallerTyped<JsonPropertyName> {
 
-    static BasicJsonMarshallerTypedJsonNodeName instance() {
-        return new BasicJsonMarshallerTypedJsonNodeName();
+    static BasicJsonMarshallerTypedJsonPropertyName instance() {
+        return new BasicJsonMarshallerTypedJsonPropertyName();
     }
 
-    private BasicJsonMarshallerTypedJsonNodeName() {
+    private BasicJsonMarshallerTypedJsonPropertyName() {
         super();
     }
 
@@ -36,8 +36,8 @@ final class BasicJsonMarshallerTypedJsonNodeName extends BasicJsonMarshallerType
     }
 
     @Override
-    Class<JsonNodeName> type() {
-        return JsonNodeName.class;
+    Class<JsonPropertyName> type() {
+        return JsonPropertyName.class;
     }
 
     @Override
@@ -46,18 +46,18 @@ final class BasicJsonMarshallerTypedJsonNodeName extends BasicJsonMarshallerType
     }
 
     @Override
-    JsonNodeName unmarshallNonNull(final JsonNode node,
-                                   final JsonNodeUnmarshallContext context) {
-        return JsonNodeName.with(node.stringValueOrFail());
+    JsonPropertyName unmarshallNonNull(final JsonNode node,
+                                       final JsonNodeUnmarshallContext context) {
+        return JsonPropertyName.with(node.stringValueOrFail());
     }
 
     @Override
-    JsonNodeName unmarshallNull(final JsonNodeUnmarshallContext context) {
+    JsonPropertyName unmarshallNull(final JsonNodeUnmarshallContext context) {
         return null;
     }
 
     @Override
-    JsonNode marshallNonNull(final JsonNodeName value,
+    JsonNode marshallNonNull(final JsonPropertyName value,
                              final JsonNodeMarshallContext context) {
         return JsonNode.string(value.toString());
     }

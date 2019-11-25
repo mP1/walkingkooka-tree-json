@@ -21,50 +21,55 @@ import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.tree.search.SearchNode;
 
 /**
- * Represents an immutable json number.
+ * Represents an immutable json boolean.
  */
-public final class JsonNumberNode extends JsonLeafNonNullNode<Double> {
+public final class JsonBoolean extends JsonLeafNonNullNode<Boolean> {
 
-    static JsonNumberNode with(final double value) {
-        return new JsonNumberNode(NAME, NO_INDEX, value);
+    static JsonBoolean with(final boolean value) {
+        return value ?
+                TRUE :
+                FALSE;
     }
 
-    private final static JsonNodeName NAME = JsonNodeName.fromClass(JsonNumberNode.class);
+    private final static JsonPropertyName NAME = JsonPropertyName.fromClass(JsonBoolean.class);
 
+    /**
+     * Singleton with a false value and no parent.
+     */
+    private final static JsonBoolean FALSE = new JsonBoolean(NAME, NO_INDEX, false);
 
-    private JsonNumberNode(final JsonNodeName name, final int index, final double value) {
+    /**
+     * Singleton with a true value and no parent.
+     */
+    private final static JsonBoolean TRUE = new JsonBoolean(NAME, NO_INDEX, true);
+
+    private JsonBoolean(final JsonPropertyName name, final int index, final boolean value) {
         super(name, index, value);
     }
 
     @Override
-    public JsonNumberNode setName(final JsonNodeName name) {
+    public JsonBoolean setName(final JsonPropertyName name) {
         checkName(name);
         return this.setName0(name)
-                .cast(JsonNumberNode.class);
+                .cast(JsonBoolean.class);
     }
 
-    public JsonNumberNode setValue(final double value) {
+    public JsonBoolean setValue(final boolean value) {
         return this.setValue0(value)
-                .cast(JsonNumberNode.class);
+                .cast(JsonBoolean.class);
     }
 
-    @Override
-    JsonNumberNode replace0(final JsonNodeName name, final int index, final Double value) {
-        return new JsonNumberNode(name, index, value);
+    final JsonBoolean replace0(final JsonPropertyName name, final int index, final Boolean value) {
+        return new JsonBoolean(name, index, value);
     }
 
     /**
-     * Returns a {@link JsonNumberNode} with the same value.
+     * Returns a {@link JsonBoolean} with the same value.
      */
     @Override
-    public JsonNumberNode removeParent() {
+    public JsonBoolean removeParent() {
         return this.removeParent0()
-                .cast(JsonNumberNode.class);
-    }
-
-    @Override
-    JsonNodeName defaultName() {
-        return NAME;
+                .cast(JsonBoolean.class);
     }
 
     // HasText......................................................................................................
@@ -79,28 +84,28 @@ public final class JsonNumberNode extends JsonLeafNonNullNode<Double> {
     @Override
     public SearchNode toSearchNode() {
         final String text = this.text();
-        return SearchNode.doubleSearchNode(text, this.value());
+        return SearchNode.text(text, text);
     }
 
-    // Visitor .........................................................................................................
+    @Override
+    JsonPropertyName defaultName() {
+        return NAME;
+    }
+
+    // Visitor ........................................................................................................
 
     @Override
     public void accept(final JsonNodeVisitor visitor) {
         visitor.visit(this);
     }
 
-    // JsonNode .................................................................................................
-
     @Override
     boolean canBeEqual(final Object other) {
-        return other instanceof JsonNumberNode;
+        return other instanceof JsonBoolean;
     }
 
     @Override
     void printJson0(final IndentingPrinter printer) {
-        final int i = this.value.intValue();
-        printer.print(i == this.value ?
-                String.valueOf(i) :
-                String.valueOf(this.value));
+        printer.print(String.valueOf(this.value));
     }
 }

@@ -24,8 +24,8 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.expression.ExpressionNode;
 import walkingkooka.tree.expression.ExpressionNodeName;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonObjectNode;
-import walkingkooka.tree.json.JsonStringNode;
+import walkingkooka.tree.json.JsonObject;
+import walkingkooka.tree.json.JsonString;
 import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 
 import java.math.BigDecimal;
@@ -147,12 +147,12 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     @Test
     public void testTypeNameJsonObjectNode() {
-        this.typeNameAndCheck(JsonObjectNode.class,
+        this.typeNameAndCheck(JsonObject.class,
                 Optional.of(JsonNode.string("json")));
     }
 
     private void typeNameAndCheck(final Class<?> type,
-                                  final Optional<JsonStringNode> typeName) {
+                                  final Optional<JsonString> typeName) {
         assertEquals(typeName,
                 BasicJsonMarshaller.typeName(type),
                 () -> "typeName of " + type.getName());

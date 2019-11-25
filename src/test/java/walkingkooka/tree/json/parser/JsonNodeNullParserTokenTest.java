@@ -19,13 +19,13 @@ package walkingkooka.tree.json.parser;
 import org.junit.jupiter.api.Test;
 import walkingkooka.text.cursor.parser.ParserToken;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNullNode;
+import walkingkooka.tree.json.JsonNull;
 import walkingkooka.visit.Visiting;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-public final class JsonNodeNullParserTokenTest extends JsonNodeLeafParserTokenTestCase2<JsonNodeNullParserToken, Void, JsonNullNode> {
+public final class JsonNodeNullParserTokenTest extends JsonNodeLeafParserTokenTestCase2<JsonNodeNullParserToken, Void, JsonNull> {
 
     @Test
     public void testPropertiesNeverReturnNull() throws Exception {
@@ -85,7 +85,7 @@ public final class JsonNodeNullParserTokenTest extends JsonNodeLeafParserTokenTe
     }
 
     @Override
-    JsonNullNode jsonNode() {
+    JsonNull jsonNode() {
         return JsonNode.nullNode();
     }
 

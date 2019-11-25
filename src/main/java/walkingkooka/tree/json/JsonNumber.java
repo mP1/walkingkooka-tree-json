@@ -21,55 +21,50 @@ import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.tree.search.SearchNode;
 
 /**
- * Represents an immutable json boolean.
+ * Represents an immutable json number.
  */
-public final class JsonBooleanNode extends JsonLeafNonNullNode<Boolean> {
+public final class JsonNumber extends JsonLeafNonNullNode<Double> {
 
-    static JsonBooleanNode with(final boolean value) {
-        return value ?
-                TRUE :
-                FALSE;
+    static JsonNumber with(final double value) {
+        return new JsonNumber(NAME, NO_INDEX, value);
     }
 
-    private final static JsonNodeName NAME = JsonNodeName.fromClass(JsonBooleanNode.class);
+    private final static JsonPropertyName NAME = JsonPropertyName.fromClass(JsonNumber.class);
 
-    /**
-     * Singleton with a false value and no parent.
-     */
-    private final static JsonBooleanNode FALSE = new JsonBooleanNode(NAME, NO_INDEX, false);
 
-    /**
-     * Singleton with a true value and no parent.
-     */
-    private final static JsonBooleanNode TRUE = new JsonBooleanNode(NAME, NO_INDEX, true);
-
-    private JsonBooleanNode(final JsonNodeName name, final int index, final boolean value) {
+    private JsonNumber(final JsonPropertyName name, final int index, final double value) {
         super(name, index, value);
     }
 
     @Override
-    public JsonBooleanNode setName(final JsonNodeName name) {
+    public JsonNumber setName(final JsonPropertyName name) {
         checkName(name);
         return this.setName0(name)
-                .cast(JsonBooleanNode.class);
+                .cast(JsonNumber.class);
     }
 
-    public JsonBooleanNode setValue(final boolean value) {
+    public JsonNumber setValue(final double value) {
         return this.setValue0(value)
-                .cast(JsonBooleanNode.class);
+                .cast(JsonNumber.class);
     }
 
-    final JsonBooleanNode replace0(final JsonNodeName name, final int index, final Boolean value) {
-        return new JsonBooleanNode(name, index, value);
+    @Override
+    JsonNumber replace0(final JsonPropertyName name, final int index, final Double value) {
+        return new JsonNumber(name, index, value);
     }
 
     /**
-     * Returns a {@link JsonBooleanNode} with the same value.
+     * Returns a {@link JsonNumber} with the same value.
      */
     @Override
-    public JsonBooleanNode removeParent() {
+    public JsonNumber removeParent() {
         return this.removeParent0()
-                .cast(JsonBooleanNode.class);
+                .cast(JsonNumber.class);
+    }
+
+    @Override
+    JsonPropertyName defaultName() {
+        return NAME;
     }
 
     // HasText......................................................................................................
@@ -84,28 +79,28 @@ public final class JsonBooleanNode extends JsonLeafNonNullNode<Boolean> {
     @Override
     public SearchNode toSearchNode() {
         final String text = this.text();
-        return SearchNode.text(text, text);
+        return SearchNode.doubleSearchNode(text, this.value());
     }
 
-    @Override
-    JsonNodeName defaultName() {
-        return NAME;
-    }
-
-    // Visitor ........................................................................................................
+    // Visitor .........................................................................................................
 
     @Override
     public void accept(final JsonNodeVisitor visitor) {
         visitor.visit(this);
     }
 
+    // JsonNode .................................................................................................
+
     @Override
     boolean canBeEqual(final Object other) {
-        return other instanceof JsonBooleanNode;
+        return other instanceof JsonNumber;
     }
 
     @Override
     void printJson0(final IndentingPrinter printer) {
-        printer.print(String.valueOf(this.value));
+        final int i = this.value.intValue();
+        printer.print(i == this.value ?
+                String.valueOf(i) :
+                String.valueOf(this.value));
     }
 }

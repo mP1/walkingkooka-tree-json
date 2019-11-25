@@ -35,14 +35,14 @@ import java.util.stream.Collectors;
 /**
  * Represents an immutable json object
  */
-public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
+public final class JsonObject extends JsonParentNode<JsonObjectList> {
 
-    private final static JsonNodeName NAME = JsonNodeName.fromClass(JsonObjectNode.class);
+    private final static JsonPropertyName NAME = JsonPropertyName.fromClass(JsonObject.class);
 
     /**
      * An empty json object.
      */
-    final static JsonObjectNode EMPTY = new JsonObjectNode(NAME, NO_INDEX, JsonObjectNodeList.EMPTY);
+    final static JsonObject EMPTY = new JsonObject(NAME, NO_INDEX, JsonObjectList.EMPTY);
 
     private final static CharacterConstant BEGIN = CharacterConstant.with('{');
     private final static CharacterConstant END = CharacterConstant.with('}');
@@ -52,7 +52,7 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
     /**
      * Private ctor use {@link #EMPTY} to start.
      */
-    private JsonObjectNode(final JsonNodeName name, final int index, final JsonObjectNodeList children) {
+    private JsonObject(final JsonPropertyName name, final int index, final JsonObjectList children) {
         super(name, index, children);
     }
 
@@ -60,31 +60,31 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
      * Makes a copy of the list and sets the parent upon the children.
      */
     @Override
-    final JsonObjectNodeList adoptChildren(final JsonObjectNodeList children) {
+    final JsonObjectList adoptChildren(final JsonObjectList children) {
         final Optional<JsonNode> parent = Optional.of(this);
 
-        final Map<JsonNodeName, JsonNode> nameToValues = Maps.ordered();
+        final Map<JsonPropertyName, JsonNode> nameToValues = Maps.ordered();
         int i = 0;
         for (JsonNode child : children) {
             nameToValues.put(child.name(), child.setParent(parent, child.name, i));
             i++;
         }
 
-        return JsonObjectNodeList.with(nameToValues);
+        return JsonObjectList.with(nameToValues);
     }
 
     /**
-     * Returns a {@link JsonObjectNode} with no parent but equivalent children.
+     * Returns a {@link JsonObject} with no parent but equivalent children.
      */
     @Override
-    public JsonObjectNode removeParent() {
+    public JsonObject removeParent() {
         return this.removeParent0()
-                .cast(JsonObjectNode.class);
+                .cast(JsonObject.class);
     }
 
     @Override
     boolean childrenEquals(final List<JsonNode> children) {
-        final Map<JsonNodeName, JsonNode> nameToValues = this.children.nameToValues;
+        final Map<JsonPropertyName, JsonNode> nameToValues = this.children.nameToValues;
 
         boolean equals = nameToValues.size() == children.size();
         if (equals) {
@@ -105,7 +105,7 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
     /**
      * Retrieves a property using its name, returning empty if its absent.
      */
-    public Optional<JsonNode> get(final JsonNodeName name) {
+    public Optional<JsonNode> get(final JsonPropertyName name) {
         Objects.requireNonNull(name, "name");
 
         return Optional.ofNullable(this.children.nameToValues.get(name));
@@ -114,21 +114,21 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
     /**
      * Retrieves a property value or throws a {@link IllegalArgumentException}.
      */
-    public JsonNode getOrFail(final JsonNodeName name) {
+    public JsonNode getOrFail(final JsonPropertyName name) {
         return this.get(name).orElseThrow(() -> {
             throw new IllegalArgumentException("Unknown property " + CharSequences.quoteAndEscape(name.value()) + " in " + this);
         });
     }
 
     @Override
-    public JsonObjectNode setChild(final JsonNodeName name, final JsonNode value) {
+    public JsonObject setChild(final JsonPropertyName name, final JsonNode value) {
         return this.set(name, value);
     }
 
     /**
      * Sets a new property or replaces an existing.
      */
-    public JsonObjectNode set(final JsonNodeName name, final JsonNode value) {
+    public JsonObject set(final JsonPropertyName name, final JsonNode value) {
         Objects.requireNonNull(name, "name");
         Objects.requireNonNull(value, "value");
 
@@ -139,21 +139,21 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
                 this.addChild(name, value2);
     }
 
-    private JsonObjectNode setChild(final JsonNode previous,
-                                    final JsonNodeName name,
-                                    final JsonNode value) {
+    private JsonObject setChild(final JsonNode previous,
+                                final JsonPropertyName name,
+                                final JsonNode value) {
         return JsonParentNodeChildPredicate.INSTANCE.test(previous, value) ?
                 this :
                 this.setChild0(previous.index(), name, value);
     }
 
-    private JsonObjectNode setChild0(final int index,
-                                     final JsonNodeName name,
-                                     final JsonNode value) {
-        final Map<JsonNodeName, JsonNode> children = Maps.ordered();
+    private JsonObject setChild0(final int index,
+                                 final JsonPropertyName name,
+                                 final JsonNode value) {
+        final Map<JsonPropertyName, JsonNode> children = Maps.ordered();
 
         int i = 0;
-        for (Entry<JsonNodeName, JsonNode> nameAndValue : this.children.nameToValues.entrySet()) {
+        for (Entry<JsonPropertyName, JsonNode> nameAndValue : this.children.nameToValues.entrySet()) {
             if (index == i) {
                 children.put(name, value);
             } else {
@@ -162,57 +162,57 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
             i++;
         }
 
-        return this.setChildren0(JsonObjectNodeList.with(children))
-                .cast(JsonObjectNode.class);
+        return this.setChildren0(JsonObjectList.with(children))
+                .cast(JsonObject.class);
     }
 
-    private JsonObjectNode addChild(final JsonNodeName name, final JsonNode value) {
-        final Map<JsonNodeName, JsonNode> children = Maps.ordered();
+    private JsonObject addChild(final JsonPropertyName name, final JsonNode value) {
+        final Map<JsonPropertyName, JsonNode> children = Maps.ordered();
         children.putAll(this.children.nameToValues);
         children.put(name, value.setName0(name));
 
-        return this.replaceChildren(JsonObjectNodeList.with(children))
-                .cast(JsonObjectNode.class);
+        return this.replaceChildren(JsonObjectList.with(children))
+                .cast(JsonObject.class);
     }
 
     /**
      * Creates a new list of children and replaces the child at the given slot.
      */
     //@Override
-    private JsonObjectNode replaceChild0(final JsonNode newChild, final int index) {
-        final Map<JsonNodeName, JsonNode> newChildren = Maps.ordered();
-        final JsonNodeName newChildName = newChild.name;
+    private JsonObject replaceChild0(final JsonNode newChild, final int index) {
+        final Map<JsonPropertyName, JsonNode> newChildren = Maps.ordered();
+        final JsonPropertyName newChildName = newChild.name;
 
-        for (Entry<JsonNodeName, JsonNode> nameAndValue : this.children.nameToValues.entrySet()) {
-            final JsonNodeName name = nameAndValue.getKey();
+        for (Entry<JsonPropertyName, JsonNode> nameAndValue : this.children.nameToValues.entrySet()) {
+            final JsonPropertyName name = nameAndValue.getKey();
             newChildren.put(name,
                     newChildName.equals(name) ?
                             newChild :
                             nameAndValue.getValue());
         }
 
-        return this.replaceChildren(JsonObjectNodeList.with(newChildren))
-                .cast(JsonObjectNode.class);
+        return this.replaceChildren(JsonObjectList.with(newChildren))
+                .cast(JsonObject.class);
     }
 
     @Override
-    public JsonObjectNode setName(final JsonNodeName name) {
+    public JsonObject setName(final JsonPropertyName name) {
         checkName(name);
         return this.setName0(name)
-                .cast(JsonObjectNode.class);
+                .cast(JsonObject.class);
     }
 
     @Override
-    public final JsonObjectNode setChildren(final List<JsonNode> children) {
+    public final JsonObject setChildren(final List<JsonNode> children) {
         Objects.requireNonNull(children, "children");
 
-        final Map<JsonNodeName, JsonNode> copy = Maps.ordered();
+        final Map<JsonPropertyName, JsonNode> copy = Maps.ordered();
         for (JsonNode child : children) {
             copy.put(child.name(), child);
         }
 
-        return this.setChildren0(JsonObjectNodeList.with(copy))
-                .cast(JsonObjectNode.class);
+        return this.setChildren0(JsonObjectList.with(copy))
+                .cast(JsonObject.class);
     }
 
     @Override
@@ -223,42 +223,42 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
     }
 
     /**
-     * Returns a {@link JsonObjectNode} without the given key. If they key does not exist the original (this) is returned.
+     * Returns a {@link JsonObject} without the given key. If they key does not exist the original (this) is returned.
      */
-    public JsonObjectNode remove(final JsonNodeName name) {
+    public JsonObject remove(final JsonPropertyName name) {
         Objects.requireNonNull(name);
 
-        final Map<JsonNodeName, JsonNode> copy = Maps.ordered();
+        final Map<JsonPropertyName, JsonNode> copy = Maps.ordered();
         for (JsonNode child : children) {
             copy.put(child.name(), child);
         }
         copy.remove(name);
 
-        return this.setChildren0(JsonObjectNodeList.with(copy))
-                .cast(JsonObjectNode.class);
+        return this.setChildren0(JsonObjectList.with(copy))
+                .cast(JsonObject.class);
     }
 
     /**
      * Tests if the given property is present.
      */
-    public boolean contains(final JsonNodeName name) {
+    public boolean contains(final JsonPropertyName name) {
         return this.get(name).isPresent();
     }
 
     @Override
-    final JsonObjectNode replace0(final JsonNodeName name, final int index, final JsonObjectNodeList children) {
-        return new JsonObjectNode(name, index, children);
+    final JsonObject replace0(final JsonPropertyName name, final int index, final JsonObjectList children) {
+        return new JsonObject(name, index, children);
     }
 
     /**
      * Returns a {@link Map} view of the object's properties.
      */
-    public Map<JsonNodeName, JsonNode> asMap() {
+    public Map<JsonPropertyName, JsonNode> asMap() {
         return Maps.readOnly(this.children.nameToValues);
     }
 
     @Override
-    JsonNodeName defaultName() {
+    JsonPropertyName defaultName() {
         return NAME;
     }
 
@@ -266,12 +266,12 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
      * Objects are not an array so fail.
      */
     @Override
-    public final JsonArrayNode arrayOrFail() {
+    public final JsonArray arrayOrFail() {
         return this.reportInvalidNode("Array");
     }
 
     @Override
-    public JsonObjectNode objectOrFail() {
+    public JsonObject objectOrFail() {
         return this;
     }
 
@@ -298,14 +298,14 @@ public final class JsonObjectNode extends JsonParentNode<JsonObjectNodeList> {
 
     @Override
     boolean canBeEqual(final Object other) {
-        return other instanceof JsonObjectNode;
+        return other instanceof JsonObject;
     }
 
     /**
      * Only returns true if the descendants of this node and the given children are equal ignoring the parents.
      */
     @Override
-    boolean equalsDescendants0(final JsonNode child, final JsonObjectNodeList otherChildren, final int i) {
+    boolean equalsDescendants0(final JsonNode child, final JsonObjectList otherChildren, final int i) {
         return child.equalsNameValueAndDescendants(otherChildren.nameToValues.get(child.name));
     }
 

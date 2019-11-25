@@ -29,7 +29,7 @@ import java.util.Objects;
  */
 abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
 
-    JsonLeafNode(final JsonNodeName name, final int index, final V value) {
+    JsonLeafNode(final JsonPropertyName name, final int index, final V value) {
         super(name, index);
         this.value = value;
     }
@@ -56,17 +56,17 @@ abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
     }
 
     @Override
-    final JsonNode replace(final JsonNodeName name, final int index) {
+    final JsonNode replace(final JsonPropertyName name, final int index) {
         return this.replace0(name, index, this.value);
     }
 
-    abstract JsonLeafNode replace0(final JsonNodeName name, final int index, final V value);
+    abstract JsonLeafNode replace0(final JsonPropertyName name, final int index, final V value);
 
     /**
      * leaf nodes are not an array and always fail.
      */
     @Override
-    public final JsonArrayNode arrayOrFail() {
+    public final JsonArray arrayOrFail() {
         return this.reportInvalidNode("Array");
     }
 
@@ -74,7 +74,7 @@ abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
      * leaf objects are not an object and always fail.
      */
     @Override
-    public final JsonObjectNode objectOrFail() {
+    public final JsonObject objectOrFail() {
         return this.reportInvalidNode(Object.class);
     }
 

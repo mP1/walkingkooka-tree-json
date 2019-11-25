@@ -18,7 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.test.Fake;
-import walkingkooka.tree.json.JsonStringNode;
+import walkingkooka.tree.json.JsonString;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -28,13 +28,13 @@ import java.util.Optional;
  */
 public class FakeJsonNodeContext implements JsonNodeContext, Fake {
     @Override
-    public Optional<Class<?>> registeredType(final JsonStringNode name) {
+    public Optional<Class<?>> registeredType(final JsonString name) {
         Objects.requireNonNull(name, "name");
         return Optional.empty();
     }
 
     @Override
-    public Optional<JsonStringNode> typeName(final Class<?> type) {
+    public Optional<JsonString> typeName(final Class<?> type) {
         Objects.requireNonNull(type, "type");
         return Optional.empty();
     }

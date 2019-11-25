@@ -19,9 +19,9 @@ package walkingkooka.tree.json.marshall;
 
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
-import walkingkooka.tree.json.JsonArrayNode;
+import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonObject;
 
 import java.util.Collection;
 import java.util.List;
@@ -43,13 +43,13 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     /**
      * Private ctor
      */
-    private BasicJsonNodeUnmarshallContext(final BiFunction<JsonObjectNode, Class<?>, JsonObjectNode> processor) {
+    private BasicJsonNodeUnmarshallContext(final BiFunction<JsonObject, Class<?>, JsonObject> processor) {
         super();
         this.processor = processor;
     }
 
     @Override
-    public JsonNodeUnmarshallContext setObjectPreProcessor(final BiFunction<JsonObjectNode, Class<?>, JsonObjectNode> processor) {
+    public JsonNodeUnmarshallContext setObjectPreProcessor(final BiFunction<JsonObject, Class<?>, JsonObject> processor) {
         Objects.requireNonNull(processor, "processor");
 
         return this.processor.equals(processor) ?
@@ -118,7 +118,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
         final Map<K, V> map = Maps.ordered();
 
         for (JsonNode entry : node.children()) {
-            final JsonObjectNode entryObject = entry.objectOrFail();
+            final JsonObject entryObject = entry.objectOrFail();
 
             map.put(keyMapper.unmarshall(this.preProcess(entryObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_KEY), keyType), this),
                     valueMapper.unmarshall(this.preProcess(entryObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_VALUE), valueType), this));
@@ -137,7 +137,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     }
 
     /**
-     * Assumes a {@link JsonArrayNode} holding objects tagged with type and values.
+     * Assumes a {@link JsonArray} holding objects tagged with type and values.
      */
     @Override
     public <T> List<T> unmarshallWithTypeList(final JsonNode node) {
@@ -147,7 +147,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     }
 
     /**
-     * Assumes a {@link JsonArrayNode} holding objects tagged with type and values.
+     * Assumes a {@link JsonArray} holding objects tagged with type and values.
      */
     @Override
     public <T> Set<T> unmarshallWithTypeSet(final JsonNode node) {
@@ -166,7 +166,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     }
 
     /**
-     * Assumes a {@link JsonArrayNode} holding entries of the {@link Map} tagged with type and values.
+     * Assumes a {@link JsonArray} holding entries of the {@link Map} tagged with type and values.
      */
     @Override
     public <K, V> Map<K, V> unmarshallWithTypeMap(final JsonNode node) {
@@ -175,7 +175,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
         final Map<K, V> map = Maps.ordered();
 
         for (JsonNode child : node.children()) {
-            final JsonObjectNode childObject = child.objectOrFail();
+            final JsonObject childObject = child.objectOrFail();
 
             map.put(this.unmarshallWithType(childObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_KEY)),
                     this.unmarshallWithType(childObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_VALUE)));
@@ -218,5 +218,5 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
                 node;
     }
 
-    private final BiFunction<JsonObjectNode, Class<?>, JsonObjectNode> processor;
+    private final BiFunction<JsonObject, Class<?>, JsonObject> processor;
 }

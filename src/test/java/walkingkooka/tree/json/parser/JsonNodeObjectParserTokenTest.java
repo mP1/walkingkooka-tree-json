@@ -20,10 +20,10 @@ package walkingkooka.tree.json.parser;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.text.cursor.parser.ParserToken;
-import walkingkooka.tree.json.JsonArrayNode;
+import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeName;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.json.JsonObject;
 import walkingkooka.visit.Visiting;
 
 import java.util.List;
@@ -77,7 +77,7 @@ public final class JsonNodeObjectParserTokenTest extends JsonNodeParentParserTok
 
     @Test
     public void testMarshall() {
-        assertEquals(Optional.of(JsonNode.object().set(JsonNodeName.with("key1"), JsonNode.number(123))),
+        assertEquals(Optional.of(JsonNode.object().set(JsonPropertyName.with("key1"), JsonNode.number(123))),
                 object(string("key1"), number(123))
                         .toJsonNode());
     }
@@ -87,15 +87,15 @@ public final class JsonNodeObjectParserTokenTest extends JsonNodeParentParserTok
         final JsonNodeParserToken objectToken = object(string("key1"), number(123));
         final JsonNodeParserToken arrayToken = array(objectToken);
 
-        final JsonObjectNode objectNode = JsonNode.object().set(JsonNodeName.with("key1"), JsonNode.number(123));
-        final JsonArrayNode arrayNode = JsonNode.array().appendChild(objectNode);
+        final JsonObject objectNode = JsonNode.object().set(JsonPropertyName.with("key1"), JsonNode.number(123));
+        final JsonArray arrayNode = JsonNode.array().appendChild(objectNode);
 
         assertEquals(Optional.of(arrayNode), arrayToken.toJsonNode());
     }
 
     @Test
     public void testMarshallWhitespace() {
-        assertEquals(Optional.of(JsonNode.object().set(JsonNodeName.with("key1"), JsonNode.number(123))),
+        assertEquals(Optional.of(JsonNode.object().set(JsonPropertyName.with("key1"), JsonNode.number(123))),
                 object(whitespace(), string("key1"), whitespace(), number(123))
                         .toJsonNode());
     }

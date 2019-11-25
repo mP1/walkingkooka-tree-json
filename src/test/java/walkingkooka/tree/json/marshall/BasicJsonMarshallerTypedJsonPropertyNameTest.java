@@ -18,18 +18,18 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeName;
+import walkingkooka.tree.json.JsonPropertyName;
 
-public final class BasicJsonMarshallerTypedJsonNodeNameTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedJsonNodeName, JsonNodeName> {
+public final class BasicJsonMarshallerTypedJsonPropertyNameTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedJsonPropertyName, JsonPropertyName> {
 
     @Override
-    BasicJsonMarshallerTypedJsonNodeName marshaller() {
-        return BasicJsonMarshallerTypedJsonNodeName.instance();
+    BasicJsonMarshallerTypedJsonPropertyName marshaller() {
+        return BasicJsonMarshallerTypedJsonPropertyName.instance();
     }
 
     @Override
-    JsonNodeName value() {
-        return JsonNodeName.with("prop-1");
+    JsonPropertyName value() {
+        return JsonPropertyName.with("prop-1");
     }
 
     @Override
@@ -38,7 +38,7 @@ public final class BasicJsonMarshallerTypedJsonNodeNameTest extends BasicJsonMar
     }
 
     @Override
-    JsonNodeName jsonNullNode() {
+    JsonPropertyName jsonNullNode() {
         return null;
     }
 
@@ -48,12 +48,12 @@ public final class BasicJsonMarshallerTypedJsonNodeNameTest extends BasicJsonMar
     }
 
     @Override
-    Class<JsonNodeName> marshallerType() {
-        return JsonNodeName.class;
+    Class<JsonPropertyName> marshallerType() {
+        return JsonPropertyName.class;
     }
 
     @Override
-    public Class<BasicJsonMarshallerTypedJsonNodeName> type() {
-        return BasicJsonMarshallerTypedJsonNodeName.class;
+    public Class<BasicJsonMarshallerTypedJsonPropertyName> type() {
+        return BasicJsonMarshallerTypedJsonPropertyName.class;
     }
 }

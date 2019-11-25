@@ -21,7 +21,7 @@ import walkingkooka.Cast;
 import walkingkooka.math.Range;
 import walkingkooka.math.RangeBound;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeName;
+import walkingkooka.tree.json.JsonPropertyName;
 
 final class BasicJsonMarshallerTypedRange extends BasicJsonMarshallerTyped<Range<?>> {
 
@@ -79,7 +79,7 @@ final class BasicJsonMarshallerTypedRange extends BasicJsonMarshallerTyped<Range
         RangeBound<?> upper = RangeBound.all();
 
         for (JsonNode child : node.objectOrFail().children()) {
-            final JsonNodeName name = child.name();
+            final JsonPropertyName name = child.name();
             switch (name.value()) {
                 case LOWER_BOUND:
                     lower = unmarshallRangeBound(child, context);
@@ -100,7 +100,7 @@ final class BasicJsonMarshallerTypedRange extends BasicJsonMarshallerTyped<Range
         RangeBound<?> bound = RangeBound.all();
 
         for (JsonNode child : node.children()) {
-            final JsonNodeName name = child.name();
+            final JsonPropertyName name = child.name();
             switch (name.value()) {
                 case EXCLUSIVE:
                     bound = RangeBound.exclusive(context.unmarshallWithType(child));
@@ -125,11 +125,11 @@ final class BasicJsonMarshallerTypedRange extends BasicJsonMarshallerTyped<Range
     final static String LOWER_BOUND = "lower-bound";
     final static String UPPER_BOUND = "upper-bound";
 
-    final static JsonNodeName LOWER_BOUND_PROPERTY = JsonNodeName.with(LOWER_BOUND);
-    final static JsonNodeName UPPER_BOUND_PROPERTY = JsonNodeName.with(UPPER_BOUND);
+    final static JsonPropertyName LOWER_BOUND_PROPERTY = JsonPropertyName.with(LOWER_BOUND);
+    final static JsonPropertyName UPPER_BOUND_PROPERTY = JsonPropertyName.with(UPPER_BOUND);
 
     final static String EXCLUSIVE = "exclusive";
     final static String INCLUSIVE = "inclusive";
-    final static JsonNodeName EXCLUSIVE_PROPERTY = JsonNodeName.with(EXCLUSIVE);
-    final static JsonNodeName INCLUSIVE_PROPERTY = JsonNodeName.with(INCLUSIVE);
+    final static JsonPropertyName EXCLUSIVE_PROPERTY = JsonPropertyName.with(EXCLUSIVE);
+    final static JsonPropertyName INCLUSIVE_PROPERTY = JsonPropertyName.with(INCLUSIVE);
 }

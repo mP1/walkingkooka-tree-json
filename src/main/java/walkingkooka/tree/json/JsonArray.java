@@ -32,16 +32,16 @@ import java.util.stream.Collectors;
 /**
  * Represents an immutable json array
  */
-public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
+public final class JsonArray extends JsonParentNode<List<JsonNode>> {
 
-    private final static JsonNodeName NAME = JsonNodeName.fromClass(JsonArrayNode.class);
+    private final static JsonPropertyName NAME = JsonPropertyName.fromClass(JsonArray.class);
 
-    final static JsonArrayNode EMPTY = new JsonArrayNode(NAME, NO_INDEX, Lists.empty());
+    final static JsonArray EMPTY = new JsonArray(NAME, NO_INDEX, Lists.empty());
 
     private final static CharacterConstant BEGIN = CharacterConstant.with('[');
     private final static CharacterConstant END = CharacterConstant.with(']');
 
-    private JsonArrayNode(final JsonNodeName name, final int index, final List<JsonNode> children) {
+    private JsonArray(final JsonPropertyName name, final int index, final List<JsonNode> children) {
         super(name, index, children);
     }
 
@@ -56,7 +56,7 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
         int i = 0;
         for (JsonNode child : children) {
             copy.add(child.setParent(parent,
-                    JsonNodeName.index(i),
+                    JsonPropertyName.index(i),
                     i));
             i++;
         }
@@ -65,30 +65,30 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
     }
 
     @Override
-    public JsonArrayNode setName(final JsonNodeName name) {
+    public JsonArray setName(final JsonPropertyName name) {
         checkName(name);
         return this.setName0(name)
-                .cast(JsonArrayNode.class);
+                .cast(JsonArray.class);
     }
 
     /**
-     * Returns a {@link JsonArrayNode} with no parent but equivalent children.
+     * Returns a {@link JsonArray} with no parent but equivalent children.
      */
     @Override
-    public JsonArrayNode removeParent() {
+    public JsonArray removeParent() {
         return this.removeParent0()
-                .cast(JsonArrayNode.class);
+                .cast(JsonArray.class);
     }
 
     /**
      * Would be setter that returns an array instance with the provided children, creating a new instance if necessary.
      */
     @Override
-    public final JsonArrayNode setChildren(final List<JsonNode> children) {
+    public final JsonArray setChildren(final List<JsonNode> children) {
         Objects.requireNonNull(children, "children");
 
         return this.setChildren0(children)
-                .cast(JsonArrayNode.class);
+                .cast(JsonArray.class);
     }
 
     /**
@@ -107,16 +107,16 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
     }
 
     @Override
-    public JsonArrayNode setChild(final int index, final JsonNode element) {
+    public JsonArray setChild(final int index, final JsonNode element) {
         return this.set(index, element);
     }
 
     /**
      * Sets or replaces the element at the given index, returning a new array if necessary.
-     * If the given index is passed the current number of children, {@link JsonNullNode} will be used to fill the new slots.
+     * If the given index is passed the current number of children, {@link JsonNull} will be used to fill the new slots.
      * This matches behaviour in javascript.
      */
-    public JsonArrayNode set(final int index, final JsonNode element) {
+    public JsonArray set(final int index, final JsonNode element) {
         if (index < 0) {
             throw new IllegalArgumentException("Invalid index " + index + "=" + this);
         }
@@ -134,27 +134,27 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
         }
 
         return this.setChildren0(children)
-                .cast(JsonArrayNode.class);
+                .cast(JsonArray.class);
     }
 
     /**
      * Appends the given element returning a new instance.
      */
     @Override
-    public JsonArrayNode appendChild(final JsonNode element) {
+    public JsonArray appendChild(final JsonNode element) {
         Objects.requireNonNull(element, "element");
 
         final List<JsonNode> children = this.copyChildren();
         children.add(element);
 
         return this.replace0(this.name, this.index, children)
-                .cast(JsonArrayNode.class);
+                .cast(JsonArray.class);
     }
 
     /**
      * Removes the child at the given index.
      */
-    public JsonArrayNode remove(final int index) {
+    public JsonArray remove(final int index) {
         final List<JsonNode> children = this.copyChildren();
         children.remove(index);
 
@@ -162,10 +162,10 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
     }
 
     /**
-     * Sets a new length for this {@link JsonArrayNode}. Shorter lengths truncate existing elements, while longer lengths
-     * insert {@link JsonNullNode}.
+     * Sets a new length for this {@link JsonArray}. Shorter lengths truncate existing elements, while longer lengths
+     * insert {@link JsonNull}.
      */
-    public JsonArrayNode setLength(final int length) {
+    public JsonArray setLength(final int length) {
         if (length < 0) {
             throw new IllegalArgumentException("Invalid length=" + length);
         }
@@ -178,24 +178,24 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
                         this.setLengthLonger(length);
     }
 
-    private JsonArrayNode setLengthShorter(final int length) {
+    private JsonArray setLengthShorter(final int length) {
         final List<JsonNode> children = this.copyChildren();
 
         while (length != children.size()) {
             children.remove(length);
         }
         return this.setChildren0(children)
-                .cast(JsonArrayNode.class);
+                .cast(JsonArray.class);
     }
 
-    private JsonArrayNode setLengthLonger(final int length) {
+    private JsonArray setLengthLonger(final int length) {
         final List<JsonNode> children = this.copyChildren();
 
         while (length != children.size()) {
             children.add(nullNode());
         }
         return this.setChildren0(children)
-                .cast(JsonArrayNode.class);
+                .cast(JsonArray.class);
     }
 
     /**
@@ -210,8 +210,8 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
     }
 
     @Override
-    JsonArrayNode replace0(final JsonNodeName name, final int index, final List<JsonNode> children) {
-        return new JsonArrayNode(name, index, children);
+    JsonArray replace0(final JsonPropertyName name, final int index, final List<JsonNode> children) {
+        return new JsonArray(name, index, children);
     }
 
     /**
@@ -224,7 +224,7 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
     }
 
     @Override
-    JsonNodeName defaultName() {
+    JsonPropertyName defaultName() {
         return NAME;
     }
 
@@ -243,7 +243,7 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
      * Is an array return this.
      */
     @Override
-    public final JsonArrayNode arrayOrFail() {
+    public final JsonArray arrayOrFail() {
         return this;
     }
 
@@ -251,7 +251,7 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
      * Arrays are not an object.
      */
     @Override
-    public final JsonObjectNode objectOrFail() {
+    public final JsonObject objectOrFail() {
         return this.reportInvalidNode(Object.class);
     }
 
@@ -267,7 +267,7 @@ public final class JsonArrayNode extends JsonParentNode<List<JsonNode>> {
 
     @Override
     boolean canBeEqual(final Object other) {
-        return other instanceof JsonArrayNode;
+        return other instanceof JsonArray;
     }
 
     /**

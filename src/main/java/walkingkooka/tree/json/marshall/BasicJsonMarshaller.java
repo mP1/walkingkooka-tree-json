@@ -49,7 +49,7 @@ import walkingkooka.tree.expression.ExpressionSubtractionNode;
 import walkingkooka.tree.expression.ExpressionTextNode;
 import walkingkooka.tree.expression.ExpressionXorNode;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonStringNode;
+import walkingkooka.tree.json.JsonString;
 import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 
 import java.math.BigDecimal;
@@ -141,7 +141,7 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedExpressionNode.value(ExpressionNode::text, ExpressionTextNode.class, String.class),
                 BasicJsonMarshallerTypedExpressionNode.binary(ExpressionNode::xor, ExpressionXorNode.class),
                 BasicJsonMarshallerTypedJsonNode.instance(),
-                BasicJsonMarshallerTypedJsonNodeName.instance(),
+                BasicJsonMarshallerTypedJsonPropertyName.instance(),
                 BasicJsonMarshallerTypedCollectionList.instance(),
                 BasicJsonMarshallerTypedLocalDate.instance(),
                 BasicJsonMarshallerTypedLocalDateTime.instance(),
@@ -179,7 +179,7 @@ abstract class BasicJsonMarshaller<T> {
     /**
      * Returns the {@link Class} for the given type name.
      */
-    static Optional<Class<?>> registeredType(final JsonStringNode name) {
+    static Optional<Class<?>> registeredType(final JsonString name) {
         Objects.requireNonNull(name, "name");
 
         return Optional.ofNullable(TYPENAME_TO_MARSHALLER.get(name.value())).map(BasicJsonMarshaller::type);
@@ -188,7 +188,7 @@ abstract class BasicJsonMarshaller<T> {
     /**
      * Returns the type name identifying the given {@link Class} providing it is registered.
      */
-    static Optional<JsonStringNode> typeName(final Class<?> type) {
+    static Optional<JsonString> typeName(final Class<?> type) {
         Objects.requireNonNull(type, "type");
 
         return Optional.ofNullable(TYPENAME_TO_MARSHALLER.get(type.getName())).map(m -> JsonNode.string(m.toString()));

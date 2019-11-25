@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
  */
 abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
 
-    JsonParentNode(final JsonNodeName name, final int index, final C children) {
+    JsonParentNode(final JsonPropertyName name, final int index, final C children) {
         super(name, index);
 
         this.children = this.adoptChildren(children);
@@ -74,14 +74,14 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
     }
 
     @Override
-    final JsonNode replace(final JsonNodeName name, final int index) {
+    final JsonNode replace(final JsonPropertyName name, final int index) {
         return this.replace0(name, index, this.children);
     }
 
     /**
      * Factory that creates a {@link JsonParentNode} of the same type as this with the given new properties.
      */
-    abstract JsonParentNode<C> replace0(final JsonNodeName name, final int index, final C children);
+    abstract JsonParentNode<C> replace0(final JsonPropertyName name, final int index, final C children);
 
     // Value....................................................................................................
 

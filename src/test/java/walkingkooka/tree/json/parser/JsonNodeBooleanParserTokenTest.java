@@ -18,14 +18,14 @@ package walkingkooka.tree.json.parser;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.text.cursor.parser.ParserToken;
-import walkingkooka.tree.json.JsonBooleanNode;
+import walkingkooka.tree.json.JsonBoolean;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.visit.Visiting;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-public final class JsonNodeBooleanParserTokenTest extends JsonNodeLeafParserTokenTestCase2<JsonNodeBooleanParserToken, Boolean, JsonBooleanNode> {
+public final class JsonNodeBooleanParserTokenTest extends JsonNodeLeafParserTokenTestCase2<JsonNodeBooleanParserToken, Boolean, JsonBoolean> {
 
     @Test
     public void testAccept() {
@@ -79,7 +79,7 @@ public final class JsonNodeBooleanParserTokenTest extends JsonNodeLeafParserToke
     }
 
     @Override
-    JsonBooleanNode jsonNode() {
+    JsonBoolean jsonNode() {
         return JsonNode.booleanNode(value());
     }
 

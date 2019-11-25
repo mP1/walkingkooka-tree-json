@@ -26,33 +26,33 @@ import walkingkooka.text.CaseSensitivity;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class JsonNodeNameTest implements ClassTesting2<JsonNodeName>,
-        NameTesting<JsonNodeName, JsonNodeName> {
+public final class JsonPropertyNameTest implements ClassTesting2<JsonPropertyName>,
+        NameTesting<JsonPropertyName, JsonPropertyName> {
 
     @Test
     public void testWithNegativeIndexFails() {
-        assertThrows(IllegalArgumentException.class, () -> JsonNodeName.index(-1));
+        assertThrows(IllegalArgumentException.class, () -> JsonPropertyName.index(-1));
     }
 
     @Test
     public void testIndex() {
-        assertEquals("123", JsonNodeName.index(123).value());
+        assertEquals("123", JsonPropertyName.index(123).value());
     }
 
     @Test
     public void testCompareToArraySort() {
-        final JsonNodeName a1 = JsonNodeName.with("A1");
-        final JsonNodeName b2 = JsonNodeName.with("B2");
-        final JsonNodeName c3 = JsonNodeName.with("c3");
-        final JsonNodeName d4 = JsonNodeName.with("d4");
+        final JsonPropertyName a1 = JsonPropertyName.with("A1");
+        final JsonPropertyName b2 = JsonPropertyName.with("B2");
+        final JsonPropertyName c3 = JsonPropertyName.with("c3");
+        final JsonPropertyName d4 = JsonPropertyName.with("d4");
 
         this.compareToArraySortAndCheck(d4, a1, c3, b2,
                 a1, b2, c3, d4);
     }
     
     @Override
-    public JsonNodeName createName(final String name) {
-        return JsonNodeName.with(name);
+    public JsonPropertyName createName(final String name) {
+        return JsonPropertyName.with(name);
     }
 
     @Override
@@ -76,8 +76,8 @@ public final class JsonNodeNameTest implements ClassTesting2<JsonNodeName>,
     }
 
     @Override
-    public Class<JsonNodeName> type() {
-        return JsonNodeName.class;
+    public Class<JsonPropertyName> type() {
+        return JsonPropertyName.class;
     }
 
     @Override

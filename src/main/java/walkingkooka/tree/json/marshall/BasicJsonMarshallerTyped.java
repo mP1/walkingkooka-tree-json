@@ -18,7 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonObject;
 
 import java.util.List;
 
@@ -47,10 +47,10 @@ abstract class BasicJsonMarshallerTyped<T> extends BasicJsonMarshaller<T> {
     }
 
     /**
-     * The {@link JsonObjectNode} holding type=$typename must be created lazily after all registration. Attempts to create
-     * during registration will result in exceptions when the {@link JsonObjectNode} is created and the TYPE property set.
+     * The {@link JsonObject} holding type=$typename must be created lazily after all registration. Attempts to create
+     * during registration will result in exceptions when the {@link JsonObject} is created and the TYPE property set.
      */
-    final JsonObjectNode objectWithType() {
+    final JsonObject objectWithType() {
         if (null == this.objectWithType) {
             this.objectWithType = JsonNode.object()
                     .set(BasicJsonNodeContext.TYPE, JsonNode.string(this.toString()));
@@ -58,5 +58,5 @@ abstract class BasicJsonMarshallerTyped<T> extends BasicJsonMarshaller<T> {
         return this.objectWithType;
     }
 
-    private JsonObjectNode objectWithType;
+    private JsonObject objectWithType;
 }

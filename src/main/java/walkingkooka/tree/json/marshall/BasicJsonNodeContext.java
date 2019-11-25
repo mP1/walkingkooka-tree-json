@@ -18,8 +18,8 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.collect.set.Sets;
-import walkingkooka.tree.json.JsonNodeName;
-import walkingkooka.tree.json.JsonStringNode;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.json.JsonString;
 
 import java.util.Optional;
 import java.util.Set;
@@ -30,8 +30,8 @@ import java.util.Set;
  */
 abstract class BasicJsonNodeContext implements JsonNodeContext {
 
-    static final JsonNodeName TYPE = JsonNodeName.with("type");
-    static final JsonNodeName VALUE = JsonNodeName.with("value");
+    static final JsonPropertyName TYPE = JsonPropertyName.with("type");
+    static final JsonPropertyName VALUE = JsonPropertyName.with("value");
 
     BasicJsonNodeContext() {
         super();
@@ -41,7 +41,7 @@ abstract class BasicJsonNodeContext implements JsonNodeContext {
      * Returns one of possibly many registered {@link Class types} for the given type name.
      */
     @Override
-    public final Optional<Class<?>> registeredType(final JsonStringNode name) {
+    public final Optional<Class<?>> registeredType(final JsonString name) {
         return BasicJsonMarshaller.registeredType(name);
     }
 
@@ -51,7 +51,7 @@ abstract class BasicJsonNodeContext implements JsonNodeContext {
      * Returns the type name identifying the given {@link Class} providing it is registered.
      */
     @Override
-    public final Optional<JsonStringNode> typeName(final Class<?> type) {
+    public final Optional<JsonString> typeName(final Class<?> type) {
         return BasicJsonMarshaller.typeName(type);
     }
 

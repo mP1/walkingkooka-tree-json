@@ -27,7 +27,7 @@ import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.Node;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonStringNode;
+import walkingkooka.tree.json.JsonString;
 
 import java.util.Arrays;
 import java.util.List;
@@ -87,10 +87,10 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
         final JsonNodeMarshallContext context = this.marshallContext();
 
         final Class<V> type = this.type();
-        final Optional<JsonStringNode> maybeTypeName = context.typeName(type);
+        final Optional<JsonString> maybeTypeName = context.typeName(type);
         assertNotEquals(Optional.empty(), maybeTypeName, () -> "typeName for " + type.getName() + " failed");
 
-        final JsonStringNode typeName = maybeTypeName.get();
+        final JsonString typeName = maybeTypeName.get();
         final Optional<Class<?>> maybeRegisteredType = context.registeredType(typeName);
         assertNotEquals(Optional.empty(), maybeRegisteredType, () -> "registeredType for " + type.getName() + " failed");
 

@@ -19,14 +19,14 @@ package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Cast;
 import walkingkooka.text.CharSequences;
-import walkingkooka.tree.json.JsonArrayNode;
-import walkingkooka.tree.json.JsonBooleanNode;
+import walkingkooka.tree.json.JsonArray;
+import walkingkooka.tree.json.JsonBoolean;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonNodeVisitor;
-import walkingkooka.tree.json.JsonNullNode;
-import walkingkooka.tree.json.JsonNumberNode;
-import walkingkooka.tree.json.JsonObjectNode;
-import walkingkooka.tree.json.JsonStringNode;
+import walkingkooka.tree.json.JsonNull;
+import walkingkooka.tree.json.JsonNumber;
+import walkingkooka.tree.json.JsonObject;
+import walkingkooka.tree.json.JsonString;
 import walkingkooka.visit.Visiting;
 
 import java.util.Objects;
@@ -51,32 +51,32 @@ final class BasicJsonNodeUnmarshallContextJsonNodeVisitor extends JsonNodeVisito
     }
 
     @Override
-    protected void visit(final JsonBooleanNode node) {
+    protected void visit(final JsonBoolean node) {
         this.value = node.value();
     }
 
     @Override
-    protected void visit(final JsonNullNode node) {
+    protected void visit(final JsonNull node) {
         this.value = node.value();
     }
 
     @Override
-    protected void visit(final JsonNumberNode node) {
+    protected void visit(final JsonNumber node) {
         this.value = node.numberValueOrFail();
     }
 
     @Override
-    protected void visit(final JsonStringNode node) {
+    protected void visit(final JsonString node) {
         this.value = node.stringValueOrFail();
     }
 
     @Override
-    protected Visiting startVisit(final JsonArrayNode node) {
+    protected Visiting startVisit(final JsonArray node) {
         throw new JsonNodeUnmarshallException("arrays never hold typed values", node);
     }
 
     @Override
-    protected Visiting startVisit(final JsonObjectNode node) {
+    protected Visiting startVisit(final JsonObject node) {
         try {
             final JsonNode type = node.getOrFail(BasicJsonNodeContext.TYPE);
             if (!type.isString()) {
@@ -85,7 +85,7 @@ final class BasicJsonNodeUnmarshallContextJsonNodeVisitor extends JsonNodeVisito
 
             final JsonNodeUnmarshallContext context = this.context;
             this.value = context.unmarshall(node.getOrFail(BasicJsonNodeContext.VALUE),
-                    context.registeredType((JsonStringNode) type).orElseThrow(() -> new JsonNodeUnmarshallException("Unknown type", node)));
+                    context.registeredType((JsonString) type).orElseThrow(() -> new JsonNodeUnmarshallException("Unknown type", node)));
         } catch (final NullPointerException | JsonNodeUnmarshallException cause) {
             throw cause;
         } catch (final RuntimeException cause) {

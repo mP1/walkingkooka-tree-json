@@ -20,8 +20,8 @@ package walkingkooka.tree.json.marshall;
 import walkingkooka.math.Range;
 import walkingkooka.math.RangeVisitor;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeName;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.json.JsonObject;
 
 /**
  * A {@link RangeVisitor} that converts a {@link Range} into {@link JsonNode}.
@@ -94,8 +94,8 @@ final class BasicJsonMarshallerTypedRangeRangeVisitor<C extends Comparable<C>> e
      *  }
      * </pre>
      */
-    private void typeWithValue(final JsonNodeName lowerOrUpper,
-                               final JsonNodeName inclusiveOrExclusive,
+    private void typeWithValue(final JsonPropertyName lowerOrUpper,
+                               final JsonPropertyName inclusiveOrExclusive,
                                final C value) {
         this.jsonNode = this.jsonNode.set(lowerOrUpper,
                 JsonNode.object()
@@ -105,5 +105,5 @@ final class BasicJsonMarshallerTypedRangeRangeVisitor<C extends Comparable<C>> e
 
     private final JsonNodeMarshallContext context;
 
-    private JsonObjectNode jsonNode = JsonNode.object();
+    private JsonObject jsonNode = JsonNode.object();
 }

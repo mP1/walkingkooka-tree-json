@@ -37,42 +37,42 @@ public class FakeJsonNodeVisitor extends JsonNodeVisitor implements Fake {
     }
 
     @Override
-    protected void visit(final JsonBooleanNode node) {
+    protected void visit(final JsonBoolean node) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void visit(final JsonNullNode node) {
+    protected void visit(final JsonNull node) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void visit(final JsonNumberNode node) {
+    protected void visit(final JsonNumber node) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void visit(final JsonStringNode node) {
+    protected void visit(final JsonString node) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected Visiting startVisit(final JsonArrayNode node) {
+    protected Visiting startVisit(final JsonArray node) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void endVisit(final JsonArrayNode node) {
+    protected void endVisit(final JsonArray node) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected Visiting startVisit(final JsonObjectNode node) {
+    protected Visiting startVisit(final JsonObject node) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void endVisit(final JsonObjectNode node) {
+    protected void endVisit(final JsonObject node) {
         throw new UnsupportedOperationException();
     }
 }

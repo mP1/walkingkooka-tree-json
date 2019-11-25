@@ -19,7 +19,6 @@ package walkingkooka.tree.json;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.tree.search.SearchNode;
 import walkingkooka.visit.Visiting;
 
 import java.util.List;
@@ -27,37 +26,24 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-public final class JsonStringNodeTest extends JsonLeafNonNullNodeTestCase<JsonStringNode, String> {
+public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber, Double> {
 
     @Override
-    public void testStringValueOrFail() {
-        assertEquals("abc",
-                JsonStringNode.with("abc").stringValueOrFail());
+    public void testNumberValueOrFail() {
+        assertEquals(1.0,
+                JsonNumber.with(1).numberValueOrFail());
     }
 
     @Test
-    public void testStringValueOrFail2() {
-        assertEquals("123",
-                JsonStringNode.with("123").stringValueOrFail());
-    }
-
-    @Test
-    public void testSameValueDifferentCase() {
-        this.checkNotEquals(JsonNode.string("ABC123"));
-    }
-
-    // toSearchNode...............................................................................................
-
-    @Test
-    public void testToSearchNode() {
-        final String text = "abc123";
-        this.toSearchNodeAndCheck(this.createJsonNode(text), SearchNode.text(text, text));
+    public void testNumberValueOrFail2() {
+        assertEquals(2.0,
+                JsonNumber.with(2).numberValueOrFail());
     }
 
     @Test
     public void testAccept() {
         final StringBuilder b = new StringBuilder();
-        final JsonStringNode node = this.createJsonNode();
+        final JsonNumber node = this.createJsonNode();
 
         new FakeJsonNodeVisitor() {
             @Override
@@ -74,7 +60,7 @@ public final class JsonStringNodeTest extends JsonLeafNonNullNodeTestCase<JsonSt
             }
 
             @Override
-            protected void visit(final JsonStringNode n) {
+            protected void visit(final JsonNumber n) {
                 assertSame(node, n);
                 b.append("3");
             }
@@ -84,39 +70,37 @@ public final class JsonStringNodeTest extends JsonLeafNonNullNodeTestCase<JsonSt
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createJsonNode("abc123"),
-                "\"abc123\"");
+        this.toStringAndCheck(this.createJsonNode(1.0), "1");
     }
 
     @Test
-    public void testToStringRequiresEscaping() {
-        this.toStringAndCheck(this.createJsonNode("abc\t123"),
-                "\"abc\\t123\"");
+    public void testToString2() {
+        this.toStringAndCheck(this.createJsonNode(234.5), "234.5");
     }
 
     @Override
-    JsonStringNode createJsonNode(final String value) {
-        return JsonStringNode.with(value);
+    JsonNumber createJsonNode(final Double value) {
+        return JsonNumber.with(value);
     }
 
     @Override
-    JsonStringNode setValue(final JsonStringNode node, final String value) {
+    JsonNumber setValue(final JsonNumber node, final Double value) {
         return node.setValue(value);
     }
 
     @Override
-    String value() {
-        return "A";
+    Double value() {
+        return 1.0;
     }
 
     @Override
-    String differentValue() {
-        return "Different";
+    Double differentValue() {
+        return 999.0;
     }
 
     @Override
-    Class<JsonStringNode> jsonNodeType() {
-        return JsonStringNode.class;
+    Class<JsonNumber> jsonNodeType() {
+        return JsonNumber.class;
     }
 
     @Override
@@ -127,8 +111,8 @@ public final class JsonStringNodeTest extends JsonLeafNonNullNodeTestCase<JsonSt
                 UNMARSHALL_SET,
                 UNMARSHALL_MAP,
                 UNMARSHALL,
-                NUMBER_VALUE_OR_FAIL,
                 OBJECT_OR_FAIL,
-                PARENT_OR_FAIL);
+                PARENT_OR_FAIL,
+                STRING_VALUE_OR_FAIL);
     }
 }

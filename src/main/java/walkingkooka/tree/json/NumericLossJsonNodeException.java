@@ -18,7 +18,7 @@
 package walkingkooka.tree.json;
 
 /**
- * Used to report failed numeric representations, such as a {@link JsonNumberNode} numeric value being an invalid {@link Byte}.
+ * Used to report failed numeric representations, such as a {@link JsonNumber} numeric value being an invalid {@link Byte}.
  */
 public class NumericLossJsonNodeException extends JsonNodeException {
 

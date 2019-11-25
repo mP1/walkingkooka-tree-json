@@ -24,8 +24,8 @@ import walkingkooka.Cast;
 import walkingkooka.ToStringTesting;
 import walkingkooka.reflect.ThrowableTesting;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeName;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.json.JsonObject;
 import walkingkooka.util.BiFunctionTesting;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -101,7 +101,7 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
 
     @Test
     public void testToString() {
-        final JsonObjectNode object = this.objectWithType(TestJsonNodeValue.class);
+        final JsonObject object = this.objectWithType(TestJsonNodeValue.class);
         this.toStringAndCheck(this.createBiFunction(object), this.typeNameProperty() + " in " + object);
     }
 
@@ -110,17 +110,17 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
         return this.createBiFunction(this.objectWithType(TestJsonNodeValue.class));
     }
 
-    public JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<TestJsonNodeValue> createBiFunction(final JsonObjectNode objectWithType) {
+    public JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<TestJsonNodeValue> createBiFunction(final JsonObject objectWithType) {
         final Class<TestJsonNodeValue> type = this.valueType();
 
         return JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(this.typeNameProperty(), objectWithType, type);
     }
 
-    private JsonNodeName typeNameProperty() {
-        return JsonNodeName.with("typeNameProperty1");
+    private JsonPropertyName typeNameProperty() {
+        return JsonPropertyName.with("typeNameProperty1");
     }
 
-    private JsonObjectNode objectWithType(final Class<?> type) {
+    private JsonObject objectWithType(final Class<?> type) {
         return JsonNode.object()
                 .set(typeNameProperty(), this.marshallContext().typeName(type).get());
     }

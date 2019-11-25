@@ -90,13 +90,13 @@ public abstract class BasicJsonNodeContextTestCase<C extends JsonNodeContext> ex
                 "set",
                 "short",
                 "string",
-                "walkingkooka.tree.json.JsonArrayNode",
-                "walkingkooka.tree.json.JsonBooleanNode",
+                "walkingkooka.tree.json.JsonArray",
+                "walkingkooka.tree.json.JsonBoolean",
                 "walkingkooka.tree.json.JsonNode",
-                "walkingkooka.tree.json.JsonNodeName",
-                "walkingkooka.tree.json.JsonNullNode",
-                "walkingkooka.tree.json.JsonNumberNode",
-                "walkingkooka.tree.json.JsonObjectNode",
-                "walkingkooka.tree.json.JsonStringNode");
+                "walkingkooka.tree.json.JsonPropertyName",
+                "walkingkooka.tree.json.JsonNull",
+                "walkingkooka.tree.json.JsonNumber",
+                "walkingkooka.tree.json.JsonObject",
+                "walkingkooka.tree.json.JsonString");
     }
 }

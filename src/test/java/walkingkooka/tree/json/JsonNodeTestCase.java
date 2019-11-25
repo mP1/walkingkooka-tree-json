@@ -25,14 +25,12 @@ import walkingkooka.reflect.BeanPropertiesTesting;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.IsMethodTesting;
 import walkingkooka.reflect.JavaVisibility;
-import walkingkooka.reflect.PublicStaticFactoryTesting;
 import walkingkooka.text.HasTextTesting;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.Printers;
 import walkingkooka.tree.HasTextOffsetTesting;
-import walkingkooka.tree.Node;
 import walkingkooka.tree.NodeTesting;
 import walkingkooka.tree.search.HasSearchNodeTesting;
 
@@ -49,18 +47,10 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         HasTextOffsetTesting,
         HasTextTesting,
         IsMethodTesting<N>,
-        NodeTesting<JsonNode, JsonNodeName, Name, Object> {
+        NodeTesting<JsonNode, JsonPropertyName, Name, Object> {
 
     JsonNodeTestCase() {
         super();
-    }
-
-    @Test
-    public final void testPublicStaticFactoryMethod() {
-        PublicStaticFactoryTesting.checkFactoryMethods(JsonNode.class,
-                "Json",
-                Node.class.getSimpleName(),
-                this.type());
     }
 
     @Test
@@ -101,7 +91,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     @Test
     public void testObjectOrFail() {
         final N node = this.createJsonNode();
-        if (node instanceof JsonObjectNode) {
+        if (node instanceof JsonObject) {
             assertSame(node, node.objectOrFail());
         } else {
             assertThrows(JsonNodeException.class, node::objectOrFail);
@@ -185,6 +175,11 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         return "Json";
     }
 
+    @Override
+    public final String typeNameSuffix() {
+        return "";
+    }
+
     // IsMethodTesting.................................................................................................
 
     @Override
@@ -199,7 +194,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
 
     @Override
     public final String isMethodTypeNameSuffix() {
-        return Node.class.getSimpleName();
+        return "";
     }
 
     @Override

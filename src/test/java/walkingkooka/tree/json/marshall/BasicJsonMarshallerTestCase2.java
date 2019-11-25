@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonObject;
 
 import java.util.List;
 import java.util.Map;
@@ -291,7 +291,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
 
     abstract String typeName();
 
-    final JsonObjectNode typeAndValue(final JsonNode value) {
+    final JsonObject typeAndValue(final JsonNode value) {
         return this.typeAndValue(this.typeName(), value);
     }
 

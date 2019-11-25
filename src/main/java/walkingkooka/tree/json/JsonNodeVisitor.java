@@ -51,35 +51,35 @@ public abstract class JsonNodeVisitor extends Visitor<JsonNode> {
         // nop
     }
 
-    protected void visit(final JsonBooleanNode node) {
+    protected void visit(final JsonBoolean node) {
         // nop
     }
 
-    protected void visit(final JsonNullNode node) {
+    protected void visit(final JsonNull node) {
         // nop
     }
 
-    protected void visit(final JsonNumberNode node) {
+    protected void visit(final JsonNumber node) {
         // nop
     }
 
-    protected void visit(final JsonStringNode node) {
+    protected void visit(final JsonString node) {
         // nop
     }
 
-    protected Visiting startVisit(final JsonArrayNode node) {
+    protected Visiting startVisit(final JsonArray node) {
         return Visiting.CONTINUE;
     }
 
-    protected void endVisit(final JsonArrayNode node) {
+    protected void endVisit(final JsonArray node) {
         // nop
     }
 
-    protected Visiting startVisit(final JsonObjectNode node) {
+    protected Visiting startVisit(final JsonObject node) {
         return Visiting.CONTINUE;
     }
 
-    protected void endVisit(final JsonObjectNode node) {
+    protected void endVisit(final JsonObject node) {
         // nop
     }
 }

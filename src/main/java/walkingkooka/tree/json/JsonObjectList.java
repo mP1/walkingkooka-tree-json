@@ -26,30 +26,30 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * An immutable {@link List} view of elements belonging to a {@link JsonObjectNode}.
+ * An immutable {@link List} view of elements belonging to a {@link JsonObject}.
  */
-final class JsonObjectNodeList extends AbstractList<JsonNode> {
+final class JsonObjectList extends AbstractList<JsonNode> {
 
     static {
-        Lists.registerImmutableType(JsonObjectNodeList.class);
+        Lists.registerImmutableType(JsonObjectList.class);
     }
 
     /**
      * Empty list constant.
      */
-    static final JsonObjectNodeList EMPTY = new JsonObjectNodeList(Maps.empty());
+    static final JsonObjectList EMPTY = new JsonObjectList(Maps.empty());
 
     /**
-     * Factory only used by {@link JsonObjectNode}
+     * Factory only used by {@link JsonObject}
      */
-    static JsonObjectNodeList with(final Map<JsonNodeName, JsonNode> nameToValues) {
-        return new JsonObjectNodeList(nameToValues);
+    static JsonObjectList with(final Map<JsonPropertyName, JsonNode> nameToValues) {
+        return new JsonObjectList(nameToValues);
     }
 
     /**
      * Private ctor use factory.
      */
-    private JsonObjectNodeList(final Map<JsonNodeName, JsonNode> nameToValues) {
+    private JsonObjectList(final Map<JsonPropertyName, JsonNode> nameToValues) {
         super();
         this.nameToValues = nameToValues;
     }
@@ -70,7 +70,7 @@ final class JsonObjectNodeList extends AbstractList<JsonNode> {
         return '[' + toString.substring(1, toString.length() - 1) + ']';
     }
 
-    final Map<JsonNodeName, JsonNode> nameToValues;
+    final Map<JsonPropertyName, JsonNode> nameToValues;
 
     /**
      * Lazily loaded list view of json object properties.

@@ -23,33 +23,33 @@ import walkingkooka.tree.search.SearchNode;
 /**
  * Represents a json null.
  */
-public final class JsonNullNode extends JsonLeafNode<Void> {
+public final class JsonNull extends JsonLeafNode<Void> {
 
-    private final static JsonNodeName NAME = JsonNodeName.fromClass(JsonNullNode.class);
+    private final static JsonPropertyName NAME = JsonPropertyName.fromClass(JsonNull.class);
 
     /**
      * Singleton
      */
-    final static JsonNullNode INSTANCE = new JsonNullNode(NAME, NO_INDEX, null);
+    final static JsonNull INSTANCE = new JsonNull(NAME, NO_INDEX, null);
 
     /**
      * Private ctor use singleton
      */
-    private JsonNullNode(final JsonNodeName name, final int index, final Void value) {
+    private JsonNull(final JsonPropertyName name, final int index, final Void value) {
         super(name, index, value);
     }
 
     @Override
-    public JsonNullNode setName(final JsonNodeName name) {
+    public JsonNull setName(final JsonPropertyName name) {
         checkName(name);
         return this.setName0(name)
-                .cast(JsonNullNode.class);
+                .cast(JsonNull.class);
     }
 
     /**
      * Always returns this, only included for completeness.
      */
-    public JsonNullNode setValue(final Void value) {
+    public JsonNull setValue(final Void value) {
         return this;
     }
 
@@ -57,17 +57,17 @@ public final class JsonNullNode extends JsonLeafNode<Void> {
      * Returns the singleton which doesnt have a parent.
      */
     @Override
-    public JsonNullNode removeParent() {
+    public JsonNull removeParent() {
         return INSTANCE;
     }
 
     @Override
-    JsonNullNode replace0(final JsonNodeName name, final int index, final Void value) {
-        return new JsonNullNode(name, index, value);
+    JsonNull replace0(final JsonPropertyName name, final int index, final Void value) {
+        return new JsonNull(name, index, value);
     }
 
     @Override
-    JsonNodeName defaultName() {
+    JsonPropertyName defaultName() {
         return NAME;
     }
 
@@ -114,7 +114,7 @@ public final class JsonNullNode extends JsonLeafNode<Void> {
 
     @Override
     boolean canBeEqual(final Object other) {
-        return other instanceof JsonNullNode;
+        return other instanceof JsonNull;
     }
 
     @Override

@@ -21,7 +21,7 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.expression.ExpressionFunctionNode;
 import walkingkooka.tree.expression.ExpressionNode;
 import walkingkooka.tree.expression.ExpressionNodeName;
-import walkingkooka.tree.json.JsonArrayNode;
+import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 
 /**
@@ -40,7 +40,7 @@ final class BasicJsonMarshallerTypedExpressionNodeFunction extends BasicJsonMars
     @Override
     ExpressionFunctionNode unmarshallNonNull(final JsonNode node,
                                              final JsonNodeUnmarshallContext context) {
-        final JsonArrayNode array = node.arrayOrFail();
+        final JsonArray array = node.arrayOrFail();
         return ExpressionNode.function(
                 ExpressionNodeName.with(array.get(0).stringValueOrFail()),
                 context.unmarshallWithTypeList(array.get(1)));

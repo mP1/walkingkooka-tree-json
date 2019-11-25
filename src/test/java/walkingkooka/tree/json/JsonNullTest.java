@@ -27,55 +27,19 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-public final class JsonBooleanNodeTest extends JsonLeafNonNullNodeTestCase<JsonBooleanNode, Boolean> {
+public final class JsonNullTest extends JsonLeafNodeTestCase<JsonNull, Void> {
+
+    // toSearchNode..............................................................................
 
     @Test
-    public void testWithTrue() {
-        this.withAndCheck(true);
-    }
-
-    @Test
-    public void testWithFalse() {
-        this.withAndCheck(false);
-    }
-
-    private void withAndCheck(final boolean value) {
-        assertSame(JsonBooleanNode.with(value), JsonBooleanNode.with(value));
-    }
-
-    @Override
-    public void testBooleanValueOrFail() {
-        // ignore
-    }
-
-    @Test
-    public void testBooleanValueOrFailTrue() {
-        assertEquals(true,
-                JsonBooleanNode.with(true).booleanValueOrFail());
-    }
-
-    @Test
-    public void testBooleanValueOrFailFalse() {
-        assertEquals(false,
-                JsonBooleanNode.with(false).booleanValueOrFail());
-    }
-
-    // toSearchNode.........................................................................................
-
-    @Test
-    public void testToSearchNodeTrue() {
-        this.toSearchNodeAndCheck(this.createJsonNode(true), SearchNode.text("true", "true"));
-    }
-
-    @Test
-    public void testToSearchNodeFalse() {
-        this.toSearchNodeAndCheck(this.createJsonNode(false), SearchNode.text("false", "false"));
+    public void testToSearchNode() {
+        this.toSearchNodeAndCheck(this.createJsonNode(), SearchNode.text("null", "null"));
     }
 
     @Test
     public void testAccept() {
         final StringBuilder b = new StringBuilder();
-        final JsonBooleanNode node = this.createJsonNode();
+        final JsonNull node = this.createJsonNode();
 
         new FakeJsonNodeVisitor() {
             @Override
@@ -92,7 +56,7 @@ public final class JsonBooleanNodeTest extends JsonLeafNonNullNodeTestCase<JsonB
             }
 
             @Override
-            protected void visit(final JsonBooleanNode n) {
+            protected void visit(final JsonNull n) {
                 assertSame(node, n);
                 b.append("3");
             }
@@ -101,43 +65,49 @@ public final class JsonBooleanNodeTest extends JsonLeafNonNullNodeTestCase<JsonB
     }
 
     @Test
-    public void testToStringTrue() {
-        this.toStringAndCheck(this.createJsonNode(true), "true");
-    }
-
-    @Test
-    public void testToStringFalse() {
-        this.toStringAndCheck(this.createJsonNode(false), "false");
+    public void testToString() {
+        this.toStringAndCheck(this.createJsonNode(), "null");
     }
 
     @Override
-    JsonBooleanNode createJsonNode(final Boolean value) {
-        return JsonBooleanNode.with(value);
+    public void testEqualsDifferentValue() {
+        // nop
     }
 
     @Override
-    JsonBooleanNode setValue(final JsonBooleanNode node, final Boolean value) {
+    public final void testSetDifferentValue() {
+        // nop
+    }
+
+    @Override
+    JsonNull createJsonNode(final Void value) {
+        return JsonNull.INSTANCE;
+    }
+
+    @Override
+    JsonNull setValue(final JsonNull node, final Void value) {
         return node.setValue(value);
     }
 
     @Override
-    Boolean value() {
-        return true;
+    Void value() {
+        return null;
     }
 
     @Override
-    Boolean differentValue() {
-        return false;
+    Void differentValue() {
+        return null;
     }
 
     @Override
-    Class<JsonBooleanNode> jsonNodeType() {
-        return JsonBooleanNode.class;
+    Class<JsonNull> jsonNodeType() {
+        return JsonNull.class;
     }
 
     @Override
     List<String> propertiesNeverReturnNullSkipProperties() {
         return Lists.of(ARRAY_OR_FAIL,
+                BOOLEAN_VALUE_OR_FAIL,
                 UNMARSHALL_LIST,
                 UNMARSHALL_SET,
                 UNMARSHALL_MAP,
@@ -145,6 +115,7 @@ public final class JsonBooleanNodeTest extends JsonLeafNonNullNodeTestCase<JsonB
                 NUMBER_VALUE_OR_FAIL,
                 OBJECT_OR_FAIL,
                 PARENT_OR_FAIL,
-                STRING_VALUE_OR_FAIL);
+                STRING_VALUE_OR_FAIL,
+                VALUE);
     }
 }

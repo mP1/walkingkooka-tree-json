@@ -23,8 +23,8 @@ import walkingkooka.text.CharSequences;
 import walkingkooka.tree.Node;
 import walkingkooka.tree.expression.ExpressionNode;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonObjectNode;
-import walkingkooka.tree.json.JsonStringNode;
+import walkingkooka.tree.json.JsonObject;
+import walkingkooka.tree.json.JsonString;
 import walkingkooka.tree.select.NodeSelector;
 import walkingkooka.tree.select.NodeSelectorVisitor;
 import walkingkooka.visit.Visiting;
@@ -158,11 +158,11 @@ final class BasicJsonMarshallerTypedNodeSelectorNodeSelectorVisitor<N extends No
     }
 
     private JsonNode marshall() {
-        final JsonObjectNode object = JsonNode.object()
+        final JsonObject object = JsonNode.object()
                 .set(BasicJsonMarshallerTypedNodeSelector.COMPONENTS_PROPERTY,
                         JsonNode.array()
                                 .setChildren(this.components));
-        final JsonStringNode nameType = this.nameType;
+        final JsonString nameType = this.nameType;
         return null != nameType ?
                 object.set(BasicJsonMarshallerTypedNodeSelector.NAME_TYPE_PROPERTY, nameType) :
                 object;
@@ -171,7 +171,7 @@ final class BasicJsonMarshallerTypedNodeSelectorNodeSelectorVisitor<N extends No
     /**
      * Initially null and upon the first name selector is set.
      */
-    private JsonStringNode nameType;
+    private JsonString nameType;
 
     private Visiting addComponent(final String component) {
         this.components.add(JsonNode.string(component));

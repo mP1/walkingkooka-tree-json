@@ -18,7 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Cast;
-import walkingkooka.tree.json.JsonArrayNode;
+import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
@@ -67,7 +67,7 @@ final class BasicJsonMarshallerTypedOptional extends BasicJsonMarshallerTyped<Op
         return unmarshallNonNull0(node.arrayOrFail(), context);
     }
 
-    private Optional<?> unmarshallNonNull0(final JsonArrayNode array,
+    private Optional<?> unmarshallNonNull0(final JsonArray array,
                                            final JsonNodeUnmarshallContext context) {
         final List<JsonNode> children = array.children();
         return children.isEmpty() ?
@@ -95,8 +95,8 @@ final class BasicJsonMarshallerTypedOptional extends BasicJsonMarshallerTyped<Op
                 .orElse(JsonNode.array());
     }
 
-    private static JsonArrayNode marshallNonNullValue(final Object value,
-                                                      final JsonNodeMarshallContext context) {
+    private static JsonArray marshallNonNullValue(final Object value,
+                                                  final JsonNodeMarshallContext context) {
         return JsonNode.array().appendChild(context.marshallWithType(value));
     }
 }

@@ -22,8 +22,8 @@ import walkingkooka.ToStringTesting;
 import walkingkooka.collect.list.ListTesting2;
 import walkingkooka.collect.map.Maps;
 
-public final class JsonObjectNodeListTest implements ListTesting2<JsonObjectNodeList, JsonNode>,
-        ToStringTesting<JsonObjectNodeList> {
+public final class JsonObjectListTest implements ListTesting2<JsonObjectList, JsonNode>,
+        ToStringTesting<JsonObjectList> {
 
     @Test
     public void testToString() {
@@ -31,13 +31,13 @@ public final class JsonObjectNodeListTest implements ListTesting2<JsonObjectNode
     }
 
     @Override
-    public JsonObjectNodeList createList() {
-        return JsonObjectNodeList.with(Maps.of(JsonNodeName.with("first"), JsonNode.booleanNode(true),
-                JsonNodeName.with("second"), JsonNode.booleanNode(false)));
+    public JsonObjectList createList() {
+        return JsonObjectList.with(Maps.of(JsonPropertyName.with("first"), JsonNode.booleanNode(true),
+                JsonPropertyName.with("second"), JsonNode.booleanNode(false)));
     }
 
     @Override
-    public Class<JsonObjectNodeList> type() {
-        return JsonObjectNodeList.class;
+    public Class<JsonObjectList> type() {
+        return JsonObjectList.class;
     }
 }

@@ -19,7 +19,7 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeName;
+import walkingkooka.tree.json.JsonPropertyName;
 
 public final class BasicJsonMarshallerTypedJsonNodeTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedJsonNode, JsonNode> {
 
@@ -50,12 +50,12 @@ public final class BasicJsonMarshallerTypedJsonNodeTest extends BasicJsonMarshal
 
     @Test
     public void testFromJsonNodeObjectRemovesParent() {
-        this.unmarshallRemovesParentCheck(JsonNode.object().setChild(JsonNodeName.with("abc"), JsonNode.string("def")));
+        this.unmarshallRemovesParentCheck(JsonNode.object().setChild(JsonPropertyName.with("abc"), JsonNode.string("def")));
     }
 
     private void unmarshallRemovesParentCheck(final JsonNode child) {
         this.unmarshallAndCheck(JsonNode.object()
-                        .set(JsonNodeName.with("child"), child)
+                        .set(JsonPropertyName.with("child"), child)
                         .children().get(0),
                 child.removeParent());
     }

@@ -20,9 +20,9 @@ package walkingkooka.tree.json.marshall;
 import walkingkooka.Cast;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeName;
-import walkingkooka.tree.json.JsonObjectNode;
-import walkingkooka.tree.json.JsonStringNode;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.json.JsonObject;
+import walkingkooka.tree.json.JsonString;
 
 import java.util.Objects;
 import java.util.function.BiFunction;
@@ -33,10 +33,10 @@ import java.util.function.BiFunction;
 final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<T> implements BiFunction<JsonNode, JsonNodeUnmarshallContext, T> {
 
     /**
-     * Factory called only by {@link JsonNodeUnmarshallContext#unmarshallWithType(JsonNodeName, JsonObjectNode, Class)}
+     * Factory called only by {@link JsonNodeUnmarshallContext#unmarshallWithType(JsonPropertyName, JsonObject, Class)}
      */
-    static <T> JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<T> with(final JsonNodeName property,
-                                                                                     final JsonObjectNode source,
+    static <T> JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<T> with(final JsonPropertyName property,
+                                                                                     final JsonObject source,
                                                                                      final Class<T> superType) {
         Objects.requireNonNull(source, "source");
         Objects.requireNonNull(superType, "superType");
@@ -44,8 +44,8 @@ final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<T> imp
         return new JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<>(property, source);
     }
 
-    private JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction(final JsonNodeName property,
-                                                                          final JsonObjectNode source) {
+    private JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction(final JsonPropertyName property,
+                                                                          final JsonObject source) {
         super();
         this.property = property;
         this.source = source;
@@ -54,15 +54,15 @@ final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<T> imp
     @Override
     public T apply(final JsonNode node,
                    final JsonNodeUnmarshallContext context) {
-        final JsonNodeName property = this.property;
-        final JsonObjectNode source = this.source;
+        final JsonPropertyName property = this.property;
+        final JsonObject source = this.source;
 
         try {
             final JsonNode typeName = source.getOrFail(property);
             if (!typeName.isString()) {
                 throw new JsonNodeUnmarshallException("Property " + property + " contains invalid type name", source);
             }
-            final JsonStringNode stringTypeName = typeName.cast(JsonStringNode.class);
+            final JsonString stringTypeName = typeName.cast(JsonString.class);
             final Class<?> type = context.registeredType(stringTypeName)
                     .orElseThrow(() -> new JsonNodeUnmarshallException("Unknown type " + CharSequences.quoteAndEscape(stringTypeName.value()), this.source));
 
@@ -72,8 +72,8 @@ final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<T> imp
         }
     }
 
-    private final JsonNodeName property;
-    private final JsonObjectNode source;
+    private final JsonPropertyName property;
+    private final JsonObject source;
 
     @Override
     public String toString() {

@@ -18,7 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonObject;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -37,7 +37,7 @@ abstract class BasicJsonMarshallerTypedCollection<C extends Collection<?>> exten
     @Override
     final JsonNode marshallNonNull(final C value,
                                    final JsonNodeMarshallContext context) {
-        return JsonObjectNode.array()
+        return JsonObject.array()
                 .setChildren(value.stream()
                         .map(context::marshallWithType)
                         .collect(Collectors.toList()));

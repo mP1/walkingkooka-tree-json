@@ -43,10 +43,10 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
     @Test
     public final void testSetNameDifferent() {
         final N node = this.createJsonNode();
-        final JsonNodeName originalName = node.name();
+        final JsonPropertyName originalName = node.name();
         final V value = node.value();
 
-        final JsonNodeName differentName = JsonNodeName.with("different");
+        final JsonPropertyName differentName = JsonPropertyName.with("different");
         final N different = (N)node.setName(differentName);
         assertEquals(differentName, different.name(), "name");
         this.checkValue(different, value);
@@ -80,21 +80,21 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
     public final void testRemoveParentWithParent() {
         final N node = this.createJsonNode();
 
-        final JsonNodeName a = JsonNodeName.with("prop");
-        final JsonObjectNode parent = JsonNode.object()
+        final JsonPropertyName a = JsonPropertyName.with("prop");
+        final JsonObject parent = JsonNode.object()
                 .set(a, node);
         assertEquals(node, parent.getOrFail(a).removeParent());
     }
 
     @Test
     public final void testReplace() {
-        final JsonNodeName key1 = JsonNodeName.with("key1");
-        final JsonNodeName key2 = JsonNodeName.with("key2");
+        final JsonPropertyName key1 = JsonPropertyName.with("key1");
+        final JsonPropertyName key2 = JsonPropertyName.with("key2");
 
         final N value1 = this.createJsonNode(this.value());
         final N value2 = this.createJsonNode(this.differentValue());
 
-        final JsonObjectNode before = JsonNode.object()
+        final JsonObject before = JsonNode.object()
                 .set(key1, value1)
                 .set(key2, JsonNode.object());
 
@@ -105,13 +105,13 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
 
     @Test
     public final void testReplace2() {
-        final JsonNodeName key1 = JsonNodeName.with("key1");
-        final JsonNodeName key2 = JsonNodeName.with("key2");
+        final JsonPropertyName key1 = JsonPropertyName.with("key1");
+        final JsonPropertyName key2 = JsonPropertyName.with("key2");
 
         final N value1 = this.createJsonNode(this.value());
         final N value2 = this.createJsonNode(this.differentValue());
 
-        final JsonObjectNode before = JsonNode.object()
+        final JsonObject before = JsonNode.object()
                 .set(key1, JsonNode.object())
                 .set(key2, value1);
 

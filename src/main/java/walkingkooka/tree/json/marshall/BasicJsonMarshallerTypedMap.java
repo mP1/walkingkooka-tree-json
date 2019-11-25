@@ -19,8 +19,8 @@ package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Cast;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeName;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.json.JsonObject;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -69,7 +69,7 @@ final class BasicJsonMarshallerTypedMap extends BasicJsonMarshallerTyped<Map<?, 
     @Override
     JsonNode marshallNonNull(final Map<?, ?> map,
                              final JsonNodeMarshallContext context) {
-        return JsonObjectNode.array()
+        return JsonObject.array()
                 .setChildren(map.entrySet()
                         .stream()
                         .map(e -> entryWithType(e, context))
@@ -83,6 +83,6 @@ final class BasicJsonMarshallerTypedMap extends BasicJsonMarshallerTyped<Map<?, 
                 .set(ENTRY_VALUE, context.marshallWithType(entry.getValue()));
     }
 
-    final static JsonNodeName ENTRY_KEY = JsonNodeName.with("key");
-    final static JsonNodeName ENTRY_VALUE = JsonNodeName.with("value");
+    final static JsonPropertyName ENTRY_KEY = JsonPropertyName.with("key");
+    final static JsonPropertyName ENTRY_VALUE = JsonPropertyName.with("value");
 }

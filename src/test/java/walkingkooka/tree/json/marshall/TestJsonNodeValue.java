@@ -18,8 +18,8 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeName;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.json.JsonObject;
 
 import java.util.Objects;
 
@@ -49,7 +49,7 @@ public final class TestJsonNodeValue extends TestJsonNodeValueAbstract {
                                                final JsonNodeUnmarshallContext context) {
         String value = null;
         for (JsonNode child : node.objectOrFail().children()) {
-            final JsonNodeName property = child.name();
+            final JsonPropertyName property = child.name();
             if (KEY.equals(property)) {
                 value = child.stringValueOrFail();
                 continue;
@@ -60,12 +60,12 @@ public final class TestJsonNodeValue extends TestJsonNodeValueAbstract {
         return with(value);
     }
 
-    public JsonObjectNode marshall(final JsonNodeMarshallContext context) {
+    public JsonObject marshall(final JsonNodeMarshallContext context) {
         return JsonNode.object()
                 .set(KEY, JsonNode.string(this.value));
     }
 
-    final static JsonNodeName KEY = JsonNodeName.with("string");
+    final static JsonPropertyName KEY = JsonPropertyName.with("string");
 
     @SuppressWarnings("unchecked")
     public static void register() {

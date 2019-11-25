@@ -21,10 +21,10 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
-import walkingkooka.tree.json.JsonArrayNode;
+import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeName;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.json.JsonObject;
 
 import java.util.Locale;
 
@@ -139,7 +139,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
                 Lists.of(this.value()));
     }
 
-    private JsonArrayNode list(final JsonNode element) {
+    private JsonArray list(final JsonNode element) {
         return JsonNode.array().appendChild(element);
     }
 
@@ -197,7 +197,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
                 Sets.of(this.value()));
     }
 
-    private JsonArrayNode set(final JsonNode element) {
+    private JsonArray set(final JsonNode element) {
         return JsonNode.array().appendChild(element);
     }
 
@@ -614,16 +614,16 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         return BasicJsonNodeUnmarshallContext.INSTANCE.setObjectPreProcessor(this::objectPreProcessor2);
     }
 
-    private JsonObjectNode objectPreProcessor2(final JsonObjectNode object, final Class<?> type) {
+    private JsonObject objectPreProcessor2(final JsonObject object, final Class<?> type) {
         return object.remove(POST);
     }
 
-    private JsonObjectNode jsonNode() {
+    private JsonObject jsonNode() {
         return JsonNode.object()
                 .set(TestJsonNodeValue.KEY, JsonNode.string(VALUE));
     }
 
-    private JsonObjectNode jsonNode2() {
+    private JsonObject jsonNode2() {
         return this.jsonNode()
                 .set(POST, POST_VALUE);
     }
@@ -632,7 +632,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         return TestJsonNodeValue.with(VALUE);
     }
 
-    private final static JsonNodeName POST = JsonNodeName.with("post");
+    private final static JsonPropertyName POST = JsonPropertyName.with("post");
     private final static JsonNode POST_VALUE = JsonNode.booleanNode(true);
     private final static String VALUE = "abc123";
     private final static String KEY = "key1";

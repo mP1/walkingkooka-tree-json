@@ -24,7 +24,7 @@ import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonNodeException;
-import walkingkooka.tree.json.JsonNodeName;
+import walkingkooka.tree.json.JsonPropertyName;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -163,8 +163,8 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
     @Test
     public void testRoundtripJsonObjectWithProperties() {
         this.roundtripAndCheck(Optional.of(JsonNode.object()
-                .set(JsonNodeName.with("country"), JsonNode.string("australia"))
-                .set(JsonNodeName.with("year"), JsonNode.number(2019))
+                .set(JsonPropertyName.with("country"), JsonNode.string("australia"))
+                .set(JsonPropertyName.with("year"), JsonNode.number(2019))
         ));
     }
 

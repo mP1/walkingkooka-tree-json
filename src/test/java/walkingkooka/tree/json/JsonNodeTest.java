@@ -68,39 +68,39 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
     @Test
     public void testParseObject() {
         this.parseStringAndCheck("{\"prop1\": \"value1\"}",
-                JsonNode.object().set(JsonNodeName.with("prop1"), JsonNode.string("value1")));
+                JsonNode.object().set(JsonPropertyName.with("prop1"), JsonNode.string("value1")));
     }
 
     @Test
     public void testParseObjectManyProperties() {
         this.parseStringAndCheck("{\"prop1\": \"value1\", \"prop2\": \"value2\"}",
                 JsonNode.object()
-                        .set(JsonNodeName.with("prop1"), JsonNode.string("value1"))
-                        .set(JsonNodeName.with("prop2"), JsonNode.string("value2")));
+                        .set(JsonPropertyName.with("prop1"), JsonNode.string("value1"))
+                        .set(JsonPropertyName.with("prop2"), JsonNode.string("value2")));
     }
 
     @Test
     public void testParseObjectOrderUnimportant() {
         this.parseStringAndCheck("{\"prop1\": \"value1\", \"prop2\": \"value2\"}",
                 JsonNode.object()
-                        .set(JsonNodeName.with("prop2"), JsonNode.string("value2"))
-                        .set(JsonNodeName.with("prop1"), JsonNode.string("value1")));
+                        .set(JsonPropertyName.with("prop2"), JsonNode.string("value2"))
+                        .set(JsonPropertyName.with("prop1"), JsonNode.string("value1")));
     }
 
     // HasTextOffset.................................................................................................
 
     @Test
     public void testHasTextOffsetEmptyJsonObject() {
-        this.textOffsetAndCheck(JsonObjectNode.object(), 0);
+        this.textOffsetAndCheck(JsonObject.object(), 0);
     }
 
     @Test
     public void testHasTextOffsetJsonObject() {
-        this.textOffsetAndCheck(JsonObjectNode.object()
-                        .set(JsonNodeName.with("key1"), JsonNode.string("a1"))
-                        .set(JsonNodeName.with("key2"), JsonNode.string("b2"))
-                        .set(JsonNodeName.with("key3"), JsonNode.string("c3"))
-                        .set(JsonNodeName.with("key4"), JsonNode.string("d4"))
+        this.textOffsetAndCheck(JsonObject.object()
+                        .set(JsonPropertyName.with("key1"), JsonNode.string("a1"))
+                        .set(JsonPropertyName.with("key2"), JsonNode.string("b2"))
+                        .set(JsonPropertyName.with("key3"), JsonNode.string("c3"))
+                        .set(JsonPropertyName.with("key4"), JsonNode.string("d4"))
                         .children()
                         .get(2),
                 "a1b2");
@@ -108,9 +108,9 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
 
     @Test
     public void testHasTextOffsetJsonArray() {
-        this.textOffsetAndCheck(JsonObjectNode.array()
+        this.textOffsetAndCheck(JsonObject.array()
                         .appendChild(JsonNode.string("a1"))
-                        .appendChild(JsonObjectNode.array()
+                        .appendChild(JsonObject.array()
                                 .appendChild(JsonNode.string("b2"))
                                 .appendChild(JsonNode.string("c3"))
                                 .appendChild(JsonNode.string("d4")))

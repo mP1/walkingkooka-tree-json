@@ -26,47 +26,47 @@ import java.util.Objects;
 /**
  * Represents an immutable json string.
  */
-public final class JsonStringNode extends JsonLeafNonNullNode<String> {
+public final class JsonString extends JsonLeafNonNullNode<String> {
 
-    static JsonStringNode with(final String value) {
+    static JsonString with(final String value) {
         Objects.requireNonNull(value, "value");
-        return new JsonStringNode(NAME, NO_INDEX, value);
+        return new JsonString(NAME, NO_INDEX, value);
     }
 
-    private final static JsonNodeName NAME = JsonNodeName.fromClass(JsonStringNode.class);
+    private final static JsonPropertyName NAME = JsonPropertyName.fromClass(JsonString.class);
 
-    private JsonStringNode(final JsonNodeName name, final int index, final String value) {
+    private JsonString(final JsonPropertyName name, final int index, final String value) {
         super(name, index, value);
     }
 
     @Override
-    public JsonStringNode setName(final JsonNodeName name) {
+    public JsonString setName(final JsonPropertyName name) {
         checkName(name);
         return this.setName0(name)
-                .cast(JsonStringNode.class);
+                .cast(JsonString.class);
     }
 
-    public JsonStringNode setValue(final String value) {
+    public JsonString setValue(final String value) {
         return this.setValue0(value)
-                .cast(JsonStringNode.class);
+                .cast(JsonString.class);
     }
 
     @Override
-    JsonStringNode replace0(final JsonNodeName name, final int index, final String value) {
-        return new JsonStringNode(name, index, value);
+    JsonString replace0(final JsonPropertyName name, final int index, final String value) {
+        return new JsonString(name, index, value);
     }
 
     /**
-     * Returns a {@link JsonNumberNode} with the same value.
+     * Returns a {@link JsonNumber} with the same value.
      */
     @Override
-    public JsonStringNode removeParent() {
+    public JsonString removeParent() {
         return this.removeParent0()
-                .cast(JsonStringNode.class);
+                .cast(JsonString.class);
     }
 
     @Override
-    JsonNodeName defaultName() {
+    JsonPropertyName defaultName() {
         return NAME;
     }
 
@@ -94,7 +94,7 @@ public final class JsonStringNode extends JsonLeafNonNullNode<String> {
 
     @Override
     boolean canBeEqual(final Object other) {
-        return other instanceof JsonStringNode;
+        return other instanceof JsonString;
     }
 
     @Override

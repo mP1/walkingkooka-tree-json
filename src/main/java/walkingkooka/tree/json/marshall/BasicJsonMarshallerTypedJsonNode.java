@@ -18,13 +18,13 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.collect.list.Lists;
-import walkingkooka.tree.json.JsonArrayNode;
-import walkingkooka.tree.json.JsonBooleanNode;
+import walkingkooka.tree.json.JsonArray;
+import walkingkooka.tree.json.JsonBoolean;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNullNode;
-import walkingkooka.tree.json.JsonNumberNode;
-import walkingkooka.tree.json.JsonObjectNode;
-import walkingkooka.tree.json.JsonStringNode;
+import walkingkooka.tree.json.JsonNull;
+import walkingkooka.tree.json.JsonNumber;
+import walkingkooka.tree.json.JsonObject;
+import walkingkooka.tree.json.JsonString;
 
 /**
  * A {@link BasicJsonMarshallerTyped} that handles {@link JsonNode}.
@@ -42,12 +42,12 @@ final class BasicJsonMarshallerTypedJsonNode extends BasicJsonMarshallerTyped<Js
     @Override
     void register() {
         this.registerTypeNameAndType();
-        this.registerTypes(Lists.of(JsonArrayNode.class,
-                JsonBooleanNode.class,
-                JsonNullNode.class,
-                JsonNumberNode.class,
-                JsonObjectNode.class,
-                JsonStringNode.class));
+        this.registerTypes(Lists.of(JsonArray.class,
+                JsonBoolean.class,
+                JsonNull.class,
+                JsonNumber.class,
+                JsonObject.class,
+                JsonString.class));
 
     }
 

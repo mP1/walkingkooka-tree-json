@@ -19,13 +19,13 @@ package walkingkooka.tree.json.parser;
 import org.junit.jupiter.api.Test;
 import walkingkooka.text.cursor.parser.ParserToken;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNumberNode;
+import walkingkooka.tree.json.JsonNumber;
 import walkingkooka.visit.Visiting;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
-public final class JsonNodeNumberParserTokenTest extends JsonNodeLeafParserTokenTestCase2<JsonNodeNumberParserToken, Double, JsonNumberNode> {
+public final class JsonNodeNumberParserTokenTest extends JsonNodeLeafParserTokenTestCase2<JsonNodeNumberParserToken, Double, JsonNumber> {
 
     @Test
     public void testAccept() {
@@ -79,7 +79,7 @@ public final class JsonNodeNumberParserTokenTest extends JsonNodeLeafParserToken
     }
 
     @Override
-    JsonNumberNode jsonNode() {
+    JsonNumber jsonNode() {
         return JsonNode.number(value());
     }
 

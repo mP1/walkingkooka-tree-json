@@ -48,7 +48,7 @@ import java.util.function.Predicate;
  * Base class for all json nodes, all of which are immutable. Note that performing a seemingly mutable operation
  * actually returns a new graph of nodes as would be expected including all parents and the root.
  */
-public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Object>,
+public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name, Object>,
         HasSearchNode,
         HasText,
         TraversableHasTextOffset<JsonNode> {
@@ -71,28 +71,28 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
             .orReport(ParserReporters.basic())
             .cast();
 
-    public static JsonArrayNode array() {
-        return JsonArrayNode.EMPTY;
+    public static JsonArray array() {
+        return JsonArray.EMPTY;
     }
 
-    public static JsonBooleanNode booleanNode(final boolean value) {
-        return JsonBooleanNode.with(value);
+    public static JsonBoolean booleanNode(final boolean value) {
+        return JsonBoolean.with(value);
     }
 
-    public static JsonNullNode nullNode() {
-        return JsonNullNode.INSTANCE;
+    public static JsonNull nullNode() {
+        return JsonNull.INSTANCE;
     }
 
-    public static JsonNumberNode number(final double value) {
-        return JsonNumberNode.with(value);
+    public static JsonNumber number(final double value) {
+        return JsonNumber.with(value);
     }
 
-    public static JsonObjectNode object() {
-        return JsonObjectNode.EMPTY;
+    public static JsonObject object() {
+        return JsonObject.EMPTY;
     }
 
-    public static JsonStringNode string(final String value) {
-        return JsonStringNode.with(value);
+    public static JsonString string(final String value) {
+        return JsonString.with(value);
     }
 
     private final static Optional<JsonNode> NO_PARENT = Optional.empty();
@@ -100,7 +100,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
     /**
      * Package private ctor to limit sub classing.
      */
-    JsonNode(final JsonNodeName name, final int index) {
+    JsonNode(final JsonPropertyName name, final int index) {
         super();
         this.name = name;
         this.parent = NO_PARENT;
@@ -110,31 +110,31 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
     // Name ..............................................................................................
 
     @Override
-    public final JsonNodeName name() {
+    public final JsonPropertyName name() {
         return this.name;
     }
 
     /**
      * Returns an instance with the given name, creating a new instance if necessary.
      */
-    abstract public JsonNode setName(final JsonNodeName name);
+    abstract public JsonNode setName(final JsonPropertyName name);
 
-    static void checkName(final JsonNodeName name) {
+    static void checkName(final JsonPropertyName name) {
         Objects.requireNonNull(name, "name");
     }
 
-    final JsonNode setName0(final JsonNodeName name) {
+    final JsonNode setName0(final JsonPropertyName name) {
         return this.name.equals(name) ?
                 this :
                 this.replaceName(name);
     }
 
-    final JsonNodeName name;
+    final JsonPropertyName name;
 
     /**
      * Returns a new instance with the given name.
      */
-    private JsonNode replaceName(final JsonNodeName name) {
+    private JsonNode replaceName(final JsonPropertyName name) {
         return this.replace(name, this.index);
     }
 
@@ -164,7 +164,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
      * It is only ever called by a parent node and is used to adopt new children.
      */
     final JsonNode setParent(final Optional<JsonNode> parent,
-                             final JsonNodeName name,
+                             final JsonPropertyName name,
                              final int index) {
         final JsonNode copy = this.replace(name, index);
         copy.parent = parent;
@@ -223,7 +223,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
     /**
      * Factory method that creates a new sub class of {@link JsonLeafNode} that is the same type as this.
      */
-    abstract JsonNode replace(final JsonNodeName name, final int index);
+    abstract JsonNode replace(final JsonPropertyName name, final int index);
 
     // attributes............................................................................................................
 
@@ -243,21 +243,21 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
     public abstract Object value();
 
     /**
-     * If a {@link JsonBooleanNode} returns the boolean value or fails.
+     * If a {@link JsonBoolean} returns the boolean value or fails.
      */
     public final boolean booleanValueOrFail() {
         return this.valueOrFail(Boolean.class);
     }
 
     /**
-     * If a {@link JsonNumberNode} returns the number value or fails.
+     * If a {@link JsonNumber} returns the number value or fails.
      */
     public final Number numberValueOrFail() {
         return this.valueOrFail(Number.class);
     }
 
     /**
-     * If a {@link JsonStringNode} returns the string value or fails.
+     * If a {@link JsonString} returns the string value or fails.
      */
     public final String stringValueOrFail() {
         return this.valueOrFail(String.class);
@@ -278,12 +278,12 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
     /**
      * Type safe cast that reports a nice message about the failing array.
      */
-    public abstract JsonArrayNode arrayOrFail();
+    public abstract JsonArray arrayOrFail();
 
     /**
      * Type safe cast that reports a nice message about the failing object.
      */
-    public abstract JsonObjectNode objectOrFail();
+    public abstract JsonObject objectOrFail();
 
     /**
      * Reports a failed attempt to extract a value or cast a node.
@@ -302,27 +302,27 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
     // isXXX............................................................................................................
 
     public final boolean isArray() {
-        return this instanceof JsonArrayNode;
+        return this instanceof JsonArray;
     }
 
     public final boolean isBoolean() {
-        return this instanceof JsonBooleanNode;
+        return this instanceof JsonBoolean;
     }
 
     public final boolean isNull() {
-        return this instanceof JsonNullNode;
+        return this instanceof JsonNull;
     }
 
     public final boolean isNumber(){
-        return this instanceof JsonNumberNode;
+        return this instanceof JsonNumber;
     }
 
     public final boolean isObject() {
-        return this instanceof JsonObjectNode;
+        return this instanceof JsonObject;
     }
 
     public final boolean isString() {
-        return this instanceof JsonStringNode;
+        return this instanceof JsonString;
     }
 
     /**
@@ -338,7 +338,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
      * Returns the default name for this type. This is used to assign a default name for a {@link Node} when it has no
      * parent.
      */
-    abstract JsonNodeName defaultName();
+    abstract JsonPropertyName defaultName();
 
     // Object .......................................................................................................
 
@@ -424,24 +424,24 @@ public abstract class JsonNode implements Node<JsonNode, JsonNodeName, Name, Obj
     /**
      * {@see NodeSelector#absolute}
      */
-    public static NodeSelector<JsonNode, JsonNodeName, Name, Object> absoluteNodeSelector() {
+    public static NodeSelector<JsonNode, JsonPropertyName, Name, Object> absoluteNodeSelector() {
         return NodeSelector.absolute();
     }
 
     /**
      * {@see NodeSelector#relative}
      */
-    public static NodeSelector<JsonNode, JsonNodeName, Name, Object> relativeNodeSelector() {
+    public static NodeSelector<JsonNode, JsonPropertyName, Name, Object> relativeNodeSelector() {
         return NodeSelector.relative();
     }
 
     /**
      * Creates a {@link NodeSelector} for {@link JsonNode} from a {@link NodeSelectorExpressionParserToken}.
      */
-    public static NodeSelector<JsonNode, JsonNodeName, Name, Object> nodeSelectorExpressionParserToken(final NodeSelectorExpressionParserToken token,
-                                                                                                       final Predicate<ExpressionNodeName> functions) {
+    public static NodeSelector<JsonNode, JsonPropertyName, Name, Object> nodeSelectorExpressionParserToken(final NodeSelectorExpressionParserToken token,
+                                                                                                           final Predicate<ExpressionNodeName> functions) {
         return NodeSelector.parserToken(token,
-                n -> JsonNodeName.with(n.value()),
+                n -> JsonPropertyName.with(n.value()),
                 functions,
                 JsonNode.class);
     }

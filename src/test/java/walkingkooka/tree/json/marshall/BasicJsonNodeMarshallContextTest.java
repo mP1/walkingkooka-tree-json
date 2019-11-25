@@ -21,10 +21,10 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
-import walkingkooka.tree.json.JsonArrayNode;
+import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeName;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.json.JsonObject;
 
 import java.util.Locale;
 
@@ -121,7 +121,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
                 list(value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE)));
     }
 
-    private JsonArrayNode list(final JsonNode element) {
+    private JsonArray list(final JsonNode element) {
         return JsonNode.array().appendChild(element);
     }
 
@@ -173,7 +173,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
                 set(value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE)));
     }
 
-    private JsonArrayNode set(final JsonNode element) {
+    private JsonArray set(final JsonNode element) {
         return JsonNode.array().appendChild(element);
     }
 
@@ -578,11 +578,11 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         return this.createContext().setObjectPostProcessor(this::objectPostProcessor);
     }
 
-    private JsonObjectNode objectPostProcessor(final Object value, JsonObjectNode object) {
+    private JsonObject objectPostProcessor(final Object value, JsonObject object) {
         return object.set(POST, POST_VALUE);
     }
 
-    private final static JsonNodeName POST = JsonNodeName.with("post");
+    private final static JsonPropertyName POST = JsonPropertyName.with("post");
     private final static JsonNode POST_VALUE = JsonNode.booleanNode(true);
 
     @Override

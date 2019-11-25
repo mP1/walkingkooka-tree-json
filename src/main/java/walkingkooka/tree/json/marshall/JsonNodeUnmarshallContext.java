@@ -19,10 +19,10 @@ package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Context;
 import walkingkooka.text.CharSequences;
-import walkingkooka.tree.json.JsonArrayNode;
+import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeName;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.json.JsonObject;
 
 import java.util.List;
 import java.util.Map;
@@ -37,12 +37,12 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext {
     /**
      * A {@link BiFunction processor} that simply returns the given object ignoring the value.
      */
-    BiFunction<JsonObjectNode, Class<?>, JsonObjectNode> OBJECT_PRE_PROCESSOR = (jsonObject, type) -> jsonObject;
+    BiFunction<JsonObject, Class<?>, JsonObject> OBJECT_PRE_PROCESSOR = (jsonObject, type) -> jsonObject;
 
     /**
      * Shared function used to report a required property is missing within a static unmarshall.
      */
-    static void requiredPropertyMissing(final JsonNodeName property,
+    static void requiredPropertyMissing(final JsonPropertyName property,
                                         final JsonNode node) {
         throw new JsonNodeUnmarshallException("Required property " + CharSequences.quoteAndEscape(property.value()) + " missing=" + node,
                 node);
@@ -51,7 +51,7 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext {
     /**
      * Shared function used to report a required property is missing within a static unmarshall.
      */
-    static void unknownPropertyPresent(final JsonNodeName property,
+    static void unknownPropertyPresent(final JsonPropertyName property,
                                        final JsonNode node) {
         throw new JsonNodeUnmarshallException("Unknown property " + CharSequences.quoteAndEscape(property.value()) + " in " + node,
                 node);
@@ -60,7 +60,7 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext {
     /**
      * Sets or replaces the {@link BiFunction object pre processor} creating a new instance as necessary.
      */
-    JsonNodeUnmarshallContext setObjectPreProcessor(final BiFunction<JsonObjectNode, Class<?>, JsonObjectNode> processor);
+    JsonNodeUnmarshallContext setObjectPreProcessor(final BiFunction<JsonObject, Class<?>, JsonObject> processor);
 
     // from.............................................................................................................
 
@@ -71,19 +71,19 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext {
                      final Class<T> type);
 
     /**
-     * Assumes something like a {@link JsonArrayNode} and returns a {@link List} assuming the type of each element is fixed.
+     * Assumes something like a {@link JsonArray} and returns a {@link List} assuming the type of each element is fixed.
      */
     <T> List<T> unmarshallList(final JsonNode node,
                                final Class<T> elementType);
 
     /**
-     * Assumes something like a {@link JsonArrayNode} and returns a {@link Set} assuming the type of each element is fixed.
+     * Assumes something like a {@link JsonArray} and returns a {@link Set} assuming the type of each element is fixed.
      */
     <T> Set<T> unmarshallSet(final JsonNode node,
                              final Class<T> elementType);
 
     /**
-     * Assumes something like a {@link JsonArrayNode} of entries and returns a {@link Map} using the key and value types.
+     * Assumes something like a {@link JsonArray} of entries and returns a {@link Map} using the key and value types.
      */
     <K, V> Map<K, V> unmarshallMap(final JsonNode node,
                                    final Class<K> keyType,
@@ -97,25 +97,25 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext {
     <T> T unmarshallWithType(final JsonNode node);
 
     /**
-     * Assumes a {@link JsonArrayNode} holding objects tagged with type and values.
+     * Assumes a {@link JsonArray} holding objects tagged with type and values.
      */
     <T> List<T> unmarshallWithTypeList(final JsonNode node);
 
     /**
-     * Assumes a {@link JsonArrayNode} holding objects tagged with type and values.
+     * Assumes a {@link JsonArray} holding objects tagged with type and values.
      */
     <T> Set<T> unmarshallWithTypeSet(final JsonNode node);
 
     /**
-     * Assumes a {@link JsonArrayNode} holding entries of the {@link Map} tagged with type and values.
+     * Assumes a {@link JsonArray} holding entries of the {@link Map} tagged with type and values.
      */
     <K, V> Map<K, V> unmarshallWithTypeMap(final JsonNode node);
 
     /**
      * {@see JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction}
      */
-    default <T> BiFunction<JsonNode, JsonNodeUnmarshallContext, T> unmarshallWithType(final JsonNodeName property,
-                                                                                      final JsonObjectNode propertySource,
+    default <T> BiFunction<JsonNode, JsonNodeUnmarshallContext, T> unmarshallWithType(final JsonPropertyName property,
+                                                                                      final JsonObject propertySource,
                                                                                       final Class<T> superType) {
         return JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(property, propertySource, superType);
     }

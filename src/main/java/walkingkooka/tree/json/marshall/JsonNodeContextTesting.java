@@ -20,7 +20,7 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.Test;
 import walkingkooka.ContextTesting;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonStringNode;
+import walkingkooka.tree.json.JsonString;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -265,7 +265,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
 
     // registeredType....................................................................................................
 
-    default void registeredTypeAndCheck(final JsonStringNode name,
+    default void registeredTypeAndCheck(final JsonString name,
                                         final Optional<Class<?>> type) {
         this.registeredTypeAndCheck(this.createContext(),
                 name,
@@ -273,7 +273,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     }
 
     default void registeredTypeAndCheck(final JsonNodeContext context,
-                                        final JsonStringNode name,
+                                        final JsonString name,
                                         final Optional<Class<?>> type) {
         assertEquals(type,
                 context.registeredType(name),
@@ -283,7 +283,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     // typeName ........................................................................................................
 
     default void typeNameAndCheck(final Class<?> type,
-                                  final Optional<JsonStringNode> expected) {
+                                  final Optional<JsonString> expected) {
         this.typeNameAndCheck(this.createContext(),
                 type,
                 expected);
@@ -291,7 +291,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
 
     default void typeNameAndCheck(final JsonNodeContext context,
                                   final Class<?> type,
-                                  final Optional<JsonStringNode> expected) {
+                                  final Optional<JsonString> expected) {
         assertEquals(expected,
                 context.typeName(type),
                 () -> context + " typeName " + type.getName());

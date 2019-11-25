@@ -28,9 +28,9 @@ import walkingkooka.text.cursor.parser.Parser;
 import walkingkooka.text.cursor.parser.ParserReporters;
 import walkingkooka.tree.Node;
 import walkingkooka.tree.expression.ExpressionNode;
-import walkingkooka.tree.json.JsonArrayNode;
+import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeName;
+import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.tree.select.NodeSelector;
 import walkingkooka.tree.select.parser.NodeSelectorParserContext;
 import walkingkooka.tree.select.parser.NodeSelectorParserContexts;
@@ -96,10 +96,10 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
     @Override
     NodeSelector unmarshallNonNull(final JsonNode node,
                                    final JsonNodeUnmarshallContext context) {
-        JsonArrayNode components = null;
+        JsonArray components = null;
 
         for (JsonNode child : node.objectOrFail().children()) {
-            final JsonNodeName name = child.name();
+            final JsonPropertyName name = child.name();
             switch (name.value()) {
                 case NAME_TYPE:
                     child.stringValueOrFail();
@@ -129,7 +129,7 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
             NAME extends Name,
             ANAME extends Name,
             AVALUE> NodeSelector<N, NAME, ANAME, AVALUE> unmarshallNonNull0(final BiFunction<JsonNode, JsonNodeUnmarshallContext, NAME> nameFactory,
-                                                                            final JsonArrayNode components,
+                                                                            final JsonArray components,
                                                                             final JsonNodeUnmarshallContext context) {
         NodeSelector<N, NAME, ANAME, AVALUE> selector = NodeSelector.relative();
 
@@ -264,6 +264,6 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
     final static String NAME_TYPE = "name-type";
     final static String COMPONENTS = "components";
 
-    final static JsonNodeName NAME_TYPE_PROPERTY = JsonNodeName.with(NAME_TYPE);
-    final static JsonNodeName COMPONENTS_PROPERTY = JsonNodeName.with(COMPONENTS);
+    final static JsonPropertyName NAME_TYPE_PROPERTY = JsonPropertyName.with(NAME_TYPE);
+    final static JsonPropertyName COMPONENTS_PROPERTY = JsonPropertyName.with(COMPONENTS);
 }

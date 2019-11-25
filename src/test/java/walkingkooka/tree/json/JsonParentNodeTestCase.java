@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C extends List<JsonNode>>
         extends JsonNodeTestCase<N>
-        implements ParentNodeTesting<JsonNode, JsonNodeName, Name, Object> {
+        implements ParentNodeTesting<JsonNode, JsonPropertyName, Name, Object> {
 
     final static String VALUE1 = "value1";
     final static String VALUE2 = "value2";
@@ -54,10 +54,10 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
     @Test
     public final void testSetNameDifferent() {
         final N node = this.createJsonNode();
-        final JsonNodeName originalName = node.name();
+        final JsonPropertyName originalName = node.name();
         final List<JsonNode> value = node.children();
 
-        final JsonNodeName differentName = JsonNodeName.with("different");
+        final JsonPropertyName differentName = JsonPropertyName.with("different");
         final N different = (N)node.setName(differentName);
         assertEquals(differentName, different.name(), "name");
         this.checkChildren(different, value);
@@ -89,19 +89,19 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
         this.toSearchNodeAndCheck(this.createJsonNode(), SearchNode.text("", ""));
     }
 
-    final JsonStringNode value1() {
+    final JsonString value1() {
         return JsonNode.string(VALUE1);
     }
 
-    final JsonStringNode value2() {
+    final JsonString value2() {
         return JsonNode.string(VALUE2);
     }
 
-    final JsonStringNode value3() {
+    final JsonString value3() {
         return JsonNode.string(VALUE3);
     }
 
-    final JsonStringNode value4() {
+    final JsonString value4() {
         return JsonNode.string(VALUE4);
     }
 
@@ -114,11 +114,11 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
     @Override
     public final void childrenCheck(final Traversable<?> node) {
         for (; ; ) {
-            if (node instanceof JsonArrayNode) {
+            if (node instanceof JsonArray) {
                 this.childrenArrayCheck(Cast.to(node));
                 break;
             }
-            if (node instanceof JsonObjectNode) {
+            if (node instanceof JsonObject) {
                 this.childrenObjectCheck(Cast.to(node));
                 break;
             }
@@ -127,13 +127,13 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
         }
     }
 
-    final void childrenArrayCheck(final JsonArrayNode node) {
+    final void childrenArrayCheck(final JsonArray node) {
         final Optional<JsonNode> nodeAsParent = Optional.of(node);
 
         int i = 0;
         for (Node<?, ?, ?, ?> child : node.children()) {
             assertEquals(i, child.index(), () -> "Incorrect index of " + child);
-            assertEquals(JsonNodeName.index(i), child.name(), () -> "child name" + child);
+            assertEquals(JsonPropertyName.index(i), child.name(), () -> "child name" + child);
 
             final int j = i;
             assertEquals(nodeAsParent, child.parent(), () -> "Incorrect parent of child " + j + "=" + child);
@@ -143,11 +143,11 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
         }
     }
 
-    final void childrenObjectCheck(final JsonObjectNode node) {
+    final void childrenObjectCheck(final JsonObject node) {
         final Optional<JsonNode> nodeAsParent = Optional.of(node);
 
         int i = 0;
-        for (Entry<JsonNodeName, JsonNode> keyAndValue : node.children.nameToValues.entrySet()) {
+        for (Entry<JsonPropertyName, JsonNode> keyAndValue : node.children.nameToValues.entrySet()) {
             final Node<?, ?, ?, ?> child = keyAndValue.getValue();
 
             assertEquals(i, child.index(), () -> "Incorrect index of " + child);

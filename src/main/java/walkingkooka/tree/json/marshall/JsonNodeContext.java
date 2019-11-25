@@ -19,7 +19,7 @@ package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Context;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonStringNode;
+import walkingkooka.tree.json.JsonString;
 
 import java.util.Optional;
 import java.util.function.BiFunction;
@@ -49,12 +49,12 @@ public interface JsonNodeContext extends Context {
     /**
      * Returns one of possibly many registered {@link Class types} for the given type name.
      */
-    Optional<Class<?>> registeredType(final JsonStringNode name);
+    Optional<Class<?>> registeredType(final JsonString name);
 
     // typeName ........................................................................................................
 
     /**
      * Returns the type name identifying the given {@link Class} providing it is registered.
      */
-    Optional<JsonStringNode> typeName(final Class<?> type);
+    Optional<JsonString> typeName(final Class<?> type);
 }

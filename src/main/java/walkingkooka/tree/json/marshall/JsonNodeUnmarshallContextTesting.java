@@ -19,7 +19,7 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonObjectNode;
+import walkingkooka.tree.json.JsonObject;
 
 import java.util.List;
 import java.util.Map;
@@ -43,7 +43,7 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
     @Test
     default void testSetObjectPreProcessor() {
         final JsonNodeUnmarshallContext context = this.createContext();
-        final BiFunction<JsonObjectNode, Class<?>, JsonObjectNode> processor = (jsonObject, type) -> jsonObject;
+        final BiFunction<JsonObject, Class<?>, JsonObject> processor = (jsonObject, type) -> jsonObject;
 
         final JsonNodeUnmarshallContext with = context.setObjectPreProcessor(processor);
         assertNotSame(context, with);
@@ -52,7 +52,7 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
     @Test
     default void testSetObjectPreProcessorSame() {
         final JsonNodeUnmarshallContext context = this.createContext();
-        final BiFunction<JsonObjectNode, Class<?>, JsonObjectNode> processor = (jsonObject, type) -> jsonObject;
+        final BiFunction<JsonObject, Class<?>, JsonObject> processor = (jsonObject, type) -> jsonObject;
 
         final JsonNodeUnmarshallContext with = context.setObjectPreProcessor(processor);
         assertSame(with, with.setObjectPreProcessor(processor));

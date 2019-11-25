@@ -40,9 +40,9 @@ public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken>
 
     @Test
     public final void testPublicStaticFactoryMethod() {
-        PublicStaticFactoryTesting.check(JsonNodeParserToken.class,
+        PublicStaticFactoryTesting.checkFactoryMethods(JsonNodeParserToken.class,
                 "JsonNode",
-                ParserToken.class,
+                ParserToken.class.getSimpleName(),
                 this.type());
     }
 

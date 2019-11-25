@@ -57,9 +57,9 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
 
     @Test
     public final void testPublicStaticFactoryMethod() {
-        PublicStaticFactoryTesting.check(JsonNode.class,
+        PublicStaticFactoryTesting.checkFactoryMethods(JsonNode.class,
                 "Json",
-                Node.class,
+                Node.class.getSimpleName(),
                 this.type());
     }
 

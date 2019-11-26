@@ -45,8 +45,7 @@ public final class JsonNodeArrayParserToken extends JsonNodeParentParserToken<Js
         return JsonNode.array().setChildren(children);
     }
 
-    @Override
-    final void addJsonNode(final List<JsonNode> children) {
+    @Override final void addJsonNode(final List<JsonNode> children) {
         for (ParserToken element : this.value()) {
             if (element instanceof JsonNodeParserToken) {
                 element.cast(JsonNodeParserToken.class).addJsonNode(children);

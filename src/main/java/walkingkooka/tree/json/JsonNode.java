@@ -30,7 +30,7 @@ import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.Printers;
 import walkingkooka.tree.Node;
 import walkingkooka.tree.TraversableHasTextOffset;
-import walkingkooka.tree.expression.ExpressionNodeName;
+import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.json.parser.JsonNodeParserContext;
 import walkingkooka.tree.json.parser.JsonNodeParserContexts;
 import walkingkooka.tree.json.parser.JsonNodeParserToken;
@@ -313,7 +313,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         return this instanceof JsonNull;
     }
 
-    public final boolean isNumber(){
+    public final boolean isNumber() {
         return this instanceof JsonNumber;
     }
 
@@ -329,7 +329,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      * Unsafe cast to a sub class of {@link JsonNode}, if this fails a {@link ClassCastException} will be thrown.
      */
     public final <T extends JsonNode> T cast(final Class<T> type) {
-        return (T)this;
+        return (T) this;
     }
 
     abstract void accept(final JsonNodeVisitor visitor);
@@ -403,7 +403,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     @Override
     public final String toString() {
         final StringBuilder b = new StringBuilder();
-        try(final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM).indenting(INDENTATION)) {
+        try (final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM).indenting(INDENTATION)) {
             this.printJson(printer);
         }
         return b.toString();
@@ -439,7 +439,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      * Creates a {@link NodeSelector} for {@link JsonNode} from a {@link NodeSelectorExpressionParserToken}.
      */
     public static NodeSelector<JsonNode, JsonPropertyName, Name, Object> nodeSelectorExpressionParserToken(final NodeSelectorExpressionParserToken token,
-                                                                                                           final Predicate<ExpressionNodeName> functions) {
+                                                                                                           final Predicate<FunctionExpressionName> functions) {
         return NodeSelector.parserToken(token,
                 n -> JsonPropertyName.with(n.value()),
                 functions,

@@ -27,7 +27,7 @@ import walkingkooka.text.cursor.TextCursors;
 import walkingkooka.text.cursor.parser.Parser;
 import walkingkooka.text.cursor.parser.ParserReporters;
 import walkingkooka.tree.Node;
-import walkingkooka.tree.expression.ExpressionNode;
+import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonPropertyName;
@@ -62,7 +62,7 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
                 NodeSelector.relative().self().setToString("custom-123"),
                 NodeSelector.relative().descendant(),
                 NodeSelector.relative().descendantOrSelf(),
-                NodeSelector.relative().expression(ExpressionNode.text("text")),
+                NodeSelector.relative().expression(Expression.string("text")),
                 NodeSelector.relative().firstChild(),
                 NodeSelector.relative().following(),
                 NodeSelector.relative().followingSibling(),
@@ -231,16 +231,16 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
     final static char SEPARATOR = ':';
 
     /**
-     * Creates a {@link Parser} and parses the {@link String expression} into a {@link NodeSelectorPredicateParserToken} and then that into an {@link ExpressionNode}.
+     * Creates a {@link Parser} and parses the {@link String expression} into a {@link NodeSelectorPredicateParserToken} and then that into an {@link Expression}.
      */
-    private static ExpressionNode parseExpression(final String expression) {
+    private static Expression parseExpression(final String expression) {
         final Parser<NodeSelectorParserContext> parser = NodeSelectorParsers.predicate()
                 .orReport(ParserReporters.basic())
                 .cast();
         return parser.parse(TextCursors.charSequence(expression), NodeSelectorParserContexts.basic(BasicJsonMarshallerTypedNodeSelector::hasMathContext))
                 .get()
                 .cast(NodeSelectorPredicateParserToken.class)
-                .toExpressionNode(Predicates.always());
+                .toExpression(Predicates.always());
     }
 
     private static MathContext hasMathContext() {

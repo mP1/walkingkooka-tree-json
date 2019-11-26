@@ -73,8 +73,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
                 .cast(JsonParentNode.class);
     }
 
-    @Override
-    final JsonNode replace(final JsonPropertyName name, final int index) {
+    @Override final JsonNode replace(final JsonPropertyName name, final int index) {
         return this.replace0(name, index, this.children);
     }
 
@@ -141,8 +140,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
      * Only returns true if the descendants of this node and the given children are equal ignoring the parents.
      * A compatibility test between both objects is also done as this is called directly when parents compare their children.
      */
-    @Override
-    final boolean equalsDescendants(final JsonNode other) {
+    @Override final boolean equalsDescendants(final JsonNode other) {
         boolean equals = this.canBeEqual(other);
 
         if (equals) {
@@ -170,8 +168,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
     /**
      * Tests if the immediate value belonging to this node for equality.
      */
-    @Override
-    final boolean equalsValue(final JsonNode other) {
+    @Override final boolean equalsValue(final JsonNode other) {
         return true; // no other properties name already tested.
     }
 }

@@ -18,7 +18,6 @@ package walkingkooka.tree.json.parser;
 
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.search.SearchNode;
 
 import java.util.List;
 
@@ -37,8 +36,7 @@ public final class JsonNodeBooleanParserToken extends JsonNodeValueParserToken<B
         super(value, text);
     }
 
-    @Override
-    final JsonNode toJsonNodeOrNull() {
+    @Override final JsonNode toJsonNodeOrNull() {
         return JsonNode.booleanNode(this.value);
     }
 

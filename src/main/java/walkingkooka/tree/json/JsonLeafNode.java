@@ -55,8 +55,7 @@ abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
                 .cast(JsonLeafNode.class);
     }
 
-    @Override
-    final JsonNode replace(final JsonPropertyName name, final int index) {
+    @Override final JsonNode replace(final JsonPropertyName name, final int index) {
         return this.replace0(name, index, this.value);
     }
 
@@ -89,8 +88,7 @@ abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
         throw new UnsupportedOperationException();
     }
 
-    @Override
-    final JsonNode setChild0(final JsonNode newChild, final int index) {
+    @Override final JsonNode setChild0(final JsonNode newChild, final int index) {
         throw new NeverError(this.getClass().getSimpleName() + ".setChild");
     }
 }

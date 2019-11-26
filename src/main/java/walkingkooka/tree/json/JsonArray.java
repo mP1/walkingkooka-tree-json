@@ -48,8 +48,7 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
     /**
      * Makes a copy of the list and sets the parent upon the children.
      */
-    @Override
-    final List<JsonNode> adoptChildren(final List<JsonNode> children) {
+    @Override final List<JsonNode> adoptChildren(final List<JsonNode> children) {
         final Optional<JsonNode> parent = Optional.of(this);
 
         final List<JsonNode> copy = Lists.array();
@@ -201,8 +200,7 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
     /**
      * Creates a new list of children and replaces the child at the given slot, returning the new child.
      */
-    @Override
-    final JsonNode setChild0(final JsonNode newChild, final int index) {
+    @Override final JsonNode setChild0(final JsonNode newChild, final int index) {
         final List<JsonNode> newChildren = this.copyChildren();
         newChildren.set(index, newChild);
 

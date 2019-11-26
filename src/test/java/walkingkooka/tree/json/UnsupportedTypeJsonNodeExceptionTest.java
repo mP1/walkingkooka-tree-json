@@ -31,7 +31,7 @@ public final class UnsupportedTypeJsonNodeExceptionTest implements StandardThrow
     public UnsupportedTypeJsonNodeException createThrowable(final String message, final Throwable cause) {
         return new UnsupportedTypeJsonNodeException(message, cause);
     }
-    
+
     @Override
     public Class<UnsupportedTypeJsonNodeException> type() {
         return UnsupportedTypeJsonNodeException.class;

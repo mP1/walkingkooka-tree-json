@@ -23,8 +23,7 @@ public abstract class BasicJsonMarshallerTypedTestCase<M extends BasicJsonMarsha
         super();
     }
 
-    @Override
-    final boolean requiresTypeName() {
+    @Override final boolean requiresTypeName() {
         return true;
     }
 }

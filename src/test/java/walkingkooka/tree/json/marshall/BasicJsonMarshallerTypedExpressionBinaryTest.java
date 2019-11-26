@@ -19,13 +19,13 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
-import walkingkooka.tree.expression.ExpressionAdditionNode;
-import walkingkooka.tree.expression.ExpressionNode;
+import walkingkooka.tree.expression.AddExpression;
+import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.json.JsonNode;
 
 import java.math.BigInteger;
 
-public final class BasicJsonMarshallerTypedExpressionNodeBinaryTest extends BasicJsonMarshallerTypedExpressionNodeTestCase<BasicJsonMarshallerTypedExpressionNodeBinary<ExpressionAdditionNode>, ExpressionAdditionNode> {
+public final class BasicJsonMarshallerTypedExpressionBinaryTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionBinary<AddExpression>, AddExpression> {
 
     @Test
     public final void testFromBooleanFails() {
@@ -44,21 +44,21 @@ public final class BasicJsonMarshallerTypedExpressionNodeBinaryTest extends Basi
 
     @Override
     @SuppressWarnings("unchecked")
-    BasicJsonMarshallerTypedExpressionNodeBinary marshaller() {
-        return BasicJsonMarshallerTypedExpressionNodeBinary.with(ExpressionNode::addition, ExpressionAdditionNode.class);
+    BasicJsonMarshallerTypedExpressionBinary marshaller() {
+        return BasicJsonMarshallerTypedExpressionBinary.with(Expression::add, AddExpression.class);
     }
 
     @Override
-    ExpressionAdditionNode value() {
-        return ExpressionAdditionNode.addition(this.leftValue(), this.rightValue());
+    AddExpression value() {
+        return AddExpression.add(this.leftValue(), this.rightValue());
     }
 
-    private ExpressionNode leftValue() {
-        return ExpressionNode.bigInteger(BigInteger.valueOf(11));
+    private Expression leftValue() {
+        return Expression.bigInteger(BigInteger.valueOf(11));
     }
 
-    private ExpressionNode rightValue() {
-        return ExpressionNode.text("b2");
+    private Expression rightValue() {
+        return Expression.string("b2");
     }
 
     @Override
@@ -72,16 +72,16 @@ public final class BasicJsonMarshallerTypedExpressionNodeBinaryTest extends Basi
 
     @Override
     String typeName() {
-        return "expression-addition";
+        return "add-expression";
     }
 
     @Override
-    Class<ExpressionAdditionNode> marshallerType() {
-        return ExpressionAdditionNode.class;
+    Class<AddExpression> marshallerType() {
+        return AddExpression.class;
     }
 
     @Override
-    public Class<BasicJsonMarshallerTypedExpressionNodeBinary<ExpressionAdditionNode>> type() {
-        return Cast.to(BasicJsonMarshallerTypedExpressionNodeBinary.class);
+    public Class<BasicJsonMarshallerTypedExpressionBinary<AddExpression>> type() {
+        return Cast.to(BasicJsonMarshallerTypedExpressionBinary.class);
     }
 }

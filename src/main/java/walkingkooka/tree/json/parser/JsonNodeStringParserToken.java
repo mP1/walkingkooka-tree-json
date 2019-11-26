@@ -18,7 +18,6 @@ package walkingkooka.tree.json.parser;
 
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.search.SearchNode;
 
 import java.util.List;
 

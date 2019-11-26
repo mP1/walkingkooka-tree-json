@@ -21,7 +21,7 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.naming.Name;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.Node;
-import walkingkooka.tree.expression.ExpressionNode;
+import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonString;
@@ -96,7 +96,7 @@ final class BasicJsonMarshallerTypedNodeSelectorNodeSelectorVisitor<N extends No
     }
 
     @Override
-    protected Visiting startVisitExpression(final NodeSelector<N, NAME, ANAME, AVALUE> selector, final ExpressionNode expression) {
+    protected Visiting startVisitExpression(final NodeSelector<N, NAME, ANAME, AVALUE> selector, final Expression expression) {
         return this.addComponent(BasicJsonMarshallerTypedNodeSelector.EXPRESSION + BasicJsonMarshallerTypedNodeSelector.SEPARATOR + expression);
     }
 

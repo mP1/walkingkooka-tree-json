@@ -18,28 +18,28 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Value;
-import walkingkooka.tree.expression.ExpressionNode;
+import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.function.Function;
 
 /**
- * A {@link BasicJsonMarshaller} that handles {@link ExpressionNode} and all sub classes.
+ * A {@link BasicJsonMarshaller} that handles {@link Expression} and all sub classes.
  */
-final class BasicJsonMarshallerTypedExpressionNodeValue<N extends ExpressionNode & Value<V>, V> extends BasicJsonMarshallerTypedExpressionNode<N> {
+final class BasicJsonMarshallerTypedExpressionValue<N extends Expression & Value<V>, V> extends BasicJsonMarshallerTypedExpression<N> {
 
-    static <N extends ExpressionNode & Value<V>, V> BasicJsonMarshallerTypedExpressionNodeValue<N, V> with(final Function<V, N> from,
-                                                                                                           final Class<N> expressionNodeType,
-                                                                                                           final Class<V> valueType) {
+    static <N extends Expression & Value<V>, V> BasicJsonMarshallerTypedExpressionValue<N, V> with(final Function<V, N> from,
+                                                                                                   final Class<N> ExpressionType,
+                                                                                                   final Class<V> valueType) {
 
-        return new BasicJsonMarshallerTypedExpressionNodeValue<>(from,
-                expressionNodeType,
+        return new BasicJsonMarshallerTypedExpressionValue<>(from,
+                ExpressionType,
                 valueType);
     }
 
-    private BasicJsonMarshallerTypedExpressionNodeValue(final Function<V, N> from,
-                                                        final Class<N> type,
-                                                        final Class<V> valueType) {
+    private BasicJsonMarshallerTypedExpressionValue(final Function<V, N> from,
+                                                    final Class<N> type,
+                                                    final Class<V> valueType) {
         super(type);
         this.from = from;
         this.valueType = valueType;

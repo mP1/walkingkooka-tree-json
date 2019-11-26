@@ -22,8 +22,8 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.naming.Names;
 import walkingkooka.naming.StringName;
 import walkingkooka.tree.TestNode;
-import walkingkooka.tree.expression.ExpressionNode;
-import walkingkooka.tree.expression.ExpressionNodeName;
+import walkingkooka.tree.expression.Expression;
+import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.select.NodeSelector;
@@ -100,7 +100,7 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
     @Test
     public void testAttributeValueEqualsWithFromJson() {
         this.unmarshallAndCheck2(JsonNode.string(ATTRIBUTE_EQUALS),
-                TestNode.relativeNodeSelector().expression(ExpressionNode.equalsNode(reference(), text())));
+                TestNode.relativeNodeSelector().expression(Expression.equalsExpression(reference(), text())));
     }
 
     @Test
@@ -132,16 +132,16 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
 
     private NodeSelector<TestNode, StringName, StringName, Object> function(final String functionName) {
         return TestNode.relativeNodeSelector()
-                .expression(ExpressionNode.function(ExpressionNodeName.with(functionName),
+                .expression(Expression.function(FunctionExpressionName.with(functionName),
                         Lists.of(this.reference(), this.text())));
     }
 
-    private ExpressionNode reference() {
-        return ExpressionNode.reference(NodeSelectorAttributeName.with("abc123"));
+    private Expression reference() {
+        return Expression.reference(NodeSelectorAttributeName.with("abc123"));
     }
 
-    private ExpressionNode text() {
-        return ExpressionNode.text("text456");
+    private Expression text() {
+        return Expression.string("text456");
     }
 
     @Test
@@ -196,8 +196,8 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
         this.marshallAndCheck2(TestNode.relativeNodeSelector().expression(this.sum()), JsonNode.string("expression:1+22"));
     }
 
-    private ExpressionNode sum() {
-        return ExpressionNode.addition(ExpressionNode.bigDecimal(BigDecimal.valueOf(1)), ExpressionNode.bigDecimal(BigDecimal.valueOf(22)));
+    private Expression sum() {
+        return Expression.add(Expression.bigDecimal(BigDecimal.valueOf(1)), Expression.bigDecimal(BigDecimal.valueOf(22)));
     }
 
     @Test
@@ -318,7 +318,7 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
         this.jsonRoundtripAndCheck(TestNode.absoluteNodeSelector()
                 .children()
                 .named(Names.string("abc123"))
-                .expression(ExpressionNode.addition(ExpressionNode.bigDecimal(BigDecimal.valueOf(1)), ExpressionNode.text("bcd234"))));
+                .expression(Expression.add(Expression.bigDecimal(BigDecimal.valueOf(1)), Expression.string("bcd234"))));
     }
 
     @Test

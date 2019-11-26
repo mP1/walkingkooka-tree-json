@@ -31,7 +31,7 @@ public final class JsonNodeParserExceptionTest implements StandardThrowableTesti
     public JsonNodeParserException createThrowable(final String message, final Throwable cause) {
         return new JsonNodeParserException(message, cause);
     }
-    
+
     @Override
     public Class<JsonNodeParserException> type() {
         return JsonNodeParserException.class;

@@ -20,12 +20,12 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import walkingkooka.tree.expression.ExpressionNode;
+import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionReference;
-import walkingkooka.tree.expression.ExpressionReferenceNode;
+import walkingkooka.tree.expression.ReferenceExpression;
 import walkingkooka.tree.json.JsonNode;
 
-public final class BasicJsonMarshallerTypedExpressionNodeReferenceTest extends BasicJsonMarshallerTypedExpressionNodeTestCase<BasicJsonMarshallerTypedExpressionNodeReference, ExpressionReferenceNode> {
+public final class BasicJsonMarshallerTypedExpressionReferenceTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionReference, ReferenceExpression> {
 
     @BeforeAll
     @SuppressWarnings("unchecked")
@@ -43,7 +43,7 @@ public final class BasicJsonMarshallerTypedExpressionNodeReferenceTest extends B
 
     private static Runnable remover;
 
-    private final static String REFERENCE_TYPE_NAME = "test-expression-reference";
+    private final static String REFERENCE_TYPE_NAME = "test-reference-expression";
     private final static TestExpressionReference REFERENCE = new TestExpressionReference();
     private final static JsonNode REFERENCE_JSON = JsonNode.string("reference-123abc");
 
@@ -66,13 +66,13 @@ public final class BasicJsonMarshallerTypedExpressionNodeReferenceTest extends B
     }
 
     @Override
-    BasicJsonMarshallerTypedExpressionNodeReference marshaller() {
-        return BasicJsonMarshallerTypedExpressionNodeReference.instance();
+    BasicJsonMarshallerTypedExpressionReference marshaller() {
+        return BasicJsonMarshallerTypedExpressionReference.instance();
     }
 
     @Override
-    ExpressionReferenceNode value() {
-        return ExpressionNode.reference(REFERENCE);
+    ReferenceExpression value() {
+        return Expression.reference(REFERENCE);
     }
 
     @Override
@@ -82,16 +82,16 @@ public final class BasicJsonMarshallerTypedExpressionNodeReferenceTest extends B
 
     @Override
     String typeName() {
-        return "expression-reference";
+        return "reference-expression";
     }
 
     @Override
-    Class<ExpressionReferenceNode> marshallerType() {
-        return ExpressionReferenceNode.class;
+    Class<ReferenceExpression> marshallerType() {
+        return ReferenceExpression.class;
     }
 
     @Override
-    public Class<BasicJsonMarshallerTypedExpressionNodeReference> type() {
-        return BasicJsonMarshallerTypedExpressionNodeReference.class;
+    public Class<BasicJsonMarshallerTypedExpressionReference> type() {
+        return BasicJsonMarshallerTypedExpressionReference.class;
     }
 }

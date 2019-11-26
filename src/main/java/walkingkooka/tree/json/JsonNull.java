@@ -95,13 +95,11 @@ public final class JsonNull extends JsonLeafNode<Void> {
         return this.name.hashCode();
     }
 
-    @Override
-    final boolean equalsDescendants(final JsonNode other) {
+    @Override final boolean equalsDescendants(final JsonNode other) {
         return true;
     }
 
-    @Override
-    final boolean equalsValue(final JsonNode other) {
+    @Override final boolean equalsValue(final JsonNode other) {
         return true;
     }
 

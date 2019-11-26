@@ -17,7 +17,6 @@
 package walkingkooka.tree.json.parser;
 
 import walkingkooka.text.CharSequences;
-import walkingkooka.tree.search.SearchNode;
 
 /**
  * Holds the combination of whitespace.

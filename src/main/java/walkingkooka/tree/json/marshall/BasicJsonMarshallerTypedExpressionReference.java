@@ -17,31 +17,31 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.tree.expression.ExpressionNode;
-import walkingkooka.tree.expression.ExpressionReferenceNode;
+import walkingkooka.tree.expression.Expression;
+import walkingkooka.tree.expression.ReferenceExpression;
 import walkingkooka.tree.json.JsonNode;
 
 /**
- * A {@link BasicJsonMarshaller} that handles {@link ExpressionReferenceNode}
+ * A {@link BasicJsonMarshaller} that handles {@link ReferenceExpression}
  */
-final class BasicJsonMarshallerTypedExpressionNodeReference extends BasicJsonMarshallerTypedExpressionNode<ExpressionReferenceNode> {
+final class BasicJsonMarshallerTypedExpressionReference extends BasicJsonMarshallerTypedExpression<ReferenceExpression> {
 
-    static BasicJsonMarshallerTypedExpressionNodeReference instance() {
-        return new BasicJsonMarshallerTypedExpressionNodeReference();
+    static BasicJsonMarshallerTypedExpressionReference instance() {
+        return new BasicJsonMarshallerTypedExpressionReference();
     }
 
-    private BasicJsonMarshallerTypedExpressionNodeReference() {
-        super(ExpressionReferenceNode.class);
-    }
-
-    @Override
-    ExpressionReferenceNode unmarshallNonNull(final JsonNode node,
-                                              final JsonNodeUnmarshallContext context) {
-        return ExpressionNode.reference(context.unmarshallWithType(node));
+    private BasicJsonMarshallerTypedExpressionReference() {
+        super(ReferenceExpression.class);
     }
 
     @Override
-    JsonNode marshallNonNull(final ExpressionReferenceNode value,
+    ReferenceExpression unmarshallNonNull(final JsonNode node,
+                                          final JsonNodeUnmarshallContext context) {
+        return Expression.reference(context.unmarshallWithType(node));
+    }
+
+    @Override
+    JsonNode marshallNonNull(final ReferenceExpression value,
                              final JsonNodeMarshallContext context) {
         return context.marshallWithType(value.value());
     }

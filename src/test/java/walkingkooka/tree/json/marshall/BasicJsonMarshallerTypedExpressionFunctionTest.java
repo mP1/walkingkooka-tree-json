@@ -19,9 +19,9 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.tree.expression.ExpressionFunctionNode;
-import walkingkooka.tree.expression.ExpressionNode;
-import walkingkooka.tree.expression.ExpressionNodeName;
+import walkingkooka.tree.expression.Expression;
+import walkingkooka.tree.expression.FunctionExpression;
+import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonNodeException;
 
@@ -29,7 +29,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 
-public final class BasicJsonMarshallerTypedExpressionNodeFunctionTest extends BasicJsonMarshallerTypedExpressionNodeTestCase<BasicJsonMarshallerTypedExpressionNodeFunction, ExpressionFunctionNode> {
+public final class BasicJsonMarshallerTypedExpressionFunctionTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionFunction, FunctionExpression> {
 
     @Test
     public final void testFromBooleanFails() {
@@ -47,22 +47,22 @@ public final class BasicJsonMarshallerTypedExpressionNodeFunctionTest extends Ba
     }
 
     @Override
-    BasicJsonMarshallerTypedExpressionNodeFunction marshaller() {
-        return BasicJsonMarshallerTypedExpressionNodeFunction.instance();
+    BasicJsonMarshallerTypedExpressionFunction marshaller() {
+        return BasicJsonMarshallerTypedExpressionFunction.instance();
     }
 
     private final static String FUNCTION_NAME = "function123";
 
     @Override
-    ExpressionFunctionNode value() {
-        return ExpressionNode.function(ExpressionNodeName.with(FUNCTION_NAME), this.parameters());
+    FunctionExpression value() {
+        return Expression.function(FunctionExpressionName.with(FUNCTION_NAME), this.parameters());
     }
 
-    private List<ExpressionNode> parameters() {
+    private List<Expression> parameters() {
         return Lists.of(
-                ExpressionNode.bigInteger(BigInteger.valueOf(11)),
-                ExpressionNode.text("b2"),
-                ExpressionNode.addition(ExpressionNode.bigDecimal(BigDecimal.valueOf(3)), ExpressionNode.bigInteger(BigInteger.valueOf(33))));
+                Expression.bigInteger(BigInteger.valueOf(11)),
+                Expression.string("b2"),
+                Expression.add(Expression.bigDecimal(BigDecimal.valueOf(3)), Expression.bigInteger(BigInteger.valueOf(33))));
     }
 
     @Override
@@ -76,16 +76,16 @@ public final class BasicJsonMarshallerTypedExpressionNodeFunctionTest extends Ba
 
     @Override
     String typeName() {
-        return "expression-function";
+        return "function-expression";
     }
 
     @Override
-    Class<ExpressionFunctionNode> marshallerType() {
-        return ExpressionFunctionNode.class;
+    Class<FunctionExpression> marshallerType() {
+        return FunctionExpression.class;
     }
 
     @Override
-    public Class<BasicJsonMarshallerTypedExpressionNodeFunction> type() {
-        return BasicJsonMarshallerTypedExpressionNodeFunction.class;
+    public Class<BasicJsonMarshallerTypedExpressionFunction> type() {
+        return BasicJsonMarshallerTypedExpressionFunction.class;
     }
 }

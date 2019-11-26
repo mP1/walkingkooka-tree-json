@@ -21,8 +21,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.tree.expression.ExpressionNode;
-import walkingkooka.tree.expression.ExpressionNodeName;
+import walkingkooka.tree.expression.Expression;
+import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonString;
@@ -146,7 +146,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     }
 
     @Test
-    public void testTypeNameJsonObjectNode() {
+    public void testTypeNameJsonObject() {
         this.typeNameAndCheck(JsonObject.class,
                 Optional.of(JsonNode.string("json")));
     }
@@ -171,148 +171,148 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     // Expression.......................................................................................................
 
     @Test
-    public void testExpressionAdditionNode() {
-        this.roundtripAndCheck(ExpressionNode::addition);
+    public void testExpressionAddition() {
+        this.roundtripAndCheck(Expression::add);
     }
 
     @Test
-    public void testExpressionAndNode() {
-        this.roundtripAndCheck(ExpressionNode::and);
+    public void testExpressionAnd() {
+        this.roundtripAndCheck(Expression::and);
     }
 
     @Test
-    public void testExpressionBigDecimalNode() {
-        this.roundtripAndCheck(ExpressionNode.bigDecimal(BigDecimal.valueOf(1.25)));
+    public void testExpressionBigDecimal() {
+        this.roundtripAndCheck(Expression.bigDecimal(BigDecimal.valueOf(1.25)));
     }
 
     @Test
-    public void testExpressionBigIntegerNode() {
-        this.roundtripAndCheck(ExpressionNode.bigInteger(BigInteger.valueOf(567)));
+    public void testExpressionBigInteger() {
+        this.roundtripAndCheck(Expression.bigInteger(BigInteger.valueOf(567)));
     }
 
     @Test
-    public void testExpressionBooleanNode() {
-        this.roundtripAndCheck(ExpressionNode.booleanNode(true));
+    public void testExpressionBoolean() {
+        this.roundtripAndCheck(Expression.booleanExpression(true));
     }
 
     @Test
-    public void testExpressionDivisionNode() {
-        this.roundtripAndCheck(ExpressionNode::division);
+    public void testExpressionDivision() {
+        this.roundtripAndCheck(Expression::divide);
     }
 
     @Test
-    public void testExpressionDoubleNode() {
-        this.roundtripAndCheck(ExpressionNode.doubleNode(99.5));
+    public void testExpressionDouble() {
+        this.roundtripAndCheck(Expression.doubleExpression(99.5));
     }
 
     @Test
-    public void testExpressionEqualsNode() {
-        this.roundtripAndCheck(ExpressionNode::equalsNode);
+    public void testExpressionEquals() {
+        this.roundtripAndCheck(Expression::equalsExpression);
     }
 
     @Test
-    public void testExpressionFunctionNode() {
-        this.roundtripAndCheck(ExpressionNode.function(
-                ExpressionNodeName.with("function123"),
-                Lists.of(ExpressionNode.booleanNode(true), ExpressionNode.text("2b"))));
+    public void testFunctionExpression() {
+        this.roundtripAndCheck(Expression.function(
+                FunctionExpressionName.with("function123"),
+                Lists.of(Expression.booleanExpression(true), Expression.string("2b"))));
     }
 
     @Test
-    public void testExpressionGreaterThanEqualsNode() {
-        this.roundtripAndCheck(ExpressionNode::greaterThanEquals);
+    public void testExpressionGreaterThanEquals() {
+        this.roundtripAndCheck(Expression::greaterThanEquals);
     }
 
     @Test
-    public void testExpressionGreaterThanNode() {
-        this.roundtripAndCheck(ExpressionNode::greaterThan);
+    public void testExpressionGreaterThan() {
+        this.roundtripAndCheck(Expression::greaterThan);
     }
 
     @Test
-    public void testExpressionLessThanEqualsNode() {
-        this.roundtripAndCheck(ExpressionNode::greaterThanEquals);
+    public void testExpressionLessThanEquals() {
+        this.roundtripAndCheck(Expression::greaterThanEquals);
     }
 
     @Test
-    public void testExpressionLessThanNode() {
-        this.roundtripAndCheck(ExpressionNode::greaterThan);
+    public void testExpressionLessThan() {
+        this.roundtripAndCheck(Expression::greaterThan);
     }
 
     @Test
-    public void testExpressionLocalDateNode() {
-        this.roundtripAndCheck(ExpressionNode.localDate(LocalDate.of(2000, 12, 31)));
+    public void testExpressionLocalDate() {
+        this.roundtripAndCheck(Expression.localDate(LocalDate.of(2000, 12, 31)));
     }
 
     @Test
-    public void testExpressionLocalDateTimeNode() {
-        this.roundtripAndCheck(ExpressionNode.localDateTime(LocalDateTime.of(2000, 12, 31, 6, 28, 29)));
+    public void testExpressionLocalDateTime() {
+        this.roundtripAndCheck(Expression.localDateTime(LocalDateTime.of(2000, 12, 31, 6, 28, 29)));
     }
 
     @Test
-    public void testExpressionLocalTimeNode() {
-        this.roundtripAndCheck(ExpressionNode.localTime(LocalTime.of(6, 28, 29)));
+    public void testExpressionLocalTime() {
+        this.roundtripAndCheck(Expression.localTime(LocalTime.of(6, 28, 29)));
     }
 
     @Test
-    public void testExpressionLongNode() {
-        this.roundtripAndCheck(ExpressionNode.longNode(123456));
+    public void testExpressionLong() {
+        this.roundtripAndCheck(Expression.longExpression(123456));
     }
 
     @Test
-    public void testExpressionModuloNode() {
-        this.roundtripAndCheck(ExpressionNode::modulo);
+    public void testExpressionModulo() {
+        this.roundtripAndCheck(Expression::modulo);
     }
 
     @Test
-    public void testExpressionMultiplicationNode() {
-        this.roundtripAndCheck(ExpressionNode::multiplication);
+    public void testExpressionMultiplication() {
+        this.roundtripAndCheck(Expression::multiply);
     }
 
     @Test
-    public void testExpressionNegativeNode() {
-        this.roundtripAndCheck(ExpressionNode::negative);
+    public void testExpressionNegative() {
+        this.roundtripAndCheck(Expression::negative);
     }
 
     @Test
-    public void testExpressionNotNode() {
-        this.roundtripAndCheck(ExpressionNode::not);
+    public void testExpressionNot() {
+        this.roundtripAndCheck(Expression::not);
     }
 
     @Test
-    public void testExpressionNotEqualsNode() {
-        this.roundtripAndCheck(ExpressionNode::notEquals);
+    public void testExpressionNotEquals() {
+        this.roundtripAndCheck(Expression::notEquals);
     }
 
     @Test
-    public void testExpressionOrNode() {
-        this.roundtripAndCheck(ExpressionNode::or);
+    public void testExpressionOr() {
+        this.roundtripAndCheck(Expression::or);
     }
 
     @Test
-    public void testExpressionPowerNode() {
-        this.roundtripAndCheck(ExpressionNode::power);
+    public void testExpressionPower() {
+        this.roundtripAndCheck(Expression::power);
     }
 
     @Test
-    public void testExpressionSubtractionNode() {
-        this.roundtripAndCheck(ExpressionNode::subtraction);
+    public void testExpressionSubtraction() {
+        this.roundtripAndCheck(Expression::subtract);
     }
 
     @Test
     public void testExpressionText() {
-        this.roundtripAndCheck(ExpressionNode.text("abc123"));
+        this.roundtripAndCheck(Expression.string("abc123"));
     }
 
     @Test
-    public void testExpressionXorNode() {
-        this.roundtripAndCheck(ExpressionNode::xor);
+    public void testExpressionXor() {
+        this.roundtripAndCheck(Expression::xor);
     }
 
-    private void roundtripAndCheck(final Function<ExpressionNode, ExpressionNode> factory) {
-        this.roundtripAndCheck(factory.apply(ExpressionNode.text("only-parameter")));
+    private void roundtripAndCheck(final Function<Expression, Expression> factory) {
+        this.roundtripAndCheck(factory.apply(Expression.string("only-parameter")));
     }
 
-    private void roundtripAndCheck(final BiFunction<ExpressionNode, ExpressionNode, ExpressionNode> factory) {
-        this.roundtripAndCheck(factory.apply(ExpressionNode.bigInteger(BigInteger.valueOf(1)), ExpressionNode.text("parameter-2b")));
+    private void roundtripAndCheck(final BiFunction<Expression, Expression, Expression> factory) {
+        this.roundtripAndCheck(factory.apply(Expression.bigInteger(BigInteger.valueOf(1)), Expression.string("parameter-2b")));
     }
 
     private void roundtripAndCheck(final Object value) {

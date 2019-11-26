@@ -49,7 +49,7 @@ public final class JsonPropertyNameTest implements ClassTesting2<JsonPropertyNam
         this.compareToArraySortAndCheck(d4, a1, c3, b2,
                 a1, b2, c3, d4);
     }
-    
+
     @Override
     public JsonPropertyName createName(final String name) {
         return JsonPropertyName.with(name);

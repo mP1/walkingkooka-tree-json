@@ -17,25 +17,25 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.tree.expression.ExpressionNode;
+import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
 import java.util.function.BiFunction;
 
 /**
- * A {@link BasicJsonMarshaller} that handles {@link ExpressionNode} that have two children.
+ * A {@link BasicJsonMarshaller} that handles {@link Expression} that have two children.
  */
-final class BasicJsonMarshallerTypedExpressionNodeBinary<N extends ExpressionNode> extends BasicJsonMarshallerTypedExpressionNode<N> {
+final class BasicJsonMarshallerTypedExpressionBinary<N extends Expression> extends BasicJsonMarshallerTypedExpression<N> {
 
-    static <N extends ExpressionNode> BasicJsonMarshallerTypedExpressionNodeBinary<N> with(final BiFunction<ExpressionNode, ExpressionNode, N> from,
-                                                                                           final Class<N> expressionNodeType) {
+    static <N extends Expression> BasicJsonMarshallerTypedExpressionBinary<N> with(final BiFunction<Expression, Expression, N> from,
+                                                                                   final Class<N> ExpressionType) {
 
-        return new BasicJsonMarshallerTypedExpressionNodeBinary<>(from, expressionNodeType);
+        return new BasicJsonMarshallerTypedExpressionBinary<>(from, ExpressionType);
     }
 
-    private BasicJsonMarshallerTypedExpressionNodeBinary(final BiFunction<ExpressionNode, ExpressionNode, N> from,
-                                                         final Class<N> type) {
+    private BasicJsonMarshallerTypedExpressionBinary(final BiFunction<Expression, Expression, N> from,
+                                                     final Class<N> type) {
         super(type);
         this.from = from;
     }
@@ -43,7 +43,7 @@ final class BasicJsonMarshallerTypedExpressionNodeBinary<N extends ExpressionNod
     @Override
     N unmarshallNonNull(final JsonNode node,
                         final JsonNodeUnmarshallContext context) {
-        final List<ExpressionNode> children = context.unmarshallWithTypeList(node);
+        final List<Expression> children = context.unmarshallWithTypeList(node);
         final int count = children.size();
         if (count != 2) {
             throw new JsonNodeUnmarshallException("Expected 2 children but got " + count, node);
@@ -52,7 +52,7 @@ final class BasicJsonMarshallerTypedExpressionNodeBinary<N extends ExpressionNod
         return this.from.apply(children.get(0), children.get(1));
     }
 
-    private final BiFunction<ExpressionNode, ExpressionNode, N> from;
+    private final BiFunction<Expression, Expression, N> from;
 
     @Override
     JsonNode marshallNonNull(final N value,

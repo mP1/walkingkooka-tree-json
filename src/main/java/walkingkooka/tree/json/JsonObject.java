@@ -59,8 +59,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
     /**
      * Makes a copy of the list and sets the parent upon the children.
      */
-    @Override
-    final JsonObjectList adoptChildren(final JsonObjectList children) {
+    @Override final JsonObjectList adoptChildren(final JsonObjectList children) {
         final Optional<JsonNode> parent = Optional.of(this);
 
         final Map<JsonPropertyName, JsonNode> nameToValues = Maps.ordered();
@@ -215,8 +214,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
                 .cast(JsonObject.class);
     }
 
-    @Override
-    final JsonNode setChild0(final JsonNode newChild, final int index) {
+    @Override final JsonNode setChild0(final JsonNode newChild, final int index) {
         return JsonParentNodeChildPredicate.INSTANCE.test(this.children.get(index), newChild) ?
                 this :
                 this.replaceChild0(newChild, index).children.nameToValues.get(newChild.name);
@@ -245,8 +243,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
         return this.get(name).isPresent();
     }
 
-    @Override
-    final JsonObject replace0(final JsonPropertyName name, final int index, final JsonObjectList children) {
+    @Override final JsonObject replace0(final JsonPropertyName name, final int index, final JsonObjectList children) {
         return new JsonObject(name, index, children);
     }
 

@@ -18,36 +18,36 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.collect.list.Lists;
-import walkingkooka.tree.expression.ExpressionFunctionNode;
-import walkingkooka.tree.expression.ExpressionNode;
-import walkingkooka.tree.expression.ExpressionNodeName;
+import walkingkooka.tree.expression.Expression;
+import walkingkooka.tree.expression.FunctionExpression;
+import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 
 /**
- * A {@link BasicJsonMarshaller} that handles {@link ExpressionFunctionNode}
+ * A {@link BasicJsonMarshaller} that handles {@link FunctionExpression}
  */
-final class BasicJsonMarshallerTypedExpressionNodeFunction extends BasicJsonMarshallerTypedExpressionNode<ExpressionFunctionNode> {
+final class BasicJsonMarshallerTypedExpressionFunction extends BasicJsonMarshallerTypedExpression<FunctionExpression> {
 
-    static BasicJsonMarshallerTypedExpressionNodeFunction instance() {
-        return new BasicJsonMarshallerTypedExpressionNodeFunction();
+    static BasicJsonMarshallerTypedExpressionFunction instance() {
+        return new BasicJsonMarshallerTypedExpressionFunction();
     }
 
-    private BasicJsonMarshallerTypedExpressionNodeFunction() {
-        super(ExpressionFunctionNode.class);
+    private BasicJsonMarshallerTypedExpressionFunction() {
+        super(FunctionExpression.class);
     }
 
     @Override
-    ExpressionFunctionNode unmarshallNonNull(final JsonNode node,
-                                             final JsonNodeUnmarshallContext context) {
+    FunctionExpression unmarshallNonNull(final JsonNode node,
+                                         final JsonNodeUnmarshallContext context) {
         final JsonArray array = node.arrayOrFail();
-        return ExpressionNode.function(
-                ExpressionNodeName.with(array.get(0).stringValueOrFail()),
+        return Expression.function(
+                FunctionExpressionName.with(array.get(0).stringValueOrFail()),
                 context.unmarshallWithTypeList(array.get(1)));
     }
 
     @Override
-    JsonNode marshallNonNull(final ExpressionFunctionNode value,
+    JsonNode marshallNonNull(final FunctionExpression value,
                              final JsonNodeMarshallContext context) {
         return context.marshallList(
                 Lists.of(

@@ -20,8 +20,8 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.text.cursor.parser.ParentParserToken;
 import walkingkooka.text.cursor.parser.ParserToken;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.tree.json.JsonObject;
+import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.visit.Visiting;
 
 import java.util.List;
@@ -88,8 +88,7 @@ public final class JsonNodeObjectParserToken extends JsonNodeParentParserToken<J
         return object.setChildren(objectChildren);
     }
 
-    @Override
-    final void addJsonNode(final List<JsonNode> children) {
+    @Override final void addJsonNode(final List<JsonNode> children) {
         children.add(this.toJsonNodeOrNull());
     }
 

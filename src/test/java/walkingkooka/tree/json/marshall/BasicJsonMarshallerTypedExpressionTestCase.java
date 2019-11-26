@@ -18,13 +18,13 @@
 package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.tree.expression.ExpressionNode;
+import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.json.JsonNode;
 
-public abstract class BasicJsonMarshallerTypedExpressionNodeTestCase<M extends BasicJsonMarshallerTypedExpressionNode<E>, E extends ExpressionNode>
+public abstract class BasicJsonMarshallerTypedExpressionTestCase<M extends BasicJsonMarshallerTypedExpression<E>, E extends Expression>
         extends BasicJsonMarshallerTypedTestCase<M, E> {
 
-    BasicJsonMarshallerTypedExpressionNodeTestCase() {
+    BasicJsonMarshallerTypedExpressionTestCase() {
         super();
     }
 
@@ -36,8 +36,7 @@ public abstract class BasicJsonMarshallerTypedExpressionNodeTestCase<M extends B
         this.unmarshallAndCheck(json, expression);
     }
 
-    @Override
-    final E jsonNullNode() {
+    @Override final E jsonNullNode() {
         return null;
     }
 }

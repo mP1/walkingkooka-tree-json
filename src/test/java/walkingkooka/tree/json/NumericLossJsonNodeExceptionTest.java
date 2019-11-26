@@ -31,7 +31,7 @@ public final class NumericLossJsonNodeExceptionTest implements StandardThrowable
     public NumericLossJsonNodeException createThrowable(final String message, final Throwable cause) {
         return new NumericLossJsonNodeException(message, cause);
     }
-    
+
     @Override
     public Class<NumericLossJsonNodeException> type() {
         return NumericLossJsonNodeException.class;

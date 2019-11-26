@@ -31,7 +31,7 @@ public final class JsonNodeExceptionTest implements StandardThrowableTesting<Jso
     public JsonNodeException createThrowable(final String message, final Throwable cause) {
         return new JsonNodeException(message, cause);
     }
-    
+
     @Override
     public Class<JsonNodeException> type() {
         return JsonNodeException.class;

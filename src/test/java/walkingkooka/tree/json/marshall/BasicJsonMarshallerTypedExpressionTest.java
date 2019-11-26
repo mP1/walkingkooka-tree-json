@@ -19,9 +19,9 @@ package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Cast;
 
-public final class BasicJsonMarshallerTypedExpressionNodeTest extends BasicJsonMarshallerTestCase<BasicJsonMarshallerTypedExpressionNode<?>> {
+public final class BasicJsonMarshallerTypedExpressionTest extends BasicJsonMarshallerTestCase<BasicJsonMarshallerTypedExpression<?>> {
     @Override
-    public Class<BasicJsonMarshallerTypedExpressionNode<?>> type() {
-        return Cast.to(BasicJsonMarshallerTypedExpressionNode.class);
+    public Class<BasicJsonMarshallerTypedExpression<?>> type() {
+        return Cast.to(BasicJsonMarshallerTypedExpression.class);
     }
 }

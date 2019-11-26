@@ -17,24 +17,24 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.tree.expression.ExpressionNode;
+import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.function.Function;
 
 /**
- * A {@link BasicJsonMarshaller} that handles {@link ExpressionNode} that have one children.
+ * A {@link BasicJsonMarshaller} that handles {@link Expression} that have one children.
  */
-final class BasicJsonMarshallerTypedExpressionNodeUnary<N extends ExpressionNode> extends BasicJsonMarshallerTypedExpressionNode<N> {
+final class BasicJsonMarshallerTypedExpressionUnary<N extends Expression> extends BasicJsonMarshallerTypedExpression<N> {
 
-    static <N extends ExpressionNode> BasicJsonMarshallerTypedExpressionNodeUnary<N> with(final Function<ExpressionNode, N> from,
-                                                                                          final Class<N> expressionNodeType) {
+    static <N extends Expression> BasicJsonMarshallerTypedExpressionUnary<N> with(final Function<Expression, N> from,
+                                                                                  final Class<N> ExpressionType) {
 
-        return new BasicJsonMarshallerTypedExpressionNodeUnary<>(from, expressionNodeType);
+        return new BasicJsonMarshallerTypedExpressionUnary<>(from, ExpressionType);
     }
 
-    private BasicJsonMarshallerTypedExpressionNodeUnary(final Function<ExpressionNode, N> from,
-                                                        final Class<N> type) {
+    private BasicJsonMarshallerTypedExpressionUnary(final Function<Expression, N> from,
+                                                    final Class<N> type) {
         super(type);
         this.from = from;
     }
@@ -45,7 +45,7 @@ final class BasicJsonMarshallerTypedExpressionNodeUnary<N extends ExpressionNode
         return this.from.apply(context.unmarshallWithType(node));
     }
 
-    private final Function<ExpressionNode, N> from;
+    private final Function<Expression, N> from;
 
     @Override
     JsonNode marshallNonNull(final N value,

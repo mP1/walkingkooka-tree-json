@@ -58,7 +58,7 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
         final List<JsonNode> value = node.children();
 
         final JsonPropertyName differentName = JsonPropertyName.with("different");
-        final N different = (N)node.setName(differentName);
+        final N different = (N) node.setName(differentName);
         assertEquals(differentName, different.name(), "name");
         this.checkChildren(different, value);
 

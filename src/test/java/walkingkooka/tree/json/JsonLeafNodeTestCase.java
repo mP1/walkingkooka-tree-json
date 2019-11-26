@@ -47,7 +47,7 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
         final V value = node.value();
 
         final JsonPropertyName differentName = JsonPropertyName.with("different");
-        final N different = (N)node.setName(differentName);
+        final N different = (N) node.setName(differentName);
         assertEquals(differentName, different.name(), "name");
         this.checkValue(different, value);
 
@@ -154,8 +154,7 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
         this.checkNotEquals(JsonNode.number(99));
     }
 
-    @Override
-    final N createJsonNode() {
+    @Override final N createJsonNode() {
         return this.createJsonNode(this.value());
     }
 

@@ -39,9 +39,8 @@ abstract class BasicJsonMarshallerTyped<T> extends BasicJsonMarshaller<T> {
                 .forEach(this::registerWithTypeName);
     }
 
-    @Override
-    final JsonNode marshallWithTypeNonNull(final T value,
-                                           final JsonNodeMarshallContext context) {
+    @Override final JsonNode marshallWithTypeNonNull(final T value,
+                                                     final JsonNodeMarshallContext context) {
         return this.objectWithType()
                 .set(BasicJsonNodeContext.VALUE, context.marshall(value));
     }

@@ -343,6 +343,9 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     // Object .......................................................................................................
 
     @Override
+    public abstract int hashCode();
+
+    @Override
     public final boolean equals(final Object other) {
         return this == other ||
                 this.canBeEqual(other) &&

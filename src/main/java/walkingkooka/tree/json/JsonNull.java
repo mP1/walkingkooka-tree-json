@@ -23,6 +23,7 @@ import walkingkooka.tree.search.SearchNode;
 /**
  * Represents a json null.
  */
+@SuppressWarnings("lgtm[java/inconsistent-equals-and-hashcode]")
 public final class JsonNull extends JsonLeafNode<Void> {
 
     private final static JsonPropertyName NAME = JsonPropertyName.fromClass(JsonNull.class);

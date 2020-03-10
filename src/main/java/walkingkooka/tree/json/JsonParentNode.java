@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 /**
  * Base type for all the parent json nodes that hold other nodes, such as array and object
  */
+@SuppressWarnings("lgtm[java/inconsistent-equals-and-hashcode]")
 abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
 
     JsonParentNode(final JsonPropertyName name, final int index, final C children) {

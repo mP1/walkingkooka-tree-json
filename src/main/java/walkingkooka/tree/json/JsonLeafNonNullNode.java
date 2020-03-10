@@ -22,6 +22,7 @@ import java.util.Objects;
 /**
  * Base type for all the leaf json nodes that are not {@link JsonNull}
  */
+@SuppressWarnings("lgtm[java/inconsistent-equals-and-hashcode]")
 abstract class JsonLeafNonNullNode<V> extends JsonLeafNode<V> {
 
     JsonLeafNonNullNode(final JsonPropertyName name, final int index, final V value) {

@@ -22,20 +22,23 @@ import walkingkooka.collect.set.Sets;
 import walkingkooka.predicate.character.CharPredicates;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.text.CaseSensitivity;
+import walkingkooka.text.cursor.TextCursor;
+import walkingkooka.text.cursor.TextCursors;
 import walkingkooka.text.cursor.parser.CharacterParserToken;
 import walkingkooka.text.cursor.parser.DoubleParserToken;
 import walkingkooka.text.cursor.parser.DoubleQuotedParserToken;
 import walkingkooka.text.cursor.parser.Parser;
 import walkingkooka.text.cursor.parser.ParserContext;
+import walkingkooka.text.cursor.parser.ParserReporters;
 import walkingkooka.text.cursor.parser.ParserToken;
 import walkingkooka.text.cursor.parser.Parsers;
 import walkingkooka.text.cursor.parser.StringParserToken;
-import walkingkooka.text.cursor.parser.ebnf.EbnfGrammarLoader;
 import walkingkooka.text.cursor.parser.ebnf.EbnfGrammarParserToken;
 import walkingkooka.text.cursor.parser.ebnf.EbnfIdentifierName;
+import walkingkooka.text.cursor.parser.ebnf.EbnfParserContexts;
+import walkingkooka.text.cursor.parser.ebnf.EbnfParserToken;
 
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiFunction;
 
@@ -180,8 +183,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
 
     private static Parser<ParserContext> value0() {
         try {
-            final Optional<EbnfGrammarParserToken> grammar = EbnfGrammarLoader.with("json-parsers.grammar", JsonNodeParsers.class)
-                    .grammar();
+            final TextCursor grammarFile = TextCursors.charSequence(new JsonNodeParsersGrammarProvider().text());
 
             final Map<EbnfIdentifierName, Parser<ParserContext>> predefined = Maps.ordered();
             predefined.put(ARRAY_BEGIN_SYMBOL_IDENTIFIER, ARRAY_BEGIN_SYMBOL);
@@ -201,9 +203,14 @@ public final class JsonNodeParsers implements PublicStaticHelper {
 
             predefined.put(WHITESPACE_IDENTIFIER, whitespace());
 
-            return grammar.get()
-                    .combinator(predefined, JsonNodeEbnfParserCombinatorSyntaxTreeTransformer.INSTANCE)
-                    .get(VALUE_IDENTIFIER);
+            final Map<EbnfIdentifierName, Parser<ParserContext>> parsers = EbnfParserToken.grammarParser()
+                    .orFailIfCursorNotEmpty(ParserReporters.basic())
+                    .parse(grammarFile, EbnfParserContexts.basic())
+                    .orElseThrow(() -> new IllegalStateException("Unable to parse JsonNode parsers grammar file."))
+                    .cast(EbnfGrammarParserToken.class)
+                    .combinator(predefined, JsonNodeEbnfParserCombinatorSyntaxTreeTransformer.INSTANCE);
+
+            return parsers.get(VALUE_IDENTIFIER);
         } catch (final JsonNodeParserException rethrow) {
             throw rethrow;
         } catch (final Exception cause) {

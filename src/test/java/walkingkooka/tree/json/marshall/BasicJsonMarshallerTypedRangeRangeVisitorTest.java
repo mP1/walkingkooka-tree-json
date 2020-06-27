@@ -18,7 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Cast;
-import walkingkooka.math.RangeVisitor;
+import walkingkooka.collect.RangeVisitor;
 
 public final class BasicJsonMarshallerTypedRangeRangeVisitorTest extends BasicTestCase<BasicJsonMarshallerTypedRangeRangeVisitor<?>> {
 

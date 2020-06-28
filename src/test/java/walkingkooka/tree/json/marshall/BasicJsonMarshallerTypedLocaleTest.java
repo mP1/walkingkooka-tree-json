@@ -27,22 +27,22 @@ public final class BasicJsonMarshallerTypedLocaleTest extends BasicJsonMarshalle
 
     @Test
     public final void testFromBooleanFails() {
-        this.unmarshallFailed(JsonNode.booleanNode(true), JsonNodeException.class);
+        this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
     }
 
     @Test
     public final void testFromNumberFails() {
-        this.unmarshallFailed(JsonNode.number(1.5), JsonNodeException.class);
+        this.unmarshallFailed(JsonNode.number(1.5), ClassCastException.class);
     }
 
     @Test
     public final void testFromObjectFails() {
-        this.unmarshallFailed(JsonNode.object(), JsonNodeException.class);
+        this.unmarshallFailed(JsonNode.object(), ClassCastException.class);
     }
 
     @Test
     public final void testFromArrayFails() {
-        this.unmarshallFailed(JsonNode.array(), JsonNodeException.class);
+        this.unmarshallFailed(JsonNode.array(), ClassCastException.class);
     }
 
     @Override

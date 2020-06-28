@@ -66,7 +66,7 @@ final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<T> imp
             final Class<?> type = context.registeredType(stringTypeName)
                     .orElseThrow(() -> new JsonNodeUnmarshallException("Unknown type " + CharSequences.quoteAndEscape(stringTypeName.value()), this.source));
 
-            return Cast.to(type.cast(context.unmarshall(node, type)));
+            return Cast.to(context.unmarshall(node, type));
         } catch (final IllegalArgumentException cause) {
             throw new JsonNodeUnmarshallException(cause.getMessage(), node);
         }

@@ -640,7 +640,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
 
     @Test
     public void testArrayOrFail() {
-        assertThrows(JsonNodeException.class, () -> this.createJsonNode().arrayOrFail());
+        assertThrows(ClassCastException.class, () -> this.createJsonNode().arrayOrFail());
     }
 
     // Text ...........................................................................................................

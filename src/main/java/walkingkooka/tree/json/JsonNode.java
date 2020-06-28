@@ -269,7 +269,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         }
 
         try {
-            return type.cast(this.value());
+            return Cast.to(this.value());
         } catch (final ClassCastException | UnsupportedOperationException fail) {
             return this.reportInvalidNode(type);
         }
@@ -296,7 +296,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      * Reports a failed attempt to extract a value or cast a node.
      */
     final <V> V reportInvalidNode(final String type) {
-        throw new JsonNodeException("Node is not a " + type + "=" + this);
+        throw new ClassCastException("Node is not a " + type + "=" + this);
     }
 
     // isXXX............................................................................................................

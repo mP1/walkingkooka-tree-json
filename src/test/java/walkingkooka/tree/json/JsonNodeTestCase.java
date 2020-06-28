@@ -75,17 +75,17 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     // ToXXXValueOrFail.................................................................................................
     @Test
     public void testBooleanValueOrFail() {
-        assertThrows(JsonNodeException.class, () -> this.createNode().booleanValueOrFail());
+        assertThrows(ClassCastException.class, () -> this.createNode().booleanValueOrFail());
     }
 
     @Test
     public void testNumberValueOrFail() {
-        assertThrows(JsonNodeException.class, () -> this.createNode().numberValueOrFail());
+        assertThrows(ClassCastException.class, () -> this.createNode().numberValueOrFail());
     }
 
     @Test
     public void testStringValueOrFail() {
-        assertThrows(JsonNodeException.class, () -> this.createNode().stringValueOrFail());
+        assertThrows(ClassCastException.class, () -> this.createNode().stringValueOrFail());
     }
 
     @Test
@@ -94,7 +94,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         if (node instanceof JsonObject) {
             assertSame(node, node.objectOrFail());
         } else {
-            assertThrows(JsonNodeException.class, node::objectOrFail);
+            assertThrows(ClassCastException.class, node::objectOrFail);
         }
     }
 

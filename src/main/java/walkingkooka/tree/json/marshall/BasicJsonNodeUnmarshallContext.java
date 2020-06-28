@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.Cast;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.tree.json.JsonArray;
@@ -65,7 +66,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     @Override
     public <T> T unmarshall(final JsonNode node,
                             final Class<T> type) {
-        return type.cast(BasicJsonMarshaller.marshaller(type).unmarshall(this.preProcess(node, type), this));
+        return Cast.to(BasicJsonMarshaller.marshaller(type).unmarshall(this.preProcess(node, type), this));
     }
 
     /**

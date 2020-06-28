@@ -26,7 +26,7 @@ public final class BasicJsonMarshallerTypedNumberLongTest extends BasicJsonMarsh
 
     @Test
     public final void testFromBooleanFails() {
-        this.unmarshallFailed(JsonNode.booleanNode(true), JsonNodeException.class);
+        this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
     }
 
     @Test
@@ -42,7 +42,7 @@ public final class BasicJsonMarshallerTypedNumberLongTest extends BasicJsonMarsh
 
     @Test
     public final void testFromObjectFails() {
-        this.unmarshallFailed(JsonNode.object(), JsonNodeException.class);
+        this.unmarshallFailed(JsonNode.object(), ClassCastException.class);
     }
 
     @Test
@@ -52,7 +52,7 @@ public final class BasicJsonMarshallerTypedNumberLongTest extends BasicJsonMarsh
 
     @Test
     public final void testFromArrayFails() {
-        this.unmarshallFailed(JsonNode.array(), JsonNodeException.class);
+        this.unmarshallFailed(JsonNode.array(), ClassCastException.class);
     }
 
     @Override

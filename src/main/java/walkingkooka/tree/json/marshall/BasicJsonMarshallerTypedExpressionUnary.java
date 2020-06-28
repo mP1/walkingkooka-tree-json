@@ -28,9 +28,9 @@ import java.util.function.Function;
 final class BasicJsonMarshallerTypedExpressionUnary<N extends Expression> extends BasicJsonMarshallerTypedExpression<N> {
 
     static <N extends Expression> BasicJsonMarshallerTypedExpressionUnary<N> with(final Function<Expression, N> from,
-                                                                                  final Class<N> ExpressionType) {
+                                                                                  final Class<N> expressionType) {
 
-        return new BasicJsonMarshallerTypedExpressionUnary<>(from, ExpressionType);
+        return new BasicJsonMarshallerTypedExpressionUnary<>(from, expressionType);
     }
 
     private BasicJsonMarshallerTypedExpressionUnary(final Function<Expression, N> from,

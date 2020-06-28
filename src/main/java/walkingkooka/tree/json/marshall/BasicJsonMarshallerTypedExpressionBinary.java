@@ -29,9 +29,9 @@ import java.util.function.BiFunction;
 final class BasicJsonMarshallerTypedExpressionBinary<N extends Expression> extends BasicJsonMarshallerTypedExpression<N> {
 
     static <N extends Expression> BasicJsonMarshallerTypedExpressionBinary<N> with(final BiFunction<Expression, Expression, N> from,
-                                                                                   final Class<N> ExpressionType) {
+                                                                                   final Class<N> expressionType) {
 
-        return new BasicJsonMarshallerTypedExpressionBinary<>(from, ExpressionType);
+        return new BasicJsonMarshallerTypedExpressionBinary<>(from, expressionType);
     }
 
     private BasicJsonMarshallerTypedExpressionBinary(final BiFunction<Expression, Expression, N> from,

@@ -29,11 +29,11 @@ import java.util.function.Function;
 final class BasicJsonMarshallerTypedExpressionValue<N extends Expression & Value<V>, V> extends BasicJsonMarshallerTypedExpression<N> {
 
     static <N extends Expression & Value<V>, V> BasicJsonMarshallerTypedExpressionValue<N, V> with(final Function<V, N> from,
-                                                                                                   final Class<N> ExpressionType,
+                                                                                                   final Class<N> expressionType,
                                                                                                    final Class<V> valueType) {
 
         return new BasicJsonMarshallerTypedExpressionValue<>(from,
-                ExpressionType,
+                expressionType,
                 valueType);
     }
 

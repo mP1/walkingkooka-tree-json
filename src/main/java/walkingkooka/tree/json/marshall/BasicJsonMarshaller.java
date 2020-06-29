@@ -73,7 +73,7 @@ abstract class BasicJsonMarshaller<T> {
      * All factory registrations for all {@link BasicJsonMarshaller marshaller}.
      */
     // @VisibleForTesting
-    final static Map<String, BasicJsonMarshaller<?>> TYPENAME_TO_MARSHALLER = Maps.concurrent();
+    final static Map<String, BasicJsonMarshaller<?>> TYPENAME_TO_MARSHALLER = Maps.sorted();
 
     /**
      * Returns the marshaller for the given {@link Object value}.
@@ -229,7 +229,7 @@ abstract class BasicJsonMarshaller<T> {
     /**
      * Registers a {@link BasicJsonMarshaller} for a {@link String type name}.
      */
-    final void registerWithTypeName(final String typeName) {
+    final synchronized void registerWithTypeName(final String typeName) {
         final BasicJsonMarshaller<?> previous = TYPENAME_TO_MARSHALLER.get(typeName);
         if (null != previous) {
             throw new IllegalArgumentException("Type " + CharSequences.quote(typeName) + " already registered to " + CharSequences.quoteAndEscape(previous.toString()) + " all=" + TYPENAME_TO_MARSHALLER.keySet());

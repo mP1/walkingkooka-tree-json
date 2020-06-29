@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.Cast;
 import walkingkooka.Value;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.json.JsonNode;
@@ -25,8 +26,19 @@ import java.util.function.Function;
 
 /**
  * A {@link BasicJsonMarshaller} that handles {@link Expression} and all sub classes.
+ *
+ * Removed & Value<V></V> due to transpiler getting confused thinking this class extends Expression.
+ * <pre>
+ * J2clTranspiler
+ *           7 Error(s)
+ *             Error:BasicJsonMarshallerTypedExpressionValue.java:29: This class must implement the inherited abstract method Expression.toString0(StringBuilder), but cannot override it since it is not visible from BasicJsonMarshallerTypedExpressionValue. Either make the type abstract or make the inherited method visible
+ *             Error:BasicJsonMarshallerTypedExpressionValue.java:29: This class must implement the inherited abstract method Expression.setChild(Expression), but cannot override it since it is not visible from BasicJsonMarshallerTypedExpressionValue. Either make the type abstract or make the inherited method visible
+ *             Error:BasicJsonMarshallerTypedExpressionValue.java:29: This class must implement the inherited abstract method Expression.replace(int), but cannot override it since it is not visible from BasicJsonMarshallerTypedExpressionValue. Either make the type abstract or make the inherited method visible
+ *             Error:BasicJsonMarshallerTypedExpressionValue.java:29: This class must implement the inherited abstract method Expression.equalsIgnoringParentAndChildren(Expression), but cannot override it since it is not visible from BasicJsonMarshallerTypedExpressionValue. Either make the type abstract or make the inherited method visible
+ *             Error:BasicJsonMarshallerTypedExpressionValue.java:29: This class must implement the inherited abstract method Expression.equalsDescendants0(Expression), but cannot override it since it is not visible from BasicJsonMarshallerTypedExpressionValue. Either make the type abstract or make the inherited method visible
+ * </pre>
  */
-final class BasicJsonMarshallerTypedExpressionValue<N extends Expression & Value<V>, V> extends BasicJsonMarshallerTypedExpression<N> {
+final class BasicJsonMarshallerTypedExpressionValue<N extends Expression /*& Value<V>*/, V> extends BasicJsonMarshallerTypedExpression<N> {
 
     static <N extends Expression & Value<V>, V> BasicJsonMarshallerTypedExpressionValue<N, V> with(final Function<V, N> from,
                                                                                                    final Class<N> expressionType,
@@ -57,6 +69,7 @@ final class BasicJsonMarshallerTypedExpressionValue<N extends Expression & Value
     @Override
     JsonNode marshallNonNull(final N value,
                              final JsonNodeMarshallContext context) {
-        return context.marshall(value.value());
+        final Value<V> valueValue = Cast.to(value);
+        return context.marshall(valueValue.value());
     }
 }

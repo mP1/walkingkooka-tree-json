@@ -49,18 +49,7 @@ final class BasicJsonMarshallerTypedGeneric<T> extends BasicJsonMarshallerTyped<
                 .collect(Collectors.toList());
 
         if (all.size() > 1) {
-// https://github.com/mP1/walkingkooka-tree-json/issues/53
-//            if (false == ClassAttributes.ABSTRACT.is(type)) {
-//                throw new IllegalArgumentException("Class " + CharSequences.quoteAndEscape(type.getName()) + " must be abstract");
-//            }
-            final String notSubclasses = all.stream()
-                    .skip(1)
-                    .filter(t -> !type.isAssignableFrom(t))
-                    .map(t -> CharSequences.quoteAndEscape(t.getName()))
-                    .collect(Collectors.joining(", "));
-            if (!notSubclasses.isEmpty()) {
-                throw new IllegalArgumentException("Several classes " + notSubclasses + " are not sub classes of " + CharSequences.quoteAndEscape(type.getName()));
-            }
+            BasicJsonMarshallerTypedGenericParameterCheck.checkTypes(type, all);
         }
 
         return new BasicJsonMarshallerTypedGeneric<>(typeName, from, to, type, all);

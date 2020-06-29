@@ -143,7 +143,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
 
     @Test
     default void testRegisteredTypeMap() {
-        this.registeredTypeAndCheck(JsonNode.string("marshall"), Optional.ofNullable(Map.class));
+        this.registeredTypeAndCheck(JsonNode.string("map"), Optional.ofNullable(Map.class));
     }
 
     @Test
@@ -250,7 +250,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
 
     @Test
     default void testTypeNameMap() {
-        this.typeNameAndCheck(Map.class, Optional.of(JsonNode.string("marshall")));
+        this.typeNameAndCheck(Map.class, Optional.of(JsonNode.string("map")));
     }
 
     @Test

@@ -82,7 +82,7 @@ abstract class BasicJsonMarshaller<T> {
         return marshaller(
                 List.class.isAssignableFrom(type) ? "list" :
                         Set.class.isAssignableFrom(type) ? "set" :
-                                Map.class.isAssignableFrom(type) ? "marshall" :
+                                Map.class.isAssignableFrom(type) ? "map" :
                                         type.getName());
     }
 

@@ -131,7 +131,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         final JsonNode jsonNode = this.marshallContext().marshallList(list);
 
         assertEquals(list,
-                this.unmarshallContext().unmarshallList(jsonNode, value.getClass()),
+                this.unmarshallContext().unmarshallList(jsonNode, type(value)),
                 () -> "roundtrip list: " + list + " -> json: " + jsonNode);
     }
 
@@ -143,14 +143,13 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         final JsonNode jsonNode = this.marshallContext().marshallSet(set);
 
         try {
-            set.equals(this.unmarshallContext().unmarshallSet(jsonNode, value.getClass()));
+            set.equals(this.unmarshallContext().unmarshallSet(jsonNode, type(value)));
         } catch (final Exception e) {
             e.printStackTrace();
         }
 
-
         assertEquals(set,
-                this.unmarshallContext().unmarshallSet(jsonNode, value.getClass()),
+                this.unmarshallContext().unmarshallSet(jsonNode, type(value)),
                 () -> "roundtrip set: " + set + " -> json: " + jsonNode);
     }
 
@@ -162,8 +161,17 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         final JsonNode jsonNode = this.marshallContext().marshallMap(map);
 
         assertEquals(map,
-                this.unmarshallContext().unmarshallMap(jsonNode, String.class, value.getClass()),
-                () -> "roundtrip map: " + map + " -> json: " + jsonNode);
+                this.unmarshallContext().unmarshallMap(jsonNode, String.class, type(value)),
+                () -> "roundtrip marshall: " + map + " -> json: " + jsonNode);
+    }
+
+    private static Class<?> type(final Object value) {
+        return value instanceof List ?
+                List.class :
+                value instanceof Set ?
+                        Set.class : value instanceof Map ?
+                        Map.class :
+                        value.getClass();
     }
 
     @Test

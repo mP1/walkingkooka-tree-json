@@ -73,7 +73,7 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     }
 
     private JsonNode marshallNonNull(final Object value) {
-        final JsonNode json = BasicJsonMarshaller.marshaller(value.getClass())
+        final JsonNode json = BasicJsonMarshaller.marshaller(value)
                 .marshall(Cast.to(value), this);
         return json.isObject() ?
                 this.processor.apply(value, json.objectOrFail()) :
@@ -137,7 +137,7 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     public JsonNode marshallWithType(final Object value) {
         return null == value ?
                 JsonNode.nullNode() :
-                BasicJsonMarshaller.marshaller(value.getClass())
+                BasicJsonMarshaller.marshaller(value)
                         .marshallWithType(Cast.to(value), this);
     }
 

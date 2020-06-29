@@ -160,7 +160,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     @Test
     public void testMarshallerOrFailStringUnknownTypeFails() {
-        assertThrows(UnsupportedTypeJsonNodeException.class, () -> BasicJsonMarshaller.marshaller("???"));
+        assertThrows(UnsupportedTypeJsonNodeException.class, () -> BasicJsonMarshaller.marshaller(Void.TYPE));
     }
 
     @Test

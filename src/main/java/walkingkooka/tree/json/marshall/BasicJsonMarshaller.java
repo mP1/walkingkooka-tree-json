@@ -76,20 +76,27 @@ abstract class BasicJsonMarshaller<T> {
     final static Map<String, BasicJsonMarshaller<?>> TYPENAME_TO_MARSHALLER = Maps.concurrent();
 
     /**
+     * Returns the marshaller for the given {@link Object value}.
+     */
+    static <T> BasicJsonMarshaller<T> marshaller(final T value) {
+        return marshaller0(
+                value instanceof List ? "list" :
+                        value instanceof Set ? "set" :
+                                value instanceof Map ? "map" :
+                                        value.getClass().getName());
+    }
+
+    /**
      * Returns the marshaller for the given {@link Class}.
      */
     static <T> BasicJsonMarshaller<T> marshaller(final Class<T> type) {
-        return marshaller(
-                List.class.isAssignableFrom(type) ? "list" :
-                        Set.class.isAssignableFrom(type) ? "set" :
-                                Map.class.isAssignableFrom(type) ? "map" :
-                                        type.getName());
+        return marshaller0(type.getName());
     }
 
     /**
      * Returns the {@link BasicJsonMarshaller} for the given type name.
      */
-    static <T> BasicJsonMarshaller<T> marshaller(final String type) {
+    private static <T> BasicJsonMarshaller<T> marshaller0(final String type) {
         final BasicJsonMarshaller<T> marshaller = Cast.to(TYPENAME_TO_MARSHALLER.get(type));
         if (null == marshaller) {
             throw new UnsupportedTypeJsonNodeException("Type " + CharSequences.quote(type) + " not supported, currently: " + TYPENAME_TO_MARSHALLER.keySet());

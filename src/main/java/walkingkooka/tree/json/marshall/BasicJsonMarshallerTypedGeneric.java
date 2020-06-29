@@ -17,7 +17,6 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.reflect.ClassAttributes;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.json.JsonNode;
 
@@ -50,9 +49,10 @@ final class BasicJsonMarshallerTypedGeneric<T> extends BasicJsonMarshallerTyped<
                 .collect(Collectors.toList());
 
         if (all.size() > 1) {
-            if (false == ClassAttributes.ABSTRACT.is(type)) {
-                throw new IllegalArgumentException("Class " + CharSequences.quoteAndEscape(type.getName()) + " must be abstract");
-            }
+// https://github.com/mP1/walkingkooka-tree-json/issues/53
+//            if (false == ClassAttributes.ABSTRACT.is(type)) {
+//                throw new IllegalArgumentException("Class " + CharSequences.quoteAndEscape(type.getName()) + " must be abstract");
+//            }
             final String notSubclasses = all.stream()
                     .skip(1)
                     .filter(t -> !type.isAssignableFrom(t))

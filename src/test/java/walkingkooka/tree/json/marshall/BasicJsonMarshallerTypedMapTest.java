@@ -101,7 +101,7 @@ public final class BasicJsonMarshallerTypedMapTest extends BasicJsonMarshallerTy
 
     @Override
     String typeName() {
-        return "marshall";
+        return "map";
     }
 
     @Override

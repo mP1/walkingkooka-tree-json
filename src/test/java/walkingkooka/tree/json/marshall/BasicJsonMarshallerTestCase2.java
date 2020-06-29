@@ -163,7 +163,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
 
         assertEquals(map,
                 this.unmarshallContext().unmarshallMap(jsonNode, String.class, value.getClass()),
-                () -> "roundtrip marshall: " + map + " -> json: " + jsonNode);
+                () -> "roundtrip map: " + map + " -> json: " + jsonNode);
     }
 
     @Test

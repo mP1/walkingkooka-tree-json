@@ -82,7 +82,7 @@ public abstract class BasicJsonNodeContextTestCase<C extends JsonNodeContext> ex
                 "local-time",
                 "locale",
                 "long",
-                "marshall",
+                "map",
                 "math-context",
                 "number",
                 "optional",

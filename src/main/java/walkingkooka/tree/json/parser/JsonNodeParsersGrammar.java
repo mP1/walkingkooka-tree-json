@@ -19,6 +19,6 @@ package walkingkooka.tree.json.parser;
 
 import walkingkooka.resource.TextResourceAware;
 
-@TextResourceAware
+@TextResourceAware(normalizeSpace = true)
 final class JsonNodeParsersGrammar {
 }

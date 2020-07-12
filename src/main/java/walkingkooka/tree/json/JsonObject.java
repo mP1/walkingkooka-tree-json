@@ -310,13 +310,11 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
 
     @Override
     void printJson0(final IndentingPrinter printer) {
-        final LineEnding eol = printer.lineEnding();
-
         printer.print(BEGIN.string());
 
         final int size = this.children.size();
         if (size > 0) {
-            printer.print(eol);
+            printer.println();
             printer.indent();
 
             int i = size - 1;
@@ -329,7 +327,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
                     printer.print(AFTER);
                 }
                 i--;
-                printer.print(eol);
+                printer.println();
             }
 
             printer.outdent();

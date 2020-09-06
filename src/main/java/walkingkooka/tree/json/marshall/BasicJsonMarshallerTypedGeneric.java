@@ -48,10 +48,6 @@ final class BasicJsonMarshallerTypedGeneric<T> extends BasicJsonMarshallerTyped<
                 .peek(t -> Objects.requireNonNull(t, "null type"))
                 .collect(Collectors.toList());
 
-        if (all.size() > 1) {
-            BasicJsonMarshallerTypedGenericParameterCheck.checkTypes(type, all);
-        }
-
         return new BasicJsonMarshallerTypedGeneric<>(typeName, from, to, type, all);
     }
 

@@ -1,6 +1,0 @@
-#
-# Need to replace walkingkooka.tree.json.marshall.BasicJsonMarshallerTypedGenericParameterCheck
-# which does not use unsupported j2cl Class methods.
-#
-walkingkooka.tree.json.marshall.support=walkingkooka.tree.json.marshall
-

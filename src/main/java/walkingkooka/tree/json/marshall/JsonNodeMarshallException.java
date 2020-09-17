@@ -23,17 +23,17 @@ import walkingkooka.tree.json.JsonNodeException;
 /**
  * Used to report or wrap any exceptions thrown while performing {@link JsonNode} operations.
  */
-public class JsonNodeMapException extends JsonNodeException {
+public class JsonNodeMarshallException extends JsonNodeException {
 
-    protected JsonNodeMapException() {
+    protected JsonNodeMarshallException() {
         super();
     }
 
-    public JsonNodeMapException(final String message) {
+    public JsonNodeMarshallException(final String message) {
         super(message);
     }
 
-    public JsonNodeMapException(final String message, final Throwable cause) {
+    public JsonNodeMarshallException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }

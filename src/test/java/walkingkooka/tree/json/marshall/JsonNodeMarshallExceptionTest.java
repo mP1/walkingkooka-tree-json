@@ -20,21 +20,21 @@ package walkingkooka.tree.json.marshall;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.StandardThrowableTesting;
 
-public final class JsonNodeMapExceptionTest implements StandardThrowableTesting<JsonNodeMapException> {
+public final class JsonNodeMarshallExceptionTest implements StandardThrowableTesting<JsonNodeMarshallException> {
 
     @Override
-    public JsonNodeMapException createThrowable(final String message) {
-        return new JsonNodeMapException(message);
+    public JsonNodeMarshallException createThrowable(final String message) {
+        return new JsonNodeMarshallException(message);
     }
 
     @Override
-    public JsonNodeMapException createThrowable(final String message, final Throwable cause) {
-        return new JsonNodeMapException(message, cause);
+    public JsonNodeMarshallException createThrowable(final String message, final Throwable cause) {
+        return new JsonNodeMarshallException(message, cause);
     }
 
     @Override
-    public Class<JsonNodeMapException> type() {
-        return JsonNodeMapException.class;
+    public Class<JsonNodeMarshallException> type() {
+        return JsonNodeMarshallException.class;
     }
 
     @Override

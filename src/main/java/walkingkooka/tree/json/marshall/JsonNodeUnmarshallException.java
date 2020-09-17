@@ -19,13 +19,14 @@ package walkingkooka.tree.json.marshall;
 
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.JsonNodeException;
 
 import java.util.Objects;
 
 /**
  * Used to report and wrap exceptions that occur during static unmarshall method calls.
  */
-public class JsonNodeUnmarshallException extends JsonNodeMapException {
+public class JsonNodeUnmarshallException extends JsonNodeException {
 
     protected JsonNodeUnmarshallException() {
         super();

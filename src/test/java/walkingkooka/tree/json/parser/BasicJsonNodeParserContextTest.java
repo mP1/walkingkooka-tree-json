@@ -43,7 +43,7 @@ public final class BasicJsonNodeParserContextTest implements ClassTesting2<Basic
     @Test
     public void testToString() {
         this.toStringAndCheck(this.createContext(),
-                "decimalSeparator='.' exponentSymbol='E' negativeSign='-' percentageSymbol='%' positiveSign='+'");
+                "decimalSeparator='.' exponentSymbol=\"E\" negativeSign='-' percentageSymbol='%' positiveSign='+'");
     }
 
     @Override
@@ -62,7 +62,7 @@ public final class BasicJsonNodeParserContextTest implements ClassTesting2<Basic
     }
 
     @Override
-    public char exponentSymbol() {
+    public String exponentSymbol() {
         return this.decimalNumberContext().exponentSymbol();
     }
 

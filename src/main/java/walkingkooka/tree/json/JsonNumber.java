@@ -71,7 +71,10 @@ public final class JsonNumber extends JsonLeafNonNullNode<Double> {
 
     @Override
     public String text() {
-        return this.value.toString();
+        final long i = this.value.longValue();
+        return i == this.value ?
+                String.valueOf(i) :
+                String.valueOf(this.value);
     }
 
     // HasSearchNode...............................................................................................
@@ -98,9 +101,6 @@ public final class JsonNumber extends JsonLeafNonNullNode<Double> {
 
     @Override
     void printJson0(final IndentingPrinter printer) {
-        final int i = this.value.intValue();
-        printer.print(i == this.value ?
-                String.valueOf(i) :
-                String.valueOf(this.value));
+        printer.print(this.text());
     }
 }

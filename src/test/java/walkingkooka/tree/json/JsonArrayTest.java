@@ -537,7 +537,16 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
                 .appendChild(JsonNode.booleanNode(true))
                 .appendChild(JsonNode.number(2))
                 .appendChild(JsonNode.string("third"));
-        assertEquals("true2.0third", array.text());
+        assertEquals("true2third", array.text());
+    }
+
+    @Test
+    public void testTextWithChildren2() {
+        final JsonArray array = JsonNode.array()
+                .appendChild(JsonNode.booleanNode(true))
+                .appendChild(JsonNode.number(2.75))
+                .appendChild(JsonNode.string("third"));
+        assertEquals("true2.75third", array.text());
     }
 
     @Test

@@ -41,6 +41,16 @@ public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber
     }
 
     @Test
+    public void testTextWholeNumber() {
+        assertEquals("123", JsonNumber.with(123).text());
+    }
+
+    @Test
+    public void testTextDecimalNumber() {
+        assertEquals("123.5", JsonNumber.with(123.5).text());
+    }
+
+    @Test
     public void testAccept() {
         final StringBuilder b = new StringBuilder();
         final JsonNumber node = this.createJsonNode();
@@ -90,7 +100,7 @@ public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber
 
     @Override
     Double value() {
-        return 1.0;
+        return 1.5;
     }
 
     @Override

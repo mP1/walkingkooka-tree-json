@@ -656,7 +656,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
                         .set(JsonPropertyName.with("a1"), JsonNode.string("v1"))
                         .set(JsonPropertyName.with("b2"), JsonNode.booleanNode(true))
                         .set(JsonPropertyName.with("c3"), JsonNode.number(333)),
-                "v1true333.0");
+                "v1true333");
     }
 
     // HasTextOffset...................................................................................................
@@ -794,7 +794,17 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
                 .set(key2(), JsonNode.number(2))
                 .set(key3(), JsonNode.string("third"));
 
-        assertEquals("true2.0third", object.text());
+        assertEquals("true2third", object.text());
+    }
+
+    @Test
+    public void testTextWithChildren2() {
+        final JsonObject object = JsonNode.object()
+                .set(key1(), JsonNode.booleanNode(true))
+                .set(key2(), JsonNode.number(2.5))
+                .set(key3(), JsonNode.string("third"));
+
+        assertEquals("true2.5third", object.text());
     }
 
     @Test

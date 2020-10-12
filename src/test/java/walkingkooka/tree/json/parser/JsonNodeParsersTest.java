@@ -30,6 +30,8 @@ import walkingkooka.text.cursor.parser.ParserToken;
 import java.lang.reflect.Method;
 import java.math.MathContext;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public final class JsonNodeParsersTest implements PublicStaticHelperTesting<JsonNodeParsers>,
         ParserTesting2<Parser<JsonNodeParserContext>, JsonNodeParserContext> {
 
@@ -73,6 +75,20 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
         final String text = "\"abc-123\"";
 
         this.parseAndCheck(text, string("abc-123"), text);
+    }
+
+    @Test
+    public void testStringWithTab() {
+        final String text = "\"abc\t123\"";
+
+        this.parseAndCheck(text, string("abc\t123", "\"abc\t123\""), text);
+    }
+
+    @Test
+    public void testStringWithEscapedBackslash() {
+        final String text = "\"abc\\\\123\"";
+
+        this.parseAndCheck(text, string("abc\\123", "\"abc\\\\123\""), text);
     }
 
     @Test
@@ -402,7 +418,14 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     }
 
     private JsonNodeParserToken string(final String value) {
-        return JsonNodeParserToken.string(value, CharSequences.quoteAndEscape(value).toString());
+        final String quotedAndEscaped = CharSequences.quoteAndEscape(value).toString();
+        assertEquals(CharSequences.quote(value).toString(), quotedAndEscaped, () -> "string contains escaping");
+        return string(value, quotedAndEscaped);
+    }
+
+    private JsonNodeParserToken string(final String value,
+                                       final String text) {
+        return JsonNodeParserToken.string(value, text);
     }
 
     private JsonNodeParserToken whitespace() {

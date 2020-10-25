@@ -20,6 +20,7 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.expression.Expression;
+import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.FunctionExpression;
 import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.json.JsonNode;
@@ -60,9 +61,9 @@ public final class BasicJsonMarshallerTypedExpressionFunctionTest extends BasicJ
 
     private List<Expression> parameters() {
         return Lists.of(
-                Expression.bigInteger(BigInteger.valueOf(11)),
+                Expression.expressionNumber(ExpressionNumber.with(11)),
                 Expression.string("b2"),
-                Expression.add(Expression.bigDecimal(BigDecimal.valueOf(3)), Expression.bigInteger(BigInteger.valueOf(33))));
+                Expression.add(Expression.expressionNumber(ExpressionNumber.with(3)), Expression.expressionNumber(ExpressionNumber.with(33))));
     }
 
     @Override

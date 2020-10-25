@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.expression.Expression;
+import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
@@ -181,16 +182,6 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     }
 
     @Test
-    public void testExpressionBigDecimal() {
-        this.roundtripAndCheck(Expression.bigDecimal(BigDecimal.valueOf(1.25)));
-    }
-
-    @Test
-    public void testExpressionBigInteger() {
-        this.roundtripAndCheck(Expression.bigInteger(BigInteger.valueOf(567)));
-    }
-
-    @Test
     public void testExpressionBoolean() {
         this.roundtripAndCheck(Expression.booleanExpression(true));
     }
@@ -201,8 +192,8 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     }
 
     @Test
-    public void testExpressionDouble() {
-        this.roundtripAndCheck(Expression.doubleExpression(99.5));
+    public void testExpressionNumber() {
+        this.roundtripAndCheck(Expression.expressionNumber(ExpressionNumber.with(99.5)));
     }
 
     @Test
@@ -250,11 +241,6 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     @Test
     public void testExpressionLocalTime() {
         this.roundtripAndCheck(Expression.localTime(LocalTime.of(6, 28, 29)));
-    }
-
-    @Test
-    public void testExpressionLong() {
-        this.roundtripAndCheck(Expression.longExpression(123456));
     }
 
     @Test
@@ -312,7 +298,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     }
 
     private void roundtripAndCheck(final BiFunction<Expression, Expression, Expression> factory) {
-        this.roundtripAndCheck(factory.apply(Expression.bigInteger(BigInteger.valueOf(1)), Expression.string("parameter-2b")));
+        this.roundtripAndCheck(factory.apply(Expression.expressionNumber(ExpressionNumber.with(1)), Expression.string("parameter-2b")));
     }
 
     private void roundtripAndCheck(final Object value) {

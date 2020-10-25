@@ -19,14 +19,12 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
-import walkingkooka.tree.expression.BigIntegerExpression;
 import walkingkooka.tree.expression.Expression;
+import walkingkooka.tree.expression.ExpressionNumber;
+import walkingkooka.tree.expression.ExpressionNumberExpression;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeException;
 
-import java.math.BigInteger;
-
-public final class BasicJsonMarshallerTypedExpressionValueTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionValue<BigIntegerExpression, java.math.BigInteger>, BigIntegerExpression> {
+public final class BasicJsonMarshallerTypedExpressionValueTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionValue<ExpressionNumberExpression, ExpressionNumber>, ExpressionNumberExpression> {
 
     @Test
     public final void testFromBooleanFails() {
@@ -46,33 +44,33 @@ public final class BasicJsonMarshallerTypedExpressionValueTest extends BasicJson
     @SuppressWarnings("unchecked")
     @Override
     BasicJsonMarshallerTypedExpressionValue marshaller() {
-        return BasicJsonMarshallerTypedExpressionValue.with(Expression::bigInteger,
-                BigIntegerExpression.class,
-                BigInteger.class);
+        return BasicJsonMarshallerTypedExpressionValue.with(Expression::expressionNumber,
+                ExpressionNumberExpression.class,
+                ExpressionNumber.class);
     }
 
     @Override
-    BigIntegerExpression value() {
-        return Expression.bigInteger(BigInteger.valueOf(1234));
+    ExpressionNumberExpression value() {
+        return Expression.expressionNumber(ExpressionNumber.with(1234));
     }
 
     @Override
     JsonNode node() {
-        return JsonNode.string(this.value().toString());
+        return JsonNode.string(this.value().toString() + "D");
     }
 
     @Override
     String typeName() {
-        return "big-integer-expression";
+        return "expression-number-expression";
     }
 
     @Override
-    Class<BigIntegerExpression> marshallerType() {
-        return BigIntegerExpression.class;
+    Class<ExpressionNumberExpression> marshallerType() {
+        return ExpressionNumberExpression.class;
     }
 
     @Override
-    public Class<BasicJsonMarshallerTypedExpressionValue<BigIntegerExpression, java.math.BigInteger>> type() {
+    public Class<BasicJsonMarshallerTypedExpressionValue<ExpressionNumberExpression, ExpressionNumber>> type() {
         return Cast.to(BasicJsonMarshallerTypedExpressionValue.class);
     }
 }

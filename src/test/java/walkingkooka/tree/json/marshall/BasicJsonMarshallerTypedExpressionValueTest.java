@@ -51,7 +51,7 @@ public final class BasicJsonMarshallerTypedExpressionValueTest extends BasicJson
 
     @Override
     ExpressionNumberExpression value() {
-        return Expression.expressionNumber(ExpressionNumber.with(1234));
+        return Expression.expressionNumber(EXPRESSION_NUMBER_KIND.create(1234));
     }
 
     @Override

@@ -28,6 +28,7 @@ import walkingkooka.text.cursor.parser.Parser;
 import walkingkooka.text.cursor.parser.ParserReporters;
 import walkingkooka.tree.Node;
 import walkingkooka.tree.expression.Expression;
+import walkingkooka.tree.expression.ExpressionNumberContexts;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonPropertyName;
@@ -192,13 +193,13 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
                             selector = selector.setToString(right);
                             break;
                         case EXPRESSION:
-                            selector = selector.expression(parseExpression(right));
+                            selector = selector.expression(parseExpression(right, context));
                             break;
                         case NAMED:
                             selector = selector.named(nameFactory.apply(JsonNode.string(right), context));
                             break;
                         case PREDICATE:
-                            selector = selector.expression(parseExpression(right));
+                            selector = selector.expression(parseExpression(right, context));
                             break;
                         default:
                             reportUnknownComponent(string, component.parentOrFail());
@@ -233,11 +234,12 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
     /**
      * Creates a {@link Parser} and parses the {@link String expression} into a {@link NodeSelectorPredicateParserToken} and then that into an {@link Expression}.
      */
-    private static Expression parseExpression(final String expression) {
+    private static Expression parseExpression(final String expression,
+                                              final JsonNodeUnmarshallContext context) {
         final Parser<NodeSelectorParserContext> parser = NodeSelectorParsers.predicate()
                 .orReport(ParserReporters.basic())
                 .cast();
-        return parser.parse(TextCursors.charSequence(expression), NodeSelectorParserContexts.basic(BasicJsonMarshallerTypedNodeSelector::hasMathContext))
+        return parser.parse(TextCursors.charSequence(expression), NodeSelectorParserContexts.basic(context))
                 .get()
                 .cast(NodeSelectorPredicateParserToken.class)
                 .toExpression(Predicates.always());

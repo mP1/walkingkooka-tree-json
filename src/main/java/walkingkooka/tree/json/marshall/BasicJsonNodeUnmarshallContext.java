@@ -20,10 +20,13 @@ package walkingkooka.tree.json.marshall;
 import walkingkooka.Cast;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
+import walkingkooka.tree.expression.ExpressionNumberContext;
+import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 
+import java.math.MathContext;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -37,17 +40,35 @@ import java.util.stream.Collectors;
 final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implements JsonNodeUnmarshallContext {
 
     /**
-     * Singleton
+     * Factory
      */
-    final static BasicJsonNodeUnmarshallContext INSTANCE = new BasicJsonNodeUnmarshallContext(JsonNodeUnmarshallContext.OBJECT_PRE_PROCESSOR);
+    static BasicJsonNodeUnmarshallContext with(final ExpressionNumberContext context) {
+        Objects.requireNonNull(context, "context");
+
+        return new BasicJsonNodeUnmarshallContext(context, JsonNodeUnmarshallContext.OBJECT_PRE_PROCESSOR);
+    }
 
     /**
      * Private ctor
      */
-    private BasicJsonNodeUnmarshallContext(final BiFunction<JsonObject, Class<?>, JsonObject> processor) {
+    private BasicJsonNodeUnmarshallContext(final ExpressionNumberContext context,
+                                           final BiFunction<JsonObject, Class<?>, JsonObject> processor) {
         super();
+        this.context = context;
         this.processor = processor;
     }
+
+    @Override
+    public ExpressionNumberKind expressionNumberKind() {
+        return this.context.expressionNumberKind();
+    }
+
+    @Override
+    public MathContext mathContext() {
+        return this.context.mathContext();
+    }
+
+    private final ExpressionNumberContext context;
 
     @Override
     public JsonNodeUnmarshallContext setObjectPreProcessor(final BiFunction<JsonObject, Class<?>, JsonObject> processor) {
@@ -55,7 +76,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
 
         return this.processor.equals(processor) ?
                 this :
-                new BasicJsonNodeUnmarshallContext(processor);
+                new BasicJsonNodeUnmarshallContext(this.context, processor);
     }
 
     // from.............................................................................................................

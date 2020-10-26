@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.ToStringTesting;
 import walkingkooka.reflect.ThrowableTesting;
+import walkingkooka.tree.expression.ExpressionNumberContexts;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
@@ -134,7 +135,7 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
     }
 
     private JsonNodeUnmarshallContext unmarshallContext() {
-        return JsonNodeUnmarshallContexts.basic();
+        return JsonNodeUnmarshallContexts.basic(ExpressionNumberContexts.fake());
     }
 
     private JsonNodeMarshallContext marshallContext() {

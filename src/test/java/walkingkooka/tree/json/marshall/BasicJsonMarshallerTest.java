@@ -23,6 +23,7 @@ import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionNumber;
+import walkingkooka.tree.expression.ExpressionNumberContexts;
 import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
@@ -31,6 +32,7 @@ import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.MathContext;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -193,7 +195,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     @Test
     public void testExpressionNumber() {
-        this.roundtripAndCheck(Expression.expressionNumber(ExpressionNumber.with(99.5)));
+        this.roundtripAndCheck(Expression.expressionNumber(EXPRESSION_NUMBER_KIND.create(99.5)));
     }
 
     @Test
@@ -298,13 +300,13 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     }
 
     private void roundtripAndCheck(final BiFunction<Expression, Expression, Expression> factory) {
-        this.roundtripAndCheck(factory.apply(Expression.expressionNumber(ExpressionNumber.with(1)), Expression.string("parameter-2b")));
+        this.roundtripAndCheck(factory.apply(Expression.expressionNumber(EXPRESSION_NUMBER_KIND.create(1)), Expression.string("parameter-2b")));
     }
 
     private void roundtripAndCheck(final Object value) {
         final JsonNode json = JsonNodeMarshallContexts.basic().marshall(value);
         assertEquals(value,
-                JsonNodeUnmarshallContexts.basic().unmarshall(json, value.getClass()),
+                JsonNodeUnmarshallContexts.basic(ExpressionNumberContexts.basic(EXPRESSION_NUMBER_KIND, MathContext.DECIMAL32)).unmarshall(json, value.getClass()),
                 () -> "roundtrip " + value + "\n" + json);
     }
 

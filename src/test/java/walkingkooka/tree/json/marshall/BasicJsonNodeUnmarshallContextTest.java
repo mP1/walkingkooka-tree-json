@@ -21,15 +21,25 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
+import walkingkooka.tree.expression.ExpressionNumberContexts;
+import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
 
+import java.math.MathContext;
 import java.util.Locale;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeContextTestCase<BasicJsonNodeUnmarshallContext>
         implements JsonNodeUnmarshallContextTesting<BasicJsonNodeUnmarshallContext> {
+
+    @Test
+    public void testWithNullContextFails() {
+        assertThrows(NullPointerException.class, () -> BasicJsonNodeUnmarshallContext.with(null));
+    }
 
     // unmarshall.....................................................................................................
 
@@ -607,11 +617,11 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     @Override
     public BasicJsonNodeUnmarshallContext createContext() {
-        return BasicJsonNodeUnmarshallContext.INSTANCE;
+        return BasicJsonNodeUnmarshallContext.with(ExpressionNumberContexts.basic(ExpressionNumberKind.DEFAULT, MathContext.DECIMAL32));
     }
 
     private JsonNodeUnmarshallContext contextWithProcessor() {
-        return BasicJsonNodeUnmarshallContext.INSTANCE.setObjectPreProcessor(this::objectPreProcessor2);
+        return this.createContext().setObjectPreProcessor(this::objectPreProcessor2);
     }
 
     private JsonObject objectPreProcessor2(final JsonObject object, final Class<?> type) {

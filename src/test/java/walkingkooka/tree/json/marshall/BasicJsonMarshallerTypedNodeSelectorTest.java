@@ -198,7 +198,7 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
     }
 
     private Expression sum() {
-        return Expression.add(Expression.expressionNumber(ExpressionNumber.with(BigDecimal.ONE)), Expression.expressionNumber(ExpressionNumber.with(BigDecimal.valueOf(22))));
+        return Expression.add(Expression.expressionNumber(EXPRESSION_NUMBER_KIND.create(1)), Expression.expressionNumber(EXPRESSION_NUMBER_KIND.create(22)));
     }
 
     @Test
@@ -319,7 +319,7 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
         this.jsonRoundtripAndCheck(TestNode.absoluteNodeSelector()
                 .children()
                 .named(Names.string("abc123"))
-                .expression(Expression.add(Expression.expressionNumber(ExpressionNumber.with(BigDecimal.ONE)), Expression.string("bcd234"))));
+                .expression(Expression.add(Expression.expressionNumber(EXPRESSION_NUMBER_KIND.create(1)), Expression.string("bcd234"))));
     }
 
     @Test

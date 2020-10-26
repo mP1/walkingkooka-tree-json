@@ -27,7 +27,7 @@ public final class BasicJsonMarshallerTypedExpressionNumberTest extends BasicJso
 
     @Test
     public void testToJson() {
-        this.marshallAndCheck(ExpressionNumber.with(123), JsonNode.string("123D"));
+        this.marshallAndCheck(EXPRESSION_NUMBER_KIND.create(123), JsonNode.string("123D"));
     }
 
     @Test
@@ -42,22 +42,22 @@ public final class BasicJsonMarshallerTypedExpressionNumberTest extends BasicJso
 
     @Test
     public void testRoundtripBigDecimalZero() {
-        this.roundtripAndCheck(ExpressionNumber.with(BigDecimal.ZERO));
+        this.roundtripAndCheck(EXPRESSION_NUMBER_KIND.create(BigDecimal.ZERO));
     }
 
     @Test
     public void testRoundtripBigDecimal() {
-        this.roundtripAndCheck(ExpressionNumber.with(BigDecimal.ONE));
+        this.roundtripAndCheck(EXPRESSION_NUMBER_KIND.create(BigDecimal.ONE));
     }
 
     @Test
     public void testRoundtripDoubleZero() {
-        this.roundtripAndCheck(ExpressionNumber.with(0));
+        this.roundtripAndCheck(EXPRESSION_NUMBER_KIND.create(0));
     }
 
     @Test
     public void testRoundtripDouble() {
-        this.roundtripAndCheck(ExpressionNumber.with(1.5));
+        this.roundtripAndCheck(EXPRESSION_NUMBER_KIND.create(1.5));
     }
 
     private void roundtripAndCheck(final ExpressionNumber number) {
@@ -72,7 +72,7 @@ public final class BasicJsonMarshallerTypedExpressionNumberTest extends BasicJso
 
     @Override
     ExpressionNumber value() {
-        return ExpressionNumber.with(123.45);
+        return EXPRESSION_NUMBER_KIND.create(123.45);
     }
 
     @Override

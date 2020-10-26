@@ -17,7 +17,11 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.tree.expression.ExpressionNumberKind;
+
 public abstract class BasicJsonMarshallerTestCase<T> extends BasicTestCase<T> {
+
+    final static ExpressionNumberKind EXPRESSION_NUMBER_KIND = ExpressionNumberKind.DEFAULT;
 
     BasicJsonMarshallerTestCase() {
         super();

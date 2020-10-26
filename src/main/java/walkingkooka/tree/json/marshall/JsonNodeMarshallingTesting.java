@@ -26,9 +26,13 @@ import walkingkooka.reflect.MethodAttributes;
 import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.Node;
+import walkingkooka.tree.expression.ExpressionNumberContext;
+import walkingkooka.tree.expression.ExpressionNumberContexts;
+import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonString;
 
+import java.math.MathContext;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -252,7 +256,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
     V createJsonNodeMappingValue();
 
     default JsonNodeUnmarshallContext unmarshallContext() {
-        return JsonNodeUnmarshallContexts.basic();
+        return JsonNodeUnmarshallContexts.basic(ExpressionNumberContexts.basic(ExpressionNumberKind.DEFAULT, MathContext.DECIMAL32));
     }
 
     default JsonNodeMarshallContext marshallContext() {

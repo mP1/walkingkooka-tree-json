@@ -17,8 +17,10 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.Cast;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.ExpressionNumber;
+import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 
 import java.math.BigDecimal;
@@ -39,7 +41,7 @@ final class BasicJsonMarshallerTypedExpressionNumber extends BasicJsonMarshaller
         JsonNodeContext.register(this.typeName(),
                 this::unmarshall,
                 this::marshall,
-                ExpressionNumber.class, ExpressionNumber.with(1.0).getClass(), ExpressionNumber.with(BigDecimal.ZERO).getClass());
+                ExpressionNumber.class, ExpressionNumberKind.BIG_DECIMAL.create(0).getClass(), ExpressionNumberKind.DOUBLE.create(0).getClass());
     }
 
     @Override
@@ -79,17 +81,17 @@ final class BasicJsonMarshallerTypedExpressionNumber extends BasicJsonMarshaller
             final String stringWithoutType = string.substring(0, length - 1);
             switch (type) {
                 case BIG_DECIMAL:
-                    number = ExpressionNumber.with(new BigDecimal(stringWithoutType));
+                    number = ExpressionNumberKind.BIG_DECIMAL.create(new BigDecimal(stringWithoutType));
                     break Exit;
                 case DOUBLE:
-                    number = ExpressionNumber.with(Double.parseDouble(stringWithoutType));
+                    number = ExpressionNumberKind.DOUBLE.create(Double.parseDouble(stringWithoutType));
                     break Exit;
                 default:
                     throw new JsonNodeMarshallException("Unknown ExpressionNumber type " + CharSequences.quoteIfChars(type) + " " + CharSequences.quoteAndEscape(string));
             }
         }
 
-        return number;
+        return number.setKind(context.expressionNumberKind());
     }
 
     @Override

@@ -55,7 +55,7 @@ public final class BasicJsonMarshallerTypedExpressionBinaryTest extends BasicJso
     }
 
     private Expression leftValue() {
-        return Expression.expressionNumber(ExpressionNumber.with(11));
+        return Expression.expressionNumber(EXPRESSION_NUMBER_KIND.create(11));
     }
 
     private Expression rightValue() {

@@ -17,7 +17,6 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.Cast;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.ExpressionNumberKind;
@@ -62,32 +61,23 @@ final class BasicJsonMarshallerTypedExpressionNumber extends BasicJsonMarshaller
     @Override
     ExpressionNumber unmarshallNonNull(final JsonNode node,
                                        final JsonNodeUnmarshallContext context) {
-        final String string = node.stringValueOrFail();
-        final int length = string.length();
-        switch (length) {
-            case 0:
-                throw new JsonNodeUnmarshallException("ExpressionNumber json empty", node);
-            case 1:
-                throw new JsonNodeUnmarshallException("ExpressionNumber missing number/type", node);
-            default:
-                break;
-        }
 
+
+        final String string = node.stringValueOrFail();
+        final ExpressionNumberKind kind = context.expressionNumberKind();
         final ExpressionNumber number;
 
         Exit:
         for (; ; ) {
-            final char type = string.charAt(length - 1);
-            final String stringWithoutType = string.substring(0, length - 1);
-            switch (type) {
+            switch (kind) {
                 case BIG_DECIMAL:
-                    number = ExpressionNumberKind.BIG_DECIMAL.create(new BigDecimal(stringWithoutType));
+                    number = ExpressionNumberKind.BIG_DECIMAL.create(new BigDecimal(string));
                     break Exit;
                 case DOUBLE:
-                    number = ExpressionNumberKind.DOUBLE.create(Double.parseDouble(stringWithoutType));
+                    number = ExpressionNumberKind.DOUBLE.create(Double.parseDouble(string));
                     break Exit;
                 default:
-                    throw new JsonNodeMarshallException("Unknown ExpressionNumber type " + CharSequences.quoteIfChars(type) + " " + CharSequences.quoteAndEscape(string));
+                    throw new JsonNodeMarshallException("Unknown ExpressionNumber kind " + kind + " " + CharSequences.quoteAndEscape(string));
             }
         }
 
@@ -97,22 +87,6 @@ final class BasicJsonMarshallerTypedExpressionNumber extends BasicJsonMarshaller
     @Override
     JsonNode marshallNonNull(final ExpressionNumber value,
                              final JsonNodeMarshallContext context) {
-        final char type;
-        for (; ; ) {
-            if (value.isBigDecimal()) {
-                type = BIG_DECIMAL;
-                break;
-            }
-            if (value.isDouble()) {
-                type = DOUBLE;
-                break;
-            }
-            throw new JsonNodeMarshallException("Unknown ExpressionNumber type " + value + " (" + value.getClass().getName() + ")");
-        }
-
-        return JsonNode.string(value.toString().concat(String.valueOf(type)));
+        return JsonNode.string(value.toString());
     }
-
-    private final static char BIG_DECIMAL = 'B';
-    private final static char DOUBLE = 'D';
 }

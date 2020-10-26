@@ -27,17 +27,12 @@ public final class BasicJsonMarshallerTypedExpressionNumberTest extends BasicJso
 
     @Test
     public void testToJson() {
-        this.marshallAndCheck(EXPRESSION_NUMBER_KIND.create(123), JsonNode.string("123D"));
+        this.marshallAndCheck(EXPRESSION_NUMBER_KIND.create(123), JsonNode.string("123"));
     }
 
     @Test
     public void testFromJsonEmptyString() {
-        this.unmarshallFailed(JsonNode.string(""), null);
-    }
-
-    @Test
-    public void testFromJsonInvalidType() {
-        this.unmarshallFailed(JsonNode.string("123X"), JsonNodeMarshallException.class);
+        this.unmarshallFailed(JsonNode.string(""), NumberFormatException.class);
     }
 
     @Test
@@ -77,7 +72,7 @@ public final class BasicJsonMarshallerTypedExpressionNumberTest extends BasicJso
 
     @Override
     JsonNode node() {
-        return JsonNode.string(this.value().toString() + "D");
+        return JsonNode.string(this.value().toString());
     }
 
     @Override

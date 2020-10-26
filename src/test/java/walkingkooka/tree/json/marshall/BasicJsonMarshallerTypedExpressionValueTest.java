@@ -56,7 +56,7 @@ public final class BasicJsonMarshallerTypedExpressionValueTest extends BasicJson
 
     @Override
     JsonNode node() {
-        return JsonNode.string(this.value().toString() + "D");
+        return JsonNode.string(this.value().toString());
     }
 
     @Override

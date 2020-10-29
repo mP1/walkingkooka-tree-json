@@ -141,6 +141,7 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedExpression.value(Expression::string, StringExpression.class, String.class),
                 BasicJsonMarshallerTypedExpression.binary(Expression::xor, XorExpression.class),
                 BasicJsonMarshallerTypedExpressionNumber.instance(),
+                BasicJsonMarshallerTypedExpressionNumberKind.instance(),
                 BasicJsonMarshallerTypedJsonNode.instance(),
                 BasicJsonMarshallerTypedJsonPropertyName.instance(),
                 BasicJsonMarshallerTypedCollectionList.instance(),

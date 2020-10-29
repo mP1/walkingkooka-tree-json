@@ -20,6 +20,7 @@ package walkingkooka.tree.json.marshall;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,6 +31,17 @@ abstract class BasicJsonMarshallerTyped<T> extends BasicJsonMarshaller<T> {
 
     BasicJsonMarshallerTyped() {
         super();
+    }
+
+    /**
+     * For some {@link Enum} which have a separate sub class for each value it is necessary to also register the
+     * class for each value otherwise future lookups of those values will not have a a marshaller mapped.
+     */
+    final <E extends Enum<E>> void registerEnum(final E[] values) {
+        this.registerTypeNameAndType();
+        Arrays.stream(values)
+                .map(v -> v.getClass().getName())
+                .forEach(this::registerWithTypeName);
     }
 
     final void registerTypes(final List<Class<?>> types) {

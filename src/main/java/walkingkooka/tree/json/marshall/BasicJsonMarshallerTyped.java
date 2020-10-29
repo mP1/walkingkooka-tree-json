@@ -39,8 +39,10 @@ abstract class BasicJsonMarshallerTyped<T> extends BasicJsonMarshaller<T> {
      */
     final <E extends Enum<E>> void registerEnum(final E[] values) {
         this.registerTypeNameAndType();
+
         Arrays.stream(values)
                 .map(v -> v.getClass().getName())
+                .filter(t -> false == TYPENAME_TO_MARSHALLER.containsKey(t))
                 .forEach(this::registerWithTypeName);
     }
 

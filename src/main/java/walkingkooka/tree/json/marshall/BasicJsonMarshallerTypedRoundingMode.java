@@ -36,7 +36,7 @@ final class BasicJsonMarshallerTypedRoundingMode extends BasicJsonMarshallerType
 
     @Override
     void register() {
-        this.registerTypeNameAndType();
+        this.registerEnum(RoundingMode.values());
     }
 
     @Override

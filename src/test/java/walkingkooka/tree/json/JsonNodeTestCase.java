@@ -107,16 +107,16 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     abstract List<String> propertiesNeverReturnNullSkipProperties();
 
     final static String ARRAY_OR_FAIL = "arrayOrFail";
-    final static String BOOLEAN_VALUE_OR_FAIL = "booleanOrFail";
+    final static String BOOLEAN_OR_FAIL = "booleanOrFail";
     final static String CHARACTER_OR_FAIL = "characterOrFail";
     final static String UNMARSHALL_LIST = "unmarshallWithTypeList";
     final static String UNMARSHALL_SET = "unmarshallWithTypeSet";
     final static String UNMARSHALL_MAP = "unmarshallWithTypeMap";
     final static String UNMARSHALL = "unmarshallWithType";
-    final static String NUMBER_VALUE_OR_FAIL = "numberOrFail";
+    final static String NUMBER_OR_FAIL = "numberOrFail";
     final static String OBJECT_OR_FAIL = "objectOrFail";
     final static String PARENT_OR_FAIL = "parentOrFail";
-    final static String STRING_VALUE_OR_FAIL = "stringOrFail";
+    final static String STRING_OR_FAIL = "stringOrFail";
     final static String VALUE = "value";
 
     // JsonNodeVisitor..................................................................................................

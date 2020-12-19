@@ -143,9 +143,9 @@ public final class JsonBooleanTest extends JsonLeafNonNullNodeTestCase<JsonBoole
                 UNMARSHALL_SET,
                 UNMARSHALL_MAP,
                 UNMARSHALL,
-                NUMBER_VALUE_OR_FAIL,
+                NUMBER_OR_FAIL,
                 OBJECT_OR_FAIL,
                 PARENT_OR_FAIL,
-                STRING_VALUE_OR_FAIL);
+                STRING_OR_FAIL);
     }
 }

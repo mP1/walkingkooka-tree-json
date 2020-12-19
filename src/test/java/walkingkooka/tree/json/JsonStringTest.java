@@ -142,12 +142,12 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
     @Override
     List<String> propertiesNeverReturnNullSkipProperties() {
         return Lists.of(ARRAY_OR_FAIL,
-                BOOLEAN_VALUE_OR_FAIL,
+                BOOLEAN_OR_FAIL,
                 UNMARSHALL_LIST,
                 UNMARSHALL_SET,
                 UNMARSHALL_MAP,
                 UNMARSHALL,
-                NUMBER_VALUE_OR_FAIL,
+                NUMBER_OR_FAIL,
                 OBJECT_OR_FAIL,
                 PARENT_OR_FAIL);
     }

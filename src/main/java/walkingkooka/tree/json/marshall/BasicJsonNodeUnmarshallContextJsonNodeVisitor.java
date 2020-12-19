@@ -62,7 +62,7 @@ final class BasicJsonNodeUnmarshallContextJsonNodeVisitor extends JsonNodeVisito
 
     @Override
     protected void visit(final JsonNumber node) {
-        this.value = node.numberValueOrFail();
+        this.value = node.numberOrFail();
     }
 
     @Override

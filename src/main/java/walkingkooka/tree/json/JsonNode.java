@@ -252,7 +252,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     /**
      * If a {@link JsonNumber} returns the number value or fails.
      */
-    public final Number numberValueOrFail() {
+    public final Number numberOrFail() {
         return this.valueOrFail(Number.class);
     }
 

@@ -29,15 +29,15 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber, Double> {
 
     @Override
-    public void testNumberValueOrFail() {
+    public void testNumberOrFail() {
         assertEquals(1.0,
-                JsonNumber.with(1).numberValueOrFail());
+                JsonNumber.with(1).numberOrFail());
     }
 
     @Test
-    public void testNumberValueOrFail2() {
+    public void testNumberOrFail2() {
         assertEquals(2.0,
-                JsonNumber.with(2).numberValueOrFail());
+                JsonNumber.with(2).numberOrFail());
     }
 
     @Test

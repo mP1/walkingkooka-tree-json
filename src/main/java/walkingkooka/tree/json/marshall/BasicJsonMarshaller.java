@@ -146,6 +146,7 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedJsonPropertyName.instance(),
                 BasicJsonMarshallerTypedCollectionList.instance(),
                 BasicJsonMarshallerTypedIllegalArgumentException.instance(),
+                BasicJsonMarshallerTypedInvalidCharacterException.instance(),
                 BasicJsonMarshallerTypedLocalDate.instance(),
                 BasicJsonMarshallerTypedLocalDateTime.instance(),
                 BasicJsonMarshallerTypedLocale.instance(),

@@ -138,6 +138,7 @@ public final class JsonBooleanTest extends JsonLeafNonNullNodeTestCase<JsonBoole
     @Override
     List<String> propertiesNeverReturnNullSkipProperties() {
         return Lists.of(ARRAY_OR_FAIL,
+                CHARACTER_OR_FAIL,
                 UNMARSHALL_LIST,
                 UNMARSHALL_SET,
                 UNMARSHALL_MAP,

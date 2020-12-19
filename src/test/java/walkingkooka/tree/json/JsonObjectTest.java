@@ -895,6 +895,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     List<String> propertiesNeverReturnNullSkipProperties() {
         return Lists.of(ARRAY_OR_FAIL,
                 BOOLEAN_VALUE_OR_FAIL,
+                CHARACTER_OR_FAIL,
                 UNMARSHALL_LIST,
                 UNMARSHALL_SET,
                 UNMARSHALL_MAP,

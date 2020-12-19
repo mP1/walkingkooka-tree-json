@@ -48,12 +48,7 @@ final class BasicJsonMarshallerTypedCharacter extends BasicJsonMarshallerTyped<C
     @Override
     Character unmarshallNonNull(final JsonNode node,
                                 final JsonNodeUnmarshallContext context) {
-        final String string = node.stringOrFail();
-        final int length = string.length();
-        if (1 != length) {
-            throw new java.lang.IllegalArgumentException("Character string must have length of 1 not " + length + "=" + CharSequences.quoteAndEscape(string));
-        }
-        return string.charAt(0);
+        return node.characterOrFail();
     }
 
     @Override

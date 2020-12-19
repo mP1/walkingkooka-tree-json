@@ -56,7 +56,7 @@ final class BasicJsonMarshallerTypedExpressionNumberKind extends BasicJsonMarsha
     @Override
     ExpressionNumberKind unmarshallNonNull(final JsonNode node,
                                            final JsonNodeUnmarshallContext context) {
-        return ExpressionNumberKind.valueOf(node.stringValueOrFail());
+        return ExpressionNumberKind.valueOf(node.stringOrFail());
     }
 
     @Override

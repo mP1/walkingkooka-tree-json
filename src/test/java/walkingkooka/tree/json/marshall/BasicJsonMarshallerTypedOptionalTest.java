@@ -44,12 +44,12 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
     }
 
     @Test
-    public final void testFromBooleanFails() {
+    public void testFromBooleanFails() {
         this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
     }
 
     @Test
-    public final void testFromNumberFails() {
+    public void testFromNumberFails() {
         this.unmarshallFailed(JsonNode.number(123), ClassCastException.class);
     }
 

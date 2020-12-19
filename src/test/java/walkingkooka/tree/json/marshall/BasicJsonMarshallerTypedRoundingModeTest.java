@@ -27,27 +27,27 @@ import java.util.Arrays;
 public final class BasicJsonMarshallerTypedRoundingModeTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedRoundingMode, RoundingMode> {
 
     @Test
-    public final void testFromBooleanFails() {
+    public void testFromBooleanFails() {
         this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
     }
 
     @Test
-    public final void testFromNumberFails() {
+    public void testFromNumberFails() {
         this.unmarshallFailed(JsonNode.number(1.5), ClassCastException.class);
     }
 
     @Test
-    public final void testFromObjectFails() {
+    public void testFromObjectFails() {
         this.unmarshallFailed(JsonNode.object(), ClassCastException.class);
     }
 
     @Test
-    public final void testFromArrayFails() {
+    public void testFromArrayFails() {
         this.unmarshallFailed(JsonNode.array(), ClassCastException.class);
     }
 
     @Test
-    public final void testFromStringEmptyFails() {
+    public void testFromStringEmptyFails() {
         this.unmarshallFailed(JsonNode.string(""), IllegalArgumentException.class);
     }
 

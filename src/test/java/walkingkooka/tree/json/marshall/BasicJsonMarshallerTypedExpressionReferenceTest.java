@@ -51,17 +51,17 @@ public final class BasicJsonMarshallerTypedExpressionReferenceTest extends Basic
     }
 
     @Test
-    public final void testFromBooleanFails() {
+    public void testFromBooleanFails() {
         this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
     }
 
     @Test
-    public final void testFromNumberFails() {
+    public void testFromNumberFails() {
         this.unmarshallFailed(JsonNode.number(123), ClassCastException.class);
     }
 
     @Test
-    public final void testFromStringFails() {
+    public void testFromStringFails() {
         this.unmarshallFailed(JsonNode.string("abc123"), ClassCastException.class);
     }
 

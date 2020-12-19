@@ -18,7 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 /**
- * A sub class of {@link walkingkooka.InvalidCharacterException} with an empty stacktrace. This is only returned by {@link BasicJsonMarshallerTypedNullPointerException}
+ * A sub class of {@link walkingkooka.InvalidCharacterException} with an empty stacktrace. This is only returned by {@link BasicJsonMarshallerTypedInvalidCharacterException}
  */
 final class InvalidCharacterException extends walkingkooka.InvalidCharacterException {
 

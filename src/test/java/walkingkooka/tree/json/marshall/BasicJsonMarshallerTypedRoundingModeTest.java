@@ -48,7 +48,7 @@ public final class BasicJsonMarshallerTypedRoundingModeTest extends BasicJsonMar
 
     @Test
     public void testFromStringEmptyFails() {
-        this.unmarshallFailed(JsonNode.string(""), IllegalArgumentException.class);
+        this.unmarshallFailed(JsonNode.string(""), java.lang.IllegalArgumentException.class);
     }
 
     @Test

@@ -125,7 +125,7 @@ final class BasicJsonMarshallerTypedNodeSelectorNodeSelectorVisitor<N extends No
         if (null == this.nameType) {
             final Class<?> type = name.getClass();
             this.nameType = this.context.typeName(type)
-                    .orElseThrow(() -> new IllegalArgumentException("Name type not registered: " + CharSequences.quote(type.getName())));
+                    .orElseThrow(() -> new java.lang.IllegalArgumentException("Name type not registered: " + CharSequences.quote(type.getName())));
         }
         return this.addComponent(BasicJsonMarshallerTypedNodeSelector.NAMED + BasicJsonMarshallerTypedNodeSelector.SEPARATOR + name.value());
     }

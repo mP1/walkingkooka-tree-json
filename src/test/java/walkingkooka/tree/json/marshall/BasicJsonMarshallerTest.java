@@ -65,7 +65,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     @SuppressWarnings("unchecked")
     @Test
     public void testRegisterEmptyTypeNameFails() {
-        assertThrows(IllegalArgumentException.class, () -> BasicJsonMarshaller.register("",
+        assertThrows(java.lang.IllegalArgumentException.class, () -> BasicJsonMarshaller.register("",
                 TestJsonNodeValue::unmarshall,
                 TestJsonNodeValue::marshall,
                 TestJsonNodeValue.class));
@@ -108,7 +108,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     public void testRegisterTwiceFails() {
         TestJsonNodeValue.register();
 
-        assertThrows(IllegalArgumentException.class, () -> BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
+        assertThrows(java.lang.IllegalArgumentException.class, () -> BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
                 TestJsonNodeValue::unmarshall,
                 TestJsonNodeValue::marshall,
                 TestJsonNodeValue.class));

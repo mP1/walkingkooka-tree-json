@@ -51,7 +51,7 @@ final class BasicJsonMarshallerTypedCharacter extends BasicJsonMarshallerTyped<C
         final String string = node.stringValueOrFail();
         final int length = string.length();
         if (1 != length) {
-            throw new IllegalArgumentException("Character string must have length of 1 not " + length + "=" + CharSequences.quoteAndEscape(string));
+            throw new java.lang.IllegalArgumentException("Character string must have length of 1 not " + length + "=" + CharSequences.quoteAndEscape(string));
         }
         return string.charAt(0);
     }

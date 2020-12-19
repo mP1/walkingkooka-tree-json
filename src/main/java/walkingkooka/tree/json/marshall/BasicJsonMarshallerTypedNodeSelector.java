@@ -103,7 +103,7 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
             final JsonPropertyName name = child.name();
             switch (name.value()) {
                 case NAME_TYPE:
-                    child.stringValueOrFail();
+                    child.stringOrFail();
                     break;
                 case COMPONENTS:
                     components = child.arrayOrFail();
@@ -135,7 +135,7 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
         NodeSelector<N, NAME, ANAME, AVALUE> selector = NodeSelector.relative();
 
         for (JsonNode component : components.children()) {
-            final String string = component.stringValueOrFail();
+            final String string = component.stringOrFail();
 
             switch (string) {
                 case ABSOLUTE:

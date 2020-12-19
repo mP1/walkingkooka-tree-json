@@ -259,7 +259,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     /**
      * If a {@link JsonString} returns the string value or fails.
      */
-    public final String stringValueOrFail() {
+    public final String stringOrFail() {
         return this.valueOrFail(String.class);
     }
 

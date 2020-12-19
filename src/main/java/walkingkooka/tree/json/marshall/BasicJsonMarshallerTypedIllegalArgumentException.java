@@ -59,7 +59,7 @@ final class BasicJsonMarshallerTypedIllegalArgumentException extends BasicJsonMa
                                                          final JsonNodeUnmarshallContext context) {
         return NULL.equals(node) ?
                 new IllegalArgumentException() :
-                new IllegalArgumentException(node.stringValueOrFail());
+                new IllegalArgumentException(node.stringOrFail());
     }
 
     @Override

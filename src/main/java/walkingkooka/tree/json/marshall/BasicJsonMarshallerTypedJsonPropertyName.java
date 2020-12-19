@@ -48,7 +48,7 @@ final class BasicJsonMarshallerTypedJsonPropertyName extends BasicJsonMarshaller
     @Override
     JsonPropertyName unmarshallNonNull(final JsonNode node,
                                        final JsonNodeUnmarshallContext context) {
-        return JsonPropertyName.with(node.stringValueOrFail());
+        return JsonPropertyName.with(node.stringOrFail());
     }
 
     @Override

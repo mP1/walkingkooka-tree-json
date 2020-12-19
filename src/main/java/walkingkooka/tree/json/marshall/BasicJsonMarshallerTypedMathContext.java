@@ -60,7 +60,7 @@ final class BasicJsonMarshallerTypedMathContext extends BasicJsonMarshallerTyped
     @Override
     MathContext unmarshallNonNull(final JsonNode node,
                                   final JsonNodeUnmarshallContext context) {
-        return unmarshallString(node.stringValueOrFail());
+        return unmarshallString(node.stringOrFail());
     }
 
     private MathContext unmarshallString(final String string) {

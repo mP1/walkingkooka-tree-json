@@ -63,7 +63,7 @@ final class BasicJsonMarshallerTypedNumberLong extends BasicJsonMarshallerTyped<
     }
 
     private Long unmarshallString(final JsonNode node) {
-        final String text = node.stringValueOrFail();
+        final String text = node.stringOrFail();
         return Long.parseLong(text);
     }
 

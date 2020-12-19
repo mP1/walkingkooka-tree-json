@@ -84,8 +84,8 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     }
 
     @Test
-    public void testStringValueOrFail() {
-        assertThrows(ClassCastException.class, () -> this.createNode().stringValueOrFail());
+    public void testStringOrFail() {
+        assertThrows(ClassCastException.class, () -> this.createNode().stringOrFail());
     }
 
     @Test
@@ -115,7 +115,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     final static String NUMBER_VALUE_OR_FAIL = "numberOrFail";
     final static String OBJECT_OR_FAIL = "objectOrFail";
     final static String PARENT_OR_FAIL = "parentOrFail";
-    final static String STRING_VALUE_OR_FAIL = "stringValueOrFail";
+    final static String STRING_VALUE_OR_FAIL = "stringOrFail";
     final static String VALUE = "value";
 
     // JsonNodeVisitor..................................................................................................

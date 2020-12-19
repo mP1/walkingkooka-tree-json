@@ -51,7 +51,7 @@ public final class TestJsonNodeValue extends TestJsonNodeValueAbstract {
         for (JsonNode child : node.objectOrFail().children()) {
             final JsonPropertyName property = child.name();
             if (KEY.equals(property)) {
-                value = child.stringValueOrFail();
+                value = child.stringOrFail();
                 continue;
             }
             JsonNodeUnmarshallContext.unknownPropertyPresent(property, node);

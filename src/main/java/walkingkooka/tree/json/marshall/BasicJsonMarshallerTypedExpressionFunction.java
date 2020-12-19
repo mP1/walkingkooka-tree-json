@@ -42,7 +42,7 @@ final class BasicJsonMarshallerTypedExpressionFunction extends BasicJsonMarshall
                                          final JsonNodeUnmarshallContext context) {
         final JsonArray array = node.arrayOrFail();
         return Expression.function(
-                FunctionExpressionName.with(array.get(0).stringValueOrFail()),
+                FunctionExpressionName.with(array.get(0).stringOrFail()),
                 context.unmarshallWithTypeList(array.get(1)));
     }
 

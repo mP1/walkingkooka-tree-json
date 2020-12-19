@@ -54,7 +54,7 @@ final class BasicJsonMarshallerTypedStringName extends BasicJsonMarshallerTyped<
     @Override
     StringName unmarshallNonNull(final JsonNode node,
                                  final JsonNodeUnmarshallContext context) {
-        return Names.string(node.stringValueOrFail());
+        return Names.string(node.stringOrFail());
     }
 
     @Override

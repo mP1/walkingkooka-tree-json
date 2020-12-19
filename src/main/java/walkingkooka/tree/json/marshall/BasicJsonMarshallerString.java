@@ -47,7 +47,7 @@ final class BasicJsonMarshallerString extends BasicJsonMarshaller<String> {
     @Override
     String unmarshallNonNull(final JsonNode node,
                              final JsonNodeUnmarshallContext context) {
-        return node.stringValueOrFail();
+        return node.stringOrFail();
     }
 
     @Override

@@ -54,7 +54,7 @@ final class BasicJsonMarshallerTypedBigInteger extends BasicJsonMarshallerTyped<
     @Override
     BigInteger unmarshallNonNull(final JsonNode node,
                                  final JsonNodeUnmarshallContext context) {
-        return new BigInteger(node.stringValueOrFail());
+        return new BigInteger(node.stringOrFail());
     }
 
     @Override

@@ -44,20 +44,20 @@ public final class JsonBooleanTest extends JsonLeafNonNullNodeTestCase<JsonBoole
     }
 
     @Override
-    public void testBooleanValueOrFail() {
+    public void testBooleanOrFail() {
         // ignore
     }
 
     @Test
-    public void testBooleanValueOrFailTrue() {
+    public void testBooleanOrFailTrue() {
         assertEquals(true,
-                JsonBoolean.with(true).booleanValueOrFail());
+                JsonBoolean.with(true).booleanOrFail());
     }
 
     @Test
-    public void testBooleanValueOrFailFalse() {
+    public void testBooleanOrFailFalse() {
         assertEquals(false,
-                JsonBoolean.with(false).booleanValueOrFail());
+                JsonBoolean.with(false).booleanOrFail());
     }
 
     // toSearchNode.........................................................................................

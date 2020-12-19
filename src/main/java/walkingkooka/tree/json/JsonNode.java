@@ -245,7 +245,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     /**
      * If a {@link JsonBoolean} returns the boolean value or fails.
      */
-    public final boolean booleanValueOrFail() {
+    public final boolean booleanOrFail() {
         return this.valueOrFail(Boolean.class);
     }
 

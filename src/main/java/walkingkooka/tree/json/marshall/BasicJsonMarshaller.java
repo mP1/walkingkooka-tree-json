@@ -145,6 +145,7 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedJsonNode.instance(),
                 BasicJsonMarshallerTypedJsonPropertyName.instance(),
                 BasicJsonMarshallerTypedCollectionList.instance(),
+                BasicJsonMarshallerTypedIllegalArgumentException.instance(),
                 BasicJsonMarshallerTypedLocalDate.instance(),
                 BasicJsonMarshallerTypedLocalDateTime.instance(),
                 BasicJsonMarshallerTypedLocale.instance(),
@@ -228,7 +229,7 @@ abstract class BasicJsonMarshaller<T> {
     final synchronized void registerWithTypeName(final String typeName) {
         final BasicJsonMarshaller<?> previous = TYPENAME_TO_MARSHALLER.get(typeName);
         if (null != previous) {
-            throw new IllegalArgumentException("Type " + CharSequences.quote(typeName) + " already registered to " + CharSequences.quoteAndEscape(previous.toString()) + " all=" + TYPENAME_TO_MARSHALLER.keySet());
+            throw new java.lang.IllegalArgumentException("Type " + CharSequences.quote(typeName) + " already registered to " + CharSequences.quoteAndEscape(previous.toString()) + " all=" + TYPENAME_TO_MARSHALLER.keySet());
         }
 
         TYPENAME_TO_MARSHALLER.putIfAbsent(typeName, this);

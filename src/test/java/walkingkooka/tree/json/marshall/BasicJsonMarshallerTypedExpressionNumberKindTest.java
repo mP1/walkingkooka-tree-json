@@ -47,7 +47,7 @@ public final class BasicJsonMarshallerTypedExpressionNumberKindTest extends Basi
 
     @Test
     public void testFromStringEmptyFails() {
-        this.unmarshallFailed(JsonNode.string(""), IllegalArgumentException.class);
+        this.unmarshallFailed(JsonNode.string(""), java.lang.IllegalArgumentException.class);
     }
 
     @Test

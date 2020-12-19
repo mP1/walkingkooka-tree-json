@@ -34,7 +34,7 @@ public final class JsonNodeUnmarshallExceptionTest implements StandardThrowableT
     }
 
     private void withMessageAndNodeFails(final String message, final JsonNode node) {
-        assertThrows(NullPointerException.class, () -> new JsonNodeUnmarshallException(message, node));
+        assertThrows(java.lang.NullPointerException.class, () -> new JsonNodeUnmarshallException(message, node));
     }
 
     @Test

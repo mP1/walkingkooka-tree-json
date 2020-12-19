@@ -58,7 +58,7 @@ final class BasicJsonMarshallerTypedCharacter extends BasicJsonMarshallerTyped<C
 
     @Override
     Character unmarshallNull(final JsonNodeUnmarshallContext context) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
     }
 
     @Override

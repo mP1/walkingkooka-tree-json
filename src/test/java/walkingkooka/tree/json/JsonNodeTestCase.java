@@ -74,8 +74,8 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
 
     // ToXXXValueOrFail.................................................................................................
     @Test
-    public void testBooleanValueOrFail() {
-        assertThrows(ClassCastException.class, () -> this.createNode().booleanValueOrFail());
+    public void testBooleanOrFail() {
+        assertThrows(ClassCastException.class, () -> this.createNode().booleanOrFail());
     }
 
     @Test
@@ -107,7 +107,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     abstract List<String> propertiesNeverReturnNullSkipProperties();
 
     final static String ARRAY_OR_FAIL = "arrayOrFail";
-    final static String BOOLEAN_VALUE_OR_FAIL = "booleanValueOrFail";
+    final static String BOOLEAN_VALUE_OR_FAIL = "booleanOrFail";
     final static String UNMARSHALL_LIST = "unmarshallWithTypeList";
     final static String UNMARSHALL_SET = "unmarshallWithTypeSet";
     final static String UNMARSHALL_MAP = "unmarshallWithTypeMap";

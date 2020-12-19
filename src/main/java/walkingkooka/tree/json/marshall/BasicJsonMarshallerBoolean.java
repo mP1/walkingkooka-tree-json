@@ -47,7 +47,7 @@ final class BasicJsonMarshallerBoolean extends BasicJsonMarshaller<Boolean> {
     @Override
     Boolean unmarshallNonNull(final JsonNode node,
                               final JsonNodeUnmarshallContext context) {
-        return node.booleanValueOrFail();
+        return node.booleanOrFail();
     }
 
     @Override

@@ -29,7 +29,7 @@ final class InvalidCharacterException extends walkingkooka.InvalidCharacterExcep
     }
 
     @Override
-    public Throwable fillInStackTrace() {
+    public synchronized Throwable fillInStackTrace() {
         return this;
     }
 }

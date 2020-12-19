@@ -25,7 +25,7 @@ public final class BasicJsonMarshallerTypedCharacterTest extends BasicJsonMarsha
     @Test
     @Override
     public void testFromJsonNodeJsonNullNode() {
-        this.unmarshallFailed(JsonNode.nullNode(), NullPointerException.class);
+        this.unmarshallFailed(JsonNode.nullNode(), java.lang.NullPointerException.class);
     }
 
     @Test

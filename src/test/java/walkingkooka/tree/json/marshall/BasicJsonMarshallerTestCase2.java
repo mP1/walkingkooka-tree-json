@@ -233,7 +233,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     final void unmarshallFailed(final JsonNode node, final Class<? extends Throwable> wrapped) {
         final JsonNodeUnmarshallContext context = this.unmarshallContext();
 
-        if (NullPointerException.class == wrapped) {
+        if (java.lang.NullPointerException.class == wrapped) {
             assertThrows(java.lang.NullPointerException.class, () -> this.marshaller().unmarshall(node, context));
         } else {
             final JsonNodeUnmarshallException from = assertThrows(JsonNodeUnmarshallException.class, () -> this.marshaller().unmarshall(node, context));

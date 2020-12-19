@@ -49,7 +49,7 @@ final class BasicJsonMarshallerTypedNumberLong extends BasicJsonMarshallerTyped<
     Long unmarshallNonNull(final JsonNode node,
                            final JsonNodeUnmarshallContext context) {
         return node.isNumber() ?
-                this.unmarshallNumber(node.numberValueOrFail()) :
+                this.unmarshallNumber(node.numberOrFail()) :
                 this.unmarshallString(node);
     }
 

@@ -47,7 +47,7 @@ final class BasicJsonMarshallerNumber extends BasicJsonMarshaller<Number> {
     @Override
     Number unmarshallNonNull(final JsonNode node,
                              final JsonNodeUnmarshallContext context) {
-        return node.numberValueOrFail();
+        return node.numberOrFail();
     }
 
     @Override

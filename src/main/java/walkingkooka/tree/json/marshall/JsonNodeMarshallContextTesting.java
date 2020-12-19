@@ -35,7 +35,7 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
 
     @Test
     default void testSetObjectPostProcessorNullFails() {
-        assertThrows(NullPointerException.class, () -> this.createContext().setObjectPostProcessor(null));
+        assertThrows(java.lang.NullPointerException.class, () -> this.createContext().setObjectPostProcessor(null));
     }
 
     @Test

@@ -40,7 +40,7 @@ public final class BasicJsonNodeUnmarshallContextJsonNodeVisitorTest implements 
 
     @Test
     public void testNullFails() {
-        assertThrows(NullPointerException.class, () -> BasicJsonNodeUnmarshallContextJsonNodeVisitor.value(null, this.context()));
+        assertThrows(java.lang.NullPointerException.class, () -> BasicJsonNodeUnmarshallContextJsonNodeVisitor.value(null, this.context()));
     }
 
     @Test

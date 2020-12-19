@@ -152,6 +152,7 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedMap.instance(),
                 BasicJsonMarshallerTypedMathContext.instance(),
                 BasicJsonMarshallerTypedNodeSelector.instance(),
+                BasicJsonMarshallerTypedNullPointerException.instance(),
                 BasicJsonMarshallerTypedNumberByte.instance(),
                 BasicJsonMarshallerTypedNumberShort.instance(),
                 BasicJsonMarshallerTypedNumberInteger.instance(),
@@ -244,7 +245,7 @@ abstract class BasicJsonMarshaller<T> {
             return node.isNull() ?
                     this.unmarshallNull(context) :
                     this.unmarshallNonNull(node, context);
-        } catch (final JsonNodeUnmarshallException | NullPointerException cause) {
+        } catch (final JsonNodeUnmarshallException | java.lang.NullPointerException cause) {
             throw cause;
         } catch (final RuntimeException cause) {
             throw new JsonNodeUnmarshallException("Failed to unmarshall node", node, cause);

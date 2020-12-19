@@ -38,7 +38,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     @Test
     public void testWithNullContextFails() {
-        assertThrows(NullPointerException.class, () -> BasicJsonNodeUnmarshallContext.with(null));
+        assertThrows(java.lang.NullPointerException.class, () -> BasicJsonNodeUnmarshallContext.with(null));
     }
 
     // unmarshall.....................................................................................................

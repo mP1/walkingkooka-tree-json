@@ -50,12 +50,12 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
 
     @Test
     public void testWithNullSourceFails() {
-        assertThrows(NullPointerException.class, () -> JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(this.typeNameProperty(), null, this.valueType()));
+        assertThrows(java.lang.NullPointerException.class, () -> JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(this.typeNameProperty(), null, this.valueType()));
     }
 
     @Test
     public void testWithNullTypeFails() {
-        assertThrows(NullPointerException.class, () -> JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(this.typeNameProperty(), JsonNode.object(), null));
+        assertThrows(java.lang.NullPointerException.class, () -> JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(this.typeNameProperty(), JsonNode.object(), null));
     }
 
     @Test

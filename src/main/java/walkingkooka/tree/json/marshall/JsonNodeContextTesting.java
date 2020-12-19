@@ -43,7 +43,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
 
     @Test
     default void testRegisteredTypeNullFails() {
-        assertThrows(NullPointerException.class, () -> this.createContext().registeredType(null));
+        assertThrows(java.lang.NullPointerException.class, () -> this.createContext().registeredType(null));
     }
 
     @Test
@@ -155,7 +155,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
 
     @Test
     default void testTypeNameNullFails() {
-        assertThrows(NullPointerException.class, () -> this.createContext().typeName(null));
+        assertThrows(java.lang.NullPointerException.class, () -> this.createContext().typeName(null));
     }
 
     @Test

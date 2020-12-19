@@ -114,7 +114,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
     @Test
     default void testFromJsonNodeNullFails() {
-        assertThrows(NullPointerException.class, () -> this.unmarshall(null));
+        assertThrows(java.lang.NullPointerException.class, () -> this.unmarshall(null));
     }
 
     default void unmarshallAndCheck(final String from,

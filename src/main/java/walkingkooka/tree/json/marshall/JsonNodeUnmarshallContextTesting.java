@@ -37,7 +37,7 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
 
     @Test
     default void testSetObjectPreProcessorNullFails() {
-        assertThrows(NullPointerException.class, () -> this.createContext().setObjectPreProcessor(null));
+        assertThrows(java.lang.NullPointerException.class, () -> this.createContext().setObjectPreProcessor(null));
     }
 
     @Test
@@ -62,33 +62,33 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
 
     @Test
     default void testFromJsonNodeNullTypeFails() {
-        assertThrows(NullPointerException.class, () -> this.createContext().unmarshall(JsonNode.nullNode(), null));
+        assertThrows(java.lang.NullPointerException.class, () -> this.createContext().unmarshall(JsonNode.nullNode(), null));
     }
 
     // unmarshallList.................................................................................................
 
     @Test
     default void testFromJsonNodeListNullTypeFails() {
-        assertThrows(NullPointerException.class, () -> this.createContext().unmarshallList(JsonNode.nullNode(), null));
+        assertThrows(java.lang.NullPointerException.class, () -> this.createContext().unmarshallList(JsonNode.nullNode(), null));
     }
 
     // unmarshallSet..................................................................................................
 
     @Test
     default void testFromJsonNodeSetNullTypeFails() {
-        assertThrows(NullPointerException.class, () -> this.createContext().unmarshallSet(JsonNode.nullNode(), null));
+        assertThrows(java.lang.NullPointerException.class, () -> this.createContext().unmarshallSet(JsonNode.nullNode(), null));
     }
 
     // unmarshallMap..................................................................................................
 
     @Test
     default void testFromJsonNodeMapNullKeyTypeFails() {
-        assertThrows(NullPointerException.class, () -> this.createContext().unmarshallMap(JsonNode.array(), null, String.class));
+        assertThrows(java.lang.NullPointerException.class, () -> this.createContext().unmarshallMap(JsonNode.array(), null, String.class));
     }
 
     @Test
     default void testFromJsonNodeMapNullValueTypeFails() {
-        assertThrows(NullPointerException.class, () -> this.createContext().unmarshallMap(JsonNode.array(), String.class, null));
+        assertThrows(java.lang.NullPointerException.class, () -> this.createContext().unmarshallMap(JsonNode.array(), String.class, null));
     }
 
     // unmarshall.....................................................................................................

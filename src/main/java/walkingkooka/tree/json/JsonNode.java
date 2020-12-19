@@ -20,6 +20,7 @@ package walkingkooka.tree.json;
 import walkingkooka.Cast;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.naming.Name;
+import walkingkooka.text.CharSequences;
 import walkingkooka.text.HasText;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
@@ -247,6 +248,19 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     public final boolean booleanOrFail() {
         return this.valueOrFail(Boolean.class);
+    }
+
+    /**
+     * If a {@link JsonString} returns the character value or fails. The {@link String} must have a single character.
+     */
+    public final char characterOrFail() {
+        final String string = this.stringOrFail();
+
+        final int length = string.length();
+        if (1 != length) {
+            throw new java.lang.IllegalArgumentException("Character string must have length of 1 not " + length + " got " + CharSequences.quoteAndEscape(string));
+        }
+        return string.charAt(0);
     }
 
     /**

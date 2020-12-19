@@ -678,6 +678,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Override
     List<String> propertiesNeverReturnNullSkipProperties() {
         return Lists.of(BOOLEAN_VALUE_OR_FAIL,
+                CHARACTER_OR_FAIL,
                 UNMARSHALL_LIST,
                 UNMARSHALL_SET,
                 UNMARSHALL_MAP,

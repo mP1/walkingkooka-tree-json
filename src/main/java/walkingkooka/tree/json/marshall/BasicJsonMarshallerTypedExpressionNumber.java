@@ -61,24 +61,19 @@ final class BasicJsonMarshallerTypedExpressionNumber extends BasicJsonMarshaller
     @Override
     ExpressionNumber unmarshallNonNull(final JsonNode node,
                                        final JsonNodeUnmarshallContext context) {
-
-
         final String string = node.stringValueOrFail();
         final ExpressionNumberKind kind = context.expressionNumberKind();
         final ExpressionNumber number;
 
-        Exit:
-        for (; ; ) {
-            switch (kind) {
-                case BIG_DECIMAL:
-                    number = ExpressionNumberKind.BIG_DECIMAL.create(new BigDecimal(string));
-                    break Exit;
-                case DOUBLE:
-                    number = ExpressionNumberKind.DOUBLE.create(Double.parseDouble(string));
-                    break Exit;
-                default:
-                    throw new JsonNodeMarshallException("Unknown ExpressionNumber kind " + kind + " " + CharSequences.quoteAndEscape(string));
-            }
+        switch (kind) {
+            case BIG_DECIMAL:
+                number = ExpressionNumberKind.BIG_DECIMAL.create(new BigDecimal(string));
+                break;
+            case DOUBLE:
+                number = ExpressionNumberKind.DOUBLE.create(Double.parseDouble(string));
+                break;
+            default:
+                throw new JsonNodeMarshallException("Unknown ExpressionNumber kind " + kind + " " + CharSequences.quoteAndEscape(string));
         }
 
         return number.setKind(context.expressionNumberKind());

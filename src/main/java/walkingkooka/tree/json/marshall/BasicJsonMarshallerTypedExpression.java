@@ -100,23 +100,27 @@ abstract class BasicJsonMarshallerTypedExpression<N extends Expression> extends 
         this.type = type;
     }
 
-    @Override final void register() {
+    @Override
+    final void register() {
         this.registerTypeNameAndType();
     }
 
-    @Override final Class<N> type() {
+    @Override
+    final Class<N> type() {
         return this.type;
     }
 
     private final Class<N> type;
 
-    @Override final String typeName() {
+    @Override
+    final String typeName() {
         return name;
     }
 
     private final String name;
 
-    @Override final N unmarshallNull(final JsonNodeUnmarshallContext context) {
+    @Override
+    final N unmarshallNull(final JsonNodeUnmarshallContext context) {
         return null;
     }
 }

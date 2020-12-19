@@ -29,17 +29,17 @@ import java.math.BigInteger;
 public final class BasicJsonMarshallerTypedExpressionBinaryTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionBinary<AddExpression>, AddExpression> {
 
     @Test
-    public final void testFromBooleanFails() {
+    public void testFromBooleanFails() {
         this.unmarshallFailed(JsonNode.booleanNode(true), null);
     }
 
     @Test
-    public final void testFromNumberFails() {
+    public void testFromNumberFails() {
         this.unmarshallFailed(JsonNode.number(123), null);
     }
 
     @Test
-    public final void testFromStringFails() {
+    public void testFromStringFails() {
         this.unmarshallFailed(JsonNode.string("abc123"), null);
     }
 

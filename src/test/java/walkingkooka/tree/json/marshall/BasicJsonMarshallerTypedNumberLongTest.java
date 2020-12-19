@@ -25,33 +25,33 @@ import walkingkooka.tree.json.NumericLossJsonNodeException;
 public final class BasicJsonMarshallerTypedNumberLongTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedNumberLong, Long> {
 
     @Test
-    public final void testFromBooleanFails() {
+    public void testFromBooleanFails() {
         this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
     }
 
     @Test
-    public final void testFromNumber() {
+    public void testFromNumber() {
         this.unmarshallAndCheck(JsonNode.number(123),
                 123L);
     }
 
     @Test
-    public final void testFromNumberDecimalFails() {
+    public void testFromNumberDecimalFails() {
         this.unmarshallFailed(JsonNode.number(123.5), NumericLossJsonNodeException.class);
     }
 
     @Test
-    public final void testFromObjectFails() {
+    public void testFromObjectFails() {
         this.unmarshallFailed(JsonNode.object(), ClassCastException.class);
     }
 
     @Test
-    public final void testFromStringFails() {
+    public void testFromStringFails() {
         this.unmarshallFailed(JsonNode.string("abc123"), NumberFormatException.class);
     }
 
     @Test
-    public final void testFromArrayFails() {
+    public void testFromArrayFails() {
         this.unmarshallFailed(JsonNode.array(), ClassCastException.class);
     }
 

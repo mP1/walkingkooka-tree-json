@@ -27,17 +27,17 @@ import walkingkooka.tree.json.JsonNode;
 public final class BasicJsonMarshallerTypedExpressionValueTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionValue<ExpressionNumberExpression, ExpressionNumber>, ExpressionNumberExpression> {
 
     @Test
-    public final void testFromBooleanFails() {
+    public void testFromBooleanFails() {
         this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
     }
 
     @Test
-    public final void testFromNumberFails() {
+    public void testFromNumberFails() {
         this.unmarshallFailed(JsonNode.number(123), ClassCastException.class);
     }
 
     @Test
-    public final void testFromObjectFails() {
+    public void testFromObjectFails() {
         this.unmarshallFailed(JsonNode.object(), ClassCastException.class);
     }
 

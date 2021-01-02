@@ -20,7 +20,6 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.JavaVisibility;
-import walkingkooka.tree.expression.ExpressionNumberContext;
 import walkingkooka.tree.expression.ExpressionNumberContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
@@ -67,6 +66,16 @@ public final class BasicJsonNodeUnmarshallContextJsonNodeVisitorTest implements 
     public void testNumber() {
         final double number = 12.5;
         this.valueAndCheck(JsonNode.number(number), number);
+    }
+
+    @Test
+    public void testUnknownTypeFails() {
+        final JsonNode typeAndValue = JsonNode.object()
+                .set(BasicJsonNodeContext.TYPE, JsonNode.string("unknown-type-123-???"))
+                .set(BasicJsonNodeContext.VALUE, JsonNode.booleanNode(false));
+
+        final JsonNodeUnmarshallException thrown = assertThrows(JsonNodeUnmarshallException.class, () -> BasicJsonNodeUnmarshallContextJsonNodeVisitor.value(typeAndValue, this.context()));
+        assertEquals("Unknown type: unknown-type-123-???", thrown.getMessage(), "thrown message");
     }
 
     @Test

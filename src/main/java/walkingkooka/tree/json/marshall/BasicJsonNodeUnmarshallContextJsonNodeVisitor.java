@@ -85,7 +85,8 @@ final class BasicJsonNodeUnmarshallContextJsonNodeVisitor extends JsonNodeVisito
 
             final JsonNodeUnmarshallContext context = this.context;
             this.value = context.unmarshall(node.getOrFail(BasicJsonNodeContext.VALUE),
-                    context.registeredType((JsonString) type).orElseThrow(() -> new JsonNodeUnmarshallException("Unknown type", node)));
+                    context.registeredType((JsonString) type)
+                            .orElseThrow(() -> new JsonNodeUnmarshallException("Unknown type: " + type.stringOrFail(), node)));
         } catch (final java.lang.NullPointerException | JsonNodeUnmarshallException cause) {
             throw cause;
         } catch (final RuntimeException cause) {

@@ -44,8 +44,7 @@ public final class BasicJsonMarshallerTypedExpressionBinaryTest extends BasicJso
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    BasicJsonMarshallerTypedExpressionBinary marshaller() {
+    BasicJsonMarshallerTypedExpressionBinary<AddExpression> marshaller() {
         return BasicJsonMarshallerTypedExpressionBinary.with(Expression::add, AddExpression.class);
     }
 

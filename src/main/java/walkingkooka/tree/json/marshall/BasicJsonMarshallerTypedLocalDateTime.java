@@ -43,7 +43,7 @@ final class BasicJsonMarshallerTypedLocalDateTime extends BasicJsonMarshallerTyp
 
     @Override
     String typeName() {
-        return "local-datetime";
+        return "local-date-time";
     }
 
     @Override

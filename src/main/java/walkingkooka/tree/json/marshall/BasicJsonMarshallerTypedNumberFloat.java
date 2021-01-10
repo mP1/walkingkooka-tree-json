@@ -39,7 +39,7 @@ final class BasicJsonMarshallerTypedNumberFloat extends BasicJsonMarshallerTyped
 
     @Override
     String typeName() {
-        return "float";
+        return JsonNodeContext.computeTypeName(Float.class);
     }
 
     @Override

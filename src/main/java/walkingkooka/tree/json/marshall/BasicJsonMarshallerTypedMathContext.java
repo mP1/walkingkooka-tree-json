@@ -49,7 +49,7 @@ final class BasicJsonMarshallerTypedMathContext extends BasicJsonMarshallerTyped
 
     @Override
     String typeName() {
-        return "math-context";
+        return JsonNodeContext.computeTypeName(MathContext.class);
     }
 
     @Override

@@ -86,7 +86,7 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
 
     @Override
     String typeName() {
-        return "node-selector";
+        return JsonNodeContext.computeTypeName(NodeSelector.class);
     }
 
     @Override

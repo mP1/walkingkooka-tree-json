@@ -46,7 +46,7 @@ final class BasicJsonMarshallerTypedIllegalArgumentException extends BasicJsonMa
 
     @Override
     String typeName() {
-        return "illegal-argument-exception";
+        return JsonNodeContext.computeTypeName(IllegalArgumentException.class);
     }
 
     @Override

@@ -42,7 +42,7 @@ final class BasicJsonMarshallerTypedJsonPropertyName extends BasicJsonMarshaller
 
     @Override
     String typeName() {
-        return "json-property-name";
+        return JsonNodeContext.computeTypeName(JsonPropertyName.class);
     }
 
     @Override

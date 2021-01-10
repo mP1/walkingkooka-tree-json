@@ -48,7 +48,7 @@ final class BasicJsonMarshallerTypedMap extends BasicJsonMarshallerTyped<Map<?, 
 
     @Override
     String typeName() {
-        return "map";
+        return JsonNodeContext.computeTypeName(Map.class);
     }
 
     // from.............................................................................................................

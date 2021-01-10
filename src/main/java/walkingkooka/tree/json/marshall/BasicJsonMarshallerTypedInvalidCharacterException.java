@@ -47,7 +47,7 @@ final class BasicJsonMarshallerTypedInvalidCharacterException extends BasicJsonM
 
     @Override
     String typeName() {
-        return "invalid-character-exception";
+        return JsonNodeContext.computeTypeName(walkingkooka.InvalidCharacterException.class);
     }
 
     @Override

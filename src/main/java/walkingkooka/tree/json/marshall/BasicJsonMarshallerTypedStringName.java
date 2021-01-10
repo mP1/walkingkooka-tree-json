@@ -43,7 +43,7 @@ final class BasicJsonMarshallerTypedStringName extends BasicJsonMarshallerTyped<
 
     @Override
     String typeName() {
-        return "string-name";
+        return JsonNodeContext.computeTypeName(StringName.class);
     }
 
     @Override

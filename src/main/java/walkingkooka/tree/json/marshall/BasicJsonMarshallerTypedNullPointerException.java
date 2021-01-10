@@ -46,7 +46,7 @@ final class BasicJsonMarshallerTypedNullPointerException extends BasicJsonMarsha
 
     @Override
     String typeName() {
-        return "null-pointer-exception";
+        return JsonNodeContext.computeTypeName(java.lang.NullPointerException.class);
     }
 
     @Override

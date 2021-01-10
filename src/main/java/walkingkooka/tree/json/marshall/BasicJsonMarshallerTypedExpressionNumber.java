@@ -50,7 +50,7 @@ final class BasicJsonMarshallerTypedExpressionNumber extends BasicJsonMarshaller
 
     @Override
     String typeName() {
-        return "expression-number";
+        return JsonNodeContext.computeTypeName(ExpressionNumber.class);
     }
 
     @Override

@@ -44,7 +44,7 @@ final class BasicJsonMarshallerTypedCollectionSet extends BasicJsonMarshallerTyp
 
     @Override
     String typeName() {
-        return "set";
+        return JsonNodeContext.computeTypeName(Set.class);
     }
 
     @Override

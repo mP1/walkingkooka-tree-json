@@ -76,27 +76,15 @@ abstract class BasicJsonMarshallerTypedExpression<N extends Expression> extends 
     BasicJsonMarshallerTypedExpression(final Class<N> type) {
         super();
 
-        // everything before Expression...
-        final CharSequence name = CharSequences.subSequence(type.getSimpleName(),
-                0,
-                -Expression.class.getSimpleName().length());
-
-        final StringBuilder b = new StringBuilder();
-
-        for (char c : name.toString().toCharArray()) {
-            if (Character.isLetter(c) & Character.isUpperCase(c)) {
-                if (b.length() > 0) {
-                    b.append('-');
-                }
-                b.append(Character.toLowerCase(c));
-            } else {
-                b.append(c);
-            }
-        }
-        b.append('-')
-                .append(Expression.class.getSimpleName().toLowerCase());
-
-        this.name = b.toString();
+        // remove trailing "expression-" and prepend "-expression"
+        final String expression = Expression.class.getSimpleName();
+        this.name =
+                CharSequences.subSequence(
+                        JsonNodeContext.computeTypeName(type),
+                        0,
+                        -expression.length()
+                ) +
+                        expression.toLowerCase();
         this.type = type;
     }
 

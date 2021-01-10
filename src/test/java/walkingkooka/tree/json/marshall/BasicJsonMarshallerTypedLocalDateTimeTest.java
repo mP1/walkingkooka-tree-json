@@ -52,7 +52,7 @@ public final class BasicJsonMarshallerTypedLocalDateTimeTest extends BasicJsonMa
 
     @Override
     String typeName() {
-        return "local-datetime";
+        return "local-date-time";
     }
 
     @Override

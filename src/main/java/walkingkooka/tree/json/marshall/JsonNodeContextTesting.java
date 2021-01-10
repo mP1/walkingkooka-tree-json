@@ -113,7 +113,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
 
     @Test
     default void testRegisteredTypeLocalDateTime() {
-        this.registeredTypeAndCheck(JsonNode.string("local-datetime"), Optional.ofNullable(LocalDateTime.class));
+        this.registeredTypeAndCheck(JsonNode.string("local-date-time"), Optional.ofNullable(LocalDateTime.class));
     }
 
     @Test
@@ -225,7 +225,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
 
     @Test
     default void testTypeNameLocalDateTime() {
-        this.typeNameAndCheck(LocalDateTime.class, Optional.of(JsonNode.string("local-datetime")));
+        this.typeNameAndCheck(LocalDateTime.class, Optional.of(JsonNode.string("local-date-time")));
     }
 
     @Test

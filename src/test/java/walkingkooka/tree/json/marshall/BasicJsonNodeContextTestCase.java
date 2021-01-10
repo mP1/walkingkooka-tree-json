@@ -78,7 +78,7 @@ public abstract class BasicJsonNodeContextTestCase<C extends JsonNodeContext> ex
                 "json-property-name",
                 "list",
                 "local-date",
-                "local-datetime",
+                "local-date-time",
                 "local-time",
                 "locale",
                 "long",

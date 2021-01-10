@@ -43,7 +43,7 @@ final class BasicJsonMarshallerTypedBigInteger extends BasicJsonMarshallerTyped<
 
     @Override
     String typeName() {
-        return "big-integer";
+        return JsonNodeContext.computeTypeName(BigInteger.class);
     }
 
     @Override

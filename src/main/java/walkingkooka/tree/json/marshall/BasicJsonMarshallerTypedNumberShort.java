@@ -39,7 +39,7 @@ final class BasicJsonMarshallerTypedNumberShort extends BasicJsonMarshallerTyped
 
     @Override
     String typeName() {
-        return "short";
+        return JsonNodeContext.computeTypeName(Short.class);
     }
 
     @Override

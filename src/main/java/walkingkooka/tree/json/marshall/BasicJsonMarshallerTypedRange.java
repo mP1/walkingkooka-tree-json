@@ -45,7 +45,7 @@ final class BasicJsonMarshallerTypedRange extends BasicJsonMarshallerTyped<Range
 
     @Override
     String typeName() {
-        return "range";
+        return JsonNodeContext.computeTypeName(Range.class);
     }
 
     @Override

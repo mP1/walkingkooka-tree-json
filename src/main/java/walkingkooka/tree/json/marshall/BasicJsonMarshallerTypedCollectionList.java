@@ -44,7 +44,7 @@ final class BasicJsonMarshallerTypedCollectionList extends BasicJsonMarshallerTy
 
     @Override
     String typeName() {
-        return "list";
+        return JsonNodeContext.computeTypeName(List.class);
     }
 
     @Override

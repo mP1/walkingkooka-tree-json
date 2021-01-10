@@ -47,7 +47,7 @@ final class BasicJsonMarshallerTypedInvalidTextLengthException extends BasicJson
 
     @Override
     String typeName() {
-        return "invalid-text-length-exception";
+        return JsonNodeContext.computeTypeName(IllegalArgumentException.class);
     }
 
     @Override

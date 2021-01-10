@@ -43,7 +43,7 @@ final class BasicJsonMarshallerTypedBigDecimal extends BasicJsonMarshallerTyped<
 
     @Override
     String typeName() {
-        return "big-decimal";
+        return JsonNodeContext.computeTypeName(BigDecimal.class);
     }
 
     @Override

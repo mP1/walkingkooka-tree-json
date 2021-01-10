@@ -39,7 +39,7 @@ final class BasicJsonMarshallerTypedNumberByte extends BasicJsonMarshallerTypedN
 
     @Override
     String typeName() {
-        return "byte";
+        return JsonNodeContext.computeTypeName(Byte.class);
     }
 
     @Override

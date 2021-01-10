@@ -42,7 +42,7 @@ final class BasicJsonMarshallerTypedNumberLong extends BasicJsonMarshallerTyped<
 
     @Override
     String typeName() {
-        return "long";
+        return JsonNodeContext.computeTypeName(Long.class);
     }
 
     @Override

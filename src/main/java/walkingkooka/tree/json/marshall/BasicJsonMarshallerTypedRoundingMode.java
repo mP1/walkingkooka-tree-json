@@ -46,7 +46,7 @@ final class BasicJsonMarshallerTypedRoundingMode extends BasicJsonMarshallerType
 
     @Override
     String typeName() {
-        return "rounding-mode";
+        return JsonNodeContext.computeTypeName(RoundingMode.class);
     }
 
     @Override

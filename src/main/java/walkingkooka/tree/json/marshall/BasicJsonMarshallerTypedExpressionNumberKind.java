@@ -45,7 +45,7 @@ final class BasicJsonMarshallerTypedExpressionNumberKind extends BasicJsonMarsha
 
     @Override
     String typeName() {
-        return "expression-number-kind";
+        return JsonNodeContext.computeTypeName(ExpressionNumberKind.class);
     }
 
     @Override

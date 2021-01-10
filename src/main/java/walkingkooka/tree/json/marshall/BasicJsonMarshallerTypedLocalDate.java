@@ -43,7 +43,7 @@ final class BasicJsonMarshallerTypedLocalDate extends BasicJsonMarshallerTyped<L
 
     @Override
     String typeName() {
-        return "local-date";
+        return JsonNodeContext.computeTypeName(LocalDate.class);
     }
 
     @Override

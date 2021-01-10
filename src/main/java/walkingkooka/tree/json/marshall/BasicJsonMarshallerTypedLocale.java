@@ -46,7 +46,7 @@ final class BasicJsonMarshallerTypedLocale extends BasicJsonMarshallerTyped<Loca
 
     @Override
     String typeName() {
-        return "locale";
+        return JsonNodeContext.computeTypeName(Locale.class);
     }
 
     @Override

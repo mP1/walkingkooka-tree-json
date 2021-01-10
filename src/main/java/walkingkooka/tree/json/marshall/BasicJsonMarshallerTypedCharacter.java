@@ -42,7 +42,7 @@ final class BasicJsonMarshallerTypedCharacter extends BasicJsonMarshallerTyped<C
 
     @Override
     String typeName() {
-        return "character";
+        return JsonNodeContext.computeTypeName(Character.class);
     }
 
     @Override

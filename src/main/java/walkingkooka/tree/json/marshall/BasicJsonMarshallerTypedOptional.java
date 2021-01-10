@@ -52,7 +52,7 @@ final class BasicJsonMarshallerTypedOptional extends BasicJsonMarshallerTyped<Op
 
     @Override
     String typeName() {
-        return "optional";
+        return JsonNodeContext.computeTypeName(Optional.class);
     }
 
     @Override

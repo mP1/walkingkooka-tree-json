@@ -21,6 +21,7 @@ import walkingkooka.Context;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonString;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.BiFunction;
 
@@ -28,6 +29,16 @@ import java.util.function.BiFunction;
  * A {@link Context} that combines common functionality between a {@link JsonNodeUnmarshallContext} and a {@link JsonNodeMarshallContext}.
  */
 public interface JsonNodeContext extends Context {
+
+    /**
+     * Computes the type name given a {@link Class}.
+     */
+    static String computeTypeName(final Class<?> type) {
+        Objects.requireNonNull(type, "type");
+
+        return JsonNodeContextTypeNameComputer.compute(type.getSimpleName());
+    }
+
     /**
      * Registers a factory that parses a {@link JsonNode} into a value for the given {@link Class}. The {@link Runnable}
      * when executed removes the just registered mapping.

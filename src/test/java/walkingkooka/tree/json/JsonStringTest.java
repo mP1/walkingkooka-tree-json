@@ -19,6 +19,7 @@ package walkingkooka.tree.json;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.text.CharSequences;
 import walkingkooka.tree.search.SearchNode;
 import walkingkooka.visit.Visiting;
 
@@ -104,14 +105,113 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
 
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createJsonNode("abc123"),
-                "\"abc123\"");
+        this.toStringAndCheck2(
+                "abc123",
+                "\"abc123\""
+        );
     }
 
     @Test
-    public void testToStringRequiresEscaping() {
-        this.toStringAndCheck(this.createJsonNode("abc\t123"),
-                "\"abc\\t123\"");
+    public void testToStringSpace() {
+        this.toStringAndCheck2(
+                "abc 123 ",
+                "\"abc 123 \""
+        );
+    }
+
+    @Test
+    public void testToStringNul() {
+        this.toStringAndCheck2(
+                "abc" + ((char) 0) + "xyz",
+                "\"abc\\u0000xyz\""
+        );
+    }
+
+    @Test
+    public void testToStringBell() {
+        this.toStringAndCheck2(
+                "abc\bxyz",
+                "\"abc\\bxyz\""
+        );
+    }
+
+    @Test
+    public void testToStringCR() {
+        this.toStringAndCheck2(
+                "abc\rxyz",
+                "\"abc\\rxyz\""
+        );
+    }
+
+    @Test
+    public void testToStringFormFeed() {
+        this.toStringAndCheck2(
+                "abc\fxyz",
+                "\"abc\\fxyz\""
+        );
+    }
+
+    @Test
+    public void testToStringNL() {
+        this.toStringAndCheck2(
+                "abc\nxyz",
+                "\"abc\\nxyz\""
+        );
+    }
+
+    @Test
+    public void testToStringStringQuote() {
+        this.toStringAndCheck2(
+                "abc'xyz",
+                "\"abc'xyz\""
+        );
+    }
+
+    @Test
+    public void testToStringDoubleQuote() {
+        this.toStringAndCheck2(
+                "abc\"xyz",
+                "\"abc\\\"xyz\""
+        );
+    }
+
+    @Test
+    public void testToStringTab() {
+        this.toStringAndCheck2(
+                "abc\txyz",
+                "\"abc\\txyz\""
+        );
+    }
+
+    @Test
+    public void testToStringControlCharacter() {
+        this.toStringAndCheck2(
+                "abc" + ((char) 20) + "xyz",
+                "\"abc\\u0014xyz\""
+        );
+    }
+
+    private void toStringAndCheck2(final String value, final String json) {
+        this.toStringAndCheck(
+                this.createJsonNode(value),
+                json
+        );
+    }
+
+    @Test
+    public void testParseToStringRountrip() {
+        for (int i = Character.MIN_VALUE; i < Character.MAX_VALUE; i++) {
+            final char c = (char) i;
+            final String text = Character.toString(c);
+            final JsonString jsonString = JsonNode.string(text);
+            final String json = jsonString.toString();
+
+            assertEquals(
+                    text,
+                    JsonNode.parse(json).stringOrFail(),
+                    () -> "parsing string " + CharSequences.quoteIfChars(c)
+            );
+        }
     }
 
     @Override

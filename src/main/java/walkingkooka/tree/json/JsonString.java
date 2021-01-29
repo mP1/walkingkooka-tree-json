@@ -97,8 +97,64 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
         return other instanceof JsonString;
     }
 
+    // https://www.json.org/json-en.html
+    // https://en.wikipedia.org/wiki/JSON
+
+    /**
+     * https://www.crockford.com/mckeeman.html
+     * <pre>
+     * character
+     * '0020' . '10FFFF' - '"' - '\'
+     * '\' escape
+     * </pre>
+     *
+     * @param printer
+     */
     @Override
     void printJson0(final IndentingPrinter printer) {
-        printer.print(CharSequences.quoteAndEscape(this.value));
+        final String value = this.value;
+        final int length = value.length();
+
+        final StringBuilder encoded = new StringBuilder();
+        encoded.append('"'); // open
+
+        for (int i = 0; i < length; i++) {
+            final char c = value.charAt(i);
+
+            switch (c) {
+                case '"':
+                    encoded.append("\\\"");
+                    break;
+                case '\\':
+                    encoded.append("\\\\");
+                    break;
+                case '\b':
+                    encoded.append("\\b");
+                    break;
+                case '\f':
+                    encoded.append("\\f");
+                    break;
+                case '\n':
+                    encoded.append("\\n");
+                    break;
+                case '\r':
+                    encoded.append("\\r");
+                    break;
+                case '\t':
+                    encoded.append("\\t");
+                    break;
+                default:
+                    if (c < 0x20 || c >= 0x10FFFF) {
+                        encoded.append("\\u").append(CharSequences.padLeft(Integer.toHexString(c), 4, '0'));
+                        break;
+                    }
+                    encoded.append(c);
+                    break;
+            }
+        }
+
+        encoded.append('"'); // close
+
+        printer.print(encoded);
     }
 }

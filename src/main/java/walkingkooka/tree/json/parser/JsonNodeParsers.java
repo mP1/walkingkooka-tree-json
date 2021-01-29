@@ -135,15 +135,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
      * String
      */
     public static Parser<ParserContext> string() {
-        return STRING;
-    }
-
-    private final static Parser<ParserContext> STRING = Parsers.doubleQuoted()
-            .transform(JsonNodeParsers::transformString)
-            .setToString(JsonNodeStringParserToken.class.getSimpleName());
-
-    private static ParserToken transformString(final ParserToken token, final ParserContext context) {
-        return JsonNodeParserToken.string(token.cast(DoubleQuotedParserToken.class).value(), token.text());
+        return JsonNodeParsersStringParser.INSTANCE;
     }
 
     /**

@@ -60,6 +60,11 @@ final class BasicJsonNodeParserContext implements JsonNodeParserContext {
     }
 
     @Override
+    public int defaultYear() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public String exponentSymbol() {
         return "E";
     }

@@ -29,6 +29,7 @@ import walkingkooka.text.cursor.parser.Parser;
 import walkingkooka.text.cursor.parser.ParserReporters;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.Printers;
+import walkingkooka.text.printer.TreePrintable;
 import walkingkooka.tree.Node;
 import walkingkooka.tree.TraversableHasTextOffset;
 import walkingkooka.tree.expression.FunctionExpressionName;
@@ -52,7 +53,8 @@ import java.util.function.Predicate;
 public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name, Object>,
         HasSearchNode,
         HasText,
-        TraversableHasTextOffset<JsonNode> {
+        TraversableHasTextOffset<JsonNode>,
+        TreePrintable {
 
     /**
      * Parsers the given json and returns its {@link JsonNode} equivalent.
@@ -353,6 +355,13 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      * parent.
      */
     abstract JsonPropertyName defaultName();
+
+    // TreePrintable.....................................................................................................
+
+    @Override
+    public final void printTree(final IndentingPrinter printer) {
+        this.printJson(printer);
+    }
 
     // Object .......................................................................................................
 

@@ -26,7 +26,6 @@ import walkingkooka.reflect.MethodAttributes;
 import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.Node;
-import walkingkooka.tree.expression.ExpressionNumberContext;
 import walkingkooka.tree.expression.ExpressionNumberContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
@@ -129,22 +128,36 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
                 () -> "unmarshall failed " + from);
     }
 
+    default void unmarshallFails(final String from) {
+        unmarshallFails(JsonNode.parse(from));
+    }
+
     default void unmarshallFails(final String from,
-                                 final Class<? extends Throwable> thrown) {
-        unmarshallFails(JsonNode.parse(from), thrown);
+                                 final Class<?> type) {
+        unmarshallFails(from, type, this.unmarshallContext());
     }
 
-    default void unmarshallFails(final JsonNode from,
-                                 final Class<? extends Throwable> thrown) {
-        this.unmarshallFails(from,
-                thrown,
-                this.unmarshallContext());
-    }
-
-    default void unmarshallFails(final JsonNode from,
-                                 final Class<? extends Throwable> thrown,
+    default void unmarshallFails(final String from,
+                                 final Class<?> type,
                                  final JsonNodeUnmarshallContext context) {
-        assertThrows(JsonNodeUnmarshallException.class, () -> context.unmarshall(from, this.type()));
+        unmarshallFails(JsonNode.parse(from), type, context);
+    }
+
+    default void unmarshallFails(final JsonNode from) {
+        this.unmarshallFails(
+                from,
+                this.type());
+    }
+
+    default void unmarshallFails(final JsonNode from,
+                                 final Class<?> type) {
+        this.unmarshallFails(from, type, this.unmarshallContext());
+    }
+
+    default void unmarshallFails(final JsonNode from,
+                                 final Class<?> type,
+                                 final JsonNodeUnmarshallContext context) {
+        assertThrows(JsonNodeUnmarshallException.class, () -> context.unmarshall(from, type));
     }
 
     @Test

@@ -66,7 +66,7 @@ public final class BasicJsonMarshallerTypedInvalidCharacterExceptionTest extends
 
     @Override
     JsonNode node() {
-        return JsonNode.parse("{ \"text\": \"some-text-123\", \"position\": 2}}");
+        return JsonNode.parse("{ \"text\": \"some-text-123\", \"position\": 2}");
     }
 
     @Override

@@ -71,6 +71,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      * Parser that will consume json or report a parsing error.
      */
     private final static Parser<JsonNodeParserContext> PARSER = JsonNodeParsers.value()
+            .andEmptyTextCursor()
             .orReport(ParserReporters.basic())
             .cast();
 

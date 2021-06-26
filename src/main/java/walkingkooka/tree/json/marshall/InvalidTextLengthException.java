@@ -25,9 +25,9 @@ final class InvalidTextLengthException extends walkingkooka.InvalidTextLengthExc
     private static final long serialVersionUID = 1;
 
     InvalidTextLengthException(final String label,
-                                      final String text,
-                                      final int min,
-                                      final int max) {
+                               final String text,
+                               final int min,
+                               final int max) {
         super(label, text, min, max);
     }
 

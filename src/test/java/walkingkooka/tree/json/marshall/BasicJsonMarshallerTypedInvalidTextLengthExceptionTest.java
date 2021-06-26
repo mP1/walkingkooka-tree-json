@@ -68,7 +68,7 @@ public final class BasicJsonMarshallerTypedInvalidTextLengthExceptionTest extend
 
     @Override
     JsonNode node() {
-        return JsonNode.parse("{ \"label\": \"name-of-something-1\", \"text\": \"some-text-123\", \"min\": 2, \"max\": 3}}");
+        return JsonNode.parse("{ \"label\": \"name-of-something-1\", \"text\": \"some-text-123\", \"min\": 2, \"max\": 3}");
     }
 
     @Override

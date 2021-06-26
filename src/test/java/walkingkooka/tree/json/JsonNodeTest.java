@@ -29,8 +29,33 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
         ParseStringTesting<JsonNode> {
 
     @Test
+    public void testKeyMissingValueFails() {
+        this.parseStringFails("\"a1\":", ParserException.class);
+    }
+
+    @Test
+    public void testKeyValuePairFails() {
+        this.parseStringFails("\"a1\": \"b2\"", ParserException.class);
+    }
+
+    @Test
+    public void testKeyValuePairTwiceFails() {
+        this.parseStringFails("\"a1\": \"b2\", \"c3\": \"d4\"", ParserException.class);
+    }
+
+    @Test
     public void testParseIncompleteObjectFails() {
         this.parseStringFails("{\"", ParserException.class);
+    }
+
+    @Test
+    public void testParseIncompleteArrayFails() {
+        this.parseStringFails("[1,", ParserException.class);
+    }
+
+    @Test
+    public void testParseIncompleteArrayFails2() {
+        this.parseStringFails("[1,", ParserException.class);
     }
 
     @Test
@@ -68,6 +93,12 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
     @Test
     public void testParseObject() {
         this.parseStringAndCheck("{\"prop1\": \"value1\"}",
+                JsonNode.object().set(JsonPropertyName.with("prop1"), JsonNode.string("value1")));
+    }
+
+    @Test
+    public void testParseObject2() {
+        this.parseStringAndCheck("{ \"prop1\": \"value1\" }",
                 JsonNode.object().set(JsonPropertyName.with("prop1"), JsonNode.string("value1")));
     }
 

@@ -48,7 +48,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
     @Test
     default void testRegistered() throws Exception {
-        this.createJsonNodeMappingValue();
+        this.createJsonNodeMarshallingValue();
 
         final Class<V> type = this.type();
         final String typeName = this.type().getName();
@@ -71,7 +71,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
     @Test
     default void testTypeNameFromClass() {
-        final V value = this.createJsonNodeMappingValue();
+        final V value = this.createJsonNodeMarshallingValue();
 
         final JsonNodeMarshallContext context = this.marshallContext();
 
@@ -85,7 +85,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
     @Test
     default void testTypeNameAndRegisteredType() {
-        this.createJsonNodeMappingValue(); // ensure static initializer is run...
+        this.createJsonNodeMarshallingValue(); // ensure static initializer is run...
 
         final JsonNodeMarshallContext context = this.marshallContext();
 
@@ -162,17 +162,17 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
     @Test
     default void testMarshallRoundtripTwice() {
-        this.marshallRoundTripTwiceAndCheck(this.createJsonNodeMappingValue());
+        this.marshallRoundTripTwiceAndCheck(this.createJsonNodeMarshallingValue());
     }
 
     @Test
     default void testMarshallWithTypeRoundtripTwice() {
-        this.marshallWithTypeRoundTripTwiceAndCheck(this.createJsonNodeMappingValue());
+        this.marshallWithTypeRoundTripTwiceAndCheck(this.createJsonNodeMarshallingValue());
     }
 
     @Test
     default void testMarshallRoundtripList() {
-        final List<Object> list = Lists.of(this.createJsonNodeMappingValue());
+        final List<Object> list = Lists.of(this.createJsonNodeMarshallingValue());
 
         assertEquals(list,
                 this.unmarshallContext().unmarshallWithTypeList(this.marshallContext().marshallWithTypeList(list)),
@@ -181,7 +181,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
     @Test
     default void testMarshallRoundtripSet() {
-        final Set<Object> set = Sets.of(this.createJsonNodeMappingValue());
+        final Set<Object> set = Sets.of(this.createJsonNodeMarshallingValue());
 
         assertEquals(set,
                 this.unmarshallContext().unmarshallWithTypeSet(this.marshallContext().marshallWithTypeSet(set)),
@@ -190,7 +190,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
     @Test
     default void testMarshallRoundtripMap() {
-        final Map<String, Object> map = Maps.of("key123", this.createJsonNodeMappingValue());
+        final Map<String, Object> map = Maps.of("key123", this.createJsonNodeMarshallingValue());
 
         assertEquals(map,
                 this.unmarshallContext().unmarshallWithTypeMap(this.marshallContext().marshallWithTypeMap(map)),
@@ -266,7 +266,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
                 () -> "BasicJsonMarshaller roundtrip to -> from -> to failed =" + CharSequences.quoteIfChars(value));
     }
 
-    V createJsonNodeMappingValue();
+    V createJsonNodeMarshallingValue();
 
     default JsonNodeUnmarshallContext unmarshallContext() {
         return JsonNodeUnmarshallContexts.basic(ExpressionNumberContexts.basic(ExpressionNumberKind.DEFAULT, MathContext.DECIMAL32));

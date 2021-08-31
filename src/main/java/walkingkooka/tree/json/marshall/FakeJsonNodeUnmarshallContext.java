@@ -42,7 +42,7 @@ public class FakeJsonNodeUnmarshallContext extends FakeJsonNodeContext implement
     }
 
     @Override
-    public JsonNodeUnmarshallContext setObjectPreProcessor(final BiFunction<JsonNode, Class<?>, JsonNode> processor) {
+    public JsonNodeUnmarshallContext setPreProcessor(final BiFunction<JsonNode, Class<?>, JsonNode> processor) {
         throw new UnsupportedOperationException();
     }
 

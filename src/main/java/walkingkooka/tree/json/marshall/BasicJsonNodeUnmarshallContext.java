@@ -71,7 +71,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     private final ExpressionNumberContext context;
 
     @Override
-    public JsonNodeUnmarshallContext setObjectPreProcessor(final BiFunction<JsonNode, Class<?>, JsonNode> processor) {
+    public JsonNodeUnmarshallContext setPreProcessor(final BiFunction<JsonNode, Class<?>, JsonNode> processor) {
         Objects.requireNonNull(processor, "processor");
 
         return this.processor.equals(processor) ?

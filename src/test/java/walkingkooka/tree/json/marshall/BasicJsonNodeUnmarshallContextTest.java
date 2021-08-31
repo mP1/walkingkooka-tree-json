@@ -621,7 +621,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     }
 
     private JsonNodeUnmarshallContext contextWithProcessor() {
-        return this.createContext().setObjectPreProcessor(this::objectPreProcessor2);
+        return this.createContext().setPreProcessor(this::objectPreProcessor2);
     }
 
     /**

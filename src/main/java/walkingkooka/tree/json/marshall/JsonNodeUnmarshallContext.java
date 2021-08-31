@@ -60,9 +60,9 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext,
     }
 
     /**
-     * Sets or replaces the {@link BiFunction object pre processor} creating a new instance as necessary.
+     * Sets or replaces the {@link BiFunction json node pre processor} creating a new instance as necessary.
      */
-    JsonNodeUnmarshallContext setObjectPreProcessor(final BiFunction<JsonNode, Class<?>, JsonNode> processor);
+    JsonNodeUnmarshallContext setPreProcessor(final BiFunction<JsonNode, Class<?>, JsonNode> processor);
 
     // from.............................................................................................................
 

@@ -32,29 +32,29 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallContext> extends JsonNodeContextTesting<C> {
 
-    // setObjectPreProcessor............................................................................................
+    // setPreProcessor..................................................................................................
 
     @Test
-    default void testSetObjectPreProcessorNullFails() {
-        assertThrows(java.lang.NullPointerException.class, () -> this.createContext().setObjectPreProcessor(null));
+    default void testSetPreProcessorNullFails() {
+        assertThrows(java.lang.NullPointerException.class, () -> this.createContext().setPreProcessor(null));
     }
 
     @Test
-    default void testSetObjectPreProcessor() {
+    default void testSetPreProcessor() {
         final JsonNodeUnmarshallContext context = this.createContext();
         final BiFunction<JsonNode, Class<?>, JsonNode> processor = (json, type) -> json;
 
-        final JsonNodeUnmarshallContext with = context.setObjectPreProcessor(processor);
+        final JsonNodeUnmarshallContext with = context.setPreProcessor(processor);
         assertNotSame(context, with);
     }
 
     @Test
-    default void testSetObjectPreProcessorSame() {
+    default void testSetPreProcessorSame() {
         final JsonNodeUnmarshallContext context = this.createContext();
         final BiFunction<JsonNode, Class<?>, JsonNode> processor = (json, type) -> json;
 
-        final JsonNodeUnmarshallContext with = context.setObjectPreProcessor(processor);
-        assertSame(with, with.setObjectPreProcessor(processor));
+        final JsonNodeUnmarshallContext with = context.setPreProcessor(processor);
+        assertSame(with, with.setPreProcessor(processor));
     }
 
     // unmarshall.....................................................................................................

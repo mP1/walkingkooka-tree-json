@@ -52,7 +52,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
      * Private ctor
      */
     private BasicJsonNodeUnmarshallContext(final ExpressionNumberContext context,
-                                           final BiFunction<JsonObject, Class<?>, JsonObject> processor) {
+                                           final BiFunction<JsonNode, Class<?>, JsonNode> processor) {
         super();
         this.context = context;
         this.processor = processor;
@@ -71,7 +71,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     private final ExpressionNumberContext context;
 
     @Override
-    public JsonNodeUnmarshallContext setObjectPreProcessor(final BiFunction<JsonObject, Class<?>, JsonObject> processor) {
+    public JsonNodeUnmarshallContext setObjectPreProcessor(final BiFunction<JsonNode, Class<?>, JsonNode> processor) {
         Objects.requireNonNull(processor, "processor");
 
         return this.processor.equals(processor) ?
@@ -231,14 +231,12 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     }
 
     /**
-     * If the {@link JsonNode} is an object executes the {@link #processor}.
+     * Pre process each {@link JsonNode} when requested to unmarshall.
      */
     private JsonNode preProcess(final JsonNode node,
                                 final Class<?> type) {
-        return node.isObject() ?
-                this.processor.apply(node.objectOrFail(), type) :
-                node;
+        return this.processor.apply(node, type);
     }
 
-    private final BiFunction<JsonObject, Class<?>, JsonObject> processor;
+    private final BiFunction<JsonNode, Class<?>, JsonNode> processor;
 }

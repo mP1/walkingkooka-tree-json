@@ -19,7 +19,6 @@ package walkingkooka.tree.json.marshall;
 
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonObject;
 
 import java.math.MathContext;
 import java.util.List;
@@ -43,7 +42,7 @@ public class FakeJsonNodeUnmarshallContext extends FakeJsonNodeContext implement
     }
 
     @Override
-    public JsonNodeUnmarshallContext setObjectPreProcessor(final BiFunction<JsonObject, Class<?>, JsonObject> processor) {
+    public JsonNodeUnmarshallContext setObjectPreProcessor(final BiFunction<JsonNode, Class<?>, JsonNode> processor) {
         throw new UnsupportedOperationException();
     }
 

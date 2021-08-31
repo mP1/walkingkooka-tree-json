@@ -18,10 +18,8 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Context;
-import walkingkooka.math.HasMathContext;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.ExpressionNumberContext;
-import walkingkooka.tree.expression.HasExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
@@ -39,9 +37,9 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext,
         ExpressionNumberContext {
 
     /**
-     * A {@link BiFunction processor} that simply returns the given object ignoring the value.
+     * A {@link BiFunction processor} that simply returns the given {@link JsonNode} ignoring the type.
      */
-    BiFunction<JsonObject, Class<?>, JsonObject> OBJECT_PRE_PROCESSOR = (jsonObject, type) -> jsonObject;
+    BiFunction<JsonNode, Class<?>, JsonNode> OBJECT_PRE_PROCESSOR = (node, type) -> node;
 
     /**
      * Shared function used to report a required property is missing within a static unmarshall.
@@ -64,7 +62,7 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext,
     /**
      * Sets or replaces the {@link BiFunction object pre processor} creating a new instance as necessary.
      */
-    JsonNodeUnmarshallContext setObjectPreProcessor(final BiFunction<JsonObject, Class<?>, JsonObject> processor);
+    JsonNodeUnmarshallContext setObjectPreProcessor(final BiFunction<JsonNode, Class<?>, JsonNode> processor);
 
     // from.............................................................................................................
 

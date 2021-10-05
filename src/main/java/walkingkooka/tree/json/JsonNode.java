@@ -250,7 +250,11 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      * If a {@link JsonBoolean} returns the boolean value or fails.
      */
     public final boolean booleanOrFail() {
-        return this.valueOrFail(Boolean.class);
+        if (!this.isBoolean()) {
+            this.reportInvalidNode(Boolean.class);
+        }
+
+        return Cast.to(this.value());
     }
 
     /**
@@ -270,26 +274,22 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      * If a {@link JsonNumber} returns the number value or fails.
      */
     public final Number numberOrFail() {
-        return this.valueOrFail(Number.class);
+        if (!this.isNumber()) {
+            this.reportInvalidNode(Number.class);
+        }
+
+        return Cast.to(this.value());
     }
 
     /**
      * If a {@link JsonString} returns the string value or fails.
      */
     public final String stringOrFail() {
-        return this.valueOrFail(String.class);
-    }
-
-    private <V> V valueOrFail(final Class<V> type) {
-        if (this.isNull()) {
-            this.reportInvalidNode(type);
+        if (!this.isString()) {
+            this.reportInvalidNode(String.class);
         }
 
-        try {
-            return Cast.to(this.value());
-        } catch (final ClassCastException | UnsupportedOperationException fail) {
-            return this.reportInvalidNode(type);
-        }
+        return Cast.to(this.value());
     }
 
     /**
@@ -310,10 +310,11 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     }
 
     /**
-     * Reports a failed attempt to extract a value or cast a node.
+     * Reports a failed attempt to extract a value or cast a node. The message will include the expected and the
+     * target type and its toString representation.
      */
     final <V> V reportInvalidNode(final String type) {
-        throw new ClassCastException("Node is not a " + type + "=" + this);
+        throw new ClassCastException("Expected " + type + " got " + this.defaultName() + ": " + this);
     }
 
     // isXXX............................................................................................................

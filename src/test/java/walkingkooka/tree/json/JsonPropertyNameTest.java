@@ -35,6 +35,41 @@ public final class JsonPropertyNameTest implements ClassTesting2<JsonPropertyNam
     }
 
     @Test
+    public void testFromClassArray() {
+        this.fromClassAndCheck(JsonArray.class, "Array");
+    }
+
+    @Test
+    public void testFromClassBoolean() {
+        this.fromClassAndCheck(JsonBoolean.class, "Boolean");
+    }
+
+    @Test
+    public void testFromClassNull() {
+        this.fromClassAndCheck(JsonNull.class, "Null");
+    }
+
+    @Test
+    public void testFromClassNumber() {
+        this.fromClassAndCheck(JsonNumber.class, "Number");
+    }
+
+    @Test
+    public void testFromClassObject() {
+        this.fromClassAndCheck(JsonObject.class, "Object");
+    }
+
+    @Test
+    public void testFromClassString() {
+        this.fromClassAndCheck(JsonString.class, "String");
+    }
+
+    private void fromClassAndCheck(final Class<? extends JsonNode> type,
+                                   final String expected) {
+        assertEquals(expected, JsonPropertyName.fromClass(type).value());
+    }
+
+    @Test
     public void testIndex() {
         assertEquals("123", JsonPropertyName.index(123).value());
     }

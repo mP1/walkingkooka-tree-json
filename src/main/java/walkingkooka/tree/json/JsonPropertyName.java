@@ -64,9 +64,10 @@ public final class JsonPropertyName implements Name,
         return new JsonPropertyName(name);
     }
 
+    // helper only used by various JsonXXX.NAME constants.
     static JsonPropertyName fromClass(final Class<? extends JsonNode> klass) {
         final String name = klass.getSimpleName();
-        return new JsonPropertyName(name.substring("Json".length(), name.length() - Name.class.getSimpleName().length()));
+        return new JsonPropertyName(name.substring("Json".length()));
     }
 
     private JsonPropertyName(final int index) {

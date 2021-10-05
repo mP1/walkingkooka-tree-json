@@ -75,17 +75,23 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     // ToXXXValueOrFail.................................................................................................
     @Test
     public void testBooleanOrFail() {
-        assertThrows(ClassCastException.class, () -> this.createNode().booleanOrFail());
+        final JsonNode node = this.createNode();
+        final ClassCastException thrown = assertThrows(ClassCastException.class, node::booleanOrFail);
+        assertEquals("Expected Boolean got " + node.defaultName() + ": " + node, thrown.getMessage());
     }
 
     @Test
     public void testNumberOrFail() {
-        assertThrows(ClassCastException.class, () -> this.createNode().numberOrFail());
+        final JsonNode node = this.createNode();
+        final ClassCastException thrown = assertThrows(ClassCastException.class, node::numberOrFail);
+        assertEquals("Expected Number got " + node.defaultName() + ": " + node, thrown.getMessage());
     }
 
     @Test
     public void testStringOrFail() {
-        assertThrows(ClassCastException.class, () -> this.createNode().stringOrFail());
+        final JsonNode node = this.createNode();
+        final ClassCastException thrown = assertThrows(ClassCastException.class, node::stringOrFail);
+        assertEquals("Expected String got " + node.defaultName() + ": " + node, thrown.getMessage());
     }
 
     @Test
@@ -94,7 +100,8 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         if (node instanceof JsonObject) {
             assertSame(node, node.objectOrFail());
         } else {
-            assertThrows(ClassCastException.class, node::objectOrFail);
+            final ClassCastException thrown = assertThrows(ClassCastException.class, node::objectOrFail);
+            assertEquals("Expected Object got " + node.defaultName() + ": " + node, thrown.getMessage());
         }
     }
 

@@ -251,7 +251,7 @@ abstract class BasicJsonMarshaller<T> {
         } catch (final JsonNodeUnmarshallException | java.lang.NullPointerException cause) {
             throw cause;
         } catch (final RuntimeException cause) {
-            throw new JsonNodeUnmarshallException("Failed to unmarshall node", node, cause);
+            throw new JsonNodeUnmarshallException("Failed to unmarshall", node, cause);
         }
     }
 

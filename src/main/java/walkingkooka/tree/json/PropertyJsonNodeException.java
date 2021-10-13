@@ -26,6 +26,8 @@ import java.util.Objects;
  */
 abstract class PropertyJsonNodeException extends JsonNodeException {
 
+    private static final long serialVersionUID = 1L;
+
     protected PropertyJsonNodeException() {
         this(null, null);
     }

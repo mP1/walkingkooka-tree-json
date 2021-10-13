@@ -22,6 +22,8 @@ package walkingkooka.tree.json;
  */
 public final class UnknownPropertyJsonNodeException extends PropertyJsonNodeException {
 
+    private static final long serialVersionUID = 1L;
+
     protected UnknownPropertyJsonNodeException() {
         this(null, null);
     }

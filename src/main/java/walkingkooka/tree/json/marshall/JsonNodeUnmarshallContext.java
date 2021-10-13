@@ -18,12 +18,13 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Context;
-import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.ExpressionNumberContext;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.json.MissingPropertyJsonNodeException;
+import walkingkooka.tree.json.UnknownPropertyJsonNodeException;
 
 import java.util.List;
 import java.util.Map;
@@ -46,8 +47,7 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext,
      */
     static void requiredPropertyMissing(final JsonPropertyName property,
                                         final JsonNode node) {
-        throw new JsonNodeUnmarshallException("Required property " + CharSequences.quoteAndEscape(property.value()) + " missing=" + node,
-                node);
+        throw new MissingPropertyJsonNodeException(property, node);
     }
 
     /**
@@ -55,8 +55,7 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext,
      */
     static void unknownPropertyPresent(final JsonPropertyName property,
                                        final JsonNode node) {
-        throw new JsonNodeUnmarshallException("Unknown property " + CharSequences.quoteAndEscape(property.value()) + " in " + node,
-                node);
+        throw new UnknownPropertyJsonNodeException(property, node);
     }
 
     /**

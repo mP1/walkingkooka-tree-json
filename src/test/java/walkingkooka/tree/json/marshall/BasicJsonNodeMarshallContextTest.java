@@ -181,65 +181,159 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
 
     @Test
     public void testMarshallMapNullMap() {
-        this.marshallMapAndCheck(null,
-                JsonNode.nullNode());
-    }
-
-    @Test
-    public void testMarshallMapBooleanTrue() {
-        this.marshallMapAndCheck2(true,
-                JsonNode.booleanNode(true));
-    }
-
-    @Test
-    public void testMarshallMapBooleanFalse() {
-        this.marshallMapAndCheck2(false,
-                JsonNode.booleanNode(false));
-    }
-
-    @Test
-    public void testMarshallMapNullValue() {
-        this.marshallMapAndCheck2(null,
-                JsonNode.nullNode());
-    }
-
-    @Test
-    public void testMarshallMapNumber() {
-        final double value = 1.25;
-        this.marshallMapAndCheck2(value,
-                JsonNode.number(value));
-    }
-
-    @Test
-    public void testMarshallMapString() {
-        final String value = "abc123";
-        this.marshallMapAndCheck2(value,
-                JsonNode.string(value));
-    }
-
-    private <VV> void marshallMapAndCheck2(final VV value,
-                                           final JsonNode expected) {
-        final String KEY = "key1";
-
-        this.marshallMapAndCheck(Maps.of(KEY, value),
-                this.map(KEY, expected)
+        this.marshallMapAndCheck(
+                null,
+                JsonNode.nullNode()
         );
     }
 
     @Test
-    public void testMarshallMapWithObjectPostProcessor() {
-        final String key = "key-123";
-        final TestJsonNodeValue value = TestJsonNodeValue.with(key);
-        this.marshallMapAndCheck(this.contextWithProcessor(),
-                Maps.of(key, value),
-                this.map(key, value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE)));
+    public void testMarshallMapEmptyMap() {
+        this.marshallMapAndCheck(
+                Maps.empty(),
+                JsonNode.object()
+        );
     }
 
-    private JsonNode map(final String key, final JsonNode value) {
+    @Test
+    public void testMarshallMapStringBooleanTrue() {
+        this.marshallMapStringKeyAndCheck2(
+                true,
+                JsonNode.booleanNode(true)
+        );
+    }
+
+    @Test
+    public void testMarshallMapStringBooleanFalse() {
+        this.marshallMapStringKeyAndCheck2(
+                false,
+                JsonNode.booleanNode(false)
+        );
+    }
+
+    @Test
+    public void testMarshallMapStringNullValue() {
+        this.marshallMapStringKeyAndCheck2(
+                null,
+                JsonNode.nullNode()
+        );
+    }
+
+    @Test
+    public void testMarshallMapStringNumber() {
+        final double value = 1.25;
+        this.marshallMapStringKeyAndCheck2(
+                value,
+                JsonNode.number(value)
+        );
+    }
+
+    @Test
+    public void testMarshallMapStringString() {
+        final String value = "abc123";
+        this.marshallMapStringKeyAndCheck2(
+                value,
+                JsonNode.string(value)
+        );
+    }
+
+    private <VV> void marshallMapStringKeyAndCheck2(final VV value,
+                                                    final JsonNode expected) {
+        final String key = "key1";
+
+        this.marshallMapAndCheck(
+                Maps.of(key, value),
+                JsonNode.object()
+                        .set(JsonPropertyName.with(key), expected)
+        );
+    }
+
+    @Test
+    public void testMarshallMapStringKeyWithObjectPostProcessor() {
+        final String key = "key-123";
+        final TestJsonNodeValue value = TestJsonNodeValue.with(key);
+
+        this.marshallMapAndCheck(
+                this.contextWithProcessor(),
+                Maps.of(key, value),
+                JsonNode.object()
+                        .set(
+                                JsonPropertyName.with(key),
+                                value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE)
+                        )
+        );
+    }
+
+    @Test
+    public void testMarshallMapNonStringKeyBooleanTrue() {
+        this.marshallMapNonStringKeyAndCheck2(
+                true,
+                JsonNode.booleanNode(true)
+        );
+    }
+
+    @Test
+    public void testMarshallMapNonStringKeyBooleanFalse() {
+        this.marshallMapNonStringKeyAndCheck2(
+                false,
+                JsonNode.booleanNode(false)
+        );
+    }
+
+    @Test
+    public void testMarshallMapNonStringKeyNullValue() {
+        this.marshallMapNonStringKeyAndCheck2(
+                null,
+                JsonNode.nullNode()
+        );
+    }
+
+    @Test
+    public void testMarshallMapNonStringKeyNumber() {
+        final double value = 1.25;
+        this.marshallMapNonStringKeyAndCheck2(value,
+                JsonNode.number(value)
+        );
+    }
+
+    @Test
+    public void testMarshallMapNonStringKeyString() {
+        final String value = "abc123";
+        this.marshallMapNonStringKeyAndCheck2(
+                value,
+                JsonNode.string(value)
+        );
+    }
+
+    private <VV> void marshallMapNonStringKeyAndCheck2(final VV value,
+                                                       final JsonNode expected) {
+        final Integer KEY = 123;
+
+        this.marshallMapAndCheck(
+                Maps.of(KEY, value),
+                keyValueEntry(KEY, expected)
+        );
+    }
+
+    @Test
+    public void testMarshallMapNonStringKeyWithObjectPostProcessor() {
+        final Integer key = 123;
+        final TestJsonNodeValue value = TestJsonNodeValue.with("" + key);
+
+        this.marshallMapAndCheck(
+                this.contextWithProcessor(),
+                Maps.of(key, value),
+                this.keyValueEntry(key, value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE))
+        );
+    }
+
+    private JsonNode keyValueEntry(final Integer key, final JsonNode value) {
         return JsonNode.array()
-                .appendChild(JsonNode.object()
-                        .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, JsonNode.string(key))
-                        .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, value));
+                .appendChild(
+                        JsonNode.object()
+                                .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, JsonNode.number(key))
+                                .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, value)
+                );
     }
 
     // marshallWithType...............................................................................................

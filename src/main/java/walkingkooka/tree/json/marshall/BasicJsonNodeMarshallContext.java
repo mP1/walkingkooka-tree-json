@@ -18,11 +18,14 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Cast;
+import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
+import walkingkooka.tree.json.JsonPropertyName;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -115,17 +118,57 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     public JsonNode marshallMap(final Map<?, ?> map) {
         return null == map ?
                 JsonNode.nullNode() :
-                JsonObject.array()
-                        .setChildren(map.entrySet()
-                                .stream()
-                                .map(this::entry)
-                                .collect(Collectors.toList()));
+                this.marshallMap0(map);
     }
 
-    private JsonNode entry(final Entry<?, ?> entry) {
+    private JsonNode marshallMap0(final Map<?, ?> map) {
+        final List<JsonNode> keyAndValues = Lists.array();
+        boolean allKeysString = true;
+
+        for (final Entry<?, ?> keyAndValue : map.entrySet()) {
+            final JsonNode key = marshall(keyAndValue.getKey());
+            allKeysString = allKeysString & key.isString();
+
+            final JsonNode value = marshall(keyAndValue.getValue());
+
+            keyAndValues.add(key);
+            keyAndValues.add(value);
+        }
+
+        return allKeysString ?
+                marshallMapAsJsonObject(keyAndValues) :
+                marshallMapAsArrayOfEntries(keyAndValues);
+    }
+
+    private JsonNode marshallMapAsJsonObject(final List<JsonNode> keyAndValues) {
+        final List<JsonNode> array = Lists.array();
+
+        final Iterator<JsonNode> iterator = keyAndValues.iterator();
+        while (iterator.hasNext()) {
+            final JsonNode key = iterator.next();
+            final JsonNode value = iterator.next();
+
+            array.add(value.setName(JsonPropertyName.with(key.stringOrFail())));
+        }
+
         return JsonNode.object()
-                .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, this.marshall(entry.getKey()))
-                .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, this.marshall(entry.getValue()));
+                .setChildren(array);
+    }
+
+    private JsonNode marshallMapAsArrayOfEntries(final List<JsonNode> keyAndValues) {
+        final List<JsonNode> array = Lists.array();
+
+        final Iterator<JsonNode> iterator = keyAndValues.iterator();
+        while (iterator.hasNext()) {
+            array.add(
+                    JsonNode.object()
+                            .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, iterator.next())
+                            .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, iterator.next())
+            );
+        }
+
+        return JsonNode.array()
+                .setChildren(array);
     }
 
     // marshallWithType...............................................................................................

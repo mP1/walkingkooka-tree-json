@@ -157,15 +157,36 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     }
 
     @Test
-    public void testRoundtripMap() {
+    public void testRoundtripMapStringKey() {
         final T value = this.value();
+
         final Map<String, T> map = Map.of("key1", value);
 
-        final JsonNode jsonNode = this.marshallContext().marshallMap(map);
+        final JsonNode jsonNode = this.marshallContext()
+                .marshallMap(map);
 
-        assertEquals(map,
+        assertEquals(
+                map,
                 this.unmarshallContext().unmarshallMap(jsonNode, String.class, type(value)),
-                () -> "roundtrip marshall: " + map + " -> json: " + jsonNode);
+                () -> "roundtrip marshall: " + map + " -> json: " + jsonNode
+        );
+    }
+
+    @Test
+    public void testRoundtripMapNonStringKey() {
+        final T value = this.value();
+
+        final Map<Integer, T> map = Map.of(123, value);
+
+        final JsonNode jsonNode = this.marshallContext()
+                .marshallMap(map);
+
+        assertEquals(
+                map,
+                this.unmarshallContext()
+                        .unmarshallMap(jsonNode, Integer.class, type(value)),
+                () -> "roundtrip marshall: " + map + " -> json: " + jsonNode
+        );
     }
 
     private static Class<?> type(final Object value) {

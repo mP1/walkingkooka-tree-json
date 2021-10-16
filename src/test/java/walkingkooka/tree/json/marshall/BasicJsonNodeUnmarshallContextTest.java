@@ -211,81 +211,192 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         return JsonNode.array().appendChild(element);
     }
 
-    // unmarshallMap..................................................................................................
+    // unmarshallMap....................................................................................................
 
     @Test
-    public void testUnmarshallMapBooleanTrue() {
-        this.unmarshallMapAndCheck2(JsonNode.booleanNode(true),
+    public void testUnmarshallMapStringKeyBooleanTrue() {
+        this.unmarshallMapStringKeyAndCheck(
+                JsonNode.booleanNode(true),
                 Boolean.class,
-                true);
+                true
+        );
     }
 
     @Test
-    public void testUnmarshallMapBooleanFalse() {
-        this.unmarshallMapAndCheck2(JsonNode.booleanNode(false),
+    public void testUnmarshallMapStringKeyBooleanFalse() {
+        this.unmarshallMapStringKeyAndCheck(
+                JsonNode.booleanNode(false),
                 Boolean.class,
-                false);
+                false
+        );
     }
 
     @Test
-    public void testUnmarshallMapNull() {
-        this.unmarshallMapAndCheck2(JsonNode.nullNode(),
+    public void testUnmarshallMapStringKeyNull() {
+        this.unmarshallMapStringKeyAndCheck(
+                JsonNode.nullNode(),
                 Boolean.class,
-                null);
+                null
+        );
     }
 
     @Test
-    public void testUnmarshallMapNumber() {
+    public void testUnmarshallMapStringKeyNumber() {
         final double value = 1.25;
-        this.unmarshallMapAndCheck2(JsonNode.number(value),
+        this.unmarshallMapStringKeyAndCheck(
+                JsonNode.number(value),
                 Double.class,
-                value);
+                value
+        );
     }
 
     @Test
-    public void testUnmarshallMapString() {
+    public void testUnmarshallMapStringKeyString() {
         final String value = "abc123";
-        this.unmarshallMapAndCheck2(JsonNode.string(value),
+        this.unmarshallMapStringKeyAndCheck(
+                JsonNode.string(value),
                 String.class,
-                value);
+                value
+        );
     }
 
     @Test
-    public void testUnmarshallMapObject() {
-        this.unmarshallMapAndCheck2(this.jsonNode(),
+    public void testUnmarshallMapStringKeyObject() {
+        this.unmarshallMapStringKeyAndCheck(
+                this.jsonNode(),
                 TestJsonNodeValue.class,
-                this.value());
+                this.value()
+        );
     }
 
     @Test
-    public void testUnmarshallMapObjectWithObjectPreProcessor() {
-        this.unmarshallMapAndCheck2(this.contextWithProcessor(),
+    public void testUnmarshallMapStringKeyObjectWithObjectPreProcessor() {
+        this.unmarshallMapStringKeyAndCheck(
+                this.contextWithProcessor(),
                 this.jsonNode2(),
                 TestJsonNodeValue.class,
-                this.value());
+                this.value()
+        );
     }
 
-    private <VV> void unmarshallMapAndCheck2(final JsonNode value,
-                                             final Class<VV> valueType,
-                                             final VV javaValue) {
-        this.unmarshallMapAndCheck2(this.createContext(),
+    private <VV> void unmarshallMapStringKeyAndCheck(final JsonNode value,
+                                                     final Class<VV> valueType,
+                                                     final VV javaValue) {
+        this.unmarshallMapStringKeyAndCheck(
+                this.createContext(),
                 value,
                 valueType,
-                javaValue);
+                javaValue
+        );
     }
 
-    private <VV> void unmarshallMapAndCheck2(final JsonNodeUnmarshallContext context,
-                                             final JsonNode value,
-                                             final Class<VV> valueType,
-                                             final VV javaValue) {
-        this.unmarshallMapAndCheck(context,
-                JsonNode.array()
-                        .appendChild(JsonNode.object()
-                                .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, JsonNode.string(KEY))
-                                .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, value)),
+    private <VV> void unmarshallMapStringKeyAndCheck(final JsonNodeUnmarshallContext context,
+                                                     final JsonNode value,
+                                                     final Class<VV> valueType,
+                                                     final VV javaValue) {
+        this.unmarshallMapAndCheck(
+                context,
+                JsonNode.object()
+                        .set(JsonPropertyName.with(KEY), value),
                 String.class,
                 valueType,
-                Maps.of(KEY, javaValue));
+                Maps.of(KEY, javaValue)
+        );
+    }
+
+    @Test
+    public void testUnmarshallMapNonStringKeyBooleanTrue() {
+        this.unmarshallMapNonStringKeyAndCheck(
+                JsonNode.booleanNode(true),
+                Boolean.class,
+                true
+        );
+    }
+
+    @Test
+    public void testUnmarshallMapNonStringKeyBooleanFalse() {
+        this.unmarshallMapNonStringKeyAndCheck(
+                JsonNode.booleanNode(false),
+                Boolean.class,
+                false
+        );
+    }
+
+    @Test
+    public void testUnmarshallMapNonStringKeyNull() {
+        this.unmarshallMapNonStringKeyAndCheck(
+                JsonNode.nullNode(),
+                Boolean.class,
+                null
+        );
+    }
+
+    @Test
+    public void testUnmarshallMapNonStringKeyNumber() {
+        final double value = 1.25;
+        this.unmarshallMapNonStringKeyAndCheck(
+                JsonNode.number(value),
+                Double.class,
+                value
+        );
+    }
+
+    @Test
+    public void testUnmarshallMapNonStringKeyString() {
+        final String value = "abc123";
+        this.unmarshallMapNonStringKeyAndCheck(
+                JsonNode.string(value),
+                String.class,
+                value
+        );
+    }
+
+    @Test
+    public void testUnmarshallMapNonStringKeyObject() {
+        this.unmarshallMapNonStringKeyAndCheck(
+                this.jsonNode(),
+                TestJsonNodeValue.class,
+                this.value()
+        );
+    }
+
+    @Test
+    public void testUnmarshallMapNonStringKeyObjectWithObjectPreProcessor() {
+        this.unmarshallMapNonStringKeyAndCheck(
+                this.contextWithProcessor(),
+                this.jsonNode2(),
+                TestJsonNodeValue.class,
+                this.value()
+        );
+    }
+
+    private <VV> void unmarshallMapNonStringKeyAndCheck(final JsonNode value,
+                                                        final Class<VV> valueType,
+                                                        final VV javaValue) {
+        this.unmarshallMapNonStringKeyAndCheck(
+                this.createContext(),
+                value,
+                valueType,
+                javaValue
+        );
+    }
+
+    private <VV> void unmarshallMapNonStringKeyAndCheck(final JsonNodeUnmarshallContext context,
+                                                        final JsonNode value,
+                                                        final Class<VV> valueType,
+                                                        final VV javaValue) {
+        final Integer key = 123;
+
+        this.unmarshallMapAndCheck(
+                context,
+                JsonNode.array()
+                        .appendChild(JsonNode.object()
+                                .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, JsonNode.number(key))
+                                .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, value)),
+                Integer.class,
+                valueType,
+                Maps.of(key, javaValue)
+        );
     }
 
     // unmarshallWithType.............................................................................................

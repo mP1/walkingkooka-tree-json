@@ -125,13 +125,44 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     }
 
     /**
-     * Assumes this json object is an array holding elements holding elements of the requested element type, returning
-     * a {@link Map} of them.
+     * If the node is a {@link JsonObject} unmarshalls the keys and values  otherwise assumes an array and unmarshalls
+     * the entries made up of key and value properties.
      */
     @Override
     public <K, V> Map<K, V> unmarshallMap(final JsonNode node,
                                           final Class<K> keyType,
                                           final Class<V> valueType) {
+        return node.isObject() ?
+                unmarshallMapFromObject(node.objectOrFail(), keyType, valueType) :
+                unmarshallMapFromArray(node, keyType, valueType);
+    }
+
+    private <K, V> Map<K, V> unmarshallMapFromObject(final JsonObject node,
+                                                     final Class<K> keyType,
+                                                     final Class<V> valueType) {
+        final BasicJsonMarshaller<K> keyMapper = BasicJsonMarshaller.marshaller(keyType);
+        final BasicJsonMarshaller<V> valueMapper = BasicJsonMarshaller.marshaller(valueType);
+
+        final Map<K, V> map = Maps.ordered();
+
+        for (final JsonNode entry : node.children()) {
+            map.put(
+                    keyMapper.unmarshall(
+                            this.preProcess(JsonNode.string(entry.name().value()), keyType),
+                            this
+                    ),
+                    valueMapper.unmarshall(
+                            this.preProcess(entry, valueType),
+                            this
+                    )
+            );
+        }
+        return map;
+    }
+
+    private <K, V> Map<K, V> unmarshallMapFromArray(final JsonNode node,
+                                                    final Class<K> keyType,
+                                                    final Class<V> valueType) {
         fromArrayCheck(node, Map.class);
 
         final BasicJsonMarshaller<K> keyMapper = BasicJsonMarshaller.marshaller(keyType);
@@ -139,11 +170,19 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
 
         final Map<K, V> map = Maps.ordered();
 
-        for (JsonNode entry : node.children()) {
+        for (final JsonNode entry : node.children()) {
             final JsonObject entryObject = entry.objectOrFail();
 
-            map.put(keyMapper.unmarshall(this.preProcess(entryObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_KEY), keyType), this),
-                    valueMapper.unmarshall(this.preProcess(entryObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_VALUE), valueType), this));
+            map.put(
+                    keyMapper.unmarshall(
+                            this.preProcess(entryObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_KEY), keyType),
+                            this
+                    ),
+                    valueMapper.unmarshall(
+                            this.preProcess(entryObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_VALUE), valueType),
+                            this
+                    )
+            );
         }
         return map;
     }

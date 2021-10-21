@@ -87,6 +87,13 @@ public final class JsonPropertyName implements Name,
 
     private final String name;
 
+    /**
+     * Returns a {@link JsonString} with this value.
+     */
+    public JsonString toJsonString() {
+        return JsonNode.string(this.value());
+    }
+
     // HasSearchNode....................................................................................................
 
     /**

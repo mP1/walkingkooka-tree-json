@@ -148,7 +148,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
         for (final JsonNode entry : node.children()) {
             map.put(
                     keyMapper.unmarshall(
-                            this.preProcess(JsonNode.string(entry.name().value()), keyType),
+                            this.preProcess(entry.name().toJsonString(), keyType),
                             this
                     ),
                     valueMapper.unmarshall(

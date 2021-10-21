@@ -75,6 +75,12 @@ public final class JsonPropertyNameTest implements ClassTesting2<JsonPropertyNam
     }
 
     @Test
+    public void testToJsonString() {
+        final String value = "property123";
+        assertEquals(JsonNode.string(value), JsonPropertyName.with(value).toJsonString());
+    }
+
+    @Test
     public void testCompareToArraySort() {
         final JsonPropertyName a1 = JsonPropertyName.with("A1");
         final JsonPropertyName b2 = JsonPropertyName.with("B2");

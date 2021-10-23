@@ -26,6 +26,7 @@ import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.cursor.TextCursors;
 import walkingkooka.text.cursor.parser.Parser;
+import walkingkooka.text.cursor.parser.ParserException;
 import walkingkooka.text.cursor.parser.ParserReporters;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.Printers;
@@ -60,11 +61,15 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      * Parsers the given json and returns its {@link JsonNode} equivalent.
      */
     public static JsonNode parse(final String text) {
-        return PARSER.parse(TextCursors.charSequence(text),
-                JsonNodeParserContexts.basic())
-                .get()
-                .cast(JsonNodeParserToken.class)
-                .toJsonNode().get();
+        try {
+            return PARSER.parse(TextCursors.charSequence(text),
+                            JsonNodeParserContexts.basic())
+                    .get()
+                    .cast(JsonNodeParserToken.class)
+                    .toJsonNode().get();
+        } catch (final ParserException cause) {
+            throw new IllegalArgumentException(cause.getMessage(), cause);
+        }
     }
 
     /**

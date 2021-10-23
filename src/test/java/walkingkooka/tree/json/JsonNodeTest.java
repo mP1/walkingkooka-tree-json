@@ -24,38 +24,40 @@ import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.cursor.parser.ParserException;
 import walkingkooka.tree.HasTextOffsetTesting;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public final class JsonNodeTest implements ClassTesting2<JsonNode>,
         HasTextOffsetTesting,
         ParseStringTesting<JsonNode> {
 
     @Test
     public void testKeyMissingValueFails() {
-        this.parseStringFails("\"a1\":", ParserException.class);
+        this.parseStringFails("\"a1\":", IllegalArgumentException.class);
     }
 
     @Test
     public void testKeyValuePairFails() {
-        this.parseStringFails("\"a1\": \"b2\"", ParserException.class);
+        this.parseStringFails("\"a1\": \"b2\"", IllegalArgumentException.class);
     }
 
     @Test
     public void testKeyValuePairTwiceFails() {
-        this.parseStringFails("\"a1\": \"b2\", \"c3\": \"d4\"", ParserException.class);
+        this.parseStringFails("\"a1\": \"b2\", \"c3\": \"d4\"", IllegalArgumentException.class);
     }
 
     @Test
     public void testParseIncompleteObjectFails() {
-        this.parseStringFails("{\"", ParserException.class);
+        this.parseStringFails("{\"", IllegalArgumentException.class);
     }
 
     @Test
     public void testParseIncompleteArrayFails() {
-        this.parseStringFails("[1,", ParserException.class);
+        this.parseStringFails("[1,", IllegalArgumentException.class);
     }
 
     @Test
     public void testParseIncompleteArrayFails2() {
-        this.parseStringFails("[1,", ParserException.class);
+        this.parseStringFails("[1,", IllegalArgumentException.class);
     }
 
     @Test
@@ -173,11 +175,12 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
 
     @Override
     public RuntimeException parseStringFailedExpected(final RuntimeException expected) {
+        assertEquals(expected instanceof IllegalArgumentException, expected + " is not a sub class of " + IllegalArgumentException.class);
         return expected;
     }
 
     @Override
     public Class<? extends RuntimeException> parseStringFailedExpected(final Class<? extends RuntimeException> expected) {
-        return ParserException.class;
+        return IllegalArgumentException.class;
     }
 }

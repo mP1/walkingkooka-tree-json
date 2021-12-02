@@ -102,7 +102,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
     }
 
     @Test
-    default void testStaticFromJsonNodeMethodsNonPublic() {
+    default void testStaticUnmarshallMethodsNonPublic() {
         assertEquals(Lists.empty(),
                 Arrays.stream(this.type().getMethods())
                         .filter(MethodAttributes.STATIC::is)
@@ -112,7 +112,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
     }
 
     @Test
-    default void testFromJsonNodeNullFails() {
+    default void testUnmarshallNullFails() {
         assertThrows(java.lang.NullPointerException.class, () -> this.unmarshall(null));
     }
 

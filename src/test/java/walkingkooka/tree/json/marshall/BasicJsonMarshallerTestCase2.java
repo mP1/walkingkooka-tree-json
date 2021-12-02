@@ -49,7 +49,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     abstract Class<T> marshallerType();
 
     @Test
-    public final void testFromJsonNodeNullFails() {
+    public final void testUnmarshallNullFails() {
         assertThrows(java.lang.NullPointerException.class, () -> this.marshaller().unmarshall(null, this.unmarshallContext()));
     }
 

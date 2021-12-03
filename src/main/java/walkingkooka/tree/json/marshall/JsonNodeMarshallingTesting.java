@@ -39,8 +39,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -55,17 +53,19 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
         if (type.isEnum()) {
             final Object[] values = Cast.to(type.getMethod("values").invoke(null));
-            assertEquals(Lists.empty(),
+            this.checkEquals(Lists.empty(),
                     Arrays.stream(values)
                             .filter(e -> BasicJsonMarshaller.TYPENAME_TO_MARSHALLER.get(e.getClass().getName()) == null)
                             .collect(Collectors.toList()),
-                    () -> "Not all enum: " + typeName + " value types not registered -> JsonNodeContext.register()=" + BasicJsonMarshaller.TYPENAME_TO_MARSHALLER);
+                    () -> "Not all enum: " + typeName + " value types not registered -> JsonNodeContext.register()=" + BasicJsonMarshaller.TYPENAME_TO_MARSHALLER
+            );
 
         } else {
-            assertNotEquals(
+            this.checkNotEquals(
                     null,
                     BasicJsonMarshaller.TYPENAME_TO_MARSHALLER.get(typeName),
-                    () -> "Type: " + typeName + " factory not registered -> JsonNodeContext.register()=" + BasicJsonMarshaller.TYPENAME_TO_MARSHALLER);
+                    () -> "Type: " + typeName + " factory not registered -> JsonNodeContext.register()=" + BasicJsonMarshaller.TYPENAME_TO_MARSHALLER
+            );
         }
     }
 
@@ -77,7 +77,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
         final JsonNode node = context.marshallWithType(value);
         if (node.isObject()) {
-            assertEquals(node.objectOrFail().get(BasicJsonNodeContext.TYPE).map(Node::removeParent),
+            this.checkEquals(node.objectOrFail().get(BasicJsonNodeContext.TYPE).map(Node::removeParent),
                     context.typeName(value.getClass()),
                     () -> value + " & " + node);
         }
@@ -91,11 +91,19 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
         final Class<V> type = this.type();
         final Optional<JsonString> maybeTypeName = context.typeName(type);
-        assertNotEquals(Optional.empty(), maybeTypeName, () -> "typeName for " + type.getName() + " failed");
+        this.checkNotEquals(
+                Optional.empty(),
+                maybeTypeName,
+                () -> "typeName for " + type.getName() + " failed"
+        );
 
         final JsonString typeName = maybeTypeName.get();
         final Optional<Class<?>> maybeRegisteredType = context.registeredType(typeName);
-        assertNotEquals(Optional.empty(), maybeRegisteredType, () -> "registeredType for " + type.getName() + " failed");
+        this.checkNotEquals(
+                Optional.empty(),
+                maybeRegisteredType,
+                () -> "registeredType for " + type.getName() + " failed"
+        );
 
         final Class<?> registeredType = maybeRegisteredType.get();
         assertTrue(registeredType.isAssignableFrom(type), () -> "registeredType for " + registeredType.getName() + " failed " + registeredType + " " + type);
@@ -103,12 +111,14 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
     @Test
     default void testStaticUnmarshallMethodsNonPublic() {
-        assertEquals(Lists.empty(),
+        this.checkEquals(
+                Lists.empty(),
                 Arrays.stream(this.type().getMethods())
                         .filter(MethodAttributes.STATIC::is)
                         .filter(m -> m.getName().startsWith("unmarshall"))
                         .collect(Collectors.toList()),
-                "static unmarshall methods must not be public");
+                "static unmarshall methods must not be public"
+        );
     }
 
     @Test
@@ -123,9 +133,11 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
     default void unmarshallAndCheck(final JsonNode from,
                                     final Object value) {
-        assertEquals(value,
+        this.checkEquals(
+                value,
                 this.unmarshall(from),
-                () -> "unmarshall failed " + from);
+                () -> "unmarshall failed " + from
+        );
     }
 
     default void unmarshallFails(final String from) {
@@ -174,27 +186,33 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
     default void testMarshallRoundtripList() {
         final List<Object> list = Lists.of(this.createJsonNodeMarshallingValue());
 
-        assertEquals(list,
+        this.checkEquals(
+                list,
                 this.unmarshallContext().unmarshallWithTypeList(this.marshallContext().marshallWithTypeList(list)),
-                () -> "Roundtrip to -> from -> to failed list=" + list);
+                () -> "Roundtrip to -> from -> to failed list=" + list
+        );
     }
 
     @Test
     default void testMarshallRoundtripSet() {
         final Set<Object> set = Sets.of(this.createJsonNodeMarshallingValue());
 
-        assertEquals(set,
+        this.checkEquals(
+                set,
                 this.unmarshallContext().unmarshallWithTypeSet(this.marshallContext().marshallWithTypeSet(set)),
-                () -> "Roundtrip to -> from -> to failed set=" + set);
+                () -> "Roundtrip to -> from -> to failed set=" + set
+        );
     }
 
     @Test
     default void testMarshallRoundtripMap() {
         final Map<String, Object> map = Maps.of("key123", this.createJsonNodeMarshallingValue());
 
-        assertEquals(map,
+        this.checkEquals(
+                map,
                 this.unmarshallContext().unmarshallWithTypeMap(this.marshallContext().marshallWithTypeMap(map)),
-                () -> "Roundtrip to -> from -> to failed marshall=" + map);
+                () -> "Roundtrip to -> from -> to failed marshall=" + map
+        );
     }
 
     default V unmarshall(final JsonNode from) {
@@ -222,9 +240,11 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
     default void marshallAndCheck(final Object value,
                                   final JsonNode json,
                                   final JsonNodeMarshallContext context) {
-        assertEquals(json,
+        this.checkEquals(
+                json,
                 context.marshall(value),
-                () -> "marshall doesnt match=" + value);
+                () -> "marshall doesnt match=" + value
+        );
     }
 
     default void marshallRoundTripTwiceAndCheck(final Object value) {
@@ -238,9 +258,11 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
         final Object fromValue = this.unmarshall(jsonNode);
         final JsonNode jsonNode2 = context.marshall(fromValue);
 
-        assertEquals(fromValue,
+        this.checkEquals(
+                fromValue,
                 this.unmarshall(jsonNode2),
-                () -> "Roundtrip to -> from -> to failed value=" + CharSequences.quoteIfChars(value));
+                () -> "Roundtrip to -> from -> to failed value=" + CharSequences.quoteIfChars(value)
+        );
     }
 
     default void marshallWithTypeRoundTripTwiceAndCheck(final Object value) {
@@ -257,13 +279,17 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
         final Object from = fromContext.unmarshallWithType(jsonNode);
         final JsonNode jsonNode2 = toContext.marshallWithType(from);
 
-        assertEquals(from,
+        this.checkEquals(
+                from,
                 fromContext.unmarshallWithType(jsonNode2),
-                () -> "BasicJsonMarshaller roundtrip to -> from -> to failed =" + CharSequences.quoteIfChars(value));
+                () -> "BasicJsonMarshaller roundtrip to -> from -> to failed =" + CharSequences.quoteIfChars(value)
+        );
 
-        assertEquals(from,
+        this.checkEquals(
+                from,
                 fromContext.unmarshallWithType(jsonNode2),
-                () -> "BasicJsonMarshaller roundtrip to -> from -> to failed =" + CharSequences.quoteIfChars(value));
+                () -> "BasicJsonMarshaller roundtrip to -> from -> to failed =" + CharSequences.quoteIfChars(value)
+        );
     }
 
     V createJsonNodeMarshallingValue();

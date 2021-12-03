@@ -23,7 +23,6 @@ import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.CaseSensitivity;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class JsonPropertyNameTest implements ClassTesting2<JsonPropertyName>,
@@ -66,18 +65,18 @@ public final class JsonPropertyNameTest implements ClassTesting2<JsonPropertyNam
 
     private void fromClassAndCheck(final Class<? extends JsonNode> type,
                                    final String expected) {
-        assertEquals(expected, JsonPropertyName.fromClass(type).value());
+        this.checkEquals(expected, JsonPropertyName.fromClass(type).value());
     }
 
     @Test
     public void testIndex() {
-        assertEquals("123", JsonPropertyName.index(123).value());
+        this.checkEquals("123", JsonPropertyName.index(123).value());
     }
 
     @Test
     public void testToJsonString() {
         final String value = "property123";
-        assertEquals(JsonNode.string(value), JsonPropertyName.with(value).toJsonString());
+        this.checkEquals(JsonNode.string(value), JsonPropertyName.with(value).toJsonString());
     }
 
     @Test

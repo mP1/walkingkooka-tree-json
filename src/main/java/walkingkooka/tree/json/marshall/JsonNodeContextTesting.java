@@ -34,7 +34,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface JsonNodeContextTesting<C extends JsonNodeContext> extends ContextTesting<C> {
@@ -267,17 +266,21 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
 
     default void registeredTypeAndCheck(final JsonString name,
                                         final Optional<Class<?>> type) {
-        this.registeredTypeAndCheck(this.createContext(),
+        this.registeredTypeAndCheck(
+                this.createContext(),
                 name,
-                type);
+                type
+        );
     }
 
     default void registeredTypeAndCheck(final JsonNodeContext context,
                                         final JsonString name,
                                         final Optional<Class<?>> type) {
-        assertEquals(type,
+        this.checkEquals(
+                type,
                 context.registeredType(name),
-                () -> context + " registeredType " + name);
+                () -> context + " registeredType " + name
+        );
     }
 
     // typeName ........................................................................................................
@@ -292,8 +295,10 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void typeNameAndCheck(final JsonNodeContext context,
                                   final Class<?> type,
                                   final Optional<JsonString> expected) {
-        assertEquals(expected,
+        this.checkEquals(
+                expected,
                 context.typeName(type),
-                () -> context + " typeName " + type.getName());
+                () -> context + " typeName " + type.getName()
+        );
     }
 }

@@ -26,7 +26,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.BiFunction;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -108,7 +107,7 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
     default void marshallAndCheck(final JsonNodeMarshallContext context,
                                   final Object value,
                                   final JsonNode expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.marshall(value),
                 () -> context + " marshall " + value);
     }
@@ -125,7 +124,7 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
     default void marshallListAndCheck(final JsonNodeMarshallContext context,
                                       final List<?> list,
                                       final JsonNode expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.marshallList(list),
                 () -> context + " marshallList " + list);
     }
@@ -142,7 +141,7 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
     default void marshallSetAndCheck(final JsonNodeMarshallContext context,
                                      final Set<?> set,
                                      final JsonNode expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.marshallSet(set),
                 () -> context + " marshallSet " + set);
     }
@@ -159,7 +158,7 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
     default void marshallMapAndCheck(final JsonNodeMarshallContext context,
                                      final Map<?, ?> map,
                                      final JsonNode expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.marshallMap(map),
                 () -> context + " marshallMap " + map);
     }
@@ -176,7 +175,7 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
     default void marshallWithTypeAndCheck(final JsonNodeMarshallContext context,
                                           final Object value,
                                           final JsonNode expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.marshallWithType(value),
                 () -> context + " marshallWithType " + value);
     }
@@ -193,7 +192,7 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
     default void marshallWithTypeListAndCheck(final JsonNodeMarshallContext context,
                                               final List<?> list,
                                               final JsonNode expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.marshallWithTypeList(list),
                 () -> context + " marshallWithTypeList " + list);
     }
@@ -210,7 +209,7 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
     default void marshallWithTypeSetAndCheck(final JsonNodeMarshallContext context,
                                              final Set<?> set,
                                              final JsonNode expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.marshallWithTypeSet(set),
                 () -> context + " marshallWithTypeSet " + set);
     }
@@ -227,7 +226,7 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
     default void marshallWithTypeMapAndCheck(final JsonNodeMarshallContext context,
                                              final Map<?, ?> map,
                                              final JsonNode expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.marshallWithTypeMap(map),
                 () -> context + " marshallWithTypeMap " + map);
     }

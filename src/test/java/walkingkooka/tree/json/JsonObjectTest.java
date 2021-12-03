@@ -33,8 +33,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -135,7 +133,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
 
     @Test
     public void testGetAbsent() {
-        assertEquals(Optional.empty(), this.createJsonNode().get(key1()));
+        this.checkEquals(Optional.empty(), this.createJsonNode().get(key1()));
     }
 
     @Test
@@ -167,7 +165,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonObject object = JsonNode.object()
                 .set(key1, value1);
 
-        assertEquals(Optional.empty(), object.get(key2()));
+        this.checkEquals(Optional.empty(), object.get(key2()));
     }
 
     @Test
@@ -327,14 +325,14 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
 
     private void getAndCheck(final JsonObject object, final JsonPropertyName key, final String value) {
         final Optional<JsonNode> got = object.get(key);
-        assertNotEquals(Optional.empty(), got, "expected value for key " + key);
+        this.checkNotEquals(Optional.empty(), got, "expected value for key " + key);
 
         // JsonString retrieved will include the key component so a new JsonString cant be created and assertEqual'd.
-        assertEquals(value,
+        this.checkEquals(value,
                 object.get(key).get().cast(JsonString.class).value(),
                 "incorrect string value for get key=" + key);
 
-        assertEquals(value,
+        this.checkEquals(value,
                 object.getOrFail(key).cast(JsonString.class).value(),
                 "incorrect JsonNode for getOrFail " + key);
     }
@@ -457,7 +455,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     }
 
     private void containsAndCheck(final JsonObject object, final JsonPropertyName name, final boolean contains) {
-        assertEquals(contains, object.contains(name), () -> object + " contains " + name);
+        this.checkEquals(contains, object.contains(name), () -> object + " contains " + name);
     }
 
     // replace ....................................................................................................
@@ -727,11 +725,11 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
                 visited.add(t);
             }
         }.accept(object);
-        assertEquals("1517217262", b.toString());
-        assertEquals(Lists.of(object, object,
-                string1, string1, string1,
-                string2, string2, string2,
-                object, object),
+        this.checkEquals("1517217262", b.toString());
+        this.checkEquals(Lists.of(object, object,
+                        string1, string1, string1,
+                        string2, string2, string2,
+                        object, object),
                 visited,
                 "visited");
     }
@@ -779,12 +777,12 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.NONE).indenting(Indentation.EMPTY);
         object.printJson(printer);
 
-        assertEquals("{\"key1\": true,\"key2\": 2,\"key3\": \"third\"}", b.toString());
+        this.checkEquals("{\"key1\": true,\"key2\": 2,\"key3\": \"third\"}", b.toString());
     }
 
     @Test
     public void testTextWithoutChildren() {
-        assertEquals("", JsonNode.object().text());
+        this.checkEquals("", JsonNode.object().text());
     }
 
     @Test
@@ -794,7 +792,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
                 .set(key2(), JsonNode.number(2))
                 .set(key3(), JsonNode.string("third"));
 
-        assertEquals("true2third", object.text());
+        this.checkEquals("true2third", object.text());
     }
 
     @Test
@@ -804,7 +802,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
                 .set(key2(), JsonNode.number(2.5))
                 .set(key3(), JsonNode.string("third"));
 
-        assertEquals("true2.5third", object.text());
+        this.checkEquals("true2.5third", object.text());
     }
 
     @Test

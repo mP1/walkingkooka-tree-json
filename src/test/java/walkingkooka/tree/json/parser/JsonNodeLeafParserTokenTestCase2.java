@@ -20,8 +20,6 @@ import walkingkooka.tree.json.JsonNode;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public abstract class JsonNodeLeafParserTokenTestCase2<T extends JsonNodeLeafParserToken, V, N extends JsonNode> extends JsonNodeLeafParserTokenTestCase<T, V> {
 
     JsonNodeLeafParserTokenTestCase2() {
@@ -30,7 +28,7 @@ public abstract class JsonNodeLeafParserTokenTestCase2<T extends JsonNodeLeafPar
 
     @Override
     public final void testToJsonNode() {
-        assertEquals(Optional.of(this.jsonNode()), this.createToken().toJsonNode());
+        this.checkEquals(Optional.of(this.jsonNode()), this.createToken().toJsonNode());
     }
 
     abstract N jsonNode();

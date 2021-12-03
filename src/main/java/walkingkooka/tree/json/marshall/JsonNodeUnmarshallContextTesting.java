@@ -25,7 +25,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.BiFunction;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -105,7 +104,7 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                                         final JsonNode node,
                                         final Class<T> type,
                                         final T expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.unmarshall(node, type),
                 () -> context + " unmarshall " + node + " type " + type.getName());
     }
@@ -125,7 +124,7 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                                             final JsonNode node,
                                             final Class<T> type,
                                             final List<T> expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.unmarshallList(node, type),
                 () -> context + " unmarshallList " + node + " type " + type.getName());
     }
@@ -145,7 +144,7 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                                            final JsonNode node,
                                            final Class<T> type,
                                            final Set<T> expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.unmarshallSet(node, type),
                 () -> context + " unmarshallSet " + node + " type " + type.getName());
     }
@@ -168,7 +167,7 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                                               final Class<K> key,
                                               final Class<V> value,
                                               final Map<K, V> expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.unmarshallMap(node, key, value),
                 () -> context + " unmarshallMap " + node + " key " + key.getName() + " value " + value.getName());
     }
@@ -185,7 +184,7 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
     default void unmarshallWithTypeAndCheck(final JsonNodeUnmarshallContext context,
                                             final JsonNode node,
                                             final Object expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.unmarshallWithType(node),
                 () -> context + " unmarshallWithType " + node);
     }
@@ -202,7 +201,7 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
     default void unmarshallWithTypeListAndCheck(final JsonNodeUnmarshallContext context,
                                                 final JsonNode node,
                                                 final List<?> expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.unmarshallWithTypeList(node),
                 () -> context + " unmarshallWithTypeList " + node);
     }
@@ -219,7 +218,7 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
     default void unmarshallWithTypeSetAndCheck(final JsonNodeUnmarshallContext context,
                                                final JsonNode node,
                                                final Set<?> expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.unmarshallWithTypeSet(node),
                 () -> context + " unmarshallWithTypeSet " + node);
     }
@@ -236,7 +235,7 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
     default void unmarshallMapWithTypeAndCheck(final JsonNodeUnmarshallContext context,
                                                final JsonNode node,
                                                final Map<?, ?> expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 context.unmarshallWithTypeMap(node),
                 () -> context + " unmarshallWithTypeMap " + node);
     }

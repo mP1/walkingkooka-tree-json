@@ -23,31 +23,30 @@ import walkingkooka.visit.Visiting;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber, Double> {
 
     @Override
     public void testNumberOrFail() {
-        assertEquals(1.0,
+        this.checkEquals(1.0,
                 JsonNumber.with(1).numberOrFail());
     }
 
     @Test
     public void testNumberOrFail2() {
-        assertEquals(2.0,
+        this.checkEquals(2.0,
                 JsonNumber.with(2).numberOrFail());
     }
 
     @Test
     public void testTextWholeNumber() {
-        assertEquals("123", JsonNumber.with(123).text());
+        this.checkEquals("123", JsonNumber.with(123).text());
     }
 
     @Test
     public void testTextDecimalNumber() {
-        assertEquals("123.5", JsonNumber.with(123.5).text());
+        this.checkEquals("123.5", JsonNumber.with(123.5).text());
     }
 
     @Test
@@ -75,7 +74,7 @@ public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber
                 b.append("3");
             }
         }.accept(node);
-        assertEquals("132", b.toString());
+        this.checkEquals("132", b.toString());
     }
 
     @Test

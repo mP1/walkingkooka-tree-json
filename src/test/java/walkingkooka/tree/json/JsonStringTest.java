@@ -25,7 +25,6 @@ import walkingkooka.visit.Visiting;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -33,13 +32,13 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
 
     @Override
     public void testStringOrFail() {
-        assertEquals("abc",
+        this.checkEquals("abc",
                 JsonString.with("abc").stringOrFail());
     }
 
     @Test
     public void testStringOrFail2() {
-        assertEquals("123",
+        this.checkEquals("123",
                 JsonString.with("123").stringOrFail());
     }
 
@@ -53,18 +52,18 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
     @Test
     public void testCharacterOrFailEmptyString() {
         final IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> JsonString.with("").characterOrFail());
-        assertEquals("Character string must have length of 1 not 0 got \"\"", thrown.getMessage());
+        this.checkEquals("Character string must have length of 1 not 0 got \"\"", thrown.getMessage());
     }
 
     @Test
     public void testCharacterOrFailNonOneCharacterString() {
         final IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> JsonString.with("abc").characterOrFail());
-        assertEquals("Character string must have length of 1 not 3 got \"abc\"", thrown.getMessage());
+        this.checkEquals("Character string must have length of 1 not 3 got \"abc\"", thrown.getMessage());
     }
 
     @Test
     public void testCharacterOrFail() {
-        assertEquals('A', JsonString.with("A").characterOrFail());
+        this.checkEquals('A', JsonString.with("A").characterOrFail());
     }
 
     // toSearchNode...............................................................................................
@@ -100,7 +99,7 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
                 b.append("3");
             }
         }.accept(node);
-        assertEquals("132", b.toString());
+        this.checkEquals("132", b.toString());
     }
 
     @Test
@@ -206,7 +205,7 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
             final JsonString jsonString = JsonNode.string(text);
             final String json = jsonString.toString();
 
-            assertEquals(
+            this.checkEquals(
                     text,
                     JsonNode.parse(json).stringOrFail(),
                     () -> "parsing string " + CharSequences.quoteIfChars(c)

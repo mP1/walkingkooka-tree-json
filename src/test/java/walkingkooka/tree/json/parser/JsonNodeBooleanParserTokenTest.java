@@ -22,7 +22,6 @@ import walkingkooka.tree.json.JsonBoolean;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.visit.Visiting;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public final class JsonNodeBooleanParserTokenTest extends JsonNodeLeafParserTokenTestCase2<JsonNodeBooleanParserToken, Boolean, JsonBoolean> {
@@ -65,7 +64,7 @@ public final class JsonNodeBooleanParserTokenTest extends JsonNodeLeafParserToke
                 b.append("5");
             }
         }.accept(token);
-        assertEquals("13542", b.toString());
+        this.checkEquals("13542", b.toString());
     }
 
     @Override

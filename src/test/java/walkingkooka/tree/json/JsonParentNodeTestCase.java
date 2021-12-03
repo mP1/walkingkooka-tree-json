@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C extends List<JsonNode>>
@@ -59,10 +58,10 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
 
         final JsonPropertyName differentName = JsonPropertyName.with("different");
         final N different = (N) node.setName(differentName);
-        assertEquals(differentName, different.name(), "name");
+        this.checkEquals(differentName, different.name(), "name");
         this.checkChildren(different, value);
 
-        assertEquals(originalName, node.name(), "original name");
+        this.checkEquals(originalName, node.name(), "original name");
         this.checkChildren(node, value);
     }
 
@@ -106,7 +105,7 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
     }
 
     final void checkChildren(final N node, final List<JsonNode> children) {
-        assertEquals(children, node.children(), "children");
+        this.checkEquals(children, node.children(), "children");
     }
 
     // NodeTesting..............................................................................
@@ -132,11 +131,11 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
 
         int i = 0;
         for (Node<?, ?, ?, ?> child : node.children()) {
-            assertEquals(i, child.index(), () -> "Incorrect index of " + child);
-            assertEquals(JsonPropertyName.index(i), child.name(), () -> "child name" + child);
+            this.checkEquals(i, child.index(), () -> "Incorrect index of " + child);
+            this.checkEquals(JsonPropertyName.index(i), child.name(), () -> "child name" + child);
 
             final int j = i;
-            assertEquals(nodeAsParent, child.parent(), () -> "Incorrect parent of child " + j + "=" + child);
+            this.checkEquals(nodeAsParent, child.parent(), () -> "Incorrect parent of child " + j + "=" + child);
 
             this.childrenCheck(child);
             i++;
@@ -150,11 +149,11 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
         for (Entry<JsonPropertyName, JsonNode> keyAndValue : node.children.nameToValues.entrySet()) {
             final Node<?, ?, ?, ?> child = keyAndValue.getValue();
 
-            assertEquals(i, child.index(), () -> "Incorrect index of " + child);
-            assertEquals(keyAndValue.getKey(), child.name(), () -> "child name" + child);
+            this.checkEquals(i, child.index(), () -> "Incorrect index of " + child);
+            this.checkEquals(keyAndValue.getKey(), child.name(), () -> "child name" + child);
 
             final int j = i;
-            assertEquals(nodeAsParent, child.parent(), () -> "Incorrect parent of child " + j + "=" + child);
+            this.checkEquals(nodeAsParent, child.parent(), () -> "Incorrect parent of child " + j + "=" + child);
 
             this.childrenCheck(child);
             i++;

@@ -20,7 +20,6 @@ package walkingkooka.tree.json;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -34,7 +33,7 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
     @Test
     public final void testCreate() {
         final N node = this.createJsonNode();
-        assertEquals(Lists.empty(), node.children(), "children");
+        this.checkEquals(Lists.empty(), node.children(), "children");
         this.parentMissingCheck(node);
         this.checkValue(node, this.value());
         this.textAndCheck(node, String.valueOf(this.value()));
@@ -48,10 +47,10 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
 
         final JsonPropertyName differentName = JsonPropertyName.with("different");
         final N different = (N) node.setName(differentName);
-        assertEquals(differentName, different.name(), "name");
+        this.checkEquals(differentName, different.name(), "name");
         this.checkValue(different, value);
 
-        assertEquals(originalName, node.name(), "original name");
+        this.checkEquals(originalName, node.name(), "original name");
         this.checkValue(node, value);
     }
 
@@ -83,7 +82,7 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
         final JsonPropertyName a = JsonPropertyName.with("prop");
         final JsonObject parent = JsonNode.object()
                 .set(a, node);
-        assertEquals(node, parent.getOrFail(a).removeParent());
+        this.checkEquals(node, parent.getOrFail(a).removeParent());
     }
 
     @Test
@@ -132,7 +131,7 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
 
     @Test
     public final void testText() {
-        assertEquals(String.valueOf(this.value()), this.createJsonNode().text());
+        this.checkEquals(String.valueOf(this.value()), this.createJsonNode().text());
     }
 
     @Test
@@ -165,6 +164,6 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
     abstract V differentValue();
 
     final void checkValue(final N node, final V value) {
-        assertEquals(value, node.value(), "value");
+        this.checkEquals(value, node.value(), "value");
     }
 }

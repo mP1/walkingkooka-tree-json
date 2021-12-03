@@ -20,8 +20,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public abstract class JsonNodeSymbolParserTokenTestCase<T extends JsonNodeSymbolParserToken, V> extends JsonNodeLeafParserTokenTestCase<T, V> {
 
     JsonNodeSymbolParserTokenTestCase() {
@@ -31,6 +29,6 @@ public abstract class JsonNodeSymbolParserTokenTestCase<T extends JsonNodeSymbol
     @Test
     public final void testToJsonNode() {
         final T token = this.createToken();
-        assertEquals(Optional.empty(), token.toJsonNode());
+        this.checkEquals(Optional.empty(), token.toJsonNode());
     }
 }

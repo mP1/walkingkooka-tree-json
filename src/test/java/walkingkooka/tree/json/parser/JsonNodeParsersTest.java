@@ -30,8 +30,6 @@ import walkingkooka.text.cursor.parser.ParserToken;
 import java.lang.reflect.Method;
 import java.math.MathContext;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public final class JsonNodeParsersTest implements PublicStaticHelperTesting<JsonNodeParsers>,
         ParserTesting2<Parser<JsonNodeParserContext>, JsonNodeParserContext> {
 
@@ -419,7 +417,7 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
 
     private JsonNodeParserToken string(final String value) {
         final String quotedAndEscaped = CharSequences.quoteAndEscape(value).toString();
-        assertEquals(CharSequences.quote(value).toString(), quotedAndEscaped, () -> "string contains escaping");
+        this.checkEquals(CharSequences.quote(value).toString(), quotedAndEscaped, () -> "string contains escaping");
         return string(value, quotedAndEscaped);
     }
 

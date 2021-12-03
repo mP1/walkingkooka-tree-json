@@ -18,14 +18,13 @@
 package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public final class JsonNodeContextTypeNameComputerTest {
+public final class JsonNodeContextTypeNameComputerTest implements Testing {
 
     @Test
     public void testBigDecimal() {
@@ -54,7 +53,7 @@ public final class JsonNodeContextTypeNameComputerTest {
 
     private void computeAndCheck(final String simpleClassName,
                                  final String expected) {
-        assertEquals(
+        this.checkEquals(
                 expected,
                 JsonNodeContextTypeNameComputer.compute(simpleClassName),
                 () -> "compute " + CharSequences.quote(simpleClassName)

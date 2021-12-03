@@ -21,10 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.test.ParseStringTesting;
-import walkingkooka.text.cursor.parser.ParserException;
 import walkingkooka.tree.HasTextOffsetTesting;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class JsonNodeTest implements ClassTesting2<JsonNode>,
         HasTextOffsetTesting,
@@ -175,7 +172,7 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
 
     @Override
     public RuntimeException parseStringFailedExpected(final RuntimeException expected) {
-        assertEquals(expected instanceof IllegalArgumentException, expected + " is not a sub class of " + IllegalArgumentException.class);
+        this.checkEquals(expected instanceof IllegalArgumentException, expected + " is not a sub class of " + IllegalArgumentException.class);
         return expected;
     }
 

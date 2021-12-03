@@ -29,7 +29,6 @@ import walkingkooka.visit.Visiting;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -72,12 +71,12 @@ public final class JsonNodeObjectParserTokenTest extends JsonNodeParentParserTok
 
     @Test
     public void testMarshallEmpty() {
-        assertEquals(Optional.of(JsonNode.object()), JsonNodeObjectParserToken.with(Lists.empty(), "{}").toJsonNode());
+        this.checkEquals(Optional.of(JsonNode.object()), JsonNodeObjectParserToken.with(Lists.empty(), "{}").toJsonNode());
     }
 
     @Test
     public void testMarshall() {
-        assertEquals(Optional.of(JsonNode.object().set(JsonPropertyName.with("key1"), JsonNode.number(123))),
+        this.checkEquals(Optional.of(JsonNode.object().set(JsonPropertyName.with("key1"), JsonNode.number(123))),
                 object(string("key1"), number(123))
                         .toJsonNode());
     }
@@ -90,12 +89,12 @@ public final class JsonNodeObjectParserTokenTest extends JsonNodeParentParserTok
         final JsonObject objectNode = JsonNode.object().set(JsonPropertyName.with("key1"), JsonNode.number(123));
         final JsonArray arrayNode = JsonNode.array().appendChild(objectNode);
 
-        assertEquals(Optional.of(arrayNode), arrayToken.toJsonNode());
+        this.checkEquals(Optional.of(arrayNode), arrayToken.toJsonNode());
     }
 
     @Test
     public void testMarshallWhitespace() {
-        assertEquals(Optional.of(JsonNode.object().set(JsonPropertyName.with("key1"), JsonNode.number(123))),
+        this.checkEquals(Optional.of(JsonNode.object().set(JsonPropertyName.with("key1"), JsonNode.number(123))),
                 object(whitespace(), string("key1"), whitespace(), number(123))
                         .toJsonNode());
     }
@@ -170,7 +169,7 @@ public final class JsonNodeObjectParserTokenTest extends JsonNodeParentParserTok
             }
         }.accept(token);
 
-        assertEquals("1351374213a421384213a4213942642", b.toString());
+        this.checkEquals("1351374213a421384213a4213942642", b.toString());
     }
 
     @Override

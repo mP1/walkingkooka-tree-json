@@ -27,7 +27,6 @@ import walkingkooka.tree.json.JsonNodeVisitorTesting;
 
 import java.math.MathContext;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicJsonNodeUnmarshallContextJsonNodeVisitorTest implements JsonNodeVisitorTesting<BasicJsonNodeUnmarshallContextJsonNodeVisitor> {
@@ -75,7 +74,7 @@ public final class BasicJsonNodeUnmarshallContextJsonNodeVisitorTest implements 
                 .set(BasicJsonNodeContext.VALUE, JsonNode.booleanNode(false));
 
         final JsonNodeUnmarshallException thrown = assertThrows(JsonNodeUnmarshallException.class, () -> BasicJsonNodeUnmarshallContextJsonNodeVisitor.value(typeAndValue, this.context()));
-        assertEquals("Unknown type: unknown-type-123-???", thrown.getMessage(), "thrown message");
+        this.checkEquals("Unknown type: unknown-type-123-???", thrown.getMessage(), "thrown message");
     }
 
     @Test
@@ -94,7 +93,7 @@ public final class BasicJsonNodeUnmarshallContextJsonNodeVisitorTest implements 
 
     private void valueAndCheck(final JsonNode node,
                                final Object expected) {
-        assertEquals(expected,
+        this.checkEquals(expected,
                 BasicJsonNodeUnmarshallContextJsonNodeVisitor.value(node, this.context()),
                 () -> "value " + node);
     }

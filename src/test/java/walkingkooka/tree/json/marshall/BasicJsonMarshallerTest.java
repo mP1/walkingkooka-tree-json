@@ -22,7 +22,6 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.ExpressionNumberContexts;
 import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.json.JsonNode;
@@ -31,7 +30,6 @@ import walkingkooka.tree.json.JsonString;
 import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.MathContext;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -40,8 +38,6 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<BasicJsonMarshaller<Void>> {
@@ -121,12 +117,12 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     @Test
     public void testRegisteredType() {
-        assertNotEquals(Optional.empty(), BasicJsonMarshaller.registeredType(JsonNode.string("big-decimal")));
+        this.checkNotEquals(Optional.empty(), BasicJsonMarshaller.registeredType(JsonNode.string("big-decimal")));
     }
 
     @Test
     public void testRegisteredTypeUnknown() {
-        assertEquals(Optional.empty(), BasicJsonMarshaller.registeredType(JsonNode.string("???")));
+        this.checkEquals(Optional.empty(), BasicJsonMarshaller.registeredType(JsonNode.string("???")));
     }
 
     // typeName..........................................................................................................
@@ -156,7 +152,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     private void typeNameAndCheck(final Class<?> type,
                                   final Optional<JsonString> typeName) {
-        assertEquals(typeName,
+        this.checkEquals(typeName,
                 BasicJsonMarshaller.typeName(type),
                 () -> "typeName of " + type.getName());
     }
@@ -305,7 +301,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     private void roundtripAndCheck(final Object value) {
         final JsonNode json = JsonNodeMarshallContexts.basic().marshall(value);
-        assertEquals(value,
+        this.checkEquals(value,
                 JsonNodeUnmarshallContexts.basic(ExpressionNumberContexts.basic(EXPRESSION_NUMBER_KIND, MathContext.DECIMAL32)).unmarshall(json, value.getClass()),
                 () -> "roundtrip " + value + "\n" + json);
     }

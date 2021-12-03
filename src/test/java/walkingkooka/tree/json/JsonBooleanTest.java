@@ -24,7 +24,6 @@ import walkingkooka.visit.Visiting;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public final class JsonBooleanTest extends JsonLeafNonNullNodeTestCase<JsonBoolean, Boolean> {
@@ -50,13 +49,13 @@ public final class JsonBooleanTest extends JsonLeafNonNullNodeTestCase<JsonBoole
 
     @Test
     public void testBooleanOrFailTrue() {
-        assertEquals(true,
+        this.checkEquals(true,
                 JsonBoolean.with(true).booleanOrFail());
     }
 
     @Test
     public void testBooleanOrFailFalse() {
-        assertEquals(false,
+        this.checkEquals(false,
                 JsonBoolean.with(false).booleanOrFail());
     }
 
@@ -97,7 +96,7 @@ public final class JsonBooleanTest extends JsonLeafNonNullNodeTestCase<JsonBoole
                 b.append("3");
             }
         }.accept(node);
-        assertEquals("132", b.toString());
+        this.checkEquals("132", b.toString());
     }
 
     @Test

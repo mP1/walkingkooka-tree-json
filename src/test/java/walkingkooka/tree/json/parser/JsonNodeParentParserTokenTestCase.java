@@ -23,7 +23,6 @@ import walkingkooka.text.cursor.parser.ParserToken;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class JsonNodeParentParserTokenTestCase<T extends JsonNodeParentParserToken<T>> extends JsonNodeParserTokenTestCase<T> {
@@ -51,8 +50,8 @@ public abstract class JsonNodeParentParserTokenTestCase<T extends JsonNodeParent
         final String text = this.text();
         final T token = this.createToken(text, tokens);
         this.textAndCheck(token, text);
-        assertEquals(tokens, token.value(), "tokens");
-        assertEquals(tokens, token.value(), "tokens");
+        this.checkEquals(tokens, token.value(), "tokens");
+        this.checkEquals(tokens, token.value(), "tokens");
     }
 
     @Override
@@ -69,6 +68,6 @@ public abstract class JsonNodeParentParserTokenTestCase<T extends JsonNodeParent
     abstract List<ParserToken> tokens();
 
     final void checkValue(final T token, final ParserToken... tokens) {
-        assertEquals(Lists.of(tokens), token.value(), "value");
+        this.checkEquals(Lists.of(tokens), token.value(), "value");
     }
 }

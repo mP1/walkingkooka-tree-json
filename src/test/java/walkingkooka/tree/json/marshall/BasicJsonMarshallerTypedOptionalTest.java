@@ -23,13 +23,10 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeException;
 import walkingkooka.tree.json.JsonPropertyName;
 
 import java.math.BigDecimal;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedOptional, Optional<?>> {
 
@@ -183,14 +180,14 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
         final JsonNode json = marshaller.marshall(value, this.marshallContext());
         final Optional<?> from = marshaller.unmarshall(json, this.unmarshallContext());
 
-        assertEquals(value, from, () -> "json\n" + json);
+        this.checkEquals(value, from, () -> "json\n" + json);
 
         final JsonNode jsonWithType = this.marshallContext()
                 .marshallWithType(value);
         final Optional<?> from2 = this.unmarshallContext()
                 .unmarshallWithType(jsonWithType);
 
-        assertEquals(value, from2, () -> "jsonWithType\n" + jsonWithType);
+        this.checkEquals(value, from2, () -> "jsonWithType\n" + jsonWithType);
     }
 
     @Override

@@ -37,7 +37,6 @@ import walkingkooka.tree.search.HasSearchNodeTesting;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -77,21 +76,21 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     public void testBooleanOrFail() {
         final JsonNode node = this.createNode();
         final ClassCastException thrown = assertThrows(ClassCastException.class, node::booleanOrFail);
-        assertEquals("Expected Boolean got " + node.defaultName() + ": " + node, thrown.getMessage());
+        this.checkEquals("Expected Boolean got " + node.defaultName() + ": " + node, thrown.getMessage());
     }
 
     @Test
     public void testNumberOrFail() {
         final JsonNode node = this.createNode();
         final ClassCastException thrown = assertThrows(ClassCastException.class, node::numberOrFail);
-        assertEquals("Expected Number got " + node.defaultName() + ": " + node, thrown.getMessage());
+        this.checkEquals("Expected Number got " + node.defaultName() + ": " + node, thrown.getMessage());
     }
 
     @Test
     public void testStringOrFail() {
         final JsonNode node = this.createNode();
         final ClassCastException thrown = assertThrows(ClassCastException.class, node::stringOrFail);
-        assertEquals("Expected String got " + node.defaultName() + ": " + node, thrown.getMessage());
+        this.checkEquals("Expected String got " + node.defaultName() + ": " + node, thrown.getMessage());
     }
 
     @Test
@@ -101,7 +100,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
             assertSame(node, node.objectOrFail());
         } else {
             final ClassCastException thrown = assertThrows(ClassCastException.class, node::objectOrFail);
-            assertEquals("Expected Object got " + node.defaultName() + ": " + node, thrown.getMessage());
+            this.checkEquals("Expected Object got " + node.defaultName() + ": " + node, thrown.getMessage());
         }
     }
 
@@ -161,7 +160,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
             node.printJson(printer);
         }
 
-        assertEquals(node.toString(), b.toString());
+        this.checkEquals(node.toString(), b.toString());
     }
 
     @Override

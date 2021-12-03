@@ -26,7 +26,6 @@ import walkingkooka.visit.Visiting;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public final class JsonNodeArrayParserTokenTest extends JsonNodeParentParserTokenTestCase<JsonNodeArrayParserToken> {
@@ -114,23 +113,23 @@ public final class JsonNodeArrayParserTokenTest extends JsonNodeParentParserToke
                 b.append("c");
             }
         }.accept(token);
-        assertEquals("135137421394213b4213a4213b4213c4213842642", b.toString());
+        this.checkEquals("135137421394213b4213a4213b4213c4213842642", b.toString());
     }
 
     @Test
     public void testMarshallEmpty() {
-        assertEquals(Optional.of(JsonNode.array()), JsonNodeParserToken.array(Lists.empty(), "[]").toJsonNode());
+        this.checkEquals(Optional.of(JsonNode.array()), JsonNodeParserToken.array(Lists.empty(), "[]").toJsonNode());
     }
 
     @Test
     public void testMarshall() {
-        assertEquals(Optional.of(JsonNode.array().appendChild(JsonNode.number(123))),
+        this.checkEquals(Optional.of(JsonNode.array().appendChild(JsonNode.number(123))),
                 array(number(123)).toJsonNode());
     }
 
     @Test
     public void testMarshallWhitespace() {
-        assertEquals(Optional.of(JsonNode.array().appendChild(JsonNode.number(123))),
+        this.checkEquals(Optional.of(JsonNode.array().appendChild(JsonNode.number(123))),
                 array(number(123), whitespace(), whitespace()).toJsonNode());
     }
 

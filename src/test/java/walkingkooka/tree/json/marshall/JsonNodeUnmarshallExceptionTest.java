@@ -22,7 +22,6 @@ import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.StandardThrowableTesting;
 import walkingkooka.tree.json.JsonNode;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class JsonNodeUnmarshallExceptionTest implements StandardThrowableTesting<JsonNodeUnmarshallException> {
@@ -76,7 +75,7 @@ public final class JsonNodeUnmarshallExceptionTest implements StandardThrowableT
     }
 
     private void checkNode(final JsonNodeUnmarshallException exception) {
-        assertEquals(this.node(), exception.node(), "node");
+        this.checkEquals(this.node(), exception.node(), "node");
     }
 
     private JsonNode node() {

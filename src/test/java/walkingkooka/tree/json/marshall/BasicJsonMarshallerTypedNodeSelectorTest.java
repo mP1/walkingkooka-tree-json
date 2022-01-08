@@ -23,14 +23,11 @@ import walkingkooka.naming.Names;
 import walkingkooka.naming.StringName;
 import walkingkooka.tree.TestNode;
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.select.NodeSelector;
 import walkingkooka.tree.select.parser.NodeSelectorAttributeName;
-
-import java.math.BigDecimal;
 
 public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedNodeSelector, NodeSelector> {
 
@@ -142,7 +139,7 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
     }
 
     private Expression text() {
-        return Expression.string("text456");
+        return Expression.value("text456");
     }
 
     @Test
@@ -198,7 +195,10 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
     }
 
     private Expression sum() {
-        return Expression.add(Expression.expressionNumber(EXPRESSION_NUMBER_KIND.create(1)), Expression.expressionNumber(EXPRESSION_NUMBER_KIND.create(22)));
+        return Expression.add(
+                Expression.value(EXPRESSION_NUMBER_KIND.create(1)),
+                Expression.value(EXPRESSION_NUMBER_KIND.create(22))
+        );
     }
 
     @Test
@@ -316,10 +316,17 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
 
     @Test
     public void testAbsoluteNamedChildrenExpressionJsonRoundtrip() {
-        this.jsonRoundtripAndCheck(TestNode.absoluteNodeSelector()
+        this.jsonRoundtripAndCheck(
+                TestNode.absoluteNodeSelector()
                 .children()
                 .named(Names.string("abc123"))
-                .expression(Expression.add(Expression.expressionNumber(EXPRESSION_NUMBER_KIND.create(1)), Expression.string("bcd234"))));
+                .expression(
+                        Expression.add(
+                                Expression.value(EXPRESSION_NUMBER_KIND.create(1)),
+                                Expression.value("bcd234")
+                        )
+                )
+        );
     }
 
     @Test

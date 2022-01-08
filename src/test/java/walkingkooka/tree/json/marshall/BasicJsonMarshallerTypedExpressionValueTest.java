@@ -20,57 +20,94 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.ExpressionNumber;
-import walkingkooka.tree.expression.ExpressionNumberExpression;
+import walkingkooka.tree.expression.ExpressionNumberKind;
+import walkingkooka.tree.expression.ValueExpression;
 import walkingkooka.tree.json.JsonNode;
 
-public final class BasicJsonMarshallerTypedExpressionValueTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionValue<ExpressionNumberExpression, ExpressionNumber>, ExpressionNumberExpression> {
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
+public final class BasicJsonMarshallerTypedExpressionValueTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionValue, ValueExpression<?>> {
 
     @Test
-    public void testFromBooleanFails() {
-        this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
+    public void testRoundtripBooleanFalse() {
+        this.roundTripAndCheck(Boolean.FALSE);
     }
 
     @Test
-    public void testFromNumberFails() {
-        this.unmarshallFailed(JsonNode.number(123), ClassCastException.class);
+    public void testRoundtripBooleanTrue() {
+        this.roundTripAndCheck(Boolean.TRUE);
     }
 
     @Test
-    public void testFromObjectFails() {
-        this.unmarshallFailed(JsonNode.object(), ClassCastException.class);
+    public void testRoundtripExpressionNumber() {
+        this.roundTripAndCheck(
+                ExpressionNumberKind.DEFAULT.create(123)
+        );
+    }
+
+    @Test
+    public void testRoundtripLocalDate() {
+        this.roundTripAndCheck(
+                LocalDate.of(1999, 12, 31)
+        );
+    }
+
+    @Test
+    public void testRoundtripLocalDateTime() {
+        this.roundTripAndCheck(
+                LocalDateTime.of(1999, 12, 31, 12, 58, 59)
+        );
+    }
+
+    @Test
+    public void testRoundtripLocalTime() {
+        this.roundTripAndCheck(
+                LocalTime.of(12, 58, 59)
+        );
+    }
+
+    @Test
+    public void testRoundtripString() {
+        this.roundTripAndCheck("text123");
+    }
+
+    private void roundTripAndCheck(final Object value) {
+        final ValueExpression<Object> expression = Expression.value(value);
+        final JsonNode json = this.marshallContext()
+                .marshall(expression);
+        this.unmarshallAndCheck(json, expression);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     BasicJsonMarshallerTypedExpressionValue marshaller() {
-        return BasicJsonMarshallerTypedExpressionValue.with(Expression::expressionNumber,
-                ExpressionNumberExpression.class,
-                ExpressionNumber.class);
+        return BasicJsonMarshallerTypedExpressionValue.instance();
     }
 
     @Override
-    ExpressionNumberExpression value() {
-        return Expression.expressionNumber(EXPRESSION_NUMBER_KIND.create(1234));
+    ValueExpression<?> value() {
+        return Expression.value("1234");
     }
 
     @Override
     JsonNode node() {
-        return JsonNode.string(this.value().toString());
+        return JsonNode.string("1234");
     }
 
     @Override
     String typeName() {
-        return "expression-number-expression";
+        return "value-expression";
     }
 
     @Override
-    Class<ExpressionNumberExpression> marshallerType() {
-        return ExpressionNumberExpression.class;
+    Class<ValueExpression<?>> marshallerType() {
+        return Cast.to(ValueExpression.class);
     }
 
     @Override
-    public Class<BasicJsonMarshallerTypedExpressionValue<ExpressionNumberExpression, ExpressionNumber>> type() {
-        return Cast.to(BasicJsonMarshallerTypedExpressionValue.class);
+    public Class<BasicJsonMarshallerTypedExpressionValue> type() {
+        return BasicJsonMarshallerTypedExpressionValue.class;
     }
 }

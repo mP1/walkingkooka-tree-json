@@ -181,7 +181,9 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     @Test
     public void testExpressionBoolean() {
-        this.roundtripAndCheck(Expression.booleanExpression(true));
+        this.roundtripAndCheck(
+                Expression.value(true)
+        );
     }
 
     @Test
@@ -191,7 +193,10 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     @Test
     public void testExpressionNumber() {
-        this.roundtripAndCheck(Expression.expressionNumber(EXPRESSION_NUMBER_KIND.create(99.5)));
+        this.roundtripAndCheck(
+                Expression.value(EXPRESSION_NUMBER_KIND.create(99.5)
+                )
+        );
     }
 
     @Test
@@ -201,9 +206,15 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     @Test
     public void testFunctionExpression() {
-        this.roundtripAndCheck(Expression.function(
-                FunctionExpressionName.with("function123"),
-                Lists.of(Expression.booleanExpression(true), Expression.string("2b"))));
+        this.roundtripAndCheck(
+                Expression.function(
+                        FunctionExpressionName.with("function123"),
+                        Lists.of(
+                                Expression.value(true),
+                                Expression.value("2b")
+                        )
+                )
+        );
     }
 
     @Test
@@ -228,17 +239,29 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     @Test
     public void testExpressionLocalDate() {
-        this.roundtripAndCheck(Expression.localDate(LocalDate.of(2000, 12, 31)));
+        this.roundtripAndCheck(
+                Expression.value(
+                        LocalDate.of(2000, 12, 31)
+                )
+        );
     }
 
     @Test
     public void testExpressionLocalDateTime() {
-        this.roundtripAndCheck(Expression.localDateTime(LocalDateTime.of(2000, 12, 31, 6, 28, 29)));
+        this.roundtripAndCheck(
+                Expression.value(
+                        LocalDateTime.of(2000, 12, 31, 6, 28, 29)
+                )
+        );
     }
 
     @Test
     public void testExpressionLocalTime() {
-        this.roundtripAndCheck(Expression.localTime(LocalTime.of(6, 28, 29)));
+        this.roundtripAndCheck(
+                Expression.value(
+                        LocalTime.of(6, 28, 29)
+                )
+        );
     }
 
     @Test
@@ -283,7 +306,9 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     @Test
     public void testExpressionText() {
-        this.roundtripAndCheck(Expression.string("abc123"));
+        this.roundtripAndCheck(
+                Expression.value("abc123")
+        );
     }
 
     @Test
@@ -292,11 +317,22 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     }
 
     private void roundtripAndCheck(final Function<Expression, Expression> factory) {
-        this.roundtripAndCheck(factory.apply(Expression.string("only-parameter")));
+        this.roundtripAndCheck(
+                factory.apply(
+                        Expression.value("only-parameter")
+                )
+        );
     }
 
     private void roundtripAndCheck(final BiFunction<Expression, Expression, Expression> factory) {
-        this.roundtripAndCheck(factory.apply(Expression.expressionNumber(EXPRESSION_NUMBER_KIND.create(1)), Expression.string("parameter-2b")));
+        this.roundtripAndCheck(
+                factory.apply(
+                        Expression.value(
+                                EXPRESSION_NUMBER_KIND.create(1)
+                        ),
+                        Expression.value("parameter-2b")
+                )
+        );
     }
 
     private void roundtripAndCheck(final Object value) {

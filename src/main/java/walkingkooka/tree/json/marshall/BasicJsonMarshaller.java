@@ -23,19 +23,13 @@ import walkingkooka.collect.map.Maps;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.AddExpression;
 import walkingkooka.tree.expression.AndExpression;
-import walkingkooka.tree.expression.BooleanExpression;
 import walkingkooka.tree.expression.DivideExpression;
 import walkingkooka.tree.expression.EqualsExpression;
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.ExpressionNumber;
-import walkingkooka.tree.expression.ExpressionNumberExpression;
 import walkingkooka.tree.expression.GreaterThanEqualsExpression;
 import walkingkooka.tree.expression.GreaterThanExpression;
 import walkingkooka.tree.expression.LessThanEqualsExpression;
 import walkingkooka.tree.expression.LessThanExpression;
-import walkingkooka.tree.expression.LocalDateExpression;
-import walkingkooka.tree.expression.LocalDateTimeExpression;
-import walkingkooka.tree.expression.LocalTimeExpression;
 import walkingkooka.tree.expression.ModuloExpression;
 import walkingkooka.tree.expression.MultiplyExpression;
 import walkingkooka.tree.expression.NegativeExpression;
@@ -43,16 +37,12 @@ import walkingkooka.tree.expression.NotEqualsExpression;
 import walkingkooka.tree.expression.NotExpression;
 import walkingkooka.tree.expression.OrExpression;
 import walkingkooka.tree.expression.PowerExpression;
-import walkingkooka.tree.expression.StringExpression;
 import walkingkooka.tree.expression.SubtractExpression;
 import walkingkooka.tree.expression.XorExpression;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonString;
 import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -115,20 +105,16 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedBigDecimal.instance(),
                 BasicJsonMarshallerTypedBigInteger.instance(),
                 BasicJsonMarshallerTypedCharacter.instance(),
+                BasicJsonMarshallerTypedExpression.value(),
                 BasicJsonMarshallerTypedExpression.binary(Expression::add, AddExpression.class),
                 BasicJsonMarshallerTypedExpression.binary(Expression::and, AndExpression.class),
-                BasicJsonMarshallerTypedExpression.value(Expression::booleanExpression, BooleanExpression.class, Boolean.class),
                 BasicJsonMarshallerTypedExpression.binary(Expression::divide, DivideExpression.class),
-                BasicJsonMarshallerTypedExpression.value(Expression::expressionNumber, ExpressionNumberExpression.class, ExpressionNumber.class),
                 BasicJsonMarshallerTypedExpression.binary(Expression::equalsExpression, EqualsExpression.class),
                 BasicJsonMarshallerTypedExpression.function(),
                 BasicJsonMarshallerTypedExpression.binary(Expression::greaterThan, GreaterThanExpression.class),
                 BasicJsonMarshallerTypedExpression.binary(Expression::greaterThanEquals, GreaterThanEqualsExpression.class),
                 BasicJsonMarshallerTypedExpression.binary(Expression::lessThan, LessThanExpression.class),
                 BasicJsonMarshallerTypedExpression.binary(Expression::lessThanEquals, LessThanEqualsExpression.class),
-                BasicJsonMarshallerTypedExpression.value(Expression::localDate, LocalDateExpression.class, LocalDate.class),
-                BasicJsonMarshallerTypedExpression.value(Expression::localDateTime, LocalDateTimeExpression.class, LocalDateTime.class),
-                BasicJsonMarshallerTypedExpression.value(Expression::localTime, LocalTimeExpression.class, LocalTime.class),
                 BasicJsonMarshallerTypedExpression.binary(Expression::modulo, ModuloExpression.class),
                 BasicJsonMarshallerTypedExpression.binary(Expression::multiply, MultiplyExpression.class),
                 BasicJsonMarshallerTypedExpression.unary(Expression::negative, NegativeExpression.class),
@@ -138,7 +124,7 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedExpression.binary(Expression::power, PowerExpression.class),
                 BasicJsonMarshallerTypedExpression.reference(),
                 BasicJsonMarshallerTypedExpression.binary(Expression::subtract, SubtractExpression.class),
-                BasicJsonMarshallerTypedExpression.value(Expression::string, StringExpression.class, String.class),
+//                BasicJsonMarshallerTypedExpression.value(),
                 BasicJsonMarshallerTypedExpression.binary(Expression::xor, XorExpression.class),
                 BasicJsonMarshallerTypedExpressionNumber.instance(),
                 BasicJsonMarshallerTypedExpressionNumberKind.instance(),

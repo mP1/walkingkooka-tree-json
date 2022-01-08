@@ -21,10 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.tree.expression.AddExpression;
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.json.JsonNode;
-
-import java.math.BigInteger;
 
 public final class BasicJsonMarshallerTypedExpressionBinaryTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionBinary<AddExpression>, AddExpression> {
 
@@ -54,11 +51,13 @@ public final class BasicJsonMarshallerTypedExpressionBinaryTest extends BasicJso
     }
 
     private Expression leftValue() {
-        return Expression.expressionNumber(EXPRESSION_NUMBER_KIND.create(11));
+        return Expression.value(
+                EXPRESSION_NUMBER_KIND.create(11)
+        );
     }
 
     private Expression rightValue() {
-        return Expression.string("b2");
+        return Expression.value("b2");
     }
 
     @Override

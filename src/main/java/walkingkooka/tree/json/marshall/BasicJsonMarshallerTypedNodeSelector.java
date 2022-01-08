@@ -28,7 +28,6 @@ import walkingkooka.text.cursor.parser.Parser;
 import walkingkooka.text.cursor.parser.ParserReporters;
 import walkingkooka.tree.Node;
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.ExpressionNumberContexts;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonPropertyName;
@@ -63,7 +62,7 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
                 NodeSelector.relative().self().setToString("custom-123"),
                 NodeSelector.relative().descendant(),
                 NodeSelector.relative().descendantOrSelf(),
-                NodeSelector.relative().expression(Expression.string("text")),
+                NodeSelector.relative().expression(Expression.value("text")),
                 NodeSelector.relative().firstChild(),
                 NodeSelector.relative().following(),
                 NodeSelector.relative().followingSibling(),

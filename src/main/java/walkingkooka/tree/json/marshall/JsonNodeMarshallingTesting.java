@@ -26,7 +26,6 @@ import walkingkooka.reflect.MethodAttributes;
 import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.Node;
-import walkingkooka.tree.expression.ExpressionNumberContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonString;
@@ -295,7 +294,10 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
     V createJsonNodeMarshallingValue();
 
     default JsonNodeUnmarshallContext unmarshallContext() {
-        return JsonNodeUnmarshallContexts.basic(ExpressionNumberContexts.basic(ExpressionNumberKind.DEFAULT, MathContext.DECIMAL32));
+        return JsonNodeUnmarshallContexts.basic(
+                ExpressionNumberKind.DEFAULT,
+                MathContext.DECIMAL32
+        );
     }
 
     default JsonNodeMarshallContext marshallContext() {

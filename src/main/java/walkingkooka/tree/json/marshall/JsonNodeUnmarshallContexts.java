@@ -18,8 +18,9 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.reflect.PublicStaticHelper;
-import walkingkooka.tree.expression.ExpressionNumberContext;
 import walkingkooka.tree.expression.ExpressionNumberKind;
+
+import java.math.MathContext;
 
 /**
  * Collection of static factory methods for numerous {@link JsonNodeUnmarshallContext}.
@@ -29,8 +30,12 @@ public final class JsonNodeUnmarshallContexts implements PublicStaticHelper {
     /**
      * {@see BasicJsonNodeUnmarshallContext}
      */
-    public static JsonNodeUnmarshallContext basic(final ExpressionNumberContext context) {
-        return BasicJsonNodeUnmarshallContext.with(context);
+    public static JsonNodeUnmarshallContext basic(final ExpressionNumberKind kind,
+                                                  final MathContext mathContext) {
+        return BasicJsonNodeUnmarshallContext.with(
+                kind,
+                mathContext
+        );
     }
 
     /**

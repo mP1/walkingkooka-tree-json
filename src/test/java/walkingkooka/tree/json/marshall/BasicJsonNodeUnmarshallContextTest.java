@@ -21,7 +21,6 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
-import walkingkooka.tree.expression.ExpressionNumberContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
@@ -37,8 +36,19 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         implements JsonNodeUnmarshallContextTesting<BasicJsonNodeUnmarshallContext> {
 
     @Test
+    public void testWithNullKindFails() {
+        assertThrows(
+                java.lang.NullPointerException.class,
+                () -> BasicJsonNodeUnmarshallContext.with(null, MathContext.DECIMAL32)
+        );
+    }
+
+    @Test
     public void testWithNullContextFails() {
-        assertThrows(java.lang.NullPointerException.class, () -> BasicJsonNodeUnmarshallContext.with(null));
+        assertThrows(
+                java.lang.NullPointerException.class,
+                () -> BasicJsonNodeUnmarshallContext.with(ExpressionNumberKind.DEFAULT,null)
+        );
     }
 
     // unmarshall.....................................................................................................
@@ -728,7 +738,10 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     @Override
     public BasicJsonNodeUnmarshallContext createContext() {
-        return BasicJsonNodeUnmarshallContext.with(ExpressionNumberContexts.basic(ExpressionNumberKind.DEFAULT, MathContext.DECIMAL32));
+        return BasicJsonNodeUnmarshallContext.with(
+                ExpressionNumberKind.DEFAULT,
+                MathContext.DECIMAL32
+        );
     }
 
     private JsonNodeUnmarshallContext contextWithProcessor() {

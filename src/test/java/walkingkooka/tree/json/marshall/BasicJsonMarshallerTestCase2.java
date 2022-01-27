@@ -20,7 +20,6 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
-import walkingkooka.tree.expression.ExpressionNumberContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
@@ -327,7 +326,10 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     }
 
     final JsonNodeUnmarshallContext unmarshallContext() {
-        return BasicJsonNodeUnmarshallContext.with(ExpressionNumberContexts.basic(ExpressionNumberKind.DEFAULT, MathContext.DECIMAL32));
+        return BasicJsonNodeUnmarshallContext.with(
+                ExpressionNumberKind.DEFAULT,
+                MathContext.DECIMAL32
+        );
     }
 
     final JsonNodeMarshallContext marshallContext() {

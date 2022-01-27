@@ -17,19 +17,12 @@
 
 package walkingkooka.tree.json.marshall;
 
-import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
-import java.math.MathContext;
 
 public final class JsonNodeUnmarshallContextsTest implements PublicStaticHelperTesting<JsonNodeUnmarshallContexts> {
-
-    @Test
-    public void testPublicStaticMethodsWithoutMathContextParameter() {
-        this.publicStaticMethodParametersTypeCheck(MathContext.class);
-    }
 
     @Override
     public Class<JsonNodeUnmarshallContexts> type() {

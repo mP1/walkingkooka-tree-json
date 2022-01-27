@@ -18,7 +18,8 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Context;
-import walkingkooka.tree.expression.ExpressionNumberContext;
+import walkingkooka.math.HasMathContext;
+import walkingkooka.tree.expression.HasExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
@@ -35,7 +36,7 @@ import java.util.function.BiFunction;
  * A {@link Context} that accompanies transforming {@link JsonNode} into an object.
  */
 public interface JsonNodeUnmarshallContext extends JsonNodeContext,
-        ExpressionNumberContext {
+        HasExpressionNumberKind, HasMathContext {
 
     /**
      * A {@link BiFunction processor} that simply returns the given {@link JsonNode} ignoring the type.

@@ -22,7 +22,6 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.ExpressionNumberContexts;
 import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
@@ -337,8 +336,12 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     private void roundtripAndCheck(final Object value) {
         final JsonNode json = JsonNodeMarshallContexts.basic().marshall(value);
-        this.checkEquals(value,
-                JsonNodeUnmarshallContexts.basic(ExpressionNumberContexts.basic(EXPRESSION_NUMBER_KIND, MathContext.DECIMAL32)).unmarshall(json, value.getClass()),
+        this.checkEquals(
+                value,
+                JsonNodeUnmarshallContexts.basic(
+                        EXPRESSION_NUMBER_KIND,
+                        MathContext.DECIMAL32
+                ).unmarshall(json, value.getClass()),
                 () -> "roundtrip " + value + "\n" + json);
     }
 

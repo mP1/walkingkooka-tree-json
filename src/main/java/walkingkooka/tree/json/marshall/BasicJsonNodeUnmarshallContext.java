@@ -20,7 +20,6 @@ package walkingkooka.tree.json.marshall;
 import walkingkooka.Cast;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
-import walkingkooka.tree.expression.ExpressionNumberContext;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
@@ -42,33 +41,43 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     /**
      * Factory
      */
-    static BasicJsonNodeUnmarshallContext with(final ExpressionNumberContext context) {
-        Objects.requireNonNull(context, "context");
+    static BasicJsonNodeUnmarshallContext with(final ExpressionNumberKind kind,
+                                               final MathContext mathContext) {
+        Objects.requireNonNull(kind, "kind");
+        Objects.requireNonNull(mathContext, "mathContext");
 
-        return new BasicJsonNodeUnmarshallContext(context, JsonNodeUnmarshallContext.OBJECT_PRE_PROCESSOR);
+        return new BasicJsonNodeUnmarshallContext(
+                kind,
+                mathContext,
+                JsonNodeUnmarshallContext.OBJECT_PRE_PROCESSOR
+        );
     }
 
     /**
      * Private ctor
      */
-    private BasicJsonNodeUnmarshallContext(final ExpressionNumberContext context,
+    private BasicJsonNodeUnmarshallContext(final ExpressionNumberKind kind,
+                                           final MathContext mathContext,
                                            final BiFunction<JsonNode, Class<?>, JsonNode> processor) {
         super();
-        this.context = context;
+        this.kind = kind;
+        this.mathContext = mathContext;
         this.processor = processor;
     }
 
     @Override
     public ExpressionNumberKind expressionNumberKind() {
-        return this.context.expressionNumberKind();
+        return this.kind;
     }
+
+    private final ExpressionNumberKind kind;
 
     @Override
     public MathContext mathContext() {
-        return this.context.mathContext();
+        return this.mathContext;
     }
 
-    private final ExpressionNumberContext context;
+    private final MathContext mathContext;
 
     @Override
     public JsonNodeUnmarshallContext setPreProcessor(final BiFunction<JsonNode, Class<?>, JsonNode> processor) {
@@ -76,7 +85,11 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
 
         return this.processor.equals(processor) ?
                 this :
-                new BasicJsonNodeUnmarshallContext(this.context, processor);
+                new BasicJsonNodeUnmarshallContext(
+                        this.kind,
+                        this.mathContext,
+                        processor
+                );
     }
 
     // from.............................................................................................................

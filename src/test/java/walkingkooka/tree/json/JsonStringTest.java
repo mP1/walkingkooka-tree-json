@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString, String> {
 
-    @Override
+    @Test
     public void testStringOrFail() {
         this.checkEquals("abc",
                 JsonString.with("abc").stringOrFail());

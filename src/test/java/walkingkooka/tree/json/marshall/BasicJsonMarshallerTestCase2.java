@@ -288,11 +288,6 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
                 () -> "unmarshall failed " + node);
     }
 
-    final void marshallWithTypeFailed(final T value,
-                                      final Class<? extends Throwable> thrown) {
-        assertThrows(thrown, () -> this.marshaller().marshallWithType(value, this.marshallContext()));
-    }
-
     final void marshallAndCheck(final T value,
                                 final JsonNode node) {
         this.marshallAndCheck(this.marshaller(), value, node);

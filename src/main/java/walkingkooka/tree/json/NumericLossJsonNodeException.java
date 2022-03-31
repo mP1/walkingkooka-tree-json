@@ -22,6 +22,8 @@ package walkingkooka.tree.json;
  */
 public class NumericLossJsonNodeException extends JsonNodeException {
 
+    private static final long serialVersionUID = 1L;
+
     protected NumericLossJsonNodeException() {
         super();
     }

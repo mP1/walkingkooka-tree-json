@@ -19,7 +19,6 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeException;
 
 public abstract class BasicJsonMarshallerTypedTestCase2<M extends BasicJsonMarshallerTyped<T>, T> extends BasicJsonMarshallerTypedTestCase<M, T> {
 

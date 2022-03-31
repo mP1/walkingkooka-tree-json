@@ -17,7 +17,6 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.text.CharSequences;
 import walkingkooka.tree.json.JsonNode;
 
 final class BasicJsonMarshallerTypedCharacter extends BasicJsonMarshallerTyped<Character> {

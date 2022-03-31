@@ -19,7 +19,6 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonNodeException;
 import walkingkooka.tree.json.NumericLossJsonNodeException;
 
 public final class BasicJsonMarshallerTypedNumberLongTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedNumberLong, Long> {

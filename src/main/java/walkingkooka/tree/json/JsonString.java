@@ -107,8 +107,6 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
      * '0020' . '10FFFF' - '"' - '\'
      * '\' escape
      * </pre>
-     *
-     * @param printer
      */
     @Override
     void printJson0(final IndentingPrinter printer) {

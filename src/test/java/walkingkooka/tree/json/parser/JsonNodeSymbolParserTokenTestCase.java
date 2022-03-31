@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-public abstract class JsonNodeSymbolParserTokenTestCase<T extends JsonNodeSymbolParserToken, V> extends JsonNodeLeafParserTokenTestCase<T, V> {
+public abstract class JsonNodeSymbolParserTokenTestCase<T extends JsonNodeSymbolParserToken> extends JsonNodeLeafParserTokenTestCase<T, String> {
 
     JsonNodeSymbolParserTokenTestCase() {
         super();

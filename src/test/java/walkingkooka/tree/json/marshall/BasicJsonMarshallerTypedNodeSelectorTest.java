@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.naming.Names;
 import walkingkooka.naming.StringName;
@@ -29,7 +30,7 @@ import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.select.NodeSelector;
 import walkingkooka.tree.select.parser.NodeSelectorAttributeName;
 
-public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedNodeSelector, NodeSelector> {
+public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedNodeSelector, NodeSelector<?, ?, ?, ?>> {
 
     @Test
     public void testAbsoluteFromJson() {
@@ -412,7 +413,7 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
     }
 
     @Override
-    NodeSelector<TestNode, StringName, StringName, Object> jsonNullNode() {
+    NodeSelector<?, ?, ?, ?> jsonNullNode() {
         return null;
     }
 
@@ -422,8 +423,8 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
     }
 
     @Override
-    Class<NodeSelector> marshallerType() {
-        return NodeSelector.class;
+    Class<NodeSelector<?, ?, ?, ?>> marshallerType() {
+        return Cast.to(NodeSelector.class);
     }
 
     @Override

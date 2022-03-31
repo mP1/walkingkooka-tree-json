@@ -26,7 +26,7 @@ public final class BasicJsonMarshallerTypedGenericRunnableTest extends BasicJson
     @SuppressWarnings("unchecked")
     @Test
     public void testToString() {
-        final BasicJsonMarshallerTypedGeneric marshaller = BasicJsonMarshallerTypedGeneric.with("test-type",
+        final BasicJsonMarshallerTypedGeneric<?> marshaller = BasicJsonMarshallerTypedGeneric.with("test-type",
                 TestJsonNodeValue::unmarshall,
                 TestJsonNodeValue::marshall,
                 TestJsonNodeValue.class);

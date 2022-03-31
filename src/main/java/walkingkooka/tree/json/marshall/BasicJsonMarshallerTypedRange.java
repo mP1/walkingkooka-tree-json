@@ -49,7 +49,7 @@ final class BasicJsonMarshallerTypedRange extends BasicJsonMarshallerTyped<Range
     }
 
     @Override
-    Range unmarshallNull(final JsonNodeUnmarshallContext context) {
+    Range<?> unmarshallNull(final JsonNodeUnmarshallContext context) {
         return null;
     }
 
@@ -117,7 +117,7 @@ final class BasicJsonMarshallerTypedRange extends BasicJsonMarshallerTyped<Range
 
     @SuppressWarnings("unchecked")
     @Override
-    JsonNode marshallNonNull(final Range value,
+    JsonNode marshallNonNull(final Range<?> value,
                              final JsonNodeMarshallContext context) {
         return BasicJsonMarshallerTypedRangeRangeVisitor.marshall(value, context);
     }

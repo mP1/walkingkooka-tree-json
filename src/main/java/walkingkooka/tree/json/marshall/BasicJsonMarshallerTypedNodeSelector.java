@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.Cast;
 import walkingkooka.NeverError;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.naming.Name;
@@ -41,7 +42,7 @@ import java.math.MathContext;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
-final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerTyped<NodeSelector> {
+final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerTyped<NodeSelector<?, ?, ?, ?>> {
 
     static BasicJsonMarshallerTypedNodeSelector instance() {
         return new BasicJsonMarshallerTypedNodeSelector();
@@ -79,8 +80,8 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
     }
 
     @Override
-    Class<NodeSelector> type() {
-        return NodeSelector.class;
+    Class<NodeSelector<?, ?, ?, ?>> type() {
+        return Cast.to(NodeSelector.class);
     }
 
     @Override
@@ -89,13 +90,13 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
     }
 
     @Override
-    NodeSelector unmarshallNull(final JsonNodeUnmarshallContext context) {
+    NodeSelector<?, ?, ?, ?> unmarshallNull(final JsonNodeUnmarshallContext context) {
         return null;
     }
 
     @Override
-    NodeSelector unmarshallNonNull(final JsonNode node,
-                                   final JsonNodeUnmarshallContext context) {
+    NodeSelector<?, ?, ?, ?> unmarshallNonNull(final JsonNode node,
+                                               final JsonNodeUnmarshallContext context) {
         JsonArray components = null;
 
         for (JsonNode child : node.objectOrFail().children()) {
@@ -257,7 +258,7 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
 
     @SuppressWarnings("unchecked")
     @Override
-    JsonNode marshallNonNull(final NodeSelector value,
+    JsonNode marshallNonNull(final NodeSelector<?, ?, ?, ?> value,
                              final JsonNodeMarshallContext context) {
         return BasicJsonMarshallerTypedNodeSelectorNodeSelectorVisitor.marshall(value, context);
     }

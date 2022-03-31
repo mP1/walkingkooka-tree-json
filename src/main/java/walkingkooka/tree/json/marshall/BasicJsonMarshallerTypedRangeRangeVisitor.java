@@ -31,7 +31,7 @@ final class BasicJsonMarshallerTypedRangeRangeVisitor<C extends Comparable<C>> e
     @SuppressWarnings("unchecked")
     static <C extends Comparable<C>> JsonNode marshall(final Range<C> range,
                                                        final JsonNodeMarshallContext context) {
-        final BasicJsonMarshallerTypedRangeRangeVisitor<C> visitor = new BasicJsonMarshallerTypedRangeRangeVisitor(context);
+        final BasicJsonMarshallerTypedRangeRangeVisitor<C> visitor = new BasicJsonMarshallerTypedRangeRangeVisitor<>(context);
         visitor.accept(range);
         return visitor.jsonNode;
     }

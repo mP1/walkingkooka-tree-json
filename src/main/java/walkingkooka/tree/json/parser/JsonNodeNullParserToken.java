@@ -43,7 +43,8 @@ public final class JsonNodeNullParserToken extends JsonNodeValueParserToken<Void
         visitor.visit(this);
     }
 
-    @Override final JsonNode toJsonNodeOrNull() {
+    @Override
+    JsonNode toJsonNodeOrNull() {
         return JsonNode.nullNode();
     }
 

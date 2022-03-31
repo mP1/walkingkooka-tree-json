@@ -20,7 +20,6 @@ package walkingkooka.tree.json;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.CharacterConstant;
-import walkingkooka.text.LineEnding;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.tree.search.SearchNode;
 import walkingkooka.visit.Visiting;
@@ -59,7 +58,8 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
     /**
      * Makes a copy of the list and sets the parent upon the children.
      */
-    @Override final JsonObjectList adoptChildren(final JsonObjectList children) {
+    @Override
+    JsonObjectList adoptChildren(final JsonObjectList children) {
         final Optional<JsonNode> parent = Optional.of(this);
 
         final Map<JsonPropertyName, JsonNode> nameToValues = Maps.ordered();
@@ -202,7 +202,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
     }
 
     @Override
-    public final JsonObject setChildren(final List<JsonNode> children) {
+    public JsonObject setChildren(final List<JsonNode> children) {
         Objects.requireNonNull(children, "children");
 
         final Map<JsonPropertyName, JsonNode> copy = Maps.ordered();
@@ -215,7 +215,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
     }
 
     @Override
-    final JsonNode setChild0(final JsonNode newChild, final int index) {
+    JsonNode setChild0(final JsonNode newChild, final int index) {
         return JsonParentNodeChildPredicate.INSTANCE.test(this.children.get(index), newChild) ?
                 this :
                 this.replaceChild0(newChild, index).children.nameToValues.get(newChild.name);
@@ -245,7 +245,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
     }
 
     @Override
-    final JsonObject replace0(final JsonPropertyName name, final int index, final JsonObjectList children) {
+    JsonObject replace0(final JsonPropertyName name, final int index, final JsonObjectList children) {
         return new JsonObject(name, index, children);
     }
 
@@ -265,7 +265,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
      * Objects are not an array so fail.
      */
     @Override
-    public final JsonArray arrayOrFail() {
+    public JsonArray arrayOrFail() {
         return this.reportInvalidNode("Array");
     }
 

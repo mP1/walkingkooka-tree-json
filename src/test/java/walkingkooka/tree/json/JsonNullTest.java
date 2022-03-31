@@ -74,7 +74,7 @@ public final class JsonNullTest extends JsonLeafNodeTestCase<JsonNull, Void> {
     }
 
     @Override
-    public final void testSetDifferentValue() {
+    public void testSetDifferentValue() {
         // nop
     }
 

@@ -132,6 +132,7 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedJsonPropertyName.instance(),
                 BasicJsonMarshallerTypedCollectionCollection.instance(),
                 BasicJsonMarshallerTypedCollectionList.instance(),
+                BasicJsonMarshallerTypedCollectionSet.instance(),
                 BasicJsonMarshallerTypedIllegalArgumentException.instance(),
                 BasicJsonMarshallerTypedInvalidCharacterException.instance(),
                 BasicJsonMarshallerTypedInvalidTextLengthException.instance(),
@@ -151,8 +152,7 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedOptional.instance(),
                 BasicJsonMarshallerTypedRange.instance(),
                 BasicJsonMarshallerTypedRoundingMode.instance(),
-                BasicJsonMarshallerTypedStringName.instance(),
-                BasicJsonMarshallerTypedCollectionSet.instance()
+                BasicJsonMarshallerTypedStringName.instance()
         ).forEach(BasicJsonMarshaller::register);
     }
 

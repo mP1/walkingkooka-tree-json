@@ -36,9 +36,7 @@ public final class JsonNodeArrayParserTokenTest extends JsonNodeParentParserToke
         final JsonNodeArrayParserToken token = this.createToken();
         final JsonNodeArrayBeginSymbolParserToken begin = token.value.get(0).cast(JsonNodeArrayBeginSymbolParserToken.class);
         final JsonNodeBooleanParserToken booleanTrue = token.value.get(1).cast(JsonNodeBooleanParserToken.class);
-        final JsonNodeSeparatorSymbolParserToken separator1 = token.value.get(2).cast(JsonNodeSeparatorSymbolParserToken.class);
         final JsonNodeNullParserToken nullParserToken = token.value.get(3).cast(JsonNodeNullParserToken.class);
-        final JsonNodeSeparatorSymbolParserToken separator2 = token.value.get(4).cast(JsonNodeSeparatorSymbolParserToken.class);
         final JsonNodeStringParserToken string = token.value.get(5).cast(JsonNodeStringParserToken.class);
         final JsonNodeArrayEndSymbolParserToken end = token.value.get(6).cast(JsonNodeArrayEndSymbolParserToken.class);
 

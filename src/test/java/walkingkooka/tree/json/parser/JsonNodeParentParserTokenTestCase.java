@@ -18,7 +18,6 @@ package walkingkooka.tree.json.parser;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
-import walkingkooka.collect.list.Lists;
 import walkingkooka.text.cursor.parser.ParserToken;
 
 import java.util.List;
@@ -26,14 +25,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class JsonNodeParentParserTokenTestCase<T extends JsonNodeParentParserToken<T>> extends JsonNodeParserTokenTestCase<T> {
-
-    final static String NUMBER1 = "1";
-    final static String NUMBER2 = "22";
-
-    final static String TEXT1 = "text-1";
-    final static String TEXT2 = "text-2";
-
-    final static String WHITESPACE = "   ";
 
     JsonNodeParentParserTokenTestCase() {
         super();
@@ -61,13 +52,5 @@ public abstract class JsonNodeParentParserTokenTestCase<T extends JsonNodeParent
 
     abstract T createToken(final String text, final List<ParserToken> tokens);
 
-    final T createToken(final String text, final ParserToken... tokens) {
-        return this.createToken(text, Lists.of(tokens));
-    }
-
     abstract List<ParserToken> tokens();
-
-    final void checkValue(final T token, final ParserToken... tokens) {
-        this.checkEquals(Lists.of(tokens), token.value(), "value");
-    }
 }

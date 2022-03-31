@@ -38,7 +38,6 @@ import walkingkooka.tree.select.parser.NodeSelectorParserContexts;
 import walkingkooka.tree.select.parser.NodeSelectorParsers;
 import walkingkooka.tree.select.parser.NodeSelectorPredicateParserToken;
 
-import java.math.MathContext;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
@@ -243,10 +242,6 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
                 .get()
                 .cast(NodeSelectorPredicateParserToken.class)
                 .toExpression(Predicates.always());
-    }
-
-    private static MathContext hasMathContext() {
-        return MathContext.DECIMAL32;
     }
 
     /**

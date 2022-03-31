@@ -104,9 +104,7 @@ public final class JsonNodeObjectParserTokenTest extends JsonNodeParentParserTok
         final StringBuilder b = new StringBuilder();
         final JsonNodeObjectParserToken token = this.createToken();
         final JsonNodeObjectBeginSymbolParserToken begin = token.value.get(0).cast(JsonNodeObjectBeginSymbolParserToken.class);
-        final JsonNodeStringParserToken string1 = token.value.get(1).cast(JsonNodeStringParserToken.class);
         final JsonNodeObjectAssignmentSymbolParserToken assignment = token.value.get(2).cast(JsonNodeObjectAssignmentSymbolParserToken.class);
-        final JsonNodeStringParserToken string2 = token.value.get(3).cast(JsonNodeStringParserToken.class);
         final JsonNodeObjectEndSymbolParserToken end = token.value.get(4).cast(JsonNodeObjectEndSymbolParserToken.class);
 
         new FakeJsonNodeParserTokenVisitor() {

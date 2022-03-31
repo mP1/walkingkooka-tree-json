@@ -30,7 +30,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
-import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
@@ -86,22 +85,10 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     private final BiFunction<Object, JsonObject, JsonObject> processor;
 
     /**
-     * Accepts a {@link List} of elements which are assumed to be the same type and creates a {@link JsonArray}.
+     * Accepts a {@link Collection} of elements which are assumed to be the same type and creates a {@link JsonArray}.
      */
     @Override
-    public JsonNode marshallList(final List<?> list) {
-        return marshallCollection(list);
-    }
-
-    /**
-     * Accepts a {@link Set} of elements which are assumed to be the same type and creates a {@link JsonArray}.
-     */
-    @Override
-    public JsonNode marshallSet(final Set<?> set) {
-        return marshallCollection(set);
-    }
-
-    private JsonNode marshallCollection(final Collection<?> collection) {
+    public JsonNode marshallCollection(final Collection<?> collection) {
         return null == collection ?
                 JsonNode.nullNode() :
                 JsonObject.array()
@@ -185,19 +172,12 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     }
 
     /**
-     * Accepts a {@link List} of elements which are assumed to be the same type and creates a {@link JsonArray}.
+     * Accepts a {@link Collection} of elements which are assumed to be the same type and creates a {@link JsonArray}.
      */
     @Override
-    public JsonNode marshallWithTypeList(final List<?> list) {
-        return BasicJsonMarshallerTypedCollectionList.instance().marshall(list, this);
-    }
-
-    /**
-     * Accepts a {@link Set} of elements which are assumed to be the same type and creates a {@link JsonArray}.
-     */
-    @Override
-    public JsonNode marshallWithTypeSet(final Set<?> set) {
-        return BasicJsonMarshallerTypedCollectionSet.instance().marshall(set, this);
+    public JsonNode marshallWithTypeCollection(final Collection<?> collection) {
+        return BasicJsonMarshallerTypedCollectionCollection.instance()
+                .marshall(collection, this);
     }
 
     /**

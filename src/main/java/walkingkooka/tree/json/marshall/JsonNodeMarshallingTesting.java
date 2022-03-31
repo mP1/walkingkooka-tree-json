@@ -187,7 +187,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
         this.checkEquals(
                 list,
-                this.unmarshallContext().unmarshallWithTypeList(this.marshallContext().marshallWithTypeList(list)),
+                this.unmarshallContext().unmarshallWithTypeList(this.marshallContext().marshallWithTypeCollection(list)),
                 () -> "Roundtrip to -> from -> to failed list=" + list
         );
     }
@@ -198,7 +198,7 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
 
         this.checkEquals(
                 set,
-                this.unmarshallContext().unmarshallWithTypeSet(this.marshallContext().marshallWithTypeSet(set)),
+                this.unmarshallContext().unmarshallWithTypeSet(this.marshallContext().marshallWithTypeCollection(set)),
                 () -> "Roundtrip to -> from -> to failed set=" + set
         );
     }

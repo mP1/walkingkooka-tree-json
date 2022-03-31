@@ -21,9 +21,8 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.BiFunction;
 
 import static org.junit.jupiter.api.Assertions.assertNotSame;
@@ -61,13 +60,8 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
     }
 
     @Test
-    default void testMarshallListNull() {
-        this.marshallListAndCheck(null, JsonNode.nullNode());
-    }
-
-    @Test
-    default void testMarshallSetNull() {
-        this.marshallSetAndCheck(null, JsonNode.nullNode());
+    default void testMarshallCollectionNull() {
+        this.marshallCollectionAndCheck(null, JsonNode.nullNode());
     }
 
     @Test
@@ -81,13 +75,8 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
     }
 
     @Test
-    default void testMarshallWithTypeListNull() {
-        this.marshallWithTypeListAndCheck(null, JsonNode.nullNode());
-    }
-
-    @Test
-    default void testMarshallWithTypeSetNull() {
-        this.marshallWithTypeSetAndCheck(null, JsonNode.nullNode());
+    default void testMarshallWithTypeCollectionNull() {
+        this.marshallWithTypeCollectionAndCheck(null, JsonNode.nullNode());
     }
 
     @Test
@@ -112,38 +101,21 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
                 () -> context + " marshall " + value);
     }
 
-    // marshallList...................................................................................................
+    // marshallCollection....................................................................................................
 
-    default void marshallListAndCheck(final List<?> list,
-                                      final JsonNode expected) {
-        this.marshallListAndCheck(this.createContext(),
-                list,
+    default void marshallCollectionAndCheck(final Collection<?> Collection,
+                                            final JsonNode expected) {
+        this.marshallCollectionAndCheck(this.createContext(),
+                Collection,
                 expected);
     }
 
-    default void marshallListAndCheck(final JsonNodeMarshallContext context,
-                                      final List<?> list,
-                                      final JsonNode expected) {
+    default void marshallCollectionAndCheck(final JsonNodeMarshallContext context,
+                                            final Collection<?> Collection,
+                                            final JsonNode expected) {
         this.checkEquals(expected,
-                context.marshallList(list),
-                () -> context + " marshallList " + list);
-    }
-
-    // marshallSet....................................................................................................
-
-    default void marshallSetAndCheck(final Set<?> set,
-                                     final JsonNode expected) {
-        this.marshallSetAndCheck(this.createContext(),
-                set,
-                expected);
-    }
-
-    default void marshallSetAndCheck(final JsonNodeMarshallContext context,
-                                     final Set<?> set,
-                                     final JsonNode expected) {
-        this.checkEquals(expected,
-                context.marshallSet(set),
-                () -> context + " marshallSet " + set);
+                context.marshallCollection(Collection),
+                () -> context + " marshallCollection " + Collection);
     }
 
     // marshallMap....................................................................................................
@@ -180,38 +152,21 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
                 () -> context + " marshallWithType " + value);
     }
 
-    // marshallWithTypeList...........................................................................................
+    // marshallWithTypeCollection...........................................................................................
 
-    default void marshallWithTypeListAndCheck(final List<?> list,
-                                              final JsonNode expected) {
-        this.marshallWithTypeListAndCheck(this.createContext(),
-                list,
+    default void marshallWithTypeCollectionAndCheck(final Collection<?> Collection,
+                                                    final JsonNode expected) {
+        this.marshallWithTypeCollectionAndCheck(this.createContext(),
+                Collection,
                 expected);
     }
 
-    default void marshallWithTypeListAndCheck(final JsonNodeMarshallContext context,
-                                              final List<?> list,
-                                              final JsonNode expected) {
+    default void marshallWithTypeCollectionAndCheck(final JsonNodeMarshallContext context,
+                                                    final Collection<?> Collection,
+                                                    final JsonNode expected) {
         this.checkEquals(expected,
-                context.marshallWithTypeList(list),
-                () -> context + " marshallWithTypeList " + list);
-    }
-
-    // marshallWithTypeSet............................................................................................
-
-    default void marshallWithTypeSetAndCheck(final Set<?> set,
-                                             final JsonNode expected) {
-        this.marshallWithTypeSetAndCheck(this.createContext(),
-                set,
-                expected);
-    }
-
-    default void marshallWithTypeSetAndCheck(final JsonNodeMarshallContext context,
-                                             final Set<?> set,
-                                             final JsonNode expected) {
-        this.checkEquals(expected,
-                context.marshallWithTypeSet(set),
-                () -> context + " marshallWithTypeSet " + set);
+                context.marshallWithTypeCollection(Collection),
+                () -> context + " marshallWithTypeCollection " + Collection);
     }
 
     // marshallWithTypeMap............................................................................................

@@ -21,7 +21,7 @@ import walkingkooka.Context;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.BiFunction;
@@ -52,14 +52,9 @@ public interface JsonNodeMarshallContext extends JsonNodeContext {
     JsonNode marshallWithType(final Object value);
 
     /**
-     * Accepts a {@link List} of elements which are assumed to be the same supported type.
+     * Accepts a {@link Collection} of elements which are assumed to be the same supported type.
      */
-    JsonNode marshallList(final List<?> list);
-
-    /**
-     * Accepts a {@link Set} of elements which are assumed to be the same supported type.
-     */
-    JsonNode marshallSet(final Set<?> set);
+    JsonNode marshallCollection(final Collection<?> collection);
 
     /**
      * Accepts a {@link Set} of elements which are assumed to be supported.
@@ -67,14 +62,9 @@ public interface JsonNodeMarshallContext extends JsonNodeContext {
     JsonNode marshallMap(final Map<?, ?> map);
 
     /**
-     * Accepts a {@link List} of elements which are assumed to be supported.
+     * Accepts a {@link Collection} of elements which are assumed to be supported.
      */
-    JsonNode marshallWithTypeList(final List<?> list);
-
-    /**
-     * Accepts a {@link Set} of elements which are assumed to be supported.
-     */
-    JsonNode marshallWithTypeSet(final Set<?> set);
+    JsonNode marshallWithTypeCollection(final Collection<?> collection);
 
     /**
      * Accepts a {@link Map} and returns its {@link JsonNode} equivalent.

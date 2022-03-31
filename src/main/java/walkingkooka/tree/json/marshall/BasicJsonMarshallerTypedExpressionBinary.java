@@ -57,6 +57,6 @@ final class BasicJsonMarshallerTypedExpressionBinary<N extends Expression> exten
     @Override
     JsonNode marshallNonNull(final N value,
                              final JsonNodeMarshallContext context) {
-        return context.marshallWithTypeList(value.children());
+        return context.marshallWithTypeCollection(value.children());
     }
 }

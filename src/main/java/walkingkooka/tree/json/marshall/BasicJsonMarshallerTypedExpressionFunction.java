@@ -49,9 +49,9 @@ final class BasicJsonMarshallerTypedExpressionFunction extends BasicJsonMarshall
     @Override
     JsonNode marshallNonNull(final FunctionExpression value,
                              final JsonNodeMarshallContext context) {
-        return context.marshallList(
+        return context.marshallCollection(
                 Lists.of(
                         JsonNode.string(value.name().value()),
-                        context.marshallWithTypeList(value.children())));
+                        context.marshallWithTypeCollection(value.children())));
     }
 }

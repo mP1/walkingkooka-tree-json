@@ -130,6 +130,7 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedExpressionNumberKind.instance(),
                 BasicJsonMarshallerTypedJsonNode.instance(),
                 BasicJsonMarshallerTypedJsonPropertyName.instance(),
+                BasicJsonMarshallerTypedCollectionCollection.instance(),
                 BasicJsonMarshallerTypedCollectionList.instance(),
                 BasicJsonMarshallerTypedIllegalArgumentException.instance(),
                 BasicJsonMarshallerTypedInvalidCharacterException.instance(),

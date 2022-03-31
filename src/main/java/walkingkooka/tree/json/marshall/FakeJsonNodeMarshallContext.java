@@ -20,9 +20,8 @@ package walkingkooka.tree.json.marshall;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.BiFunction;
 
 public class FakeJsonNodeMarshallContext extends FakeJsonNodeContext implements JsonNodeMarshallContext {
@@ -43,12 +42,7 @@ public class FakeJsonNodeMarshallContext extends FakeJsonNodeContext implements 
     }
 
     @Override
-    public JsonNode marshallList(final List<?> list) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public JsonNode marshallSet(final Set<?> set) {
+    public JsonNode marshallCollection(final Collection<?> collection) {
         throw new UnsupportedOperationException();
     }
 
@@ -58,12 +52,7 @@ public class FakeJsonNodeMarshallContext extends FakeJsonNodeContext implements 
     }
 
     @Override
-    public JsonNode marshallWithTypeList(final List<?> list) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public JsonNode marshallWithTypeSet(final Set<?> set) {
+    public JsonNode marshallWithTypeCollection(final Collection<?> collection) {
         throw new UnsupportedOperationException();
     }
 

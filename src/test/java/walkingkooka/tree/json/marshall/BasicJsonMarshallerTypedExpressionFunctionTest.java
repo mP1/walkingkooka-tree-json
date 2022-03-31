@@ -75,7 +75,7 @@ public final class BasicJsonMarshallerTypedExpressionFunctionTest extends BasicJ
 
         return JsonNode.array()
                 .appendChild(JsonNode.string(FUNCTION_NAME))
-                .appendChild(context.marshallWithTypeList(this.parameters()));
+                .appendChild(context.marshallWithTypeCollection(this.parameters()));
     }
 
     @Override

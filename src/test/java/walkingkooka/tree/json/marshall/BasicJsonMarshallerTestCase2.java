@@ -129,7 +129,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         final T value = this.value();
         final List<T> list = List.of(value);
 
-        final JsonNode jsonNode = this.marshallContext().marshallList(list);
+        final JsonNode jsonNode = this.marshallContext().marshallCollection(list);
 
         this.checkEquals(list,
                 this.unmarshallContext().unmarshallList(jsonNode, type(value)),
@@ -141,7 +141,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         final T value = this.value();
         final Set<T> set = Set.of(value);
 
-        final JsonNode jsonNode = this.marshallContext().marshallSet(set);
+        final JsonNode jsonNode = this.marshallContext().marshallCollection(set);
 
         try {
             set.equals(this.unmarshallContext().unmarshallSet(jsonNode, type(value)));
@@ -200,7 +200,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     public void testRoundtripTypeList() {
         final List<T> list = List.of(this.value());
 
-        final JsonNode jsonNode = this.marshallContext().marshallWithTypeList(list);
+        final JsonNode jsonNode = this.marshallContext().marshallWithTypeCollection(list);
 
         this.checkEquals(list,
                 this.unmarshallContext().unmarshallWithTypeList(jsonNode),
@@ -211,7 +211,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     public void testRoundtripTypeSet() {
         final Set<T> set = Set.of(this.value());
 
-        final JsonNode jsonNode = this.marshallContext().marshallWithTypeSet(set);
+        final JsonNode jsonNode = this.marshallContext().marshallWithTypeCollection(set);
 
         this.checkEquals(set,
                 this.unmarshallContext().unmarshallWithTypeSet(jsonNode),

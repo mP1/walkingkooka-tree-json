@@ -21,6 +21,7 @@ import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.FunctionExpression;
 import walkingkooka.tree.expression.ReferenceExpression;
+import walkingkooka.tree.expression.ValueExpression;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -57,7 +58,7 @@ abstract class BasicJsonMarshallerTypedExpression<N extends Expression> extends 
     /**
      * {@see BasicJsonMarshallerTypedExpressionValue}
      */
-    static BasicJsonMarshallerTypedExpression value() {
+    static BasicJsonMarshallerTypedExpression<ValueExpression<?>> value() {
         return BasicJsonMarshallerTypedExpressionValue.instance();
     }
 

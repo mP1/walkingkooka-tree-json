@@ -59,7 +59,7 @@ abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
         return this.replace0(name, index, this.value);
     }
 
-    abstract JsonLeafNode replace0(final JsonPropertyName name, final int index, final V value);
+    abstract JsonLeafNode<V> replace0(final JsonPropertyName name, final int index, final V value);
 
     /**
      * leaf nodes are not an array and always fail.

@@ -20,7 +20,7 @@ import walkingkooka.tree.json.JsonNode;
 
 import java.util.Optional;
 
-public abstract class JsonNodeLeafParserTokenTestCase2<T extends JsonNodeLeafParserToken, V, N extends JsonNode> extends JsonNodeLeafParserTokenTestCase<T, V> {
+public abstract class JsonNodeLeafParserTokenTestCase2<T extends JsonNodeLeafParserToken<V>, V, N extends JsonNode> extends JsonNodeLeafParserTokenTestCase<T, V> {
 
     JsonNodeLeafParserTokenTestCase2() {
         super();

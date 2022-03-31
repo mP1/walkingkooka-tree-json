@@ -17,13 +17,14 @@
 
 package walkingkooka.tree.json.parser;
 
+import walkingkooka.Cast;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 
-public final class JsonNodeValueParserTokenTest implements ClassTesting2<JsonNodeValueParserToken> {
+public final class JsonNodeValueParserTokenTest implements ClassTesting2<JsonNodeValueParserToken<?>> {
     @Override
-    public Class<JsonNodeValueParserToken> type() {
-        return JsonNodeValueParserToken.class;
+    public Class<JsonNodeValueParserToken<?>> type() {
+        return Cast.to(JsonNodeValueParserToken.class);
     }
 
     @Override

@@ -17,13 +17,14 @@
 
 package walkingkooka.tree.json;
 
+import walkingkooka.Cast;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 
-public final class JsonParentNodeTest implements ClassTesting2<JsonParentNode> {
+public final class JsonParentNodeTest implements ClassTesting2<JsonParentNode<?>> {
     @Override
-    public Class<JsonParentNode> type() {
-        return JsonParentNode.class;
+    public Class<JsonParentNode<?>> type() {
+        return Cast.to(JsonParentNode.class);
     }
 
     @Override

@@ -25,6 +25,8 @@ import walkingkooka.tree.json.JsonNodeException;
  */
 public class JsonNodeMarshallException extends JsonNodeException {
 
+    private static final long serialVersionUID = 1L;
+
     protected JsonNodeMarshallException() {
         super();
     }

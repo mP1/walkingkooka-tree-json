@@ -24,6 +24,8 @@ import walkingkooka.text.cursor.parser.ParserException;
  */
 public class JsonNodeParserException extends ParserException {
 
+    private static final long serialVersionUID = 1L;
+
     protected JsonNodeParserException() {
         super();
     }

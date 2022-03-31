@@ -48,7 +48,8 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
     /**
      * Makes a copy of the list and sets the parent upon the children.
      */
-    @Override final List<JsonNode> adoptChildren(final List<JsonNode> children) {
+    @Override
+    List<JsonNode> adoptChildren(final List<JsonNode> children) {
         final Optional<JsonNode> parent = Optional.of(this);
 
         final List<JsonNode> copy = Lists.array();
@@ -83,7 +84,7 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
      * Would be setter that returns an array instance with the provided children, creating a new instance if necessary.
      */
     @Override
-    public final JsonArray setChildren(final List<JsonNode> children) {
+    public JsonArray setChildren(final List<JsonNode> children) {
         Objects.requireNonNull(children, "children");
 
         return this.setChildren0(children)
@@ -201,7 +202,7 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
      * Creates a new list of children and replaces the child at the given slot, returning the new child.
      */
     @Override
-    final JsonNode setChild0(final JsonNode newChild, final int index) {
+    JsonNode setChild0(final JsonNode newChild, final int index) {
         final List<JsonNode> newChildren = this.copyChildren();
         newChildren.set(index, newChild);
 
@@ -242,7 +243,7 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
      * Is an array return this.
      */
     @Override
-    public final JsonArray arrayOrFail() {
+    public JsonArray arrayOrFail() {
         return this;
     }
 
@@ -250,7 +251,7 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
      * Arrays are not an object.
      */
     @Override
-    public final JsonObject objectOrFail() {
+    public JsonObject objectOrFail() {
         return this.reportInvalidNode(Object.class);
     }
 

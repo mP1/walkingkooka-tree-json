@@ -36,7 +36,8 @@ public final class JsonNodeBooleanParserToken extends JsonNodeValueParserToken<B
         super(value, text);
     }
 
-    @Override final JsonNode toJsonNodeOrNull() {
+    @Override
+    JsonNode toJsonNodeOrNull() {
         return JsonNode.booleanNode(this.value);
     }
 

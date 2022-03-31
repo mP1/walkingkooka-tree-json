@@ -83,7 +83,7 @@ public final class JsonNull extends JsonLeafNode<Void> {
     // HasText..........................................................................................................
 
     @Override
-    public final String text() {
+    public String text() {
         return NULL;
     }
 
@@ -92,17 +92,17 @@ public final class JsonNull extends JsonLeafNode<Void> {
     // Object......................................................................................................
 
     @Override
-    public final int hashCode() {
+    public int hashCode() {
         return this.name.hashCode();
     }
 
     @Override
-    final boolean equalsDescendants(final JsonNode other) {
+    boolean equalsDescendants(final JsonNode other) {
         return true;
     }
 
     @Override
-    final boolean equalsValue(final JsonNode other) {
+    boolean equalsValue(final JsonNode other) {
         return true;
     }
 

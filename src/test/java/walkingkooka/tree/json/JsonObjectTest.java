@@ -907,7 +907,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     // MapTesting..........................................................................................
 
     @Override
-    public final Map<JsonPropertyName, JsonNode> createMap() {
+    public Map<JsonPropertyName, JsonNode> createMap() {
         return JsonNode.object().asMap();
     }
 }

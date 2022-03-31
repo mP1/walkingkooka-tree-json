@@ -59,7 +59,8 @@ public final class JsonBoolean extends JsonLeafNonNullNode<Boolean> {
                 .cast(JsonBoolean.class);
     }
 
-    final JsonBoolean replace0(final JsonPropertyName name, final int index, final Boolean value) {
+    @Override
+    JsonBoolean replace0(final JsonPropertyName name, final int index, final Boolean value) {
         return new JsonBoolean(name, index, value);
     }
 

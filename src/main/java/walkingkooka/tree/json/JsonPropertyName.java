@@ -99,14 +99,14 @@ public final class JsonPropertyName implements Name,
     /**
      * Creates the {@link SearchNodeName} for this node name. Only used by {@link JsonObject#toSearchNode()}.
      */
-    final SearchNodeName toSearchNodeName() {
+    SearchNodeName toSearchNodeName() {
         return SearchNodeName.with(this.name);
     }
 
     // Object..........................................................................................................
 
     @Override
-    public final int hashCode() {
+    public int hashCode() {
         return CASE_SENSITIVITY.hash(this.name);
     }
 

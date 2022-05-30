@@ -20,6 +20,7 @@ package walkingkooka.tree.json.parser;
 import walkingkooka.ToStringBuilder;
 
 import java.math.MathContext;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Locale;
 
@@ -96,6 +97,11 @@ final class BasicJsonNodeParserContext implements JsonNodeParserContext {
 
     @Override
     public List<String> monthNameAbbreviations() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public LocalDateTime now() {
         throw new UnsupportedOperationException();
     }
 

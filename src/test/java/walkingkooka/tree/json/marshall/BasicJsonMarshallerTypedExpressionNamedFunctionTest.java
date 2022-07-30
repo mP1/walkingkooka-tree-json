@@ -21,13 +21,13 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionNumberKind;
-import walkingkooka.tree.expression.FunctionExpression;
 import walkingkooka.tree.expression.FunctionExpressionName;
+import walkingkooka.tree.expression.NamedFunctionExpression;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
 
-public final class BasicJsonMarshallerTypedExpressionFunctionTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionFunction, FunctionExpression> {
+public final class BasicJsonMarshallerTypedExpressionNamedFunctionTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionNamedFunction, NamedFunctionExpression> {
 
     private final static ExpressionNumberKind KIND = ExpressionNumberKind.DEFAULT;
 
@@ -47,15 +47,18 @@ public final class BasicJsonMarshallerTypedExpressionFunctionTest extends BasicJ
     }
 
     @Override
-    BasicJsonMarshallerTypedExpressionFunction marshaller() {
-        return BasicJsonMarshallerTypedExpressionFunction.instance();
+    BasicJsonMarshallerTypedExpressionNamedFunction marshaller() {
+        return BasicJsonMarshallerTypedExpressionNamedFunction.instance();
     }
 
     private final static String FUNCTION_NAME = "function123";
 
     @Override
-    FunctionExpression value() {
-        return Expression.function(FunctionExpressionName.with(FUNCTION_NAME), this.parameters());
+    NamedFunctionExpression value() {
+        return Expression.namedFunction(
+                FunctionExpressionName.with(FUNCTION_NAME),
+                this.parameters()
+        );
     }
 
     private List<Expression> parameters() {
@@ -80,16 +83,16 @@ public final class BasicJsonMarshallerTypedExpressionFunctionTest extends BasicJ
 
     @Override
     String typeName() {
-        return "function-expression";
+        return "named-function-expression";
     }
 
     @Override
-    Class<FunctionExpression> marshallerType() {
-        return FunctionExpression.class;
+    Class<NamedFunctionExpression> marshallerType() {
+        return NamedFunctionExpression.class;
     }
 
     @Override
-    public Class<BasicJsonMarshallerTypedExpressionFunction> type() {
-        return BasicJsonMarshallerTypedExpressionFunction.class;
+    public Class<BasicJsonMarshallerTypedExpressionNamedFunction> type() {
+        return BasicJsonMarshallerTypedExpressionNamedFunction.class;
     }
 }

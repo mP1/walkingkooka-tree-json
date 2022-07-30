@@ -131,8 +131,15 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
 
     private NodeSelector<TestNode, StringName, StringName, Object> function(final String functionName) {
         return TestNode.relativeNodeSelector()
-                .expression(Expression.function(FunctionExpressionName.with(functionName),
-                        Lists.of(this.reference(), this.text())));
+                .expression(
+                        Expression.namedFunction(
+                                FunctionExpressionName.with(functionName),
+                                Lists.of(
+                                        this.reference(),
+                                        this.text()
+                                )
+                        )
+                );
     }
 
     private Expression reference() {

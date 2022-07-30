@@ -44,7 +44,7 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext,
     BiFunction<JsonNode, Class<?>, JsonNode> OBJECT_PRE_PROCESSOR = (node, type) -> node;
 
     /**
-     * Shared function used to report a required property is missing within a static unmarshall.
+     * Shared namedFunction used to report a required property is missing within a static unmarshall.
      */
     static void requiredPropertyMissing(final JsonPropertyName property,
                                         final JsonNode node) {
@@ -52,7 +52,7 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext,
     }
 
     /**
-     * Shared function used to report a required property is missing within a static unmarshall.
+     * Shared namedFunction used to report a required property is missing within a static unmarshall.
      */
     static void unknownPropertyPresent(final JsonPropertyName property,
                                        final JsonNode node) {

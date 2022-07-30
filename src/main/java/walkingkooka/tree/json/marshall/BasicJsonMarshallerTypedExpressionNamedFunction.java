@@ -19,35 +19,35 @@ package walkingkooka.tree.json.marshall;
 
 import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.FunctionExpression;
 import walkingkooka.tree.expression.FunctionExpressionName;
+import walkingkooka.tree.expression.NamedFunctionExpression;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 
 /**
- * A {@link BasicJsonMarshaller} that handles {@link FunctionExpression}
+ * A {@link BasicJsonMarshaller} that handles {@link NamedFunctionExpression}
  */
-final class BasicJsonMarshallerTypedExpressionFunction extends BasicJsonMarshallerTypedExpression<FunctionExpression> {
+final class BasicJsonMarshallerTypedExpressionNamedFunction extends BasicJsonMarshallerTypedExpression<NamedFunctionExpression> {
 
-    static BasicJsonMarshallerTypedExpressionFunction instance() {
-        return new BasicJsonMarshallerTypedExpressionFunction();
+    static BasicJsonMarshallerTypedExpressionNamedFunction instance() {
+        return new BasicJsonMarshallerTypedExpressionNamedFunction();
     }
 
-    private BasicJsonMarshallerTypedExpressionFunction() {
-        super(FunctionExpression.class);
+    private BasicJsonMarshallerTypedExpressionNamedFunction() {
+        super(NamedFunctionExpression.class);
     }
 
     @Override
-    FunctionExpression unmarshallNonNull(final JsonNode node,
-                                         final JsonNodeUnmarshallContext context) {
+    NamedFunctionExpression unmarshallNonNull(final JsonNode node,
+                                              final JsonNodeUnmarshallContext context) {
         final JsonArray array = node.arrayOrFail();
-        return Expression.function(
+        return Expression.namedFunction(
                 FunctionExpressionName.with(array.get(0).stringOrFail()),
                 context.unmarshallWithTypeList(array.get(1)));
     }
 
     @Override
-    JsonNode marshallNonNull(final FunctionExpression value,
+    JsonNode marshallNonNull(final NamedFunctionExpression value,
                              final JsonNodeMarshallContext context) {
         return context.marshallCollection(
                 Lists.of(

@@ -206,7 +206,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     @Test
     public void testFunctionExpression() {
         this.roundtripAndCheck(
-                Expression.function(
+                Expression.namedFunction(
                         FunctionExpressionName.with("function123"),
                         Lists.of(
                                 Expression.value(true),

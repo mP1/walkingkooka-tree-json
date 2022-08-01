@@ -18,13 +18,17 @@
 package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.collect.list.Lists;
+import walkingkooka.tree.expression.CallExpression;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.expression.NamedFunctionExpression;
 import walkingkooka.tree.json.JsonNode;
 
-public final class BasicJsonMarshallerTypedExpressionNamedFunctionTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionNamedFunction, NamedFunctionExpression> {
+import java.util.List;
+
+public final class BasicJsonMarshallerTypedExpressionCallTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionCall, CallExpression> {
 
     private final static ExpressionNumberKind KIND = ExpressionNumberKind.DEFAULT;
 
@@ -45,44 +49,65 @@ public final class BasicJsonMarshallerTypedExpressionNamedFunctionTest extends B
     }
 
     @Test
-    public void testFromObjectFails() {
+    public void testFromStringFails() {
         this.unmarshallFailed(
-                JsonNode.object(),
-                ClassCastException.class
-        );
+                JsonNode.string("abc123"),
+                ClassCastException.class);
     }
 
     @Override
-    BasicJsonMarshallerTypedExpressionNamedFunction marshaller() {
-        return BasicJsonMarshallerTypedExpressionNamedFunction.instance();
+    BasicJsonMarshallerTypedExpressionCall marshaller() {
+        return BasicJsonMarshallerTypedExpressionCall.instance();
     }
 
     private final static String FUNCTION_NAME = "function123";
 
     @Override
-    NamedFunctionExpression value() {
+    CallExpression value() {
+        return Expression.call(
+                this.namedFunction(),
+                this.parameters()
+        );
+    }
+
+    private NamedFunctionExpression namedFunction() {
         return Expression.namedFunction(
                 FunctionExpressionName.with(FUNCTION_NAME)
         );
     }
 
+    private List<Expression> parameters() {
+        return Lists.of(
+                Expression.value(KIND.create(11)),
+                Expression.value("b2"),
+                Expression.add(
+                        Expression.value(KIND.create(3)),
+                        Expression.value(KIND.create(33))
+                )
+        );
+    }
+
     @Override
     JsonNode node() {
-        return JsonNode.string(FUNCTION_NAME);
+        final JsonNodeMarshallContext context = this.marshallContext();
+
+        return JsonNode.object()
+                .set(BasicJsonMarshallerTypedExpressionCall.CALLABLE_PROPERTY, context.marshallWithType(this.namedFunction()))
+                .set(BasicJsonMarshallerTypedExpressionCall.PARAMETERS_PROPERTY, context.marshallWithTypeCollection(this.parameters()));
     }
 
     @Override
     String typeName() {
-        return "named-function-expression";
+        return "call-expression";
     }
 
     @Override
-    Class<NamedFunctionExpression> marshallerType() {
-        return NamedFunctionExpression.class;
+    Class<CallExpression> marshallerType() {
+        return CallExpression.class;
     }
 
     @Override
-    public Class<BasicJsonMarshallerTypedExpressionNamedFunction> type() {
-        return BasicJsonMarshallerTypedExpressionNamedFunction.class;
+    public Class<BasicJsonMarshallerTypedExpressionCall> type() {
+        return BasicJsonMarshallerTypedExpressionCall.class;
     }
 }

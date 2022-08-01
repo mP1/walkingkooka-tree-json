@@ -17,11 +17,9 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.expression.NamedFunctionExpression;
-import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 
 /**
@@ -40,18 +38,19 @@ final class BasicJsonMarshallerTypedExpressionNamedFunction extends BasicJsonMar
     @Override
     NamedFunctionExpression unmarshallNonNull(final JsonNode node,
                                               final JsonNodeUnmarshallContext context) {
-        final JsonArray array = node.arrayOrFail();
         return Expression.namedFunction(
-                FunctionExpressionName.with(array.get(0).stringOrFail()),
-                context.unmarshallWithTypeList(array.get(1)));
+                FunctionExpressionName.with(node.stringOrFail())
+        );
     }
 
     @Override
     JsonNode marshallNonNull(final NamedFunctionExpression value,
                              final JsonNodeMarshallContext context) {
-        return context.marshallCollection(
-                Lists.of(
-                        JsonNode.string(value.name().value()),
-                        context.marshallWithTypeCollection(value.children())));
+        return context.marshall(
+                JsonNode.string(
+                        value.value()
+                                .value()
+                )
+        );
     }
 }

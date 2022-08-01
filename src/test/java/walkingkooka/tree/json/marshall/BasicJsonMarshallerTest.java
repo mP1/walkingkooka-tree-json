@@ -186,6 +186,21 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     }
 
     @Test
+    public void testExpressionCallNamedFunction() {
+        this.roundtripAndCheck(
+                Expression.call(
+                        Expression.namedFunction(
+                                FunctionExpressionName.with("function123")
+                        ),
+                        Lists.of(
+                                Expression.value(true),
+                                Expression.value("2b")
+                        )
+                )
+        );
+    }
+
+    @Test
     public void testExpressionDivision() {
         this.roundtripAndCheck(Expression::divide);
     }
@@ -201,19 +216,6 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     @Test
     public void testExpressionEquals() {
         this.roundtripAndCheck(Expression::equalsExpression);
-    }
-
-    @Test
-    public void testFunctionExpression() {
-        this.roundtripAndCheck(
-                Expression.namedFunction(
-                        FunctionExpressionName.with("function123"),
-                        Lists.of(
-                                Expression.value(true),
-                                Expression.value("2b")
-                        )
-                )
-        );
     }
 
     @Test

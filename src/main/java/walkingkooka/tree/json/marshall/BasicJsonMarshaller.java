@@ -110,7 +110,6 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedExpression.binary(Expression::and, AndExpression.class),
                 BasicJsonMarshallerTypedExpression.binary(Expression::divide, DivideExpression.class),
                 BasicJsonMarshallerTypedExpression.binary(Expression::equalsExpression, EqualsExpression.class),
-                BasicJsonMarshallerTypedExpression.namedFunction(),
                 BasicJsonMarshallerTypedExpression.binary(Expression::greaterThan, GreaterThanExpression.class),
                 BasicJsonMarshallerTypedExpression.binary(Expression::greaterThanEquals, GreaterThanEqualsExpression.class),
                 BasicJsonMarshallerTypedExpression.binary(Expression::lessThan, LessThanExpression.class),
@@ -126,6 +125,8 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedExpression.binary(Expression::subtract, SubtractExpression.class),
 //                BasicJsonMarshallerTypedExpression.value(),
                 BasicJsonMarshallerTypedExpression.binary(Expression::xor, XorExpression.class),
+                BasicJsonMarshallerTypedExpression.namedFunction(),
+                BasicJsonMarshallerTypedExpression.call(), // must be after namedFunction
                 BasicJsonMarshallerTypedExpressionNumber.instance(),
                 BasicJsonMarshallerTypedExpressionNumberKind.instance(),
                 BasicJsonMarshallerTypedJsonNode.instance(),

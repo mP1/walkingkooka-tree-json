@@ -21,7 +21,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.ExpressionReference;
+import walkingkooka.tree.expression.FakeExpressionReference;
 import walkingkooka.tree.expression.ReferenceExpression;
 import walkingkooka.tree.json.JsonNode;
 
@@ -47,7 +47,7 @@ public final class BasicJsonMarshallerTypedExpressionReferenceTest extends Basic
     private final static TestExpressionReference REFERENCE = new TestExpressionReference();
     private final static JsonNode REFERENCE_JSON = JsonNode.string("reference-123abc");
 
-    static class TestExpressionReference implements ExpressionReference {
+    static class TestExpressionReference extends FakeExpressionReference {
     }
 
     @Test

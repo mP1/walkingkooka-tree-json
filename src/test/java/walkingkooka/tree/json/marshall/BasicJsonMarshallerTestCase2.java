@@ -143,13 +143,8 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
 
         final JsonNode jsonNode = this.marshallContext().marshallCollection(set);
 
-        try {
-            set.equals(this.unmarshallContext().unmarshallSet(jsonNode, type(value)));
-        } catch (final Exception e) {
-            e.printStackTrace();
-        }
-
-        this.checkEquals(set,
+        this.checkEquals(
+                set,
                 this.unmarshallContext().unmarshallSet(jsonNode, type(value)),
                 () -> "roundtrip set: " + set + " -> json: " + jsonNode);
     }

@@ -10,4 +10,8 @@
 # walkingkooka-tree-json
 An immutable & functional Json library with support for marshalling, pointers (think JsonPointer), selecting (almost xpath).
 
-TODO Inline Samples
+
+
+# LambdaFunctionExpression
+
+All sub-classes of `walkingkooka.tree.expression.Expression` are supported except for `walkingkooka.tree.expression.LambdaFunctionExpression` [TODO](https://github.com/mP1/walkingkooka-tree-json/issues/157)

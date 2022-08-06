@@ -20,6 +20,7 @@ package walkingkooka.tree.json.marshall;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.expression.CallExpression;
 import walkingkooka.tree.expression.Expression;
+import walkingkooka.tree.expression.LambdaFunctionExpression;
 import walkingkooka.tree.expression.NamedFunctionExpression;
 import walkingkooka.tree.expression.ReferenceExpression;
 import walkingkooka.tree.expression.ValueExpression;
@@ -55,8 +56,14 @@ abstract class BasicJsonMarshallerTypedExpression<N extends Expression> extends 
     static BasicJsonMarshallerTypedExpression<CallExpression> call() {
         return BasicJsonMarshallerTypedExpressionCall.instance();
     }
-
-
+    
+    /**
+     * {@see BasicJsonMarshallerTypedExpressionLambdaFunction}
+     */
+    static BasicJsonMarshallerTypedExpression<LambdaFunctionExpression> lambdaFunction() {
+        return BasicJsonMarshallerTypedExpressionLambdaFunction.instance();
+    }
+    
     /**
      * {@see BasicJsonMarshallerTypedExpressionNamedFunction}
      */

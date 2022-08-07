@@ -24,12 +24,12 @@ import walkingkooka.tree.json.NumericLossJsonNodeException;
 public final class BasicJsonMarshallerTypedNumberShortTest extends BasicJsonMarshallerTypedNumberTestCase<BasicJsonMarshallerTypedNumberShort, Short> {
 
     @Test
-    public void testFromJsonNodeInvalidFails() {
+    public void testUnmarshallInvalidFails() {
         this.unmarshallFailed(JsonNode.number(Double.MAX_VALUE), NumericLossJsonNodeException.class);
     }
 
     @Test
-    public void testFromJsonNodeInvalidFails2() {
+    public void testUnmarshallInvalidFails2() {
         this.unmarshallFailed(JsonNode.number(1.5), NumericLossJsonNodeException.class);
     }
 

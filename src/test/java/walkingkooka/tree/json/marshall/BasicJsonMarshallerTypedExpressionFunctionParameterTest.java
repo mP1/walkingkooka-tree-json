@@ -43,7 +43,7 @@ public final class BasicJsonMarshallerTypedExpressionFunctionParameterTest exten
 
     @Test
     @Override
-    public void testFromJsonNodeJsonNullNode() {
+    public void testUnmarshallJsonNullNode() {
         this.unmarshallFailed(
                 JsonNode.nullNode(),
                 java.lang.NullPointerException.class

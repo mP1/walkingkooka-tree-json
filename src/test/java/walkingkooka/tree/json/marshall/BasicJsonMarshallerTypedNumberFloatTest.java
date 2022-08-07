@@ -24,7 +24,7 @@ import walkingkooka.tree.json.NumericLossJsonNodeException;
 public final class BasicJsonMarshallerTypedNumberFloatTest extends BasicJsonMarshallerTypedNumberTestCase<BasicJsonMarshallerTypedNumberFloat, Float> {
 
     @Test
-    public void testFromJsonNodeInvalidFails() {
+    public void testUnmarshallInvalidFails() {
         this.unmarshallFailed(JsonNode.number(Double.MAX_VALUE), NumericLossJsonNodeException.class);
     }
 

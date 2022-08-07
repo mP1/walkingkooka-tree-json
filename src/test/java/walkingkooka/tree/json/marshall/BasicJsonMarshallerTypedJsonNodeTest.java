@@ -24,33 +24,46 @@ import walkingkooka.tree.json.JsonPropertyName;
 public final class BasicJsonMarshallerTypedJsonNodeTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedJsonNode, JsonNode> {
 
     @Test
-    public void testFromJsonNodeArrayRemovesParent() {
-        this.unmarshallRemovesParentCheck(JsonNode.array().appendChild(JsonNode.string("1a")));
+    public void testUnmarshallArrayRemovesParent() {
+        this.unmarshallRemovesParentCheck(
+                JsonNode.array()
+                        .appendChild(
+                                JsonNode.string("1a")
+                        )
+        );
     }
 
     @Test
-    public void testFromJsonNodeBooleanRemovesParent() {
-        this.unmarshallRemovesParentCheck(JsonNode.booleanNode(true));
+    public void testUnmarshallBooleanRemovesParent() {
+        this.unmarshallRemovesParentCheck(
+                JsonNode.booleanNode(true)
+        );
     }
 
     @Test
-    public void testFromJsonNodeNulRemovesParent() {
+    public void testUnmarshallNulRemovesParent() {
         this.unmarshallRemovesParentCheck(JsonNode.nullNode());
     }
 
     @Test
-    public void testFromJsonNodeNumberRemovesParent() {
+    public void testUnmarshallNumberRemovesParent() {
         this.unmarshallRemovesParentCheck(JsonNode.number(12.5));
     }
 
     @Test
-    public void testFromJsonNodeStringRemovesParent() {
+    public void testUnmarshallStringRemovesParent() {
         this.unmarshallRemovesParentCheck(JsonNode.string("child-123"));
     }
 
     @Test
-    public void testFromJsonNodeObjectRemovesParent() {
-        this.unmarshallRemovesParentCheck(JsonNode.object().setChild(JsonPropertyName.with("abc"), JsonNode.string("def")));
+    public void testUnmarshallObjectRemovesParent() {
+        this.unmarshallRemovesParentCheck(
+                JsonNode.object()
+                        .setChild(
+                                JsonPropertyName.with("abc"),
+                                JsonNode.string("def")
+                        )
+        );
     }
 
     private void unmarshallRemovesParentCheck(final JsonNode child) {

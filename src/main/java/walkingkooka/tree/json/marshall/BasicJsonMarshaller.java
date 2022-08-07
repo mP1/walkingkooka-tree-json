@@ -106,6 +106,7 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedBigDecimal.instance(),
                 BasicJsonMarshallerTypedBigInteger.instance(),
                 BasicJsonMarshallerTypedCharacter.instance(),
+                BasicJsonMarshallerTypedClass.instance(),
                 BasicJsonMarshallerTypedExpression.value(),
                 BasicJsonMarshallerTypedExpression.binary(Expression::add, AddExpression.class),
                 BasicJsonMarshallerTypedExpression.binary(Expression::and, AndExpression.class),

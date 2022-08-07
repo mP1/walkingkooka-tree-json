@@ -25,27 +25,27 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 public final class BasicJsonMarshallerTypedInvalidCharacterExceptionTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedInvalidCharacterException, walkingkooka.InvalidCharacterException> {
 
     @Test
-    public void testFromBooleanFails() {
+    public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
     }
 
     @Test
-    public void testFromNumberFails() {
+    public void testUnmarshallNumberFails() {
         this.unmarshallFailed(JsonNode.number(1.5), ClassCastException.class);
     }
 
     @Test
-    public void testFromStringFails() {
+    public void testUnmarshallStringFails() {
         this.unmarshallFailed(JsonNode.string("string-123"), ClassCastException.class);
     }
 
     @Test
-    public void testFromArrayFails() {
+    public void testUnmarshallArrayFails() {
         this.unmarshallFailed(JsonNode.array(), ClassCastException.class);
     }
 
     @Test
-    public void testFromJsonStackElements() {
+    public void testUnmarshallStackElements() {
         final walkingkooka.InvalidCharacterException thrown = this.unmarshallContext()
                 .unmarshall(this.node(), walkingkooka.InvalidCharacterException.class);
         assertArrayEquals(new StackTraceElement[0], thrown.getStackTrace(), "stack trace");

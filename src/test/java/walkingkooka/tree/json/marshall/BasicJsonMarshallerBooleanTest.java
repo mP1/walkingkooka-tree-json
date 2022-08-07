@@ -23,22 +23,22 @@ import walkingkooka.tree.json.JsonNode;
 public final class BasicJsonMarshallerBooleanTest extends BasicJsonMarshallerTestCase2<BasicJsonMarshallerBoolean, Boolean> {
 
     @Test
-    public void testFromTrue() {
+    public void testUnmarshallTrue() {
         this.unmarshallAndCheck(JsonNode.booleanNode(true), true);
     }
 
     @Test
-    public void testFromFalse() {
+    public void testUnmarshallFalse() {
         this.unmarshallAndCheck(JsonNode.booleanNode(false), false);
     }
 
     @Test
-    public void testToTrue() {
+    public void testMarshallTrue() {
         this.marshallWithTypeAndCheck(true, JsonNode.booleanNode(true));
     }
 
     @Test
-    public void testToFalse() {
+    public void testMarshallFalse() {
         this.marshallWithTypeAndCheck(false, JsonNode.booleanNode(false));
     }
 

@@ -27,7 +27,7 @@ public abstract class JsonNodeLeafParserTokenTestCase2<T extends JsonNodeLeafPar
     }
 
     @Override
-    public final void testToJsonNode() {
+    public final void testMarshallNode() {
         this.checkEquals(Optional.of(this.jsonNode()), this.createToken().toJsonNode());
     }
 

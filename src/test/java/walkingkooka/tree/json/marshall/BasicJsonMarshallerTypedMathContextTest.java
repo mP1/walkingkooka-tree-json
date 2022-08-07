@@ -26,92 +26,92 @@ import java.math.RoundingMode;
 public final class BasicJsonMarshallerTypedMathContextTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedMathContext, MathContext> {
 
     @Test
-    public void testFromBooleanFails() {
+    public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
     }
 
     @Test
-    public void testFromNumberFails() {
+    public void testUnmarshallNumberFails() {
         this.unmarshallFailed(JsonNode.number(1.5), ClassCastException.class);
     }
 
     @Test
-    public void testFromObjectFails() {
+    public void testUnmarshallObjectFails() {
         this.unmarshallFailed(JsonNode.object(), ClassCastException.class);
     }
 
     @Test
-    public void testFromArrayFails() {
+    public void testUnmarshallArrayFails() {
         this.unmarshallFailed(JsonNode.array(), ClassCastException.class);
     }
 
     @Test
-    public void testFromStringEmptyFails() {
+    public void testUnmarshallStringEmptyFails() {
         this.unmarshallFailed(JsonNode.string(""), java.lang.IllegalArgumentException.class);
     }
 
     @Test
-    public void testFromStringEmptyPrecisionFails() {
+    public void testUnmarshallStringEmptyPrecisionFails() {
         this.unmarshallFailed(JsonNode.string(",DECIMAL32"), java.lang.IllegalArgumentException.class);
     }
 
     @Test
-    public void testFromStringInvalidPrecisionNumberFails() {
+    public void testUnmarshallStringInvalidPrecisionNumberFails() {
         this.unmarshallFailed(JsonNode.string("X,DECIMAL32"), java.lang.IllegalArgumentException.class);
     }
 
     @Test
-    public void testFromStringEmptyRoundingModeFails() {
+    public void testUnmarshallStringEmptyRoundingModeFails() {
         this.unmarshallFailed(JsonNode.string("9,"), java.lang.IllegalArgumentException.class);
     }
 
     @Test
-    public void testFromStringUnknownRoundingModeFails() {
+    public void testUnmarshallStringUnknownRoundingModeFails() {
         this.unmarshallFailed(JsonNode.string("9,?UNKNOWN?"), java.lang.IllegalArgumentException.class);
     }
 
     @Test
-    public void testFromStringInvalidPrecisionFails() {
+    public void testUnmarshallStringInvalidPrecisionFails() {
         this.unmarshallFailed(JsonNode.string("-9,DECIMAL32"), java.lang.IllegalArgumentException.class);
     }
 
     @Test
-    public void testFromDecimal32() {
+    public void testUnmarshallDecimal32() {
         this.unmarshallAndCheck(JsonNode.string("DECIMAL32"), MathContext.DECIMAL32);
     }
 
     @Test
-    public void testToDecimal32() {
+    public void testMarshallDecimal32() {
         this.marshallAndCheck(MathContext.DECIMAL32, JsonNode.string("DECIMAL32"));
     }
 
     @Test
-    public void testFromDecimal64() {
+    public void testUnmarshallDecimal64() {
         this.unmarshallAndCheck(JsonNode.string("DECIMAL64"), MathContext.DECIMAL64);
     }
 
     @Test
-    public void testToDecimal64() {
+    public void testMarshallDecimal64() {
         this.marshallAndCheck(MathContext.DECIMAL64, JsonNode.string("DECIMAL64"));
     }
 
     @Test
-    public void testFromDecimal128() {
+    public void testUnmarshallDecimal128() {
         this.unmarshallAndCheck(JsonNode.string("DECIMAL128"), MathContext.DECIMAL128);
     }
 
     @Test
-    public void testToDecimal128() {
+    public void testMarshallDecimal128() {
         this.marshallAndCheck(MathContext.DECIMAL128, JsonNode.string("DECIMAL128"));
     }
 
     @Test
-    public void testFromUnlimited() {
+    public void testUnmarshallUnlimited() {
         this.unmarshallAndCheck(JsonNode.string("UNLIMITED"), MathContext.UNLIMITED);
     }
 
     @Test
-    public void testToUnlimited() {
+    public void testMarshallUnlimited() {
         this.marshallAndCheck(MathContext.UNLIMITED, JsonNode.string("UNLIMITED"));
     }
 

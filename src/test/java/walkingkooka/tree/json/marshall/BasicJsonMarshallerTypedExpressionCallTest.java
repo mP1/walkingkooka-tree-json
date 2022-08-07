@@ -33,7 +33,7 @@ public final class BasicJsonMarshallerTypedExpressionCallTest extends BasicJsonM
     private final static ExpressionNumberKind KIND = ExpressionNumberKind.DEFAULT;
 
     @Test
-    public void testFromBooleanFails() {
+    public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(
                 JsonNode.booleanNode(true),
                 ClassCastException.class
@@ -41,7 +41,7 @@ public final class BasicJsonMarshallerTypedExpressionCallTest extends BasicJsonM
     }
 
     @Test
-    public void testFromNumberFails() {
+    public void testUnmarshallNumberFails() {
         this.unmarshallFailed(
                 JsonNode.number(123),
                 ClassCastException.class
@@ -49,7 +49,7 @@ public final class BasicJsonMarshallerTypedExpressionCallTest extends BasicJsonM
     }
 
     @Test
-    public void testFromStringFails() {
+    public void testUnmarshallStringFails() {
         this.unmarshallFailed(
                 JsonNode.string("abc123"),
                 ClassCastException.class);

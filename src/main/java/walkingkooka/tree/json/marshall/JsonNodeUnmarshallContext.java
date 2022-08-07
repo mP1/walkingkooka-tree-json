@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  * A {@link Context} that accompanies transforming {@link JsonNode} into an object.
@@ -71,6 +72,13 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext,
      */
     <T> T unmarshall(final JsonNode node,
                      final Class<T> type);
+
+    /**
+     * Unmarshalls the {@link JsonNode} to a {@link Set} using the provided {@link Enum} string factory.
+     */
+    <T extends Enum<T>> Set<T> unmarshallEnumSet(final JsonNode node,
+                                                 final Class<T> enumClass,
+                                                 final Function<String, T> stringToEnum);
 
     /**
      * Assumes something like a {@link JsonArray} and returns a {@link List} assuming the type of each element is fixed.

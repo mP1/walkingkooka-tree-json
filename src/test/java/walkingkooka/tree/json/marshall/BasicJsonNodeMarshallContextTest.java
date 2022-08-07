@@ -25,6 +25,8 @@ import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
 
+import java.math.RoundingMode;
+import java.util.EnumSet;
 import java.util.Locale;
 
 public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContextTestCase<BasicJsonNodeMarshallContext>
@@ -122,6 +124,24 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
 
     private JsonArray list(final JsonNode element) {
         return JsonNode.array().appendChild(element);
+    }
+
+    // marshallEnumSet..................................................................................................
+
+    @Test
+    public void testMarshallEnumSetWithNull() {
+        this.marshallEnumSetAndCheck(
+                null,
+                JsonNode.nullNode()
+        );
+    }
+
+    @Test
+    public void testMarshallEnumSetWithNonNull() {
+        this.marshallEnumSetAndCheck(
+                EnumSet.of(RoundingMode.CEILING, RoundingMode.FLOOR),
+                JsonNode.string("CEILING,FLOOR")
+        );
     }
 
     // marshallMap....................................................................................................

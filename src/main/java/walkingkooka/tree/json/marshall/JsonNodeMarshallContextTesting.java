@@ -23,6 +23,7 @@ import walkingkooka.tree.json.JsonObject;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.BiFunction;
 
 import static org.junit.jupiter.api.Assertions.assertNotSame;
@@ -116,6 +117,27 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
         this.checkEquals(expected,
                 context.marshallCollection(Collection),
                 () -> context + " marshallCollection " + Collection);
+    }
+
+    // marshallEnumSet..................................................................................................
+
+    default void marshallEnumSetAndCheck(final Set<? extends Enum<?>> value,
+                                         final JsonNode expected) {
+        this.marshallEnumSetAndCheck(
+                this.createContext(),
+                value,
+                expected
+        );
+    }
+
+    default void marshallEnumSetAndCheck(final JsonNodeMarshallContext context,
+                                         final Set<? extends Enum<?>> value,
+                                         final JsonNode expected) {
+        this.checkEquals(
+                expected,
+                context.marshallEnumSet(value),
+                () -> context + " marshallEnumSet " + value
+        );
     }
 
     // marshallMap....................................................................................................

@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  * A fake {@link JsonNodeUnmarshallContext}
@@ -49,6 +50,13 @@ public class FakeJsonNodeUnmarshallContext extends FakeJsonNodeContext implement
     @Override
     public <T> T unmarshall(final JsonNode node,
                             final Class<T> type) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public <T extends Enum<T>> Set<T> unmarshallEnumSet(final JsonNode node,
+                                                        final Class<T> enumClass,
+                                                        final Function<String, T> stringToEnum) {
         throw new UnsupportedOperationException();
     }
 

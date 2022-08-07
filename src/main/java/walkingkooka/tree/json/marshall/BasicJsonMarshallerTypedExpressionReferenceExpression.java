@@ -24,13 +24,13 @@ import walkingkooka.tree.json.JsonNode;
 /**
  * A {@link BasicJsonMarshaller} that handles {@link ReferenceExpression}
  */
-final class BasicJsonMarshallerTypedExpressionReference extends BasicJsonMarshallerTypedExpression<ReferenceExpression> {
+final class BasicJsonMarshallerTypedExpressionReferenceExpression extends BasicJsonMarshallerTypedExpression<ReferenceExpression> {
 
-    static BasicJsonMarshallerTypedExpressionReference instance() {
-        return new BasicJsonMarshallerTypedExpressionReference();
+    static BasicJsonMarshallerTypedExpressionReferenceExpression instance() {
+        return new BasicJsonMarshallerTypedExpressionReferenceExpression();
     }
 
-    private BasicJsonMarshallerTypedExpressionReference() {
+    private BasicJsonMarshallerTypedExpressionReferenceExpression() {
         super(ReferenceExpression.class);
     }
 

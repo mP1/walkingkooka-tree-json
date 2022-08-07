@@ -28,7 +28,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public final class BasicJsonMarshallerTypedExpressionValueTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionValue, ValueExpression<?>> {
+public final class BasicJsonMarshallerTypedExpressionValueExpressionTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionValueExpression, ValueExpression<?>> {
 
     @Test
     public void testRoundtripBooleanFalse() {
@@ -82,8 +82,8 @@ public final class BasicJsonMarshallerTypedExpressionValueTest extends BasicJson
 
     @SuppressWarnings("unchecked")
     @Override
-    BasicJsonMarshallerTypedExpressionValue marshaller() {
-        return BasicJsonMarshallerTypedExpressionValue.instance();
+    BasicJsonMarshallerTypedExpressionValueExpression marshaller() {
+        return BasicJsonMarshallerTypedExpressionValueExpression.instance();
     }
 
     @Override
@@ -107,7 +107,7 @@ public final class BasicJsonMarshallerTypedExpressionValueTest extends BasicJson
     }
 
     @Override
-    public Class<BasicJsonMarshallerTypedExpressionValue> type() {
-        return BasicJsonMarshallerTypedExpressionValue.class;
+    public Class<BasicJsonMarshallerTypedExpressionValueExpression> type() {
+        return BasicJsonMarshallerTypedExpressionValueExpression.class;
     }
 }

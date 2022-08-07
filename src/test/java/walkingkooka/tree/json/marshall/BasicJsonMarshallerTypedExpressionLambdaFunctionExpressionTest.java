@@ -30,7 +30,7 @@ import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
 
-public final class BasicJsonMarshallerTypedExpressionLambdaFunctionTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionLambdaFunction, LambdaFunctionExpression> {
+public final class BasicJsonMarshallerTypedExpressionLambdaFunctionExpressionTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionLambdaFunctionExpression, LambdaFunctionExpression> {
 
     @BeforeAll
     @SuppressWarnings("unchecked")
@@ -83,8 +83,8 @@ public final class BasicJsonMarshallerTypedExpressionLambdaFunctionTest extends 
     }
 
     @Override
-    BasicJsonMarshallerTypedExpressionLambdaFunction marshaller() {
-        return BasicJsonMarshallerTypedExpressionLambdaFunction.instance();
+    BasicJsonMarshallerTypedExpressionLambdaFunctionExpression marshaller() {
+        return BasicJsonMarshallerTypedExpressionLambdaFunctionExpression.instance();
     }
 
     private final static String FUNCTION_NAME = "function123";
@@ -102,8 +102,8 @@ public final class BasicJsonMarshallerTypedExpressionLambdaFunctionTest extends 
         final JsonNodeMarshallContext marshallContext = this.marshallContext();
 
         return JsonNode.object()
-                .set(BasicJsonMarshallerTypedExpressionLambdaFunction.PARAMETERS_JSON_PROPERTY, marshallContext.marshallCollection(PARAMETERS))
-                .set(BasicJsonMarshallerTypedExpressionLambdaFunction.BODY_JSON_PROPERTY, marshallContext.marshallWithType(BODY));
+                .set(BasicJsonMarshallerTypedExpressionLambdaFunctionExpression.PARAMETERS_JSON_PROPERTY, marshallContext.marshallCollection(PARAMETERS))
+                .set(BasicJsonMarshallerTypedExpressionLambdaFunctionExpression.BODY_JSON_PROPERTY, marshallContext.marshallWithType(BODY));
     }
 
     @Override
@@ -117,7 +117,7 @@ public final class BasicJsonMarshallerTypedExpressionLambdaFunctionTest extends 
     }
 
     @Override
-    public Class<BasicJsonMarshallerTypedExpressionLambdaFunction> type() {
-        return BasicJsonMarshallerTypedExpressionLambdaFunction.class;
+    public Class<BasicJsonMarshallerTypedExpressionLambdaFunctionExpression> type() {
+        return BasicJsonMarshallerTypedExpressionLambdaFunctionExpression.class;
     }
 }

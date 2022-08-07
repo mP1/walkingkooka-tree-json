@@ -23,7 +23,7 @@ import walkingkooka.tree.expression.AddExpression;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.json.JsonNode;
 
-public final class BasicJsonMarshallerTypedExpressionBinaryTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionBinary<AddExpression>, AddExpression> {
+public final class BasicJsonMarshallerTypedExpressionBinaryExpressionTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionBinaryExpression<AddExpression>, AddExpression> {
 
     @Test
     public void testUnmarshallBooleanFails() {
@@ -41,8 +41,8 @@ public final class BasicJsonMarshallerTypedExpressionBinaryTest extends BasicJso
     }
 
     @Override
-    BasicJsonMarshallerTypedExpressionBinary<AddExpression> marshaller() {
-        return BasicJsonMarshallerTypedExpressionBinary.with(Expression::add, AddExpression.class);
+    BasicJsonMarshallerTypedExpressionBinaryExpression<AddExpression> marshaller() {
+        return BasicJsonMarshallerTypedExpressionBinaryExpression.with(Expression::add, AddExpression.class);
     }
 
     @Override
@@ -80,7 +80,7 @@ public final class BasicJsonMarshallerTypedExpressionBinaryTest extends BasicJso
     }
 
     @Override
-    public Class<BasicJsonMarshallerTypedExpressionBinary<AddExpression>> type() {
-        return Cast.to(BasicJsonMarshallerTypedExpressionBinary.class);
+    public Class<BasicJsonMarshallerTypedExpressionBinaryExpression<AddExpression>> type() {
+        return Cast.to(BasicJsonMarshallerTypedExpressionBinaryExpression.class);
     }
 }

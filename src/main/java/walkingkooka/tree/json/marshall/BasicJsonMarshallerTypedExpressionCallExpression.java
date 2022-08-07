@@ -28,13 +28,13 @@ import java.util.List;
 /**
  * A {@link BasicJsonMarshaller} that handles {@link CallExpression}
  */
-final class BasicJsonMarshallerTypedExpressionCall extends BasicJsonMarshallerTypedExpression<CallExpression> {
+final class BasicJsonMarshallerTypedExpressionCallExpression extends BasicJsonMarshallerTypedExpression<CallExpression> {
 
-    static BasicJsonMarshallerTypedExpressionCall instance() {
-        return new BasicJsonMarshallerTypedExpressionCall();
+    static BasicJsonMarshallerTypedExpressionCallExpression instance() {
+        return new BasicJsonMarshallerTypedExpressionCallExpression();
     }
 
-    private BasicJsonMarshallerTypedExpressionCall() {
+    private BasicJsonMarshallerTypedExpressionCallExpression() {
         super(CallExpression.class);
     }
 

@@ -127,6 +127,7 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedExpression.binary(Expression::subtract, SubtractExpression.class),
 //                BasicJsonMarshallerTypedExpression.value(),
                 BasicJsonMarshallerTypedExpression.binary(Expression::xor, XorExpression.class),
+                BasicJsonMarshallerTypedExpression.lambdaFunction(),
                 BasicJsonMarshallerTypedExpression.namedFunction(),
                 BasicJsonMarshallerTypedExpression.call(), // must be after namedFunction
                 BasicJsonMarshallerTypedExpressionNumber.instance(),

@@ -25,16 +25,16 @@ import java.util.function.Function;
 /**
  * A {@link BasicJsonMarshaller} that handles {@link Expression} that have one children.
  */
-final class BasicJsonMarshallerTypedExpressionUnary<N extends Expression> extends BasicJsonMarshallerTypedExpression<N> {
+final class BasicJsonMarshallerTypedExpressionUnaryExpression<N extends Expression> extends BasicJsonMarshallerTypedExpression<N> {
 
-    static <N extends Expression> BasicJsonMarshallerTypedExpressionUnary<N> with(final Function<Expression, N> from,
-                                                                                  final Class<N> expressionType) {
+    static <N extends Expression> BasicJsonMarshallerTypedExpressionUnaryExpression<N> with(final Function<Expression, N> from,
+                                                                                            final Class<N> expressionType) {
 
-        return new BasicJsonMarshallerTypedExpressionUnary<>(from, expressionType);
+        return new BasicJsonMarshallerTypedExpressionUnaryExpression<>(from, expressionType);
     }
 
-    private BasicJsonMarshallerTypedExpressionUnary(final Function<Expression, N> from,
-                                                    final Class<N> type) {
+    private BasicJsonMarshallerTypedExpressionUnaryExpression(final Function<Expression, N> from,
+                                                              final Class<N> type) {
         super(type);
         this.from = from;
     }

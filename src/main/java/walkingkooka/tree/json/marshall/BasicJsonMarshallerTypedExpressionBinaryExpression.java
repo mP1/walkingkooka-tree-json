@@ -26,16 +26,16 @@ import java.util.function.BiFunction;
 /**
  * A {@link BasicJsonMarshaller} that handles {@link Expression} that have two children.
  */
-final class BasicJsonMarshallerTypedExpressionBinary<N extends Expression> extends BasicJsonMarshallerTypedExpression<N> {
+final class BasicJsonMarshallerTypedExpressionBinaryExpression<N extends Expression> extends BasicJsonMarshallerTypedExpression<N> {
 
-    static <N extends Expression> BasicJsonMarshallerTypedExpressionBinary<N> with(final BiFunction<Expression, Expression, N> from,
-                                                                                   final Class<N> expressionType) {
+    static <N extends Expression> BasicJsonMarshallerTypedExpressionBinaryExpression<N> with(final BiFunction<Expression, Expression, N> from,
+                                                                                             final Class<N> expressionType) {
 
-        return new BasicJsonMarshallerTypedExpressionBinary<>(from, expressionType);
+        return new BasicJsonMarshallerTypedExpressionBinaryExpression<>(from, expressionType);
     }
 
-    private BasicJsonMarshallerTypedExpressionBinary(final BiFunction<Expression, Expression, N> from,
-                                                     final Class<N> type) {
+    private BasicJsonMarshallerTypedExpressionBinaryExpression(final BiFunction<Expression, Expression, N> from,
+                                                               final Class<N> type) {
         super(type);
         this.from = from;
     }

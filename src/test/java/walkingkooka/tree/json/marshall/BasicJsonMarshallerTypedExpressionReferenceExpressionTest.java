@@ -25,7 +25,7 @@ import walkingkooka.tree.expression.FakeExpressionReference;
 import walkingkooka.tree.expression.ReferenceExpression;
 import walkingkooka.tree.json.JsonNode;
 
-public final class BasicJsonMarshallerTypedExpressionReferenceTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionReference, ReferenceExpression> {
+public final class BasicJsonMarshallerTypedExpressionReferenceExpressionTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionReferenceExpression, ReferenceExpression> {
 
     @BeforeAll
     @SuppressWarnings("unchecked")
@@ -66,8 +66,8 @@ public final class BasicJsonMarshallerTypedExpressionReferenceTest extends Basic
     }
 
     @Override
-    BasicJsonMarshallerTypedExpressionReference marshaller() {
-        return BasicJsonMarshallerTypedExpressionReference.instance();
+    BasicJsonMarshallerTypedExpressionReferenceExpression marshaller() {
+        return BasicJsonMarshallerTypedExpressionReferenceExpression.instance();
     }
 
     @Override
@@ -91,7 +91,7 @@ public final class BasicJsonMarshallerTypedExpressionReferenceTest extends Basic
     }
 
     @Override
-    public Class<BasicJsonMarshallerTypedExpressionReference> type() {
-        return BasicJsonMarshallerTypedExpressionReference.class;
+    public Class<BasicJsonMarshallerTypedExpressionReferenceExpression> type() {
+        return BasicJsonMarshallerTypedExpressionReferenceExpression.class;
     }
 }

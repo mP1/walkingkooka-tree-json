@@ -30,13 +30,13 @@ import java.util.List;
 /**
  * A {@link BasicJsonMarshaller} that handles {@link LambdaFunctionExpression}
  */
-final class BasicJsonMarshallerTypedExpressionLambdaFunction extends BasicJsonMarshallerTypedExpression<LambdaFunctionExpression> {
+final class BasicJsonMarshallerTypedExpressionLambdaFunctionExpression extends BasicJsonMarshallerTypedExpression<LambdaFunctionExpression> {
 
-    static BasicJsonMarshallerTypedExpressionLambdaFunction instance() {
-        return new BasicJsonMarshallerTypedExpressionLambdaFunction();
+    static BasicJsonMarshallerTypedExpressionLambdaFunctionExpression instance() {
+        return new BasicJsonMarshallerTypedExpressionLambdaFunctionExpression();
     }
 
-    private BasicJsonMarshallerTypedExpressionLambdaFunction() {
+    private BasicJsonMarshallerTypedExpressionLambdaFunctionExpression() {
         super(LambdaFunctionExpression.class);
     }
 

@@ -25,13 +25,13 @@ import walkingkooka.tree.json.JsonNode;
 /**
  * A {@link BasicJsonMarshaller} that handles {@link NamedFunctionExpression}
  */
-final class BasicJsonMarshallerTypedExpressionNamedFunction extends BasicJsonMarshallerTypedExpression<NamedFunctionExpression> {
+final class BasicJsonMarshallerTypedExpressionNamedFunctionExpression extends BasicJsonMarshallerTypedExpression<NamedFunctionExpression> {
 
-    static BasicJsonMarshallerTypedExpressionNamedFunction instance() {
-        return new BasicJsonMarshallerTypedExpressionNamedFunction();
+    static BasicJsonMarshallerTypedExpressionNamedFunctionExpression instance() {
+        return new BasicJsonMarshallerTypedExpressionNamedFunctionExpression();
     }
 
-    private BasicJsonMarshallerTypedExpressionNamedFunction() {
+    private BasicJsonMarshallerTypedExpressionNamedFunctionExpression() {
         super(NamedFunctionExpression.class);
     }
 

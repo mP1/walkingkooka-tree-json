@@ -35,7 +35,7 @@ public abstract class BasicJsonMarshallerTestCase<T> extends BasicTestCase<T> {
     }
 
     @Override
-    public String typeNameSuffix() {
-        return "";
+    public final String typeNameSuffix() {
+        return this.type().getSimpleName();
     }
 }

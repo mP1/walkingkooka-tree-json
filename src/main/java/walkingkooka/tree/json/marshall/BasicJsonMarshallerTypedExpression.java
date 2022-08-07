@@ -34,55 +34,55 @@ import java.util.function.Function;
 abstract class BasicJsonMarshallerTypedExpression<N extends Expression> extends BasicJsonMarshallerTyped<N> {
 
     /**
-     * {@see BasicJsonMarshallerTypedExpressionUnary}
+     * {@see BasicJsonMarshallerTypedExpressionUnaryExpression}
      */
     static <N extends Expression> BasicJsonMarshallerTypedExpression<N> unary(final Function<Expression, N> from,
                                                                               final Class<N> type) {
-        return BasicJsonMarshallerTypedExpressionUnary.with(from, type);
+        return BasicJsonMarshallerTypedExpressionUnaryExpression.with(from, type);
     }
 
     /**
-     * {@see BasicJsonMarshallerTypedExpressionBinary}
+     * {@see BasicJsonMarshallerTypedExpressionBinaryExpression}
      */
     static <N extends Expression> BasicJsonMarshallerTypedExpression<N> binary(final BiFunction<Expression, Expression, N> from,
                                                                                final Class<N> type) {
 
-        return BasicJsonMarshallerTypedExpressionBinary.with(from, type);
+        return BasicJsonMarshallerTypedExpressionBinaryExpression.with(from, type);
     }
 
     /**
-     * {@see BasicJsonMarshallerTypedExpressionCall}
+     * {@see BasicJsonMarshallerTypedExpressionCallExpression}
      */
     static BasicJsonMarshallerTypedExpression<CallExpression> call() {
-        return BasicJsonMarshallerTypedExpressionCall.instance();
+        return BasicJsonMarshallerTypedExpressionCallExpression.instance();
     }
     
     /**
-     * {@see BasicJsonMarshallerTypedExpressionLambdaFunction}
+     * {@see BasicJsonMarshallerTypedExpressionLambdaFunctionExpression}
      */
     static BasicJsonMarshallerTypedExpression<LambdaFunctionExpression> lambdaFunction() {
-        return BasicJsonMarshallerTypedExpressionLambdaFunction.instance();
+        return BasicJsonMarshallerTypedExpressionLambdaFunctionExpression.instance();
     }
     
     /**
-     * {@see BasicJsonMarshallerTypedExpressionNamedFunction}
+     * {@see BasicJsonMarshallerTypedExpressionNamedFunctionExpression}
      */
     static BasicJsonMarshallerTypedExpression<NamedFunctionExpression> namedFunction() {
-        return BasicJsonMarshallerTypedExpressionNamedFunction.instance();
+        return BasicJsonMarshallerTypedExpressionNamedFunctionExpression.instance();
     }
 
     /**
-     * {@see BasicJsonMarshallerTypedExpressionValue}
+     * {@see BasicJsonMarshallerTypedExpressionValueExpression}
      */
     static BasicJsonMarshallerTypedExpression<ValueExpression<?>> value() {
-        return BasicJsonMarshallerTypedExpressionValue.instance();
+        return BasicJsonMarshallerTypedExpressionValueExpression.instance();
     }
 
     /**
-     * {@see BasicJsonMarshallerTypedExpressionReference}
+     * {@see BasicJsonMarshallerTypedExpressionReferenceExpression}
      */
     static BasicJsonMarshallerTypedExpression<ReferenceExpression> reference() {
-        return BasicJsonMarshallerTypedExpressionReference.instance();
+        return BasicJsonMarshallerTypedExpressionReferenceExpression.instance();
     }
 
     /**

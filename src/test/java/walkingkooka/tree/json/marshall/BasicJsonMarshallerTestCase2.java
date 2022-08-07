@@ -52,19 +52,19 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     }
 
     @Test
-    public void testFromJsonNodeJsonNullNode() {
+    public void testUnmarshallJsonNullNode() {
         this.unmarshallAndCheck(JsonNode.nullNode(), this.jsonNullNode());
     }
 
     abstract T jsonNullNode();
 
     @Test
-    public final void testFromJsonNode() {
+    public final void testUnmarshall() {
         this.unmarshallAndCheck(this.node(), this.value());
     }
 
     @Test
-    public final void testFromJsonNodeWithType() {
+    public final void testUnmarshallWithType() {
         this.unmarshallWithTypeAndCheck(this.nodeWithType(), this.value());
     }
 

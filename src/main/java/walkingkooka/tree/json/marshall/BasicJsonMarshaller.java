@@ -69,14 +69,15 @@ abstract class BasicJsonMarshaller<T> {
                 value instanceof List ? "list" :
                         value instanceof Set ? "set" :
                                 value instanceof Map ? "map" :
-                                        value.getClass().getName());
+                                        classToString(value.getClass())
+        );
     }
 
     /**
      * Returns the marshaller for the given {@link Class}.
      */
     static <T> BasicJsonMarshaller<T> marshaller(final Class<T> type) {
-        return marshaller0(type.getName());
+        return marshaller0(classToString(type));
     }
 
     /**
@@ -185,7 +186,15 @@ abstract class BasicJsonMarshaller<T> {
     static Optional<JsonString> typeName(final Class<?> type) {
         Objects.requireNonNull(type, "type");
 
-        return Optional.ofNullable(TYPENAME_TO_MARSHALLER.get(type.getName())).map(m -> JsonNode.string(m.toString()));
+        return Optional.ofNullable(
+                TYPENAME_TO_MARSHALLER.get(
+                        classToString(type)
+                )
+        ).map(m -> JsonNode.string(m.toString()));
+    }
+
+    static String classToString(final Class<?> type) {
+        return type.getName();
     }
 
     // instance.........................................................................................................
@@ -210,7 +219,9 @@ abstract class BasicJsonMarshaller<T> {
 
     final void registerTypeNameAndType() {
         registerWithTypeName(this.typeName());
-        registerWithTypeName(this.type().getName());
+        registerWithTypeName(
+                classToString(this.type())
+        );
     }
 
     /**

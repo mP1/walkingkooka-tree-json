@@ -23,6 +23,10 @@ import walkingkooka.tree.expression.AddExpression;
 import walkingkooka.tree.expression.DivideExpression;
 import walkingkooka.tree.json.JsonNode;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 public final class BasicJsonMarshallerTypedClassTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedClass, Class<?>> {
 
     @Test
@@ -56,6 +60,39 @@ public final class BasicJsonMarshallerTypedClassTest extends BasicJsonMarshaller
         this.marshallAndCheck(
                 DivideExpression.class,
                 JsonNode.string(BasicJsonMarshaller.classToString(DivideExpression.class))
+        );
+    }
+
+    @Test
+    public void testRoundtripObject() {
+        this.roundtripAndCheck(Object.class);
+    }
+
+    @Test
+    public void testRoundtripList() {
+        this.roundtripAndCheck(List.class);
+    }
+
+    @Test
+    public void testRoundtripMap() {
+        this.roundtripAndCheck(Map.class);
+    }
+
+    @Test
+    public void testRoundtripSet() {
+        this.roundtripAndCheck(Set.class);
+    }
+
+    private void roundtripAndCheck(final Class<?> classs) {
+        final JsonNode json = this.marshallContext()
+                .marshall(classs);
+        this.checkEquals(
+                classs,
+                this.unmarshallContext()
+                        .unmarshall(
+                                json,
+                                Class.class
+                        )
         );
     }
 

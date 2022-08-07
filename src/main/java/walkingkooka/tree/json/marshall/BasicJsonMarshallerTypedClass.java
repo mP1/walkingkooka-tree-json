@@ -21,6 +21,10 @@ import walkingkooka.Cast;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.json.JsonNode;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * A {@link BasicJsonMarshaller} that only marshalls/unmarshalls {@link Class classes} that have been registered.
  */
@@ -54,10 +58,30 @@ final class BasicJsonMarshallerTypedClass extends BasicJsonMarshallerTyped<Class
                                final JsonNodeUnmarshallContext context) {
         final String className = node.stringOrFail();
         final BasicJsonMarshaller<?> marshaller = TYPENAME_TO_MARSHALLER.get(className);
-        if(null == marshaller) {
-            throw new IllegalStateException("Unknown class " + CharSequences.quote(className));
+
+        final Class<?> classs;
+
+        if(null != marshaller) {
+            classs =  marshaller.type();
+        } else {
+            switch(className) {
+                case "java.lang.Object":
+                    classs = Object.class;
+                    break;
+                case "java.util.List":
+                    classs = List.class;
+                    break;
+                case "java.util.Map":
+                    classs = Map.class;
+                    break;
+                case "java.util.Set":
+                    classs = Set.class;
+                    break;
+                default:
+                    throw new IllegalStateException("Unknown class " + CharSequences.quote(className));
+            }
         }
-        return marshaller.type();
+        return classs;
     }
 
     @Override

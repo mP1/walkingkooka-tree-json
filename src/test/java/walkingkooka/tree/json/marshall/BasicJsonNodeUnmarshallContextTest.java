@@ -28,6 +28,8 @@ import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
 
 import java.math.MathContext;
+import java.math.RoundingMode;
+import java.util.EnumSet;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -103,6 +105,35 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
                 this.jsonNode2(),
                 TestJsonNodeValue.class,
                 this.value());
+    }
+
+    // unmarshallEnumSet................................................................................................
+
+    @Test
+    public void testUnmarshallEnumSetNull() {
+        this.unmarshallEnumSetAndCheck(
+                JsonNode.nullNode(),
+                RoundingMode.class,
+                null
+        );
+    }
+
+    @Test
+    public void testUnmarshallEnumSetEmptyString() {
+        this.unmarshallEnumSetAndCheck(
+                JsonNode.string(""),
+                RoundingMode.class,
+                Sets.empty()
+        );
+    }
+
+    @Test
+    public void testUnmarshallEnumSetSeveralValues() {
+        this.unmarshallEnumSetAndCheck(
+                JsonNode.string("CEILING,FLOOR"),
+                RoundingMode.class,
+                EnumSet.of(RoundingMode.CEILING, RoundingMode.FLOOR)
+        );
     }
 
     // unmarshallList.................................................................................................

@@ -26,7 +26,9 @@ import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 
 import java.math.MathContext;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -101,6 +103,29 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     public <T> T unmarshall(final JsonNode node,
                             final Class<T> type) {
         return Cast.to(BasicJsonMarshaller.marshaller(type).unmarshall(this.preProcess(node, type), this));
+    }
+
+    @Override
+    public <T extends Enum<T>> Set<T> unmarshallEnumSet(final JsonNode node,
+                                                        final Class<T> enumClass,
+                                                        final Function<String, T> stringToEnum) {
+        return node.isNull() ?
+                null :
+                this.unmarshallEnumSetNonNull(
+                        node.stringOrFail(),
+                        enumClass,
+                        stringToEnum
+                );
+    }
+
+    private <T extends Enum<T>> Set<T> unmarshallEnumSetNonNull(final String csv,
+                                                                final Class<T> enumClass,
+                                                                final Function<String, T> stringToEnum) {
+        return csv.isEmpty() ?
+                EnumSet.noneOf(enumClass) :
+                Arrays.stream(csv.split(","))
+                        .map(stringToEnum::apply)
+                        .collect(Collectors.toCollection(() -> EnumSet.noneOf(enumClass)));
     }
 
     /**

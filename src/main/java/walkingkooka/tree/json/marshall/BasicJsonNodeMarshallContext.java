@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
@@ -95,6 +96,24 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
                         .setChildren(collection.stream()
                                 .map(this::marshall)
                                 .collect(Collectors.toList()));
+    }
+
+    /**
+     * Creates a CSV string from the provided {@link java.util.EnumSet}.
+     */
+    @Override
+    public JsonNode marshallEnumSet(final Set<? extends Enum<?>> enumSet) {
+        return null == enumSet ?
+                JsonNode.nullNode() :
+                marshallEnumSetNonNull(enumSet);
+    }
+
+    private JsonNode marshallEnumSetNonNull(final Set<? extends Enum<?>> enumSet) {
+        return JsonNode.string(
+                enumSet.stream()
+                        .map(Enum::name)
+                        .collect(Collectors.joining(","))
+        );
     }
 
     /**

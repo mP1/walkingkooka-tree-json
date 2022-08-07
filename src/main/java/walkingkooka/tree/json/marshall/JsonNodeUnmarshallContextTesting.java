@@ -109,6 +109,40 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                 () -> context + " unmarshall " + node + " type " + type.getName());
     }
 
+    // unmarshallEnumSet.................................................................................................
+
+    default <T extends Enum<T>> void unmarshallEnumSetAndCheck(final JsonNode node,
+                                                               final Class<T> type,
+                                                               final Set<T> expected) {
+        this.unmarshallEnumSetAndCheck(
+                this.createContext(),
+                node,
+                type,
+                expected
+        );
+    }
+
+    default <T extends Enum<T>> void unmarshallEnumSetAndCheck(final JsonNodeUnmarshallContext context,
+                                                               final JsonNode node,
+                                                               final Class<T> type,
+                                                               final Set<T> expected) {
+        this.checkEquals(
+                expected,
+                context.unmarshallEnumSet(
+                        node,
+                        type,
+                        (s) -> {
+                            try {
+                                return (T) type.getMethod("valueOf", String.class)
+                                        .invoke(null, s);
+                            } catch (final ReflectiveOperationException cause) {
+                                throw new RuntimeException(cause);
+                            }
+                        }),
+                () -> context + " unmarshallEnumSet " + node + " type " + type.getName()
+        );
+    }
+    
     // unmarshallList.................................................................................................
 
     default <T> void unmarshallListAndCheck(final JsonNode node,

@@ -47,6 +47,11 @@ public interface JsonNodeMarshallContext extends JsonNodeContext {
     JsonNode marshall(final Object value);
 
     /**
+     * Marshealls the {@link Set} to a {@link JsonNode}.
+     */
+    JsonNode marshallEnumSet(final Set<? extends Enum<?>> enumSet);
+
+    /**
      * Creates a {@link JsonNode} that records the type name and the json representation of the given object.
      */
     JsonNode marshallWithType(final Object value);

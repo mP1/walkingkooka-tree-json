@@ -26,12 +26,15 @@ import java.math.BigDecimal;
 public final class BasicJsonMarshallerTypedExpressionNumberTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedExpressionNumber, ExpressionNumber> {
 
     @Test
-    public void testToJson() {
-        this.marshallAndCheck(EXPRESSION_NUMBER_KIND.create(123), JsonNode.string("123"));
+    public void testMarshall0() {
+        this.marshallAndCheck(
+                EXPRESSION_NUMBER_KIND.create(123),
+                JsonNode.string("123")
+        );
     }
 
     @Test
-    public void testFromJsonEmptyString() {
+    public void testUnmarshallEmptyString() {
         this.unmarshallFailed(JsonNode.string(""), NumberFormatException.class);
     }
 

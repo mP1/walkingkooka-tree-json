@@ -39,32 +39,32 @@ public final class BasicJsonMarshallerTypedMapTest extends BasicJsonMarshallerTy
     }
 
     @Test
-    public void testFromBooleanFails() {
+    public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(JsonNode.booleanNode(true), null);
     }
 
     @Test
-    public void testFromNumberFails() {
+    public void testUnmarshallNumberFails() {
         this.unmarshallFailed(JsonNode.number(123), null);
     }
 
     @Test
-    public void testFromStringFails() {
+    public void testUnmarshallStringFails() {
         this.unmarshallFailed(JsonNode.string("abc123"), null);
     }
 
     @Test
-    public void testFromObjectFails() {
+    public void testUnmarshallObjectFails() {
         this.unmarshallFailed(JsonNode.object(), null);
     }
 
     @Test
-    public void testFromEmptyArray() {
+    public void testUnmarshallEmptyArray() {
         this.unmarshallAndCheck(JsonNode.array(), Maps.empty());
     }
 
     @Test
-    public void testToEmptyMap() {
+    public void testMarshallEmptyMap() {
         this.marshallWithTypeAndCheck(Maps.empty(), this.typeAndValue(JsonNode.array()));
     }
 

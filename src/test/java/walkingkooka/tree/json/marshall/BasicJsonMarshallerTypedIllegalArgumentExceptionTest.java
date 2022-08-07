@@ -25,39 +25,39 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 public final class BasicJsonMarshallerTypedIllegalArgumentExceptionTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedIllegalArgumentException, java.lang.IllegalArgumentException> {
 
     @Test
-    public void testFromBooleanFails() {
+    public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
     }
 
     @Test
-    public void testFromNumberFails() {
+    public void testUnmarshallNumberFails() {
         this.unmarshallFailed(JsonNode.number(1.5), ClassCastException.class);
     }
 
     @Test
-    public void testFromObjectFails() {
+    public void testUnmarshallObjectFails() {
         this.unmarshallFailed(JsonNode.object(), ClassCastException.class);
     }
 
     @Test
-    public void testFromArrayFails() {
+    public void testUnmarshallArrayFails() {
         this.unmarshallFailed(JsonNode.array(), ClassCastException.class);
     }
 
     @Test
-    public void testFromJsonStackElements() {
+    public void testUnmarshallStackElements() {
         final java.lang.IllegalArgumentException thrown = this.unmarshallContext()
                 .unmarshall(JsonNode.string("message 123"), java.lang.IllegalArgumentException.class);
         assertArrayEquals(new StackTraceElement[0], thrown.getStackTrace(), "stack trace");
     }
 
     @Test
-    public void testToJsonNullMessage() {
+    public void testMarshallNullMessage() {
         this.marshallAndCheck(new java.lang.IllegalArgumentException(), JsonNode.number(0));
     }
 
     @Test
-    public void testToJsonEmptyMessage() {
+    public void testMarshallEmptyMessage() {
         final String message = "";
         this.marshallAndCheck(new java.lang.IllegalArgumentException(message), JsonNode.string(message));
     }

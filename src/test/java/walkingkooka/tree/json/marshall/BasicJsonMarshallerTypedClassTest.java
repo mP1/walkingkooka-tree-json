@@ -39,12 +39,12 @@ public final class BasicJsonMarshallerTypedClassTest extends BasicJsonMarshaller
     }
 
     @Test
-    public void testFromString() {
+    public void testUnmarshallString() {
         this.unmarshallClassAndCheck(String.class);
     }
 
     @Test
-    public void testFromAddExpression() {
+    public void testUnmarshallAddExpression() {
         this.unmarshallClassAndCheck(AddExpression.class);
     }
 
@@ -56,7 +56,7 @@ public final class BasicJsonMarshallerTypedClassTest extends BasicJsonMarshaller
     }
 
     @Test
-    public void testTo() {
+    public void testMarshallDivideExpression() {
         this.marshallAndCheck(
                 DivideExpression.class,
                 JsonNode.string(BasicJsonMarshaller.classToString(DivideExpression.class))

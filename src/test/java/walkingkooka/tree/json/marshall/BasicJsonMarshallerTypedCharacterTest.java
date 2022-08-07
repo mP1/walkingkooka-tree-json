@@ -29,23 +29,32 @@ public final class BasicJsonMarshallerTypedCharacterTest extends BasicJsonMarsha
     }
 
     @Test
-    public void testFromMoreThanOneLengthStringFails() {
+    public void testUnmarshallMoreThanOneLengthStringFails() {
         this.unmarshallFailed(JsonNode.string("abc"), java.lang.IllegalArgumentException.class);
     }
 
     @Test
-    public void testFrom() {
-        this.unmarshallAndCheck(JsonNode.string("A"), 'A');
+    public void testUnmarshallA() {
+        this.unmarshallAndCheck(
+                JsonNode.string("A"),
+                'A'
+        );
     }
 
     @Test
-    public void testFrom2() {
-        this.unmarshallAndCheck(JsonNode.string("\t"), '\t');
+    public void testUnmarshallTab() {
+        this.unmarshallAndCheck(
+                JsonNode.string("\t"),
+                '\t'
+        );
     }
 
     @Test
-    public void testTo() {
-        this.marshallAndCheck('Z', JsonNode.string("Z"));
+    public void testMarshallZ() {
+        this.marshallAndCheck(
+                'Z',
+                JsonNode.string("Z")
+        );
     }
 
     @Override

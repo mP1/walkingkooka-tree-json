@@ -26,7 +26,7 @@ import java.time.format.DateTimeParseException;
 public final class BasicJsonMarshallerTypedLocalDateTimeTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedLocalDateTime, LocalDateTime> {
 
     @Test
-    public void testFromInvalidDateFails() {
+    public void testUnmarshallInvalidDateFails() {
         this.unmarshallFailed(JsonNode.string("ABC123"), DateTimeParseException.class);
     }
 

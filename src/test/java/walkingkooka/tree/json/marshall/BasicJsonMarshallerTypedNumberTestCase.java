@@ -29,22 +29,22 @@ public abstract class BasicJsonMarshallerTypedNumberTestCase<M extends BasicJson
     }
 
     @Test
-    public void testFromArrayFails() {
+    public void testUnmarshallArrayFails() {
         this.unmarshallFailed(JsonNode.array(), ClassCastException.class);
     }
 
     @Test
-    public void testFromBooleanFails() {
+    public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
     }
 
     @Test
-    public void testFromObjectFails() {
+    public void testUnmarshallObjectFails() {
         this.unmarshallFailed(JsonNode.object(), ClassCastException.class);
     }
 
     @Test
-    public void testFromStringFails() {
+    public void testUnmarshallStringFails() {
         this.unmarshallFailed(JsonNode.string("abc123"), ClassCastException.class);
     }
 }

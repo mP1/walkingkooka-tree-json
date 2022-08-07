@@ -41,27 +41,27 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
     }
 
     @Test
-    public void testFromBooleanFails() {
+    public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
     }
 
     @Test
-    public void testFromNumberFails() {
+    public void testUnmarshallNumberFails() {
         this.unmarshallFailed(JsonNode.number(123), ClassCastException.class);
     }
 
     @Test
-    public void testFromStringFails() {
+    public void testUnmarshallStringFails() {
         this.unmarshallFailed(JsonNode.string("a1"), ClassCastException.class);
     }
 
     @Test
-    public void testFromObjectFails() {
+    public void testUnmarshallObjectFails() {
         this.unmarshallFailed(JsonNode.object(), ClassCastException.class);
     }
 
     @Test
-    public void testFromArrayTwoElementsFails() {
+    public void testUnmarshallArrayTwoElementsFails() {
         this.unmarshallFailed(JsonNode.array()
                         .appendChild(JsonNode.number(1))
                         .appendChild(JsonNode.number(2)),
@@ -69,30 +69,30 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
     }
 
     @Test
-    public void testFromEmptyArray() {
+    public void testUnmarshallEmptyArray() {
         this.unmarshallAndCheck(JsonNode.array(), Optional.empty());
     }
 
     @Test
-    public void testFromArrayWithBooleanTrue() {
+    public void testUnmarshallArrayWithBooleanTrue() {
         this.unmarshallAndCheck(JsonNode.array().appendChild(JsonNode.booleanNode(true)),
                 Optional.of(true));
     }
 
     @Test
-    public void testFromArrayWithBooleanFalse() {
+    public void testUnmarshallArrayWithBooleanFalse() {
         this.unmarshallAndCheck(JsonNode.array().appendChild(JsonNode.booleanNode(false)),
                 Optional.of(false));
     }
 
     @Test
-    public void testFromArrayWithNumber() {
+    public void testUnmarshallArrayWithNumber() {
         this.unmarshallAndCheck(JsonNode.array().appendChild(JsonNode.number(1.5)),
                 Optional.of(1.5));
     }
 
     @Test
-    public void testFromArrayWithString() {
+    public void testUnmarshallArrayWithString() {
         this.unmarshallAndCheck(JsonNode.array().appendChild(JsonNode.string("abc123")),
                 Optional.of("abc123"));
     }

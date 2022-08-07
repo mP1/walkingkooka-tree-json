@@ -26,38 +26,38 @@ import java.util.Arrays;
 public final class BasicJsonMarshallerTypedRoundingModeTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedRoundingMode, RoundingMode> {
 
     @Test
-    public void testFromBooleanFails() {
+    public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
     }
 
     @Test
-    public void testFromNumberFails() {
+    public void testUnmarshallNumberFails() {
         this.unmarshallFailed(JsonNode.number(1.5), ClassCastException.class);
     }
 
     @Test
-    public void testFromObjectFails() {
+    public void testUnmarshallObjectFails() {
         this.unmarshallFailed(JsonNode.object(), ClassCastException.class);
     }
 
     @Test
-    public void testFromArrayFails() {
+    public void testUnmarshallArrayFails() {
         this.unmarshallFailed(JsonNode.array(), ClassCastException.class);
     }
 
     @Test
-    public void testFromStringEmptyFails() {
+    public void testUnmarshallStringEmptyFails() {
         this.unmarshallFailed(JsonNode.string(""), java.lang.IllegalArgumentException.class);
     }
 
     @Test
-    public void testFromString() {
+    public void testUnmarshallString() {
         Arrays.stream(RoundingMode.values())
                 .forEach(r -> this.unmarshallAndCheck(JsonNode.string(r.name()), r));
     }
 
     @Test
-    public void testTo() {
+    public void testMarshallRoundModeValues() {
         Arrays.stream(RoundingMode.values())
                 .forEach(r -> this.marshallAndCheck(r, JsonNode.string(r.name())));
     }

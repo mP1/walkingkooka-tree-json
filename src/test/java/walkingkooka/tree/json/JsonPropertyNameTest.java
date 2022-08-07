@@ -34,32 +34,32 @@ public final class JsonPropertyNameTest implements ClassTesting2<JsonPropertyNam
     }
 
     @Test
-    public void testFromClassArray() {
+    public void testUnmarshallClassArray() {
         this.fromClassAndCheck(JsonArray.class, "Array");
     }
 
     @Test
-    public void testFromClassBoolean() {
+    public void testUnmarshallClassBoolean() {
         this.fromClassAndCheck(JsonBoolean.class, "Boolean");
     }
 
     @Test
-    public void testFromClassNull() {
+    public void testUnmarshallClassNull() {
         this.fromClassAndCheck(JsonNull.class, "Null");
     }
 
     @Test
-    public void testFromClassNumber() {
+    public void testUnmarshallClassNumber() {
         this.fromClassAndCheck(JsonNumber.class, "Number");
     }
 
     @Test
-    public void testFromClassObject() {
+    public void testUnmarshallClassObject() {
         this.fromClassAndCheck(JsonObject.class, "Object");
     }
 
     @Test
-    public void testFromClassString() {
+    public void testUnmarshallClassString() {
         this.fromClassAndCheck(JsonString.class, "String");
     }
 
@@ -74,7 +74,7 @@ public final class JsonPropertyNameTest implements ClassTesting2<JsonPropertyNam
     }
 
     @Test
-    public void testToJsonString() {
+    public void testMarshallString() {
         final String value = "property123";
         this.checkEquals(JsonNode.string(value), JsonPropertyName.with(value).toJsonString());
     }

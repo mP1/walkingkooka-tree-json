@@ -25,27 +25,27 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 public final class BasicJsonMarshallerTypedInvalidTextLengthExceptionTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedInvalidTextLengthException, walkingkooka.InvalidTextLengthException> {
 
     @Test
-    public void testFromBooleanFails() {
+    public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(JsonNode.booleanNode(true), ClassCastException.class);
     }
 
     @Test
-    public void testFromNumberFails() {
+    public void testUnmarshallNumberFails() {
         this.unmarshallFailed(JsonNode.number(1.5), ClassCastException.class);
     }
 
     @Test
-    public void testFromStringFails() {
+    public void testUnmarshallStringFails() {
         this.unmarshallFailed(JsonNode.string("string-123"), ClassCastException.class);
     }
 
     @Test
-    public void testFromArrayFails() {
+    public void testUnmarshallArrayFails() {
         this.unmarshallFailed(JsonNode.array(), ClassCastException.class);
     }
 
     @Test
-    public void testFromJsonStackElements() {
+    public void testUnmarshallStackElements() {
         final walkingkooka.InvalidTextLengthException thrown = this.unmarshallContext()
                 .unmarshall(this.node(), walkingkooka.InvalidTextLengthException.class);
         assertArrayEquals(new StackTraceElement[0], thrown.getStackTrace(), "stack trace");

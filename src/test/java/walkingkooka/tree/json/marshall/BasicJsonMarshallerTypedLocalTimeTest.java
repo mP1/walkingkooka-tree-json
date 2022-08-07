@@ -36,12 +36,12 @@ public final class BasicJsonMarshallerTypedLocalTimeTest extends BasicJsonMarsha
     }
 
     @Test
-    public void testFromInvalidDateFails() {
+    public void testUnmarshallInvalidDateFails() {
         this.unmarshallFailed(JsonNode.string("ABC123"), DateTimeParseException.class);
     }
 
     @Test
-    public void testFromHoursOnlyFails() {
+    public void testUnmarshallHoursOnlyFails() {
         this.unmarshallFailed(JsonNode.string("12"), DateTimeParseException.class);
     }
 

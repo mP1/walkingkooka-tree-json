@@ -633,7 +633,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     }
 
     @Test
-    public void testToStringWithOneChild() {
+    public void testToStringWithOneChildBoolean() {
         final JsonArray array = JsonNode.array()
                 .appendChild(JsonNode.booleanNode(true));
 
@@ -641,6 +641,40 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
                 array,
                 "[\n" +
                         "  true\n" +
+                        "]"
+        );
+    }
+
+    @Test
+    public void testToStringWithOneChildObject() {
+        final JsonArray array = JsonNode.array()
+                .appendChild(JsonNode.object());
+
+        this.toStringAndCheck(
+                array,
+                "[\n" +
+                        "  {}\n" +
+                        "]"
+        );
+    }
+
+    @Test
+    public void testToStringWithOneChildObjectWithProperties() {
+        final JsonArray array = JsonNode.array()
+                .appendChild(
+                        JsonNode.object()
+                                .set(
+                                        JsonPropertyName.with("x"),
+                                        JsonNode.booleanNode(true)
+                                )
+                );
+
+        this.toStringAndCheck(
+                array,
+                "[\n" +
+                        "  {\n" +
+                        "    \"x\": true\n" +
+                        "  }\n" +
                         "]"
         );
     }

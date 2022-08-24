@@ -834,8 +834,10 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
                 .set(key2(), JsonNode.number(2))
                 .set(key3(), JsonNode.string("third"));
 
-        this.toStringAndCheck(object,
-                "{\n  \"key1\": true,\n  \"key2\": 2,\n  \"key3\": \"third\"\n}".replace("\n", LineEnding.SYSTEM.toString()));
+        this.toStringAndCheck(
+                object,
+                "{\n  \"key1\": true,\n  \"key2\": 2,\n  \"key3\": \"third\"\n}"
+        );
     }
 
     @Test
@@ -846,8 +848,10 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonObject object = JsonNode.object()
                 .set(key3(), nested);
 
-        this.toStringAndCheck(object,
-                "{\n  \"key3\": {\n    \"key1\": true,\n    \"key2\": 2\n  }\n}".replace("\n", LineEnding.SYSTEM.toString()));
+        this.toStringAndCheck(
+                object,
+                "{\n  \"key3\": {\n    \"key1\": true,\n    \"key2\": 2\n  }\n}"
+        );
     }
 
     @Test
@@ -859,8 +863,10 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonObject object = JsonNode.object()
                 .set(key3(), nested);
 
-        this.toStringAndCheck(object,
-                "{\n  \"key3\": [true, 2, \"third\"]\n}".replace("\n", LineEnding.SYSTEM.toString()));
+        this.toStringAndCheck(
+                object,
+                "{\n  \"key3\": [true, 2, \"third\"]\n}"
+        );
     }
 
     @Override

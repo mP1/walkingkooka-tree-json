@@ -209,7 +209,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         return (m) -> m.equals("isRoot");
     }
 
-    // ClassTestCase.........................................................................................
+    // ClassTesting....................................................................................................
 
     @Override
     public final JavaVisibility typeVisibility() {

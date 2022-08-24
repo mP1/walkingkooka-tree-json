@@ -20,6 +20,7 @@ package walkingkooka.tree.json;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.naming.Name;
+import walkingkooka.text.LineEnding;
 import walkingkooka.tree.Node;
 import walkingkooka.tree.ParentNodeTesting;
 import walkingkooka.tree.Traversable;
@@ -162,5 +163,15 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
             this.childrenCheck(child);
             i++;
         }
+    }
+
+    // ToStringTesting..................................................................................................
+
+    public final void toStringAndCheck(final N node,
+                                       final String expected) {
+        super.toStringAndCheck(
+                node,
+                expected.replace(LineEnding.SYSTEM, LineEnding.NL)
+        );
     }
 }

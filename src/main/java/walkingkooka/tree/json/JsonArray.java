@@ -280,16 +280,30 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
 
     @Override
     void printJson0(final IndentingPrinter printer) {
-        printer.print(BEGIN.string());
+        final List<JsonNode> children = this.children();
+        if (children.isEmpty()) {
+            printer.print(EMPTY_ARRAY_STRING);
+        } else {
+            printer.println(BEGIN);
 
-        String separator = "";
-        for (JsonNode child : this.children) {
-            printer.print(separator);
-            separator = ", ";
+            printer.indent();
+            {
+                int i = 0;
+                for (final JsonNode child : this.children) {
+                    if (i > 0) {
+                        printer.println(",");
+                    }
+                    i++;
 
-            child.printJson(printer);
+                    child.printJson(printer);
+                }
+            }
+            printer.outdent();
+
+            printer.println();
+            printer.print(END);
         }
-
-        printer.print(END.string());
     }
+
+    private final static String EMPTY_ARRAY_STRING = BEGIN.string() + END;
 }

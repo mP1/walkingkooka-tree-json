@@ -824,7 +824,10 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
 
     @Test
     public void testToStringEmpty() {
-        this.toStringAndCheck(this.createJsonNode(), "{}");
+        this.toStringAndCheck(
+                this.createJsonNode(),
+                "{}"
+        );
     }
 
     @Test
@@ -865,7 +868,13 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
 
         this.toStringAndCheck(
                 object,
-                "{\n  \"key3\": [true, 2, \"third\"]\n}"
+                "{\n" +
+                        "  \"key3\": [\n" +
+                        "    true,\n" +
+                        "    2,\n" +
+                        "    \"third\"\n" +
+                        "  ]\n" +
+                        "}"
         );
     }
 

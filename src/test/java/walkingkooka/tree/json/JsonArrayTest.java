@@ -633,13 +633,33 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     }
 
     @Test
-    public void testToStringWithChildren() {
+    public void testToStringWithOneChild() {
+        final JsonArray array = JsonNode.array()
+                .appendChild(JsonNode.booleanNode(true));
+
+        this.toStringAndCheck(
+                array,
+                "[\n" +
+                        "  true\n" +
+                        "]"
+        );
+    }
+
+    @Test
+    public void testToStringWithSeveralChildren() {
         final JsonArray array = JsonNode.array()
                 .appendChild(JsonNode.booleanNode(true))
                 .appendChild(JsonNode.number(2))
                 .appendChild(JsonNode.string("third"));
 
-        this.toStringAndCheck(array, "[true, 2, \"third\"]");
+        this.toStringAndCheck(
+                array,
+                "[\n" +
+                        "  true,\n" +
+                        "  2,\n" +
+                        "  \"third\"\n" +
+                        "]"
+        );
     }
 
     @Override

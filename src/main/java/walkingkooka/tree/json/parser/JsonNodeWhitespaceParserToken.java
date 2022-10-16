@@ -24,10 +24,10 @@ import walkingkooka.text.CharSequences;
 public final class JsonNodeWhitespaceParserToken extends JsonNodeSymbolParserToken {
 
     static JsonNodeWhitespaceParserToken with(final String value, final String text) {
-        checkValue(value);
-        CharSequences.failIfNullOrEmpty(text, "text");
-
-        return new JsonNodeWhitespaceParserToken(value, text);
+        return new JsonNodeWhitespaceParserToken(
+                checkValue(value),
+                CharSequences.failIfNullOrEmpty(text, "text")
+        );
     }
 
     private JsonNodeWhitespaceParserToken(final String value, final String text) {

@@ -27,9 +27,10 @@ import java.util.List;
 public final class JsonNodeBooleanParserToken extends JsonNodeValueParserToken<Boolean> {
 
     static JsonNodeBooleanParserToken with(final boolean value, final String text) {
-        CharSequences.failIfNullOrEmpty(text, "text");
-
-        return new JsonNodeBooleanParserToken(value, text);
+        return new JsonNodeBooleanParserToken(
+                value,
+                CharSequences.failIfNullOrEmpty(text, "text")
+        );
     }
 
     private JsonNodeBooleanParserToken(final boolean value, final String text) {

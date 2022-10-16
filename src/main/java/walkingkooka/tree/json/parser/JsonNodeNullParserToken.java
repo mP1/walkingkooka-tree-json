@@ -27,9 +27,10 @@ import java.util.List;
 public final class JsonNodeNullParserToken extends JsonNodeValueParserToken<Void> {
 
     static JsonNodeNullParserToken with(final Void value, final String text) {
-        CharSequences.failIfNullOrEmpty(text, "text");
-
-        return new JsonNodeNullParserToken(value, text);
+        return new JsonNodeNullParserToken(
+                value,
+                CharSequences.failIfNullOrEmpty(text, "text")
+        );
     }
 
     private JsonNodeNullParserToken(final Void value, final String text) {

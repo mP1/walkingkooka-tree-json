@@ -27,10 +27,10 @@ import java.util.List;
 public final class JsonNodeStringParserToken extends JsonNodeValueParserToken<String> {
 
     static JsonNodeStringParserToken with(final String value, final String text) {
-        checkValue(value);
-        CharSequences.failIfNullOrEmpty(text, "text");
-
-        return new JsonNodeStringParserToken(value, text);
+        return new JsonNodeStringParserToken(
+                checkValue(value),
+                CharSequences.failIfNullOrEmpty(text, "text")
+        );
     }
 
     private JsonNodeStringParserToken(final String value, final String text) {

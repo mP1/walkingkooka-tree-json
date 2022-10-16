@@ -59,9 +59,9 @@ public final class JsonPropertyName implements Name,
      * Factory that creates a new {@link JsonPropertyName}
      */
     public static JsonPropertyName with(final String name) {
-        CharSequences.failIfNullOrEmpty(name, "name");
-
-        return new JsonPropertyName(name);
+        return new JsonPropertyName(
+                CharSequences.failIfNullOrEmpty(name, "name")
+        );
     }
 
     // helper only used by various JsonXXX.NAME constants.

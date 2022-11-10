@@ -428,7 +428,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     abstract boolean equalsValue(final JsonNode other);
 
-    final static Indentation INDENTATION = Indentation.with("  ");
+    final static Indentation INDENTATION = Indentation.SPACES2;
 
     /**
      * Pretty prints the entire json graph.

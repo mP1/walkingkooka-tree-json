@@ -156,7 +156,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     public void testPrintJson() {
         final N node = this.createJsonNode();
         final StringBuilder b = new StringBuilder();
-        try (final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM).indenting(Indentation.with("  "))) {
+        try (final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM).indenting(Indentation.SPACES2)) {
             node.printJson(printer);
         }
 

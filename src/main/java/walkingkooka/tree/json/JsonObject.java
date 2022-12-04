@@ -89,9 +89,10 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
         if (equals) {
 
             for (JsonNode child : children) {
-                equals = equals && JsonParentNodeChildPredicate.INSTANCE.test(
+                equals = JsonParentNodeChildPredicate.INSTANCE.test(
                         nameToValues.get(child.name),
-                        child); // predicate doesnt throw if 1st param is null returns false.
+                        child
+                ); // predicate doesnt throw if 1st param is null returns false.
                 if (!equals) {
                     break;
                 }

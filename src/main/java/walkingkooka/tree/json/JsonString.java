@@ -142,8 +142,15 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
                     encoded.append("\\t");
                     break;
                 default:
-                    if (c < 0x20 || c >= 0x10FFFF) {
-                        encoded.append("\\u").append(CharSequences.padLeft(Integer.toHexString(c), 4, '0'));
+                    if (c < 0x20) {
+                        encoded.append("\\u")
+                                .append(
+                                        CharSequences.padLeft(
+                                                Integer.toHexString(c),
+                                                4,
+                                                '0'
+                                        )
+                                );
                         break;
                     }
                     encoded.append(c);

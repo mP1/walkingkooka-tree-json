@@ -68,6 +68,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
     /**
      * Returns a new {@link JsonParentNode} with the given children and also updates the parent/ancestors.
      */
+    @SuppressWarnings("unchecked")
     final JsonParentNode<C> replaceChildren(final C children) {
         return this.replace0(this.name, this.index, children)
                 .replaceChild(this.parent(), this.index)

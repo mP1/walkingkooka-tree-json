@@ -122,6 +122,7 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
         );
     }
 
+    @SuppressWarnings("unchecked")
     default <T extends Enum<T>> void unmarshallEnumSetAndCheck(final JsonNodeUnmarshallContext context,
                                                                final JsonNode node,
                                                                final Class<T> type,

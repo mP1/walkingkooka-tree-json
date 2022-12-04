@@ -351,6 +351,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     /**
      * Unsafe cast to a sub class of {@link JsonNode}, if this fails a {@link ClassCastException} will be thrown.
      */
+    @SuppressWarnings("unchecked")
     public final <T extends JsonNode> T cast(final Class<T> type) {
         return (T) this;
     }

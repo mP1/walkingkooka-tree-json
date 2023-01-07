@@ -118,7 +118,7 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
      */
     public JsonArray set(final int index, final JsonNode element) {
         if (index < 0) {
-            throw new IllegalArgumentException("Invalid index " + index + "=" + this);
+            throw new IndexOutOfBoundsException("Invalid index " + index + "=" + this);
         }
         Objects.requireNonNull(element, "element");
 
@@ -167,7 +167,7 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
      */
     public JsonArray setLength(final int length) {
         if (length < 0) {
-            throw new IllegalArgumentException("Invalid length=" + length);
+            throw new IndexOutOfBoundsException("Invalid length=" + length);
         }
 
         final int current = this.children().size();

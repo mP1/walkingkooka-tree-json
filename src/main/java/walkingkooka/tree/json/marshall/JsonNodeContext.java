@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Context;
+import walkingkooka.text.CaseKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonString;
 
@@ -36,7 +37,10 @@ public interface JsonNodeContext extends Context {
     static String computeTypeName(final Class<?> type) {
         Objects.requireNonNull(type, "type");
 
-        return JsonNodeContextTypeNameComputer.compute(type.getSimpleName());
+        return CaseKind.CAMEL.change(
+                type.getSimpleName(),
+                CaseKind.KEBAB
+        );
     }
 
     /**

@@ -2,8 +2,10 @@ package test;
 
 import com.google.gwt.junit.client.GWTTestCase;
 
+import walkingkooka.j2cl.locale.LocaleAware;
 import walkingkooka.tree.json.JsonNode;
 
+@LocaleAware
 public class TestGwtTest extends GWTTestCase {
 
     @Override

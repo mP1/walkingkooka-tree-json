@@ -55,7 +55,7 @@ public final class JsonNodeContextTest implements ClassTesting<JsonNodeContext> 
     public void testComputeTypeNameSpreadsheetNegativeParserToken() {
         class SpreadsheetNegativeParserToken{
 
-        };
+        }
         this.computeAndCheck(
                 SpreadsheetNegativeParserToken.class,
                 "spreadsheet-negative-parser-token"
@@ -66,7 +66,7 @@ public final class JsonNodeContextTest implements ClassTesting<JsonNodeContext> 
     public void testComputeTypeNameSpreadsheetPercentageParserToken() {
         class SpreadsheetPercentageParserToken{
 
-        };
+        }
         this.computeAndCheck(
                 SpreadsheetPercentageParserToken.class,
                 "spreadsheet-percentage-parser-token"

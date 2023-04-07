@@ -17,7 +17,6 @@
 
 package walkingkooka.tree.json.marshall;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 import walkingkooka.tree.expression.ExpressionNumberKind;
@@ -254,11 +253,11 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             final Throwable cause = from.getCause();
             if (null == wrapped) {
                 from.printStackTrace();
-                Assertions.assertEquals(null, cause, "Cause");
+                checkEquals(null, cause, "Cause");
             } else {
                 if (wrapped != cause.getClass()) {
                     from.printStackTrace();
-                    Assertions.assertEquals(wrapped, cause, "Wrong cause type");
+                    checkEquals(wrapped, cause, "Wrong cause type");
                 }
             }
         }

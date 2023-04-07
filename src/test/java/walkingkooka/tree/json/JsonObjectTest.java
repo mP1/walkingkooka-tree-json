@@ -486,7 +486,92 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
                 root.set(key2, replacement2).getOrFail(key2));
     }
 
-    // asMap.......................................................................................................
+    // merge............................................................................................................
+
+    @Test
+    public void testMergeWithNullFails() {
+        assertThrows(
+                NullPointerException.class,
+                () -> JsonNode.object().merge(null)
+        );
+    }
+
+    @Test
+    public void testMergeWithEmptyObject() {
+        final JsonObject object = JsonNode.object()
+                .set(JsonPropertyName.with("a"), JsonNode.number(123.5));
+
+        assertSame(
+                object,
+                object.merge(JsonNode.object())
+        );
+    }
+
+    @Test
+    public void testMergeSame() {
+        final JsonObject object = JsonNode.object()
+                .set(JsonPropertyName.with("a"), JsonNode.number(123.5));
+
+        assertSame(
+                object,
+                object.merge(object)
+        );
+    }
+
+    @Test
+    public void testMerge() {
+        final JsonPropertyName a = JsonPropertyName.with("a");
+        final JsonString string = JsonNode.string("abc");
+        final JsonPropertyName b = JsonPropertyName.with("b");
+        final JsonNumber number = JsonNode.number(123);
+
+        this.mergeAndCheck(
+                JsonNode.object()
+                        .set(a, string),
+                JsonNode.object()
+                        .set(b, number),
+                JsonNode.object()
+                        .set(a, string)
+                        .set(b, number)
+        );
+    }
+
+    @Test
+    public void testMergeReplaced() {
+        final JsonPropertyName a = JsonPropertyName.with("a");
+        final JsonString string = JsonNode.string("abc");
+
+        final JsonPropertyName b = JsonPropertyName.with("b");
+        final JsonNumber number = JsonNode.number(123);
+
+        final JsonPropertyName c = JsonPropertyName.with("b");
+        final JsonBoolean bool = JsonNode.booleanNode(true);
+
+        this.mergeAndCheck(
+                JsonNode.object()
+                        .set(a, string)
+                        .set(b, number),
+                JsonNode.object()
+                        .set(b, number)
+                        .set(c, bool),
+                JsonNode.object()
+                        .set(a, string)
+                        .set(b, number)
+                        .set(c, bool)
+        );
+    }
+
+    private void mergeAndCheck(final JsonObject before,
+                               final JsonObject merge,
+                               final JsonObject expected) {
+        this.checkEquals(
+                expected,
+                before.merge(merge),
+                before + " merge " + merge
+        );
+    }
+
+    // asMap............................................................................................................
 
     @Test
     public void testMapWhenEmpty() {

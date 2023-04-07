@@ -106,7 +106,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
      * Retrieves a property using its name, returning empty if its absent.
      */
     public Optional<JsonNode> get(final JsonPropertyName name) {
-        Objects.requireNonNull(name, "name");
+        checkName(name);
 
         return Optional.ofNullable(this.children.nameToValues.get(name));
     }
@@ -129,7 +129,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
      * Sets a new property or replaces an existing.
      */
     public JsonObject set(final JsonPropertyName name, final JsonNode value) {
-        Objects.requireNonNull(name, "name");
+        checkName(name);
         Objects.requireNonNull(value, "value");
 
         final JsonNode previous = this.children.nameToValues.get(name);
@@ -226,7 +226,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
      * Returns a {@link JsonObject} without the given key. If they key does not exist the original (this) is returned.
      */
     public JsonObject remove(final JsonPropertyName name) {
-        Objects.requireNonNull(name);
+        checkName(name);
 
         final Map<JsonPropertyName, JsonNode> copy = Maps.ordered();
         for (JsonNode child : children) {

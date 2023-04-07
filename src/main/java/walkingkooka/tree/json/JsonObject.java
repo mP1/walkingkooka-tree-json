@@ -251,6 +251,25 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
     }
 
     /**
+     * Merges the given {@link JsonObject} copying all its properties onto this object, any properties with the same
+     * name will replace an existing property.
+     */
+    public JsonObject merge(final JsonObject merge) {
+        Objects.requireNonNull(merge, "merge");
+
+        JsonObject merged = this;
+
+        for (final JsonNode child : merge.children()) {
+            merged = merged.set(
+                    child.name(),
+                    child
+            );
+        }
+
+        return merged;
+    }
+
+    /**
      * Returns a {@link Map} view of the object's properties.
      */
     public Map<JsonPropertyName, JsonNode> asMap() {

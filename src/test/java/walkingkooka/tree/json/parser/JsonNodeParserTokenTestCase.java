@@ -141,7 +141,10 @@ public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken>
 
     @Override
     public final Predicate<String> isMethodIgnoreMethodFilter() {
-        return (m) -> m.equals("isNoise") || m.equals("isSymbol"); // skip isNoise
+        return (m) -> m.equals("isLeaf") ||
+                m.equals("isNoise") ||
+                m.equals("isParent") ||
+                m.equals("isSymbol");
     }
 
     @Override

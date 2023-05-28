@@ -17,7 +17,6 @@
 package walkingkooka.tree.json.parser;
 
 import walkingkooka.collect.list.Lists;
-import walkingkooka.text.cursor.parser.ParentParserToken;
 import walkingkooka.text.cursor.parser.ParserToken;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
@@ -42,7 +41,7 @@ public final class JsonNodeObjectParserToken extends JsonNodeParentParserToken<J
     }
 
     private void checkKeys(final String text) {
-        final List<ParserToken> without = ParentParserToken.filterWithoutNoise(this.value);
+        final List<ParserToken> without = ParserToken.filterWithoutNoise(this.value);
         if (null != without) {
             int i = 0;
             JsonNodeParserToken j = null;
@@ -69,7 +68,7 @@ public final class JsonNodeObjectParserToken extends JsonNodeParentParserToken<J
         final JsonObject object = JsonNode.object();
         final List<JsonNode> objectChildren = Lists.array();
 
-        for (ParserToken element : ParentParserToken.filterWithoutNoise(this.value)) {
+        for (ParserToken element : ParserToken.filterWithoutNoise(this.value)) {
             if (element instanceof JsonNodeParserToken) {
                 final JsonNodeParserToken j = element.cast(JsonNodeParserToken.class);
                 if (j.isNoise()) {

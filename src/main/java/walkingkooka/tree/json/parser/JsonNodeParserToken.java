@@ -183,6 +183,14 @@ public abstract class JsonNodeParserToken implements ParserToken {
     }
 
     /**
+     * Returns true for leaf nodes.
+     */
+    @Override
+    public final boolean isLeaf() {
+        return this instanceof JsonNodeLeafParserToken;
+    }
+
+    /**
      * Only {@link JsonNodeNullParserToken} return true
      */
     public final boolean isNull() {
@@ -222,6 +230,14 @@ public abstract class JsonNodeParserToken implements ParserToken {
      */
     public final boolean isObjectEndSymbol() {
         return this instanceof JsonNodeObjectEndSymbolParserToken;
+    }
+
+    /**
+     * Returns true for array or object.
+     */
+    @Override
+    public final boolean isParent() {
+        return this instanceof JsonNodeParentParserToken;
     }
 
     /**

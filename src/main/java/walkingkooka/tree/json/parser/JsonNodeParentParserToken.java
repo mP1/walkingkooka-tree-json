@@ -16,7 +16,7 @@
  */
 package walkingkooka.tree.json.parser;
 
-import walkingkooka.text.cursor.parser.ParentParserToken;
+import walkingkooka.Value;
 import walkingkooka.text.cursor.parser.ParserToken;
 
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Base class for a token that contain another child token, with the class knowing the cardinality.
  */
-abstract class JsonNodeParentParserToken<T extends JsonNodeParentParserToken<T>> extends JsonNodeParserToken implements ParentParserToken {
+abstract class JsonNodeParentParserToken<T extends JsonNodeParentParserToken<T>> extends JsonNodeParserToken implements Value<List<ParserToken>> {
 
     JsonNodeParentParserToken(final List<ParserToken> value, final String text) {
         super(text);

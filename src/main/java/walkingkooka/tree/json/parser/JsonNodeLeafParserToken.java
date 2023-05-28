@@ -16,14 +16,14 @@
  */
 package walkingkooka.tree.json.parser;
 
-import walkingkooka.text.cursor.parser.LeafParserToken;
+import walkingkooka.Value;
 
 import java.util.Objects;
 
 /**
  * Base class for a leaf token. A leaf has no further breakdown into more detailed tokens.
  */
-abstract class JsonNodeLeafParserToken<T> extends JsonNodeParserToken implements LeafParserToken<T> {
+abstract class JsonNodeLeafParserToken<T> extends JsonNodeParserToken implements Value<T> {
 
     static <T> T checkValue(final T value) {
         return Objects.requireNonNull(value, "value");

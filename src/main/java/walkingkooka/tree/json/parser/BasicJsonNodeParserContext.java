@@ -71,7 +71,7 @@ final class BasicJsonNodeParserContext implements JsonNodeParserContext {
     }
 
     @Override
-    public char groupingSeparator() {
+    public char groupSeparator() {
         throw new UnsupportedOperationException();
     }
 

@@ -33,7 +33,7 @@ public final class BasicJsonNodeParserContextTest implements ClassTesting2<Basic
     }
 
     @Override
-    public void testGroupingSeparator() {
+    public void testGroupSeparator() {
     }
 
     @Override
@@ -67,8 +67,8 @@ public final class BasicJsonNodeParserContextTest implements ClassTesting2<Basic
     }
 
     @Override
-    public char groupingSeparator() {
-        return this.decimalNumberContext().groupingSeparator();
+    public char groupSeparator() {
+        return this.decimalNumberContext().groupSeparator();
     }
 
     @Override

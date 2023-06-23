@@ -54,7 +54,18 @@ public final class JsonNodeArrayParserToken extends JsonNodeParentParserToken<Js
         }
     }
 
-    // visitor ...............................................................................................
+    // children.........................................................................................................
+
+    @Override
+    public JsonNodeArrayParserToken setChildren(final List<ParserToken> children) {
+        return ParserToken.parentSetChildren(
+                this,
+                children,
+                JsonNodeArrayParserToken::with
+        );
+    }
+
+    // visitor .........................................................................................................
 
     @Override
     public void accept(final JsonNodeParserTokenVisitor visitor) {

@@ -62,6 +62,14 @@ abstract class JsonNodeLeafParserToken<T> extends JsonNodeParserToken implements
         return this;
     }
 
+    // removeIf....................................................................................................
+
+    @Override
+    public final ParserToken removeIf(final Predicate<ParserToken> predicate) {
+        Objects.requireNonNull(predicate, "predicate");
+        return this;
+    }
+
     // visitor..........................................................................................................
 
     abstract public void accept(final JsonNodeParserTokenVisitor visitor);

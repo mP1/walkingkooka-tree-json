@@ -17,9 +17,11 @@
 package walkingkooka.tree.json.parser;
 
 import walkingkooka.text.CharSequences;
+import walkingkooka.text.cursor.parser.ParserToken;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Holds a either true or false boolean value
@@ -45,6 +47,19 @@ public final class JsonNodeBooleanParserToken extends JsonNodeValueParserToken<B
     @Override
     void addJsonNode(final List<JsonNode> children) {
         children.add(JsonNode.booleanNode(this.value));
+    }
+
+    // replaceFirstIf...................................................................................................
+
+    @Override
+    public JsonNodeBooleanParserToken replaceFirstIf(final Predicate<ParserToken> predicate,
+                                                     final ParserToken token) {
+        return ParserToken.replaceFirstIf(
+                this,
+                predicate,
+                token,
+                JsonNodeBooleanParserToken.class
+        );
     }
 
     // visitor ...............................................................................................

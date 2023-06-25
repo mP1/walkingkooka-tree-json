@@ -17,9 +17,11 @@
 package walkingkooka.tree.json.parser;
 
 import walkingkooka.text.CharSequences;
+import walkingkooka.text.cursor.parser.ParserToken;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Holds a json null value.
@@ -35,6 +37,19 @@ public final class JsonNodeNullParserToken extends JsonNodeValueParserToken<Void
 
     private JsonNodeNullParserToken(final Void value, final String text) {
         super(value, text);
+    }
+
+    // replaceFirstIf...................................................................................................
+
+    @Override
+    public JsonNodeNullParserToken replaceFirstIf(final Predicate<ParserToken> predicate,
+                                                  final ParserToken token) {
+        return ParserToken.replaceFirstIf(
+                this,
+                predicate,
+                token,
+                JsonNodeNullParserToken.class
+        );
     }
 
     // JsonNodeParserTokenVisitor.......................................................................................

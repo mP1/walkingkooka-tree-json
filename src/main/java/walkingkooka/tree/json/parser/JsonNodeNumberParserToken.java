@@ -16,9 +16,11 @@
  */
 package walkingkooka.tree.json.parser;
 
+import walkingkooka.text.cursor.parser.ParserToken;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Holds a single integer or decimal number.
@@ -43,6 +45,19 @@ public final class JsonNodeNumberParserToken extends JsonNodeValueParserToken<Do
     @Override
     void addJsonNode(final List<JsonNode> children) {
         children.add(JsonNode.number(value()));
+    }
+
+    // replaceFirstIf...................................................................................................
+
+    @Override
+    public JsonNodeNumberParserToken replaceFirstIf(final Predicate<ParserToken> predicate,
+                                                    final ParserToken token) {
+        return ParserToken.replaceFirstIf(
+                this,
+                predicate,
+                token,
+                JsonNodeNumberParserToken.class
+        );
     }
 
     // visitor ...............................................................................................

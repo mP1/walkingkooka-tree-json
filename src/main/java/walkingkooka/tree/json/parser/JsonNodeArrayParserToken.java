@@ -77,6 +77,17 @@ public final class JsonNodeArrayParserToken extends JsonNodeParentParserToken<Js
         );
     }
 
+    // removeIf.........................................................................................................
+
+    @Override
+    public JsonNodeArrayParserToken removeIf(final Predicate<ParserToken> predicate) {
+        return ParserToken.parentRemoveIf(
+                this,
+                predicate,
+                JsonNodeArrayParserToken.class
+        );
+    }
+
     // visitor .........................................................................................................
 
     @Override

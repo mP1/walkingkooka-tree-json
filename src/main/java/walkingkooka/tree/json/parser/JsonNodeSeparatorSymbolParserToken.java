@@ -16,6 +16,10 @@
  */
 package walkingkooka.tree.json.parser;
 
+import walkingkooka.text.cursor.parser.ParserToken;
+
+import java.util.function.Predicate;
+
 /**
  * Represents the separator between elements or key/value pairs belonging to arrays and objects.
  */
@@ -30,6 +34,19 @@ public final class JsonNodeSeparatorSymbolParserToken extends JsonNodeSymbolPars
 
     private JsonNodeSeparatorSymbolParserToken(final String value, final String text) {
         super(value, text);
+    }
+
+    // replaceFirstIf...................................................................................................
+
+    @Override
+    public JsonNodeSeparatorSymbolParserToken replaceFirstIf(final Predicate<ParserToken> predicate,
+                                                             final ParserToken token) {
+        return ParserToken.replaceFirstIf(
+                this,
+                predicate,
+                token,
+                JsonNodeSeparatorSymbolParserToken.class
+        );
     }
 
     // visitor .........................................................................................................

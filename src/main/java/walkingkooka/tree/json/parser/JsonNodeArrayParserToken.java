@@ -88,6 +88,19 @@ public final class JsonNodeArrayParserToken extends JsonNodeParentParserToken<Js
         );
     }
 
+    // replaceFirstIf...................................................................................................
+
+    @Override
+    public JsonNodeArrayParserToken replaceFirstIf(final Predicate<ParserToken> predicate,
+                                                   final ParserToken token) {
+        return ParserToken.replaceFirstIf(
+                this,
+                predicate,
+                token,
+                JsonNodeArrayParserToken.class
+        );
+    }
+
     // visitor .........................................................................................................
 
     @Override

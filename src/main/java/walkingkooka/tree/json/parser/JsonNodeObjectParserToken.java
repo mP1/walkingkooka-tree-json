@@ -126,6 +126,19 @@ public final class JsonNodeObjectParserToken extends JsonNodeParentParserToken<J
         );
     }
 
+    // replaceFirstIf...................................................................................................
+
+    @Override
+    public JsonNodeObjectParserToken replaceFirstIf(final Predicate<ParserToken> predicate,
+                                                    final ParserToken token) {
+        return ParserToken.replaceFirstIf(
+                this,
+                predicate,
+                token,
+                JsonNodeObjectParserToken.class
+        );
+    }
+
     // visitor .........................................................................................................
 
     @Override

@@ -62,6 +62,19 @@ public final class JsonNodeStringParserToken extends JsonNodeValueParserToken<St
         );
     }
 
+    // replaceIf........................................................................................................
+
+    @Override
+    public JsonNodeStringParserToken replaceIf(final Predicate<ParserToken> predicate,
+                                                   final ParserToken token) {
+        return ParserToken.replaceIf(
+                this,
+                predicate,
+                token,
+                JsonNodeStringParserToken.class
+        );
+    }
+
     // visitor ...............................................................................................
 
     @Override

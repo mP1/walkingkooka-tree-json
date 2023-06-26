@@ -49,6 +49,19 @@ public final class JsonNodeSeparatorSymbolParserToken extends JsonNodeSymbolPars
         );
     }
 
+    // replaceIf........................................................................................................
+
+    @Override
+    public JsonNodeSeparatorSymbolParserToken replaceIf(final Predicate<ParserToken> predicate,
+                                                       final ParserToken token) {
+        return ParserToken.replaceIf(
+                this,
+                predicate,
+                token,
+                JsonNodeSeparatorSymbolParserToken.class
+        );
+    }
+
     // visitor .........................................................................................................
 
     @Override

@@ -52,6 +52,19 @@ public final class JsonNodeNullParserToken extends JsonNodeValueParserToken<Void
         );
     }
 
+    // replaceIf........................................................................................................
+
+    @Override
+    public JsonNodeNullParserToken replaceIf(final Predicate<ParserToken> predicate,
+                                               final ParserToken token) {
+        return ParserToken.replaceIf(
+                this,
+                predicate,
+                token,
+                JsonNodeNullParserToken.class
+        );
+    }
+
     // JsonNodeParserTokenVisitor.......................................................................................
 
     @Override

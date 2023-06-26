@@ -60,6 +60,19 @@ public final class JsonNodeNumberParserToken extends JsonNodeValueParserToken<Do
         );
     }
 
+    // replaceIf........................................................................................................
+
+    @Override
+    public JsonNodeNumberParserToken replaceIf(final Predicate<ParserToken> predicate,
+                                                final ParserToken token) {
+        return ParserToken.replaceIf(
+                this,
+                predicate,
+                token,
+                JsonNodeNumberParserToken.class
+        );
+    }
+
     // visitor ...............................................................................................
 
     @Override

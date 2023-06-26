@@ -49,6 +49,19 @@ public final class JsonNodeArrayEndSymbolParserToken extends JsonNodeSymbolParse
         );
     }
 
+    // replaceIf........................................................................................................
+
+    @Override
+    public JsonNodeArrayEndSymbolParserToken replaceIf(final Predicate<ParserToken> predicate,
+                                                        final ParserToken token) {
+        return ParserToken.replaceIf(
+                this,
+                predicate,
+                token,
+                JsonNodeArrayEndSymbolParserToken.class
+        );
+    }
+
     // visitor .........................................................................................................
 
     @Override

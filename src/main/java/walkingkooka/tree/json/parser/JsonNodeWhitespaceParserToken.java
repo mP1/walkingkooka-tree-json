@@ -50,6 +50,19 @@ public final class JsonNodeWhitespaceParserToken extends JsonNodeSymbolParserTok
         );
     }
 
+    // replaceIf........................................................................................................
+
+    @Override
+    public JsonNodeWhitespaceParserToken replaceIf(final Predicate<ParserToken> predicate,
+                                                         final ParserToken token) {
+        return ParserToken.replaceIf(
+                this,
+                predicate,
+                token,
+                JsonNodeWhitespaceParserToken.class
+        );
+    }
+
     // Visitor ...............................................................................................
 
     @Override

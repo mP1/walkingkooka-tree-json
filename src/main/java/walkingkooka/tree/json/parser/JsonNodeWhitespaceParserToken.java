@@ -19,6 +19,7 @@ package walkingkooka.tree.json.parser;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.cursor.parser.ParserToken;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
@@ -35,6 +36,17 @@ public final class JsonNodeWhitespaceParserToken extends JsonNodeSymbolParserTok
 
     private JsonNodeWhitespaceParserToken(final String value, final String text) {
         super(value, text);
+    }
+
+    // removeFirstIf....................................................................................................
+
+    @Override
+    public Optional<JsonNodeWhitespaceParserToken> removeFirstIf(final Predicate<ParserToken> predicate) {
+        return ParserToken.removeFirstIfLeaf(
+                this,
+                predicate,
+                JsonNodeWhitespaceParserToken.class
+        );
     }
 
     // replaceFirstIf...................................................................................................

@@ -18,6 +18,7 @@ package walkingkooka.tree.json.parser;
 
 import walkingkooka.text.cursor.parser.ParserToken;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
@@ -34,6 +35,17 @@ public final class JsonNodeSeparatorSymbolParserToken extends JsonNodeSymbolPars
 
     private JsonNodeSeparatorSymbolParserToken(final String value, final String text) {
         super(value, text);
+    }
+
+    // removeFirstIf....................................................................................................
+
+    @Override
+    public Optional<JsonNodeSeparatorSymbolParserToken> removeFirstIf(final Predicate<ParserToken> predicate) {
+        return ParserToken.removeFirstIfLeaf(
+                this,
+                predicate,
+                JsonNodeSeparatorSymbolParserToken.class
+        );
     }
 
     // replaceFirstIf...................................................................................................

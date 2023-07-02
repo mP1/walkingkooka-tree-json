@@ -120,7 +120,7 @@ public final class JsonNodeObjectParserToken extends JsonNodeParentParserToken<J
 
     @Override
     public JsonNodeObjectParserToken removeIf(final Predicate<ParserToken> predicate) {
-        return ParserToken.parentRemoveIf(
+        return ParserToken.removeIfParent(
                 this,
                 predicate,
                 JsonNodeObjectParserToken.class

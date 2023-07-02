@@ -47,6 +47,17 @@ public final class JsonNodeObjectAssignmentSymbolParserToken extends JsonNodeSym
                 JsonNodeObjectAssignmentSymbolParserToken.class
         );
     }
+    
+    // removeIf.........................................................................................................
+
+    @Override
+    public Optional<JsonNodeObjectAssignmentSymbolParserToken> removeIf(final Predicate<ParserToken> predicate) {
+        return ParserToken.removeIfLeaf(
+                this,
+                predicate,
+                JsonNodeObjectAssignmentSymbolParserToken.class
+        );
+    }
 
     // replaceFirstIf...................................................................................................
 

@@ -48,6 +48,17 @@ public final class JsonNodeArrayBeginSymbolParserToken extends JsonNodeSymbolPar
         );
     }
 
+    // removeIf....................................................................................................
+
+    @Override
+    public Optional<JsonNodeArrayBeginSymbolParserToken> removeIf(final Predicate<ParserToken> predicate) {
+        return ParserToken.removeIfLeaf(
+                this,
+                predicate,
+                JsonNodeArrayBeginSymbolParserToken.class
+        );
+    }
+
     // replaceFirstIf...................................................................................................
 
     @Override

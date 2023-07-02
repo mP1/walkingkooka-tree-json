@@ -49,6 +49,17 @@ public final class JsonNodeWhitespaceParserToken extends JsonNodeSymbolParserTok
         );
     }
 
+    // removeIf.........................................................................................................
+
+    @Override
+    public Optional<JsonNodeWhitespaceParserToken> removeIf(final Predicate<ParserToken> predicate) {
+        return ParserToken.removeIfLeaf(
+                this,
+                predicate,
+                JsonNodeWhitespaceParserToken.class
+        );
+    }
+
     // replaceFirstIf...................................................................................................
 
     @Override

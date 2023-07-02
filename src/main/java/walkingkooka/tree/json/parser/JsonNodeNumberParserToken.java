@@ -59,6 +59,17 @@ public final class JsonNodeNumberParserToken extends JsonNodeValueParserToken<Do
         );
     }
 
+    // removeIf....................................................................................................
+
+    @Override
+    public Optional<JsonNodeNumberParserToken> removeIf(final Predicate<ParserToken> predicate) {
+        return ParserToken.removeIfLeaf(
+                this,
+                predicate,
+                JsonNodeNumberParserToken.class
+        );
+    }
+
     // replaceFirstIf...................................................................................................
 
     @Override

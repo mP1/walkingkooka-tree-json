@@ -61,6 +61,17 @@ public final class JsonNodeStringParserToken extends JsonNodeValueParserToken<St
         );
     }
 
+    // removeIf.........................................................................................................
+
+    @Override
+    public Optional<JsonNodeStringParserToken> removeIf(final Predicate<ParserToken> predicate) {
+        return ParserToken.removeIfLeaf(
+                this,
+                predicate,
+                JsonNodeStringParserToken.class
+        );
+    }
+
     // replaceFirstIf...................................................................................................
 
     @Override

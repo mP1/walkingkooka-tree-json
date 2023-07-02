@@ -70,7 +70,7 @@ public final class JsonNodeArrayParserToken extends JsonNodeParentParserToken<Js
 
     @Override
     public JsonNodeArrayParserToken removeFirstIf(final Predicate<ParserToken> predicate) {
-        return ParserToken.parentRemoveFirstIf(
+        return ParserToken.removeFirstIfParent(
                 this,
                 predicate,
                 JsonNodeArrayParserToken.class

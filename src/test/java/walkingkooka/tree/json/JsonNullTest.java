@@ -63,11 +63,11 @@ public final class JsonNullTest extends JsonLeafNodeTestCase<JsonNull, Void> {
         this.checkEquals("132", b.toString());
     }
 
-    // isFalseLike......................................................................................................
+    // toBoolean......................................................................................................
 
     @Test
-    public void testIsFalseLike() {
-        this.isFalseLikeAndCheck(
+    public void testToBoolean() {
+        this.toBooleanAndCheck(
                 this.createJsonNode(),
                 true
         );

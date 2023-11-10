@@ -367,16 +367,16 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     // javascript.......................................................................................................
 
     /**
-     * Returns true if this value is equivalent to the false following javascript conventions.
+     * Returns true if this value is equivalent to the true following javascript conversion conventions.
      */
-    public abstract boolean isFalseLike();
+    public abstract boolean toBoolean();
 
     /**
      * Converts this node into a {@link JsonBoolean}.
      */
     public final JsonBoolean toJsonBoolean() {
         return JsonNode.booleanNode(
-                this.isFalseLike()
+                this.toBoolean()
         );
     }
 

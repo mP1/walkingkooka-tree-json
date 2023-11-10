@@ -660,19 +660,19 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         this.getAndCheckAbsent(object.asMap(), JsonPropertyName.with("absent-property"));
     }
 
-    // isFalseLike......................................................................................................
+    // toBoolean......................................................................................................
 
     @Test
-    public void testIsFalseLikeEmpty() {
-        this.isFalseLikeAndCheck(
+    public void testToBooleanEmpty() {
+        this.toBooleanAndCheck(
                 JsonObject.EMPTY,
                 true
         );
     }
 
     @Test
-    public void testIsFalseLikeNonEmpty() {
-        this.isFalseLikeAndCheck(
+    public void testToBooleanNonEmpty() {
+        this.toBooleanAndCheck(
                 JsonObject.EMPTY
                         .set(
                                 JsonPropertyName.with("child"),

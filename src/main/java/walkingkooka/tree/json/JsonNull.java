@@ -92,7 +92,7 @@ public final class JsonNull extends JsonLeafNode<Void> {
     // javascript.......................................................................................................
 
     @Override
-    public boolean isFalseLike() {
+    public boolean toBoolean() {
         return true;
     }
 

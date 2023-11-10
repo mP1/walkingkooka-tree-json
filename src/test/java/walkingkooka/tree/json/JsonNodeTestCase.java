@@ -147,6 +147,19 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         this.textOffsetAndCheck(this.createNode(), 0);
     }
 
+    // isFalseLike......................................................................................................
+
+    final void isFalseLikeAndCheck(final JsonNode node,
+                                   final boolean expected) {
+        this.checkEquals(
+                expected,
+                node.isFalseLike(),
+                () -> node + " isFalseLike"
+        );
+    }
+
+    // printJson........................................................................................................
+
     @Test
     public void testPrintJsonNullPrinterFails() {
         assertThrows(NullPointerException.class, () -> this.createJsonNode().printJson(null));
@@ -206,7 +219,8 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
 
     @Override
     public final Predicate<String> isMethodIgnoreMethodFilter() {
-        return (m) -> m.equals("isRoot");
+        return (m) -> m.equals("isRoot") ||
+                m.equals("isFalseLike");
     }
 
     // ClassTesting....................................................................................................

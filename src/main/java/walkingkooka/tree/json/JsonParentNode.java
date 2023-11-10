@@ -131,6 +131,13 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
                 .sum();
     }
 
+    // javascript.......................................................................................................
+
+    @Override
+    public final boolean isFalseLike() {
+        return this.children().isEmpty();
+    }
+
     // Object.....................................................................................................
 
     @Override

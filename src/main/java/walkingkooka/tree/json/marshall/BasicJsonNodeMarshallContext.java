@@ -55,6 +55,7 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
 
     // marshall. .....................................................................................................
 
+    @Override
     public JsonNodeMarshallContext setObjectPostProcessor(final BiFunction<Object, JsonObject, JsonObject> processor) {
         Objects.requireNonNull(processor, "processor");
 

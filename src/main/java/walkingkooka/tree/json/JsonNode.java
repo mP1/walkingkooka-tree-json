@@ -371,6 +371,15 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     public abstract boolean isFalseLike();
 
+    /**
+     * Converts this node into a {@link JsonBoolean}.
+     */
+    public final JsonBoolean toJsonBoolean() {
+        return JsonNode.booleanNode(
+                this.isFalseLike()
+        );
+    }
+
     // TreePrintable.....................................................................................................
 
     @Override

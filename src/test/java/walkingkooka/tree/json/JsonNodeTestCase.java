@@ -158,6 +158,16 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         );
     }
 
+    @Test
+    public final void testToJsonBoolean() {
+        final N node = this.createJsonNode();
+
+        this.checkEquals(
+                node.isFalseLike(),
+                node.toJsonBoolean().isFalseLike()
+        );
+    }
+
     // printJson........................................................................................................
 
     @Test

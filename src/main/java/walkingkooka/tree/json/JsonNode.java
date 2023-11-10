@@ -364,6 +364,13 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     abstract JsonPropertyName defaultName();
 
+    // javascript.......................................................................................................
+
+    /**
+     * Returns true if this value is equivalent to the false following javascript conventions.
+     */
+    public abstract boolean isFalseLike();
+
     // TreePrintable.....................................................................................................
 
     @Override

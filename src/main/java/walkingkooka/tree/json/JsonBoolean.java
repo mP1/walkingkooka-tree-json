@@ -93,6 +93,13 @@ public final class JsonBoolean extends JsonLeafNonNullNode<Boolean> {
         return NAME;
     }
 
+    // javascript.......................................................................................................
+
+    @Override
+    public boolean isFalseLike() {
+        return this.value.booleanValue();
+    }
+
     // Visitor ........................................................................................................
 
     @Override

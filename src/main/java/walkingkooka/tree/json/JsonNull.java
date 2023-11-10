@@ -89,6 +89,13 @@ public final class JsonNull extends JsonLeafNode<Void> {
 
     private final static String NULL = "null";
 
+    // javascript.......................................................................................................
+
+    @Override
+    public boolean isFalseLike() {
+        return true;
+    }
+
     // Object......................................................................................................
 
     @Override

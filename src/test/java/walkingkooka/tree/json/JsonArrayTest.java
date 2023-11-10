@@ -599,6 +599,27 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
                 string.toSearchNode())));
     }
 
+    // isFalseLike......................................................................................................
+
+    @Test
+    public void testIsFalseLikeEmpty() {
+        this.isFalseLikeAndCheck(
+                JsonArray.EMPTY,
+                true
+        );
+    }
+
+    @Test
+    public void testIsFalseLikeNonEmpty() {
+        this.isFalseLikeAndCheck(
+                JsonArray.EMPTY
+                        .appendChild(
+                                JsonNode.booleanNode(true)
+                        ),
+                false
+        );
+    }
+
     // HashCodeAnddEqualityDefined.......................................................
 
     @Test

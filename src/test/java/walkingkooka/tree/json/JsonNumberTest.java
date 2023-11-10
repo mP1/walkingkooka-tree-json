@@ -77,6 +77,26 @@ public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber
         this.checkEquals("132", b.toString());
     }
 
+    // isFalseLike......................................................................................................
+
+    @Test
+    public void testIsFalseLikeZero() {
+        this.isFalseLikeAndCheck(
+                JsonNumber.number(0),
+                true
+        );
+    }
+
+    @Test
+    public void testIsFalseLikeNonZero() {
+        this.isFalseLikeAndCheck(
+                JsonNumber.with(1),
+                false
+        );
+    }
+
+    // toString......................................................................................................
+
     @Test
     public void testToString() {
         this.toStringAndCheck(this.createJsonNode(1.0), "1");

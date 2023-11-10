@@ -85,6 +85,13 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
         return SearchNode.text(text, this.value());
     }
 
+    // javascript.......................................................................................................
+
+    @Override
+    public boolean isFalseLike() {
+        return this.text().length() == 0;
+    }
+
     // JsonNodeVisitor .................................................................................................
 
     @Override

@@ -117,6 +117,22 @@ public final class JsonBooleanTest extends JsonLeafNonNullNodeTestCase<JsonBoole
         );
     }
 
+    // removeFalseLike..................................................................................................
+
+    @Test
+    public void testRemoveFalseLikeFalse() {
+        this.removeFalseLikeAndCheckNothing(
+                JsonBoolean.with(false)
+        );
+    }
+
+    @Test
+    public void testRemoveFalseLikeTrue() {
+        this.removeFalseLikeAndCheckSame(
+                JsonBoolean.with(true)
+        );
+    }
+
     // toString......................................................................................................
 
     @Test

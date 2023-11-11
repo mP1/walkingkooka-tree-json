@@ -20,6 +20,8 @@ package walkingkooka.tree.json;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.tree.search.SearchNode;
 
+import java.util.Optional;
+
 /**
  * Represents a json null.
  */
@@ -94,6 +96,11 @@ public final class JsonNull extends JsonLeafNode<Void> {
     @Override
     public boolean toBoolean() {
         return false;
+    }
+
+    @Override
+    public Optional<JsonNode> removeFalseLike() {
+        return Optional.empty();
     }
 
     // Object......................................................................................................

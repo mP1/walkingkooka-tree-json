@@ -18,6 +18,7 @@
 package walkingkooka.tree.json;
 
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Base type for all the leaf json nodes that are not {@link JsonNull}
@@ -27,6 +28,15 @@ abstract class JsonLeafNonNullNode<V> extends JsonLeafNode<V> {
 
     JsonLeafNonNullNode(final JsonPropertyName name, final int index, final V value) {
         super(name, index, value);
+    }
+
+    // javascript.......................................................................................................
+
+    @Override
+    public final Optional<JsonNode> removeFalseLike() {
+        return this.toBoolean() ?
+                Optional.of(this) :
+                Optional.empty();
     }
 
     // Object...........................................................................................................

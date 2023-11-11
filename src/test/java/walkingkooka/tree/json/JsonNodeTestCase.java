@@ -35,6 +35,7 @@ import walkingkooka.tree.NodeTesting;
 import walkingkooka.tree.search.HasSearchNodeTesting;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -166,6 +167,46 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
                 node.toBoolean(),
                 node.toJsonBoolean().toBoolean()
         );
+    }
+
+    final void removeFalseLikeAndCheckNothing(final JsonNode node) {
+        this.checkEquals(
+                Optional.empty(),
+                node.removeFalseLike(),
+                () -> "removeFalseLike " + node
+        );
+    }
+
+    final void removeFalseLikeAndCheckSame(final JsonNode node) {
+        final Optional<JsonNode> removed = node.removeFalseLike();
+        this.checkEquals(
+                Optional.of(
+                        node
+                ),
+                removed,
+                () -> "removeFalseLike " + node
+        );
+
+        assertSame(
+                node,
+                removed.get(),
+                () -> "removeFalseLike " + node
+        );
+    }
+
+    final void removeFalseLikeAndCheck(final JsonNode node,
+                                       final JsonNode expected) {
+        this.checkEquals(
+                Optional.of(
+                        expected
+                ),
+                node.removeFalseLike(),
+                () -> "removeFalseLike " + node
+        );
+
+        if (node.equals(expected)) {
+            this.removeFalseLikeAndCheckSame(node);
+        }
     }
 
     // printJson........................................................................................................

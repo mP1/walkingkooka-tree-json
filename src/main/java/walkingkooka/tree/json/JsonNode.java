@@ -380,6 +380,11 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         );
     }
 
+    /**
+     * Returns an instance without any {@link JsonNode#toBoolean()}
+     */
+    public abstract Optional<JsonNode> removeFalseLike();
+
     // TreePrintable.....................................................................................................
 
     @Override

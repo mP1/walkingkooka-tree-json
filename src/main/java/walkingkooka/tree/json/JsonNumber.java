@@ -95,7 +95,7 @@ public final class JsonNumber extends JsonLeafNonNullNode<Double> {
     // javascript.......................................................................................................
 
     @Override
-    public boolean isFalseLike() {
+    public boolean toBoolean() {
         return this.value == 0;
     }
 

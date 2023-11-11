@@ -99,19 +99,19 @@ public final class JsonBooleanTest extends JsonLeafNonNullNodeTestCase<JsonBoole
         this.checkEquals("132", b.toString());
     }
 
-    // isFalseLike......................................................................................................
+    // toBoolean......................................................................................................
 
     @Test
-    public void testIsFalseLikeTrue() {
-        this.isFalseLikeAndCheck(
+    public void testToBooleanTrue() {
+        this.toBooleanAndCheck(
                 JsonBoolean.with(true),
                 true
         );
     }
 
     @Test
-    public void testIsFalseLikeFalse() {
-        this.isFalseLikeAndCheck(
+    public void testToBooleanFalse() {
+        this.toBooleanAndCheck(
                 JsonBoolean.with(false),
                 false
         );

@@ -35,7 +35,7 @@ final class BasicJsonMarshallerTypedExpressionNumberKind extends BasicJsonMarsha
 
     @Override
     void register() {
-        this.registerEnum(ExpressionNumberKind.values()); // necessary because sub classes will be different types
+        this.registerEnum(ExpressionNumberKind.values()); // necessary because sub-classes will be different types
     }
 
     @Override

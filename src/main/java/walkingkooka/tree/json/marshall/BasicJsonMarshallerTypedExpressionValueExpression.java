@@ -23,7 +23,7 @@ import walkingkooka.tree.expression.ValueExpression;
 import walkingkooka.tree.json.JsonNode;
 
 /**
- * A {@link BasicJsonMarshaller} that handles {@link Expression} and all sub classes.
+ * A {@link BasicJsonMarshaller} that handles {@link Expression} and all sub-classes.
  */
 final class BasicJsonMarshallerTypedExpressionValueExpression extends BasicJsonMarshallerTypedExpression<ValueExpression<?>> {
 

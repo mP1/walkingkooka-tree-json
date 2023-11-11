@@ -29,7 +29,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
- * A {@link BasicJsonMarshaller} that handles {@link Expression} and all sub classes.
+ * A {@link BasicJsonMarshaller} that handles {@link Expression} and all sub-classes.
  */
 abstract class BasicJsonMarshallerTypedExpression<N extends Expression> extends BasicJsonMarshallerTyped<N> {
 

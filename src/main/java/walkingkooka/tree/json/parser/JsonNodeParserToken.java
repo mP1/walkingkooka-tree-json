@@ -301,7 +301,7 @@ public abstract class JsonNodeParserToken implements ParserToken {
     abstract JsonNode toJsonNodeOrNull();
 
     /**
-     * Sub classes should add themselves to the list of children.
+     * Sub-classes should add themselves to the list of children.
      */
     abstract void addJsonNode(final List<JsonNode> children);
 

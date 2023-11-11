@@ -135,7 +135,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
 
     @Override
     public final boolean toBoolean() {
-        return this.children().isEmpty();
+        return this.children().size() > 0;
     }
 
     // Object.....................................................................................................

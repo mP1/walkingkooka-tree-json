@@ -605,7 +605,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     public void testToBooleanEmpty() {
         this.toBooleanAndCheck(
                 JsonArray.EMPTY,
-                true
+                false
         );
     }
 
@@ -616,7 +616,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
                         .appendChild(
                                 JsonNode.booleanNode(true)
                         ),
-                false
+                true
         );
     }
 

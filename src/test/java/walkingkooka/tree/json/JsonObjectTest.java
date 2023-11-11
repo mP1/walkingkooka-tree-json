@@ -666,7 +666,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     public void testToBooleanEmpty() {
         this.toBooleanAndCheck(
                 JsonObject.EMPTY,
-                true
+                false
         );
     }
 
@@ -678,7 +678,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
                                 JsonPropertyName.with("child"),
                                 JsonObject.EMPTY
                         ),
-                false
+                true
         );
     }
 

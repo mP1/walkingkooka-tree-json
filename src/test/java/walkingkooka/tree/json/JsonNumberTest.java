@@ -83,7 +83,7 @@ public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber
     public void testToBooleanZero() {
         this.toBooleanAndCheck(
                 JsonNumber.number(0),
-                true
+                false
         );
     }
 
@@ -91,7 +91,7 @@ public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber
     public void testToBooleanNonZero() {
         this.toBooleanAndCheck(
                 JsonNumber.with(1),
-                false
+                true
         );
     }
 

@@ -96,7 +96,7 @@ public final class JsonNumber extends JsonLeafNonNullNode<Double> {
 
     @Override
     public boolean toBoolean() {
-        return this.value == 0;
+        return this.value != 0;
     }
 
     // JsonNode .................................................................................................

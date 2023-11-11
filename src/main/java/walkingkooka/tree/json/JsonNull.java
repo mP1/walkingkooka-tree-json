@@ -93,7 +93,7 @@ public final class JsonNull extends JsonLeafNode<Void> {
 
     @Override
     public boolean toBoolean() {
-        return true;
+        return false;
     }
 
     // Object......................................................................................................

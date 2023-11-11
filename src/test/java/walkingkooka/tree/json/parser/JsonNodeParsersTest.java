@@ -69,6 +69,39 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     }
 
     @Test
+    public void testNumberNan() {
+        final String text = "NaN";
+
+        this.parseAndCheck(
+                text,
+                number(Double.NaN),
+                text
+        );
+    }
+
+    @Test
+    public void testNumberPositiveInfinity() {
+        final String text = "Infinity";
+
+        this.parseAndCheck(
+                text,
+                number(Double.POSITIVE_INFINITY),
+                text
+        );
+    }
+
+    @Test
+    public void testNumberNegativeInfinity() {
+        final String text = "-Infinity";
+
+        this.parseAndCheck(
+                text,
+                number(Double.NEGATIVE_INFINITY),
+                text
+        );
+    }
+
+    @Test
     public void testString() {
         final String text = "\"abc-123\"";
 
@@ -392,7 +425,17 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
 
     private JsonNodeParserToken number(final int value) {
         // accept only int, keeps the creation of the matching text simple.
-        return JsonNodeParserToken.number(value, String.valueOf(value));
+        return JsonNodeParserToken.number(
+                value,
+                String.valueOf(value)
+        );
+    }
+
+    private JsonNodeParserToken number(final double value) {
+        return JsonNodeParserToken.number(
+                value,
+                String.valueOf(value)
+        );
     }
 
     private JsonNodeParserToken objectAssignment() {

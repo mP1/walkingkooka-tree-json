@@ -69,7 +69,7 @@ public final class JsonNullTest extends JsonLeafNodeTestCase<JsonNull, Void> {
     public void testToBoolean() {
         this.toBooleanAndCheck(
                 this.createJsonNode(),
-                true
+                false
         );
     }
 

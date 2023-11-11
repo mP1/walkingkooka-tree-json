@@ -89,7 +89,8 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
 
     @Override
     public boolean toBoolean() {
-        return this.text().length() == 0;
+        return this.text()
+                .length() > 0;
     }
 
     // JsonNodeVisitor .................................................................................................

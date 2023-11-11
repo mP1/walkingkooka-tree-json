@@ -108,7 +108,7 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
     public void testToBooleanEmptyString() {
         this.toBooleanAndCheck(
                 JsonString.with(""),
-                true
+                false
         );
     }
 
@@ -116,7 +116,7 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
     public void testToBooleanNotEmptyString() {
         this.toBooleanAndCheck(
                 JsonString.with("abc"),
-                false
+                true
         );
     }
 

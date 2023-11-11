@@ -73,6 +73,15 @@ public final class JsonNullTest extends JsonLeafNodeTestCase<JsonNull, Void> {
         );
     }
 
+    // removeFalseLike..................................................................................................
+
+    @Test
+    public void testRemoveFalseLike() {
+        this.removeFalseLikeAndCheckNothing(
+                this.createJsonNode()
+        );
+    }
+
     // toString........................................................................................................
 
     @Test

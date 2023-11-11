@@ -95,6 +95,22 @@ public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber
         );
     }
 
+    // removeFalseLike..................................................................................................
+
+    @Test
+    public void testRemoveFalseLikeZero() {
+        this.removeFalseLikeAndCheckNothing(
+                JsonNumber.with(0)
+        );
+    }
+
+    @Test
+    public void testRemoveFalseLikeNonZero() {
+        this.removeFalseLikeAndCheckSame(
+                JsonNumber.with(1)
+        );
+    }
+
     // toString......................................................................................................
 
     @Test

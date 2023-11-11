@@ -61,7 +61,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
     }
 
     /**
-     * Allows sub classes to have different strategies to compare children for equality.
+     * Allows sub-classes to have different strategies to compare children for equality.
      */
     abstract boolean childrenEquals(final List<JsonNode> children);
 

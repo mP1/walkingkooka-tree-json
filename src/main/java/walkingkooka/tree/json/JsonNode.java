@@ -160,7 +160,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     }
 
     /**
-     * Sub classes should call this and cast.
+     * Sub-classes should call this and cast.
      */
     final JsonNode removeParent0() {
         return this.isRoot() ?
@@ -204,7 +204,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
 //    abstract JsonNode
 
     /**
-     * Sub classes must create a new copy of the parent and replace the identified child using its index or similar,
+     * Sub-classes must create a new copy of the parent and replace the identified child using its index or similar,
      * and also sets its parent after creation, returning the equivalent child at the same index.
      */
     abstract JsonNode setChild0(final JsonNode newChild, final int index);
@@ -441,7 +441,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     }
 
     /**
-     * Sub classes should do equals but ignore the parent and children properties.
+     * Sub-classes should do equals but ignore the parent and children properties.
      */
     abstract boolean equalsValue(final JsonNode other);
 

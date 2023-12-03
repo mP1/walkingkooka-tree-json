@@ -27,17 +27,26 @@ public final class BasicJsonMarshallerTypedExpressionBinaryExpressionTest extend
 
     @Test
     public void testUnmarshallBooleanFails() {
-        this.unmarshallFailed(JsonNode.booleanNode(true), null);
+        this.unmarshallFailed(
+                JsonNode.booleanNode(true),
+                JsonNodeUnmarshallException.class
+        );
     }
 
     @Test
     public void testUnmarshallNumberFails() {
-        this.unmarshallFailed(JsonNode.number(123), null);
+        this.unmarshallFailed(
+                JsonNode.number(123),
+                JsonNodeUnmarshallException.class
+        );
     }
 
     @Test
     public void testUnmarshallStringFails() {
-        this.unmarshallFailed(JsonNode.string("abc123"), null);
+        this.unmarshallFailed(
+                JsonNode.string("abc123"),
+                JsonNodeUnmarshallException.class
+        );
     }
 
     @Override

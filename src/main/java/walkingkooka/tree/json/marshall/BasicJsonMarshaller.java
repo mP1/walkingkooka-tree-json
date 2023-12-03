@@ -40,6 +40,7 @@ import walkingkooka.tree.expression.PowerExpression;
 import walkingkooka.tree.expression.SubtractExpression;
 import walkingkooka.tree.expression.XorExpression;
 import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.JsonNodeException;
 import walkingkooka.tree.json.JsonString;
 import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 
@@ -251,7 +252,7 @@ abstract class BasicJsonMarshaller<T> {
             return node.isNull() ?
                     this.unmarshallNull(context) :
                     this.unmarshallNonNull(node, context);
-        } catch (final JsonNodeUnmarshallException | java.lang.NullPointerException cause) {
+        } catch (final JsonNodeException | java.lang.NullPointerException cause) {
             throw cause;
         } catch (final RuntimeException cause) {
             throw new JsonNodeUnmarshallException("Failed to unmarshall", node, cause);

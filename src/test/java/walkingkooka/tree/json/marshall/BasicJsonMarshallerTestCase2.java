@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.JsonNodeException;
 import walkingkooka.tree.json.JsonObject;
 
 import java.math.MathContext;
@@ -243,24 +244,23 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
                 node;
     }
 
-    final void unmarshallFailed(final JsonNode node, final Class<? extends Throwable> wrapped) {
+    final <T extends Throwable> void unmarshallFailed(final JsonNode node,
+                                                      final Class<T> thrown) {
         final JsonNodeUnmarshallContext context = this.unmarshallContext();
 
-        if (java.lang.NullPointerException.class == wrapped) {
-            assertThrows(java.lang.NullPointerException.class, () -> this.marshaller().unmarshall(node, context));
-        } else {
-            final JsonNodeUnmarshallException from = assertThrows(JsonNodeUnmarshallException.class, () -> this.marshaller().unmarshall(node, context));
-            final Throwable cause = from.getCause();
-            if (null == wrapped) {
-                from.printStackTrace();
-                checkEquals(null, cause, "Cause");
-            } else {
-                if (wrapped != cause.getClass()) {
-                    from.printStackTrace();
-                    checkEquals(wrapped, cause, "Wrong cause type");
-                }
-            }
+        Class<? extends Throwable> reallyThrown = JsonNodeUnmarshallException.class;
+        if(JsonNodeException.class.isAssignableFrom(thrown) || java.lang.NullPointerException.class == thrown) {
+            reallyThrown = thrown;
         }
+
+        assertThrows(
+                reallyThrown,
+                () -> this.marshaller()
+                        .unmarshall(
+                                node,
+                                context
+                        )
+        );
     }
 
     final void unmarshallAndCheck(final JsonNode node, final T value) {

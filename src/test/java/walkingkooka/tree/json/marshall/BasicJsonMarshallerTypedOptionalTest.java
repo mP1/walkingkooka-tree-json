@@ -62,10 +62,12 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
 
     @Test
     public void testUnmarshallArrayTwoElementsFails() {
-        this.unmarshallFailed(JsonNode.array()
+        this.unmarshallFailed(
+                JsonNode.array()
                         .appendChild(JsonNode.number(1))
                         .appendChild(JsonNode.number(2)),
-                null);
+                JsonNodeUnmarshallException.class
+        );
     }
 
     @Test

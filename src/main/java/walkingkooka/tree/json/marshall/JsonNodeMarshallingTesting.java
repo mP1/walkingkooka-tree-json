@@ -28,6 +28,7 @@ import walkingkooka.text.CharSequences;
 import walkingkooka.tree.Node;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.JsonNodeException;
 import walkingkooka.tree.json.JsonString;
 
 import java.math.MathContext;
@@ -168,7 +169,13 @@ public interface JsonNodeMarshallingTesting<V> extends Testing {
     default void unmarshallFails(final JsonNode from,
                                  final Class<?> type,
                                  final JsonNodeUnmarshallContext context) {
-        assertThrows(JsonNodeUnmarshallException.class, () -> context.unmarshall(from, type));
+        assertThrows(
+                JsonNodeException.class,
+                () -> context.unmarshall(
+                        from,
+                        type
+                )
+        );
     }
 
     @Test

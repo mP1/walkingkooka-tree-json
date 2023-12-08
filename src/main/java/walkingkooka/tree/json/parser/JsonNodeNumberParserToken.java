@@ -21,6 +21,7 @@ import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 /**
@@ -74,11 +75,11 @@ public final class JsonNodeNumberParserToken extends JsonNodeValueParserToken<Do
 
     @Override
     public JsonNodeNumberParserToken replaceFirstIf(final Predicate<ParserToken> predicate,
-                                                    final ParserToken token) {
+                                                    final Function<ParserToken, ParserToken> mapper) {
         return ParserToken.replaceFirstIf(
                 this,
                 predicate,
-                token,
+                mapper,
                 JsonNodeNumberParserToken.class
         );
     }

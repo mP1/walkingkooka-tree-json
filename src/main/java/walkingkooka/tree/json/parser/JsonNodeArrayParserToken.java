@@ -107,11 +107,11 @@ public final class JsonNodeArrayParserToken extends JsonNodeParentParserToken<Js
 
     @Override
     public JsonNodeArrayParserToken replaceIf(final Predicate<ParserToken> predicate,
-                                               final ParserToken token) {
+                                              final Function<ParserToken, ParserToken> mapper) {
         return ParserToken.replaceIf(
                 this,
                 predicate,
-                token,
+                mapper,
                 JsonNodeArrayParserToken.class
         );
     }

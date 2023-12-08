@@ -88,11 +88,11 @@ public final class JsonNodeNumberParserToken extends JsonNodeValueParserToken<Do
 
     @Override
     public JsonNodeNumberParserToken replaceIf(final Predicate<ParserToken> predicate,
-                                                final ParserToken token) {
+                                               final Function<ParserToken, ParserToken> mapper) {
         return ParserToken.replaceIf(
                 this,
                 predicate,
-                token,
+                mapper,
                 JsonNodeNumberParserToken.class
         );
     }

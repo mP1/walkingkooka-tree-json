@@ -21,7 +21,6 @@ import walkingkooka.text.cursor.parser.ParserToken;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -49,28 +48,6 @@ public final class JsonNodeBooleanParserToken extends JsonNodeValueParserToken<B
     @Override
     void addJsonNode(final List<JsonNode> children) {
         children.add(JsonNode.booleanNode(this.value));
-    }
-
-    // removeFirstIf....................................................................................................
-
-    @Override
-    public Optional<JsonNodeBooleanParserToken> removeFirstIf(final Predicate<ParserToken> predicate) {
-        return ParserToken.removeFirstIfLeaf(
-                this,
-                predicate,
-                JsonNodeBooleanParserToken.class
-        );
-    }
-    
-    // removeIf.........................................................................................................
-
-    @Override
-    public Optional<JsonNodeBooleanParserToken> removeIf(final Predicate<ParserToken> predicate) {
-        return ParserToken.removeIfLeaf(
-                this,
-                predicate,
-                JsonNodeBooleanParserToken.class
-        );
     }
 
     // replaceFirstIf...................................................................................................

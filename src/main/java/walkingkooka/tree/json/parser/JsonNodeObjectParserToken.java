@@ -24,7 +24,6 @@ import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.visit.Visiting;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -103,28 +102,6 @@ public final class JsonNodeObjectParserToken extends JsonNodeParentParserToken<J
                 this,
                 children,
                 JsonNodeObjectParserToken::with
-        );
-    }
-
-    // removeFirstIf....................................................................................................
-
-    @Override
-    public Optional<JsonNodeObjectParserToken> removeFirstIf(final Predicate<ParserToken> predicate) {
-        return ParserToken.removeFirstIfParent(
-                this,
-                predicate,
-                JsonNodeObjectParserToken.class
-        );
-    }
-
-    // removeIf.........................................................................................................
-
-    @Override
-    public Optional<JsonNodeObjectParserToken> removeIf(final Predicate<ParserToken> predicate) {
-        return ParserToken.removeIfParent(
-                this,
-                predicate,
-                JsonNodeObjectParserToken.class
         );
     }
 

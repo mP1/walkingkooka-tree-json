@@ -16,11 +16,6 @@
  */
 package walkingkooka.tree.json.parser;
 
-import walkingkooka.text.cursor.parser.ParserToken;
-
-import java.util.function.Function;
-import java.util.function.Predicate;
-
 /**
  * Represents a open array (parens) symbol token.
  */
@@ -35,32 +30,6 @@ public final class JsonNodeArrayBeginSymbolParserToken extends JsonNodeSymbolPar
 
     private JsonNodeArrayBeginSymbolParserToken(final String value, final String text) {
         super(value, text);
-    }
-
-    // replaceFirstIf...................................................................................................
-
-    @Override
-    public JsonNodeArrayBeginSymbolParserToken replaceFirstIf(final Predicate<ParserToken> predicate,
-                                                              final Function<ParserToken, ParserToken> mapper) {
-        return ParserToken.replaceFirstIf(
-                this,
-                predicate,
-                mapper,
-                JsonNodeArrayBeginSymbolParserToken.class
-        );
-    }
-
-    // replaceIf........................................................................................................
-
-    @Override
-    public JsonNodeArrayBeginSymbolParserToken replaceIf(final Predicate<ParserToken> predicate,
-                                                         final Function<ParserToken, ParserToken> mapper) {
-        return ParserToken.replaceIf(
-                this,
-                predicate,
-                mapper,
-                JsonNodeArrayBeginSymbolParserToken.class
-        );
     }
 
     // visitor .........................................................................................................

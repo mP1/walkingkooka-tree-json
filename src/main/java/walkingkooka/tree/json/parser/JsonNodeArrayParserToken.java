@@ -22,8 +22,6 @@ import walkingkooka.tree.json.JsonNode;
 import walkingkooka.visit.Visiting;
 
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.Predicate;
 
 /**
  * Holds a json array which may contain further json values.
@@ -64,32 +62,6 @@ public final class JsonNodeArrayParserToken extends JsonNodeParentParserToken<Js
                 this,
                 children,
                 JsonNodeArrayParserToken::with
-        );
-    }
-
-    // replaceFirstIf...................................................................................................
-
-    @Override
-    public JsonNodeArrayParserToken replaceFirstIf(final Predicate<ParserToken> predicate,
-                                                   final Function<ParserToken, ParserToken> mapper) {
-        return ParserToken.replaceFirstIf(
-                this,
-                predicate,
-                mapper,
-                JsonNodeArrayParserToken.class
-        );
-    }
-
-    // replaceIf........................................................................................................
-
-    @Override
-    public JsonNodeArrayParserToken replaceIf(final Predicate<ParserToken> predicate,
-                                              final Function<ParserToken, ParserToken> mapper) {
-        return ParserToken.replaceIf(
-                this,
-                predicate,
-                mapper,
-                JsonNodeArrayParserToken.class
         );
     }
 

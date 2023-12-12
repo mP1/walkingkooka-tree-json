@@ -24,8 +24,6 @@ import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.visit.Visiting;
 
 import java.util.List;
-import java.util.function.Function;
-import java.util.function.Predicate;
 
 /**
  * A wrapper around a json object.
@@ -102,32 +100,6 @@ public final class JsonNodeObjectParserToken extends JsonNodeParentParserToken<J
                 this,
                 children,
                 JsonNodeObjectParserToken::with
-        );
-    }
-
-    // replaceFirstIf...................................................................................................
-
-    @Override
-    public JsonNodeObjectParserToken replaceFirstIf(final Predicate<ParserToken> predicate,
-                                                    final Function<ParserToken, ParserToken> mapper) {
-        return ParserToken.replaceFirstIf(
-                this,
-                predicate,
-                mapper,
-                JsonNodeObjectParserToken.class
-        );
-    }
-
-    // replaceIf........................................................................................................
-
-    @Override
-    public JsonNodeObjectParserToken replaceIf(final Predicate<ParserToken> predicate,
-                                               final Function<ParserToken, ParserToken> mapper) {
-        return ParserToken.replaceIf(
-                this,
-                predicate,
-                mapper,
-                JsonNodeObjectParserToken.class
         );
     }
 

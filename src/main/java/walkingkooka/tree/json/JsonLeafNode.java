@@ -85,7 +85,12 @@ abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
     @Override
     public final JsonNode setChildren(final List<JsonNode> children) {
         Objects.requireNonNull(children, "children");
-        throw new UnsupportedOperationException();
+
+        if (false == children.isEmpty()) {
+            throw new UnsupportedOperationException();
+        }
+
+        return this;
     }
 
     @Override final JsonNode setChild0(final JsonNode newChild, final int index) {

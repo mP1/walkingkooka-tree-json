@@ -119,11 +119,6 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
                 before.set(key2, value2).getOrFail(key2));
     }
 
-    @Test
-    public final void testSetChildrenFails() {
-        assertThrows(UnsupportedOperationException.class, () -> this.createJsonNode().setChildren(Lists.empty()));
-    }
-
     @Override
     public void testSetSameAttributes() {
         // Ignored

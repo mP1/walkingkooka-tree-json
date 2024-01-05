@@ -24,7 +24,6 @@ import walkingkooka.text.LineEnding;
 import walkingkooka.tree.Node;
 import walkingkooka.tree.ParentNodeTesting;
 import walkingkooka.tree.Traversable;
-import walkingkooka.tree.search.SearchNode;
 
 import java.util.List;
 import java.util.Map.Entry;
@@ -86,11 +85,6 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
 
     @Override
     public void testParentWithoutChild() {
-    }
-
-    @Test
-    public final void testToSearchNodeEmpty() {
-        this.toSearchNodeAndCheck(this.createJsonNode(), SearchNode.text("", ""));
     }
 
     final JsonString value1() {

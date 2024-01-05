@@ -38,7 +38,6 @@ import walkingkooka.tree.json.parser.JsonNodeParserContext;
 import walkingkooka.tree.json.parser.JsonNodeParserContexts;
 import walkingkooka.tree.json.parser.JsonNodeParserToken;
 import walkingkooka.tree.json.parser.JsonNodeParsers;
-import walkingkooka.tree.search.HasSearchNode;
 import walkingkooka.tree.select.NodeSelector;
 import walkingkooka.tree.select.parser.NodeSelectorExpressionParserToken;
 
@@ -52,7 +51,6 @@ import java.util.function.Predicate;
  * actually returns a new graph of nodes as would be expected including all parents and the root.
  */
 public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name, Object>,
-        HasSearchNode,
         HasText,
         TraversableHasTextOffset<JsonNode>,
         TreePrintable {

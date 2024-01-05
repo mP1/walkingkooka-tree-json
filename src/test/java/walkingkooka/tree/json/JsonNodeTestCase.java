@@ -32,7 +32,6 @@ import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.Printers;
 import walkingkooka.tree.HasTextOffsetTesting;
 import walkingkooka.tree.NodeTesting;
-import walkingkooka.tree.search.HasSearchNodeTesting;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,7 +42,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanPropertiesTesting,
         ClassTesting2<JsonNode>,
-        HasSearchNodeTesting<N>,
         HasTextOffsetTesting,
         HasTextTesting,
         IsMethodTesting<N>,

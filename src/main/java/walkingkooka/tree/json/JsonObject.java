@@ -21,7 +21,6 @@ import walkingkooka.collect.map.Maps;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.CharacterConstant;
 import walkingkooka.text.printer.IndentingPrinter;
-import walkingkooka.tree.search.SearchNode;
 import walkingkooka.visit.Visiting;
 
 import java.util.List;
@@ -29,7 +28,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Represents an immutable json object
@@ -292,15 +290,6 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
     @Override
     public JsonObject objectOrFail() {
         return this;
-    }
-
-    // HasSearchNode...............................................................................................
-
-    @Override
-    SearchNode toSearchNode0() {
-        return SearchNode.sequence(this.children.stream()
-                .map(c -> c.toSearchNode().setName(c.name().toSearchNodeName()))
-                .collect(Collectors.toList()));
     }
 
     // JsonNodeVisitor .................................................................................................

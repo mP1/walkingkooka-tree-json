@@ -19,7 +19,6 @@ package walkingkooka.tree.json;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.tree.search.SearchNode;
 import walkingkooka.visit.Visiting;
 
 import java.util.List;
@@ -579,24 +578,6 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
                         .named(array.get(1).name()),
                 (n) -> replaced,
                 array.set(1, replaced));
-    }
-
-    // toSearchNode .......................................................................................
-
-    @Test
-    public void testToSearchNode() {
-        final JsonBoolean booleanNode = JsonNode.booleanNode(true);
-        final JsonNumber number = JsonNode.number(2);
-        final JsonString string = JsonNode.string("third");
-
-        final JsonArray array = JsonNode.array()
-                .appendChild(booleanNode)
-                .appendChild(number)
-                .appendChild(string);
-
-        this.toSearchNodeAndCheck(array, SearchNode.sequence(Lists.of(booleanNode.toSearchNode(),
-                number.toSearchNode(),
-                string.toSearchNode())));
     }
 
     // toBoolean......................................................................................................

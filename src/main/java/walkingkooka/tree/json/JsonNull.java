@@ -18,7 +18,6 @@
 package walkingkooka.tree.json;
 
 import walkingkooka.text.printer.IndentingPrinter;
-import walkingkooka.tree.search.SearchNode;
 
 import java.util.Optional;
 
@@ -72,14 +71,6 @@ public final class JsonNull extends JsonLeafNode<Void> {
     @Override
     JsonPropertyName defaultName() {
         return NAME;
-    }
-
-    // HasSearchNode...............................................................................................
-
-    @Override
-    public SearchNode toSearchNode() {
-        final String text = this.text();
-        return SearchNode.text(text, text);
     }
 
     // HasText..........................................................................................................

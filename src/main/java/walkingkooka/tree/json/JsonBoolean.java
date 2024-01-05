@@ -18,7 +18,6 @@
 package walkingkooka.tree.json;
 
 import walkingkooka.text.printer.IndentingPrinter;
-import walkingkooka.tree.search.SearchNode;
 
 /**
  * Represents an immutable json boolean.
@@ -73,24 +72,16 @@ public final class JsonBoolean extends JsonLeafNonNullNode<Boolean> {
                 .cast(JsonBoolean.class);
     }
 
+    @Override
+    JsonPropertyName defaultName() {
+        return NAME;
+    }
+
     // HasText......................................................................................................
 
     @Override
     public String text() {
         return this.value.toString();
-    }
-
-    // HasSearchNode...............................................................................................
-
-    @Override
-    public SearchNode toSearchNode() {
-        final String text = this.text();
-        return SearchNode.text(text, text);
-    }
-
-    @Override
-    JsonPropertyName defaultName() {
-        return NAME;
     }
 
     // javascript.......................................................................................................

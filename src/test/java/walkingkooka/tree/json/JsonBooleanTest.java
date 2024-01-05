@@ -19,7 +19,6 @@ package walkingkooka.tree.json;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.tree.search.SearchNode;
 import walkingkooka.visit.Visiting;
 
 import java.util.List;
@@ -59,17 +58,7 @@ public final class JsonBooleanTest extends JsonLeafNonNullNodeTestCase<JsonBoole
                 JsonBoolean.with(false).booleanOrFail());
     }
 
-    // toSearchNode.........................................................................................
-
-    @Test
-    public void testToSearchNodeTrue() {
-        this.toSearchNodeAndCheck(this.createJsonNode(true), SearchNode.text("true", "true"));
-    }
-
-    @Test
-    public void testToSearchNodeFalse() {
-        this.toSearchNodeAndCheck(this.createJsonNode(false), SearchNode.text("false", "false"));
-    }
+    // Visitor..........................................................................................................
 
     @Test
     public void testAccept() {

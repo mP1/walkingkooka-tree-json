@@ -20,14 +20,11 @@ package walkingkooka.tree.json;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.text.CharacterConstant;
 import walkingkooka.text.printer.IndentingPrinter;
-import walkingkooka.tree.search.HasSearchNode;
-import walkingkooka.tree.search.SearchNode;
 import walkingkooka.visit.Visiting;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Represents an immutable json array
@@ -226,15 +223,6 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
     @Override
     JsonPropertyName defaultName() {
         return NAME;
-    }
-
-    // HasSearchNode....................................................................................................
-
-    @Override
-    SearchNode toSearchNode0() {
-        return SearchNode.sequence(this.children.stream()
-                .map(HasSearchNode::toSearchNode)
-                .collect(Collectors.toList()));
     }
 
     // isXXX............................................................................................................

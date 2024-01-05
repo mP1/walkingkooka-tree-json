@@ -21,7 +21,6 @@ import walkingkooka.Cast;
 import walkingkooka.naming.Name;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.CharSequences;
-import walkingkooka.tree.search.SearchNodeName;
 
 /**
  * The name of any property of object key.
@@ -92,15 +91,6 @@ public final class JsonPropertyName implements Name,
      */
     public JsonString toJsonString() {
         return JsonNode.string(this.value());
-    }
-
-    // HasSearchNode....................................................................................................
-
-    /**
-     * Creates the {@link SearchNodeName} for this node name. Only used by {@link JsonObject#toSearchNode()}.
-     */
-    SearchNodeName toSearchNodeName() {
-        return SearchNodeName.with(this.name);
     }
 
     // Object..........................................................................................................

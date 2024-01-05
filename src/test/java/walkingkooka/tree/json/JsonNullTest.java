@@ -19,7 +19,6 @@ package walkingkooka.tree.json;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.tree.search.SearchNode;
 import walkingkooka.visit.Visiting;
 
 import java.util.List;
@@ -27,13 +26,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public final class JsonNullTest extends JsonLeafNodeTestCase<JsonNull, Void> {
-
-    // toSearchNode..............................................................................
-
-    @Test
-    public void testToSearchNode() {
-        this.toSearchNodeAndCheck(this.createJsonNode(), SearchNode.text("null", "null"));
-    }
 
     @Test
     public void testAccept() {

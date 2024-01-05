@@ -19,7 +19,6 @@ package walkingkooka.tree.json;
 
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.printer.IndentingPrinter;
-import walkingkooka.tree.search.SearchNode;
 
 import java.util.Objects;
 
@@ -75,14 +74,6 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
     @Override
     public String text() {
         return this.value;
-    }
-
-    // HasSearchNode...............................................................................................
-
-    @Override
-    public SearchNode toSearchNode() {
-        final String text = this.text();
-        return SearchNode.text(text, this.value());
     }
 
     // javascript.......................................................................................................

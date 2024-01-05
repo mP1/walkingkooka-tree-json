@@ -20,7 +20,6 @@ package walkingkooka.tree.json;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.text.HasText;
-import walkingkooka.tree.search.SearchNode;
 
 import java.util.List;
 import java.util.Optional;
@@ -92,17 +91,6 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
     public final Object value() {
         throw new UnsupportedOperationException();
     }
-
-    // HasSearchNode...............................................................................................
-
-    @Override
-    public final SearchNode toSearchNode() {
-        return this.children.isEmpty() ?
-                SearchNode.text("", "") :
-                this.toSearchNode0();
-    }
-
-    abstract SearchNode toSearchNode0();
 
     // Visitor ........................................................................................................
 

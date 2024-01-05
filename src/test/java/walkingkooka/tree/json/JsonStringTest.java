@@ -20,7 +20,6 @@ package walkingkooka.tree.json;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.text.CharSequences;
-import walkingkooka.tree.search.SearchNode;
 import walkingkooka.visit.Visiting;
 
 import java.util.List;
@@ -64,14 +63,6 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
     @Test
     public void testCharacterOrFail() {
         this.checkEquals('A', JsonString.with("A").characterOrFail());
-    }
-
-    // toSearchNode...............................................................................................
-
-    @Test
-    public void testToSearchNode() {
-        final String text = "abc123";
-        this.toSearchNodeAndCheck(this.createJsonNode(text), SearchNode.text(text, text));
     }
 
     @Test

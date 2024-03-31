@@ -302,20 +302,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
         visitor.endVisit(this);
     }
 
-    // JsonNode......................................................................................................
-
-    @Override
-    boolean canBeEqual(final Object other) {
-        return other instanceof JsonObject;
-    }
-
-    /**
-     * Only returns true if the descendants of this node and the given children are equal ignoring the parents.
-     */
-    @Override
-    boolean equalsDescendants0(final JsonNode child, final JsonObjectList otherChildren, final int i) {
-        return child.equalsNameValueAndDescendants(otherChildren.nameToValues.get(child.name));
-    }
+    // TreePrint........................................................................................................
 
     @Override
     void printJson0(final IndentingPrinter printer) {
@@ -343,5 +330,24 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
         }
 
         printer.print(END.string());
+    }
+
+    // JsonNode.........................................................................................................
+
+    @Override
+    boolean canBeEqual(final Object other) {
+        return other instanceof JsonObject;
+    }
+
+    /**
+     * Only returns true if the child count is the same and all children are equal, note order is not important
+     */
+    @Override//
+    boolean equalsChildren(final JsonNode other) {
+        return this.children.nameToValues.equals(
+                other.objectOrFail()
+                        .children
+                        .nameToValues
+        );
     }
 }

@@ -253,18 +253,7 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
         visitor.endVisit(this);
     }
 
-    @Override
-    boolean canBeEqual(final Object other) {
-        return other instanceof JsonArray;
-    }
-
-    /**
-     * Only returns true if the descendants of this node and the given children are equal ignoring the parents.
-     */
-    @Override
-    boolean equalsDescendants0(final JsonNode child, final List<JsonNode> otherChildren, final int i) {
-        return child.equalsNameValueAndDescendants(otherChildren.get(i));
-    }
+    // TreePrint........................................................................................................
 
     @Override
     void printJson0(final IndentingPrinter printer) {
@@ -294,4 +283,16 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
     }
 
     private final static String EMPTY_ARRAY_STRING = BEGIN.string() + END;
+
+    // Object...........................................................................................................
+
+    @Override
+    boolean canBeEqual(final Object other) {
+        return other instanceof JsonArray;
+    }
+
+    @Override //
+    boolean equalsChildren(final JsonNode other) {
+        return this.children.equals(other.children());
+    }
 }

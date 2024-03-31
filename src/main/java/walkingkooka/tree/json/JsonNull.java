@@ -102,11 +102,6 @@ public final class JsonNull extends JsonLeafNode<Void> {
     }
 
     @Override
-    boolean equalsDescendants(final JsonNode other) {
-        return true;
-    }
-
-    @Override
     boolean equalsValue(final JsonNode other) {
         return true;
     }

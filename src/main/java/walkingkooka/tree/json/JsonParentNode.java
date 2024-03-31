@@ -17,7 +17,6 @@
 
 package walkingkooka.tree.json;
 
-import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.text.HasText;
 
@@ -148,46 +147,13 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
                 );
     }
 
-    // Object.....................................................................................................
+    // Object...........................................................................................................
 
     @Override
     public final int hashCode() {
         return this.children.hashCode();
     }
 
-    /**
-     * Only returns true if the descendants of this node and the given children are equal ignoring the parents.
-     * A compatibility test between both objects is also done as this is called directly when parents compare their children.
-     */
-    @Override
-    final boolean equalsDescendants(final JsonNode other) {
-        boolean equals = this.canBeEqual(other);
-
-        if (equals) {
-            final C children = this.children;
-            final int count = children.size();
-
-            final C otherChildren = Cast.to(other.children());
-            equals = count == other.children().size();
-
-            if (equals) {
-                for (int i = 0; equals && i < count; i++) {
-                    equals = this.equalsDescendants0(children.get(i), otherChildren, i);
-                }
-            }
-        }
-
-        return equals;
-    }
-
-    /**
-     * Tests a child for equality. It should ignore the parent.
-     */
-    abstract boolean equalsDescendants0(final JsonNode child, final C otherChildren, final int i);
-
-    /**
-     * Tests if the immediate value belonging to this node for equality.
-     */
     @Override
     final boolean equalsValue(final JsonNode other) {
         return true; // no other properties name already tested.

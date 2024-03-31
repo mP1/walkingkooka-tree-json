@@ -43,6 +43,6 @@ final class JsonParentNodeChildPredicate implements BiPredicate<JsonNode, JsonNo
     public boolean test(final JsonNode first, final JsonNode other) {
         return null != first &&
                 first.equalsValue(other) &&
-                first.equalsDescendants(other);
+                first.equalsChildren(other);
     }
 }

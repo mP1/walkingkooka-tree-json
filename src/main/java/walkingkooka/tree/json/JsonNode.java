@@ -390,7 +390,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         this.printJson(printer);
     }
 
-    // Object .......................................................................................................
+    // Object ..........................................................................................................
 
     @Override
     public abstract int hashCode();
@@ -405,49 +405,16 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     abstract boolean canBeEqual(final Object other);
 
     private boolean equals0(final JsonNode other) {
-        return this.equalsNameAndValue(other) &&
-                this.equalsAncestors(other) &&
-                this.equalsDescendants(other);
-    }
-
-    private boolean equalsNameAndValue(final JsonNode other) {
         return this.name.equals(other.name) &&
-                this.equalsValue(other);
+                this.equalsValue(other) &&
+                this.equalsChildren(other);
     }
 
-    /**
-     * Sub-classes should do equals but ignore the parent and children properties.
-     */
     abstract boolean equalsValue(final JsonNode other);
 
-    private boolean equalsAncestors(final JsonNode other) {
-        boolean result = true;
+    abstract boolean equalsChildren(final JsonNode other);
 
-        final Optional<JsonNode> parent = this.parent();
-        final Optional<JsonNode> otherParent = other.parent();
-        final boolean hasParent = parent.isPresent();
-        final boolean hasOtherParent = otherParent.isPresent();
-
-        if (hasParent) {
-            if (hasOtherParent) {
-                result = parent.get()
-                        .equalsAncestors(otherParent.get());
-            }
-        } else {
-            // result is only true if other is false
-            result = !hasOtherParent;
-        }
-
-        return result;
-    }
-
-    final boolean equalsNameValueAndDescendants(final JsonNode other) {
-        return this.canBeEqual(other) &&
-                this.equalsNameAndValue(other) &&
-                this.equalsDescendants(other);
-    }
-
-    abstract boolean equalsDescendants(final JsonNode other);
+    // Object..........................................................................................................
 
     final static Indentation INDENTATION = Indentation.SPACES2;
 

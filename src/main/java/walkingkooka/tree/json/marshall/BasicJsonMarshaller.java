@@ -66,30 +66,50 @@ abstract class BasicJsonMarshaller<T> {
      * Returns the marshaller for the given {@link Object value}.
      */
     static <T> BasicJsonMarshaller<T> marshaller(final T value) {
-        return marshaller0(
-                value instanceof List ? "list" :
-                        value instanceof Set ? "set" :
-                                value instanceof Map ? "map" :
-                                        classToString(value.getClass())
-        );
+        String name = classToString(value.getClass());
+
+        // try and find by class name, then try again if list/set/map.
+        BasicJsonMarshaller<?> marshaller = TYPENAME_TO_MARSHALLER.get(name);
+        if (null == marshaller) {
+            final String listSetMapName = value instanceof List ?
+                    "list" :
+                    value instanceof Set ?
+                            "set" :
+                            value instanceof Map ?
+                                    "map" :
+                                    null;
+            if (null != listSetMapName) {
+                marshaller = TYPENAME_TO_MARSHALLER.get(listSetMapName);
+            }
+        }
+
+        if (null == marshaller) {
+            throw notFound(name);
+        }
+
+        return Cast.to(marshaller);
     }
 
     /**
      * Returns the marshaller for the given {@link Class}.
      */
     static <T> BasicJsonMarshaller<T> marshaller(final Class<T> type) {
-        return marshaller0(classToString(type));
+        final String name = classToString(type);
+
+        final BasicJsonMarshaller<?> marshaller = TYPENAME_TO_MARSHALLER.get(name);
+        if (null == marshaller) {
+            throw notFound(name);
+        }
+        return Cast.to(marshaller);
     }
 
-    /**
-     * Returns the {@link BasicJsonMarshaller} for the given type name.
-     */
-    private static <T> BasicJsonMarshaller<T> marshaller0(final String type) {
-        final BasicJsonMarshaller<T> marshaller = Cast.to(TYPENAME_TO_MARSHALLER.get(type));
-        if (null == marshaller) {
-            throw new UnsupportedTypeJsonNodeException("Type " + CharSequences.quote(type) + " not supported, currently: " + TYPENAME_TO_MARSHALLER.keySet());
-        }
-        return marshaller;
+    private static UnsupportedTypeJsonNodeException notFound(final String name) {
+        return new UnsupportedTypeJsonNodeException(
+                "Type " +
+                        CharSequences.quote(name) +
+                        " not supported, currently: " +
+                        TYPENAME_TO_MARSHALLER.keySet()
+        );
     }
 
     // register.........................................................................................................

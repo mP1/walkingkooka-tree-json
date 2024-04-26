@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json;
 
+import walkingkooka.collect.list.ImmutableList;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 
@@ -24,11 +25,12 @@ import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * An immutable {@link List} view of elements belonging to a {@link JsonObject}.
  */
-final class JsonObjectList extends AbstractList<JsonNode> {
+final class JsonObjectList extends AbstractList<JsonNode> implements ImmutableList<JsonNode> {
 
     static {
         Lists.registerImmutableType(JsonObjectList.class);
@@ -83,4 +85,24 @@ final class JsonObjectList extends AbstractList<JsonNode> {
     }
 
     private List<JsonNode> list;
+
+    // ImmutableList....................................................................................................
+
+    @Override
+    public ImmutableList<JsonNode> setElements(final List<JsonNode> list) {
+        Objects.requireNonNull(list, "list");
+
+        final Map<JsonPropertyName, JsonNode> map = Maps.sorted();
+
+        for(final JsonNode json : list) {
+            map.put(
+                    json.name(),
+                    json
+            );
+        }
+
+        return map.equals(this.nameToValues) ?
+                this :
+                new JsonObjectList(map);
+    }
 }

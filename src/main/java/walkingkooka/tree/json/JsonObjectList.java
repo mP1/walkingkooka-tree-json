@@ -18,7 +18,6 @@
 package walkingkooka.tree.json;
 
 import walkingkooka.collect.list.ImmutableList;
-import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 
 import java.util.AbstractList;
@@ -31,10 +30,6 @@ import java.util.Objects;
  * An immutable {@link List} view of elements belonging to a {@link JsonObject}.
  */
 final class JsonObjectList extends AbstractList<JsonNode> implements ImmutableList<JsonNode> {
-
-    static {
-        Lists.registerImmutableType(JsonObjectList.class);
-    }
 
     /**
      * Empty list constant.

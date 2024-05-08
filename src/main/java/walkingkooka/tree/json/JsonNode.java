@@ -24,10 +24,7 @@ import walkingkooka.text.CharSequences;
 import walkingkooka.text.HasText;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
-import walkingkooka.text.cursor.TextCursors;
 import walkingkooka.text.cursor.parser.Parser;
-import walkingkooka.text.cursor.parser.ParserException;
-import walkingkooka.text.cursor.parser.ParserReporters;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.Printers;
 import walkingkooka.text.printer.TreePrintable;
@@ -59,23 +56,18 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      * Parsers the given json and returns its {@link JsonNode} equivalent.
      */
     public static JsonNode parse(final String text) {
-        try {
-            return PARSER.parse(TextCursors.charSequence(text),
-                            JsonNodeParserContexts.basic())
-                    .get()
-                    .cast(JsonNodeParserToken.class)
-                    .toJsonNode().get();
-        } catch (final ParserException cause) {
-            throw new IllegalArgumentException(cause.getMessage(), cause);
-        }
+        return PARSER.parseText(
+                text,
+                JsonNodeParserContexts.basic()
+        ).cast(JsonNodeParserToken.class)
+                .toJsonNode()
+                .get();
     }
 
     /**
      * Parser that will consume json or report a parsing error.
      */
     private final static Parser<JsonNodeParserContext> PARSER = JsonNodeParsers.value()
-            .andEmptyTextCursor()
-            .orReport(ParserReporters.basic())
             .cast();
 
     public static JsonArray array() {

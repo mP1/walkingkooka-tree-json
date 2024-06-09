@@ -19,6 +19,7 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.ContextTesting;
+import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonString;
 
@@ -36,7 +37,8 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public interface JsonNodeContextTesting<C extends JsonNodeContext> extends ContextTesting<C> {
+public interface JsonNodeContextTesting<C extends JsonNodeContext> extends ContextTesting<C>,
+        TreePrintableTesting {
 
     // registeredType....................................................................................................
 

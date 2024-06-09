@@ -23,8 +23,8 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.reflect.MethodAttributes;
-import walkingkooka.test.Testing;
 import walkingkooka.text.CharSequences;
+import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.Node;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
@@ -42,7 +42,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public interface JsonNodeMarshallingTesting<V> extends Testing {
+public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
 
     @Test
     default void testRegistered() throws Exception {

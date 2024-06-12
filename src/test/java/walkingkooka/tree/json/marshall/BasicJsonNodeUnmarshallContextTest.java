@@ -101,7 +101,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     @Test
     public void testUnmarshallObjectWithObjectPreProcessor() {
-        this.unmarshallAndCheck(this.contextWithProcessor(),
+        this.unmarshallAndCheck(this.contextWithPreProcessor(),
                 this.jsonNode2(),
                 TestJsonNodeValue.class,
                 this.value());
@@ -184,7 +184,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     @Test
     public void testUnmarshallListObjectWithObjectPreProcessor() {
-        this.unmarshallListAndCheck(this.contextWithProcessor(),
+        this.unmarshallListAndCheck(this.contextWithPreProcessor(),
                 this.list(this.jsonNode2()),
                 TestJsonNodeValue.class,
                 Lists.of(this.value()));
@@ -242,7 +242,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     @Test
     public void testUnmarshallSetObjectWithObjectPreProcessor() {
-        this.unmarshallSetAndCheck(this.contextWithProcessor(),
+        this.unmarshallSetAndCheck(this.contextWithPreProcessor(),
                 this.set(this.jsonNode2()),
                 TestJsonNodeValue.class,
                 Sets.of(this.value()));
@@ -313,7 +313,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     @Test
     public void testUnmarshallMapStringKeyObjectWithObjectPreProcessor() {
         this.unmarshallMapStringKeyAndCheck(
-                this.contextWithProcessor(),
+                this.contextWithPreProcessor(),
                 this.jsonNode2(),
                 TestJsonNodeValue.class,
                 this.value()
@@ -404,7 +404,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     @Test
     public void testUnmarshallMapNonStringKeyObjectWithObjectPreProcessor() {
         this.unmarshallMapNonStringKeyAndCheck(
-                this.contextWithProcessor(),
+                this.contextWithPreProcessor(),
                 this.jsonNode2(),
                 TestJsonNodeValue.class,
                 this.value()
@@ -518,7 +518,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     @Test
     public void testUnmarshallWithTypeObjectWithObjectPreProcessor() {
-        this.unmarshallWithTypeAndCheck(this.contextWithProcessor(),
+        this.unmarshallWithTypeAndCheck(this.contextWithPreProcessor(),
                 this.typeAndValue(TestJsonNodeValue.TYPE_NAME, this.jsonNode2()),
                 this.value());
     }
@@ -601,7 +601,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     @Test
     public void testUnmarshallWithTypeListObjectWithObjectPreProcessor() {
-        this.unmarshallWithTypeListAndCheck(this.contextWithProcessor(),
+        this.unmarshallWithTypeListAndCheck(this.contextWithPreProcessor(),
                 this.listWithType(TestJsonNodeValue.TYPE_NAME, this.jsonNode2()),
                 Lists.of(this.value()));
     }
@@ -689,7 +689,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     @Test
     public void testUnmarshallWithTypeSetObjectWithObjectPreProcessor() {
-        this.unmarshallWithTypeSetAndCheck(this.contextWithProcessor(),
+        this.unmarshallWithTypeSetAndCheck(this.contextWithPreProcessor(),
                 this.setWithType(TestJsonNodeValue.TYPE_NAME, this.jsonNode2()),
                 Sets.of(this.value()));
     }
@@ -742,7 +742,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     @Test
     public void testUnmarshallWithTypeMapStringObjectWithObjectPreProcessor() {
-        this.unmarshallWithTypeMapAndCheck3(this.contextWithProcessor(),
+        this.unmarshallWithTypeMapAndCheck3(this.contextWithPreProcessor(),
                 this.typeAndValue(TestJsonNodeValue.TYPE_NAME, this.jsonNode2()),
                 this.value());
     }
@@ -775,7 +775,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         );
     }
 
-    private JsonNodeUnmarshallContext contextWithProcessor() {
+    private JsonNodeUnmarshallContext contextWithPreProcessor() {
         return this.createContext()
                 .setPreProcessor(this::preProcessor);
     }

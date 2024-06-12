@@ -18,17 +18,15 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonObject;
 
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.BiFunction;
 
 public class FakeJsonNodeMarshallContext extends FakeJsonNodeContext implements JsonNodeMarshallContext {
 
     @Override
-    public JsonNodeMarshallContext setObjectPostProcessor(final BiFunction<Object, JsonObject, JsonObject> processor) {
+    public JsonNodeMarshallContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor) {
         throw new UnsupportedOperationException();
     }
 

@@ -19,7 +19,6 @@ package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Context;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.JsonObject;
 
 import java.util.Collection;
 import java.util.Map;
@@ -32,14 +31,14 @@ import java.util.function.BiFunction;
 public interface JsonNodeMarshallContext extends JsonNodeContext {
 
     /**
-     * A {@link BiFunction processor} that simply returns the given object ignoring the value.
+     * A {@link JsonNodeMarshallContextObjectPostProcessor processor} that simply returns the given object ignoring the value.
      */
-    BiFunction<Object, JsonObject, JsonObject> OBJECT_PRE_PROCESSOR = (value, jsonObject) -> jsonObject;
+    JsonNodeMarshallContextObjectPostProcessor OBJECT_PRE_PROCESSOR = (value, jsonObject) -> jsonObject;
 
     /**
      * Sets or replaces the {@link BiFunction object post processor} creating a new instance as necessary.
      */
-    JsonNodeMarshallContext setObjectPostProcessor(final BiFunction<Object, JsonObject, JsonObject> processor);
+    JsonNodeMarshallContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor);
 
     /**
      * Returns the {@link JsonNode} equivalent of this object. This is ideal for situations where the value is not dynamic.

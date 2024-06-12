@@ -17,15 +17,16 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.util.BiFunctionTesting;
 
 public interface JsonNodeMarshallContextObjectPostProcessorTesting<F extends JsonNodeMarshallContextObjectPostProcessor> extends BiFunctionTesting<F, Object, JsonObject, JsonObject>,
+        TypeNameTesting<F>,
         TreePrintableTesting {
 
     default String typeNameSuffix() {
-        return JsonNodeMarshallContextObjectPostProcessor.class.getSimpleName()
-                .substring(JsonNodeMarshallContext.class.getSimpleName().length());
+        return JsonNodeMarshallContextObjectPostProcessor.class.getSimpleName();
     }
 }

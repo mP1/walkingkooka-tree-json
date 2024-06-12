@@ -23,4 +23,9 @@ import walkingkooka.util.BiFunctionTesting;
 
 public interface JsonNodeMarshallContextObjectPostProcessorTesting<F extends JsonNodeMarshallContextObjectPostProcessor> extends BiFunctionTesting<F, Object, JsonObject, JsonObject>,
         TreePrintableTesting {
+
+    default String typeNameSuffix() {
+        return JsonNodeMarshallContextObjectPostProcessor.class.getSimpleName()
+                .substring(JsonNodeMarshallContext.class.getSimpleName().length());
+    }
 }

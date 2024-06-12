@@ -48,7 +48,7 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     /**
      * Private ctor
      */
-    private BasicJsonNodeMarshallContext(final BiFunction<Object, JsonObject, JsonObject> processor) {
+    private BasicJsonNodeMarshallContext(final JsonNodeMarshallContextObjectPostProcessor processor) {
         super();
         this.processor = processor;
     }
@@ -56,7 +56,7 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     // marshall. .....................................................................................................
 
     @Override
-    public JsonNodeMarshallContext setObjectPostProcessor(final BiFunction<Object, JsonObject, JsonObject> processor) {
+    public JsonNodeMarshallContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor) {
         Objects.requireNonNull(processor, "processor");
 
         return this.processor.equals(processor) ?

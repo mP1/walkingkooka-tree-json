@@ -24,7 +24,6 @@ import java.math.MathContext;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
@@ -43,7 +42,7 @@ public class FakeJsonNodeUnmarshallContext extends FakeJsonNodeContext implement
     }
 
     @Override
-    public JsonNodeUnmarshallContext setPreProcessor(final BiFunction<JsonNode, Class<?>, JsonNode> processor) {
+    public JsonNodeUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
         throw new UnsupportedOperationException();
     }
 

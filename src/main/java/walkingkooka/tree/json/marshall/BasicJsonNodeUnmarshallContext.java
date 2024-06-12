@@ -33,7 +33,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -51,7 +50,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
         return new BasicJsonNodeUnmarshallContext(
                 kind,
                 mathContext,
-                JsonNodeUnmarshallContext.OBJECT_PRE_PROCESSOR
+                JsonNodeUnmarshallContext.PRE_PROCESSOR
         );
     }
 
@@ -60,7 +59,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
      */
     private BasicJsonNodeUnmarshallContext(final ExpressionNumberKind kind,
                                            final MathContext mathContext,
-                                           final BiFunction<JsonNode, Class<?>, JsonNode> processor) {
+                                           final JsonNodeUnmarshallContextPreProcessor processor) {
         super();
         this.kind = kind;
         this.mathContext = mathContext;
@@ -82,7 +81,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     private final MathContext mathContext;
 
     @Override
-    public JsonNodeUnmarshallContext setPreProcessor(final BiFunction<JsonNode, Class<?>, JsonNode> processor) {
+    public JsonNodeUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
         Objects.requireNonNull(processor, "processor");
 
         return this.processor.equals(processor) ?
@@ -315,5 +314,5 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
         return this.processor.apply(node, type);
     }
 
-    private final BiFunction<JsonNode, Class<?>, JsonNode> processor;
+    private final JsonNodeUnmarshallContextPreProcessor processor;
 }

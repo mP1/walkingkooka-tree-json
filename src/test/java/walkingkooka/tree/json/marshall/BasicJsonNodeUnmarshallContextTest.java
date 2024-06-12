@@ -776,13 +776,15 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     }
 
     private JsonNodeUnmarshallContext contextWithProcessor() {
-        return this.createContext().setPreProcessor(this::objectPreProcessor2);
+        return this.createContext()
+                .setPreProcessor(this::preProcessor);
     }
 
     /**
      * If the given node is an object remove the {@link #POST} property.
      */
-    private JsonNode objectPreProcessor2(final JsonNode node, final Class<?> type) {
+    private JsonNode preProcessor(final JsonNode node,
+                                  final Class<?> type) {
         return node.isObject() ?
                 node.objectOrFail().remove(POST) :
                 node;

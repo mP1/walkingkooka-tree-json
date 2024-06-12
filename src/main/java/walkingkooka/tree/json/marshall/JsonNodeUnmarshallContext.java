@@ -40,9 +40,9 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext,
         HasExpressionNumberKind, HasMathContext {
 
     /**
-     * A {@link BiFunction processor} that simply returns the given {@link JsonNode} ignoring the type.
+     * A {@link JsonNodeUnmarshallContextPreProcessor processor} that simply returns the given {@link JsonNode} ignoring the type.
      */
-    BiFunction<JsonNode, Class<?>, JsonNode> OBJECT_PRE_PROCESSOR = (node, type) -> node;
+    JsonNodeUnmarshallContextPreProcessor PRE_PROCESSOR = (node, type) -> node;
 
     /**
      * Shared namedFunction used to report a required property is missing within a static unmarshall.
@@ -63,7 +63,7 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext,
     /**
      * Sets or replaces the {@link BiFunction json node pre processor} creating a new instance as necessary.
      */
-    JsonNodeUnmarshallContext setPreProcessor(final BiFunction<JsonNode, Class<?>, JsonNode> processor);
+    JsonNodeUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor);
 
     // from.............................................................................................................
 

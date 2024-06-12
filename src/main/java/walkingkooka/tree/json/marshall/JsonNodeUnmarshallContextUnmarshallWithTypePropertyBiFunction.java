@@ -28,7 +28,7 @@ import java.util.Objects;
 import java.util.function.BiFunction;
 
 /**
- * A factory that lazily retrieves the type of a given {@link JsonNode} from a given property on another object.
+ * A factory that lazily retrieves the type for any given {@link JsonNode} from a given property on another object.
  */
 final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<T> implements BiFunction<JsonNode, JsonNodeUnmarshallContext, T> {
 

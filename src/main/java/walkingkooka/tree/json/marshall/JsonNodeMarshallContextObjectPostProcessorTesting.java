@@ -26,6 +26,7 @@ public interface JsonNodeMarshallContextObjectPostProcessorTesting<F extends Jso
         TypeNameTesting<F>,
         TreePrintableTesting {
 
+    @Override
     default String typeNameSuffix() {
         return JsonNodeMarshallContextObjectPostProcessor.class.getSimpleName();
     }

@@ -58,6 +58,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     public static boolean isClass(final Class<?> type) {
         return JsonNode.class == type ||
                 JsonBoolean.class == type ||
+                JsonNull.class == type ||
                 JsonNumber.class == type ||
                 JsonString.class == type ||
                 JsonArray.class == type ||

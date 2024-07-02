@@ -62,6 +62,14 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
     }
 
     @Test
+    public void testIsClassWithJsonNull() {
+        this.isClassAndCheck(
+                JsonNull.class,
+                true
+        );
+    }
+
+    @Test
     public void testIsClassWithJsonNumber() {
         this.isClassAndCheck(
                 JsonNumber.class,

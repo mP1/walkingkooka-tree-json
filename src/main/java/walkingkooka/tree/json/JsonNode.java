@@ -53,6 +53,18 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         TreePrintable {
 
     /**
+     * Tests if the given {@link Class} is a {@link JsonNode} or sub-class.
+     */
+    public static boolean isClass(final Class<?> type) {
+        return JsonNode.class == type ||
+                JsonBoolean.class == type ||
+                JsonNumber.class == type ||
+                JsonString.class == type ||
+                JsonArray.class == type ||
+                JsonObject.class == type;
+    }
+
+    /**
      * Parsers the given json and returns its {@link JsonNode} equivalent.
      */
     public static JsonNode parse(final String text) {

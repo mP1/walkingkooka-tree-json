@@ -27,6 +27,82 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
         HasTextOffsetTesting,
         ParseStringTesting<JsonNode> {
 
+    // isClass..........................................................................................................
+
+    @Test
+    public void testIsClassWithNull() {
+        this.isClassAndCheck(
+                null,
+                false
+        );
+    }
+
+    @Test
+    public void testIsClassWithNonJsonNodeSubClass() {
+        this.isClassAndCheck(
+                this.getClass(),
+                false
+        );
+    }
+
+    @Test
+    public void testIsClassWithJsonNode() {
+        this.isClassAndCheck(
+                JsonNode.class,
+                true
+        );
+    }
+
+    @Test
+    public void testIsClassWithJsonBoolean() {
+        this.isClassAndCheck(
+                JsonBoolean.class,
+                true
+        );
+    }
+
+    @Test
+    public void testIsClassWithJsonNumber() {
+        this.isClassAndCheck(
+                JsonNumber.class,
+                true
+        );
+    }
+
+    @Test
+    public void testIsClassWithJsonString() {
+        this.isClassAndCheck(
+                JsonString.class,
+                true
+        );
+    }
+
+    @Test
+    public void testIsClassWithJsonArray() {
+        this.isClassAndCheck(
+                JsonArray.class,
+                true
+        );
+    }
+
+    @Test
+    public void testIsClassWithJsonObject() {
+        this.isClassAndCheck(
+                JsonObject.class,
+                true
+        );
+    }
+
+    private void isClassAndCheck(final Class<?> type,
+                                 final boolean expected) {
+        this.checkEquals(
+                expected,
+                JsonNode.isClass(type)
+        );
+    }
+
+    // parse............................................................................................................
+
     @Test
     public void testKeyMissingValueFails() {
         this.parseStringFails("\"a1\":", IllegalArgumentException.class);

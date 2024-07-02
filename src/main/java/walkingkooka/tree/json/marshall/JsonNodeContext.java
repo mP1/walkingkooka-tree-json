@@ -72,4 +72,13 @@ public interface JsonNodeContext extends Context {
      * Returns the type name identifying the given {@link Class} providing it is registered.
      */
     Optional<JsonString> typeName(final Class<?> type);
+
+    // isRegisteredType.................................................................................................
+
+    /**
+     * Helper that may be used to test if the given {@link Class} can be marshalled/unmarshalled.
+     */
+    default boolean isSupportedJsonType(final Class<?> type) {
+        return this.typeName(type).isPresent();
+    }
 }

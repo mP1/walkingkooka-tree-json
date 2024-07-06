@@ -112,32 +112,32 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
     // parse............................................................................................................
 
     @Test
-    public void testKeyMissingValueFails() {
+    public void testParseObjectKeyMissingValueFails() {
         this.parseStringFails("\"a1\":", IllegalArgumentException.class);
     }
 
     @Test
-    public void testKeyValuePairFails() {
+    public void testParseObjectKeyValuePairFails() {
         this.parseStringFails("\"a1\": \"b2\"", IllegalArgumentException.class);
     }
 
     @Test
-    public void testKeyValuePairTwiceFails() {
+    public void testParseObjectKeyValuePairTwiceFails() {
         this.parseStringFails("\"a1\": \"b2\", \"c3\": \"d4\"", IllegalArgumentException.class);
     }
 
     @Test
-    public void testParseIncompleteObjectFails() {
+    public void testParseObjectIncompleteFails() {
         this.parseStringFails("{\"", IllegalArgumentException.class);
     }
 
     @Test
-    public void testParseIncompleteArrayFails() {
+    public void testParseArrayIncompleteFails() {
         this.parseStringFails("[1,", IllegalArgumentException.class);
     }
 
     @Test
-    public void testParseIncompleteArrayFails2() {
+    public void testParseArrayIncompleteFails2() {
         this.parseStringFails("[1,", IllegalArgumentException.class);
     }
 

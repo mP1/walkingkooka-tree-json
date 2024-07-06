@@ -30,7 +30,28 @@ import java.util.Set;
  */
 abstract class BasicJsonNodeContext implements JsonNodeContext {
 
+    /**
+     * Typed objects values are stored within a JSON object with two fields.
+     * The type field holds the type-name for the value.
+     * <pre>
+     * {
+     *     "type": "java.lang.String",
+     *     "value": "String-123"
+     * }
+     * </pre>
+     */
     static final JsonPropertyName TYPE = JsonPropertyName.with("type");
+
+    /**
+     * Typed objects values are stored within a JSON object with two fields.
+     * The value field holds the marshalled value as JSON.
+     * <pre>
+     * {
+     *     "type": "java.lang.String",
+     *     "value": "String-123"
+     * }
+     * </pre>
+     */
     static final JsonPropertyName VALUE = JsonPropertyName.with("value");
 
     BasicJsonNodeContext() {

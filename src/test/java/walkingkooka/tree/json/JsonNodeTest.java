@@ -160,6 +160,30 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
     }
 
     @Test
+    public void testParseNumberNaN() {
+        this.parseStringAndCheck(
+                "NaN",
+                JsonNode.number(Double.NaN)
+        );
+    }
+
+    @Test
+    public void testParseNumberPlusInfinity() {
+        this.parseStringAndCheck(
+                "+Infinity",
+                JsonNode.number(Double.POSITIVE_INFINITY)
+        );
+    }
+
+    @Test
+    public void testParseNumberNegativeInfinity() {
+        this.parseStringAndCheck(
+                "-Infinity",
+                JsonNode.number(Double.NEGATIVE_INFINITY)
+        );
+    }
+
+    @Test
     public void testParseString() {
         this.parseStringAndCheck("\"abc123\"",
                 JsonNode.string("abc123"));

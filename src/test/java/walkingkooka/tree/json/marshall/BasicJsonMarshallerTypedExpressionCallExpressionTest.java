@@ -21,8 +21,8 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.expression.CallExpression;
 import walkingkooka.tree.expression.Expression;
+import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionNumberKind;
-import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.expression.NamedFunctionExpression;
 import walkingkooka.tree.json.JsonNode;
 
@@ -72,7 +72,7 @@ public final class BasicJsonMarshallerTypedExpressionCallExpressionTest extends 
 
     private NamedFunctionExpression namedFunction() {
         return Expression.namedFunction(
-                FunctionExpressionName.with(FUNCTION_NAME)
+                ExpressionFunctionName.with(FUNCTION_NAME)
         );
     }
 

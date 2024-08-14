@@ -19,8 +19,8 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.tree.expression.Expression;
+import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionNumberKind;
-import walkingkooka.tree.expression.FunctionExpressionName;
 import walkingkooka.tree.expression.NamedFunctionExpression;
 import walkingkooka.tree.json.JsonNode;
 
@@ -62,7 +62,7 @@ public final class BasicJsonMarshallerTypedExpressionNamedFunctionExpressionTest
     @Override
     NamedFunctionExpression value() {
         return Expression.namedFunction(
-                FunctionExpressionName.with(FUNCTION_NAME)
+                ExpressionFunctionName.with(FUNCTION_NAME)
         );
     }
 

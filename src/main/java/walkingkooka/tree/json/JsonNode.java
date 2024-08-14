@@ -30,7 +30,7 @@ import walkingkooka.text.printer.Printers;
 import walkingkooka.text.printer.TreePrintable;
 import walkingkooka.tree.Node;
 import walkingkooka.tree.TraversableHasTextOffset;
-import walkingkooka.tree.expression.FunctionExpressionName;
+import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.json.parser.JsonNodeParserContext;
 import walkingkooka.tree.json.parser.JsonNodeParserContexts;
 import walkingkooka.tree.json.parser.JsonNodeParserToken;
@@ -465,7 +465,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      * Creates a {@link NodeSelector} for {@link JsonNode} from a {@link NodeSelectorExpressionParserToken}.
      */
     public static NodeSelector<JsonNode, JsonPropertyName, Name, Object> nodeSelectorExpressionParserToken(final NodeSelectorExpressionParserToken token,
-                                                                                                           final Predicate<FunctionExpressionName> functions) {
+                                                                                                           final Predicate<ExpressionFunctionName> functions) {
         return NodeSelector.parserToken(token,
                 n -> JsonPropertyName.with(n.value()),
                 functions,

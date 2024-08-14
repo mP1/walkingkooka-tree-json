@@ -24,7 +24,7 @@ import walkingkooka.naming.Names;
 import walkingkooka.naming.StringName;
 import walkingkooka.tree.TestNode;
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.FunctionExpressionName;
+import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.select.NodeSelector;
@@ -134,7 +134,7 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
                 .expression(
                         Expression.call(
                                 Expression.namedFunction(
-                                        FunctionExpressionName.with(functionName)
+                                        ExpressionFunctionName.with(functionName)
                                 ),
                                 Lists.of(
                                         this.reference(),

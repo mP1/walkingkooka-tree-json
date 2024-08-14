@@ -18,10 +18,10 @@
 package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.tree.expression.FunctionExpressionName;
+import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.json.JsonNode;
 
-public final class BasicJsonMarshallerTypedFunctionExpressionNameTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedFunctionExpressionName, FunctionExpressionName> {
+public final class BasicJsonMarshallerTypedExpressionFunctionNameTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedExpressionFunctionName, ExpressionFunctionName> {
 
     @Test
     public void testUnmarshallBooleanFails() {
@@ -64,8 +64,8 @@ public final class BasicJsonMarshallerTypedFunctionExpressionNameTest extends Ba
     }
 
     @Override
-    FunctionExpressionName value() {
-        return FunctionExpressionName.with("Test123");
+    ExpressionFunctionName value() {
+        return ExpressionFunctionName.with("Test123");
     }
 
     @Override
@@ -77,27 +77,27 @@ public final class BasicJsonMarshallerTypedFunctionExpressionNameTest extends Ba
     }
 
     @Override
-    FunctionExpressionName jsonNullNode() {
+    ExpressionFunctionName jsonNullNode() {
         return null;
     }
 
     @Override
     String typeName() {
-        return "function-expression-name";
+        return "expression-function-name";
     }
 
     @Override
-    BasicJsonMarshallerTypedFunctionExpressionName marshaller() {
-        return BasicJsonMarshallerTypedFunctionExpressionName.instance();
+    BasicJsonMarshallerTypedExpressionFunctionName marshaller() {
+        return BasicJsonMarshallerTypedExpressionFunctionName.instance();
     }
 
     @Override
-    Class<FunctionExpressionName> marshallerType() {
-        return FunctionExpressionName.class;
+    Class<ExpressionFunctionName> marshallerType() {
+        return ExpressionFunctionName.class;
     }
 
     @Override
-    public Class<BasicJsonMarshallerTypedFunctionExpressionName> type() {
-        return BasicJsonMarshallerTypedFunctionExpressionName.class;
+    public Class<BasicJsonMarshallerTypedExpressionFunctionName> type() {
+        return BasicJsonMarshallerTypedExpressionFunctionName.class;
     }
 }

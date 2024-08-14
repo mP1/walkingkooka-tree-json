@@ -17,16 +17,16 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.tree.expression.FunctionExpressionName;
+import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.json.JsonNode;
 
-final class BasicJsonMarshallerTypedFunctionExpressionName extends BasicJsonMarshallerTyped<FunctionExpressionName> {
+final class BasicJsonMarshallerTypedExpressionFunctionName extends BasicJsonMarshallerTyped<ExpressionFunctionName> {
 
-    static BasicJsonMarshallerTypedFunctionExpressionName instance() {
-        return new BasicJsonMarshallerTypedFunctionExpressionName();
+    static BasicJsonMarshallerTypedExpressionFunctionName instance() {
+        return new BasicJsonMarshallerTypedExpressionFunctionName();
     }
 
-    private BasicJsonMarshallerTypedFunctionExpressionName() {
+    private BasicJsonMarshallerTypedExpressionFunctionName() {
         super();
     }
 
@@ -36,33 +36,33 @@ final class BasicJsonMarshallerTypedFunctionExpressionName extends BasicJsonMars
                 this.typeName(),
                 this::unmarshall,
                 this::marshall,
-                FunctionExpressionName.class
+                ExpressionFunctionName.class
         );
     }
 
     @Override
-    Class<FunctionExpressionName> type() {
-        return FunctionExpressionName.class;
+    Class<ExpressionFunctionName> type() {
+        return ExpressionFunctionName.class;
     }
 
     @Override
     String typeName() {
-        return JsonNodeContext.computeTypeName(FunctionExpressionName.class);
+        return JsonNodeContext.computeTypeName(ExpressionFunctionName.class);
     }
 
     @Override
-    FunctionExpressionName unmarshallNull(final JsonNodeUnmarshallContext context) {
+    ExpressionFunctionName unmarshallNull(final JsonNodeUnmarshallContext context) {
         return null;
     }
 
     @Override
-    FunctionExpressionName unmarshallNonNull(final JsonNode node,
+    ExpressionFunctionName unmarshallNonNull(final JsonNode node,
                                              final JsonNodeUnmarshallContext context) {
-        return FunctionExpressionName.with(node.stringOrFail());
+        return ExpressionFunctionName.with(node.stringOrFail());
     }
 
     @Override
-    JsonNode marshallNonNull(final FunctionExpressionName value,
+    JsonNode marshallNonNull(final ExpressionFunctionName value,
                              final JsonNodeMarshallContext context) {
         return JsonNode.string(value.toString());
     }

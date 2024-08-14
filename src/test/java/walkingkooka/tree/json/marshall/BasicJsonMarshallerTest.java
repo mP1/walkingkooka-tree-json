@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.FunctionExpressionName;
+import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonString;
@@ -190,7 +190,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
         this.roundtripAndCheck(
                 Expression.call(
                         Expression.namedFunction(
-                                FunctionExpressionName.with("function123")
+                                ExpressionFunctionName.with("function123")
                         ),
                         Lists.of(
                                 Expression.value(true),

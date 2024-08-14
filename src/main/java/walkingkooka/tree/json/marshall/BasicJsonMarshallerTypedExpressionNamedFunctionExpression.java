@@ -18,7 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.FunctionExpressionName;
+import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.NamedFunctionExpression;
 import walkingkooka.tree.json.JsonNode;
 
@@ -39,7 +39,7 @@ final class BasicJsonMarshallerTypedExpressionNamedFunctionExpression extends Ba
     NamedFunctionExpression unmarshallNonNull(final JsonNode node,
                                               final JsonNodeUnmarshallContext context) {
         return Expression.namedFunction(
-                FunctionExpressionName.with(node.stringOrFail())
+                ExpressionFunctionName.with(node.stringOrFail())
         );
     }
 

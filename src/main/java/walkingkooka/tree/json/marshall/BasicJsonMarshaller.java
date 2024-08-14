@@ -153,7 +153,7 @@ abstract class BasicJsonMarshaller<T> {
                 BasicJsonMarshallerTypedExpression.call(), // must be after namedFunction
                 BasicJsonMarshallerTypedExpressionNumber.instance(),
                 BasicJsonMarshallerTypedExpressionNumberKind.instance(),
-                BasicJsonMarshallerTypedFunctionExpressionName.instance(), // FunctionExpressionName
+                BasicJsonMarshallerTypedExpressionFunctionName.instance(), // ExpressionFunctionName
                 BasicJsonMarshallerTypedExpressionFunctionParameter.instance(), // ExpressionFunctionParameter
                 BasicJsonMarshallerTypedExpressionFunctionParameterName.instance(), // ExpressionFunctionParameterName
                 BasicJsonMarshallerTypedJsonNode.instance(),

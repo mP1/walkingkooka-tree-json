@@ -50,7 +50,7 @@ final class BasicJsonNodeParserContext implements JsonNodeParserContext,
     private BasicJsonNodeParserContext() {
         super();
         this.dateTimeContext = DateTimeContexts.locale(
-                Locale.US,
+                Locale.getDefault(),
                 1900, // defaultYear
                 50, // twoDigitYear
                 () -> {

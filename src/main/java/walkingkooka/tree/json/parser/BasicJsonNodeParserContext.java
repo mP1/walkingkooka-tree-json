@@ -18,16 +18,22 @@
 package walkingkooka.tree.json.parser;
 
 import walkingkooka.ToStringBuilder;
+import walkingkooka.datetime.DateTimeContext;
+import walkingkooka.datetime.DateTimeContextDelegator;
+import walkingkooka.datetime.DateTimeContexts;
+import walkingkooka.math.DecimalNumberContext;
+import walkingkooka.math.DecimalNumberContextDelegator;
+import walkingkooka.math.DecimalNumberContexts;
 
 import java.math.MathContext;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Locale;
 
 /**
  * A {@link JsonNodeParserContext} without any functionality.
  */
-final class BasicJsonNodeParserContext implements JsonNodeParserContext {
+final class BasicJsonNodeParserContext implements JsonNodeParserContext,
+        DateTimeContextDelegator,
+        DecimalNumberContextDelegator {
 
     /**
      * Type safe getter
@@ -43,92 +49,39 @@ final class BasicJsonNodeParserContext implements JsonNodeParserContext {
 
     private BasicJsonNodeParserContext() {
         super();
-    }
-
-    @Override
-    public List<String> ampms() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public String currencySymbol() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public char decimalSeparator() {
-        return '.';
-    }
-
-    @Override
-    public int defaultYear() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public String exponentSymbol() {
-        return "E";
-    }
-
-    @Override
-    public char groupSeparator() {
-        throw new UnsupportedOperationException();
+        this.dateTimeContext = DateTimeContexts.locale(
+                Locale.US,
+                1900, // defaultYear
+                50, // twoDigitYear
+                () -> {
+                    throw new UnsupportedOperationException();
+                }
+        );
+        this.decimalNumberContext = DecimalNumberContexts.american(MathContext.DECIMAL64);
     }
 
     @Override
     public Locale locale() {
-        throw new UnsupportedOperationException();
+        return this.dateTimeContext.locale();
     }
 
-    @Override
-    public MathContext mathContext() {
-        throw new UnsupportedOperationException();
-    }
+    // DateTimeContextDelegator.........................................................................................
 
     @Override
-    public char negativeSign() {
-        return '-';
+    public DateTimeContext dateTimeContext() {
+        return this.dateTimeContext;
     }
 
-    @Override
-    public List<String> monthNames() {
-        throw new UnsupportedOperationException();
-    }
+    private final DateTimeContext dateTimeContext;
+
+    // DecimalNumberContextDelegator....................................................................................
 
     @Override
-    public List<String> monthNameAbbreviations() {
-        throw new UnsupportedOperationException();
+    public DecimalNumberContext decimalNumberContext() {
+        return this.decimalNumberContext;
     }
 
-    @Override
-    public LocalDateTime now() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public char percentageSymbol() {
-        return '%';
-    }
-
-    @Override
-    public char positiveSign() {
-        return '+';
-    }
-
-    @Override
-    public int twoDigitYear() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public List<String> weekDayNames() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public List<String> weekDayNameAbbreviations() {
-        throw new UnsupportedOperationException();
-    }
+    private final DecimalNumberContext decimalNumberContext;
 
     @Override
     public String toString() {

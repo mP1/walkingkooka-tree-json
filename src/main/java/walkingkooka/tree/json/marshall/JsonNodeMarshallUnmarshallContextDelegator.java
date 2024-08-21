@@ -15,9 +15,7 @@
  *
  */
 
-package walkingkooka.tree.json;
-
-import walkingkooka.tree.json.marshall.JsonNodeContext;
+package walkingkooka.tree.json.marshall;
 
 public interface JsonNodeMarshallUnmarshallContextDelegator extends JsonNodeMarshallContextDelegator,
         JsonNodeUnmarshallContextDelegator{

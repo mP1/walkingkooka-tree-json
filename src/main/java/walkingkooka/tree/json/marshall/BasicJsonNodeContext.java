@@ -17,7 +17,7 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.collect.set.Sets;
+import walkingkooka.collect.set.SortedSets;
 import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.tree.json.JsonString;
 
@@ -83,7 +83,7 @@ abstract class BasicJsonNodeContext implements JsonNodeContext {
      */
     @Override
     public final String toString() {
-        final Set<String> sorted = Sets.sorted();
+        final Set<String> sorted = SortedSets.tree();
         sorted.addAll(BasicJsonMarshaller.TYPENAME_TO_MARSHALLER.keySet());
         return sorted.toString();
     }

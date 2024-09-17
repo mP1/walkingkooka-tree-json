@@ -27,7 +27,7 @@ public final class UnknownPropertyJsonNodeExceptionTest extends PropertyJsonNode
 
     @Override
     String messagePrefix() {
-        return "Unknown";
+        return "Unknown property";
     }
 
     @Override

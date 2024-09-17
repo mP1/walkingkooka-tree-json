@@ -35,6 +35,6 @@ public final class InvalidPropertyJsonNodeException extends PropertyJsonNodeExce
 
     @Override
     String messagePrefix() {
-        return "Invalid";
+        return "Invalid property";
     }
 }

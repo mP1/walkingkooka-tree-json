@@ -35,6 +35,6 @@ public final class MissingPropertyJsonNodeException extends PropertyJsonNodeExce
 
     @Override
     String messagePrefix() {
-        return "Missing";
+        return "Missing property";
     }
 }

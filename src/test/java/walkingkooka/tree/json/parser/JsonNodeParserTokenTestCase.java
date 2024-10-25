@@ -145,7 +145,8 @@ public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken>
                 m.equals("isNoise") ||
                 m.equals("isParent") ||
                 m.equals("isSymbol") ||
-                m.equals("isEmpty");
+                m.equals("isEmpty") ||
+                m.equals("isNotEmpty");
     }
 
     @Override

@@ -25,6 +25,13 @@ import walkingkooka.reflect.PublicStaticHelper;
 public final class JsonNodeMarshallUnmarshallContexts implements PublicStaticHelper {
 
     /**
+     * {@see FakeJsonNodeMarshallUnmarshallContext}
+     */
+    public static JsonNodeMarshallUnmarshallContext fake() {
+        return new FakeJsonNodeMarshallUnmarshallContext();
+    }
+
+    /**
      * Stops creation
      */
     private JsonNodeMarshallUnmarshallContexts() {

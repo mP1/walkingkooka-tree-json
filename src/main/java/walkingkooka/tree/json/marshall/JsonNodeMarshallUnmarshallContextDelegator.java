@@ -17,11 +17,24 @@
 
 package walkingkooka.tree.json.marshall;
 
-public interface JsonNodeMarshallUnmarshallContextDelegator extends JsonNodeMarshallContextDelegator,
+public interface JsonNodeMarshallUnmarshallContextDelegator extends JsonNodeMarshallUnmarshallContext,
+        JsonNodeMarshallContextDelegator,
         JsonNodeUnmarshallContextDelegator{
 
     @Override
     default JsonNodeContext jsonNodeContext() {
         return JsonNodeMarshallContextDelegator.super.jsonNodeContext();
     }
+
+    @Override
+    default JsonNodeMarshallContext jsonNodeMarshallContext() {
+        return this.jsonNodeMarshallUnmarshallContext();
+    }
+
+    @Override
+    default JsonNodeUnmarshallContext jsonNodeUnmarshallContext() {
+        return this.jsonNodeMarshallUnmarshallContext();
+    }
+
+    JsonNodeMarshallUnmarshallContext jsonNodeMarshallUnmarshallContext();
 }

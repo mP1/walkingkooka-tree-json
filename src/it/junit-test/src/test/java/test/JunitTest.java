@@ -19,6 +19,11 @@ package test;
 import com.google.j2cl.junit.apt.J2clTestInput;
 import org.junit.Assert;
 import org.junit.Test;
+import java.nio.charset.Charset;
+import java.util.Base64;
+
+import walkingkooka.j2cl.locale.LocaleAware;
+import walkingkooka.text.CharSequences;
 import walkingkooka.tree.json.JsonNode;
 
 @J2clTestInput(JunitTest.class)
@@ -27,5 +32,22 @@ public class JunitTest {
     @Test
     public void testParse() {
         Assert.assertNotNull(JsonNode.parse("[123,456,true,\"abc\"]"));
+    }
+
+    @Test
+    public void testEncodeDecodeRoundtrip() {
+        final String data = "abc123def456";
+        final Charset charset = Charset.forName("UTF-8");
+
+        final String encoded = Base64.getEncoder().encodeToString(data.getBytes(charset));
+        Assert.assertEquals(
+                "Started with " + CharSequences.quoteAndEscape(data) + " encoded: " + CharSequences.quoteAndEscape(encoded),
+                data,
+                new String(
+                        Base64.getDecoder()
+                                .decode(encoded),
+                        charset
+                )
+        );
     }
 }

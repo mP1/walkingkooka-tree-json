@@ -534,6 +534,26 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     }
 
     @Test
+    public void testUnmarshallWithUnknownType() {
+        final JsonNodeUnmarshallException thrown = assertThrows(
+                JsonNodeUnmarshallException.class,
+                () -> this.unmarshallWithTypeAndCheck(
+                this.typeAndValue(
+                        this.getClass().getName(),
+                        JsonNode.booleanNode(true)
+                ),
+                true
+            )
+        );
+
+        this.checkEquals(
+                "Missing json unmarshaller for \"walkingkooka.tree.json.marshall.BasicJsonNodeUnmarshallContextTest\"",
+                thrown.getMessage()
+        );
+    }
+
+
+    @Test
     public void testUnmarshallWithTypeObjectWithObjectPreProcessor() {
         this.unmarshallWithTypeAndCheck(this.contextWithPreProcessor(),
                 this.typeAndValue(TestJsonNodeValue.TYPE_NAME, this.jsonNode2()),

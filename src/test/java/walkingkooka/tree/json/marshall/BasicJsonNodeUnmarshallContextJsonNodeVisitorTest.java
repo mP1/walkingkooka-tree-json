@@ -72,8 +72,18 @@ public final class BasicJsonNodeUnmarshallContextJsonNodeVisitorTest implements 
                 .set(BasicJsonNodeContext.TYPE, JsonNode.string("unknown-type-123-???"))
                 .set(BasicJsonNodeContext.VALUE, JsonNode.booleanNode(false));
 
-        final JsonNodeUnmarshallException thrown = assertThrows(JsonNodeUnmarshallException.class, () -> BasicJsonNodeUnmarshallContextJsonNodeVisitor.value(typeAndValue, this.context()));
-        this.checkEquals("Unknown type: unknown-type-123-???", thrown.getMessage(), "thrown message");
+        final JsonNodeUnmarshallException thrown = assertThrows(
+                JsonNodeUnmarshallException.class,
+                () -> BasicJsonNodeUnmarshallContextJsonNodeVisitor.value(
+                        typeAndValue,
+                        this.context()
+                )
+        );
+        this.checkEquals(
+                "Missing json unmarshaller for \"unknown-type-123-???\"",
+                thrown.getMessage(),
+                "thrown message"
+        );
     }
 
     @Test

@@ -79,14 +79,18 @@ final class BasicJsonNodeUnmarshallContextJsonNodeVisitor extends JsonNodeVisito
     protected Visiting startVisit(final JsonObject node) {
         try {
             final JsonNode type = node.getOrFail(BasicJsonNodeContext.TYPE);
-            if (!type.isString()) {
-                throw new JsonNodeUnmarshallException("Invalid type", node);
+            if (false == type.isString()) {
+                throw new JsonNodeUnmarshallException("Expected JsonString for " + BasicJsonNodeContext.TYPE, node);
             }
 
             final JsonNodeUnmarshallContext context = this.context;
-            this.value = context.unmarshall(node.getOrFail(BasicJsonNodeContext.VALUE),
+            this.value = context.unmarshall(
+                    node.getOrFail(BasicJsonNodeContext.VALUE),
                     context.registeredType((JsonString) type)
-                            .orElseThrow(() -> new JsonNodeUnmarshallException("Unknown type: " + type.stringOrFail(), node)));
+                            .orElseThrow(
+                                    () -> new JsonNodeUnmarshallException("Missing json unmarshaller for " + type, node)
+                            )
+            );
         } catch (final java.lang.NullPointerException | JsonNodeUnmarshallException cause) {
             throw cause;
         } catch (final RuntimeException cause) {

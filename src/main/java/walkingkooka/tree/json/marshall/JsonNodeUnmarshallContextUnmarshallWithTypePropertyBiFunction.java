@@ -18,7 +18,6 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Cast;
-import walkingkooka.text.CharSequences;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
@@ -54,19 +53,34 @@ final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<T> imp
     @Override
     public T apply(final JsonNode node,
                    final JsonNodeUnmarshallContext context) {
-        final JsonPropertyName property = this.property;
-        final JsonObject source = this.source;
-
         try {
+            final JsonPropertyName property = this.property;
+            final JsonObject source = this.source;
+
             final JsonNode typeName = source.getOrFail(property);
-            if (!typeName.isString()) {
-                throw new JsonNodeUnmarshallException("Property " + property + " contains invalid type name", source);
+            if (false == typeName.isString()) {
+                // Property $property contains an invalid type $typeName
+                throw new JsonNodeUnmarshallException(
+                        "Property " +
+                                property +
+                                " contains invalid type " +
+                                typeName,
+                        source
+                );
             }
             final JsonString stringTypeName = typeName.cast(JsonString.class);
             final Class<?> type = context.registeredType(stringTypeName)
-                    .orElseThrow(() -> new JsonNodeUnmarshallException("Unknown type " + CharSequences.quoteAndEscape(stringTypeName.value()), this.source));
-
-            return Cast.to(context.unmarshall(node, type));
+                    .orElseThrow(
+                            () -> BasicJsonMarshaller.notFound(
+                                    stringTypeName.stringOrFail()
+                            )
+                    );
+            return Cast.to(
+                    context.unmarshall(
+                            node,
+                            type
+                    )
+            );
         } catch (final java.lang.IllegalArgumentException cause) {
             throw new JsonNodeUnmarshallException(cause.getMessage(), node);
         }

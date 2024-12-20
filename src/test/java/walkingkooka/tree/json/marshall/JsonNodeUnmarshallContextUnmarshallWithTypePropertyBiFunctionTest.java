@@ -27,6 +27,7 @@ import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 import walkingkooka.util.BiFunctionTesting;
 
 import java.math.MathContext;
@@ -100,6 +101,33 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
         final JsonNodeUnmarshallException thrown = assertThrows(JsonNodeUnmarshallException.class, () -> this.createBiFunction(JsonNode.object())
                 .apply(this.value().marshall(this.marshallContext()), this.unmarshallContext()));
         checkMessage(thrown, "Unknown property \"typeNameProperty1\" in {}");
+    }
+
+    @Test
+    public void testApplyInvalidType() {
+        final UnsupportedTypeJsonNodeException thrown = assertThrows(
+                UnsupportedTypeJsonNodeException.class,
+                () -> JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(
+                                this.typeNameProperty(),
+                                JsonNode.object()
+                                        .set(
+                                                this.typeNameProperty(),
+                                                JsonNode.string(
+                                                        this.getClass()
+                                                                .getName()
+                                                )
+                                        ),
+                                Void.class
+                        )
+                        .apply(
+                                JsonNode.object(),
+                                this.unmarshallContext()
+                        )
+        );
+        this.checkEquals(
+                "Missing json unmarshaller for type \"walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunctionTest\"",
+                thrown.getMessage()
+        );
     }
 
     @Test

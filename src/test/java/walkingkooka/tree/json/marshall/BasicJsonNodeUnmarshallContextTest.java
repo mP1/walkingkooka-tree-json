@@ -26,6 +26,7 @@ import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
@@ -54,6 +55,22 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     }
 
     // unmarshall.....................................................................................................
+
+    @Test
+    public void testUnmarshallUnknownTypeFails() {
+        final UnsupportedTypeJsonNodeException thrown = assertThrows(
+                UnsupportedTypeJsonNodeException.class,
+                () -> this.createContext()
+                        .unmarshall(
+                                JsonNode.nullNode(),
+                                this.getClass()
+                        )
+        );
+        this.checkEquals(
+                "Missing json unmarshaller for type \"walkingkooka.tree.json.marshall.BasicJsonNodeUnmarshallContextTest\"",
+                thrown.getMessage()
+        );
+    }
 
     @Test
     public void testUnmarshallBooleanTrue() {

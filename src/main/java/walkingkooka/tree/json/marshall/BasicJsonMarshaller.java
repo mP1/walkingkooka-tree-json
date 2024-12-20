@@ -103,7 +103,7 @@ abstract class BasicJsonMarshaller<T> {
         return Cast.to(marshaller);
     }
 
-    private static UnsupportedTypeJsonNodeException notFound(final String name) {
+    static UnsupportedTypeJsonNodeException notFound(final String name) {
         return new UnsupportedTypeJsonNodeException(
                 "Missing json unmarshaller for type " + CharSequences.quote(name)
         );

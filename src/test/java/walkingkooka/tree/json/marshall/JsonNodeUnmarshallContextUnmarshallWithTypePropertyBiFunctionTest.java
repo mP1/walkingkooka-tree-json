@@ -51,20 +51,38 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
         TestJsonNodeValue.unregister();
     }
 
+    // with.............................................................................................................
+
     @Test
     public void testWithNullSourceFails() {
-        assertThrows(java.lang.NullPointerException.class, () -> JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(this.typeNameProperty(), null, this.valueType()));
+        assertThrows(
+                java.lang.NullPointerException.class,
+                () -> JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(
+                        this.typeNameProperty(),
+                        null,
+                        this.valueType()
+                )
+        );
     }
 
     @Test
     public void testWithNullTypeFails() {
-        assertThrows(java.lang.NullPointerException.class, () -> JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(this.typeNameProperty(), JsonNode.object(), null));
+        assertThrows(
+                java.lang.NullPointerException.class,
+                () -> JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(
+                        this.typeNameProperty(),
+                        JsonNode.object(),
+                        null
+                )
+        );
     }
 
     @Test
     public void testWith() {
-        final JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<TestJsonNodeValue> function = this.createBiFunction();
+        this.createBiFunction();
     }
+
+    // apply............................................................................................................
 
     @Test
     public void testApply() {
@@ -130,21 +148,21 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
         );
     }
 
-    @Test
-    public void testToString() {
-        final JsonObject object = this.objectWithType(TestJsonNodeValue.class);
-        this.toStringAndCheck(this.createBiFunction(object), this.typeNameProperty() + " in " + object);
-    }
-
     @Override
     public JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<TestJsonNodeValue> createBiFunction() {
-        return this.createBiFunction(this.objectWithType(TestJsonNodeValue.class));
+        return this.createBiFunction(
+                this.objectWithType(TestJsonNodeValue.class)
+        );
     }
 
     public JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<TestJsonNodeValue> createBiFunction(final JsonObject objectWithType) {
         final Class<TestJsonNodeValue> type = this.valueType();
 
-        return JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(this.typeNameProperty(), objectWithType, type);
+        return JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction.with(
+                this.typeNameProperty(),
+                objectWithType,
+                type
+        );
     }
 
     private JsonPropertyName typeNameProperty() {
@@ -153,7 +171,12 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
 
     private JsonObject objectWithType(final Class<?> type) {
         return JsonNode.object()
-                .set(typeNameProperty(), this.marshallContext().typeName(type).get());
+                .set(
+                        typeNameProperty(),
+                        this.marshallContext()
+                                .typeName(type)
+                                .get()
+                );
     }
 
     private TestJsonNodeValue value() {
@@ -174,6 +197,16 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
     private JsonNodeMarshallContext marshallContext() {
         return JsonNodeMarshallContexts.basic();
     }
+
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        final JsonObject object = this.objectWithType(TestJsonNodeValue.class);
+        this.toStringAndCheck(this.createBiFunction(object), this.typeNameProperty() + " in " + object);
+    }
+
+    // class............................................................................................................
 
     @Override
     public Class<JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<TestJsonNodeValue>> type() {

@@ -105,10 +105,7 @@ abstract class BasicJsonMarshaller<T> {
 
     private static UnsupportedTypeJsonNodeException notFound(final String name) {
         return new UnsupportedTypeJsonNodeException(
-                "Type " +
-                        CharSequences.quote(name) +
-                        " not supported, currently: " +
-                        TYPENAME_TO_MARSHALLER.keySet()
+                "Missing json unmarshaller for type " + CharSequences.quote(name)
         );
     }
 

@@ -84,13 +84,13 @@ final class BasicJsonMarshallerTypedInvalidTextLengthException extends BasicJson
         }
 
         if (null == text) {
-            JsonNodeUnmarshallContext.requiredPropertyMissing(TEXT_JSON_PROPERTY, node);
+            JsonNodeUnmarshallContext.missingProperty(TEXT_JSON_PROPERTY, node);
         }
         if (-1 == min) {
-            JsonNodeUnmarshallContext.requiredPropertyMissing(MIN_JSON_PROPERTY, node);
+            JsonNodeUnmarshallContext.missingProperty(MIN_JSON_PROPERTY, node);
         }
         if (-1 == max) {
-            JsonNodeUnmarshallContext.requiredPropertyMissing(MAX_JSON_PROPERTY, node);
+            JsonNodeUnmarshallContext.missingProperty(MAX_JSON_PROPERTY, node);
         }
         return new InvalidTextLengthException(label, text, min, max);
     }

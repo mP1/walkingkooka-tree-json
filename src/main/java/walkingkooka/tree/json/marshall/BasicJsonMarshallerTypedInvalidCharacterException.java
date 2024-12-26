@@ -76,10 +76,10 @@ final class BasicJsonMarshallerTypedInvalidCharacterException extends BasicJsonM
         }
 
         if (null == text) {
-            JsonNodeUnmarshallContext.requiredPropertyMissing(TEXT_JSON_PROPERTY, node);
+            JsonNodeUnmarshallContext.missingProperty(TEXT_JSON_PROPERTY, node);
         }
         if (-1 == position) {
-            JsonNodeUnmarshallContext.requiredPropertyMissing(POSITION_JSON_PROPERTY, node);
+            JsonNodeUnmarshallContext.missingProperty(POSITION_JSON_PROPERTY, node);
         }
 
         return new InvalidCharacterException(text, position);

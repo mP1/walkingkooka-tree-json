@@ -47,8 +47,8 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext,
     /**
      * Shared namedFunction used to report a required property is missing within a static unmarshall.
      */
-    static void requiredPropertyMissing(final JsonPropertyName property,
-                                        final JsonNode node) {
+    static void missingProperty(final JsonPropertyName property,
+                                final JsonNode node) {
         throw new MissingPropertyJsonNodeException(property, node);
     }
 

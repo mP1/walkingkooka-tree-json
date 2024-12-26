@@ -65,7 +65,7 @@ final class BasicJsonMarshallerTypedExpressionLambdaFunctionExpression extends B
         }
 
         if (null == body) {
-            JsonNodeUnmarshallContext.requiredPropertyMissing(BODY_JSON_PROPERTY, node);
+            JsonNodeUnmarshallContext.missingProperty(BODY_JSON_PROPERTY, node);
         }
 
         return Expression.lambdaFunction(

@@ -114,13 +114,13 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
         }
 
         if (null == parameterName) {
-            JsonNodeUnmarshallContext.requiredPropertyMissing(NAME_PROPERTY, node);
+            JsonNodeUnmarshallContext.missingProperty(NAME_PROPERTY, node);
         }
         if (null == type) {
-            JsonNodeUnmarshallContext.requiredPropertyMissing(TYPE_PROPERTY, node);
+            JsonNodeUnmarshallContext.missingProperty(TYPE_PROPERTY, node);
         }
         if (null == cardinality) {
-            JsonNodeUnmarshallContext.requiredPropertyMissing(CARDINALITY_PROPERTY, node);
+            JsonNodeUnmarshallContext.missingProperty(CARDINALITY_PROPERTY, node);
         }
 
         return ExpressionFunctionParameter.with(

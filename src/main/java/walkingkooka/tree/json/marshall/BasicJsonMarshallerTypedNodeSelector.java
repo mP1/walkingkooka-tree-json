@@ -113,7 +113,7 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
         }
 
         if (null == components) {
-            JsonNodeUnmarshallContext.requiredPropertyMissing(COMPONENTS_PROPERTY, node);
+            JsonNodeUnmarshallContext.missingProperty(COMPONENTS_PROPERTY, node);
         }
 
         return unmarshallNonNull0(

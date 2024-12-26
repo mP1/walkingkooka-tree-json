@@ -60,7 +60,7 @@ final class BasicJsonMarshallerTypedExpressionCallExpression extends BasicJsonMa
         }
 
         if (null == callable) {
-            JsonNodeUnmarshallContext.requiredPropertyMissing(CALLABLE_PROPERTY, node);
+            JsonNodeUnmarshallContext.missingProperty(CALLABLE_PROPERTY, node);
         }
 
         return Expression.call(

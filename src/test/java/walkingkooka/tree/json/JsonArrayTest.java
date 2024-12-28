@@ -580,6 +580,27 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
                 array.set(1, replaced));
     }
 
+    // isFalseLike......................................................................................................
+
+    @Test
+    public void testIsFalseLikeWhenEmpty() {
+        this.isFalseLike(
+                JsonNode.array(),
+                true
+        );
+    }
+
+    @Test
+    public void testIsFalseLikeWhenNonEmpty() {
+        this.isFalseLike(
+                JsonNode.array()
+                        .appendChild(
+                                JsonNode.booleanNode(false)
+                        ),
+                false
+        );
+    }
+
     // toBoolean......................................................................................................
 
     @Test

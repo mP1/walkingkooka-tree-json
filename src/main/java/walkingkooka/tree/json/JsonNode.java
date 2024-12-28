@@ -384,6 +384,11 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     }
 
     /**
+     * Returns true if this json value is false according to javascript/json falseyness.
+     */
+    public abstract boolean isFalseLike();
+
+    /**
      * Returns an instance without any {@link JsonNode#toBoolean()}
      */
     public abstract Optional<JsonNode> removeFalseLike();

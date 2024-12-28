@@ -93,6 +93,24 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
         this.checkEquals("132", b.toString());
     }
 
+    // isFalseLike......................................................................................................
+
+    @Test
+    public void testIsFalseLikeWhenEmptyString() {
+        this.isFalseLike(
+                JsonNode.string(""),
+                true
+        );
+    }
+
+    @Test
+    public void testIsFalseLikeWhenNonEmptyString() {
+        this.isFalseLike(
+                JsonNode.string("abc"),
+                false
+        );
+    }
+
     // toBoolean......................................................................................................
 
     @Test

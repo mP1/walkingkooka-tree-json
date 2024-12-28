@@ -123,6 +123,11 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
     // javascript.......................................................................................................
 
     @Override
+    public final boolean isFalseLike() {
+        return this.children.isEmpty();
+    }
+
+    @Override
     public final boolean toBoolean() {
         return this.children().size() > 0;
     }

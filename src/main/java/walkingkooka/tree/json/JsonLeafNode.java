@@ -97,6 +97,13 @@ abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
         throw new NeverError(this.getClass().getSimpleName() + ".setChild");
     }
 
+    // removeFalseLike..................................................................................................
+
+    @Override
+    public JsonNode removeFalseLike() {
+        return this;
+    }
+
     // equals............................................................................................................
 
     @Override

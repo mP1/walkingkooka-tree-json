@@ -388,10 +388,14 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     public abstract boolean isFalseLike();
 
+    final boolean isNotFalseLike() {
+        return false == this.isFalseLike();
+    }
+
     /**
-     * Returns an instance without any {@link JsonNode#toBoolean()}
+     * Recursively returns all object without their false like properties.
      */
-    public abstract Optional<JsonNode> removeFalseLike();
+    public abstract JsonNode removeFalseLike();
 
     // TreePrintable.....................................................................................................
 

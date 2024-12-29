@@ -626,176 +626,28 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
 
     @Test
     public void testRemoveFalseLikeEmpty() {
-        this.removeFalseLikeAndCheckNothing(
+        this.removeFalseLikeAndCheck(
                 JsonArray.EMPTY
         );
     }
 
     @Test
-    public void testRemoveFalseLikeInitiallyNotEmptyThenEmpty() {
-        this.removeFalseLikeAndCheckNothing(
+    public void testRemoveFalseLikeNotEmpty() {
+        this.removeFalseLikeAndCheck(
                 JsonArray.EMPTY.setChildren(
                         Lists.of(
-                                JsonNode.nullNode()
-                        )
-                )
-        );
-    }
-
-    @Test
-    public void testRemoveFalseLikeInitiallyNotEmptyThenEmpty2() {
-        this.removeFalseLikeAndCheckNothing(
-                JsonArray.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.nullNode(),
                                 JsonNode.booleanNode(false),
-                                JsonNode.number(0),
-                                JsonNode.string("")
-                        )
-                )
-        );
-    }
-
-    @Test
-    public void testRemoveFalseLikeEmptyArray() {
-        this.removeFalseLikeAndCheckNothing(
-                JsonArray.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.array()
-                        )
-                )
-        );
-    }
-
-    @Test
-    public void testRemoveFalseLikeEmptyObject() {
-        this.removeFalseLikeAndCheckNothing(
-                JsonArray.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.object()
-                        )
-                )
-        );
-    }
-
-    @Test
-    public void testRemoveFalseLikeArrayWithFalse() {
-        this.removeFalseLikeAndCheckNothing(
-                JsonArray.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.array()
-                                        .setChildren(
-                                                Lists.of(
-                                                        JsonNode.booleanNode(false)
-                                                )
-                                        )
-                        )
-                )
-        );
-    }
-
-    @Test
-    public void testRemoveFalseLikeObjectWithFalse() {
-        this.removeFalseLikeAndCheckNothing(
-                JsonArray.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.object()
-                                        .setChildren(
-                                                Lists.of(
-                                                        JsonNode.booleanNode(false)
-                                                )
-                                        )
-                        )
-                )
-        );
-    }
-
-    @Test
-    public void testRemoveFalseLikeSomeChildrenFiltered() {
-        this.removeFalseLikeAndCheck(
-                JsonArray.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.nullNode(),
-                                JsonNode.booleanNode(true)
-
-                        )
-                ),
-                JsonArray.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.booleanNode(true)
-                        )
-                )
-        );
-    }
-
-    @Test
-    public void testRemoveFalseLikeSomeChildrenFiltered2() {
-        this.removeFalseLikeAndCheck(
-                JsonArray.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.nullNode(),
                                 JsonNode.booleanNode(true),
                                 JsonNode.number(0),
-                                JsonNode.string("abc123")
-                        )
-                ),
-                JsonArray.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.booleanNode(true),
-                                JsonNode.string("abc123")
+                                JsonNode.number(1),
+                                JsonNode.string(""),
+                                JsonNode.string("Not empty string 123")
                         )
                 )
         );
     }
 
-    @Test
-    public void testRemoveFalseLikeGraph() {
-        this.removeFalseLikeAndCheck(
-                JsonArray.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.object()
-                                        .setChildren(
-                                                Lists.of(
-                                                        JsonNode.nullNode(),
-                                                        JsonNode.array()
-                                                                .setChildren(
-                                                                        Lists.of(
-                                                                                JsonNode.booleanNode(false),
-                                                                                JsonNode.number(0)
-                                                                        )
-                                                                ),
-                                                        JsonNode.array()
-                                                                .setChildren(
-                                                                        Lists.of(
-                                                                                JsonNode.booleanNode(true),
-                                                                                JsonNode.number(0),
-                                                                                JsonNode.string("abc123")
-                                                                        )
-                                                                )
-                                                )
-                                        )
-                        )
-                ),
-                JsonArray.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.object()
-                                        .setChildren(
-                                                Lists.of(
-                                                        JsonNode.array()
-                                                                .setChildren(
-                                                                        Lists.of(
-                                                                                JsonNode.booleanNode(true),
-                                                                                JsonNode.string("abc123")
-                                                                        )
-                                                                )
-                                                )
-                                        )
-                        )
-                )
-        );
-    }
-
-    // HashCodeAnddEqualityDefined.......................................................
+    // HashCodeAnddEqualityDefined......................................................................................
 
     @Test
     public void testEqualsDifferentChildren() {

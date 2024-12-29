@@ -706,25 +706,26 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
 
     @Test
     public void testRemoveFalseLikeEmpty() {
-        this.removeFalseLikeAndCheckNothing(
+        this.removeFalseLikeAndCheck(
                 JsonObject.EMPTY
         );
     }
 
     @Test
     public void testRemoveFalseLikeInitiallyNotEmptyThenEmpty() {
-        this.removeFalseLikeAndCheckNothing(
+        this.removeFalseLikeAndCheck(
                 JsonObject.EMPTY.setChildren(
                         Lists.of(
                                 JsonNode.nullNode()
                         )
-                )
+                ),
+                JsonObject.EMPTY
         );
     }
 
     @Test
     public void testRemoveFalseLikeInitiallyNotEmptyThenEmpty2() {
-        this.removeFalseLikeAndCheckNothing(
+        this.removeFalseLikeAndCheck(
                 JsonObject.EMPTY.setChildren(
                         Lists.of(
                                 JsonNode.nullNode(),
@@ -732,79 +733,32 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
                                 JsonNode.number(0),
                                 JsonNode.string("")
                         )
-                )
+                ),
+                JsonObject.EMPTY
         );
     }
 
     @Test
     public void testRemoveFalseLikeEmptyArray() {
-        this.removeFalseLikeAndCheckNothing(
+        this.removeFalseLikeAndCheck(
                 JsonObject.EMPTY.setChildren(
                         Lists.of(
                                 JsonNode.array()
                         )
-                )
+                ),
+                JsonObject.EMPTY
         );
     }
 
     @Test
     public void testRemoveFalseLikeEmptyObject() {
-        this.removeFalseLikeAndCheckNothing(
-                JsonObject.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.object()
-                        )
-                )
-        );
-    }
-
-    @Test
-    public void testRemoveFalseLikeArrayWithFalse() {
-        this.removeFalseLikeAndCheckNothing(
-                JsonObject.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.array()
-                                        .setChildren(
-                                                Lists.of(
-                                                        JsonNode.booleanNode(false)
-                                                )
-                                        )
-                        )
-                )
-        );
-    }
-
-    @Test
-    public void testRemoveFalseLikeObjectWithFalse() {
-        this.removeFalseLikeAndCheckNothing(
-                JsonObject.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.object()
-                                        .setChildren(
-                                                Lists.of(
-                                                        JsonNode.booleanNode(false)
-                                                )
-                                        )
-                        )
-                )
-        );
-    }
-
-    @Test
-    public void testRemoveFalseLikeSomeChildrenFiltered() {
         this.removeFalseLikeAndCheck(
                 JsonObject.EMPTY.setChildren(
                         Lists.of(
-                                JsonNode.nullNode(),
-                                JsonNode.booleanNode(true)
-
+                                JsonNode.object()
                         )
                 ),
-                JsonObject.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.booleanNode(true)
-                        )
-                )
+                JsonObject.EMPTY
         );
     }
 
@@ -831,46 +785,42 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testRemoveFalseLikeGraph() {
         this.removeFalseLikeAndCheck(
-                JsonObject.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.object()
-                                        .setChildren(
-                                                Lists.of(
-                                                        JsonNode.nullNode(),
-                                                        JsonNode.array()
-                                                                .setChildren(
-                                                                        Lists.of(
-                                                                                JsonNode.booleanNode(false),
-                                                                                JsonNode.number(0)
-                                                                        )
-                                                                ),
-                                                        JsonNode.array()
-                                                                .setChildren(
-                                                                        Lists.of(
-                                                                                JsonNode.booleanNode(true),
-                                                                                JsonNode.number(0),
-                                                                                JsonNode.string("abc123")
-                                                                        )
-                                                                )
-                                                )
-                                        )
-                        )
+                JsonNode.parse(
+                        "{\n" +
+                                "   \"keep-string\": \"not-empty-string\",\n" +
+                                "   \"remove-boolean-false\": false,\n" +
+                                "   \"keep-non-empty-object\": {\n" +
+                                "      \"keep-number\": 123,\n" +
+                                "      \"remove-boolean-false\": false\n" +
+                                "   },\n" +
+                                "   \"array\" : [\n" +
+                                "      false,\n" +
+                                "      true,\n" +
+                                "      0,\n" +
+                                "      1,\n" +
+                                "      {\n" +
+                                "         \"keep-string\": \"not-empty-string\",\n" +
+                                "         \"remove-boolean-false\": false\n" +
+                                "      }\n" +
+                                "   ]\n" +
+                                "}"
                 ),
-                JsonObject.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.object()
-                                        .setChildren(
-                                                Lists.of(
-                                                        JsonNode.array()
-                                                                .setChildren(
-                                                                        Lists.of(
-                                                                                JsonNode.booleanNode(true),
-                                                                                JsonNode.string("abc123")
-                                                                        )
-                                                                )
-                                                )
-                                        )
-                        )
+                JsonNode.parse(
+                        "{\n" +
+                                "   \"keep-string\": \"not-empty-string\",\n" +
+                                "   \"keep-non-empty-object\": {\n" +
+                                "      \"keep-number\": 123\n" +
+                                "   },\n" +
+                                "   \"array\" : [\n" +
+                                "      false,\n" +
+                                "      true,\n" +
+                                "      0,\n" +
+                                "      1,\n" +
+                                "      {\n" +
+                                "         \"keep-string\": \"not-empty-string\"\n" +
+                                "      }\n" +
+                                "   ]\n" +
+                                "}"
                 )
         );
     }

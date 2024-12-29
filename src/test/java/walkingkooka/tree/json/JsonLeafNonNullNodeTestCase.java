@@ -17,9 +17,20 @@
 
 package walkingkooka.tree.json;
 
+import org.junit.jupiter.api.Test;
+
 public abstract class JsonLeafNonNullNodeTestCase<N extends JsonLeafNonNullNode<V>, V> extends JsonLeafNodeTestCase<N, V> {
 
     JsonLeafNonNullNodeTestCase() {
         super();
+    }
+
+    // removeFalseLike..................................................................................................
+
+    @Test
+    public void testRemoveFalseLike() {
+        this.removeFalseLikeAndCheck(
+                this.createJsonNode()
+        );
     }
 }

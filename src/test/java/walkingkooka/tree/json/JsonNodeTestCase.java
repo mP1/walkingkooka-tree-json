@@ -103,6 +103,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     }
 
     @Test
+    @Override
     public final void testPropertiesNeverReturnNull() throws Exception {
         this.allPropertiesNeverReturnNullCheck(this.createJsonNode(),
                 (m) -> this.propertiesNeverReturnNullSkipProperties().contains(m.getName()));

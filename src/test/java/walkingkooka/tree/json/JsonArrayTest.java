@@ -83,6 +83,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     }
 
     @Test
+    @Override
     public void testSetChildrenSame() {
         final JsonArray array = JsonNode.array()
                 .appendChild(this.value1())
@@ -259,6 +260,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     }
 
     @Test
+    @Override
     public void testReplaceChild() {
         final JsonArray root = JsonNode.array()
                 .appendChild(this.value1());

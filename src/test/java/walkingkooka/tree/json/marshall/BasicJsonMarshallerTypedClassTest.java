@@ -68,6 +68,7 @@ public final class BasicJsonMarshallerTypedClassTest extends BasicJsonMarshaller
         this.roundtripAndCheck(Object.class);
     }
 
+    @Override
     @Test
     public void testRoundtripList() {
         this.roundtripAndCheck(List.class);
@@ -78,6 +79,7 @@ public final class BasicJsonMarshallerTypedClassTest extends BasicJsonMarshaller
         this.roundtripAndCheck(Map.class);
     }
 
+    @Override
     @Test
     public void testRoundtripSet() {
         this.roundtripAndCheck(Set.class);

@@ -52,18 +52,6 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
     }
 
     @Test
-    public void testMarshallBooleanFalse() {
-        this.marshallAndCheck(false,
-                JsonNode.booleanNode(false));
-    }
-
-    @Test
-    public void testMarshallNull() {
-        this.marshallAndCheck(null,
-                JsonNode.nullNode());
-    }
-
-    @Test
     public void testMarshallNumber() {
         final double value = 1.25;
         this.marshallAndCheck(value,
@@ -106,6 +94,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
     }
 
     @Test
+    @Override
     public void testMarshallCollectionNull() {
         this.marshallCollectionAndCheck(Lists.of((Object) null),
                 list(JsonNode.nullNode()));
@@ -324,11 +313,6 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
     @Test
     public void testMarshallWithTypeBooleanFalse() {
         this.marshallWithTypeAndCheck(false, JsonNode.booleanNode(false));
-    }
-
-    @Test
-    public void testMarshallWithTypeNull() {
-        this.marshallWithTypeAndCheck(null, JsonNode.nullNode());
     }
 
     @Test

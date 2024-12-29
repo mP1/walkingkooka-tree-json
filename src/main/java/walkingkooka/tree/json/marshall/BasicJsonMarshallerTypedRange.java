@@ -72,7 +72,7 @@ final class BasicJsonMarshallerTypedRange extends BasicJsonMarshallerTyped<Range
      * }
      * </pre>
      */
-    @SuppressWarnings("unchecked")
+    @Override @SuppressWarnings("unchecked")
     Range<?> unmarshallNonNull(final JsonNode node,
                                final JsonNodeUnmarshallContext context) {
         RangeBound<?> lower = RangeBound.all();

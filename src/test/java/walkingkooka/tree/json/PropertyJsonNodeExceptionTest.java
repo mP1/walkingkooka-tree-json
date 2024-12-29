@@ -22,6 +22,7 @@ import walkingkooka.reflect.JavaVisibility;
 
 public final class PropertyJsonNodeExceptionTest implements ClassTesting<PropertyJsonNodeException> {
 
+    @Override
     public void testAllMethodsVisibility() {
         throw new UnsupportedOperationException();
     }

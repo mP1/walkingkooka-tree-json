@@ -75,6 +75,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     }
 
     @Test
+    @Override
     public void testSetChildrenSame() {
         final JsonPropertyName key1 = this.key1();
         final JsonString value1 = this.value1();
@@ -418,6 +419,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     }
 
     @Test
+    @Override
     public void testReplaceChild() {
         final JsonPropertyName key1 = this.key1();
 

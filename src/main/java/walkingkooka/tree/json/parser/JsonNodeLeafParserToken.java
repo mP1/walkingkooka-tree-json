@@ -55,5 +55,6 @@ abstract class JsonNodeLeafParserToken<T> extends JsonNodeParserToken implements
 
     // visitor..........................................................................................................
 
+    @Override
     abstract public void accept(final JsonNodeParserTokenVisitor visitor);
 }

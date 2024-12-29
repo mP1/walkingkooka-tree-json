@@ -25,6 +25,7 @@ import walkingkooka.visit.Visiting;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Represents an immutable json array
@@ -251,6 +252,18 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
             this.acceptValues(visitor);
         }
         visitor.endVisit(this);
+    }
+
+    // removeFalseLike..................................................................................................
+
+    @Override
+    public JsonNode removeFalseLike() {
+        return this.setChildren(
+                this.children()
+                        .stream()
+                        .map(JsonNode::removeFalseLike)
+                        .collect(Collectors.toList())
+        );
     }
 
     // TreePrint........................................................................................................

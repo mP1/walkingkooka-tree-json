@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Represents an immutable json object
@@ -300,6 +301,19 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
             this.acceptValues(visitor);
         }
         visitor.endVisit(this);
+    }
+
+    // removeFalseLike..................................................................................................
+
+    @Override
+    public JsonNode removeFalseLike() {
+        return this.setChildren(
+                        this.children()
+                                .stream()
+                                .filter(JsonNode::isNotFalseLike)
+                                .map(JsonNode::removeFalseLike)
+                                .collect(Collectors.toList())
+                );
     }
 
     // TreePrint........................................................................................................

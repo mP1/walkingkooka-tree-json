@@ -129,22 +129,6 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
         );
     }
 
-    // removeFalseLike..................................................................................................
-
-    @Test
-    public void testRemoveFalseLikeEmptyString() {
-        this.removeFalseLikeAndCheckNothing(
-                JsonString.with("")
-        );
-    }
-
-    @Test
-    public void testRemoveFalseLikeNotEmptyString() {
-        this.removeFalseLikeAndCheckSame(
-                JsonString.with("abc123")
-        );
-    }
-
     // toString......................................................................................................
 
     @Test

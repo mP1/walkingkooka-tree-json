@@ -17,11 +17,9 @@
 
 package walkingkooka.tree.json;
 
-import walkingkooka.collect.list.Lists;
 import walkingkooka.text.HasText;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -130,26 +128,6 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
     @Override
     public final boolean toBoolean() {
         return this.children().size() > 0;
-    }
-
-    @Override
-    public final Optional<JsonNode> removeFalseLike() {
-        final List<JsonNode> filtered = Lists.array();
-
-        for (final JsonNode child : this.children()) {
-            final Optional<JsonNode> removed = child.removeFalseLike();
-            if (removed.isPresent()) {
-                filtered.add(
-                        removed.get()
-                );
-            }
-        }
-
-        return filtered.isEmpty() ?
-                Optional.empty() :
-                Optional.of(
-                        this.setChildren(filtered)
-                );
     }
 
     // Object...........................................................................................................

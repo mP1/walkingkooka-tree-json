@@ -32,8 +32,9 @@ public abstract class JsonNodeVisitor extends Visitor<JsonNode> {
     }
 
 
-    // JsonNode.......................................................................
+    // JsonNode.........................................................................................................
 
+    @Override
     public final void accept(final JsonNode node) {
         Objects.requireNonNull(node, "node");
 

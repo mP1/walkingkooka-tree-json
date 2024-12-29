@@ -27,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 public final class JsonNodeNullParserTokenTest extends JsonNodeLeafParserTokenTestCase2<JsonNodeNullParserToken, Void, JsonNull> {
 
     @Test
+    @Override
     public void testPropertiesNeverReturnNull() throws Exception {
         this.allPropertiesNeverReturnNullCheck(this.createToken(),
                 (m) -> m.getName().equals("value"));

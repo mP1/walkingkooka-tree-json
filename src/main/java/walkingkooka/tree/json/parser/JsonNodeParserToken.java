@@ -250,6 +250,7 @@ public abstract class JsonNodeParserToken implements ParserToken {
     /**
      * Only {@link JsonNodeSymbolParserToken} return true
      */
+    @Override
     public final boolean isSymbol() {
         return this instanceof JsonNodeSymbolParserToken;
     }
@@ -264,6 +265,7 @@ public abstract class JsonNodeParserToken implements ParserToken {
     /**
      * Only {@link JsonNodeWhitespaceParserToken} return true
      */
+    @Override
     public final boolean isWhitespace() {
         return this instanceof JsonNodeWhitespaceParserToken;
     }
@@ -284,7 +286,7 @@ public abstract class JsonNodeParserToken implements ParserToken {
             visitor2.endVisit(this);
         }
     }
-
+    
     abstract void accept(final JsonNodeParserTokenVisitor visitor);
 
     /**

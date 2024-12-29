@@ -39,7 +39,9 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
         this.textAndCheck(node, String.valueOf(this.value()));
     }
 
-    @SuppressWarnings("unchecked") @Test
+    @SuppressWarnings("unchecked")
+    @Test
+    @Override
     public final void testSetNameDifferent() {
         final N node = this.createJsonNode();
         final JsonPropertyName originalName = node.name();

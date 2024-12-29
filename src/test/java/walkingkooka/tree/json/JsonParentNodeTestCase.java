@@ -51,6 +51,7 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
     }
 
     @SuppressWarnings("unchecked") @Test
+    @Override
     public final void testSetNameDifferent() {
         final N node = this.createJsonNode();
         final JsonPropertyName originalName = node.name();

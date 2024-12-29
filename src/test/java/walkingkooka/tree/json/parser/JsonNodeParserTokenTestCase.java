@@ -39,6 +39,7 @@ public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken>
     }
 
     @Test
+    @Override
     public final void testPublicStaticFactoryMethod() {
         PublicStaticFactoryTesting.checkFactoryMethods(JsonNodeParserToken.class,
                 "JsonNode",

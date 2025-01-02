@@ -18,13 +18,13 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Cast;
+import walkingkooka.collect.list.ImmutableList;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
 
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.stream.Collectors;
 
 final class BasicJsonMarshallerTypedMap extends BasicJsonMarshallerTyped<Map<?, ?>> {
 
@@ -70,10 +70,12 @@ final class BasicJsonMarshallerTypedMap extends BasicJsonMarshallerTyped<Map<?, 
     JsonNode marshallNonNull(final Map<?, ?> map,
                              final JsonNodeMarshallContext context) {
         return JsonObject.array()
-                .setChildren(map.entrySet()
+                .setChildren(
+                        map.entrySet()
                         .stream()
                         .map(e -> entryWithType(e, context))
-                        .collect(Collectors.toList()));
+                        .collect(ImmutableList.collector())
+                );
     }
 
     private static JsonNode entryWithType(final Entry<?, ?> entry,

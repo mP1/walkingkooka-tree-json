@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json;
 
+import walkingkooka.collect.list.ImmutableList;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.text.CharacterConstant;
 import walkingkooka.text.printer.IndentingPrinter;
@@ -25,7 +26,6 @@ import walkingkooka.visit.Visiting;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Represents an immutable json array
@@ -262,7 +262,7 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
                 this.children()
                         .stream()
                         .map(JsonNode::removeFalseLike)
-                        .collect(Collectors.toList())
+                        .collect(ImmutableList.collector())
         );
     }
 

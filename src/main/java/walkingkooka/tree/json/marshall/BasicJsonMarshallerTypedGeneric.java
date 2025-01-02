@@ -17,13 +17,13 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.collect.list.ImmutableList;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.function.BiFunction;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -46,7 +46,7 @@ final class BasicJsonMarshallerTypedGeneric<T> extends BasicJsonMarshallerTyped<
 
         final List<Class<?>> all = Stream.concat(Stream.of(type), Stream.of(types))
                 .peek(t -> Objects.requireNonNull(t, "null type"))
-                .collect(Collectors.toList());
+                .collect(ImmutableList.collector());
 
         return new BasicJsonMarshallerTypedGeneric<>(typeName, from, to, type, all);
     }

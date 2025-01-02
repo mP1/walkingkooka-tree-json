@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Cast;
+import walkingkooka.collect.list.ImmutableList;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.tree.expression.ExpressionNumberKind;
@@ -134,9 +135,11 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     @Override
     public <T> List<T> unmarshallList(final JsonNode node,
                                       final Class<T> elementType) {
-        return this.unmarshallCollection(node,
+        return this.unmarshallCollection(
+                node,
                 elementType,
-                Collectors.toList());
+                ImmutableList.collector()
+        );
     }
 
     /**
@@ -239,9 +242,11 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
      */
     @Override
     public <T> List<T> unmarshallWithTypeList(final JsonNode node) {
-        return this.unmarshallCollectionWithType(node,
+        return this.unmarshallCollectionWithType(
+                node,
                 List.class,
-                Collectors.toList());
+                ImmutableList.collector()
+        );
     }
 
     /**

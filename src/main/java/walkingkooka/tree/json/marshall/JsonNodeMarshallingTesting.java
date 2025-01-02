@@ -19,6 +19,7 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
+import walkingkooka.collect.list.ImmutableList;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
@@ -56,7 +57,7 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
             this.checkEquals(Lists.empty(),
                     Arrays.stream(values)
                             .filter(e -> BasicJsonMarshaller.TYPENAME_TO_MARSHALLER.get(e.getClass().getName()) == null)
-                            .collect(Collectors.toList()),
+                            .collect(ImmutableList.collector()),
                     () -> "Not all enum: " + typeName + " value types not registered -> JsonNodeContext.register()=" + BasicJsonMarshaller.TYPENAME_TO_MARSHALLER
             );
 

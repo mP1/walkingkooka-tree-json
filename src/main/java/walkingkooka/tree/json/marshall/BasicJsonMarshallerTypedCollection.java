@@ -17,11 +17,11 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.collect.list.ImmutableList;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 
 import java.util.Collection;
-import java.util.stream.Collectors;
 
 abstract class BasicJsonMarshallerTypedCollection<C extends Collection<?>> extends BasicJsonMarshallerTyped<C> {
 
@@ -40,6 +40,6 @@ abstract class BasicJsonMarshallerTypedCollection<C extends Collection<?>> exten
         return JsonObject.array()
                 .setChildren(value.stream()
                         .map(context::marshallWithType)
-                        .collect(Collectors.toList()));
+                        .collect(ImmutableList.collector()));
     }
 }

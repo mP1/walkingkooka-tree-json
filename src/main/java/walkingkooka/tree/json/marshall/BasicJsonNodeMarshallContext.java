@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Cast;
+import walkingkooka.collect.list.ImmutableList;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
@@ -94,9 +95,11 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
         return null == collection ?
                 JsonNode.nullNode() :
                 JsonObject.array()
-                        .setChildren(collection.stream()
-                                .map(this::marshall)
-                                .collect(Collectors.toList()));
+                        .setChildren(
+                                collection.stream()
+                                        .map(this::marshall)
+                                        .collect(ImmutableList.collector())
+                        );
     }
 
     /**

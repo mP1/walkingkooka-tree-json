@@ -19,6 +19,7 @@ package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Cast;
 import walkingkooka.NeverError;
+import walkingkooka.collect.list.ImmutableList;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.naming.Name;
 import walkingkooka.naming.Names;
@@ -39,7 +40,6 @@ import walkingkooka.tree.select.parser.NodeSelectorParsers;
 import walkingkooka.tree.select.parser.NodeSelectorPredicateParserToken;
 
 import java.util.function.BiFunction;
-import java.util.stream.Collectors;
 
 final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerTyped<NodeSelector<?, ?, ?, ?>> {
 
@@ -75,7 +75,7 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
                 NodeSelector.relative().self())
                 .stream()
                 .map(s -> s.getClass())
-                .collect(Collectors.toList()));
+                .collect(ImmutableList.collector()));
     }
 
     @Override

@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class PropertyJsonNodeExceptionTestCase<T extends PropertyJsonNodeException> implements ThrowableTesting2<T>,
-        ToStringTesting<T> {
+    ToStringTesting<T> {
 
     @Override
     public final void testIfClassIsFinalIfAllConstructorsArePrivate() {
@@ -56,8 +56,8 @@ public abstract class PropertyJsonNodeExceptionTestCase<T extends PropertyJsonNo
     @Test
     public final void testToString() {
         this.toStringAndCheck(
-                this.create(JsonPropertyName.with("abc"), JsonNode.string("xyz")),
-                this.type().getName() + ": " + this.messagePrefix() + " \"abc\" in \"xyz\""
+            this.create(JsonPropertyName.with("abc"), JsonNode.string("xyz")),
+            this.type().getName() + ": " + this.messagePrefix() + " \"abc\" in \"xyz\""
         );
     }
 

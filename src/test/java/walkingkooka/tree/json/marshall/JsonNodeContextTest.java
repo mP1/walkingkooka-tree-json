@@ -30,55 +30,55 @@ public final class JsonNodeContextTest implements ClassTesting<JsonNodeContext> 
     @Test
     public void testComputeTypeNameBigDecimal() {
         this.computeAndCheck(
-                BigDecimal.class,
-                "big-decimal"
+            BigDecimal.class,
+            "big-decimal"
         );
     }
 
     @Test
     public void testComputeTypeNameLocalDateTime() {
         this.computeAndCheck(
-                LocalDateTime.class,
-                "local-date-time"
+            LocalDateTime.class,
+            "local-date-time"
         );
     }
 
     @Test
     public void testComputeTypeNameString() {
         this.computeAndCheck(
-                String.class,
-                "string"
+            String.class,
+            "string"
         );
     }
 
     @Test
     public void testComputeTypeNameSpreadsheetNegativeParserToken() {
-        class SpreadsheetNegativeParserToken{
+        class SpreadsheetNegativeParserToken {
 
         }
         this.computeAndCheck(
-                SpreadsheetNegativeParserToken.class,
-                "spreadsheet-negative-parser-token"
+            SpreadsheetNegativeParserToken.class,
+            "spreadsheet-negative-parser-token"
         );
     }
 
     @Test
     public void testComputeTypeNameSpreadsheetPercentageParserToken() {
-        class SpreadsheetPercentageParserToken{
+        class SpreadsheetPercentageParserToken {
 
         }
         this.computeAndCheck(
-                SpreadsheetPercentageParserToken.class,
-                "spreadsheet-percentage-parser-token"
+            SpreadsheetPercentageParserToken.class,
+            "spreadsheet-percentage-parser-token"
         );
     }
 
     private void computeAndCheck(final Class<?> type,
                                  final String expected) {
         this.checkEquals(
-                expected,
-                JsonNodeContext.computeTypeName(type),
-                () -> "compute " + CharSequences.quote(type.getSimpleName())
+            expected,
+            JsonNodeContext.computeTypeName(type),
+            () -> "compute " + CharSequences.quote(type.getSimpleName())
         );
     }
 

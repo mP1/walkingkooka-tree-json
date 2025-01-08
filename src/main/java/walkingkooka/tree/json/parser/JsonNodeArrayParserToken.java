@@ -30,7 +30,7 @@ public final class JsonNodeArrayParserToken extends JsonNodeParentParserToken<Js
 
     static JsonNodeArrayParserToken with(final List<ParserToken> value, final String text) {
         return new JsonNodeArrayParserToken(copyAndCheckTokens(value),
-                checkText(text));
+            checkText(text));
     }
 
     private JsonNodeArrayParserToken(final List<ParserToken> value, final String text) {
@@ -59,9 +59,9 @@ public final class JsonNodeArrayParserToken extends JsonNodeParentParserToken<Js
     @Override
     public JsonNodeArrayParserToken setChildren(final List<ParserToken> children) {
         return ParserToken.parentSetChildren(
-                this,
-                children,
-                JsonNodeArrayParserToken::with
+            this,
+            children,
+            JsonNodeArrayParserToken::with
         );
     }
 

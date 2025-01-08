@@ -28,8 +28,8 @@ public final class JsonNodeBooleanParserToken extends JsonNodeValueParserToken<B
 
     static JsonNodeBooleanParserToken with(final boolean value, final String text) {
         return new JsonNodeBooleanParserToken(
-                value,
-                CharSequences.failIfNullOrEmpty(text, "text")
+            value,
+            CharSequences.failIfNullOrEmpty(text, "text")
         );
     }
 

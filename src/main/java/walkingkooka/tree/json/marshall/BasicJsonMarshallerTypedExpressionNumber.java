@@ -38,9 +38,9 @@ final class BasicJsonMarshallerTypedExpressionNumber extends BasicJsonMarshaller
     void register() {
         //noinspection unchecked
         JsonNodeContext.register(this.typeName(),
-                this::unmarshall,
-                this::marshall,
-                ExpressionNumber.class, ExpressionNumberKind.BIG_DECIMAL.create(0).getClass(), ExpressionNumberKind.DOUBLE.create(0).getClass());
+            this::unmarshall,
+            this::marshall,
+            ExpressionNumber.class, ExpressionNumberKind.BIG_DECIMAL.create(0).getClass(), ExpressionNumberKind.DOUBLE.create(0).getClass());
     }
 
     @Override

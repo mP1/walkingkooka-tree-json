@@ -52,8 +52,8 @@ final class BasicJsonMarshallerTypedExpressionLambdaFunctionExpression extends B
             switch (name.value()) {
                 case PARAMETERS:
                     parameters = context.unmarshallList(
-                            child,
-                            Cast.to(ExpressionFunctionParameter.class)
+                        child,
+                        Cast.to(ExpressionFunctionParameter.class)
                     );
                     break;
                 case BODY:
@@ -69,8 +69,8 @@ final class BasicJsonMarshallerTypedExpressionLambdaFunctionExpression extends B
         }
 
         return Expression.lambdaFunction(
-                parameters,
-                body
+            parameters,
+            body
         );
     }
 
@@ -78,14 +78,14 @@ final class BasicJsonMarshallerTypedExpressionLambdaFunctionExpression extends B
     JsonNode marshallNonNull(final LambdaFunctionExpression lambda,
                              final JsonNodeMarshallContext context) {
         return JsonNode.object()
-                .setChildren(
-                        Lists.of(
-                                context.marshallCollection(lambda.parameters())
-                                        .setName(PARAMETERS_JSON_PROPERTY),
-                                context.marshallWithType(lambda.value())
-                                        .setName(BODY_JSON_PROPERTY)
-                        )
-                );
+            .setChildren(
+                Lists.of(
+                    context.marshallCollection(lambda.parameters())
+                        .setName(PARAMETERS_JSON_PROPERTY),
+                    context.marshallWithType(lambda.value())
+                        .setName(BODY_JSON_PROPERTY)
+                )
+            );
     }
 
     private final static String PARAMETERS = "parameters";

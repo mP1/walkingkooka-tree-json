@@ -26,38 +26,38 @@ import java.math.MathContext;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicJsonNodeMarshallUnmarshallContextTest implements JsonNodeMarshallUnmarshallContextTesting<BasicJsonNodeMarshallUnmarshallContext>,
-        ToStringTesting<BasicJsonNodeMarshallUnmarshallContext> {
+    ToStringTesting<BasicJsonNodeMarshallUnmarshallContext> {
 
     @Test
     public void testWithNullJsonNodeMarshallContextFails() {
         assertThrows(
-                java.lang.NullPointerException.class,
-                () -> BasicJsonNodeMarshallUnmarshallContext.with(
-                        null,
-                        JsonNodeUnmarshallContexts.fake()
-                )
+            java.lang.NullPointerException.class,
+            () -> BasicJsonNodeMarshallUnmarshallContext.with(
+                null,
+                JsonNodeUnmarshallContexts.fake()
+            )
         );
     }
 
     @Test
     public void testWithNullJsonNodeUnmarshallContextFails() {
         assertThrows(
-                java.lang.NullPointerException.class,
-                () -> BasicJsonNodeMarshallUnmarshallContext.with(
-                        JsonNodeMarshallContexts.fake(),
-                        null
-                )
+            java.lang.NullPointerException.class,
+            () -> BasicJsonNodeMarshallUnmarshallContext.with(
+                JsonNodeMarshallContexts.fake(),
+                null
+            )
         );
     }
 
     @Override
     public BasicJsonNodeMarshallUnmarshallContext createContext() {
         return BasicJsonNodeMarshallUnmarshallContext.with(
-                JsonNodeMarshallContexts.basic(),
-                JsonNodeUnmarshallContexts.basic(
-                        ExpressionNumberKind.BIG_DECIMAL,
-                        MathContext.DECIMAL32
-                )
+            JsonNodeMarshallContexts.basic(),
+            JsonNodeUnmarshallContexts.basic(
+                ExpressionNumberKind.BIG_DECIMAL,
+                MathContext.DECIMAL32
+            )
         );
     }
 
@@ -69,11 +69,11 @@ public final class BasicJsonNodeMarshallUnmarshallContextTest implements JsonNod
         final JsonNodeUnmarshallContext unmarshallContext = JsonNodeUnmarshallContexts.fake();
 
         this.toStringAndCheck(
-                BasicJsonNodeMarshallUnmarshallContext.with(
-                        marshallContext,
-                        unmarshallContext
-                ),
-                marshallContext + " " + unmarshallContext
+            BasicJsonNodeMarshallUnmarshallContext.with(
+                marshallContext,
+                unmarshallContext
+            ),
+            marshallContext + " " + unmarshallContext
         );
     }
 

@@ -26,8 +26,8 @@ public final class JsonBoolean extends JsonLeafNonNullNode<Boolean> {
 
     static JsonBoolean with(final boolean value) {
         return value ?
-                TRUE :
-                FALSE;
+            TRUE :
+            FALSE;
     }
 
     private final static JsonPropertyName NAME = JsonPropertyName.fromClass(JsonBoolean.class);
@@ -50,12 +50,12 @@ public final class JsonBoolean extends JsonLeafNonNullNode<Boolean> {
     public JsonBoolean setName(final JsonPropertyName name) {
         checkName(name);
         return this.setName0(name)
-                .cast(JsonBoolean.class);
+            .cast(JsonBoolean.class);
     }
 
     public JsonBoolean setValue(final boolean value) {
         return this.setValue0(value)
-                .cast(JsonBoolean.class);
+            .cast(JsonBoolean.class);
     }
 
     @Override
@@ -69,7 +69,7 @@ public final class JsonBoolean extends JsonLeafNonNullNode<Boolean> {
     @Override
     public JsonBoolean removeParent() {
         return this.removeParent0()
-                .cast(JsonBoolean.class);
+            .cast(JsonBoolean.class);
     }
 
     @Override

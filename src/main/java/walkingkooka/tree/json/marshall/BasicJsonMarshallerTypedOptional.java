@@ -71,8 +71,8 @@ final class BasicJsonMarshallerTypedOptional extends BasicJsonMarshallerTyped<Op
                                            final JsonNodeUnmarshallContext context) {
         final List<JsonNode> children = array.children();
         return children.isEmpty() ?
-                Optional.empty() :
-                this.unmarshallNonNull1(children, array, context);
+            Optional.empty() :
+            this.unmarshallNonNull1(children, array, context);
     }
 
     private Optional<?> unmarshallNonNull1(final List<JsonNode> children,
@@ -92,7 +92,7 @@ final class BasicJsonMarshallerTypedOptional extends BasicJsonMarshallerTyped<Op
     JsonNode marshallNonNull(final Optional<?> value,
                              final JsonNodeMarshallContext context) {
         return value.map(v -> marshallNonNullValue(v, context))
-                .orElse(JsonNode.array());
+            .orElse(JsonNode.array());
     }
 
     private static JsonArray marshallNonNullValue(final Object value,

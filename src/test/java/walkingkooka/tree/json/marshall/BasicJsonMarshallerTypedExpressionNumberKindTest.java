@@ -53,13 +53,13 @@ public final class BasicJsonMarshallerTypedExpressionNumberKindTest extends Basi
     @Test
     public void testUnmarshallString() {
         Arrays.stream(ExpressionNumberKind.values())
-                .forEach(r -> this.unmarshallAndCheck(JsonNode.string(r.name()), r));
+            .forEach(r -> this.unmarshallAndCheck(JsonNode.string(r.name()), r));
     }
 
     @Test
     public void testMarshallExpressionNumberKindValues() {
         Arrays.stream(ExpressionNumberKind.values())
-                .forEach(r -> this.marshallAndCheck(r, JsonNode.string(r.name())));
+            .forEach(r -> this.marshallAndCheck(r, JsonNode.string(r.name())));
     }
 
     @Override

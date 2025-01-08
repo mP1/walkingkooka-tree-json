@@ -30,8 +30,8 @@ public final class JsonNodeMarshallUnmarshallContexts implements PublicStaticHel
     public static JsonNodeMarshallUnmarshallContext basic(final JsonNodeMarshallContext jsonNodeMarshallContext,
                                                           final JsonNodeUnmarshallContext jsonNodeUnmarshallContext) {
         return BasicJsonNodeMarshallUnmarshallContext.with(
-                jsonNodeMarshallContext,
-                jsonNodeUnmarshallContext
+            jsonNodeMarshallContext,
+            jsonNodeUnmarshallContext
         );
     }
 

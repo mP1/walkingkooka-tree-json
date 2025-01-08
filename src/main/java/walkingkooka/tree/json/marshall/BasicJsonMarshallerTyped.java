@@ -41,22 +41,22 @@ abstract class BasicJsonMarshallerTyped<T> extends BasicJsonMarshaller<T> {
         this.registerTypeNameAndType();
 
         Arrays.stream(values)
-                .map(v -> v.getClass().getName())
-                .filter(t -> false == TYPENAME_TO_MARSHALLER.containsKey(t))
-                .forEach(this::registerWithTypeName);
+            .map(v -> v.getClass().getName())
+            .filter(t -> false == TYPENAME_TO_MARSHALLER.containsKey(t))
+            .forEach(this::registerWithTypeName);
     }
 
     final void registerTypes(final List<Class<?>> types) {
         types.stream()
-                .filter(t -> t != this.type())
-                .map(Class::getName)
-                .forEach(this::registerWithTypeName);
+            .filter(t -> t != this.type())
+            .map(Class::getName)
+            .forEach(this::registerWithTypeName);
     }
 
     @Override final JsonNode marshallWithTypeNonNull(final T value,
                                                      final JsonNodeMarshallContext context) {
         return this.objectWithType()
-                .set(BasicJsonNodeContext.VALUE, context.marshall(value));
+            .set(BasicJsonNodeContext.VALUE, context.marshall(value));
     }
 
     /**
@@ -66,7 +66,7 @@ abstract class BasicJsonMarshallerTyped<T> extends BasicJsonMarshaller<T> {
     final JsonObject objectWithType() {
         if (null == this.objectWithType) {
             this.objectWithType = JsonNode.object()
-                    .set(BasicJsonNodeContext.TYPE, JsonNode.string(this.toString()));
+                .set(BasicJsonNodeContext.TYPE, JsonNode.string(this.toString()));
         }
         return this.objectWithType;
     }

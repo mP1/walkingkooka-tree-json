@@ -79,32 +79,32 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
             switch (name.value()) {
                 case NAME_PROPERTY_STRING:
                     parameterName = context.unmarshall(
-                            child,
-                            ExpressionFunctionParameterName.class
+                        child,
+                        ExpressionFunctionParameterName.class
                     );
                     break;
                 case TYPE_PROPERTY_STRING:
                     type = context.unmarshall(
-                            child,
-                            Class.class
+                        child,
+                        Class.class
                     );
                     break;
                 case TYPE_PARAMETERS_PROPERTY_STRING:
                     typeParameters = context.unmarshallList(
-                            child,
-                            Cast.to(Class.class)
+                        child,
+                        Cast.to(Class.class)
                     );
                     break;
                 case CARDINALITY_PROPERTY_STRING:
                     cardinality = ExpressionFunctionParameterCardinality.valueOf(
-                            child.stringOrFail()
+                        child.stringOrFail()
                     );
                     break;
                 case KINDS_PROPERTY_STRING:
                     kinds = context.unmarshallEnumSet(
-                            child,
-                            ExpressionFunctionParameterKind.class,
-                            ExpressionFunctionParameterKind::valueOf
+                        child,
+                        ExpressionFunctionParameterKind.class,
+                        ExpressionFunctionParameterKind::valueOf
                     );
                     break;
                 default:
@@ -124,11 +124,11 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
         }
 
         return ExpressionFunctionParameter.with(
-                parameterName,
-                type,
-                typeParameters,
-                cardinality,
-                kinds
+            parameterName,
+            type,
+            typeParameters,
+            cardinality,
+            kinds
         );
     }
 
@@ -136,8 +136,8 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
     JsonNode marshallNonNull(final ExpressionFunctionParameter<?> parameter,
                              final JsonNodeMarshallContext context) {
         JsonObject json = JsonNode.object()
-                .set(NAME_PROPERTY, context.marshall(parameter.name()))
-                .set(TYPE_PROPERTY, context.marshall(parameter.type()));
+            .set(NAME_PROPERTY, context.marshall(parameter.name()))
+            .set(TYPE_PROPERTY, context.marshall(parameter.type()));
 
         final List<Class<?>> typeParameters = parameter.typeParameters();
         if (typeParameters.size() > 0) {

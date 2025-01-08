@@ -49,13 +49,13 @@ public final class JsonBooleanTest extends JsonLeafNonNullNodeTestCase<JsonBoole
     @Test
     public void testBooleanOrFailTrue() {
         this.checkEquals(true,
-                JsonBoolean.with(true).booleanOrFail());
+            JsonBoolean.with(true).booleanOrFail());
     }
 
     @Test
     public void testBooleanOrFailFalse() {
         this.checkEquals(false,
-                JsonBoolean.with(false).booleanOrFail());
+            JsonBoolean.with(false).booleanOrFail());
     }
 
     // Visitor..........................................................................................................
@@ -93,16 +93,16 @@ public final class JsonBooleanTest extends JsonLeafNonNullNodeTestCase<JsonBoole
     @Test
     public void testIsFalseLikeWhenFalse() {
         this.isFalseLike(
-                JsonNode.booleanNode(false),
-                true
+            JsonNode.booleanNode(false),
+            true
         );
     }
 
     @Test
     public void testIsFalseLikeWhenTrue() {
         this.isFalseLike(
-                JsonNode.booleanNode(true),
-                false
+            JsonNode.booleanNode(true),
+            false
         );
     }
 
@@ -111,16 +111,16 @@ public final class JsonBooleanTest extends JsonLeafNonNullNodeTestCase<JsonBoole
     @Test
     public void testToBooleanTrue() {
         this.toBooleanAndCheck(
-                JsonBoolean.with(true),
-                true
+            JsonBoolean.with(true),
+            true
         );
     }
 
     @Test
     public void testToBooleanFalse() {
         this.toBooleanAndCheck(
-                JsonBoolean.with(false),
-                false
+            JsonBoolean.with(false),
+            false
         );
     }
 
@@ -164,14 +164,14 @@ public final class JsonBooleanTest extends JsonLeafNonNullNodeTestCase<JsonBoole
     @Override
     List<String> propertiesNeverReturnNullSkipProperties() {
         return Lists.of(ARRAY_OR_FAIL,
-                CHARACTER_OR_FAIL,
-                UNMARSHALL_LIST,
-                UNMARSHALL_SET,
-                UNMARSHALL_MAP,
-                UNMARSHALL,
-                NUMBER_OR_FAIL,
-                OBJECT_OR_FAIL,
-                PARENT_OR_FAIL,
-                STRING_OR_FAIL);
+            CHARACTER_OR_FAIL,
+            UNMARSHALL_LIST,
+            UNMARSHALL_SET,
+            UNMARSHALL_MAP,
+            UNMARSHALL,
+            NUMBER_OR_FAIL,
+            OBJECT_OR_FAIL,
+            PARENT_OR_FAIL,
+            STRING_OR_FAIL);
     }
 }

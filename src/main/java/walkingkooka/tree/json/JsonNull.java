@@ -43,7 +43,7 @@ public final class JsonNull extends JsonLeafNode<Void> {
     public JsonNull setName(final JsonPropertyName name) {
         checkName(name);
         return this.setName0(name)
-                .cast(JsonNull.class);
+            .cast(JsonNull.class);
     }
 
     /**

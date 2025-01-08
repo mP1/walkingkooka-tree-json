@@ -86,8 +86,8 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Override
     public void testSetChildrenSame() {
         final JsonArray array = JsonNode.array()
-                .appendChild(this.value1())
-                .appendChild(this.value2());
+            .appendChild(this.value1())
+            .appendChild(this.value2());
         assertSame(array, array.setChildren(array.children()));
     }
 
@@ -97,8 +97,8 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonString value2 = this.value2();
 
         final JsonArray array = JsonNode.array()
-                .appendChild(value1)
-                .appendChild(value2);
+            .appendChild(value1)
+            .appendChild(value2);
         assertSame(array, array.setChildren(Lists.of(value1, value2)));
     }
 
@@ -108,8 +108,8 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonString value2 = this.value2();
 
         final JsonArray array = JsonNode.array()
-                .appendChild(value1)
-                .appendChild(value2);
+            .appendChild(value1)
+            .appendChild(value2);
         assertSame(array, array.set(0, value1));
         assertSame(array, array.set(1, value2));
     }
@@ -120,8 +120,8 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonString value2 = this.value2();
 
         final JsonArray array = JsonNode.array()
-                .appendChild(value1)
-                .appendChild(value2);
+            .appendChild(value1)
+            .appendChild(value2);
         assertSame(array, array.set(0, array.get(0)));
         assertSame(array, array.set(1, array.get(1)));
 
@@ -133,8 +133,8 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonString value2 = this.value2();
 
         final JsonArray array = JsonNode.array()
-                .appendChild(value1)
-                .appendChild(value2);
+            .appendChild(value1)
+            .appendChild(value2);
 
         final String differentValue = "different-0";
         final JsonNode differentChild = JsonNode.string(differentValue);
@@ -157,8 +157,8 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonString value2 = this.value2();
 
         final JsonArray array = JsonNode.array()
-                .appendChild(value1)
-                .appendChild(value2);
+            .appendChild(value1)
+            .appendChild(value2);
 
         final String differentValue = "different-1";
         final JsonNode differentChild = JsonNode.string(differentValue);
@@ -182,7 +182,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonNode third = this.value3();
 
         this.checkEqualsAndHashCode(JsonNode.array().appendChild(first).appendChild(second).appendChild(third),
-                JsonNode.array().set(2, third));
+            JsonNode.array().set(2, third));
     }
 
     @Test
@@ -190,7 +190,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonNode first = this.value1();
 
         this.checkEqualsAndHashCode(JsonNode.array().appendChild(first),
-                JsonNode.array().set(0, first));
+            JsonNode.array().set(0, first));
     }
 
     @Test
@@ -202,7 +202,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonArray array = JsonNode.array().appendChild(first);
 
         this.checkEqualsAndHashCode(JsonNode.array().appendChild(first).appendChild(second).appendChild(third),
-                array.set(2, third));
+            array.set(2, third));
     }
 
     @Test
@@ -215,7 +215,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonArray array = JsonNode.array().appendChild(first);
 
         this.checkEqualsAndHashCode(JsonNode.array().appendChild(first).appendChild(second).appendChild(third).appendChild(fourth),
-                array.set(3, fourth));
+            array.set(3, fourth));
     }
 
     // remove
@@ -236,8 +236,8 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonNode second = this.value2();
 
         final JsonArray array = JsonNode.array()
-                .appendChild(first)
-                .appendChild(second);
+            .appendChild(first)
+            .appendChild(second);
         final JsonArray removed = array.remove(0);
 
         assertNotSame(array, removed);
@@ -252,8 +252,8 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Test
     public void testRemoveInvalidIndexFails2() {
         final JsonArray array = JsonNode.array()
-                .appendChild(this.value1())
-                .appendChild(this.value2());
+            .appendChild(this.value1())
+            .appendChild(this.value2());
         assertThrows(IndexOutOfBoundsException.class, () -> array.remove(2));
         this.childrenCheck(array);
         this.childCountCheck(array, 2);
@@ -263,11 +263,11 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Override
     public void testReplaceChild() {
         final JsonArray root = JsonNode.array()
-                .appendChild(this.value1());
+            .appendChild(this.value1());
         this.childCountCheck(root, 1);
 
         final JsonArray updated = root.replaceChild(root.get(0), this.value2())
-                .cast(JsonArray.class);
+            .cast(JsonArray.class);
 
         this.childCountCheck(updated, 1);
         this.checkEquals(VALUE2, updated.get(0).cast(JsonString.class).value());
@@ -278,25 +278,25 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonNode child1 = JsonNode.string("C1");
 
         final JsonArray root = JsonNode.array()
-                .appendChild(child1)
-                .appendChild(JsonNode.array()
-                        .appendChild(JsonNode.string("GC1-old")));
+            .appendChild(child1)
+            .appendChild(JsonNode.array()
+                .appendChild(JsonNode.string("GC1-old")));
         this.childCountCheck(root, 2);
 
         final JsonNode grandChild1New = JsonNode.string("GC1-new");
         final JsonArray updatedChild = root.get(1)
-                .setChildren(Lists.of(grandChild1New))
-                .cast(JsonArray.class);
+            .setChildren(Lists.of(grandChild1New))
+            .cast(JsonArray.class);
         this.childCountCheck(updatedChild, 1);
 
         final JsonArray updatedRoot = updatedChild.parentOrFail().cast(JsonArray.class);
         this.childCountCheck(updatedRoot, 2);
         this.checkEquals(JsonNode.array()
-                        .appendChild(child1)
-                        .appendChild(JsonNode.array()
-                                .appendChild(grandChild1New)),
-                updatedRoot,
-                "updatedRoot");
+                .appendChild(child1)
+                .appendChild(JsonNode.array()
+                    .appendChild(grandChild1New)),
+            updatedRoot,
+            "updatedRoot");
     }
 
     // setLength ...........................................................................................
@@ -311,8 +311,8 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Test
     public void testSetLength2() {
         final JsonArray array = JsonNode.array()
-                .appendChild(this.value1())
-                .appendChild(this.value2());
+            .appendChild(this.value1())
+            .appendChild(this.value2());
 
         assertSame(array, array.setLength(2));
     }
@@ -320,12 +320,12 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Test
     public void testSetLengthShorter() {
         final JsonArray array = JsonNode.array()
-                .appendChild(this.value1())
-                .appendChild(this.value2())
-                .appendChild(this.value3());
+            .appendChild(this.value1())
+            .appendChild(this.value2())
+            .appendChild(this.value3());
 
         this.setLengthAndCheck(array,
-                0);
+            0);
     }
 
     @Test
@@ -335,27 +335,27 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonNode child3 = this.value3();
 
         final JsonArray array = JsonNode.array()
-                .appendChild(child1)
-                .appendChild(child2)
-                .appendChild(child3);
+            .appendChild(child1)
+            .appendChild(child2)
+            .appendChild(child3);
 
         this.setLengthAndCheck(array,
-                2,
-                child1, child2);
+            2,
+            child1, child2);
     }
 
     @Test
     public void testSetLengthLonger() {
         this.setLengthAndCheck(JsonArray.array(),
-                1,
-                JsonNode.nullNode());
+            1,
+            JsonNode.nullNode());
     }
 
     @Test
     public void testSetLengthLonger2() {
         this.setLengthAndCheck(JsonArray.array(),
-                2,
-                JsonNode.nullNode(), JsonNode.nullNode());
+            2,
+            JsonNode.nullNode(), JsonNode.nullNode());
     }
 
     @Test
@@ -364,12 +364,12 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonNode child2 = this.value2();
 
         final JsonArray array = JsonNode.array()
-                .appendChild(child1)
-                .appendChild(child2);
+            .appendChild(child1)
+            .appendChild(child2);
 
         this.setLengthAndCheck(array,
-                3,
-                child1, child2, JsonNode.nullNode());
+            3,
+            child1, child2, JsonNode.nullNode());
     }
 
     @Test
@@ -378,12 +378,12 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonNode child2 = this.value2();
 
         final JsonArray array = JsonNode.array()
-                .appendChild(child1)
-                .appendChild(child2);
+            .appendChild(child1)
+            .appendChild(child2);
 
         this.setLengthAndCheck(array,
-                4,
-                child1, child2, JsonNode.nullNode(), JsonNode.nullNode());
+            4,
+            child1, child2, JsonNode.nullNode(), JsonNode.nullNode());
     }
 
     private void setLengthAndCheck(final JsonArray array,
@@ -391,8 +391,8 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
                                    final JsonNode... children) {
         this.checkEquals(length, children.length, "expected children length doesnt match setLength length");
         this.checkEquals(JsonNode.array().setChildren(Lists.of(children)),
-                array.setLength(length),
-                () -> "setLength " + length + " on " + array);
+            array.setLength(length),
+            () -> "setLength " + length + " on " + array);
     }
 
     // replace .......................................................................................................
@@ -408,14 +408,14 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonNode value4 = this.value4();
 
         final JsonArray node = JsonNode.array()
-                .appendChild(JsonNode.array()
-                        .appendChild(this.value1()))
-                .appendChild(this.value2());
+            .appendChild(JsonNode.array()
+                .appendChild(this.value1()))
+            .appendChild(this.value2());
 
         final int index = 0;
         this.replaceAndCheck(node.get(index),
-                value4,
-                node.set(index, value4).get(index));
+            value4,
+            node.set(index, value4).get(index));
     }
 
     @Test
@@ -423,14 +423,14 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonNode value4 = this.value4();
 
         final JsonArray node = JsonNode.array()
-                .appendChild(this.value1())
-                .appendChild(JsonNode.array()
-                        .appendChild(this.value2()));
+            .appendChild(this.value1())
+            .appendChild(JsonNode.array()
+                .appendChild(this.value2()));
 
         final int index = 1;
         this.replaceAndCheck(node.get(index),
-                value4,
-                node.set(index, value4).get(index));
+            value4,
+            node.set(index, value4).get(index));
     }
 
     // HasText ..........................................................................................................
@@ -443,9 +443,9 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Test
     public void testText2() {
         this.textAndCheck(JsonArray.EMPTY
-                        .appendChild(JsonNode.string("a1"))
-                        .appendChild(JsonNode.string("b2")),
-                "a1b2");
+                .appendChild(JsonNode.string("a1"))
+                .appendChild(JsonNode.string("b2")),
+            "a1b2");
     }
 
     // HasTextOffset...................................................................................................
@@ -458,12 +458,12 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Test
     public void testTextOffset3() {
         this.textOffsetAndCheck(JsonArray.EMPTY
-                        .appendChild(JsonNode.string("a1"))
-                        .appendChild(JsonArray.EMPTY
-                                .appendChild(JsonNode.string("b2!")))
-                        .appendChild(JsonNode.string("c3!!"))
-                        .get(1),
-                2);
+                .appendChild(JsonNode.string("a1"))
+                .appendChild(JsonArray.EMPTY
+                    .appendChild(JsonNode.string("b2!")))
+                .appendChild(JsonNode.string("c3!!"))
+                .get(1),
+            2);
     }
 
     // Visitor ...........................................................................................
@@ -474,12 +474,12 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final List<JsonNode> visited = Lists.array();
 
         final JsonArray array = this.createJsonNode()
-                .appendChild(this.value1())
-                .appendChild(this.value2());
+            .appendChild(this.value1())
+            .appendChild(this.value2());
         final JsonString string1 = array.get(0)
-                .cast(JsonString.class);
+            .cast(JsonString.class);
         final JsonString string2 = array.get(1)
-                .cast(JsonString.class);
+            .cast(JsonString.class);
 
         new FakeJsonNodeVisitor() {
             @Override
@@ -518,11 +518,11 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         }.accept(array);
         this.checkEquals("1517217262", b.toString());
         this.checkEquals(Lists.of(array, array,
-                        string1, string1, string1,
-                        string2, string2, string2,
-                        array, array),
-                visited,
-                "visited");
+                string1, string1, string1,
+                string2, string2, string2,
+                array, array),
+            visited,
+            "visited");
     }
 
     @Test
@@ -533,53 +533,53 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Test
     public void testTextWithChildren() {
         final JsonArray array = JsonNode.array()
-                .appendChild(JsonNode.booleanNode(true))
-                .appendChild(JsonNode.number(2))
-                .appendChild(JsonNode.string("third"));
+            .appendChild(JsonNode.booleanNode(true))
+            .appendChild(JsonNode.number(2))
+            .appendChild(JsonNode.string("third"));
         this.checkEquals("true2third", array.text());
     }
 
     @Test
     public void testTextWithChildren2() {
         final JsonArray array = JsonNode.array()
-                .appendChild(JsonNode.booleanNode(true))
-                .appendChild(JsonNode.number(2.75))
-                .appendChild(JsonNode.string("third"));
+            .appendChild(JsonNode.booleanNode(true))
+            .appendChild(JsonNode.number(2.75))
+            .appendChild(JsonNode.string("third"));
         this.checkEquals("true2.75third", array.text());
     }
 
     @Test
     public void testSelectorUsage() {
         final JsonArray array = JsonNode.array()
-                .appendChild(JsonNode.booleanNode(true))
-                .appendChild(JsonNode.number(2))
-                .appendChild(JsonNode.string("third"));
+            .appendChild(JsonNode.booleanNode(true))
+            .appendChild(JsonNode.number(2))
+            .appendChild(JsonNode.string("third"));
 
         final JsonNode expected = array.get(1);
 
         this.selectorApplyAndCheck(array,
-                JsonNode.absoluteNodeSelector()
-                        .descendant()
-                        .named(expected.name()),
-                expected);
+            JsonNode.absoluteNodeSelector()
+                .descendant()
+                .named(expected.name()),
+            expected);
     }
 
     @Test
     public void testSelectorMap() {
         final JsonArray array = JsonNode.array()
-                .appendChild(JsonNode.booleanNode(true))
-                .appendChild(JsonNode.number(2))
-                .appendChild(JsonNode.string("third"))
-                .appendChild(JsonNode.string("fourth"));
+            .appendChild(JsonNode.booleanNode(true))
+            .appendChild(JsonNode.number(2))
+            .appendChild(JsonNode.string("third"))
+            .appendChild(JsonNode.string("fourth"));
 
         final JsonNode replaced = JsonNode.number(999);
 
         this.selectorApplyMapAndCheck(array,
-                JsonNode.absoluteNodeSelector()
-                        .descendant()
-                        .named(array.get(1).name()),
-                (n) -> replaced,
-                array.set(1, replaced));
+            JsonNode.absoluteNodeSelector()
+                .descendant()
+                .named(array.get(1).name()),
+            (n) -> replaced,
+            array.set(1, replaced));
     }
 
     // isFalseLike......................................................................................................
@@ -587,19 +587,19 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Test
     public void testIsFalseLikeWhenEmpty() {
         this.isFalseLike(
-                JsonNode.array(),
-                true
+            JsonNode.array(),
+            true
         );
     }
 
     @Test
     public void testIsFalseLikeWhenNonEmpty() {
         this.isFalseLike(
-                JsonNode.array()
-                        .appendChild(
-                                JsonNode.booleanNode(false)
-                        ),
-                false
+            JsonNode.array()
+                .appendChild(
+                    JsonNode.booleanNode(false)
+                ),
+            false
         );
     }
 
@@ -608,19 +608,19 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Test
     public void testToBooleanEmpty() {
         this.toBooleanAndCheck(
-                JsonArray.EMPTY,
-                false
+            JsonArray.EMPTY,
+            false
         );
     }
 
     @Test
     public void testToBooleanNonEmpty() {
         this.toBooleanAndCheck(
-                JsonArray.EMPTY
-                        .appendChild(
-                                JsonNode.booleanNode(true)
-                        ),
-                true
+            JsonArray.EMPTY
+                .appendChild(
+                    JsonNode.booleanNode(true)
+                ),
+            true
         );
     }
 
@@ -629,23 +629,23 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Test
     public void testRemoveFalseLikeEmpty() {
         this.removeFalseLikeAndCheck(
-                JsonArray.EMPTY
+            JsonArray.EMPTY
         );
     }
 
     @Test
     public void testRemoveFalseLikeNotEmpty() {
         this.removeFalseLikeAndCheck(
-                JsonArray.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.booleanNode(false),
-                                JsonNode.booleanNode(true),
-                                JsonNode.number(0),
-                                JsonNode.number(1),
-                                JsonNode.string(""),
-                                JsonNode.string("Not empty string 123")
-                        )
+            JsonArray.EMPTY.setChildren(
+                Lists.of(
+                    JsonNode.booleanNode(false),
+                    JsonNode.booleanNode(true),
+                    JsonNode.number(0),
+                    JsonNode.number(1),
+                    JsonNode.string(""),
+                    JsonNode.string("Not empty string 123")
                 )
+            )
         );
     }
 
@@ -659,20 +659,20 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Test
     public void testEqualsDifferentChildren2() {
         this.checkNotEquals(JsonNode.array().appendChild(JsonNode.string("child1")),
-                JsonNode.array().appendChild(JsonNode.string("child2")));
+            JsonNode.array().appendChild(JsonNode.string("child2")));
     }
 
     @Test
     public void testEqualsArray() {
         this.checkNotEquals(JsonNode.array().appendChild(JsonNode.string("child2")),
-                JsonNode.object().set(JsonPropertyName.with("prop"), JsonNode.string("child1")));
+            JsonNode.object().set(JsonPropertyName.with("prop"), JsonNode.string("child1")));
     }
 
     @Test
     public void testEqualsArrayAndObjectElement() {
         this.checkNotEquals(
-                JsonNode.array().appendChild(JsonNode.array().appendChild(JsonNode.string("element1"))),
-                JsonNode.array().appendChild(JsonNode.object().set(JsonPropertyName.with("element-prop"), JsonNode.string("element-value"))));
+            JsonNode.array().appendChild(JsonNode.array().appendChild(JsonNode.string("element1"))),
+            JsonNode.array().appendChild(JsonNode.object().set(JsonPropertyName.with("element-prop"), JsonNode.string("element-value"))));
     }
 
     // toString .......................................................................................
@@ -685,64 +685,64 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Test
     public void testToStringWithOneChildBoolean() {
         final JsonArray array = JsonNode.array()
-                .appendChild(JsonNode.booleanNode(true));
+            .appendChild(JsonNode.booleanNode(true));
 
         this.toStringAndCheck(
-                array,
-                "[\n" +
-                        "  true\n" +
-                        "]"
+            array,
+            "[\n" +
+                "  true\n" +
+                "]"
         );
     }
 
     @Test
     public void testToStringWithOneChildObject() {
         final JsonArray array = JsonNode.array()
-                .appendChild(JsonNode.object());
+            .appendChild(JsonNode.object());
 
         this.toStringAndCheck(
-                array,
-                "[\n" +
-                        "  {}\n" +
-                        "]"
+            array,
+            "[\n" +
+                "  {}\n" +
+                "]"
         );
     }
 
     @Test
     public void testToStringWithOneChildObjectWithProperties() {
         final JsonArray array = JsonNode.array()
-                .appendChild(
-                        JsonNode.object()
-                                .set(
-                                        JsonPropertyName.with("x"),
-                                        JsonNode.booleanNode(true)
-                                )
-                );
+            .appendChild(
+                JsonNode.object()
+                    .set(
+                        JsonPropertyName.with("x"),
+                        JsonNode.booleanNode(true)
+                    )
+            );
 
         this.toStringAndCheck(
-                array,
-                "[\n" +
-                        "  {\n" +
-                        "    \"x\": true\n" +
-                        "  }\n" +
-                        "]"
+            array,
+            "[\n" +
+                "  {\n" +
+                "    \"x\": true\n" +
+                "  }\n" +
+                "]"
         );
     }
 
     @Test
     public void testToStringWithSeveralChildren() {
         final JsonArray array = JsonNode.array()
-                .appendChild(JsonNode.booleanNode(true))
-                .appendChild(JsonNode.number(2))
-                .appendChild(JsonNode.string("third"));
+            .appendChild(JsonNode.booleanNode(true))
+            .appendChild(JsonNode.number(2))
+            .appendChild(JsonNode.string("third"));
 
         this.toStringAndCheck(
-                array,
-                "[\n" +
-                        "  true,\n" +
-                        "  2,\n" +
-                        "  \"third\"\n" +
-                        "]"
+            array,
+            "[\n" +
+                "  true,\n" +
+                "  2,\n" +
+                "  \"third\"\n" +
+                "]"
         );
     }
 
@@ -762,7 +762,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     public JsonArray appendChildAndCheck(final JsonNode parent,
                                          final JsonNode child) {
         final JsonArray newParent = parent.appendChild(child)
-                .cast(JsonArray.class);
+            .cast(JsonArray.class);
         assertNotSame(newParent, parent, "appendChild must not return the same node");
 
         final List<JsonNode> children = newParent.children();
@@ -780,15 +780,15 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     @Override
     List<String> propertiesNeverReturnNullSkipProperties() {
         return Lists.of(BOOLEAN_OR_FAIL,
-                CHARACTER_OR_FAIL,
-                UNMARSHALL_LIST,
-                UNMARSHALL_SET,
-                UNMARSHALL_MAP,
-                UNMARSHALL,
-                NUMBER_OR_FAIL,
-                OBJECT_OR_FAIL,
-                PARENT_OR_FAIL,
-                STRING_OR_FAIL,
-                VALUE);
+            CHARACTER_OR_FAIL,
+            UNMARSHALL_LIST,
+            UNMARSHALL_SET,
+            UNMARSHALL_MAP,
+            UNMARSHALL,
+            NUMBER_OR_FAIL,
+            OBJECT_OR_FAIL,
+            PARENT_OR_FAIL,
+            STRING_OR_FAIL,
+            VALUE);
     }
 }

@@ -30,7 +30,7 @@ public abstract class JsonLeafNonNullNodeTestCase<N extends JsonLeafNonNullNode<
     @Test
     public void testRemoveFalseLike() {
         this.removeFalseLikeAndCheck(
-                this.createJsonNode()
+            this.createJsonNode()
         );
     }
 }

@@ -22,7 +22,7 @@ import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.json.JsonNode;
 
 public abstract class BasicJsonMarshallerTypedExpressionTestCase<M extends BasicJsonMarshallerTypedExpression<E>, E extends Expression>
-        extends BasicJsonMarshallerTypedTestCase<M, E> {
+    extends BasicJsonMarshallerTypedTestCase<M, E> {
 
     BasicJsonMarshallerTypedExpressionTestCase() {
         super();
@@ -32,7 +32,7 @@ public abstract class BasicJsonMarshallerTypedExpressionTestCase<M extends Basic
     public final void testRoundtrip() {
         final E expression = this.value();
         final JsonNode json = this.marshallContext()
-                .marshall(expression);
+            .marshall(expression);
         this.unmarshallAndCheck(json, expression);
     }
 

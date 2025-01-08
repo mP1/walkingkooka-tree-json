@@ -29,7 +29,7 @@ import walkingkooka.text.cursor.parser.ParserTesting2;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class JsonNodeParsersStringParserTest implements ParserTesting2<JsonNodeParsersStringParser, ParserContext>, ToStringTesting<JsonNodeParsersStringParser>,
-        TypeNameTesting<JsonNodeParsersStringParser> {
+    TypeNameTesting<JsonNodeParsersStringParser> {
 
     @Test
     public void testUnterminatedFails() {
@@ -78,7 +78,7 @@ public final class JsonNodeParsersStringParserTest implements ParserTesting2<Jso
 
     private void parseUnterminatedStringFails(final String text) {
         assertThrows(JsonNodeParserException.class, () ->
-                this.createParser().parse(TextCursors.charSequence(text), this.createContext())
+            this.createParser().parse(TextCursors.charSequence(text), this.createContext())
         );
     }
 
@@ -144,8 +144,8 @@ public final class JsonNodeParsersStringParserTest implements ParserTesting2<Jso
         final String before = "before ";
         final String after = " after";
         this.parseAndCheck3(
-                before + content + after,
-                before + decoded + after
+            before + content + after,
+            before + decoded + after
         );
     }
 
@@ -155,25 +155,25 @@ public final class JsonNodeParsersStringParserTest implements ParserTesting2<Jso
         final String json = JsonNodeParsersStringParser.DOUBLE_QUOTE + content + JsonNodeParsersStringParser.DOUBLE_QUOTE;
 
         this.parseAndCheck(
-                json,
-                JsonNodeParserToken.string(decoded, json),
-                json
+            json,
+            JsonNodeParserToken.string(decoded, json),
+            json
         );
 
         final String after = "" + 1;
         this.parseAndCheck(
-                json + after,
-                JsonNodeParserToken.string(decoded, json),
-                json,
-                after
+            json + after,
+            JsonNodeParserToken.string(decoded, json),
+            json,
+            after
         );
 
         final String after2 = "" + JsonNodeParsersStringParser.DOUBLE_QUOTE + "hello" + JsonNodeParsersStringParser.DOUBLE_QUOTE;
         this.parseAndCheck(
-                json + after2,
-                JsonNodeParserToken.string(decoded, json),
-                json,
-                after2
+            json + after2,
+            JsonNodeParserToken.string(decoded, json),
+            json,
+            after2
         );
     }
 

@@ -61,8 +61,8 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
         Objects.requireNonNull(processor, "processor");
 
         return this.processor.equals(processor) ?
-                this :
-                new BasicJsonNodeMarshallContext(processor);
+            this :
+            new BasicJsonNodeMarshallContext(processor);
     }
 
     // marshall. .....................................................................................................
@@ -73,16 +73,16 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     @Override
     public JsonNode marshall(final Object value) {
         return null == value ?
-                JsonNode.nullNode() :
-                this.marshallNonNull(value);
+            JsonNode.nullNode() :
+            this.marshallNonNull(value);
     }
 
     private JsonNode marshallNonNull(final Object value) {
         final JsonNode json = BasicJsonMarshaller.marshaller(value)
-                .marshall(Cast.to(value), this);
+            .marshall(Cast.to(value), this);
         return json.isObject() ?
-                this.processor.apply(value, json.objectOrFail()) :
-                json;
+            this.processor.apply(value, json.objectOrFail()) :
+            json;
     }
 
     private final BiFunction<Object, JsonObject, JsonObject> processor;
@@ -93,13 +93,13 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     @Override
     public JsonNode marshallCollection(final Collection<?> collection) {
         return null == collection ?
-                JsonNode.nullNode() :
-                JsonObject.array()
-                        .setChildren(
-                                collection.stream()
-                                        .map(this::marshall)
-                                        .collect(ImmutableList.collector())
-                        );
+            JsonNode.nullNode() :
+            JsonObject.array()
+                .setChildren(
+                    collection.stream()
+                        .map(this::marshall)
+                        .collect(ImmutableList.collector())
+                );
     }
 
     /**
@@ -108,15 +108,15 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     @Override
     public JsonNode marshallEnumSet(final Set<? extends Enum<?>> enumSet) {
         return null == enumSet ?
-                JsonNode.nullNode() :
-                marshallEnumSetNonNull(enumSet);
+            JsonNode.nullNode() :
+            marshallEnumSetNonNull(enumSet);
     }
 
     private JsonNode marshallEnumSetNonNull(final Set<? extends Enum<?>> enumSet) {
         return JsonNode.string(
-                enumSet.stream()
-                        .map(Enum::name)
-                        .collect(Collectors.joining(","))
+            enumSet.stream()
+                .map(Enum::name)
+                .collect(Collectors.joining(","))
         );
     }
 
@@ -127,8 +127,8 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     @Override
     public JsonNode marshallMap(final Map<?, ?> map) {
         return null == map ?
-                JsonNode.nullNode() :
-                this.marshallMap0(map);
+            JsonNode.nullNode() :
+            this.marshallMap0(map);
     }
 
     private JsonNode marshallMap0(final Map<?, ?> map) {
@@ -146,8 +146,8 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
         }
 
         return allKeysString ?
-                marshallMapAsJsonObject(keyAndValues) :
-                marshallMapAsArrayOfEntries(keyAndValues);
+            marshallMapAsJsonObject(keyAndValues) :
+            marshallMapAsArrayOfEntries(keyAndValues);
     }
 
     private JsonNode marshallMapAsJsonObject(final List<JsonNode> keyAndValues) {
@@ -162,7 +162,7 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
         }
 
         return JsonNode.object()
-                .setChildren(array);
+            .setChildren(array);
     }
 
     private JsonNode marshallMapAsArrayOfEntries(final List<JsonNode> keyAndValues) {
@@ -171,14 +171,14 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
         final Iterator<JsonNode> iterator = keyAndValues.iterator();
         while (iterator.hasNext()) {
             array.add(
-                    JsonNode.object()
-                            .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, iterator.next())
-                            .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, iterator.next())
+                JsonNode.object()
+                    .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, iterator.next())
+                    .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, iterator.next())
             );
         }
 
         return JsonNode.array()
-                .setChildren(array);
+            .setChildren(array);
     }
 
     // marshallWithType...............................................................................................
@@ -189,9 +189,9 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     @Override
     public JsonNode marshallWithType(final Object value) {
         return null == value ?
-                JsonNode.nullNode() :
-                BasicJsonMarshaller.marshaller(value)
-                        .marshallWithType(Cast.to(value), this);
+            JsonNode.nullNode() :
+            BasicJsonMarshaller.marshaller(value)
+                .marshallWithType(Cast.to(value), this);
     }
 
     /**
@@ -200,7 +200,7 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     @Override
     public JsonNode marshallWithTypeCollection(final Collection<?> collection) {
         return BasicJsonMarshallerTypedCollectionCollection.instance()
-                .marshall(collection, this);
+            .marshall(collection, this);
     }
 
     /**

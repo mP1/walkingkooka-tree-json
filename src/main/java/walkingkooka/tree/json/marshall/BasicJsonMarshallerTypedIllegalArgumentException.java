@@ -58,8 +58,8 @@ final class BasicJsonMarshallerTypedIllegalArgumentException extends BasicJsonMa
     java.lang.IllegalArgumentException unmarshallNonNull(final JsonNode node,
                                                          final JsonNodeUnmarshallContext context) {
         return NULL.equals(node) ?
-                new IllegalArgumentException() :
-                new IllegalArgumentException(node.stringOrFail());
+            new IllegalArgumentException() :
+            new IllegalArgumentException(node.stringOrFail());
     }
 
     @Override
@@ -67,8 +67,8 @@ final class BasicJsonMarshallerTypedIllegalArgumentException extends BasicJsonMa
                              final JsonNodeMarshallContext context) {
         final String message = value.getMessage();
         return null != message ?
-                JsonNode.string(message) :
-                NULL;
+            JsonNode.string(message) :
+            NULL;
     }
 
     private final static JsonNode NULL = JsonNode.number(0);

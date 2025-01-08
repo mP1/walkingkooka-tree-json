@@ -32,8 +32,8 @@ import java.util.Locale;
  * A {@link JsonNodeParserContext} without any functionality.
  */
 final class BasicJsonNodeParserContext implements JsonNodeParserContext,
-        DateTimeContextDelegator,
-        DecimalNumberContextDelegator {
+    DateTimeContextDelegator,
+    DecimalNumberContextDelegator {
 
     /**
      * Type safe getter
@@ -50,12 +50,12 @@ final class BasicJsonNodeParserContext implements JsonNodeParserContext,
     private BasicJsonNodeParserContext() {
         super();
         this.dateTimeContext = DateTimeContexts.locale(
-                Locale.getDefault(),
-                1900, // defaultYear
-                50, // twoDigitYear
-                () -> {
-                    throw new UnsupportedOperationException();
-                }
+            Locale.getDefault(),
+            1900, // defaultYear
+            50, // twoDigitYear
+            () -> {
+                throw new UnsupportedOperationException();
+            }
         );
         this.decimalNumberContext = DecimalNumberContexts.american(MathContext.DECIMAL64);
     }
@@ -86,11 +86,11 @@ final class BasicJsonNodeParserContext implements JsonNodeParserContext,
     @Override
     public String toString() {
         return ToStringBuilder.empty()
-                .label("decimalSeparator").value(this.decimalSeparator())
-                .label("exponentSymbol").value(this.exponentSymbol())
-                .label("negativeSign").value(this.negativeSign())
-                .label("percentageSymbol").value(this.percentageSymbol())
-                .label("positiveSign").value(this.positiveSign())
-                .build();
+            .label("decimalSeparator").value(this.decimalSeparator())
+            .label("exponentSymbol").value(this.exponentSymbol())
+            .label("negativeSign").value(this.negativeSign())
+            .label("percentageSymbol").value(this.percentageSymbol())
+            .label("positiveSign").value(this.positiveSign())
+            .build();
     }
 }

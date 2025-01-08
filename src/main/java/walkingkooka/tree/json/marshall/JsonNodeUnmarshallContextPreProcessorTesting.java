@@ -23,8 +23,8 @@ import walkingkooka.tree.json.JsonNode;
 import walkingkooka.util.BiFunctionTesting;
 
 public interface JsonNodeUnmarshallContextPreProcessorTesting<F extends JsonNodeUnmarshallContextPreProcessor> extends BiFunctionTesting<F, JsonNode, Class<?>, JsonNode>,
-        TypeNameTesting<F>,
-        TreePrintableTesting {
+    TypeNameTesting<F>,
+    TreePrintableTesting {
 
     @Override
     default String typeNameSuffix() {

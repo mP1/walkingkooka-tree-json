@@ -26,17 +26,17 @@ public final class BasicJsonMarshallerTypedJsonNodeTest extends BasicJsonMarshal
     @Test
     public void testUnmarshallArrayRemovesParent() {
         this.unmarshallRemovesParentCheck(
-                JsonNode.array()
-                        .appendChild(
-                                JsonNode.string("1a")
-                        )
+            JsonNode.array()
+                .appendChild(
+                    JsonNode.string("1a")
+                )
         );
     }
 
     @Test
     public void testUnmarshallBooleanRemovesParent() {
         this.unmarshallRemovesParentCheck(
-                JsonNode.booleanNode(true)
+            JsonNode.booleanNode(true)
         );
     }
 
@@ -58,19 +58,19 @@ public final class BasicJsonMarshallerTypedJsonNodeTest extends BasicJsonMarshal
     @Test
     public void testUnmarshallObjectRemovesParent() {
         this.unmarshallRemovesParentCheck(
-                JsonNode.object()
-                        .setChild(
-                                JsonPropertyName.with("abc"),
-                                JsonNode.string("def")
-                        )
+            JsonNode.object()
+                .setChild(
+                    JsonPropertyName.with("abc"),
+                    JsonNode.string("def")
+                )
         );
     }
 
     private void unmarshallRemovesParentCheck(final JsonNode child) {
         this.unmarshallAndCheck(JsonNode.object()
-                        .set(JsonPropertyName.with("child"), child)
-                        .children().get(0),
-                child.removeParent());
+                .set(JsonPropertyName.with("child"), child)
+                .children().get(0),
+            child.removeParent());
     }
 
     @Override

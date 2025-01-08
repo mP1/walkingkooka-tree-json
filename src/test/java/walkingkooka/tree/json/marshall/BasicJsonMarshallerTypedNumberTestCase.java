@@ -22,7 +22,7 @@ import walkingkooka.ToStringTesting;
 import walkingkooka.tree.json.JsonNode;
 
 public abstract class BasicJsonMarshallerTypedNumberTestCase<M extends BasicJsonMarshallerTypedNumber<T>, T extends Number> extends BasicJsonMarshallerTypedTestCase<M, T>
-        implements ToStringTesting<M> {
+    implements ToStringTesting<M> {
 
     BasicJsonMarshallerTypedNumberTestCase() {
         super();

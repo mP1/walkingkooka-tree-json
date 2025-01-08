@@ -27,49 +27,49 @@ public interface JsonNodeMarshallContextDelegator extends JsonNodeMarshallContex
     @Override
     default JsonNodeMarshallContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor) {
         return this.jsonNodeMarshallContext()
-                .setObjectPostProcessor(processor);
+            .setObjectPostProcessor(processor);
     }
 
     @Override
     default JsonNode marshall(final Object value) {
         return this.jsonNodeMarshallContext()
-                .marshall(value);
+            .marshall(value);
     }
 
     @Override
     default JsonNode marshallEnumSet(final Set<? extends Enum<?>> enumSet) {
         return this.jsonNodeMarshallContext()
-                .marshallEnumSet(enumSet);
+            .marshallEnumSet(enumSet);
     }
 
     @Override
     default JsonNode marshallWithType(final Object value) {
         return this.jsonNodeMarshallContext()
-                .marshallWithType(value);
+            .marshallWithType(value);
     }
 
     @Override
     default JsonNode marshallCollection(final Collection<?> collection) {
         return this.jsonNodeMarshallContext()
-                .marshallCollection(collection);
+            .marshallCollection(collection);
     }
 
     @Override
     default JsonNode marshallMap(final Map<?, ?> map) {
         return this.jsonNodeMarshallContext()
-                .marshallMap(map);
+            .marshallMap(map);
     }
 
     @Override
     default JsonNode marshallWithTypeCollection(final Collection<?> collection) {
         return this.jsonNodeMarshallContext()
-                .marshallWithTypeCollection(collection);
+            .marshallWithTypeCollection(collection);
     }
 
     @Override
     default JsonNode marshallWithTypeMap(final Map<?, ?> map) {
         return this.jsonNodeMarshallContext()
-                .marshallWithTypeMap(map);
+            .marshallWithTypeMap(map);
     }
 
     @Override

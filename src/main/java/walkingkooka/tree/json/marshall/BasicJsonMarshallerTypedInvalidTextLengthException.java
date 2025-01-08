@@ -99,14 +99,14 @@ final class BasicJsonMarshallerTypedInvalidTextLengthException extends BasicJson
     JsonNode marshallNonNull(final walkingkooka.InvalidTextLengthException value,
                              final JsonNodeMarshallContext context) {
         return JsonNode.object()
-                .setChildren(
-                        Lists.<JsonNode>of(
-                                JsonNode.string(value.label()).setName(LABEL_JSON_PROPERTY),
-                                JsonNode.string(value.text()).setName(TEXT_JSON_PROPERTY),
-                                JsonNode.number(value.min()).setName(MIN_JSON_PROPERTY),
-                                JsonNode.number(value.max()).setName(MAX_JSON_PROPERTY)
-                        )
-                );
+            .setChildren(
+                Lists.<JsonNode>of(
+                    JsonNode.string(value.label()).setName(LABEL_JSON_PROPERTY),
+                    JsonNode.string(value.text()).setName(TEXT_JSON_PROPERTY),
+                    JsonNode.number(value.min()).setName(MIN_JSON_PROPERTY),
+                    JsonNode.number(value.max()).setName(MAX_JSON_PROPERTY)
+                )
+            );
     }
 
     private final static String LABEL = "label";

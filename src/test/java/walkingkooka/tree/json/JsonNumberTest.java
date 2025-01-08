@@ -30,13 +30,13 @@ public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber
     @Override
     public void testNumberOrFail() {
         this.checkEquals(1.0,
-                JsonNumber.with(1).numberOrFail());
+            JsonNumber.with(1).numberOrFail());
     }
 
     @Test
     public void testNumberOrFail2() {
         this.checkEquals(2.0,
-                JsonNumber.with(2).numberOrFail());
+            JsonNumber.with(2).numberOrFail());
     }
 
     @Test
@@ -82,24 +82,24 @@ public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber
     @Test
     public void testIsFalseLikeWhenZero() {
         this.isFalseLike(
-                JsonNode.number(0),
-                true
+            JsonNode.number(0),
+            true
         );
     }
 
     @Test
     public void testIsFalseLikeWhenMinusZero() {
         this.isFalseLike(
-                JsonNode.number(-0.0),
-                true
+            JsonNode.number(-0.0),
+            true
         );
     }
 
     @Test
     public void testIsFalseLikeWhenNonZero() {
         this.isFalseLike(
-                JsonNode.number(1),
-                false
+            JsonNode.number(1),
+            false
         );
     }
 
@@ -108,16 +108,16 @@ public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber
     @Test
     public void testToBooleanZero() {
         this.toBooleanAndCheck(
-                JsonNumber.number(0),
-                false
+            JsonNumber.number(0),
+            false
         );
     }
 
     @Test
     public void testToBooleanNonZero() {
         this.toBooleanAndCheck(
-                JsonNumber.with(1),
-                true
+            JsonNumber.with(1),
+            true
         );
     }
 
@@ -161,14 +161,14 @@ public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber
     @Override
     List<String> propertiesNeverReturnNullSkipProperties() {
         return Lists.of(ARRAY_OR_FAIL,
-                BOOLEAN_OR_FAIL,
-                CHARACTER_OR_FAIL,
-                UNMARSHALL_LIST,
-                UNMARSHALL_SET,
-                UNMARSHALL_MAP,
-                UNMARSHALL,
-                OBJECT_OR_FAIL,
-                PARENT_OR_FAIL,
-                STRING_OR_FAIL);
+            BOOLEAN_OR_FAIL,
+            CHARACTER_OR_FAIL,
+            UNMARSHALL_LIST,
+            UNMARSHALL_SET,
+            UNMARSHALL_MAP,
+            UNMARSHALL,
+            OBJECT_OR_FAIL,
+            PARENT_OR_FAIL,
+            STRING_OR_FAIL);
     }
 }

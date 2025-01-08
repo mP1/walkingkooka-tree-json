@@ -41,32 +41,32 @@ public final class BasicJsonMarshallerTypedCollectionSetTest extends BasicJsonMa
     @Test
     public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(
-                JsonNode.booleanNode(true),
-                JsonNodeUnmarshallException.class
+            JsonNode.booleanNode(true),
+            JsonNodeUnmarshallException.class
         );
     }
 
     @Test
     public void testUnmarshallNumberFails() {
         this.unmarshallFailed(
-                JsonNode.number(123),
-                JsonNodeUnmarshallException.class
+            JsonNode.number(123),
+            JsonNodeUnmarshallException.class
         );
     }
 
     @Test
     public void testUnmarshallStringFails() {
         this.unmarshallFailed(
-                JsonNode.string("abc123"),
-                JsonNodeUnmarshallException.class
+            JsonNode.string("abc123"),
+            JsonNodeUnmarshallException.class
         );
     }
 
     @Test
     public void testUnmarshallObjectFails() {
         this.unmarshallFailed(
-                JsonNode.object(),
-                JsonNodeUnmarshallException.class
+            JsonNode.object(),
+            JsonNodeUnmarshallException.class
         );
     }
 
@@ -93,11 +93,11 @@ public final class BasicJsonMarshallerTypedCollectionSetTest extends BasicJsonMa
     @Override
     JsonNode node() {
         return JsonNode.array()
-                .appendChild(JsonNode.nullNode())
-                .appendChild(JsonNode.booleanNode(true))
-                .appendChild(JsonNode.number(123.5))
-                .appendChild(JsonNode.string("abc123"))
-                .appendChild(this.marshallContext().marshallWithType(TestJsonNodeValue.with("test-TestJsonNodeValue-a1")));
+            .appendChild(JsonNode.nullNode())
+            .appendChild(JsonNode.booleanNode(true))
+            .appendChild(JsonNode.number(123.5))
+            .appendChild(JsonNode.string("abc123"))
+            .appendChild(this.marshallContext().marshallWithType(TestJsonNodeValue.with("test-TestJsonNodeValue-a1")));
     }
 
     @Override

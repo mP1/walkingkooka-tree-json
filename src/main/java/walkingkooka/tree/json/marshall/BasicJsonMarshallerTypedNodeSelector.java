@@ -73,9 +73,9 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
                 NodeSelector.relative().precedingSibling(),
                 NodeSelector.relative().predicate(Predicates.fake()),
                 NodeSelector.relative().self())
-                .stream()
-                .map(s -> s.getClass())
-                .collect(ImmutableList.collector()));
+            .stream()
+            .map(s -> s.getClass())
+            .collect(ImmutableList.collector()));
     }
 
     @Override
@@ -117,20 +117,20 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
         }
 
         return unmarshallNonNull0(
-                context.unmarshallWithType(NAME_TYPE_PROPERTY, node.objectOrFail(), Name.class),
-                components,
-                context);
+            context.unmarshallWithType(NAME_TYPE_PROPERTY, node.objectOrFail(), Name.class),
+            components,
+            context);
     }
 
     /**
      * Accepts a selector and returns its JSON representation.
      */
     static <N extends Node<N, NAME, ANAME, AVALUE>,
-            NAME extends Name,
-            ANAME extends Name,
-            AVALUE> NodeSelector<N, NAME, ANAME, AVALUE> unmarshallNonNull0(final BiFunction<JsonNode, JsonNodeUnmarshallContext, NAME> nameFactory,
-                                                                            final JsonArray components,
-                                                                            final JsonNodeUnmarshallContext context) {
+        NAME extends Name,
+        ANAME extends Name,
+        AVALUE> NodeSelector<N, NAME, ANAME, AVALUE> unmarshallNonNull0(final BiFunction<JsonNode, JsonNodeUnmarshallContext, NAME> nameFactory,
+                                                                        final JsonArray components,
+                                                                        final JsonNodeUnmarshallContext context) {
         NodeSelector<N, NAME, ANAME, AVALUE> selector = NodeSelector.relative();
 
         for (JsonNode component : components.children()) {
@@ -236,12 +236,12 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
     private static Expression parseExpression(final String expression,
                                               final JsonNodeUnmarshallContext context) {
         final Parser<NodeSelectorParserContext> parser = NodeSelectorParsers.predicate()
-                .orReport(ParserReporters.basic())
-                .cast();
+            .orReport(ParserReporters.basic())
+            .cast();
         return parser.parse(TextCursors.charSequence(expression), NodeSelectorParserContexts.basic(context.expressionNumberKind(), context.mathContext()))
-                .get()
-                .cast(NodeSelectorPredicateParserToken.class)
-                .toExpression(Predicates.always());
+            .get()
+            .cast(NodeSelectorPredicateParserToken.class)
+            .toExpression(Predicates.always());
     }
 
     /**

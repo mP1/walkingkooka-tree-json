@@ -63,10 +63,10 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
     @Test
     public void testUnmarshallArrayTwoElementsFails() {
         this.unmarshallFailed(
-                JsonNode.array()
-                        .appendChild(JsonNode.number(1))
-                        .appendChild(JsonNode.number(2)),
-                JsonNodeUnmarshallException.class
+            JsonNode.array()
+                .appendChild(JsonNode.number(1))
+                .appendChild(JsonNode.number(2)),
+            JsonNodeUnmarshallException.class
         );
     }
 
@@ -78,25 +78,25 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
     @Test
     public void testUnmarshallArrayWithBooleanTrue() {
         this.unmarshallAndCheck(JsonNode.array().appendChild(JsonNode.booleanNode(true)),
-                Optional.of(true));
+            Optional.of(true));
     }
 
     @Test
     public void testUnmarshallArrayWithBooleanFalse() {
         this.unmarshallAndCheck(JsonNode.array().appendChild(JsonNode.booleanNode(false)),
-                Optional.of(false));
+            Optional.of(false));
     }
 
     @Test
     public void testUnmarshallArrayWithNumber() {
         this.unmarshallAndCheck(JsonNode.array().appendChild(JsonNode.number(1.5)),
-                Optional.of(1.5));
+            Optional.of(1.5));
     }
 
     @Test
     public void testUnmarshallArrayWithString() {
         this.unmarshallAndCheck(JsonNode.array().appendChild(JsonNode.string("abc123")),
-                Optional.of("abc123"));
+            Optional.of("abc123"));
     }
 
     @Test
@@ -126,7 +126,7 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
 
     private void marshallAndCheck2(final Object value, final JsonNode arrayElement) {
         this.marshallAndCheck(Optional.of(value),
-                JsonNode.array().appendChild(arrayElement));
+            JsonNode.array().appendChild(arrayElement));
     }
 
     @Test
@@ -162,8 +162,8 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
     @Test
     public void testRoundtripJsonObjectWithProperties() {
         this.roundtripAndCheck(Optional.of(JsonNode.object()
-                .set(JsonPropertyName.with("country"), JsonNode.string("australia"))
-                .set(JsonPropertyName.with("year"), JsonNode.number(2019))
+            .set(JsonPropertyName.with("country"), JsonNode.string("australia"))
+            .set(JsonPropertyName.with("year"), JsonNode.number(2019))
         ));
     }
 
@@ -185,9 +185,9 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
         this.checkEquals(value, from, () -> "json\n" + json);
 
         final JsonNode jsonWithType = this.marshallContext()
-                .marshallWithType(value);
+            .marshallWithType(value);
         final Optional<?> from2 = this.unmarshallContext()
-                .unmarshallWithType(jsonWithType);
+            .unmarshallWithType(jsonWithType);
 
         this.checkEquals(value, from2, () -> "jsonWithType\n" + jsonWithType);
     }

@@ -21,5 +21,5 @@ package walkingkooka.tree.json.marshall;
  * An interface that combines both {@link JsonNodeMarshallContext} and {@link JsonNodeUnmarshallContext}.
  */
 public interface JsonNodeMarshallUnmarshallContext extends JsonNodeMarshallContext,
-        JsonNodeUnmarshallContext{
+    JsonNodeUnmarshallContext {
 }

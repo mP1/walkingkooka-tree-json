@@ -33,8 +33,8 @@ public final class JsonNodeUnmarshallContexts implements PublicStaticHelper {
     public static JsonNodeUnmarshallContext basic(final ExpressionNumberKind kind,
                                                   final MathContext mathContext) {
         return BasicJsonNodeUnmarshallContext.with(
-                kind,
-                mathContext
+            kind,
+            mathContext
         );
     }
 

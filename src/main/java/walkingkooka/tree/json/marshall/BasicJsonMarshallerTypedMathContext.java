@@ -106,14 +106,14 @@ final class BasicJsonMarshallerTypedMathContext extends BasicJsonMarshallerTyped
     JsonNode marshallNonNull(final MathContext value,
                              final JsonNodeMarshallContext context) {
         return MathContext.DECIMAL32.equals(value) ?
-                DECIMAL32_JSON :
-                MathContext.DECIMAL64.equals(value) ?
-                        DECIMAL64_JSON :
-                        MathContext.DECIMAL128.equals(value) ?
-                                DECIMAL128_JSON :
-                                MathContext.UNLIMITED.equals(value) ?
-                                        UNLIMITED_JSON :
-                                        JsonNode.string(value.getPrecision() + SEPARATOR.string() + value.getRoundingMode().name());
+            DECIMAL32_JSON :
+            MathContext.DECIMAL64.equals(value) ?
+                DECIMAL64_JSON :
+                MathContext.DECIMAL128.equals(value) ?
+                    DECIMAL128_JSON :
+                    MathContext.UNLIMITED.equals(value) ?
+                        UNLIMITED_JSON :
+                        JsonNode.string(value.getPrecision() + SEPARATOR.string() + value.getRoundingMode().name());
 
     }
 

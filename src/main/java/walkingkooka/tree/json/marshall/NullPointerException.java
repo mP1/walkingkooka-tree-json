@@ -22,7 +22,7 @@ import java.util.Objects;
 /**
  * A sub class of {@link java.lang.NullPointerException} with an empty stacktrace. This is only returned by {@link BasicJsonMarshallerTypedNullPointerException}
  */
-final class NullPointerException extends java.lang.NullPointerException{
+final class NullPointerException extends java.lang.NullPointerException {
 
     private static final long serialVersionUID = 1;
 
@@ -47,7 +47,7 @@ final class NullPointerException extends java.lang.NullPointerException{
 
     @Override
     public boolean equals(final Object other) {
-        return this == other || other instanceof java.lang.NullPointerException && this.equals0((java.lang.NullPointerException)other);
+        return this == other || other instanceof java.lang.NullPointerException && this.equals0((java.lang.NullPointerException) other);
     }
 
     private boolean equals0(final java.lang.NullPointerException other) {

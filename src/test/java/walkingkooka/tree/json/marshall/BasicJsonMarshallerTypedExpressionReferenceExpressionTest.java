@@ -31,9 +31,9 @@ public final class BasicJsonMarshallerTypedExpressionReferenceExpressionTest ext
     @SuppressWarnings("unchecked")
     public static void beforeAll() {
         remover = BasicJsonMarshaller.register(REFERENCE_TYPE_NAME,
-                (n, c) -> REFERENCE,
-                (r, c) -> REFERENCE_JSON,
-                TestExpressionReference.class);
+            (n, c) -> REFERENCE,
+            (r, c) -> REFERENCE_JSON,
+            TestExpressionReference.class);
     }
 
     @AfterAll

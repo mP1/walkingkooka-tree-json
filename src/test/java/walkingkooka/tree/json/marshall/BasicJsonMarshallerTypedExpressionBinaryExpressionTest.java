@@ -28,24 +28,24 @@ public final class BasicJsonMarshallerTypedExpressionBinaryExpressionTest extend
     @Test
     public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(
-                JsonNode.booleanNode(true),
-                JsonNodeUnmarshallException.class
+            JsonNode.booleanNode(true),
+            JsonNodeUnmarshallException.class
         );
     }
 
     @Test
     public void testUnmarshallNumberFails() {
         this.unmarshallFailed(
-                JsonNode.number(123),
-                JsonNodeUnmarshallException.class
+            JsonNode.number(123),
+            JsonNodeUnmarshallException.class
         );
     }
 
     @Test
     public void testUnmarshallStringFails() {
         this.unmarshallFailed(
-                JsonNode.string("abc123"),
-                JsonNodeUnmarshallException.class
+            JsonNode.string("abc123"),
+            JsonNodeUnmarshallException.class
         );
     }
 
@@ -61,7 +61,7 @@ public final class BasicJsonMarshallerTypedExpressionBinaryExpressionTest extend
 
     private Expression leftValue() {
         return Expression.value(
-                EXPRESSION_NUMBER_KIND.create(11)
+            EXPRESSION_NUMBER_KIND.create(11)
         );
     }
 
@@ -74,8 +74,8 @@ public final class BasicJsonMarshallerTypedExpressionBinaryExpressionTest extend
         final JsonNodeMarshallContext context = this.marshallContext();
 
         return JsonNode.array()
-                .appendChild(context.marshallWithType(this.leftValue()))
-                .appendChild(context.marshallWithType(this.rightValue()));
+            .appendChild(context.marshallWithType(this.leftValue()))
+            .appendChild(context.marshallWithType(this.rightValue()));
     }
 
     @Override

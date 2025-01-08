@@ -26,7 +26,7 @@ import walkingkooka.text.CharSequences;
  * The name of any property of object key.
  */
 public final class JsonPropertyName implements Name,
-        Comparable<JsonPropertyName> {
+    Comparable<JsonPropertyName> {
 
     /**
      * The size of a cache for {@link JsonPropertyName} by index
@@ -59,7 +59,7 @@ public final class JsonPropertyName implements Name,
      */
     public static JsonPropertyName with(final String name) {
         return new JsonPropertyName(
-                CharSequences.failIfNullOrEmpty(name, "name")
+            CharSequences.failIfNullOrEmpty(name, "name")
         );
     }
 
@@ -103,8 +103,8 @@ public final class JsonPropertyName implements Name,
     @Override
     public boolean equals(final Object other) {
         return this == other ||
-                other instanceof JsonPropertyName &&
-                        this.equals0(Cast.to(other));
+            other instanceof JsonPropertyName &&
+                this.equals0(Cast.to(other));
     }
 
     private boolean equals0(final JsonPropertyName other) {

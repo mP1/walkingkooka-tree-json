@@ -26,8 +26,8 @@ public final class BasicJsonMarshallerTypedCharacterTest extends BasicJsonMarsha
     @Override
     public void testUnmarshallJsonNullNode() {
         this.unmarshallFailed(
-                JsonNode.nullNode(),
-                java.lang.NullPointerException.class
+            JsonNode.nullNode(),
+            java.lang.NullPointerException.class
         );
     }
 
@@ -39,24 +39,24 @@ public final class BasicJsonMarshallerTypedCharacterTest extends BasicJsonMarsha
     @Test
     public void testUnmarshallA() {
         this.unmarshallAndCheck(
-                JsonNode.string("A"),
-                'A'
+            JsonNode.string("A"),
+            'A'
         );
     }
 
     @Test
     public void testUnmarshallTab() {
         this.unmarshallAndCheck(
-                JsonNode.string("\t"),
-                '\t'
+            JsonNode.string("\t"),
+            '\t'
         );
     }
 
     @Test
     public void testMarshallZ() {
         this.marshallAndCheck(
-                'Z',
-                JsonNode.string("Z")
+            'Z',
+            JsonNode.string("Z")
         );
     }
 

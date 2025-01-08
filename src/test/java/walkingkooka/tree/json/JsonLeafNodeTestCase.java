@@ -83,7 +83,7 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
 
         final JsonPropertyName a = JsonPropertyName.with("prop");
         final JsonObject parent = JsonNode.object()
-                .set(a, node);
+            .set(a, node);
         this.checkEquals(node, parent.getOrFail(a).removeParent());
     }
 
@@ -96,12 +96,12 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
         final N value2 = this.createJsonNode(this.differentValue());
 
         final JsonObject before = JsonNode.object()
-                .set(key1, value1)
-                .set(key2, JsonNode.object());
+            .set(key1, value1)
+            .set(key2, JsonNode.object());
 
         this.replaceAndCheck(before.getOrFail(key1),
-                value2,
-                before.set(key1, value2).getOrFail(key1));
+            value2,
+            before.set(key1, value2).getOrFail(key1));
     }
 
     @Test
@@ -113,12 +113,12 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
         final N value2 = this.createJsonNode(this.differentValue());
 
         final JsonObject before = JsonNode.object()
-                .set(key1, JsonNode.object())
-                .set(key2, value1);
+            .set(key1, JsonNode.object())
+            .set(key2, value1);
 
         this.replaceAndCheck(before.getOrFail(key2),
-                value2,
-                before.set(key2, value2).getOrFail(key2));
+            value2,
+            before.set(key2, value2).getOrFail(key2));
     }
 
     @Override

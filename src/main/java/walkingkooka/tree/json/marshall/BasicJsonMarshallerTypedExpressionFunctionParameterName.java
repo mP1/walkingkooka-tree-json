@@ -52,7 +52,7 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameterName extends Basi
     ExpressionFunctionParameterName unmarshallNonNull(final JsonNode node,
                                                       final JsonNodeUnmarshallContext context) {
         return ExpressionFunctionParameterName.with(
-                node.stringOrFail()
+            node.stringOrFail()
         );
     }
 

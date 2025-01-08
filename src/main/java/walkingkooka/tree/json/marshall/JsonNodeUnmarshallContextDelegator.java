@@ -27,22 +27,22 @@ import java.util.Set;
 import java.util.function.Function;
 
 public interface JsonNodeUnmarshallContextDelegator extends JsonNodeUnmarshallContext,
-        JsonNodeContextDelegator {
+    JsonNodeContextDelegator {
 
     @Override
     default JsonNodeUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
         return this.jsonNodeUnmarshallContext()
-                .setPreProcessor(processor);
+            .setPreProcessor(processor);
     }
 
     @Override
     default <T> T unmarshall(final JsonNode node,
                              final Class<T> type) {
         return this.jsonNodeUnmarshallContext()
-                .unmarshall(
-                        node,
-                        type
-                );
+            .unmarshall(
+                node,
+                type
+            );
     }
 
     @Override
@@ -50,31 +50,31 @@ public interface JsonNodeUnmarshallContextDelegator extends JsonNodeUnmarshallCo
                                                          final Class<T> enumClass,
                                                          final Function<String, T> stringToEnum) {
         return this.jsonNodeUnmarshallContext()
-                .unmarshallEnumSet(
-                        node,
-                        enumClass,
-                        stringToEnum
-                );
+            .unmarshallEnumSet(
+                node,
+                enumClass,
+                stringToEnum
+            );
     }
 
     @Override
     default <T> List<T> unmarshallList(final JsonNode node,
                                        final Class<T> elementType) {
         return this.jsonNodeUnmarshallContext()
-                .unmarshallList(
-                        node,
-                        elementType
-                );
+            .unmarshallList(
+                node,
+                elementType
+            );
     }
 
     @Override
     default <T> Set<T> unmarshallSet(final JsonNode node,
                                      final Class<T> elementType) {
         return this.jsonNodeUnmarshallContext()
-                .unmarshallSet(
-                        node,
-                        elementType
-                );
+            .unmarshallSet(
+                node,
+                elementType
+            );
     }
 
     @Override
@@ -82,46 +82,46 @@ public interface JsonNodeUnmarshallContextDelegator extends JsonNodeUnmarshallCo
                                            final Class<K> keyType,
                                            final Class<V> valueType) {
         return this.jsonNodeUnmarshallContext()
-                .unmarshallMap(
-                        node,
-                        keyType,
-                        valueType
-                );
+            .unmarshallMap(
+                node,
+                keyType,
+                valueType
+            );
     }
 
     @Override
     default <T> T unmarshallWithType(final JsonNode node) {
         return this.jsonNodeUnmarshallContext()
-                .unmarshallWithType(node);
+            .unmarshallWithType(node);
     }
 
     @Override
     default <T> List<T> unmarshallWithTypeList(final JsonNode node) {
         return this.jsonNodeUnmarshallContext()
-                .unmarshallWithTypeList(node);
+            .unmarshallWithTypeList(node);
     }
 
     @Override default <T> Set<T> unmarshallWithTypeSet(final JsonNode node) {
         return this.jsonNodeUnmarshallContext()
-                .unmarshallWithTypeSet(node);
+            .unmarshallWithTypeSet(node);
     }
 
     @Override
     default <K, V> Map<K, V> unmarshallWithTypeMap(final JsonNode node) {
         return this.jsonNodeUnmarshallContext()
-                .unmarshallWithTypeMap(node);
+            .unmarshallWithTypeMap(node);
     }
 
     @Override
     default MathContext mathContext() {
         return this.jsonNodeUnmarshallContext()
-                .mathContext();
+            .mathContext();
     }
 
     @Override
     default ExpressionNumberKind expressionNumberKind() {
         return this.jsonNodeUnmarshallContext()
-                .expressionNumberKind();
+            .expressionNumberKind();
     }
 
 

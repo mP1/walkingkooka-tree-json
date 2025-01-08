@@ -26,7 +26,7 @@ import walkingkooka.text.CaseSensitivity;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class JsonPropertyNameTest implements ClassTesting2<JsonPropertyName>,
-        NameTesting<JsonPropertyName, JsonPropertyName> {
+    NameTesting<JsonPropertyName, JsonPropertyName> {
 
     @Test
     public void testWithNegativeIndexFails() {
@@ -87,7 +87,7 @@ public final class JsonPropertyNameTest implements ClassTesting2<JsonPropertyNam
         final JsonPropertyName d4 = JsonPropertyName.with("d4");
 
         this.compareToArraySortAndCheck(d4, a1, c3, b2,
-                a1, b2, c3, d4);
+            a1, b2, c3, d4);
     }
 
     @Override

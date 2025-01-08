@@ -28,8 +28,8 @@ public final class JsonNodeNullParserToken extends JsonNodeValueParserToken<Void
 
     static JsonNodeNullParserToken with(final Void value, final String text) {
         return new JsonNodeNullParserToken(
-                value,
-                CharSequences.failIfNullOrEmpty(text, "text")
+            value,
+            CharSequences.failIfNullOrEmpty(text, "text")
         );
     }
 

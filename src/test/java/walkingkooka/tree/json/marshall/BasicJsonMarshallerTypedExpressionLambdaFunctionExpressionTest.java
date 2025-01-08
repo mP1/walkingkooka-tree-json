@@ -36,10 +36,10 @@ public final class BasicJsonMarshallerTypedExpressionLambdaFunctionExpressionTes
     @SuppressWarnings("unchecked")
     public static void beforeAll() {
         remover = BasicJsonMarshaller.register(
-                REFERENCE_TYPE_NAME,
-                (n, c) -> REFERENCE,
-                (r, c) -> REFERENCE_JSON,
-                TestExpressionReference.class
+            REFERENCE_TYPE_NAME,
+            (n, c) -> REFERENCE,
+            (r, c) -> REFERENCE_JSON,
+            TestExpressionReference.class
         );
     }
 
@@ -58,27 +58,27 @@ public final class BasicJsonMarshallerTypedExpressionLambdaFunctionExpressionTes
     }
 
     private final static List<ExpressionFunctionParameter<?>> PARAMETERS = Lists.of(
-            ExpressionFunctionParameterName.with("x")
-                    .required(String.class)
+        ExpressionFunctionParameterName.with("x")
+            .required(String.class)
     );
 
     private final static Expression BODY = Expression.not(
-            Expression.reference(REFERENCE)
+        Expression.reference(REFERENCE)
     );
 
     @Test
     public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(
-                JsonNode.booleanNode(true),
-                ClassCastException.class
+            JsonNode.booleanNode(true),
+            ClassCastException.class
         );
     }
 
     @Test
     public void testUnmarshallNumberFails() {
         this.unmarshallFailed(
-                JsonNode.number(123),
-                ClassCastException.class
+            JsonNode.number(123),
+            ClassCastException.class
         );
     }
 
@@ -92,8 +92,8 @@ public final class BasicJsonMarshallerTypedExpressionLambdaFunctionExpressionTes
     @Override
     LambdaFunctionExpression value() {
         return Expression.lambdaFunction(
-                PARAMETERS,
-                BODY
+            PARAMETERS,
+            BODY
         );
     }
 
@@ -102,8 +102,8 @@ public final class BasicJsonMarshallerTypedExpressionLambdaFunctionExpressionTes
         final JsonNodeMarshallContext marshallContext = this.marshallContext();
 
         return JsonNode.object()
-                .set(BasicJsonMarshallerTypedExpressionLambdaFunctionExpression.PARAMETERS_JSON_PROPERTY, marshallContext.marshallCollection(PARAMETERS))
-                .set(BasicJsonMarshallerTypedExpressionLambdaFunctionExpression.BODY_JSON_PROPERTY, marshallContext.marshallWithType(BODY));
+            .set(BasicJsonMarshallerTypedExpressionLambdaFunctionExpression.PARAMETERS_JSON_PROPERTY, marshallContext.marshallCollection(PARAMETERS))
+            .set(BasicJsonMarshallerTypedExpressionLambdaFunctionExpression.BODY_JSON_PROPERTY, marshallContext.marshallWithType(BODY));
     }
 
     @Override

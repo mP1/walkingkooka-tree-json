@@ -45,8 +45,8 @@ public final class BasicJsonMarshallerTypedExpressionFunctionParameterTest exten
     @Override
     public void testUnmarshallJsonNullNode() {
         this.unmarshallFailed(
-                JsonNode.nullNode(),
-                java.lang.NullPointerException.class
+            JsonNode.nullNode(),
+            java.lang.NullPointerException.class
         );
     }
 
@@ -58,22 +58,22 @@ public final class BasicJsonMarshallerTypedExpressionFunctionParameterTest exten
     @Override
     ExpressionFunctionParameter<?> value() {
         return ExpressionFunctionParameter.with(
-                NAME,
-                TYPE,
-                TYPE_PARAMETERS,
-                CARDINALITY,
-                KINDS
+            NAME,
+            TYPE,
+            TYPE_PARAMETERS,
+            CARDINALITY,
+            KINDS
         );
     }
 
     @Override
     JsonNode node() {
         return JsonNode.object()
-                .set(BasicJsonMarshallerTypedExpressionFunctionParameter.NAME_PROPERTY, JsonNode.string(NAME.value()))
-                .set(BasicJsonMarshallerTypedExpressionFunctionParameter.TYPE_PROPERTY, JsonNode.string("java.util.List"))
-                .set(BasicJsonMarshallerTypedExpressionFunctionParameter.TYPE_PARAMETERS_PROPERTY, JsonNode.array().appendChild(JsonNode.string("java.lang.String")))
-                .set(BasicJsonMarshallerTypedExpressionFunctionParameter.CARDINALITY_PROPERTY, JsonNode.string("REQUIRED"))
-                .set(BasicJsonMarshallerTypedExpressionFunctionParameter.KINDS_PROPERTY, JsonNode.string("CONVERT,EVALUATE"));
+            .set(BasicJsonMarshallerTypedExpressionFunctionParameter.NAME_PROPERTY, JsonNode.string(NAME.value()))
+            .set(BasicJsonMarshallerTypedExpressionFunctionParameter.TYPE_PROPERTY, JsonNode.string("java.util.List"))
+            .set(BasicJsonMarshallerTypedExpressionFunctionParameter.TYPE_PARAMETERS_PROPERTY, JsonNode.array().appendChild(JsonNode.string("java.lang.String")))
+            .set(BasicJsonMarshallerTypedExpressionFunctionParameter.CARDINALITY_PROPERTY, JsonNode.string("REQUIRED"))
+            .set(BasicJsonMarshallerTypedExpressionFunctionParameter.KINDS_PROPERTY, JsonNode.string("CONVERT,EVALUATE"));
     }
 
     @Override

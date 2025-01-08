@@ -31,24 +31,24 @@ public final class BasicJsonMarshallerTypedExpressionNamedFunctionExpressionTest
     @Test
     public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(
-                JsonNode.booleanNode(true),
-                ClassCastException.class
+            JsonNode.booleanNode(true),
+            ClassCastException.class
         );
     }
 
     @Test
     public void testUnmarshallNumberFails() {
         this.unmarshallFailed(
-                JsonNode.number(123),
-                ClassCastException.class
+            JsonNode.number(123),
+            ClassCastException.class
         );
     }
 
     @Test
     public void testUnmarshallObjectFails() {
         this.unmarshallFailed(
-                JsonNode.object(),
-                ClassCastException.class
+            JsonNode.object(),
+            ClassCastException.class
         );
     }
 
@@ -62,7 +62,7 @@ public final class BasicJsonMarshallerTypedExpressionNamedFunctionExpressionTest
     @Override
     NamedFunctionExpression value() {
         return Expression.namedFunction(
-                ExpressionFunctionName.with(FUNCTION_NAME)
+            ExpressionFunctionName.with(FUNCTION_NAME)
         );
     }
 

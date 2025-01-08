@@ -41,32 +41,32 @@ public final class BasicJsonMarshallerTypedMapTest extends BasicJsonMarshallerTy
     @Test
     public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(
-                JsonNode.booleanNode(true),
-                JsonNodeUnmarshallException.class
+            JsonNode.booleanNode(true),
+            JsonNodeUnmarshallException.class
         );
     }
 
     @Test
     public void testUnmarshallNumberFails() {
         this.unmarshallFailed(
-                JsonNode.number(123),
-                JsonNodeUnmarshallException.class
+            JsonNode.number(123),
+            JsonNodeUnmarshallException.class
         );
     }
 
     @Test
     public void testUnmarshallStringFails() {
         this.unmarshallFailed(
-                JsonNode.string("abc123"),
-                JsonNodeUnmarshallException.class
+            JsonNode.string("abc123"),
+            JsonNodeUnmarshallException.class
         );
     }
 
     @Test
     public void testUnmarshallObjectFails() {
         this.unmarshallFailed(
-                JsonNode.object(),
-                JsonNodeUnmarshallException.class
+            JsonNode.object(),
+            JsonNodeUnmarshallException.class
         );
     }
 
@@ -88,22 +88,22 @@ public final class BasicJsonMarshallerTypedMapTest extends BasicJsonMarshallerTy
     @Override
     Map<?, ?> value() {
         return Maps.of(Boolean.TRUE, null,
-                123.5, "abc123",
-                TestJsonNodeValue.with("test-has-json-node-a1"), Boolean.FALSE);
+            123.5, "abc123",
+            TestJsonNodeValue.with("test-has-json-node-a1"), Boolean.FALSE);
     }
 
     @Override
     JsonNode node() {
         return JsonNode.array()
-                .appendChild(entry(JsonNode.booleanNode(Boolean.TRUE), JsonNode.nullNode()))
-                .appendChild(entry(JsonNode.number(123.5), JsonNode.string("abc123")))
-                .appendChild(entry(this.marshallContext().marshallWithType(TestJsonNodeValue.with("test-has-json-node-a1")), JsonNode.booleanNode(Boolean.FALSE)));
+            .appendChild(entry(JsonNode.booleanNode(Boolean.TRUE), JsonNode.nullNode()))
+            .appendChild(entry(JsonNode.number(123.5), JsonNode.string("abc123")))
+            .appendChild(entry(this.marshallContext().marshallWithType(TestJsonNodeValue.with("test-has-json-node-a1")), JsonNode.booleanNode(Boolean.FALSE)));
     }
 
     private JsonNode entry(final JsonNode key, final JsonNode value) {
         return JsonNode.object()
-                .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, key)
-                .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, value);
+            .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, key)
+            .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, value);
     }
 
     @Override

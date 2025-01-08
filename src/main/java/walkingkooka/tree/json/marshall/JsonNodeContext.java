@@ -38,8 +38,8 @@ public interface JsonNodeContext extends Context {
         Objects.requireNonNull(type, "type");
 
         return CaseKind.CAMEL.change(
-                type.getSimpleName(),
-                CaseKind.KEBAB
+            type.getSimpleName(),
+            CaseKind.KEBAB
         );
     }
 
@@ -54,9 +54,9 @@ public interface JsonNodeContext extends Context {
                                  final Class<T> type,
                                  final Class<? extends T>... types) {
         return BasicJsonMarshaller.register(typeName,
-                from,
-                to,
-                type, types);
+            from,
+            to,
+            type, types);
     }
 
     // registeredType ..................................................................................................

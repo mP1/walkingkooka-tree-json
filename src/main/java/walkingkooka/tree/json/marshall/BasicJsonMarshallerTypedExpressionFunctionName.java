@@ -33,10 +33,10 @@ final class BasicJsonMarshallerTypedExpressionFunctionName extends BasicJsonMars
     @Override
     void register() {
         JsonNodeContext.register(
-                this.typeName(),
-                this::unmarshall,
-                this::marshall,
-                ExpressionFunctionName.class
+            this.typeName(),
+            this::unmarshall,
+            this::marshall,
+            ExpressionFunctionName.class
         );
     }
 

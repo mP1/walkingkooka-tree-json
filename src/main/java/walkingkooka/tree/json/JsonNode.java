@@ -48,21 +48,21 @@ import java.util.function.Predicate;
  * actually returns a new graph of nodes as would be expected including all parents and the root.
  */
 public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name, Object>,
-        HasText,
-        TraversableHasTextOffset<JsonNode>,
-        TreePrintable {
+    HasText,
+    TraversableHasTextOffset<JsonNode>,
+    TreePrintable {
 
     /**
      * Tests if the given {@link Class} is a {@link JsonNode} or sub-class.
      */
     public static boolean isClass(final Class<?> type) {
         return JsonNode.class == type ||
-                JsonBoolean.class == type ||
-                JsonNull.class == type ||
-                JsonNumber.class == type ||
-                JsonString.class == type ||
-                JsonArray.class == type ||
-                JsonObject.class == type;
+            JsonBoolean.class == type ||
+            JsonNull.class == type ||
+            JsonNumber.class == type ||
+            JsonString.class == type ||
+            JsonArray.class == type ||
+            JsonObject.class == type;
     }
 
     /**
@@ -72,16 +72,16 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         return PARSER.parseText(
                 text,
                 JsonNodeParserContexts.basic()
-        ).cast(JsonNodeParserToken.class)
-                .toJsonNode()
-                .get();
+            ).cast(JsonNodeParserToken.class)
+            .toJsonNode()
+            .get();
     }
 
     /**
      * Parser that will consume json or report a parsing error.
      */
     private final static Parser<JsonNodeParserContext> PARSER = JsonNodeParsers.value()
-            .cast();
+        .cast();
 
     public static JsonArray array() {
         return JsonArray.EMPTY;
@@ -137,8 +137,8 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
 
     final JsonNode setName0(final JsonPropertyName name) {
         return this.name.equals(name) ?
-                this :
-                this.replaceName(name);
+            this :
+            this.replaceName(name);
     }
 
     final JsonPropertyName name;
@@ -167,8 +167,8 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     final JsonNode removeParent0() {
         return this.isRoot() ?
-                this :
-                this.replace(this.defaultName(), NO_INDEX);
+            this :
+            this.replace(this.defaultName(), NO_INDEX);
     }
 
     /**
@@ -194,14 +194,14 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         Objects.requireNonNull(node, "node");
 
         return this.isRoot() ?
-                node.removeParent() :
-                this.replace0(node);
+            node.removeParent() :
+            this.replace0(node);
     }
 
     private JsonNode replace0(final JsonNode node) {
         return this.parent()
-                .map(p -> p.setChild(this.name, node).children().get(this.index))
-                .orElse(node);
+            .map(p -> p.setChild(this.name, node).children().get(this.index))
+            .orElse(node);
     }
 
 //    abstract JsonNode
@@ -218,9 +218,9 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     final JsonNode replaceChild(final Optional<JsonNode> previousParent, final int index) {
         return previousParent.isPresent() ?
-                previousParent.get()
-                        .setChild0(this, index) :
-                this;
+            previousParent.get()
+                .setChild0(this, index) :
+            this;
     }
 
     // index............................................................................................................
@@ -379,7 +379,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     public final JsonBoolean toJsonBoolean() {
         return JsonNode.booleanNode(
-                this.toBoolean()
+            this.toBoolean()
         );
     }
 
@@ -412,16 +412,16 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     @Override
     public final boolean equals(final Object other) {
         return this == other ||
-                this.canBeEqual(other) &&
-                        this.equals0(Cast.to(other));
+            this.canBeEqual(other) &&
+                this.equals0(Cast.to(other));
     }
 
     abstract boolean canBeEqual(final Object other);
 
     private boolean equals0(final JsonNode other) {
         return this.name.equals(other.name) &&
-                this.equalsValue(other) &&
-                this.equalsChildren(other);
+            this.equalsValue(other) &&
+            this.equalsChildren(other);
     }
 
     abstract boolean equalsValue(final JsonNode other);
@@ -476,8 +476,8 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     public static NodeSelector<JsonNode, JsonPropertyName, Name, Object> nodeSelectorExpressionParserToken(final NodeSelectorExpressionParserToken token,
                                                                                                            final Predicate<ExpressionFunctionName> functions) {
         return NodeSelector.parserToken(token,
-                n -> JsonPropertyName.with(n.value()),
-                functions,
-                JsonNode.class);
+            n -> JsonPropertyName.with(n.value()),
+            functions,
+            JsonNode.class);
     }
 }

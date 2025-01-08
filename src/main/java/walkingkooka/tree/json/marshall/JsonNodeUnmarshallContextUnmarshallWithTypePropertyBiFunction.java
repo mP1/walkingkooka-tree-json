@@ -61,25 +61,25 @@ final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<T> imp
             if (false == typeName.isString()) {
                 // Property $property contains an invalid type $typeName
                 throw new JsonNodeUnmarshallException(
-                        "Property " +
-                                property +
-                                " contains invalid type " +
-                                typeName,
-                        source
+                    "Property " +
+                        property +
+                        " contains invalid type " +
+                        typeName,
+                    source
                 );
             }
             final JsonString stringTypeName = typeName.cast(JsonString.class);
             final Class<?> type = context.registeredType(stringTypeName)
-                    .orElseThrow(
-                            () -> BasicJsonMarshaller.notFound(
-                                    stringTypeName.stringOrFail()
-                            )
-                    );
-            return Cast.to(
-                    context.unmarshall(
-                            node,
-                            type
+                .orElseThrow(
+                    () -> BasicJsonMarshaller.notFound(
+                        stringTypeName.stringOrFail()
                     )
+                );
+            return Cast.to(
+                context.unmarshall(
+                    node,
+                    type
+                )
             );
         } catch (final java.lang.IllegalArgumentException cause) {
             throw new JsonNodeUnmarshallException(cause.getMessage(), node);

@@ -28,8 +28,8 @@ public final class BasicJsonMarshallerTypedExpressionNumberTest extends BasicJso
     @Test
     public void testMarshall0() {
         this.marshallAndCheck(
-                EXPRESSION_NUMBER_KIND.create(123),
-                JsonNode.string("123")
+            EXPRESSION_NUMBER_KIND.create(123),
+            JsonNode.string("123")
         );
     }
 

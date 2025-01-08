@@ -31,7 +31,7 @@ import java.lang.reflect.Method;
 import java.math.MathContext;
 
 public final class JsonNodeParsersTest implements PublicStaticHelperTesting<JsonNodeParsers>,
-        ParserTesting2<Parser<JsonNodeParserContext>, JsonNodeParserContext> {
+    ParserTesting2<Parser<JsonNodeParserContext>, JsonNodeParserContext> {
 
     @Test
     public void testBooleanFalse() {
@@ -73,9 +73,9 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
         final String text = "NaN";
 
         this.parseAndCheck(
-                text,
-                number(Double.NaN),
-                text
+            text,
+            number(Double.NaN),
+            text
         );
     }
 
@@ -84,9 +84,9 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
         final String text = "Infinity";
 
         this.parseAndCheck(
-                text,
-                number(Double.POSITIVE_INFINITY),
-                text
+            text,
+            number(Double.POSITIVE_INFINITY),
+            text
         );
     }
 
@@ -95,9 +95,9 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
         final String text = "-Infinity";
 
         this.parseAndCheck(
-                text,
-                number(Double.NEGATIVE_INFINITY),
-                text
+            text,
+            number(Double.NEGATIVE_INFINITY),
+            text
         );
     }
 
@@ -320,10 +320,10 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
         final String text = "{  \"key1\"  :  null  }";
 
         this.parseAndCheck(text,
-                object(objectBegin(),
-                        whitespace(), key1(), whitespace(), objectAssignment(), whitespace(), nul(), whitespace(),
-                        objectEnd()),
-                text);
+            object(objectBegin(),
+                whitespace(), key1(), whitespace(), objectAssignment(), whitespace(), nul(), whitespace(),
+                objectEnd()),
+            text);
     }
 
     @Test
@@ -331,10 +331,10 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
         final String text = "{\"key1\":true,\"key2\":false,\"key3\":null}";
 
         this.parseAndCheck(text, object(objectBegin(),
-                key1(), objectAssignment(), booleanTrue(), separator(),
-                key2(), objectAssignment(), booleanFalse(), separator(),
-                key3(), objectAssignment(), nul(),
-                objectEnd()), text);
+            key1(), objectAssignment(), booleanTrue(), separator(),
+            key2(), objectAssignment(), booleanFalse(), separator(),
+            key3(), objectAssignment(), nul(),
+            objectEnd()), text);
     }
 
     @Test
@@ -386,8 +386,8 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     @Override
     public Parser<JsonNodeParserContext> createParser() {
         return JsonNodeParsers.value()
-                .orReport(ParserReporters.basic())
-                .cast();
+            .orReport(ParserReporters.basic())
+            .cast();
     }
 
     @Override
@@ -426,15 +426,15 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     private JsonNodeParserToken number(final int value) {
         // accept only int, keeps the creation of the matching text simple.
         return JsonNodeParserToken.number(
-                value,
-                String.valueOf(value)
+            value,
+            String.valueOf(value)
         );
     }
 
     private JsonNodeParserToken number(final double value) {
         return JsonNodeParserToken.number(
-                value,
-                String.valueOf(value)
+            value,
+            String.valueOf(value)
         );
     }
 

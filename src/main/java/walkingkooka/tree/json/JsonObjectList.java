@@ -90,15 +90,15 @@ final class JsonObjectList extends AbstractList<JsonNode> implements ImmutableLi
 
         final Map<JsonPropertyName, JsonNode> map = Maps.sorted();
 
-        for(final JsonNode json : list) {
+        for (final JsonNode json : list) {
             map.put(
-                    json.name(),
-                    json
+                json.name(),
+                json
             );
         }
 
         return map.equals(this.nameToValues) ?
-                this :
-                new JsonObjectList(map);
+            this :
+            new JsonObjectList(map);
     }
 }

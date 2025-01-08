@@ -30,7 +30,7 @@ public final class JsonNodeNullParserTokenTest extends JsonNodeLeafParserTokenTe
     @Override
     public void testPropertiesNeverReturnNull() throws Exception {
         this.allPropertiesNeverReturnNullCheck(this.createToken(),
-                (m) -> m.getName().equals("value"));
+            (m) -> m.getName().equals("value"));
     }
 
     @Test

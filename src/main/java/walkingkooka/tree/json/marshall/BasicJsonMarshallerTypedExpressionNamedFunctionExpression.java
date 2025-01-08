@@ -39,7 +39,7 @@ final class BasicJsonMarshallerTypedExpressionNamedFunctionExpression extends Ba
     NamedFunctionExpression unmarshallNonNull(final JsonNode node,
                                               final JsonNodeUnmarshallContext context) {
         return Expression.namedFunction(
-                ExpressionFunctionName.with(node.stringOrFail())
+            ExpressionFunctionName.with(node.stringOrFail())
         );
     }
 
@@ -47,10 +47,10 @@ final class BasicJsonMarshallerTypedExpressionNamedFunctionExpression extends Ba
     JsonNode marshallNonNull(final NamedFunctionExpression value,
                              final JsonNodeMarshallContext context) {
         return context.marshall(
-                JsonNode.string(
-                        value.value()
-                                .value()
-                )
+            JsonNode.string(
+                value.value()
+                    .value()
+            )
         );
     }
 }

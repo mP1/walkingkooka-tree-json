@@ -76,8 +76,8 @@ final class JsonNodeParsersStringParser implements Parser<ParserContext> {
                                 case DOUBLE_QUOTE:
                                     cursor.next();
                                     token = JsonNodeParserToken.string(
-                                            decoded.toString(),
-                                            save.textBetween().toString()
+                                        decoded.toString(),
+                                        save.textBetween().toString()
                                     );
                                     break Exit;
                                 default:
@@ -124,7 +124,7 @@ final class JsonNodeParsersStringParser implements Parser<ParserContext> {
                             unicodeLength++;
                             if (unicodeLength == 4) {
                                 mode = MODE_LITERAL;
-                                decoded.append((char)unicode);
+                                decoded.append((char) unicode);
                             }
                             break;
                     } // switch

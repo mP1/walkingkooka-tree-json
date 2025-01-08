@@ -38,105 +38,105 @@ public final class BasicJsonMarshallerTypedRangeTest extends BasicJsonMarshaller
     @Test
     public void testRangeGreaterThanFromJson() {
         this.unmarshallAndCheck(JsonNode.object()
-                        .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value1())),
-                Range.greaterThan(1));
+                .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value1())),
+            Range.greaterThan(1));
     }
 
     @Test
     public void testRangeGreaterThanMarshall() {
         this.marshallAndCheck(Range.greaterThan(1),
-                JsonNode.object()
-                        .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value1())));
+            JsonNode.object()
+                .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value1())));
     }
 
     @Test
     public void testRangeGreaterThanEqualsFromJson() {
         this.unmarshallAndCheck(JsonNode.object()
-                        .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value1())),
-                Range.greaterThanEquals(1));
+                .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value1())),
+            Range.greaterThanEquals(1));
     }
 
     @Test
     public void testRangeGreaterThanEqualsMarshall() {
         this.marshallAndCheck(Range.greaterThanEquals(1),
-                JsonNode.object()
-                        .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value1())));
+            JsonNode.object()
+                .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value1())));
     }
 
     @Test
     public void testRangeLessThanFromJson() {
         this.unmarshallAndCheck(JsonNode.object()
-                        .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value1())),
-                Range.lessThan(1));
+                .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value1())),
+            Range.lessThan(1));
     }
 
     @Test
     public void testRangeLessThanMarshall() {
         this.marshallAndCheck(Range.lessThan(1),
-                JsonNode.object()
-                        .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value1())));
+            JsonNode.object()
+                .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value1())));
     }
 
     @Test
     public void testRangeLessThanEqualsFromJson() {
         this.unmarshallAndCheck(JsonNode.object()
-                        .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value1())),
-                Range.lessThanEquals(1));
+                .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value1())),
+            Range.lessThanEquals(1));
     }
 
     @Test
     public void testRangeLessThanEqualsMarshall() {
         this.marshallAndCheck(Range.lessThanEquals(1),
-                JsonNode.object()
-                        .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value1())));
+            JsonNode.object()
+                .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value1())));
     }
 
     @Test
     public void testRangeLowerInclusiveUpperExclusiveFromJson() {
         this.unmarshallAndCheck(JsonNode.object()
-                        .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value1()))
-                        .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value2())),
-                Range.greaterThanEquals(1).and(Range.lessThan(2)));
+                .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value1()))
+                .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value2())),
+            Range.greaterThanEquals(1).and(Range.lessThan(2)));
     }
 
     @Test
     public void testRangeLowerInclusiveUpperExclusiveMarshall() {
         this.marshallAndCheck(Range.greaterThanEquals(1).and(Range.lessThan(2)),
-                JsonNode.object()
-                        .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value1()))
-                        .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value2())));
+            JsonNode.object()
+                .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value1()))
+                .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value2())));
     }
 
     @Test
     public void testRangeLowerExclusiveUpperInclusiveFromJson() {
         this.unmarshallAndCheck(JsonNode.object()
-                        .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value1()))
-                        .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value2())),
-                Range.greaterThan(1).and(Range.lessThanEquals(2)));
+                .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value1()))
+                .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value2())),
+            Range.greaterThan(1).and(Range.lessThanEquals(2)));
     }
 
     @Test
     public void testRangeLowerExclusiveUpperInclusiveMarshall() {
         this.marshallAndCheck(Range.greaterThan(1).and(Range.lessThanEquals(2)),
-                JsonNode.object()
-                        .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value1()))
-                        .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
-                                JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value2())));
+            JsonNode.object()
+                .set(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY, this.value1()))
+                .set(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
+                    JsonNode.object().set(BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY, this.value2())));
     }
 
     private JsonNode value1() {
@@ -149,7 +149,7 @@ public final class BasicJsonMarshallerTypedRangeTest extends BasicJsonMarshaller
 
     private JsonNode valueWithType(final Integer value) {
         return this.marshallContext()
-                .marshallWithType(value);
+            .marshallWithType(value);
     }
 
     // helpers..........................................................................................................

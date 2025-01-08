@@ -59,10 +59,10 @@ final class BasicJsonMarshallerTypedBinary extends BasicJsonMarshallerTyped<Bina
     Binary unmarshallNonNull(final JsonNode node,
                              final JsonNodeUnmarshallContext context) {
         return Binary.with(
-                Base64.getDecoder()
-                        .decode(
-                                node.stringOrFail()
-                        )
+            Base64.getDecoder()
+                .decode(
+                    node.stringOrFail()
+                )
         );
     }
 
@@ -70,10 +70,10 @@ final class BasicJsonMarshallerTypedBinary extends BasicJsonMarshallerTyped<Bina
     JsonNode marshallNonNull(final Binary value,
                              final JsonNodeMarshallContext context) {
         return JsonNode.string(
-                Base64.getEncoder()
-                        .encodeToString(
-                                value.value()
-                        )
+            Base64.getEncoder()
+                .encodeToString(
+                    value.value()
+                )
         );
     }
 }

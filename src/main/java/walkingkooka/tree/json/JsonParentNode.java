@@ -54,8 +54,8 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
      */
     final JsonNode setChildren0(final C children) {
         return this.childrenEquals(children) ?
-                this :
-                this.replaceChildren(children);
+            this :
+            this.replaceChildren(children);
     }
 
     /**
@@ -66,11 +66,10 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
     /**
      * Returns a new {@link JsonParentNode} with the given children and also updates the parent/ancestors.
      */
-    @SuppressWarnings("unchecked")
-    final JsonParentNode<C> replaceChildren(final C children) {
+    @SuppressWarnings("unchecked") final JsonParentNode<C> replaceChildren(final C children) {
         return this.replace0(this.name, this.index, children)
-                .replaceChild(this.parent(), this.index)
-                .cast(JsonParentNode.class);
+            .replaceChild(this.parent(), this.index)
+            .cast(JsonParentNode.class);
     }
 
     @Override final JsonNode replace(final JsonPropertyName name, final int index) {
@@ -105,8 +104,8 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
     @Override
     public String text() {
         return this.children().stream()
-                .map(HasText::text)
-                .collect(Collectors.joining());
+            .map(HasText::text)
+            .collect(Collectors.joining());
     }
 
     // HasTextLength...................................................................................................
@@ -114,8 +113,8 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
     @Override
     public int textLength() {
         return this.children().stream()
-                .mapToInt(HasText::textLength)
-                .sum();
+            .mapToInt(HasText::textLength)
+            .sum();
     }
 
     // javascript.......................................................................................................
@@ -137,8 +136,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
         return this.children.hashCode();
     }
 
-    @Override
-    final boolean equalsValue(final JsonNode other) {
+    @Override final boolean equalsValue(final JsonNode other) {
         return true; // no other properties name already tested.
     }
 }

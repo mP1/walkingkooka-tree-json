@@ -26,40 +26,40 @@ public final class BasicJsonMarshallerTypedExpressionFunctionNameTest extends Ba
     @Test
     public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(
-                JsonNode.booleanNode(true),
-                ClassCastException.class
+            JsonNode.booleanNode(true),
+            ClassCastException.class
         );
     }
 
     @Test
     public void testUnmarshallNumberFails() {
         this.unmarshallFailed(
-                JsonNode.number(1.5),
-                ClassCastException.class
+            JsonNode.number(1.5),
+            ClassCastException.class
         );
     }
 
     @Test
     public void testUnmarshallObjectFails() {
         this.unmarshallFailed(
-                JsonNode.object(),
-                ClassCastException.class
+            JsonNode.object(),
+            ClassCastException.class
         );
     }
 
     @Test
     public void testUnmarshallArrayFails() {
         this.unmarshallFailed(
-                JsonNode.array(),
-                ClassCastException.class
+            JsonNode.array(),
+            ClassCastException.class
         );
     }
 
     @Test
     public void testUnmarshallStringEmptyFails() {
         this.unmarshallFailed(
-                JsonNode.string(""),
-                java.lang.IllegalArgumentException.class
+            JsonNode.string(""),
+            java.lang.IllegalArgumentException.class
         );
     }
 
@@ -71,8 +71,8 @@ public final class BasicJsonMarshallerTypedExpressionFunctionNameTest extends Ba
     @Override
     JsonNode node() {
         return JsonNode.string(
-                this.value()
-                        .value()
+            this.value()
+                .value()
         );
     }
 

@@ -23,7 +23,7 @@ import walkingkooka.tree.TestNode;
 import walkingkooka.tree.select.parser.NodeSelectorVisitorTesting;
 
 public final class BasicJsonMarshallerTypedNodeSelectorNodeSelectorVisitorTest extends BasicTestCase<BasicJsonMarshallerTypedNodeSelectorNodeSelectorVisitor<TestNode, StringName, StringName, Object>>
-        implements NodeSelectorVisitorTesting<BasicJsonMarshallerTypedNodeSelectorNodeSelectorVisitor<TestNode, StringName, StringName, Object>, TestNode, StringName, StringName, Object> {
+    implements NodeSelectorVisitorTesting<BasicJsonMarshallerTypedNodeSelectorNodeSelectorVisitor<TestNode, StringName, StringName, Object>, TestNode, StringName, StringName, Object> {
 
     @Override
     public void testIfClassIsFinalIfAllConstructorsArePrivate() {

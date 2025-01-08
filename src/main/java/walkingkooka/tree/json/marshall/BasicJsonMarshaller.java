@@ -72,12 +72,12 @@ abstract class BasicJsonMarshaller<T> {
         BasicJsonMarshaller<?> marshaller = TYPENAME_TO_MARSHALLER.get(name);
         if (null == marshaller) {
             final String listSetMapName = value instanceof List ?
-                    "list" :
-                    value instanceof Set ?
-                            "set" :
-                            value instanceof Map ?
-                                    "map" :
-                                    null;
+                "list" :
+                value instanceof Set ?
+                    "set" :
+                    value instanceof Map ?
+                        "map" :
+                        null;
             if (null != listSetMapName) {
                 marshaller = TYPENAME_TO_MARSHALLER.get(listSetMapName);
             }
@@ -105,7 +105,7 @@ abstract class BasicJsonMarshaller<T> {
 
     static UnsupportedTypeJsonNodeException notFound(final String name) {
         return new UnsupportedTypeJsonNodeException(
-                "Missing json unmarshaller for type " + CharSequences.quote(name)
+            "Missing json unmarshaller for type " + CharSequences.quote(name)
         );
     }
 
@@ -118,67 +118,67 @@ abstract class BasicJsonMarshaller<T> {
      */
     static {
         Lists.of(BasicJsonMarshallerBoolean.instance(),
-                BasicJsonMarshallerDouble.instance(),
-                BasicJsonMarshallerNumber.instance(),
-                BasicJsonMarshallerString.instance(),
-                BasicJsonMarshallerTypedBigDecimal.instance(),
-                BasicJsonMarshallerTypedBigInteger.instance(),
-                BasicJsonMarshallerTypedBinary.instance(),
-                BasicJsonMarshallerTypedCharacter.instance(),
-                BasicJsonMarshallerTypedClass.instance(),
-                BasicJsonMarshallerTypedExpression.value(),
-                BasicJsonMarshallerTypedExpression.binary(Expression::add, AddExpression.class),
-                BasicJsonMarshallerTypedExpression.binary(Expression::and, AndExpression.class),
-                BasicJsonMarshallerTypedExpression.binary(Expression::divide, DivideExpression.class),
-                BasicJsonMarshallerTypedExpression.binary(Expression::equalsExpression, EqualsExpression.class),
-                BasicJsonMarshallerTypedExpression.binary(Expression::greaterThan, GreaterThanExpression.class),
-                BasicJsonMarshallerTypedExpression.binary(Expression::greaterThanEquals, GreaterThanEqualsExpression.class),
-                BasicJsonMarshallerTypedExpression.binary(Expression::lessThan, LessThanExpression.class),
-                BasicJsonMarshallerTypedExpression.binary(Expression::lessThanEquals, LessThanEqualsExpression.class),
-                BasicJsonMarshallerTypedExpression.binary(Expression::modulo, ModuloExpression.class),
-                BasicJsonMarshallerTypedExpression.binary(Expression::multiply, MultiplyExpression.class),
-                BasicJsonMarshallerTypedExpression.unary(Expression::negative, NegativeExpression.class),
-                BasicJsonMarshallerTypedExpression.unary(Expression::not, NotExpression.class),
-                BasicJsonMarshallerTypedExpression.binary(Expression::notEquals, NotEqualsExpression.class),
-                BasicJsonMarshallerTypedExpression.binary(Expression::or, OrExpression.class),
-                BasicJsonMarshallerTypedExpression.binary(Expression::power, PowerExpression.class),
-                BasicJsonMarshallerTypedExpression.reference(),
-                BasicJsonMarshallerTypedExpression.binary(Expression::subtract, SubtractExpression.class),
+            BasicJsonMarshallerDouble.instance(),
+            BasicJsonMarshallerNumber.instance(),
+            BasicJsonMarshallerString.instance(),
+            BasicJsonMarshallerTypedBigDecimal.instance(),
+            BasicJsonMarshallerTypedBigInteger.instance(),
+            BasicJsonMarshallerTypedBinary.instance(),
+            BasicJsonMarshallerTypedCharacter.instance(),
+            BasicJsonMarshallerTypedClass.instance(),
+            BasicJsonMarshallerTypedExpression.value(),
+            BasicJsonMarshallerTypedExpression.binary(Expression::add, AddExpression.class),
+            BasicJsonMarshallerTypedExpression.binary(Expression::and, AndExpression.class),
+            BasicJsonMarshallerTypedExpression.binary(Expression::divide, DivideExpression.class),
+            BasicJsonMarshallerTypedExpression.binary(Expression::equalsExpression, EqualsExpression.class),
+            BasicJsonMarshallerTypedExpression.binary(Expression::greaterThan, GreaterThanExpression.class),
+            BasicJsonMarshallerTypedExpression.binary(Expression::greaterThanEquals, GreaterThanEqualsExpression.class),
+            BasicJsonMarshallerTypedExpression.binary(Expression::lessThan, LessThanExpression.class),
+            BasicJsonMarshallerTypedExpression.binary(Expression::lessThanEquals, LessThanEqualsExpression.class),
+            BasicJsonMarshallerTypedExpression.binary(Expression::modulo, ModuloExpression.class),
+            BasicJsonMarshallerTypedExpression.binary(Expression::multiply, MultiplyExpression.class),
+            BasicJsonMarshallerTypedExpression.unary(Expression::negative, NegativeExpression.class),
+            BasicJsonMarshallerTypedExpression.unary(Expression::not, NotExpression.class),
+            BasicJsonMarshallerTypedExpression.binary(Expression::notEquals, NotEqualsExpression.class),
+            BasicJsonMarshallerTypedExpression.binary(Expression::or, OrExpression.class),
+            BasicJsonMarshallerTypedExpression.binary(Expression::power, PowerExpression.class),
+            BasicJsonMarshallerTypedExpression.reference(),
+            BasicJsonMarshallerTypedExpression.binary(Expression::subtract, SubtractExpression.class),
 //                BasicJsonMarshallerTypedExpression.value(),
-                BasicJsonMarshallerTypedExpression.binary(Expression::xor, XorExpression.class),
-                BasicJsonMarshallerTypedExpression.lambdaFunction(),
-                BasicJsonMarshallerTypedExpression.namedFunction(),
-                BasicJsonMarshallerTypedExpression.call(), // must be after namedFunction
-                BasicJsonMarshallerTypedExpressionNumber.instance(),
-                BasicJsonMarshallerTypedExpressionNumberKind.instance(),
-                BasicJsonMarshallerTypedExpressionFunctionName.instance(), // ExpressionFunctionName
-                BasicJsonMarshallerTypedExpressionFunctionParameter.instance(), // ExpressionFunctionParameter
-                BasicJsonMarshallerTypedExpressionFunctionParameterName.instance(), // ExpressionFunctionParameterName
-                BasicJsonMarshallerTypedJsonNode.instance(),
-                BasicJsonMarshallerTypedJsonPropertyName.instance(),
-                BasicJsonMarshallerTypedCollectionCollection.instance(),
-                BasicJsonMarshallerTypedCollectionList.instance(),
-                BasicJsonMarshallerTypedCollectionSet.instance(),
-                BasicJsonMarshallerTypedIllegalArgumentException.instance(),
-                BasicJsonMarshallerTypedInvalidCharacterException.instance(),
-                BasicJsonMarshallerTypedInvalidTextLengthException.instance(),
-                BasicJsonMarshallerTypedLocalDate.instance(),
-                BasicJsonMarshallerTypedLocalDateTime.instance(),
-                BasicJsonMarshallerTypedLocale.instance(),
-                BasicJsonMarshallerTypedLocalTime.instance(),
-                BasicJsonMarshallerTypedMap.instance(),
-                BasicJsonMarshallerTypedMathContext.instance(),
-                BasicJsonMarshallerTypedNodeSelector.instance(),
-                BasicJsonMarshallerTypedNullPointerException.instance(),
-                BasicJsonMarshallerTypedNumberByte.instance(),
-                BasicJsonMarshallerTypedNumberShort.instance(),
-                BasicJsonMarshallerTypedNumberInteger.instance(),
-                BasicJsonMarshallerTypedNumberLong.instance(),
-                BasicJsonMarshallerTypedNumberFloat.instance(),
-                BasicJsonMarshallerTypedOptional.instance(),
-                BasicJsonMarshallerTypedRange.instance(),
-                BasicJsonMarshallerTypedRoundingMode.instance(),
-                BasicJsonMarshallerTypedStringName.instance()
+            BasicJsonMarshallerTypedExpression.binary(Expression::xor, XorExpression.class),
+            BasicJsonMarshallerTypedExpression.lambdaFunction(),
+            BasicJsonMarshallerTypedExpression.namedFunction(),
+            BasicJsonMarshallerTypedExpression.call(), // must be after namedFunction
+            BasicJsonMarshallerTypedExpressionNumber.instance(),
+            BasicJsonMarshallerTypedExpressionNumberKind.instance(),
+            BasicJsonMarshallerTypedExpressionFunctionName.instance(), // ExpressionFunctionName
+            BasicJsonMarshallerTypedExpressionFunctionParameter.instance(), // ExpressionFunctionParameter
+            BasicJsonMarshallerTypedExpressionFunctionParameterName.instance(), // ExpressionFunctionParameterName
+            BasicJsonMarshallerTypedJsonNode.instance(),
+            BasicJsonMarshallerTypedJsonPropertyName.instance(),
+            BasicJsonMarshallerTypedCollectionCollection.instance(),
+            BasicJsonMarshallerTypedCollectionList.instance(),
+            BasicJsonMarshallerTypedCollectionSet.instance(),
+            BasicJsonMarshallerTypedIllegalArgumentException.instance(),
+            BasicJsonMarshallerTypedInvalidCharacterException.instance(),
+            BasicJsonMarshallerTypedInvalidTextLengthException.instance(),
+            BasicJsonMarshallerTypedLocalDate.instance(),
+            BasicJsonMarshallerTypedLocalDateTime.instance(),
+            BasicJsonMarshallerTypedLocale.instance(),
+            BasicJsonMarshallerTypedLocalTime.instance(),
+            BasicJsonMarshallerTypedMap.instance(),
+            BasicJsonMarshallerTypedMathContext.instance(),
+            BasicJsonMarshallerTypedNodeSelector.instance(),
+            BasicJsonMarshallerTypedNullPointerException.instance(),
+            BasicJsonMarshallerTypedNumberByte.instance(),
+            BasicJsonMarshallerTypedNumberShort.instance(),
+            BasicJsonMarshallerTypedNumberInteger.instance(),
+            BasicJsonMarshallerTypedNumberLong.instance(),
+            BasicJsonMarshallerTypedNumberFloat.instance(),
+            BasicJsonMarshallerTypedOptional.instance(),
+            BasicJsonMarshallerTypedRange.instance(),
+            BasicJsonMarshallerTypedRoundingMode.instance(),
+            BasicJsonMarshallerTypedStringName.instance()
         ).forEach(BasicJsonMarshaller::register);
     }
 
@@ -192,7 +192,7 @@ abstract class BasicJsonMarshaller<T> {
                                               final Class<T> type,
                                               final Class<? extends T>... types) {
         return BasicJsonMarshallerTypedGeneric.with(typeName, from, to, type, types)
-                .registerGeneric();
+            .registerGeneric();
     }
 
     /**
@@ -211,9 +211,9 @@ abstract class BasicJsonMarshaller<T> {
         Objects.requireNonNull(type, "type");
 
         return Optional.ofNullable(
-                TYPENAME_TO_MARSHALLER.get(
-                        classToString(type)
-                )
+            TYPENAME_TO_MARSHALLER.get(
+                classToString(type)
+            )
         ).map(m -> JsonNode.string(m.toString()));
     }
 
@@ -244,7 +244,7 @@ abstract class BasicJsonMarshaller<T> {
     final void registerTypeNameAndType() {
         registerWithTypeName(this.typeName());
         registerWithTypeName(
-                classToString(this.type())
+            classToString(this.type())
         );
     }
 
@@ -269,18 +269,18 @@ abstract class BasicJsonMarshaller<T> {
                        final JsonNodeUnmarshallContext context) {
         try {
             return node.isNull() ?
-                    this.unmarshallNull(context) :
-                    this.unmarshallNonNull(node, context);
+                this.unmarshallNull(context) :
+                this.unmarshallNonNull(node, context);
         } catch (final JsonNodeException | java.lang.NullPointerException cause) {
             throw cause;
         } catch (final RuntimeException cause) {
             final String message = cause.getMessage();
             throw new JsonNodeUnmarshallException(
-                    CharSequences.isNullOrEmpty(message) ?
-                            "Unmarshall failed" :
-                            message,
-                    node,
-                    cause
+                CharSequences.isNullOrEmpty(message) ?
+                    "Unmarshall failed" :
+                    message,
+                node,
+                cause
             );
         }
     }
@@ -298,8 +298,8 @@ abstract class BasicJsonMarshaller<T> {
     final JsonNode marshall(final T value,
                             final JsonNodeMarshallContext context) {
         return null == value ?
-                JsonNode.nullNode() :
-                this.marshallNonNull(value, context);
+            JsonNode.nullNode() :
+            this.marshallNonNull(value, context);
     }
 
     abstract JsonNode marshallNonNull(final T value,
@@ -311,8 +311,8 @@ abstract class BasicJsonMarshaller<T> {
     final JsonNode marshallWithType(final T value,
                                     final JsonNodeMarshallContext context) {
         return null == value ?
-                JsonNode.nullNode() :
-                this.marshallWithTypeNonNull(value, context);
+            JsonNode.nullNode() :
+            this.marshallWithTypeNonNull(value, context);
     }
 
     abstract JsonNode marshallWithTypeNonNull(final T value,

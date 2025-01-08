@@ -23,7 +23,7 @@ import walkingkooka.collect.list.ImmutableListTesting;
 import walkingkooka.collect.map.Maps;
 
 public final class JsonObjectListTest implements ImmutableListTesting<JsonObjectList, JsonNode>,
-        ToStringTesting<JsonObjectList> {
+    ToStringTesting<JsonObjectList> {
 
     @Test
     public void testJsonObject() {
@@ -36,36 +36,36 @@ public final class JsonObjectListTest implements ImmutableListTesting<JsonObject
         final JsonNode value2 = JsonNode.number(22);
 
         object = object.set(
-                first,
-                value1
+            first,
+            value1
         ).set(
-                second,
-                value2
+            second,
+            value2
         );
 
         this.checkEquals(
-                JsonObjectList.with(
-                        Maps.of(
-                                first,
-                                value1.setName(first),
-                                second,
-                                value2.setName(second)
-                        )
-                ),
-                object.children
+            JsonObjectList.with(
+                Maps.of(
+                    first,
+                    value1.setName(first),
+                    second,
+                    value2.setName(second)
+                )
+            ),
+            object.children
         );
 
         this.checkNotEquals(
-                JsonObjectList.with(
-                        Maps.of(
-                                first,
-                                value1,
-                                second,
-                                value2
-                        )
-                ),
-                object.children,
-                () -> "same name/value but values without name should not be equalb f"
+            JsonObjectList.with(
+                Maps.of(
+                    first,
+                    value1,
+                    second,
+                    value2
+                )
+            ),
+            object.children,
+            () -> "same name/value but values without name should not be equalb f"
         );
     }
 
@@ -80,14 +80,14 @@ public final class JsonObjectListTest implements ImmutableListTesting<JsonObject
         final JsonPropertyName second = JsonPropertyName.with("second");
 
         return JsonObjectList.with(
-                Maps.of(
-                        first,
-                        JsonNode.booleanNode(true)
-                                .setName(first),
-                        second,
-                        JsonNode.booleanNode(false)
-                                .setName(second)
-                )
+            Maps.of(
+                first,
+                JsonNode.booleanNode(true)
+                    .setName(first),
+                second,
+                JsonNode.booleanNode(false)
+                    .setName(second)
+            )
         );
     }
 

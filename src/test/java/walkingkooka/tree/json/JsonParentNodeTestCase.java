@@ -32,8 +32,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C extends List<JsonNode>>
-        extends JsonNodeTestCase<N>
-        implements ParentNodeTesting<JsonNode, JsonPropertyName, Name, Object> {
+    extends JsonNodeTestCase<N>
+    implements ParentNodeTesting<JsonNode, JsonPropertyName, Name, Object> {
 
     final static String VALUE1 = "value1";
     final static String VALUE2 = "value2";
@@ -79,8 +79,8 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
     @Test
     public final void testValueFails() {
         assertThrows(
-                UnsupportedOperationException.class,
-                () -> this.createJsonNode().value()
+            UnsupportedOperationException.class,
+            () -> this.createJsonNode().value()
         );
     }
 
@@ -165,8 +165,8 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
     public final void toStringAndCheck(final N node,
                                        final String expected) {
         super.toStringAndCheck(
-                node,
-                expected.replace(LineEnding.SYSTEM, LineEnding.NL)
+            node,
+            expected.replace(LineEnding.SYSTEM, LineEnding.NL)
         );
     }
 }

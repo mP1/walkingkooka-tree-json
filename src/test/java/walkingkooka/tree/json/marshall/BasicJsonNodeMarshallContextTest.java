@@ -33,44 +33,44 @@ import java.util.Locale;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContextTestCase<BasicJsonNodeMarshallContext>
-        implements JsonNodeMarshallContextTesting<BasicJsonNodeMarshallContext> {
+    implements JsonNodeMarshallContextTesting<BasicJsonNodeMarshallContext> {
 
     // marshall.....................................................................................................
 
     @Test
     public void testMarshallUnknownTypeFails() {
         assertThrows(
-                UnsupportedTypeJsonNodeException.class,
-                () -> this.createContext().marshall(this)
+            UnsupportedTypeJsonNodeException.class,
+            () -> this.createContext().marshall(this)
         );
     }
 
     @Test
     public void testMarshallBooleanTrue() {
         this.marshallAndCheck(true,
-                JsonNode.booleanNode(true));
+            JsonNode.booleanNode(true));
     }
 
     @Test
     public void testMarshallNumber() {
         final double value = 1.25;
         this.marshallAndCheck(value,
-                JsonNode.number(value));
+            JsonNode.number(value));
     }
 
     @Test
     public void testMarshallString() {
         final String value = "abc123";
         this.marshallAndCheck(value,
-                JsonNode.string(value));
+            JsonNode.string(value));
     }
 
     @Test
     public void testMarshallWithObjectPostProcessor() {
         final TestJsonNodeValue value = TestJsonNodeValue.with("abc123");
         this.marshallAndCheck(this.contextWithProcessor(),
-                value,
-                value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE));
+            value,
+            value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE));
     }
 
     // marshallCollection...................................................................................................
@@ -78,48 +78,48 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
     @Test
     public void testMarshallCollectionNullList() {
         this.marshallCollectionAndCheck(null,
-                JsonNode.nullNode());
+            JsonNode.nullNode());
     }
 
     @Test
     public void testMarshallCollectionBooleanTrue() {
         this.marshallCollectionAndCheck(Lists.of(true),
-                list(JsonNode.booleanNode(true)));
+            list(JsonNode.booleanNode(true)));
     }
 
     @Test
     public void testMarshallCollectionBooleanFalse() {
         this.marshallCollectionAndCheck(Lists.of(false),
-                list(JsonNode.booleanNode(false)));
+            list(JsonNode.booleanNode(false)));
     }
 
     @Test
     @Override
     public void testMarshallCollectionNull() {
         this.marshallCollectionAndCheck(Lists.of((Object) null),
-                list(JsonNode.nullNode()));
+            list(JsonNode.nullNode()));
     }
 
     @Test
     public void testMarshallCollectionNumber() {
         final double value = 1.25;
         this.marshallCollectionAndCheck(Lists.of(value),
-                list(JsonNode.number(value)));
+            list(JsonNode.number(value)));
     }
 
     @Test
     public void testMarshallCollectionString() {
         final String value = "abc123";
         this.marshallCollectionAndCheck(Lists.of(value),
-                list(JsonNode.string(value)));
+            list(JsonNode.string(value)));
     }
 
     @Test
     public void testMarshallCollectionWithObjectPostProcessor() {
         final TestJsonNodeValue value = TestJsonNodeValue.with("abc123");
         this.marshallCollectionAndCheck(this.contextWithProcessor(),
-                Lists.of(value),
-                list(value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE)));
+            Lists.of(value),
+            list(value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE)));
     }
 
     private JsonArray list(final JsonNode element) {
@@ -131,16 +131,16 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
     @Test
     public void testMarshallEnumSetWithNull() {
         this.marshallEnumSetAndCheck(
-                null,
-                JsonNode.nullNode()
+            null,
+            JsonNode.nullNode()
         );
     }
 
     @Test
     public void testMarshallEnumSetWithNonNull() {
         this.marshallEnumSetAndCheck(
-                EnumSet.of(RoundingMode.CEILING, RoundingMode.FLOOR),
-                JsonNode.string("CEILING,FLOOR")
+            EnumSet.of(RoundingMode.CEILING, RoundingMode.FLOOR),
+            JsonNode.string("CEILING,FLOOR")
         );
     }
 
@@ -149,40 +149,40 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
     @Test
     public void testMarshallMapNullMap() {
         this.marshallMapAndCheck(
-                null,
-                JsonNode.nullNode()
+            null,
+            JsonNode.nullNode()
         );
     }
 
     @Test
     public void testMarshallMapEmptyMap() {
         this.marshallMapAndCheck(
-                Maps.empty(),
-                JsonNode.object()
+            Maps.empty(),
+            JsonNode.object()
         );
     }
 
     @Test
     public void testMarshallMapStringBooleanTrue() {
         this.marshallMapStringKeyAndCheck2(
-                true,
-                JsonNode.booleanNode(true)
+            true,
+            JsonNode.booleanNode(true)
         );
     }
 
     @Test
     public void testMarshallMapStringBooleanFalse() {
         this.marshallMapStringKeyAndCheck2(
-                false,
-                JsonNode.booleanNode(false)
+            false,
+            JsonNode.booleanNode(false)
         );
     }
 
     @Test
     public void testMarshallMapStringNullValue() {
         this.marshallMapStringKeyAndCheck2(
-                null,
-                JsonNode.nullNode()
+            null,
+            JsonNode.nullNode()
         );
     }
 
@@ -190,8 +190,8 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
     public void testMarshallMapStringNumber() {
         final double value = 1.25;
         this.marshallMapStringKeyAndCheck2(
-                value,
-                JsonNode.number(value)
+            value,
+            JsonNode.number(value)
         );
     }
 
@@ -199,8 +199,8 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
     public void testMarshallMapStringString() {
         final String value = "abc123";
         this.marshallMapStringKeyAndCheck2(
-                value,
-                JsonNode.string(value)
+            value,
+            JsonNode.string(value)
         );
     }
 
@@ -209,9 +209,9 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         final String key = "key1";
 
         this.marshallMapAndCheck(
-                Maps.of(key, value),
-                JsonNode.object()
-                        .set(JsonPropertyName.with(key), expected)
+            Maps.of(key, value),
+            JsonNode.object()
+                .set(JsonPropertyName.with(key), expected)
         );
     }
 
@@ -221,37 +221,37 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         final TestJsonNodeValue value = TestJsonNodeValue.with(key);
 
         this.marshallMapAndCheck(
-                this.contextWithProcessor(),
-                Maps.of(key, value),
-                JsonNode.object()
-                        .set(
-                                JsonPropertyName.with(key),
-                                value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE)
-                        )
+            this.contextWithProcessor(),
+            Maps.of(key, value),
+            JsonNode.object()
+                .set(
+                    JsonPropertyName.with(key),
+                    value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE)
+                )
         );
     }
 
     @Test
     public void testMarshallMapNonStringKeyBooleanTrue() {
         this.marshallMapNonStringKeyAndCheck2(
-                true,
-                JsonNode.booleanNode(true)
+            true,
+            JsonNode.booleanNode(true)
         );
     }
 
     @Test
     public void testMarshallMapNonStringKeyBooleanFalse() {
         this.marshallMapNonStringKeyAndCheck2(
-                false,
-                JsonNode.booleanNode(false)
+            false,
+            JsonNode.booleanNode(false)
         );
     }
 
     @Test
     public void testMarshallMapNonStringKeyNullValue() {
         this.marshallMapNonStringKeyAndCheck2(
-                null,
-                JsonNode.nullNode()
+            null,
+            JsonNode.nullNode()
         );
     }
 
@@ -259,7 +259,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
     public void testMarshallMapNonStringKeyNumber() {
         final double value = 1.25;
         this.marshallMapNonStringKeyAndCheck2(value,
-                JsonNode.number(value)
+            JsonNode.number(value)
         );
     }
 
@@ -267,8 +267,8 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
     public void testMarshallMapNonStringKeyString() {
         final String value = "abc123";
         this.marshallMapNonStringKeyAndCheck2(
-                value,
-                JsonNode.string(value)
+            value,
+            JsonNode.string(value)
         );
     }
 
@@ -277,8 +277,8 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         final Integer KEY = 123;
 
         this.marshallMapAndCheck(
-                Maps.of(KEY, value),
-                keyValueEntry(KEY, expected)
+            Maps.of(KEY, value),
+            keyValueEntry(KEY, expected)
         );
     }
 
@@ -288,19 +288,19 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         final TestJsonNodeValue value = TestJsonNodeValue.with("" + key);
 
         this.marshallMapAndCheck(
-                this.contextWithProcessor(),
-                Maps.of(key, value),
-                this.keyValueEntry(key, value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE))
+            this.contextWithProcessor(),
+            Maps.of(key, value),
+            this.keyValueEntry(key, value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE))
         );
     }
 
     private JsonNode keyValueEntry(final Integer key, final JsonNode value) {
         return JsonNode.array()
-                .appendChild(
-                        JsonNode.object()
-                                .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, JsonNode.number(key))
-                                .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, value)
-                );
+            .appendChild(
+                JsonNode.object()
+                    .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, JsonNode.number(key))
+                    .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, value)
+            );
     }
 
     // marshallWithType...............................................................................................
@@ -319,35 +319,35 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
     public void testMarshallWithTypeNumberByte() {
         final byte value = 123;
         this.marshallWithTypeAndCheck(value,
-                this.typeAndValue("byte", JsonNode.number(value)));
+            this.typeAndValue("byte", JsonNode.number(value)));
     }
 
     @Test
     public void testMarshallWithTypeNumberShort() {
         final short value = 123;
         this.marshallWithTypeAndCheck(value,
-                this.typeAndValue("short", JsonNode.number(value)));
+            this.typeAndValue("short", JsonNode.number(value)));
     }
 
     @Test
     public void testMarshallWithTypeNumberInteger() {
         final int value = 123;
         this.marshallWithTypeAndCheck(value,
-                this.typeAndValue("int", JsonNode.number(value)));
+            this.typeAndValue("int", JsonNode.number(value)));
     }
 
     @Test
     public void testMarshallWithTypeNumberLong() {
         final long value = 123;
         this.marshallWithTypeAndCheck(value,
-                this.typeAndValue("long", JsonNode.string(String.valueOf(value))));
+            this.typeAndValue("long", JsonNode.string(String.valueOf(value))));
     }
 
     @Test
     public void testMarshallWithTypeNumberFloat() {
         final float value = 123.5f;
         this.marshallWithTypeAndCheck(value,
-                this.typeAndValue("float", JsonNode.number(value)));
+            this.typeAndValue("float", JsonNode.number(value)));
     }
 
     @Test
@@ -360,7 +360,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
     public void testMarshallWithTypeObject() {
         final Locale value = Locale.ENGLISH;
         this.marshallWithTypeAndCheck(value,
-                this.typeAndValue("locale", JsonNode.string(value.toLanguageTag())));
+            this.typeAndValue("locale", JsonNode.string(value.toLanguageTag())));
     }
 
     @Test
@@ -374,8 +374,8 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         final String string = "abc123";
         final TestJsonNodeValue value = TestJsonNodeValue.with(string);
         this.marshallWithTypeAndCheck(this.contextWithProcessor(),
-                value,
-                this.typeAndValue(TestJsonNodeValue.TYPE_NAME, value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE)));
+            value,
+            this.typeAndValue(TestJsonNodeValue.TYPE_NAME, value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE)));
     }
 
     // marshallWithTypeCollection...........................................................................................
@@ -388,75 +388,75 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
     @Test
     public void testMarshallWithTypeCollectionBooleanTrue() {
         this.marshallWithTypeCollectionAndCheck(Lists.of(true),
-                this.list(JsonNode.booleanNode(true)));
+            this.list(JsonNode.booleanNode(true)));
     }
 
     @Test
     public void testMarshallWithTypeCollectionBooleanFalse() {
         this.marshallWithTypeCollectionAndCheck(Lists.of(false),
-                this.list(JsonNode.booleanNode(false)));
+            this.list(JsonNode.booleanNode(false)));
     }
 
     @Test
     public void testMarshallWithTypeCollectionNullElement() {
         this.marshallWithTypeCollectionAndCheck(Lists.of((Object) null),
-                this.list(JsonNode.nullNode()));
+            this.list(JsonNode.nullNode()));
     }
 
     @Test
     public void testMarshallWithTypeCollectionNumberByte() {
         final byte value = 1;
         this.marshallWithTypeCollectionAndCheck(Lists.of(value),
-                this.list(this.typeAndValue("byte", JsonNode.number(value))));
+            this.list(this.typeAndValue("byte", JsonNode.number(value))));
     }
 
     @Test
     public void testMarshallWithTypeCollectionNumberShort() {
         final short value = 1;
         this.marshallWithTypeCollectionAndCheck(Lists.of(value),
-                this.list(this.typeAndValue("short", JsonNode.number(value))));
+            this.list(this.typeAndValue("short", JsonNode.number(value))));
     }
 
     @Test
     public void testMarshallWithTypeCollectionNumberInteger() {
         final int value = 123;
         this.marshallWithTypeCollectionAndCheck(Lists.of(value),
-                this.list(this.typeAndValue("int", JsonNode.number(value))));
+            this.list(this.typeAndValue("int", JsonNode.number(value))));
     }
 
     @Test
     public void testMarshallWithTypeCollectionNumberLong() {
         final long value = 123;
         this.marshallWithTypeCollectionAndCheck(Lists.of(value),
-                this.list(this.typeAndValue("long", JsonNode.string(String.valueOf(value)))));
+            this.list(this.typeAndValue("long", JsonNode.string(String.valueOf(value)))));
     }
 
     @Test
     public void testMarshallWithTypeCollectionNumberFloat() {
         final float value = 1.25f;
         this.marshallWithTypeCollectionAndCheck(Lists.of(value),
-                this.list(this.typeAndValue("float", JsonNode.number(value))));
+            this.list(this.typeAndValue("float", JsonNode.number(value))));
     }
 
     @Test
     public void testMarshallWithTypeCollectionNumberDouble() {
         final double value = 1.25;
         this.marshallWithTypeCollectionAndCheck(Lists.of(value),
-                this.list(JsonNode.number(value)));
+            this.list(JsonNode.number(value)));
     }
 
     @Test
     public void testMarshallWithTypeCollectionObject() {
         final Locale value = Locale.ENGLISH;
         this.marshallWithTypeCollectionAndCheck(Lists.of(value),
-                this.list(this.typeAndValue("locale", JsonNode.string(value.toLanguageTag()))));
+            this.list(this.typeAndValue("locale", JsonNode.string(value.toLanguageTag()))));
     }
 
     @Test
     public void testMarshallWithTypeCollectionString() {
         final String value = "abc123";
         this.marshallWithTypeCollectionAndCheck(Lists.of(value),
-                this.list(JsonNode.string(value)));
+            this.list(JsonNode.string(value)));
     }
 
     @Test
@@ -465,10 +465,10 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         final TestJsonNodeValue value = TestJsonNodeValue.with(string);
 
         this.marshallWithTypeCollectionAndCheck(this.contextWithProcessor(),
-                Lists.of(value),
-                this.list(this.typeAndValue(TestJsonNodeValue.TYPE_NAME, value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE))));
+            Lists.of(value),
+            this.list(this.typeAndValue(TestJsonNodeValue.TYPE_NAME, value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE))));
     }
-    
+
     // marshallWithTypeMap...........................................................................................
 
     @Test
@@ -479,33 +479,33 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
     @Test
     public void testMarshallWithTypeMapBooleanTrue() {
         this.marshallWithTypeMapAndCheck3(JsonNode.booleanNode(true),
-                true);
+            true);
     }
 
     @Test
     public void testMarshallWithTypeMapBooleanFalse() {
         this.marshallWithTypeMapAndCheck3(JsonNode.booleanNode(false),
-                false);
+            false);
     }
 
     @Test
     public void testMarshallWithTypeMapNullValue() {
         this.marshallWithTypeMapAndCheck3(JsonNode.nullNode(),
-                null);
+            null);
     }
 
     @Test
     public void testMarshallWithTypeMapNumber() {
         final double value = 1.25;
         this.marshallWithTypeMapAndCheck3(JsonNode.number(value),
-                value);
+            value);
     }
 
     @Test
     public void testMarshallWithTypeMapString() {
         final String value = "abc123";
         this.marshallWithTypeMapAndCheck3(JsonNode.string(value),
-                value);
+            value);
     }
 
     private <VV> void marshallWithTypeMapAndCheck3(final JsonNode value,
@@ -513,10 +513,10 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         final String KEY = "key1";
 
         this.marshallWithTypeMapAndCheck(Maps.of(KEY, javaValue),
-                JsonNode.array()
-                        .appendChild(JsonNode.object()
-                                .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, JsonNode.string(KEY))
-                                .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, value)));
+            JsonNode.array()
+                .appendChild(JsonNode.object()
+                    .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, JsonNode.string(KEY))
+                    .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, value)));
     }
 
     @Test
@@ -525,11 +525,11 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         final TestJsonNodeValue value = TestJsonNodeValue.with(key);
 
         this.marshallWithTypeMapAndCheck(this.contextWithProcessor(),
-                Maps.of(key, value),
-                JsonNode.array()
-                        .appendChild(JsonNode.object()
-                                .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, JsonNode.string(key))
-                                .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, this.typeAndValue(TestJsonNodeValue.TYPE_NAME, value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE)))));
+            Maps.of(key, value),
+            JsonNode.array()
+                .appendChild(JsonNode.object()
+                    .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, JsonNode.string(key))
+                    .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, this.typeAndValue(TestJsonNodeValue.TYPE_NAME, value.marshall(JsonNodeMarshallContexts.fake()).set(POST, POST_VALUE)))));
     }
 
     // JsonNodeMarshallContext................................................................................................

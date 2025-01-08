@@ -36,7 +36,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, JsonObjectList>
-        implements MapTesting<Map<JsonPropertyName, JsonNode>, JsonPropertyName, JsonNode> {
+    implements MapTesting<Map<JsonPropertyName, JsonNode>, JsonPropertyName, JsonNode> {
 
     private final static String KEY1 = "key1";
     private final static String KEY2 = "key2";
@@ -111,14 +111,14 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
 
 
         final JsonObject object = JsonNode.object()
-                .set(key1, value1)
-                .set(key2, value2);
+            .set(key1, value1)
+            .set(key2, value2);
         this.childrenCheck(object);
         this.getAndCheck(object, key1, VALUE1);
 
         final JsonObject object2 = JsonNode.object()
-                .set(key2, value2)
-                .set(key1, value1);
+            .set(key2, value2)
+            .set(key1, value1);
         this.childrenCheck(object);
         this.getAndCheck(object, key2, VALUE2);
 
@@ -162,7 +162,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonPropertyName key1 = this.key1();
         final JsonString value1 = this.value1();
         final JsonObject object = JsonNode.object()
-                .set(key1, value1);
+            .set(key1, value1);
 
         this.checkEquals(Optional.empty(), object.get(key2()));
     }
@@ -170,15 +170,15 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testSetNullNameFails() {
         assertThrows(NullPointerException.class, () -> JsonNode.object().set(
-                null,
-                this.value1()));
+            null,
+            this.value1()));
     }
 
     @Test
     public void testSetNullValueFails() {
         assertThrows(NullPointerException.class, () -> JsonNode.object().set(
-                this.key1(),
-                null));
+            this.key1(),
+            null));
     }
 
     @Test
@@ -205,7 +205,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonObject empty = JsonNode.object();
 
         final JsonObject object = empty.set(key1, value1)
-                .set(key2, value2);
+            .set(key2, value2);
         this.childrenCheck(object);
         this.childCountCheck(object, 2);
         this.getAndCheck(object, key1, VALUE1);
@@ -230,8 +230,8 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonObject empty = JsonNode.object();
 
         final JsonObject object = empty.set(key1, value1)
-                .set(key2, value2)
-                .set(key1, value3);
+            .set(key2, value2)
+            .set(key1, value3);
 
         this.childrenCheck(object);
         this.childCountCheck(object, 2);
@@ -257,8 +257,8 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonObject empty = JsonNode.object();
 
         final JsonObject object = empty.set(key1, value1)
-                .set(key2, value2)
-                .set(key2, value3);
+            .set(key2, value2)
+            .set(key2, value3);
 
         this.childrenCheck(object);
         this.childCountCheck(object, 2);
@@ -288,9 +288,9 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonObject empty = JsonNode.object();
 
         final JsonObject object = empty.set(key1, value1)
-                .set(key2, value2)
-                .set(key3, value3)
-                .set(key3, value4);
+            .set(key2, value2)
+            .set(key3, value3)
+            .set(key3, value4);
 
         this.childrenCheck(object);
         this.childCountCheck(object, 3);
@@ -313,11 +313,11 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonNode value1 = this.value1();
 
         final JsonObject object = JsonNode.object()
-                .set(key1, value1);
+            .set(key1, value1);
 
         final JsonNode value2 = JsonNode.object();
         final JsonObject object2 = JsonNode.object()
-                .set(key1, value2);
+            .set(key1, value2);
 
         assertNotSame(object, object2);
     }
@@ -328,12 +328,12 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
 
         // JsonString retrieved will include the key component so a new JsonString cant be created and assertEqual'd.
         this.checkEquals(value,
-                object.get(key).get().cast(JsonString.class).value(),
-                "incorrect string value for get key=" + key);
+            object.get(key).get().cast(JsonString.class).value(),
+            "incorrect string value for get key=" + key);
 
         this.checkEquals(value,
-                object.getOrFail(key).cast(JsonString.class).value(),
-                "incorrect JsonNode for getOrFail " + key);
+            object.getOrFail(key).cast(JsonString.class).value(),
+            "incorrect JsonNode for getOrFail " + key);
     }
 
     // remove
@@ -360,8 +360,8 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonObject empty = JsonNode.object();
 
         final JsonObject object = empty.set(key1, value1)
-                .set(key2, value2)
-                .remove(key1);
+            .set(key2, value2)
+            .remove(key1);
         this.childrenCheck(object);
         this.childCountCheck(object, 1);
 
@@ -385,9 +385,9 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonObject empty = JsonNode.object();
 
         final JsonObject object = empty.set(key1, value1)
-                .set(key2, value2)
-                .remove(key1)
-                .remove(key2);
+            .set(key2, value2)
+            .remove(key1)
+            .remove(key2);
         this.childrenCheck(object);
         this.childCountCheck(object, 0);
 
@@ -405,9 +405,9 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonPropertyName key3 = this.key3();
 
         final JsonObject root = JsonNode.object()
-                .set(key2, this.value2())
-                .set(key3, JsonNode.object()
-                        .set(key1, this.value1()));
+            .set(key2, this.value2())
+            .set(key3, JsonNode.object()
+                .set(key1, this.value1()));
         this.childCountCheck(root, 2);
 
         final JsonObject nested = root.get(key3).get().cast(JsonObject.class);
@@ -424,13 +424,13 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonPropertyName key1 = this.key1();
 
         final JsonObject root = JsonNode.object()
-                .set(key1, this.value1());
+            .set(key1, this.value1());
         this.childCountCheck(root, 1);
 
         final JsonPropertyName key2 = this.key2();
         final JsonString value2 = this.value2().setName(key2);
         final JsonObject updated = root.replaceChild(root.get(key1).get(), value2)
-                .cast(JsonObject.class);
+            .cast(JsonObject.class);
 
         this.childCountCheck(updated, 1);
         this.getAndCheck(updated, key2, VALUE2);
@@ -439,19 +439,19 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testContainsAbsent() {
         this.containsAndCheck(JsonNode.object()
-                        .set(key1(), this.value1()),
-                JsonPropertyName.with("different-prop"),
-                false);
+                .set(key1(), this.value1()),
+            JsonPropertyName.with("different-prop"),
+            false);
     }
 
     @Test
     public void testContainsPresent() {
         final JsonPropertyName key = this.key1();
         this.containsAndCheck(JsonNode.object()
-                        .set(key1(), this.value1())
-                        .set(key, this.value2()),
-                key,
-                true);
+                .set(key1(), this.value1())
+                .set(key, this.value2()),
+            key,
+            true);
     }
 
     private void containsAndCheck(final JsonObject object, final JsonPropertyName name, final boolean contains) {
@@ -463,27 +463,27 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testReplaceRoot() {
         this.replaceAndCheck(JsonNode.object()
-                        .set(this.key1(), this.value1()),
-                JsonNode.object()
-                        .set(this.key2(), this.value2()));
+                .set(this.key1(), this.value1()),
+            JsonNode.object()
+                .set(this.key2(), this.value2()));
     }
 
     @Test
     public void testReplace() {
         final JsonObject root = JsonNode.object()
-                .set(this.key1(), this.value1());
+            .set(this.key1(), this.value1());
 
         final JsonObject value2 = JsonNode.object()
-                .set(this.key3(), this.value3());
+            .set(this.key3(), this.value3());
 
         final JsonObject replacement2 = JsonNode.object()
-                .set(this.key4(), this.value4());
+            .set(this.key4(), this.value4());
 
         final JsonPropertyName key2 = this.key2();
 
         this.replaceAndCheck(root.set(key2, value2).getOrFail(key2),
-                replacement2,
-                root.set(key2, replacement2).getOrFail(key2));
+            replacement2,
+            root.set(key2, replacement2).getOrFail(key2));
     }
 
     // merge............................................................................................................
@@ -491,30 +491,30 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testMergeWithNullFails() {
         assertThrows(
-                NullPointerException.class,
-                () -> JsonNode.object().merge(null)
+            NullPointerException.class,
+            () -> JsonNode.object().merge(null)
         );
     }
 
     @Test
     public void testMergeWithEmptyObject() {
         final JsonObject object = JsonNode.object()
-                .set(JsonPropertyName.with("a"), JsonNode.number(123.5));
+            .set(JsonPropertyName.with("a"), JsonNode.number(123.5));
 
         assertSame(
-                object,
-                object.merge(JsonNode.object())
+            object,
+            object.merge(JsonNode.object())
         );
     }
 
     @Test
     public void testMergeSame() {
         final JsonObject object = JsonNode.object()
-                .set(JsonPropertyName.with("a"), JsonNode.number(123.5));
+            .set(JsonPropertyName.with("a"), JsonNode.number(123.5));
 
         assertSame(
-                object,
-                object.merge(object)
+            object,
+            object.merge(object)
         );
     }
 
@@ -526,13 +526,13 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonNumber number = JsonNode.number(123);
 
         this.mergeAndCheck(
-                JsonNode.object()
-                        .set(a, string),
-                JsonNode.object()
-                        .set(b, number),
-                JsonNode.object()
-                        .set(a, string)
-                        .set(b, number)
+            JsonNode.object()
+                .set(a, string),
+            JsonNode.object()
+                .set(b, number),
+            JsonNode.object()
+                .set(a, string)
+                .set(b, number)
         );
     }
 
@@ -548,16 +548,16 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonBoolean bool = JsonNode.booleanNode(true);
 
         this.mergeAndCheck(
-                JsonNode.object()
-                        .set(a, string)
-                        .set(b, number),
-                JsonNode.object()
-                        .set(b, number)
-                        .set(c, bool),
-                JsonNode.object()
-                        .set(a, string)
-                        .set(b, number)
-                        .set(c, bool)
+            JsonNode.object()
+                .set(a, string)
+                .set(b, number),
+            JsonNode.object()
+                .set(b, number)
+                .set(c, bool),
+            JsonNode.object()
+                .set(a, string)
+                .set(b, number)
+                .set(c, bool)
         );
     }
 
@@ -565,9 +565,9 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
                                final JsonObject merge,
                                final JsonObject expected) {
         this.checkEquals(
-                expected,
-                before.merge(merge),
-                before + " merge " + merge
+            expected,
+            before.merge(merge),
+            before + " merge " + merge
         );
     }
 
@@ -587,7 +587,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     public void testMapWhenReadonly2() {
         final JsonPropertyName key1 = this.key1();
         final JsonObject value1 = JsonNode.object()
-                .set(key1, this.value1());
+            .set(key1, this.value1());
 
         assertThrows(UnsupportedOperationException.class, () -> value1.asMap().remove(key1));
     }
@@ -598,8 +598,8 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonNode value1 = this.value1();
 
         final JsonObject object = JsonNode.object()
-                .set(key1, value1)
-                .set(this.key2(), this.value2());
+            .set(key1, value1)
+            .set(this.key2(), this.value2());
         this.containsKeyAndCheck(object.asMap(), key1);
     }
 
@@ -609,8 +609,8 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonNode value1 = this.value1();
 
         final JsonObject object = JsonNode.object()
-                .set(key1, value1)
-                .set(this.key2(), this.value2());
+            .set(key1, value1)
+            .set(this.key2(), this.value2());
         this.containsKeyAndCheckAbsent(object.asMap(), JsonPropertyName.with("absent-property"));
     }
 
@@ -620,10 +620,10 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonNode value1 = this.value1();
 
         final JsonObject object = JsonNode.object()
-                .set(key1, value1)
-                .set(this.key2(), this.value2());
+            .set(key1, value1)
+            .set(this.key2(), this.value2());
         this.containsValueAndCheck(object.asMap(),
-                object.getOrFail(key1));
+            object.getOrFail(key1));
     }
 
     @Test
@@ -632,10 +632,10 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonNode value1 = this.value1();
 
         final JsonObject object = JsonNode.object()
-                .set(key1, value1)
-                .set(this.key2(), this.value2());
+            .set(key1, value1)
+            .set(this.key2(), this.value2());
         this.containsValueAndCheckAbsent(object.asMap(),
-                value1); // match fails because value gotten has a parent the enclosing object
+            value1); // match fails because value gotten has a parent the enclosing object
     }
 
     @Test
@@ -644,8 +644,8 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonNode value1 = this.value1();
 
         final JsonObject object = JsonNode.object()
-                .set(key1, value1)
-                .set(this.key2(), this.value2());
+            .set(key1, value1)
+            .set(this.key2(), this.value2());
         this.getAndCheck(object.asMap(), key1, object.getOrFail(key1));
     }
 
@@ -655,8 +655,8 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonNode value = this.value1();
 
         final JsonObject object = JsonNode.object()
-                .set(key, value)
-                .set(this.key2(), this.value2());
+            .set(key, value)
+            .set(this.key2(), this.value2());
         this.getAndCheckAbsent(object.asMap(), JsonPropertyName.with("absent-property"));
     }
 
@@ -665,20 +665,20 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testIsFalseLikeWhenEmpty() {
         this.isFalseLike(
-                JsonNode.object(),
-                true
+            JsonNode.object(),
+            true
         );
     }
 
     @Test
     public void testIsFalseLikeWhenNonEmpty() {
         this.isFalseLike(
-                JsonNode.object()
-                        .appendChild(
-                                JsonNode.booleanNode(false)
-                                        .setName(JsonPropertyName.with("a"))
-                        ),
-                false
+            JsonNode.object()
+                .appendChild(
+                    JsonNode.booleanNode(false)
+                        .setName(JsonPropertyName.with("a"))
+                ),
+            false
         );
     }
 
@@ -687,20 +687,20 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testToBooleanEmpty() {
         this.toBooleanAndCheck(
-                JsonObject.EMPTY,
-                false
+            JsonObject.EMPTY,
+            false
         );
     }
 
     @Test
     public void testToBooleanNonEmpty() {
         this.toBooleanAndCheck(
-                JsonObject.EMPTY
-                        .set(
-                                JsonPropertyName.with("child"),
-                                JsonObject.EMPTY
-                        ),
-                true
+            JsonObject.EMPTY
+                .set(
+                    JsonPropertyName.with("child"),
+                    JsonObject.EMPTY
+                ),
+            true
         );
     }
 
@@ -709,121 +709,121 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testRemoveFalseLikeEmpty() {
         this.removeFalseLikeAndCheck(
-                JsonObject.EMPTY
+            JsonObject.EMPTY
         );
     }
 
     @Test
     public void testRemoveFalseLikeInitiallyNotEmptyThenEmpty() {
         this.removeFalseLikeAndCheck(
-                JsonObject.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.nullNode()
-                        )
-                ),
-                JsonObject.EMPTY
+            JsonObject.EMPTY.setChildren(
+                Lists.of(
+                    JsonNode.nullNode()
+                )
+            ),
+            JsonObject.EMPTY
         );
     }
 
     @Test
     public void testRemoveFalseLikeInitiallyNotEmptyThenEmpty2() {
         this.removeFalseLikeAndCheck(
-                JsonObject.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.nullNode(),
-                                JsonNode.booleanNode(false),
-                                JsonNode.number(0),
-                                JsonNode.string("")
-                        )
-                ),
-                JsonObject.EMPTY
+            JsonObject.EMPTY.setChildren(
+                Lists.of(
+                    JsonNode.nullNode(),
+                    JsonNode.booleanNode(false),
+                    JsonNode.number(0),
+                    JsonNode.string("")
+                )
+            ),
+            JsonObject.EMPTY
         );
     }
 
     @Test
     public void testRemoveFalseLikeEmptyArray() {
         this.removeFalseLikeAndCheck(
-                JsonObject.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.array()
-                        )
-                ),
-                JsonObject.EMPTY
+            JsonObject.EMPTY.setChildren(
+                Lists.of(
+                    JsonNode.array()
+                )
+            ),
+            JsonObject.EMPTY
         );
     }
 
     @Test
     public void testRemoveFalseLikeEmptyObject() {
         this.removeFalseLikeAndCheck(
-                JsonObject.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.object()
-                        )
-                ),
-                JsonObject.EMPTY
+            JsonObject.EMPTY.setChildren(
+                Lists.of(
+                    JsonNode.object()
+                )
+            ),
+            JsonObject.EMPTY
         );
     }
 
     @Test
     public void testRemoveFalseLikeSomeChildrenFiltered2() {
         this.removeFalseLikeAndCheck(
-                JsonObject.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.nullNode(),
-                                JsonNode.booleanNode(true),
-                                JsonNode.number(0),
-                                JsonNode.string("abc123")
-                        )
-                ),
-                JsonObject.EMPTY.setChildren(
-                        Lists.of(
-                                JsonNode.booleanNode(true),
-                                JsonNode.string("abc123")
-                        )
+            JsonObject.EMPTY.setChildren(
+                Lists.of(
+                    JsonNode.nullNode(),
+                    JsonNode.booleanNode(true),
+                    JsonNode.number(0),
+                    JsonNode.string("abc123")
                 )
+            ),
+            JsonObject.EMPTY.setChildren(
+                Lists.of(
+                    JsonNode.booleanNode(true),
+                    JsonNode.string("abc123")
+                )
+            )
         );
     }
 
     @Test
     public void testRemoveFalseLikeGraph() {
         this.removeFalseLikeAndCheck(
-                JsonNode.parse(
-                        "{\n" +
-                                "   \"keep-string\": \"not-empty-string\",\n" +
-                                "   \"remove-boolean-false\": false,\n" +
-                                "   \"keep-non-empty-object\": {\n" +
-                                "      \"keep-number\": 123,\n" +
-                                "      \"remove-boolean-false\": false\n" +
-                                "   },\n" +
-                                "   \"array\" : [\n" +
-                                "      false,\n" +
-                                "      true,\n" +
-                                "      0,\n" +
-                                "      1,\n" +
-                                "      {\n" +
-                                "         \"keep-string\": \"not-empty-string\",\n" +
-                                "         \"remove-boolean-false\": false\n" +
-                                "      }\n" +
-                                "   ]\n" +
-                                "}"
-                ),
-                JsonNode.parse(
-                        "{\n" +
-                                "   \"keep-string\": \"not-empty-string\",\n" +
-                                "   \"keep-non-empty-object\": {\n" +
-                                "      \"keep-number\": 123\n" +
-                                "   },\n" +
-                                "   \"array\" : [\n" +
-                                "      false,\n" +
-                                "      true,\n" +
-                                "      0,\n" +
-                                "      1,\n" +
-                                "      {\n" +
-                                "         \"keep-string\": \"not-empty-string\"\n" +
-                                "      }\n" +
-                                "   ]\n" +
-                                "}"
-                )
+            JsonNode.parse(
+                "{\n" +
+                    "   \"keep-string\": \"not-empty-string\",\n" +
+                    "   \"remove-boolean-false\": false,\n" +
+                    "   \"keep-non-empty-object\": {\n" +
+                    "      \"keep-number\": 123,\n" +
+                    "      \"remove-boolean-false\": false\n" +
+                    "   },\n" +
+                    "   \"array\" : [\n" +
+                    "      false,\n" +
+                    "      true,\n" +
+                    "      0,\n" +
+                    "      1,\n" +
+                    "      {\n" +
+                    "         \"keep-string\": \"not-empty-string\",\n" +
+                    "         \"remove-boolean-false\": false\n" +
+                    "      }\n" +
+                    "   ]\n" +
+                    "}"
+            ),
+            JsonNode.parse(
+                "{\n" +
+                    "   \"keep-string\": \"not-empty-string\",\n" +
+                    "   \"keep-non-empty-object\": {\n" +
+                    "      \"keep-number\": 123\n" +
+                    "   },\n" +
+                    "   \"array\" : [\n" +
+                    "      false,\n" +
+                    "      true,\n" +
+                    "      0,\n" +
+                    "      1,\n" +
+                    "      {\n" +
+                    "         \"keep-string\": \"not-empty-string\"\n" +
+                    "      }\n" +
+                    "   ]\n" +
+                    "}"
+            )
         );
     }
 
@@ -837,7 +837,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testEqualsDifferentChildren2() {
         this.checkNotEquals(JsonNode.object().set(property(), JsonNode.string("child1")),
-                JsonNode.object().set(property(), JsonNode.string("child2")));
+            JsonNode.object().set(property(), JsonNode.string("child2")));
     }
 
     @Test
@@ -845,13 +845,13 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonNode value = this.value1();
 
         this.checkNotEquals(JsonNode.object().set(property(), value),
-                JsonNode.object().set(JsonPropertyName.with("different"), value));
+            JsonNode.object().set(JsonPropertyName.with("different"), value));
     }
 
     @Test
     public void testEqualsArray() {
         this.checkNotEquals(JsonNode.object().set(property(), JsonNode.string("child1")),
-                JsonNode.array().appendChild(JsonNode.string("child2")));
+            JsonNode.array().appendChild(JsonNode.string("child2")));
     }
 
     @Test
@@ -860,8 +860,8 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonPropertyName property = this.property();
 
         this.checkNotEquals(
-                object.set(property, JsonNode.object().set(JsonPropertyName.with("p"), JsonNode.string("child1"))),
-                object.set(property, JsonNode.array().appendChild(JsonNode.string("child2"))));
+            object.set(property, JsonNode.object().set(JsonPropertyName.with("p"), JsonNode.string("child1"))),
+            object.set(property, JsonNode.array().appendChild(JsonNode.string("child2"))));
     }
 
     @Test
@@ -870,8 +870,8 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonPropertyName property = this.property();
 
         this.checkNotEquals(
-                object.set(property, JsonNode.object()),
-                object.set(property, JsonNode.string("string")));
+            object.set(property, JsonNode.object()),
+            object.set(property, JsonNode.string("string")));
     }
 
     @Test
@@ -880,8 +880,8 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonPropertyName property = this.property();
 
         this.checkNotEquals(
-                object.set(property, JsonNode.object()),
-                object.set(property, JsonNode.array()));
+            object.set(property, JsonNode.object()),
+            object.set(property, JsonNode.array()));
     }
 
     private JsonPropertyName property() {
@@ -903,10 +903,10 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testText2() {
         this.textAndCheck(JsonObject.EMPTY
-                        .set(JsonPropertyName.with("a1"), JsonNode.string("v1"))
-                        .set(JsonPropertyName.with("b2"), JsonNode.booleanNode(true))
-                        .set(JsonPropertyName.with("c3"), JsonNode.number(333)),
-                "v1true333");
+                .set(JsonPropertyName.with("a1"), JsonNode.string("v1"))
+                .set(JsonPropertyName.with("b2"), JsonNode.booleanNode(true))
+                .set(JsonPropertyName.with("c3"), JsonNode.number(333)),
+            "v1true333");
     }
 
     // HasTextOffset...................................................................................................
@@ -921,12 +921,12 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonPropertyName key = JsonPropertyName.with("b2");
 
         this.textOffsetAndCheck(JsonObject.EMPTY
-                        .set(JsonPropertyName.with("a1"), JsonNode.string("v1"))
-                        .set(key, JsonObject.EMPTY
-                                .set(JsonPropertyName.with("c3"), JsonNode.string("v3")))
-                        .set(JsonPropertyName.with("d4"), JsonNode.number(444))
-                        .getOrFail(key),
-                2);
+                .set(JsonPropertyName.with("a1"), JsonNode.string("v1"))
+                .set(key, JsonObject.EMPTY
+                    .set(JsonPropertyName.with("c3"), JsonNode.string("v3")))
+                .set(JsonPropertyName.with("d4"), JsonNode.number(444))
+                .getOrFail(key),
+            2);
     }
 
     // Visitor..........................................................................................................
@@ -937,8 +937,8 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final List<JsonNode> visited = Lists.array();
 
         final JsonObject object = this.createJsonNode()
-                .set(key1(), value1())
-                .set(key2(), value2());
+            .set(key1(), value1())
+            .set(key2(), value2());
         final JsonString string1 = object.children().get(0).cast(JsonString.class);
         final JsonString string2 = object.children().get(1).cast(JsonString.class);
 
@@ -979,51 +979,51 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         }.accept(object);
         this.checkEquals("1517217262", b.toString());
         this.checkEquals(Lists.of(object, object,
-                        string1, string1, string1,
-                        string2, string2, string2,
-                        object, object),
-                visited,
-                "visited");
+                string1, string1, string1,
+                string2, string2, string2,
+                object, object),
+            visited,
+            "visited");
     }
 
     @Test
     public void testSelectorUsage() {
         final JsonObject object = JsonNode.object()
-                .set(key1(), JsonNode.booleanNode(true))
-                .set(key2(), JsonNode.number(2))
-                .set(key3(), JsonNode.string("third"));
+            .set(key1(), JsonNode.booleanNode(true))
+            .set(key2(), JsonNode.number(2))
+            .set(key3(), JsonNode.string("third"));
         final JsonPropertyName key2 = this.key2();
 
         this.selectorApplyAndCheck(object,
-                JsonNode.absoluteNodeSelector()
-                        .descendant()
-                        .named(key2),
-                object.get(key2).get());
+            JsonNode.absoluteNodeSelector()
+                .descendant()
+                .named(key2),
+            object.get(key2).get());
     }
 
     @Test
     public void testSelectorMap() {
         final JsonObject object = JsonNode.object()
-                .set(key1(), JsonNode.booleanNode(true))
-                .set(key2(), JsonNode.number(2))
-                .set(key3(), JsonNode.string("third"));
+            .set(key1(), JsonNode.booleanNode(true))
+            .set(key2(), JsonNode.number(2))
+            .set(key3(), JsonNode.string("third"));
         final JsonPropertyName key2 = this.key2();
         final JsonNode replaced = JsonNode.string("*");
 
         this.selectorApplyMapAndCheck(object,
-                JsonNode.absoluteNodeSelector()
-                        .descendant()
-                        .named(key2),
-                (n) -> replaced,
-                object.set(key2, replaced));
+            JsonNode.absoluteNodeSelector()
+                .descendant()
+                .named(key2),
+            (n) -> replaced,
+            object.set(key2, replaced));
     }
 
     @Test
     public void testPrintJsonWithoutIndentationAndNoneLineEnding() {
         final JsonObject object = JsonNode.object()
-                .set(key1(), JsonNode.booleanNode(true))
-                .set(key2(), JsonNode.number(2))
-                .set(key3(), JsonNode.string("third"));
+            .set(key1(), JsonNode.booleanNode(true))
+            .set(key2(), JsonNode.number(2))
+            .set(key3(), JsonNode.string("third"));
 
         final StringBuilder b = new StringBuilder();
         final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.NONE).indenting(Indentation.EMPTY);
@@ -1040,9 +1040,9 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testTextWithChildren() {
         final JsonObject object = JsonNode.object()
-                .set(key1(), JsonNode.booleanNode(true))
-                .set(key2(), JsonNode.number(2))
-                .set(key3(), JsonNode.string("third"));
+            .set(key1(), JsonNode.booleanNode(true))
+            .set(key2(), JsonNode.number(2))
+            .set(key3(), JsonNode.string("third"));
 
         this.checkEquals("true2third", object.text());
     }
@@ -1050,9 +1050,9 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testTextWithChildren2() {
         final JsonObject object = JsonNode.object()
-                .set(key1(), JsonNode.booleanNode(true))
-                .set(key2(), JsonNode.number(2.5))
-                .set(key3(), JsonNode.string("third"));
+            .set(key1(), JsonNode.booleanNode(true))
+            .set(key2(), JsonNode.number(2.5))
+            .set(key3(), JsonNode.string("third"));
 
         this.checkEquals("true2.5third", object.text());
     }
@@ -1060,56 +1060,56 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testToStringEmpty() {
         this.toStringAndCheck(
-                this.createJsonNode(),
-                "{}"
+            this.createJsonNode(),
+            "{}"
         );
     }
 
     @Test
     public void testToStringWithChildren() {
         final JsonObject object = JsonNode.object()
-                .set(key1(), JsonNode.booleanNode(true))
-                .set(key2(), JsonNode.number(2))
-                .set(key3(), JsonNode.string("third"));
+            .set(key1(), JsonNode.booleanNode(true))
+            .set(key2(), JsonNode.number(2))
+            .set(key3(), JsonNode.string("third"));
 
         this.toStringAndCheck(
-                object,
-                "{\n  \"key1\": true,\n  \"key2\": 2,\n  \"key3\": \"third\"\n}"
+            object,
+            "{\n  \"key1\": true,\n  \"key2\": 2,\n  \"key3\": \"third\"\n}"
         );
     }
 
     @Test
     public void testToStringNestedObject() {
         final JsonObject nested = JsonNode.object()
-                .set(key1(), JsonNode.booleanNode(true))
-                .set(key2(), JsonNode.number(2));
+            .set(key1(), JsonNode.booleanNode(true))
+            .set(key2(), JsonNode.number(2));
         final JsonObject object = JsonNode.object()
-                .set(key3(), nested);
+            .set(key3(), nested);
 
         this.toStringAndCheck(
-                object,
-                "{\n  \"key3\": {\n    \"key1\": true,\n    \"key2\": 2\n  }\n}"
+            object,
+            "{\n  \"key3\": {\n    \"key1\": true,\n    \"key2\": 2\n  }\n}"
         );
     }
 
     @Test
     public void testToStringNestedArray() {
         final JsonArray nested = JsonNode.array()
-                .appendChild(JsonNode.booleanNode(true))
-                .appendChild(JsonNode.number(2))
-                .appendChild(JsonNode.string("third"));
+            .appendChild(JsonNode.booleanNode(true))
+            .appendChild(JsonNode.number(2))
+            .appendChild(JsonNode.string("third"));
         final JsonObject object = JsonNode.object()
-                .set(key3(), nested);
+            .set(key3(), nested);
 
         this.toStringAndCheck(
-                object,
-                "{\n" +
-                        "  \"key3\": [\n" +
-                        "    true,\n" +
-                        "    2,\n" +
-                        "    \"third\"\n" +
-                        "  ]\n" +
-                        "}"
+            object,
+            "{\n" +
+                "  \"key3\": [\n" +
+                "    true,\n" +
+                "    2,\n" +
+                "    \"third\"\n" +
+                "  ]\n" +
+                "}"
         );
     }
 
@@ -1142,16 +1142,16 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Override
     List<String> propertiesNeverReturnNullSkipProperties() {
         return Lists.of(ARRAY_OR_FAIL,
-                BOOLEAN_OR_FAIL,
-                CHARACTER_OR_FAIL,
-                UNMARSHALL_LIST,
-                UNMARSHALL_SET,
-                UNMARSHALL_MAP,
-                UNMARSHALL,
-                NUMBER_OR_FAIL,
-                PARENT_OR_FAIL,
-                STRING_OR_FAIL,
-                VALUE);
+            BOOLEAN_OR_FAIL,
+            CHARACTER_OR_FAIL,
+            UNMARSHALL_LIST,
+            UNMARSHALL_SET,
+            UNMARSHALL_MAP,
+            UNMARSHALL,
+            NUMBER_OR_FAIL,
+            PARENT_OR_FAIL,
+            STRING_OR_FAIL,
+            VALUE);
     }
 
     // MapTesting..........................................................................................

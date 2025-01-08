@@ -50,8 +50,8 @@ public class JsonNodeUnmarshallException extends JsonNodeException {
      */
     private static String checkMessage(final String message) {
         return CharSequences.isNullOrEmpty(message) ?
-                DEFAULT_MESSAGE :
-                message;
+            DEFAULT_MESSAGE :
+            message;
     }
 
     final static String DEFAULT_MESSAGE = "unmarshall failed";

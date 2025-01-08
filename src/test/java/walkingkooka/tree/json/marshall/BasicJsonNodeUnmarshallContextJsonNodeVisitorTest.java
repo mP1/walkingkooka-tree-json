@@ -69,20 +69,20 @@ public final class BasicJsonNodeUnmarshallContextJsonNodeVisitorTest implements 
     @Test
     public void testUnknownTypeFails() {
         final JsonNode typeAndValue = JsonNode.object()
-                .set(BasicJsonNodeContext.TYPE, JsonNode.string("unknown-type-123-???"))
-                .set(BasicJsonNodeContext.VALUE, JsonNode.booleanNode(false));
+            .set(BasicJsonNodeContext.TYPE, JsonNode.string("unknown-type-123-???"))
+            .set(BasicJsonNodeContext.VALUE, JsonNode.booleanNode(false));
 
         final JsonNodeUnmarshallException thrown = assertThrows(
-                JsonNodeUnmarshallException.class,
-                () -> BasicJsonNodeUnmarshallContextJsonNodeVisitor.value(
-                        typeAndValue,
-                        this.context()
-                )
+            JsonNodeUnmarshallException.class,
+            () -> BasicJsonNodeUnmarshallContextJsonNodeVisitor.value(
+                typeAndValue,
+                this.context()
+            )
         );
         this.checkEquals(
-                "Missing json unmarshaller for \"unknown-type-123-???\"",
-                thrown.getMessage(),
-                "thrown message"
+            "Missing json unmarshaller for \"unknown-type-123-???\"",
+            thrown.getMessage(),
+            "thrown message"
         );
     }
 
@@ -103,8 +103,8 @@ public final class BasicJsonNodeUnmarshallContextJsonNodeVisitorTest implements 
     private void valueAndCheck(final JsonNode node,
                                final Object expected) {
         this.checkEquals(expected,
-                BasicJsonNodeUnmarshallContextJsonNodeVisitor.value(node, this.context()),
-                () -> "value " + node);
+            BasicJsonNodeUnmarshallContextJsonNodeVisitor.value(node, this.context()),
+            () -> "value " + node);
     }
 
     @Test
@@ -121,8 +121,8 @@ public final class BasicJsonNodeUnmarshallContextJsonNodeVisitorTest implements 
 
     private JsonNodeUnmarshallContext context() {
         return BasicJsonNodeUnmarshallContext.with(
-                ExpressionNumberKind.DEFAULT,
-                MathContext.DECIMAL32
+            ExpressionNumberKind.DEFAULT,
+            MathContext.DECIMAL32
         );
     }
 

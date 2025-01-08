@@ -62,7 +62,7 @@ public final class TestJsonNodeValue extends TestJsonNodeValueAbstract {
 
     public JsonObject marshall(final JsonNodeMarshallContext context) {
         return JsonNode.object()
-                .set(KEY, JsonNode.string(this.value));
+            .set(KEY, JsonNode.string(this.value));
     }
 
     final static JsonPropertyName KEY = JsonPropertyName.with("string");
@@ -70,9 +70,9 @@ public final class TestJsonNodeValue extends TestJsonNodeValueAbstract {
     @SuppressWarnings("unchecked")
     public static void register() {
         remover = JsonNodeContext.register(TYPE_NAME,
-                TestJsonNodeValue::unmarshall,
-                TestJsonNodeValue::marshall,
-                TestJsonNodeValue.class);
+            TestJsonNodeValue::unmarshall,
+            TestJsonNodeValue::marshall,
+            TestJsonNodeValue.class);
     }
 
     public static void unregister() {

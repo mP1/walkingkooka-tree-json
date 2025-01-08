@@ -25,8 +25,8 @@ public final class JsonNodeWhitespaceParserToken extends JsonNodeSymbolParserTok
 
     static JsonNodeWhitespaceParserToken with(final String value, final String text) {
         return new JsonNodeWhitespaceParserToken(
-                checkValue(value),
-                CharSequences.failIfNullOrEmpty(text, "text")
+            checkValue(value),
+            CharSequences.failIfNullOrEmpty(text, "text")
         );
     }
 

@@ -64,8 +64,8 @@ final class BasicJsonMarshallerTypedExpressionCallExpression extends BasicJsonMa
         }
 
         return Expression.call(
-                callable,
-                parameters
+            callable,
+            parameters
         );
     }
 
@@ -73,7 +73,7 @@ final class BasicJsonMarshallerTypedExpressionCallExpression extends BasicJsonMa
     JsonNode marshallNonNull(final CallExpression call,
                              final JsonNodeMarshallContext context) {
         JsonObject json = JsonNode.object()
-                .set(CALLABLE_PROPERTY, context.marshallWithType(call.callable()));
+            .set(CALLABLE_PROPERTY, context.marshallWithType(call.callable()));
 
         final List<Expression> parameters = call.value();
         if (parameters.size() > 0) {

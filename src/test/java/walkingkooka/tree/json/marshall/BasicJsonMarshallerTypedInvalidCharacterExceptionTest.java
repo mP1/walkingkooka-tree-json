@@ -47,7 +47,7 @@ public final class BasicJsonMarshallerTypedInvalidCharacterExceptionTest extends
     @Test
     public void testUnmarshallStackElements() {
         final walkingkooka.InvalidCharacterException thrown = this.unmarshallContext()
-                .unmarshall(this.node(), walkingkooka.InvalidCharacterException.class);
+            .unmarshall(this.node(), walkingkooka.InvalidCharacterException.class);
         assertArrayEquals(new StackTraceElement[0], thrown.getStackTrace(), "stack trace");
     }
 

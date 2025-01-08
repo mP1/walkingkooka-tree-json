@@ -122,13 +122,13 @@ public final class JsonNodeArrayParserTokenTest extends JsonNodeParentParserToke
     @Test
     public void testMarshall() {
         this.checkEquals(Optional.of(JsonNode.array().appendChild(JsonNode.number(123))),
-                array(number(123)).toJsonNode());
+            array(number(123)).toJsonNode());
     }
 
     @Test
     public void testMarshallWhitespace() {
         this.checkEquals(Optional.of(JsonNode.array().appendChild(JsonNode.number(123))),
-                array(number(123), whitespace(), whitespace()).toJsonNode());
+            array(number(123), whitespace(), whitespace()).toJsonNode());
     }
 
     @Override
@@ -149,7 +149,7 @@ public final class JsonNodeArrayParserTokenTest extends JsonNodeParentParserToke
     @Override
     public JsonNodeArrayParserToken createDifferentToken() {
         return array(arrayBegin(), string("different"), arrayEnd())
-                .cast(JsonNodeArrayParserToken.class);
+            .cast(JsonNodeArrayParserToken.class);
     }
 
     @Override

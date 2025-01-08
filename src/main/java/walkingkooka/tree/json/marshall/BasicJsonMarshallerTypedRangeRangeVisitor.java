@@ -57,15 +57,15 @@ final class BasicJsonMarshallerTypedRangeRangeVisitor<C extends Comparable<C>> e
     @Override
     protected void lowerBoundExclusive(final C value) {
         this.typeWithValue(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
-                BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY,
-                value);
+            BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY,
+            value);
     }
 
     @Override
     protected void lowerBoundInclusive(final C value) {
         this.typeWithValue(BasicJsonMarshallerTypedRange.LOWER_BOUND_PROPERTY,
-                BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY,
-                value);
+            BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY,
+            value);
     }
 
     @Override
@@ -75,15 +75,15 @@ final class BasicJsonMarshallerTypedRangeRangeVisitor<C extends Comparable<C>> e
     @Override
     protected void upperBoundExclusive(final C value) {
         this.typeWithValue(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
-                BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY,
-                value);
+            BasicJsonMarshallerTypedRange.EXCLUSIVE_PROPERTY,
+            value);
     }
 
     @Override
     protected void upperBoundInclusive(final C value) {
         this.typeWithValue(BasicJsonMarshallerTypedRange.UPPER_BOUND_PROPERTY,
-                BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY,
-                value);
+            BasicJsonMarshallerTypedRange.INCLUSIVE_PROPERTY,
+            value);
     }
 
     /**
@@ -98,8 +98,8 @@ final class BasicJsonMarshallerTypedRangeRangeVisitor<C extends Comparable<C>> e
                                final JsonPropertyName inclusiveOrExclusive,
                                final C value) {
         this.jsonNode = this.jsonNode.set(lowerOrUpper,
-                JsonNode.object()
-                        .set(inclusiveOrExclusive, this.context.marshallWithType(value))
+            JsonNode.object()
+                .set(inclusiveOrExclusive, this.context.marshallWithType(value))
         );
     }
 

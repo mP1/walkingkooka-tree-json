@@ -26,7 +26,7 @@ import walkingkooka.reflect.JavaVisibility;
 import java.math.MathContext;
 
 public final class BasicJsonNodeParserContextTest implements ClassTesting2<BasicJsonNodeParserContext>,
-        JsonNodeParserContextTesting<BasicJsonNodeParserContext> {
+    JsonNodeParserContextTesting<BasicJsonNodeParserContext> {
 
     @Override
     public void testCurrencySymbol() {
@@ -43,7 +43,7 @@ public final class BasicJsonNodeParserContextTest implements ClassTesting2<Basic
     @Test
     public void testToString() {
         this.toStringAndCheck(this.createContext(),
-                "decimalSeparator='.' exponentSymbol=\"E\" negativeSign='-' percentageSymbol='%' positiveSign='+'");
+            "decimalSeparator='.' exponentSymbol=\"E\" negativeSign='-' percentageSymbol='%' positiveSign='+'");
     }
 
     @Override

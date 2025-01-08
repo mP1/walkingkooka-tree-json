@@ -40,11 +40,11 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanPropertiesTesting,
-        ClassTesting2<JsonNode>,
-        HasTextOffsetTesting,
-        HasTextTesting,
-        IsMethodTesting<N>,
-        NodeTesting<JsonNode, JsonPropertyName, Name, Object> {
+    ClassTesting2<JsonNode>,
+    HasTextOffsetTesting,
+    HasTextTesting,
+    IsMethodTesting<N>,
+    NodeTesting<JsonNode, JsonPropertyName, Name, Object> {
 
     JsonNodeTestCase() {
         super();
@@ -106,7 +106,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     @Override
     public final void testPropertiesNeverReturnNull() throws Exception {
         this.allPropertiesNeverReturnNullCheck(this.createJsonNode(),
-                (m) -> this.propertiesNeverReturnNullSkipProperties().contains(m.getName()));
+            (m) -> this.propertiesNeverReturnNullSkipProperties().contains(m.getName()));
     }
 
     abstract List<String> propertiesNeverReturnNullSkipProperties();
@@ -151,20 +151,20 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     final void isFalseLike(final JsonNode node,
                            final boolean expected) {
         this.checkEquals(
-                expected,
-                node.isFalseLike(),
-                node::toString
+            expected,
+            node.isFalseLike(),
+            node::toString
         );
     }
 
     // toBoolean......................................................................................................
 
     final void toBooleanAndCheck(final JsonNode node,
-                                   final boolean expected) {
+                                 final boolean expected) {
         this.checkEquals(
-                expected,
-                node.toBoolean(),
-                () -> node + " toBoolean"
+            expected,
+            node.toBoolean(),
+            () -> node + " toBoolean"
         );
     }
 
@@ -173,8 +173,8 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         final N node = this.createJsonNode();
 
         this.checkEquals(
-                node.toBoolean(),
-                node.toJsonBoolean().toBoolean()
+            node.toBoolean(),
+            node.toJsonBoolean().toBoolean()
         );
     }
 
@@ -184,18 +184,18 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         final JsonNode removed = node.removeFalseLike();
 
         assertSame(
-                node,
-                removed,
-                () -> "removeFalseLike " + node
+            node,
+            removed,
+            () -> "removeFalseLike " + node
         );
     }
 
     final void removeFalseLikeAndCheck(final JsonNode node,
                                        final JsonNode expected) {
         this.checkEquals(
-                expected,
-                node.removeFalseLike(),
-                () -> "removeFalseLike " + node
+            expected,
+            node.removeFalseLike(),
+            () -> "removeFalseLike " + node
         );
     }
 
@@ -261,9 +261,9 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     @Override
     public final Predicate<String> isMethodIgnoreMethodFilter() {
         return (m) -> m.equals("isRoot") ||
-                m.equals("toBoolean") ||
-                m.equals("isEmpty") ||
-                m.equals("isFalseLike");
+            m.equals("toBoolean") ||
+            m.equals("isEmpty") ||
+            m.equals("isFalseLike");
     }
 
     // ClassTesting....................................................................................................

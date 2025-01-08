@@ -33,15 +33,15 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
     @Override
     public void testStringOrFail() {
         this.checkEquals(
-                "abc",
-                JsonString.with("abc").stringOrFail()
+            "abc",
+            JsonString.with("abc").stringOrFail()
         );
     }
 
     @Test
     public void testStringOrFail2() {
         this.checkEquals("123",
-                JsonString.with("123").stringOrFail());
+            JsonString.with("123").stringOrFail());
     }
 
     @Test
@@ -101,16 +101,16 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
     @Test
     public void testIsFalseLikeWhenEmptyString() {
         this.isFalseLike(
-                JsonNode.string(""),
-                true
+            JsonNode.string(""),
+            true
         );
     }
 
     @Test
     public void testIsFalseLikeWhenNonEmptyString() {
         this.isFalseLike(
-                JsonNode.string("abc"),
-                false
+            JsonNode.string("abc"),
+            false
         );
     }
 
@@ -119,16 +119,16 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
     @Test
     public void testToBooleanEmptyString() {
         this.toBooleanAndCheck(
-                JsonString.with(""),
-                false
+            JsonString.with(""),
+            false
         );
     }
 
     @Test
     public void testToBooleanNotEmptyString() {
         this.toBooleanAndCheck(
-                JsonString.with("abc"),
-                true
+            JsonString.with("abc"),
+            true
         );
     }
 
@@ -137,95 +137,95 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
     @Test
     public void testToString() {
         this.toStringAndCheck2(
-                "abc123",
-                "\"abc123\""
+            "abc123",
+            "\"abc123\""
         );
     }
 
     @Test
     public void testToStringSpace() {
         this.toStringAndCheck2(
-                "abc 123 ",
-                "\"abc 123 \""
+            "abc 123 ",
+            "\"abc 123 \""
         );
     }
 
     @Test
     public void testToStringNul() {
         this.toStringAndCheck2(
-                "abc" + ((char) 0) + "xyz",
-                "\"abc\\u0000xyz\""
+            "abc" + ((char) 0) + "xyz",
+            "\"abc\\u0000xyz\""
         );
     }
 
     @Test
     public void testToStringBell() {
         this.toStringAndCheck2(
-                "abc\bxyz",
-                "\"abc\\bxyz\""
+            "abc\bxyz",
+            "\"abc\\bxyz\""
         );
     }
 
     @Test
     public void testToStringCR() {
         this.toStringAndCheck2(
-                "abc\rxyz",
-                "\"abc\\rxyz\""
+            "abc\rxyz",
+            "\"abc\\rxyz\""
         );
     }
 
     @Test
     public void testToStringFormFeed() {
         this.toStringAndCheck2(
-                "abc\fxyz",
-                "\"abc\\fxyz\""
+            "abc\fxyz",
+            "\"abc\\fxyz\""
         );
     }
 
     @Test
     public void testToStringNL() {
         this.toStringAndCheck2(
-                "abc\nxyz",
-                "\"abc\\nxyz\""
+            "abc\nxyz",
+            "\"abc\\nxyz\""
         );
     }
 
     @Test
     public void testToStringStringQuote() {
         this.toStringAndCheck2(
-                "abc'xyz",
-                "\"abc'xyz\""
+            "abc'xyz",
+            "\"abc'xyz\""
         );
     }
 
     @Test
     public void testToStringDoubleQuote() {
         this.toStringAndCheck2(
-                "abc\"xyz",
-                "\"abc\\\"xyz\""
+            "abc\"xyz",
+            "\"abc\\\"xyz\""
         );
     }
 
     @Test
     public void testToStringTab() {
         this.toStringAndCheck2(
-                "abc\txyz",
-                "\"abc\\txyz\""
+            "abc\txyz",
+            "\"abc\\txyz\""
         );
     }
 
     @Test
     public void testToStringControlCharacter() {
         this.toStringAndCheck2(
-                "abc" + ((char) 20) + "xyz",
-                "\"abc\\u0014xyz\""
+            "abc" + ((char) 20) + "xyz",
+            "\"abc\\u0014xyz\""
         );
     }
 
     private void toStringAndCheck2(final String value, final String json) {
         this.toStringAndCheck(
-                this.createJsonNode(value),
-                json
+            this.createJsonNode(value),
+            json
         );
     }
 
@@ -238,9 +238,9 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
             final String json = jsonString.toString();
 
             this.checkEquals(
-                    text,
-                    JsonNode.parse(json).stringOrFail(),
-                    () -> "parsing string " + CharSequences.quoteIfChars(c)
+                text,
+                JsonNode.parse(json).stringOrFail(),
+                () -> "parsing string " + CharSequences.quoteIfChars(c)
             );
         }
     }
@@ -273,13 +273,13 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
     @Override
     List<String> propertiesNeverReturnNullSkipProperties() {
         return Lists.of(ARRAY_OR_FAIL,
-                BOOLEAN_OR_FAIL,
-                UNMARSHALL_LIST,
-                UNMARSHALL_SET,
-                UNMARSHALL_MAP,
-                UNMARSHALL,
-                NUMBER_OR_FAIL,
-                OBJECT_OR_FAIL,
-                PARENT_OR_FAIL);
+            BOOLEAN_OR_FAIL,
+            UNMARSHALL_LIST,
+            UNMARSHALL_SET,
+            UNMARSHALL_MAP,
+            UNMARSHALL,
+            NUMBER_OR_FAIL,
+            OBJECT_OR_FAIL,
+            PARENT_OR_FAIL);
     }
 }

@@ -38,7 +38,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface JsonNodeContextTesting<C extends JsonNodeContext> extends ContextTesting<C>,
-        TreePrintableTesting {
+    TreePrintableTesting {
 
     // registeredType....................................................................................................
 
@@ -269,9 +269,9 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void registeredTypeAndCheck(final JsonString name,
                                         final Optional<Class<?>> type) {
         this.registeredTypeAndCheck(
-                this.createContext(),
-                name,
-                type
+            this.createContext(),
+            name,
+            type
         );
     }
 
@@ -279,9 +279,9 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
                                         final JsonString name,
                                         final Optional<Class<?>> type) {
         this.checkEquals(
-                type,
-                context.registeredType(name),
-                () -> context + " registeredType " + name
+            type,
+            context.registeredType(name),
+            () -> context + " registeredType " + name
         );
     }
 
@@ -290,17 +290,17 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void typeNameAndCheck(final Class<?> type,
                                   final Optional<JsonString> expected) {
         this.typeNameAndCheck(this.createContext(),
-                type,
-                expected);
+            type,
+            expected);
     }
 
     default void typeNameAndCheck(final JsonNodeContext context,
                                   final Class<?> type,
                                   final Optional<JsonString> expected) {
         this.checkEquals(
-                expected,
-                context.typeName(type),
-                () -> context + " typeName " + type.getName()
+            expected,
+            context.typeName(type),
+            () -> context + " typeName " + type.getName()
         );
     }
 }

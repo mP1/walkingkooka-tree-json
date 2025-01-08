@@ -20,8 +20,8 @@ package walkingkooka.tree.json.marshall;
 import walkingkooka.Context;
 
 public interface JsonNodeMarshallUnmarshallContextTesting<C extends JsonNodeMarshallUnmarshallContext> extends
-        JsonNodeMarshallContextTesting<C>,
-        JsonNodeUnmarshallContextTesting<C> {
+    JsonNodeMarshallContextTesting<C>,
+    JsonNodeUnmarshallContextTesting<C> {
 
     // TypeNameTesting..................................................................................................
 

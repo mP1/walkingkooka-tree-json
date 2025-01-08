@@ -47,7 +47,7 @@ public final class BasicJsonMarshallerTypedInvalidTextLengthExceptionTest extend
     @Test
     public void testUnmarshallStackElements() {
         final walkingkooka.InvalidTextLengthException thrown = this.unmarshallContext()
-                .unmarshall(this.node(), walkingkooka.InvalidTextLengthException.class);
+            .unmarshall(this.node(), walkingkooka.InvalidTextLengthException.class);
         assertArrayEquals(new StackTraceElement[0], thrown.getStackTrace(), "stack trace");
     }
 

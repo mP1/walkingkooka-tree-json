@@ -47,7 +47,7 @@ public final class BasicJsonMarshallerTypedIllegalArgumentExceptionTest extends 
     @Test
     public void testUnmarshallStackElements() {
         final java.lang.IllegalArgumentException thrown = this.unmarshallContext()
-                .unmarshall(JsonNode.string("message 123"), java.lang.IllegalArgumentException.class);
+            .unmarshall(JsonNode.string("message 123"), java.lang.IllegalArgumentException.class);
         assertArrayEquals(new StackTraceElement[0], thrown.getStackTrace(), "stack trace");
     }
 

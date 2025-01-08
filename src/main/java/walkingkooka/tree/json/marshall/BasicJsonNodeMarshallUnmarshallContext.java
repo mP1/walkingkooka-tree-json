@@ -20,14 +20,14 @@ package walkingkooka.tree.json.marshall;
 import java.util.Objects;
 
 final class BasicJsonNodeMarshallUnmarshallContext implements JsonNodeMarshallUnmarshallContext,
-        JsonNodeMarshallContextDelegator,
-        JsonNodeUnmarshallContextDelegator{
+    JsonNodeMarshallContextDelegator,
+    JsonNodeUnmarshallContextDelegator {
 
     static BasicJsonNodeMarshallUnmarshallContext with(final JsonNodeMarshallContext jsonNodeMarshallContext,
                                                        final JsonNodeUnmarshallContext jsonNodeUnmarshallContext) {
         return new BasicJsonNodeMarshallUnmarshallContext(
-                Objects.requireNonNull(jsonNodeMarshallContext, "jsonNodeMarshallContext"),
-                Objects.requireNonNull(jsonNodeUnmarshallContext, "jsonNodeUnmarshallContext")
+            Objects.requireNonNull(jsonNodeMarshallContext, "jsonNodeMarshallContext"),
+            Objects.requireNonNull(jsonNodeUnmarshallContext, "jsonNodeUnmarshallContext")
         );
     }
 

@@ -31,7 +31,7 @@ public final class BasicJsonMarshallerTypedNumberLongTest extends BasicJsonMarsh
     @Test
     public void testUnmarshallNumber() {
         this.unmarshallAndCheck(JsonNode.number(123),
-                123L);
+            123L);
     }
 
     @Test

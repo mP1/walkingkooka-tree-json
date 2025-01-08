@@ -77,7 +77,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
     @Override
     public JsonObject removeParent() {
         return this.removeParent0()
-                .cast(JsonObject.class);
+            .cast(JsonObject.class);
     }
 
     @Override
@@ -89,8 +89,8 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
 
             for (JsonNode child : children) {
                 equals = JsonParentNodeChildPredicate.INSTANCE.test(
-                        nameToValues.get(child.name),
-                        child
+                    nameToValues.get(child.name),
+                    child
                 ); // predicate doesnt throw if 1st param is null returns false.
                 if (!equals) {
                     break;
@@ -134,16 +134,16 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
         final JsonNode previous = this.children.nameToValues.get(name);
         final JsonNode value2 = value.setName0(name);
         return null != previous ?
-                this.setChild(previous, name, value2) :
-                this.addChild(name, value2);
+            this.setChild(previous, name, value2) :
+            this.addChild(name, value2);
     }
 
     private JsonObject setChild(final JsonNode previous,
                                 final JsonPropertyName name,
                                 final JsonNode value) {
         return JsonParentNodeChildPredicate.INSTANCE.test(previous, value) ?
-                this :
-                this.setChild0(previous.index(), name, value);
+            this :
+            this.setChild0(previous.index(), name, value);
     }
 
     private JsonObject setChild0(final int index,
@@ -162,7 +162,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
         }
 
         return this.setChildren0(JsonObjectList.with(children))
-                .cast(JsonObject.class);
+            .cast(JsonObject.class);
     }
 
     private JsonObject addChild(final JsonPropertyName name, final JsonNode value) {
@@ -171,7 +171,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
         children.put(name, value.setName0(name));
 
         return this.replaceChildren(JsonObjectList.with(children))
-                .cast(JsonObject.class);
+            .cast(JsonObject.class);
     }
 
     /**
@@ -185,20 +185,20 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
         for (Entry<JsonPropertyName, JsonNode> nameAndValue : this.children.nameToValues.entrySet()) {
             final JsonPropertyName name = nameAndValue.getKey();
             newChildren.put(name,
-                    newChildName.equals(name) ?
-                            newChild :
-                            nameAndValue.getValue());
+                newChildName.equals(name) ?
+                    newChild :
+                    nameAndValue.getValue());
         }
 
         return this.replaceChildren(JsonObjectList.with(newChildren))
-                .cast(JsonObject.class);
+            .cast(JsonObject.class);
     }
 
     @Override
     public JsonObject setName(final JsonPropertyName name) {
         checkName(name);
         return this.setName0(name)
-                .cast(JsonObject.class);
+            .cast(JsonObject.class);
     }
 
     @Override
@@ -211,14 +211,14 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
         }
 
         return this.setChildren0(JsonObjectList.with(copy))
-                .cast(JsonObject.class);
+            .cast(JsonObject.class);
     }
 
     @Override
     JsonNode setChild0(final JsonNode newChild, final int index) {
         return JsonParentNodeChildPredicate.INSTANCE.test(this.children.get(index), newChild) ?
-                this :
-                this.replaceChild0(newChild, index).children.nameToValues.get(newChild.name);
+            this :
+            this.replaceChild0(newChild, index).children.nameToValues.get(newChild.name);
     }
 
     /**
@@ -234,7 +234,7 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
         copy.remove(name);
 
         return this.setChildren0(JsonObjectList.with(copy))
-                .cast(JsonObject.class);
+            .cast(JsonObject.class);
     }
 
     /**
@@ -260,8 +260,8 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
 
         for (final JsonNode child : merge.children()) {
             merged = merged.set(
-                    child.name(),
-                    child
+                child.name(),
+                child
             );
         }
 
@@ -308,12 +308,12 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
     @Override
     public JsonNode removeFalseLike() {
         return this.setChildren(
-                        this.children()
-                                .stream()
-                                .filter(JsonNode::isNotFalseLike)
-                                .map(JsonNode::removeFalseLike)
-                                .collect(ImmutableList.collector())
-                );
+            this.children()
+                .stream()
+                .filter(JsonNode::isNotFalseLike)
+                .map(JsonNode::removeFalseLike)
+                .collect(ImmutableList.collector())
+        );
     }
 
     // TreePrint........................................................................................................
@@ -359,9 +359,9 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
     @Override//
     boolean equalsChildren(final JsonNode other) {
         return this.children.nameToValues.equals(
-                other.objectOrFail()
-                        .children
-                        .nameToValues
+            other.objectOrFail()
+                .children
+                .nameToValues
         );
     }
 }

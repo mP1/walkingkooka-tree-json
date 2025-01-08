@@ -22,7 +22,7 @@ import java.util.Objects;
 /**
  * A sub class of {@link java.lang.IllegalArgumentException} with an empty stacktrace. This is only returned by {@link BasicJsonMarshallerTypedIllegalArgumentException}
  */
-final class IllegalArgumentException extends java.lang.IllegalArgumentException{
+final class IllegalArgumentException extends java.lang.IllegalArgumentException {
 
     private static final long serialVersionUID = 1;
 
@@ -47,7 +47,7 @@ final class IllegalArgumentException extends java.lang.IllegalArgumentException{
 
     @Override
     public boolean equals(final Object other) {
-        return this == other || other instanceof java.lang.IllegalArgumentException && this.equals0((java.lang.IllegalArgumentException)other);
+        return this == other || other instanceof java.lang.IllegalArgumentException && this.equals0((java.lang.IllegalArgumentException) other);
     }
 
     private boolean equals0(final java.lang.IllegalArgumentException other) {

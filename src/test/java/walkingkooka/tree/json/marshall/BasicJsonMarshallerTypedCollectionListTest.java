@@ -41,24 +41,24 @@ public final class BasicJsonMarshallerTypedCollectionListTest extends BasicJsonM
     @Test
     public void testUnmarshallBooleanFails() {
         this.unmarshallFailed(
-                JsonNode.booleanNode(true),
-                JsonNodeUnmarshallException.class
+            JsonNode.booleanNode(true),
+            JsonNodeUnmarshallException.class
         );
     }
 
     @Test
     public void testUnmarshallNumberFails() {
         this.unmarshallFailed(
-                JsonNode.number(123),
-                JsonNodeUnmarshallException.class
+            JsonNode.number(123),
+            JsonNodeUnmarshallException.class
         );
     }
 
     @Test
     public void testUnmarshallStringFails() {
         this.unmarshallFailed(
-                JsonNode.string("abc123"),
-                JsonNodeUnmarshallException.class
+            JsonNode.string("abc123"),
+            JsonNodeUnmarshallException.class
         );
     }
 
@@ -85,11 +85,11 @@ public final class BasicJsonMarshallerTypedCollectionListTest extends BasicJsonM
     @Override
     JsonNode node() {
         return JsonNode.array()
-                .appendChild(JsonNode.nullNode())
-                .appendChild(JsonNode.booleanNode(true))
-                .appendChild(JsonNode.number(123.5))
-                .appendChild(JsonNode.string("abc123"))
-                .appendChild(this.marshallContext().marshallWithType(TestJsonNodeValue.with("test-has-json-node")));
+            .appendChild(JsonNode.nullNode())
+            .appendChild(JsonNode.booleanNode(true))
+            .appendChild(JsonNode.number(123.5))
+            .appendChild(JsonNode.string("abc123"))
+            .appendChild(this.marshallContext().marshallWithType(TestJsonNodeValue.with("test-has-json-node")));
     }
 
     @Override

@@ -32,8 +32,8 @@ public abstract class BasicTestCase<T> implements ClassTesting2<T>, TypeNameTest
     final JsonObject typeAndValue(final String type,
                                   final JsonNode value) {
         return JsonNode.object()
-                .set(BasicJsonNodeContext.TYPE, JsonNode.string(type))
-                .set(BasicJsonNodeContext.VALUE, value);
+            .set(BasicJsonNodeContext.TYPE, JsonNode.string(type))
+            .set(BasicJsonNodeContext.VALUE, value);
     }
 
     // ClassTesting.....................................................................................................

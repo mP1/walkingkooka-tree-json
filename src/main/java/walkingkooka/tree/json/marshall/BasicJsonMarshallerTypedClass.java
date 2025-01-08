@@ -61,10 +61,10 @@ final class BasicJsonMarshallerTypedClass extends BasicJsonMarshallerTyped<Class
 
         final Class<?> classs;
 
-        if(null != marshaller) {
-            classs =  marshaller.type();
+        if (null != marshaller) {
+            classs = marshaller.type();
         } else {
-            switch(className) {
+            switch (className) {
                 case "java.lang.Object":
                     classs = Object.class;
                     break;

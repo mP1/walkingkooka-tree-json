@@ -42,12 +42,12 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
     public JsonString setName(final JsonPropertyName name) {
         checkName(name);
         return this.setName0(name)
-                .cast(JsonString.class);
+            .cast(JsonString.class);
     }
 
     public JsonString setValue(final String value) {
         return this.setValue0(value)
-                .cast(JsonString.class);
+            .cast(JsonString.class);
     }
 
     @Override
@@ -61,7 +61,7 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
     @Override
     public JsonString removeParent() {
         return this.removeParent0()
-                .cast(JsonString.class);
+            .cast(JsonString.class);
     }
 
     @Override
@@ -86,7 +86,7 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
     @Override
     public boolean toBoolean() {
         return this.text()
-                .length() > 0;
+            .length() > 0;
     }
 
     // JsonNodeVisitor .................................................................................................
@@ -148,13 +148,13 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
                 default:
                     if (c < 0x20) {
                         encoded.append("\\u")
-                                .append(
-                                        CharSequences.padLeft(
-                                                Integer.toHexString(c),
-                                                4,
-                                                '0'
-                                        )
-                                );
+                            .append(
+                                CharSequences.padLeft(
+                                    Integer.toHexString(c),
+                                    4,
+                                    '0'
+                                )
+                            );
                         break;
                     }
                     encoded.append(c);

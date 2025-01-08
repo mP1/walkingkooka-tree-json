@@ -26,13 +26,13 @@ public interface JsonNodeContextDelegator extends JsonNodeContext {
     @Override
     default Optional<Class<?>> registeredType(final JsonString name) {
         return this.jsonNodeContext()
-                .registeredType(name);
+            .registeredType(name);
     }
 
     @Override
     default Optional<JsonString> typeName(final Class<?> type) {
         return this.jsonNodeContext()
-                .typeName(type);
+            .typeName(type);
     }
 
     JsonNodeContext jsonNodeContext();

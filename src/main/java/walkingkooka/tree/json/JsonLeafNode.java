@@ -45,14 +45,14 @@ abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
 
     final JsonLeafNode<V> setValue0(final V value) {
         return Objects.equals(this.value(), value) ?
-                this :
-                this.replaceValue(value);
+            this :
+            this.replaceValue(value);
     }
 
     @SuppressWarnings("unchecked") final JsonLeafNode<V> replaceValue(final V value) {
         return this.replace0(this.name, this.index, value)
-                .replaceChild(this.parent(), this.index)
-                .cast(JsonLeafNode.class);
+            .replaceChild(this.parent(), this.index)
+            .cast(JsonLeafNode.class);
     }
 
     @Override final JsonNode replace(final JsonPropertyName name, final int index) {
@@ -106,8 +106,7 @@ abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
 
     // equals............................................................................................................
 
-    @Override
-    final boolean equalsChildren(final JsonNode other) {
+    @Override final boolean equalsChildren(final JsonNode other) {
         return true;
     }
 }

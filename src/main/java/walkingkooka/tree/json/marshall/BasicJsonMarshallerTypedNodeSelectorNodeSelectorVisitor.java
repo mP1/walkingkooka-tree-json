@@ -36,18 +36,18 @@ import java.util.function.Predicate;
  * A {@link NodeSelectorVisitor} that creates the json representation for any {@link NodeSelector}.
  */
 final class BasicJsonMarshallerTypedNodeSelectorNodeSelectorVisitor<N extends Node<N, NAME, ANAME, AVALUE>,
-        NAME extends Name,
-        ANAME extends Name,
-        AVALUE> extends NodeSelectorVisitor<N, NAME, ANAME, AVALUE> {
+    NAME extends Name,
+    ANAME extends Name,
+    AVALUE> extends NodeSelectorVisitor<N, NAME, ANAME, AVALUE> {
 
     /**
      * Accepts a selector and returns its JSON representation.
      */
     static <N extends Node<N, NAME, ANAME, AVALUE>,
-            NAME extends Name,
-            ANAME extends Name,
-            AVALUE> JsonNode marshall(final NodeSelector<N, NAME, ANAME, AVALUE> selector,
-                                      final JsonNodeMarshallContext context) {
+        NAME extends Name,
+        ANAME extends Name,
+        AVALUE> JsonNode marshall(final NodeSelector<N, NAME, ANAME, AVALUE> selector,
+                                  final JsonNodeMarshallContext context) {
         final BasicJsonMarshallerTypedNodeSelectorNodeSelectorVisitor<N, NAME, ANAME, AVALUE> visitor = new BasicJsonMarshallerTypedNodeSelectorNodeSelectorVisitor<>(context);
         visitor.accept(selector);
         return visitor.marshall();
@@ -125,7 +125,7 @@ final class BasicJsonMarshallerTypedNodeSelectorNodeSelectorVisitor<N extends No
         if (null == this.nameType) {
             final Class<?> type = name.getClass();
             this.nameType = this.context.typeName(type)
-                    .orElseThrow(() -> new java.lang.IllegalArgumentException("Name type not registered: " + CharSequences.quote(type.getName())));
+                .orElseThrow(() -> new java.lang.IllegalArgumentException("Name type not registered: " + CharSequences.quote(type.getName())));
         }
         return this.addComponent(BasicJsonMarshallerTypedNodeSelector.NAMED + BasicJsonMarshallerTypedNodeSelector.SEPARATOR + name.value());
     }
@@ -159,13 +159,13 @@ final class BasicJsonMarshallerTypedNodeSelectorNodeSelectorVisitor<N extends No
 
     private JsonNode marshall() {
         final JsonObject object = JsonNode.object()
-                .set(BasicJsonMarshallerTypedNodeSelector.COMPONENTS_PROPERTY,
-                        JsonNode.array()
-                                .setChildren(this.components));
+            .set(BasicJsonMarshallerTypedNodeSelector.COMPONENTS_PROPERTY,
+                JsonNode.array()
+                    .setChildren(this.components));
         final JsonString nameType = this.nameType;
         return null != nameType ?
-                object.set(BasicJsonMarshallerTypedNodeSelector.NAME_TYPE_PROPERTY, nameType) :
-                object;
+            object.set(BasicJsonMarshallerTypedNodeSelector.NAME_TYPE_PROPERTY, nameType) :
+            object;
     }
 
     /**

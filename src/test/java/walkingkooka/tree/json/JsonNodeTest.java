@@ -24,88 +24,88 @@ import walkingkooka.test.ParseStringTesting;
 import walkingkooka.tree.HasTextOffsetTesting;
 
 public final class JsonNodeTest implements ClassTesting2<JsonNode>,
-        HasTextOffsetTesting,
-        ParseStringTesting<JsonNode> {
+    HasTextOffsetTesting,
+    ParseStringTesting<JsonNode> {
 
     // isClass..........................................................................................................
 
     @Test
     public void testIsClassWithNull() {
         this.isClassAndCheck(
-                null,
-                false
+            null,
+            false
         );
     }
 
     @Test
     public void testIsClassWithNonJsonNodeSubClass() {
         this.isClassAndCheck(
-                this.getClass(),
-                false
+            this.getClass(),
+            false
         );
     }
 
     @Test
     public void testIsClassWithJsonNode() {
         this.isClassAndCheck(
-                JsonNode.class,
-                true
+            JsonNode.class,
+            true
         );
     }
 
     @Test
     public void testIsClassWithJsonBoolean() {
         this.isClassAndCheck(
-                JsonBoolean.class,
-                true
+            JsonBoolean.class,
+            true
         );
     }
 
     @Test
     public void testIsClassWithJsonNull() {
         this.isClassAndCheck(
-                JsonNull.class,
-                true
+            JsonNull.class,
+            true
         );
     }
 
     @Test
     public void testIsClassWithJsonNumber() {
         this.isClassAndCheck(
-                JsonNumber.class,
-                true
+            JsonNumber.class,
+            true
         );
     }
 
     @Test
     public void testIsClassWithJsonString() {
         this.isClassAndCheck(
-                JsonString.class,
-                true
+            JsonString.class,
+            true
         );
     }
 
     @Test
     public void testIsClassWithJsonArray() {
         this.isClassAndCheck(
-                JsonArray.class,
-                true
+            JsonArray.class,
+            true
         );
     }
 
     @Test
     public void testIsClassWithJsonObject() {
         this.isClassAndCheck(
-                JsonObject.class,
-                true
+            JsonObject.class,
+            true
         );
     }
 
     private void isClassAndCheck(final Class<?> type,
                                  final boolean expected) {
         this.checkEquals(
-                expected,
-                JsonNode.isClass(type)
+            expected,
+            JsonNode.isClass(type)
         );
     }
 
@@ -144,85 +144,85 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
     @Test
     public void testParseBoolean() {
         this.parseStringAndCheck("true",
-                JsonNode.booleanNode(true));
+            JsonNode.booleanNode(true));
     }
 
     @Test
     public void testParseNull() {
         this.parseStringAndCheck("null",
-                JsonNode.nullNode());
+            JsonNode.nullNode());
     }
 
     @Test
     public void testParseNumber() {
         this.parseStringAndCheck("123.5",
-                JsonNode.number(123.5));
+            JsonNode.number(123.5));
     }
 
     @Test
     public void testParseNumberNaN() {
         this.parseStringAndCheck(
-                "NaN",
-                JsonNode.number(Double.NaN)
+            "NaN",
+            JsonNode.number(Double.NaN)
         );
     }
 
     @Test
     public void testParseNumberPlusInfinity() {
         this.parseStringAndCheck(
-                "+Infinity",
-                JsonNode.number(Double.POSITIVE_INFINITY)
+            "+Infinity",
+            JsonNode.number(Double.POSITIVE_INFINITY)
         );
     }
 
     @Test
     public void testParseNumberNegativeInfinity() {
         this.parseStringAndCheck(
-                "-Infinity",
-                JsonNode.number(Double.NEGATIVE_INFINITY)
+            "-Infinity",
+            JsonNode.number(Double.NEGATIVE_INFINITY)
         );
     }
 
     @Test
     public void testParseString() {
         this.parseStringAndCheck("\"abc123\"",
-                JsonNode.string("abc123"));
+            JsonNode.string("abc123"));
     }
 
     @Test
     public void testParseArray() {
         this.parseStringAndCheck("[\"abc123\", true]",
-                JsonNode.array()
-                        .appendChild(JsonNode.string("abc123"))
-                        .appendChild(JsonNode.booleanNode(true)));
+            JsonNode.array()
+                .appendChild(JsonNode.string("abc123"))
+                .appendChild(JsonNode.booleanNode(true)));
     }
 
     @Test
     public void testParseObject() {
         this.parseStringAndCheck("{\"prop1\": \"value1\"}",
-                JsonNode.object().set(JsonPropertyName.with("prop1"), JsonNode.string("value1")));
+            JsonNode.object().set(JsonPropertyName.with("prop1"), JsonNode.string("value1")));
     }
 
     @Test
     public void testParseObject2() {
         this.parseStringAndCheck("{ \"prop1\": \"value1\" }",
-                JsonNode.object().set(JsonPropertyName.with("prop1"), JsonNode.string("value1")));
+            JsonNode.object().set(JsonPropertyName.with("prop1"), JsonNode.string("value1")));
     }
 
     @Test
     public void testParseObjectManyProperties() {
         this.parseStringAndCheck("{\"prop1\": \"value1\", \"prop2\": \"value2\"}",
-                JsonNode.object()
-                        .set(JsonPropertyName.with("prop1"), JsonNode.string("value1"))
-                        .set(JsonPropertyName.with("prop2"), JsonNode.string("value2")));
+            JsonNode.object()
+                .set(JsonPropertyName.with("prop1"), JsonNode.string("value1"))
+                .set(JsonPropertyName.with("prop2"), JsonNode.string("value2")));
     }
 
     @Test
     public void testParseObjectOrderUnimportant() {
         this.parseStringAndCheck("{\"prop1\": \"value1\", \"prop2\": \"value2\"}",
-                JsonNode.object()
-                        .set(JsonPropertyName.with("prop2"), JsonNode.string("value2"))
-                        .set(JsonPropertyName.with("prop1"), JsonNode.string("value1")));
+            JsonNode.object()
+                .set(JsonPropertyName.with("prop2"), JsonNode.string("value2"))
+                .set(JsonPropertyName.with("prop1"), JsonNode.string("value1")));
     }
 
     // HasTextOffset.................................................................................................
@@ -235,28 +235,28 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
     @Test
     public void testHasTextOffsetJsonObject() {
         this.textOffsetAndCheck(JsonObject.object()
-                        .set(JsonPropertyName.with("key1"), JsonNode.string("a1"))
-                        .set(JsonPropertyName.with("key2"), JsonNode.string("b2"))
-                        .set(JsonPropertyName.with("key3"), JsonNode.string("c3"))
-                        .set(JsonPropertyName.with("key4"), JsonNode.string("d4"))
-                        .children()
-                        .get(2),
-                "a1b2");
+                .set(JsonPropertyName.with("key1"), JsonNode.string("a1"))
+                .set(JsonPropertyName.with("key2"), JsonNode.string("b2"))
+                .set(JsonPropertyName.with("key3"), JsonNode.string("c3"))
+                .set(JsonPropertyName.with("key4"), JsonNode.string("d4"))
+                .children()
+                .get(2),
+            "a1b2");
     }
 
     @Test
     public void testHasTextOffsetJsonArray() {
         this.textOffsetAndCheck(JsonObject.array()
-                        .appendChild(JsonNode.string("a1"))
-                        .appendChild(JsonObject.array()
-                                .appendChild(JsonNode.string("b2"))
-                                .appendChild(JsonNode.string("c3"))
-                                .appendChild(JsonNode.string("d4")))
-                        .appendChild(JsonNode.string("e5"))
-                        .get(1)
-                        .children()
-                        .get(2),
-                "a1b2c3");
+                .appendChild(JsonNode.string("a1"))
+                .appendChild(JsonObject.array()
+                    .appendChild(JsonNode.string("b2"))
+                    .appendChild(JsonNode.string("c3"))
+                    .appendChild(JsonNode.string("d4")))
+                .appendChild(JsonNode.string("e5"))
+                .get(1)
+                .children()
+                .get(2),
+            "a1b2c3");
     }
 
     // ClassTesting.............................................................................................

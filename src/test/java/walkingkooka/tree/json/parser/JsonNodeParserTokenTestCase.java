@@ -31,8 +31,8 @@ import java.util.function.Predicate;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken> implements ClassTesting2<T>,
-        IsMethodTesting<T>,
-        ParserTokenTesting<T> {
+    IsMethodTesting<T>,
+    ParserTokenTesting<T> {
 
     JsonNodeParserTokenTestCase() {
         super();
@@ -42,9 +42,9 @@ public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken>
     @Override
     public final void testPublicStaticFactoryMethod() {
         PublicStaticFactoryTesting.checkFactoryMethods(JsonNodeParserToken.class,
-                "JsonNode",
-                ParserToken.class.getSimpleName(),
-                this.type());
+            "JsonNode",
+            ParserToken.class.getSimpleName(),
+            this.type());
     }
 
     @Test
@@ -143,11 +143,11 @@ public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken>
     @Override
     public final Predicate<String> isMethodIgnoreMethodFilter() {
         return (m) -> m.equals("isLeaf") ||
-                m.equals("isNoise") ||
-                m.equals("isParent") ||
-                m.equals("isSymbol") ||
-                m.equals("isEmpty") ||
-                m.equals("isNotEmpty");
+            m.equals("isNoise") ||
+            m.equals("isParent") ||
+            m.equals("isSymbol") ||
+            m.equals("isEmpty") ||
+            m.equals("isNotEmpty");
     }
 
     @Override

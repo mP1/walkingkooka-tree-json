@@ -70,19 +70,19 @@ final class BasicJsonMarshallerTypedMap extends BasicJsonMarshallerTyped<Map<?, 
     JsonNode marshallNonNull(final Map<?, ?> map,
                              final JsonNodeMarshallContext context) {
         return JsonObject.array()
-                .setChildren(
-                        map.entrySet()
-                        .stream()
-                        .map(e -> entryWithType(e, context))
-                        .collect(ImmutableList.collector())
-                );
+            .setChildren(
+                map.entrySet()
+                    .stream()
+                    .map(e -> entryWithType(e, context))
+                    .collect(ImmutableList.collector())
+            );
     }
 
     private static JsonNode entryWithType(final Entry<?, ?> entry,
                                           final JsonNodeMarshallContext context) {
         return JsonNode.object()
-                .set(ENTRY_KEY, context.marshallWithType(entry.getKey()))
-                .set(ENTRY_VALUE, context.marshallWithType(entry.getValue()));
+            .set(ENTRY_KEY, context.marshallWithType(entry.getKey()))
+            .set(ENTRY_VALUE, context.marshallWithType(entry.getValue()));
     }
 
     final static JsonPropertyName ENTRY_KEY = JsonPropertyName.with("key");

@@ -52,45 +52,45 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     @Test
     public void testRegisterNullTypeNameFails() {
         assertThrows(java.lang.NullPointerException.class, () -> BasicJsonMarshaller.register(null,
-                TestJsonNodeValue::unmarshall,
-                TestJsonNodeValue::marshall,
-                TestJsonNodeValue.class));
+            TestJsonNodeValue::unmarshall,
+            TestJsonNodeValue::marshall,
+            TestJsonNodeValue.class));
     }
 
     @SuppressWarnings("unchecked")
     @Test
     public void testRegisterEmptyTypeNameFails() {
         assertThrows(java.lang.IllegalArgumentException.class, () -> BasicJsonMarshaller.register("",
-                TestJsonNodeValue::unmarshall,
-                TestJsonNodeValue::marshall,
-                TestJsonNodeValue.class));
+            TestJsonNodeValue::unmarshall,
+            TestJsonNodeValue::marshall,
+            TestJsonNodeValue.class));
     }
 
     @SuppressWarnings("unchecked")
     @Test
     public void testRegisterNullFromFunctionFails() {
         assertThrows(java.lang.NullPointerException.class, () -> BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
-                null,
-                TestJsonNodeValue::marshall,
-                TestJsonNodeValue.class));
+            null,
+            TestJsonNodeValue::marshall,
+            TestJsonNodeValue.class));
     }
 
     @SuppressWarnings("unchecked")
     @Test
     public void testRegisterNullToFunctionFails() {
         assertThrows(java.lang.NullPointerException.class, () -> BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
-                TestJsonNodeValue::unmarshall,
-                null,
-                TestJsonNodeValue.class));
+            TestJsonNodeValue::unmarshall,
+            null,
+            TestJsonNodeValue.class));
     }
 
     @SuppressWarnings("unchecked")
     @Test
     public void testRegisterNullTypeFails() {
         assertThrows(java.lang.NullPointerException.class, () -> BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
-                TestJsonNodeValue::unmarshall,
-                TestJsonNodeValue::marshall,
-                null));
+            TestJsonNodeValue::unmarshall,
+            TestJsonNodeValue::marshall,
+            null));
     }
 
     @Test
@@ -104,9 +104,9 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
         TestJsonNodeValue.register();
 
         assertThrows(java.lang.IllegalArgumentException.class, () -> BasicJsonMarshaller.register(TestJsonNodeValue.TYPE_NAME,
-                TestJsonNodeValue::unmarshall,
-                TestJsonNodeValue::marshall,
-                TestJsonNodeValue.class));
+            TestJsonNodeValue::unmarshall,
+            TestJsonNodeValue::marshall,
+            TestJsonNodeValue.class));
     }
 
     @Test
@@ -134,26 +134,26 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     @Test
     public void testTypeNameUnknown() {
         this.typeNameAndCheck(this.getClass(),
-                Optional.empty());
+            Optional.empty());
     }
 
     @Test
     public void testTypeNameBigDecimal() {
         this.typeNameAndCheck(BigDecimal.class,
-                Optional.of(JsonNode.string("big-decimal")));
+            Optional.of(JsonNode.string("big-decimal")));
     }
 
     @Test
     public void testTypeNameJsonObject() {
         this.typeNameAndCheck(JsonObject.class,
-                Optional.of(JsonNode.string("json")));
+            Optional.of(JsonNode.string("json")));
     }
 
     private void typeNameAndCheck(final Class<?> type,
                                   final Optional<JsonString> typeName) {
         this.checkEquals(typeName,
-                BasicJsonMarshaller.typeName(type),
-                () -> "typeName of " + type.getName());
+            BasicJsonMarshaller.typeName(type),
+            () -> "typeName of " + type.getName());
     }
 
     @Test
@@ -181,22 +181,22 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     @Test
     public void testExpressionBoolean() {
         this.roundtripAndCheck(
-                Expression.value(true)
+            Expression.value(true)
         );
     }
 
     @Test
     public void testExpressionCallNamedFunction() {
         this.roundtripAndCheck(
-                Expression.call(
-                        Expression.namedFunction(
-                                ExpressionFunctionName.with("function123")
-                        ),
-                        Lists.of(
-                                Expression.value(true),
-                                Expression.value("2b")
-                        )
+            Expression.call(
+                Expression.namedFunction(
+                    ExpressionFunctionName.with("function123")
+                ),
+                Lists.of(
+                    Expression.value(true),
+                    Expression.value("2b")
                 )
+            )
         );
     }
 
@@ -208,8 +208,8 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     @Test
     public void testExpressionNumber() {
         this.roundtripAndCheck(
-                Expression.value(EXPRESSION_NUMBER_KIND.create(99.5)
-                )
+            Expression.value(EXPRESSION_NUMBER_KIND.create(99.5)
+            )
         );
     }
 
@@ -241,27 +241,27 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     @Test
     public void testExpressionLocalDate() {
         this.roundtripAndCheck(
-                Expression.value(
-                        LocalDate.of(2000, 12, 31)
-                )
+            Expression.value(
+                LocalDate.of(2000, 12, 31)
+            )
         );
     }
 
     @Test
     public void testExpressionLocalDateTime() {
         this.roundtripAndCheck(
-                Expression.value(
-                        LocalDateTime.of(2000, 12, 31, 6, 28, 29)
-                )
+            Expression.value(
+                LocalDateTime.of(2000, 12, 31, 6, 28, 29)
+            )
         );
     }
 
     @Test
     public void testExpressionLocalTime() {
         this.roundtripAndCheck(
-                Expression.value(
-                        LocalTime.of(6, 28, 29)
-                )
+            Expression.value(
+                LocalTime.of(6, 28, 29)
+            )
         );
     }
 
@@ -308,7 +308,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
     @Test
     public void testExpressionText() {
         this.roundtripAndCheck(
-                Expression.value("abc123")
+            Expression.value("abc123")
         );
     }
 
@@ -319,32 +319,32 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
 
     private void roundtripAndCheck(final Function<Expression, Expression> factory) {
         this.roundtripAndCheck(
-                factory.apply(
-                        Expression.value("only-parameter")
-                )
+            factory.apply(
+                Expression.value("only-parameter")
+            )
         );
     }
 
     private void roundtripAndCheck(final BiFunction<Expression, Expression, Expression> factory) {
         this.roundtripAndCheck(
-                factory.apply(
-                        Expression.value(
-                                EXPRESSION_NUMBER_KIND.create(1)
-                        ),
-                        Expression.value("parameter-2b")
-                )
+            factory.apply(
+                Expression.value(
+                    EXPRESSION_NUMBER_KIND.create(1)
+                ),
+                Expression.value("parameter-2b")
+            )
         );
     }
 
     private void roundtripAndCheck(final Object value) {
         final JsonNode json = JsonNodeMarshallContexts.basic().marshall(value);
         this.checkEquals(
-                value,
-                JsonNodeUnmarshallContexts.basic(
-                        EXPRESSION_NUMBER_KIND,
-                        MathContext.DECIMAL32
-                ).unmarshall(json, value.getClass()),
-                () -> "roundtrip " + value + "\n" + json);
+            value,
+            JsonNodeUnmarshallContexts.basic(
+                EXPRESSION_NUMBER_KIND,
+                MathContext.DECIMAL32
+            ).unmarshall(json, value.getClass()),
+            () -> "roundtrip " + value + "\n" + json);
     }
 
     // ClassTesting.....................................................................................................

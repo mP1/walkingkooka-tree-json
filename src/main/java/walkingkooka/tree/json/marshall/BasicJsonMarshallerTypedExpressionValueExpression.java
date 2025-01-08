@@ -39,7 +39,7 @@ final class BasicJsonMarshallerTypedExpressionValueExpression extends BasicJsonM
     ValueExpression<?> unmarshallNonNull(final JsonNode node,
                                          final JsonNodeUnmarshallContext context) {
         return Expression.value(
-                context.unmarshallWithType(node)
+            context.unmarshallWithType(node)
         );
     }
 

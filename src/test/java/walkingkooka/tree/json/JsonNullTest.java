@@ -60,8 +60,8 @@ public final class JsonNullTest extends JsonLeafNodeTestCase<JsonNull, Void> {
     @Test
     public void testIsFalseLike() {
         this.isFalseLike(
-                this.createJsonNode(),
-                true
+            this.createJsonNode(),
+            true
         );
     }
 
@@ -70,8 +70,8 @@ public final class JsonNullTest extends JsonLeafNodeTestCase<JsonNull, Void> {
     @Test
     public void testToBoolean() {
         this.toBooleanAndCheck(
-                this.createJsonNode(),
-                false
+            this.createJsonNode(),
+            false
         );
     }
 
@@ -120,16 +120,16 @@ public final class JsonNullTest extends JsonLeafNodeTestCase<JsonNull, Void> {
     @Override
     List<String> propertiesNeverReturnNullSkipProperties() {
         return Lists.of(ARRAY_OR_FAIL,
-                BOOLEAN_OR_FAIL,
-                CHARACTER_OR_FAIL,
-                UNMARSHALL_LIST,
-                UNMARSHALL_SET,
-                UNMARSHALL_MAP,
-                UNMARSHALL,
-                NUMBER_OR_FAIL,
-                OBJECT_OR_FAIL,
-                PARENT_OR_FAIL,
-                STRING_OR_FAIL,
-                VALUE);
+            BOOLEAN_OR_FAIL,
+            CHARACTER_OR_FAIL,
+            UNMARSHALL_LIST,
+            UNMARSHALL_SET,
+            UNMARSHALL_MAP,
+            UNMARSHALL,
+            NUMBER_OR_FAIL,
+            OBJECT_OR_FAIL,
+            PARENT_OR_FAIL,
+            STRING_OR_FAIL,
+            VALUE);
     }
 }

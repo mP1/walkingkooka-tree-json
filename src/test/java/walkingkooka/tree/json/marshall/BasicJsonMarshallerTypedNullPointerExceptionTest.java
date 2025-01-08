@@ -47,7 +47,7 @@ public final class BasicJsonMarshallerTypedNullPointerExceptionTest extends Basi
     @Test
     public void testUnmarshallStackElements() {
         final java.lang.NullPointerException thrown = this.unmarshallContext()
-                .unmarshall(JsonNode.string("message 123"), java.lang.NullPointerException.class);
+            .unmarshall(JsonNode.string("message 123"), java.lang.NullPointerException.class);
         assertArrayEquals(new StackTraceElement[0], thrown.getStackTrace(), "stack trace");
     }
 

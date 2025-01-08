@@ -91,12 +91,12 @@ final class BasicJsonMarshallerTypedInvalidCharacterException extends BasicJsonM
         // Added type parameter to avoid
         // Error:BasicJsonMarshallerTypedInvalidCharacterException.java:93: The method of(T...) of type Lists is not applicable as the formal varargs element type T is not accessible here
         return JsonNode.object()
-                .setChildren(
-                        Lists.<JsonNode>of(
-                                JsonNode.string(value.text()).setName(TEXT_JSON_PROPERTY),
-                                JsonNode.number(value.position()).setName(POSITION_JSON_PROPERTY)
-                        )
-                );
+            .setChildren(
+                Lists.<JsonNode>of(
+                    JsonNode.string(value.text()).setName(TEXT_JSON_PROPERTY),
+                    JsonNode.number(value.position()).setName(POSITION_JSON_PROPERTY)
+                )
+            );
     }
 
     private final static String TEXT = "text";

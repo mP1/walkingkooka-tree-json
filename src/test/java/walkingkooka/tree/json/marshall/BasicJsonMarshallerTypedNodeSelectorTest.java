@@ -35,13 +35,13 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
     @Test
     public void testAbsoluteFromJson() {
         this.unmarshallAndCheck(this.jsonNode(JsonNode.string("absolute"), JsonNode.string("self")),
-                TestNode.absoluteNodeSelector().self());
+            TestNode.absoluteNodeSelector().self());
     }
 
     @Test
     public void testAbsoluteMarshall() {
         this.marshallAndCheck(TestNode.absoluteNodeSelector().self(),
-                this.jsonNode(JsonNode.string("absolute"), JsonNode.string("self")));
+            this.jsonNode(JsonNode.string("absolute"), JsonNode.string("self")));
     }
 
     @Test
@@ -99,7 +99,7 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
     @Test
     public void testAttributeValueEqualsWithFromJson() {
         this.unmarshallAndCheck2(JsonNode.string(ATTRIBUTE_EQUALS),
-                TestNode.relativeNodeSelector().expression(Expression.equalsExpression(reference(), text())));
+            TestNode.relativeNodeSelector().expression(Expression.equalsExpression(reference(), text())));
     }
 
     @Test
@@ -131,17 +131,17 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
 
     private NodeSelector<TestNode, StringName, StringName, Object> function(final String functionName) {
         return TestNode.relativeNodeSelector()
-                .expression(
-                        Expression.call(
-                                Expression.namedFunction(
-                                        ExpressionFunctionName.with(functionName)
-                                ),
-                                Lists.of(
-                                        this.reference(),
-                                        this.text()
-                                )
-                        )
-                );
+            .expression(
+                Expression.call(
+                    Expression.namedFunction(
+                        ExpressionFunctionName.with(functionName)
+                    ),
+                    Lists.of(
+                        this.reference(),
+                        this.text()
+                    )
+                )
+            );
     }
 
     private Expression reference() {
@@ -165,13 +165,13 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
     @Test
     public void testCustomToStringFromJson() {
         this.unmarshallAndCheck(this.jsonNode(JsonNode.string("custom:custom-to-string"), JsonNode.string("self")),
-                TestNode.relativeNodeSelector().self().setToString("custom-to-string"));
+            TestNode.relativeNodeSelector().self().setToString("custom-to-string"));
     }
 
     @Test
     public void testCustomToStringMarshall() {
         this.marshallAndCheck(TestNode.relativeNodeSelector().self().setToString("custom-to-string"),
-                this.jsonNode(JsonNode.string("custom:custom-to-string"), JsonNode.string("self")));
+            this.jsonNode(JsonNode.string("custom:custom-to-string"), JsonNode.string("self")));
     }
 
     @Test
@@ -206,8 +206,8 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
 
     private Expression sum() {
         return Expression.add(
-                Expression.value(EXPRESSION_NUMBER_KIND.create(1)),
-                Expression.value(EXPRESSION_NUMBER_KIND.create(22))
+            Expression.value(EXPRESSION_NUMBER_KIND.create(1)),
+            Expression.value(EXPRESSION_NUMBER_KIND.create(22))
         );
     }
 
@@ -254,13 +254,13 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
     @Test
     public void testNamedFromJson() {
         this.unmarshallAndCheck(this.jsonNode("string-name", JsonNode.string("named:abc123")),
-                TestNode.relativeNodeSelector().named(Names.string("abc123")));
+            TestNode.relativeNodeSelector().named(Names.string("abc123")));
     }
 
     @Test
     public void testNamedMarshall() {
         this.marshallAndCheck(TestNode.relativeNodeSelector().named(Names.string("abc123")),
-                this.jsonNode("string-name", JsonNode.string("named:abc123")));
+            this.jsonNode("string-name", JsonNode.string("named:abc123")));
     }
 
     @Test
@@ -306,35 +306,35 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
     private void unmarshallAndCheck2(final JsonNode component,
                                      final NodeSelector<TestNode, StringName, StringName, Object> selector) {
         this.unmarshallAndCheck(this.jsonNode(component),
-                selector);
+            selector);
     }
 
     private void marshallAndCheck2(final NodeSelector<TestNode, StringName, StringName, Object> selector,
                                    final JsonNode... components) {
         this.marshallAndCheck(selector,
-                this.jsonNode(components));
+            this.jsonNode(components));
     }
 
     @Test
     public void testAbsoluteChildrenNamedChildrenNamedJsonRoundtrip() {
         this.jsonRoundtripAndCheck(TestNode.absoluteNodeSelector()
-                .children()
-                .named(Names.string("abc123"))
-                .children()
-                .named(Names.string("DEF456")));
+            .children()
+            .named(Names.string("abc123"))
+            .children()
+            .named(Names.string("DEF456")));
     }
 
     @Test
     public void testAbsoluteNamedChildrenExpressionJsonRoundtrip() {
         this.jsonRoundtripAndCheck(
-                TestNode.absoluteNodeSelector()
+            TestNode.absoluteNodeSelector()
                 .children()
                 .named(Names.string("abc123"))
                 .expression(
-                        Expression.add(
-                                Expression.value(EXPRESSION_NUMBER_KIND.create(1)),
-                                Expression.value("bcd234")
-                        )
+                    Expression.add(
+                        Expression.value(EXPRESSION_NUMBER_KIND.create(1)),
+                        Expression.value("bcd234")
+                    )
                 )
         );
     }
@@ -342,52 +342,52 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
     @Test
     public void testAbsoluteAncestorAncestorOrSelfChildrenDescendantDescendantOrSelfJsonRoundtrip() {
         this.jsonRoundtripAndCheck(TestNode.absoluteNodeSelector()
-                .ancestor()
-                .ancestorOrSelf()
-                .children()
-                .descendant()
-                .descendantOrSelf());
+            .ancestor()
+            .ancestorOrSelf()
+            .children()
+            .descendant()
+            .descendantOrSelf());
     }
 
     @Test
     public void testFirstChildFollowingFollowingSiblingLastChildJsonRoundtrip() {
         this.jsonRoundtripAndCheck(TestNode.absoluteNodeSelector()
-                .firstChild()
-                .following()
-                .followingSibling()
-                .lastChild());
+            .firstChild()
+            .following()
+            .followingSibling()
+            .lastChild());
     }
 
     @Test
     public void testParentPrecedingPrecedingSiblingSelfJsonRoundtrip() {
         this.jsonRoundtripAndCheck(TestNode.absoluteNodeSelector()
-                .firstChild()
-                .preceding()
-                .precedingSibling()
-                .self());
+            .firstChild()
+            .preceding()
+            .precedingSibling()
+            .self());
     }
 
     @Test
     public void testChildrenCustomToStringChildrenCustomToStringJsonRoundtrip() {
         this.jsonRoundtripAndCheck(TestNode.relativeNodeSelector()
-                .children()
-                .setToString("Custom1a")
-                .children()
-                .setToString("Custom2b"));
+            .children()
+            .setToString("Custom1a")
+            .children()
+            .setToString("Custom2b"));
     }
 
     @Test
     public void testCustomToStringChildrenCustomToStringChildrenJsonRoundtrip() {
         this.jsonRoundtripAndCheck(TestNode.relativeNodeSelector()
-                .setToString("Custom1a")
-                .children()
-                .setToString("Custom2b")
-                .children());
+            .setToString("Custom1a")
+            .children()
+            .setToString("Custom2b")
+            .children());
     }
 
     private void jsonRoundtripAndCheck(final NodeSelector<TestNode, StringName, StringName, Object> selector) {
         final JsonNode jsonNode = this.marshallContext()
-                .marshall(selector);
+            .marshall(selector);
         this.unmarshallAndCheck(jsonNode, selector);
     }
 
@@ -410,15 +410,15 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
 
     private JsonObject jsonNode(final JsonNode... components) {
         return JsonNode.object()
-                .set(BasicJsonMarshallerTypedNodeSelector.COMPONENTS_PROPERTY,
-                        JsonNode.array()
-                                .setChildren(Lists.of(components)));
+            .set(BasicJsonMarshallerTypedNodeSelector.COMPONENTS_PROPERTY,
+                JsonNode.array()
+                    .setChildren(Lists.of(components)));
     }
 
     private JsonNode jsonNode(final String type,
                               final JsonNode... components) {
         return this.jsonNode(components)
-                .set(BasicJsonMarshallerTypedNodeSelector.NAME_TYPE_PROPERTY, JsonNode.string(type));
+            .set(BasicJsonMarshallerTypedNodeSelector.NAME_TYPE_PROPERTY, JsonNode.string(type));
     }
 
     @Override

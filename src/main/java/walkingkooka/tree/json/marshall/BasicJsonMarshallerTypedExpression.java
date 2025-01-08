@@ -56,14 +56,14 @@ abstract class BasicJsonMarshallerTypedExpression<N extends Expression> extends 
     static BasicJsonMarshallerTypedExpression<CallExpression> call() {
         return BasicJsonMarshallerTypedExpressionCallExpression.instance();
     }
-    
+
     /**
      * {@see BasicJsonMarshallerTypedExpressionLambdaFunctionExpression}
      */
     static BasicJsonMarshallerTypedExpression<LambdaFunctionExpression> lambdaFunction() {
         return BasicJsonMarshallerTypedExpressionLambdaFunctionExpression.instance();
     }
-    
+
     /**
      * {@see BasicJsonMarshallerTypedExpressionNamedFunctionExpression}
      */
@@ -94,36 +94,32 @@ abstract class BasicJsonMarshallerTypedExpression<N extends Expression> extends 
         // remove trailing "expression-" and prepend "-expression"
         final String expression = Expression.class.getSimpleName();
         this.name =
-                CharSequences.subSequence(
-                        JsonNodeContext.computeTypeName(type),
-                        0,
-                        -expression.length()
-                ) +
-                        expression.toLowerCase();
+            CharSequences.subSequence(
+                JsonNodeContext.computeTypeName(type),
+                0,
+                -expression.length()
+            ) +
+                expression.toLowerCase();
         this.type = type;
     }
 
-    @Override
-    final void register() {
+    @Override final void register() {
         this.registerTypeNameAndType();
     }
 
-    @Override
-    final Class<N> type() {
+    @Override final Class<N> type() {
         return this.type;
     }
 
     private final Class<N> type;
 
-    @Override
-    final String typeName() {
+    @Override final String typeName() {
         return name;
     }
 
     private final String name;
 
-    @Override
-    final N unmarshallNull(final JsonNodeUnmarshallContext context) {
+    @Override final N unmarshallNull(final JsonNodeUnmarshallContext context) {
         return null;
     }
 }

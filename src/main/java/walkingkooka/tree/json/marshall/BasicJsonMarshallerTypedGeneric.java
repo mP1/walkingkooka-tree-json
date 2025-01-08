@@ -45,8 +45,8 @@ final class BasicJsonMarshallerTypedGeneric<T> extends BasicJsonMarshallerTyped<
         Objects.requireNonNull(types, "types");
 
         final List<Class<?>> all = Stream.concat(Stream.of(type), Stream.of(types))
-                .peek(t -> Objects.requireNonNull(t, "null type"))
-                .collect(ImmutableList.collector());
+            .peek(t -> Objects.requireNonNull(t, "null type"))
+            .collect(ImmutableList.collector());
 
         return new BasicJsonMarshallerTypedGeneric<>(typeName, from, to, type, all);
     }
@@ -87,8 +87,8 @@ final class BasicJsonMarshallerTypedGeneric<T> extends BasicJsonMarshallerTyped<
         TYPENAME_TO_MARSHALLER.remove(this.type().getName());
 
         this.types.stream()
-                .map(Class::getName)
-                .forEach(TYPENAME_TO_MARSHALLER::remove);
+            .map(Class::getName)
+            .forEach(TYPENAME_TO_MARSHALLER::remove);
     }
 
     private final List<Class<?>> types;

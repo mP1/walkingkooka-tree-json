@@ -286,7 +286,7 @@ public abstract class JsonNodeParserToken implements ParserToken {
             visitor2.endVisit(this);
         }
     }
-    
+
     abstract void accept(final JsonNodeParserTokenVisitor visitor);
 
     /**
@@ -317,15 +317,15 @@ public abstract class JsonNodeParserToken implements ParserToken {
     @Override
     public final boolean equals(final Object other) {
         return this == other ||
-                this.canBeEqual(other) &&
-                        this.equals0(Cast.to(other));
+            this.canBeEqual(other) &&
+                this.equals0(Cast.to(other));
     }
 
     abstract boolean canBeEqual(final Object other);
 
     private boolean equals0(final JsonNodeParserToken other) {
         return this.text().equals(other.text()) &&
-                Objects.equals(this.value(), other.value()); // needs to be null safe because of JsonNodeNullParserToken
+            Objects.equals(this.value(), other.value()); // needs to be null safe because of JsonNodeNullParserToken
     }
 
     @Override

@@ -49,9 +49,9 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
         Objects.requireNonNull(mathContext, "mathContext");
 
         return new BasicJsonNodeUnmarshallContext(
-                kind,
-                mathContext,
-                JsonNodeUnmarshallContext.PRE_PROCESSOR
+            kind,
+            mathContext,
+            JsonNodeUnmarshallContext.PRE_PROCESSOR
         );
     }
 
@@ -86,12 +86,12 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
         Objects.requireNonNull(processor, "processor");
 
         return this.processor.equals(processor) ?
-                this :
-                new BasicJsonNodeUnmarshallContext(
-                        this.kind,
-                        this.mathContext,
-                        processor
-                );
+            this :
+            new BasicJsonNodeUnmarshallContext(
+                this.kind,
+                this.mathContext,
+                processor
+            );
     }
 
     // from.............................................................................................................
@@ -110,22 +110,22 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
                                                         final Class<T> enumClass,
                                                         final Function<String, T> stringToEnum) {
         return node.isNull() ?
-                null :
-                this.unmarshallEnumSetNonNull(
-                        node.stringOrFail(),
-                        enumClass,
-                        stringToEnum
-                );
+            null :
+            this.unmarshallEnumSetNonNull(
+                node.stringOrFail(),
+                enumClass,
+                stringToEnum
+            );
     }
 
     private <T extends Enum<T>> Set<T> unmarshallEnumSetNonNull(final String csv,
                                                                 final Class<T> enumClass,
                                                                 final Function<String, T> stringToEnum) {
         return csv.isEmpty() ?
-                EnumSet.noneOf(enumClass) :
-                Arrays.stream(csv.split(","))
-                        .map(stringToEnum::apply)
-                        .collect(Collectors.toCollection(() -> EnumSet.noneOf(enumClass)));
+            EnumSet.noneOf(enumClass) :
+            Arrays.stream(csv.split(","))
+                .map(stringToEnum::apply)
+                .collect(Collectors.toCollection(() -> EnumSet.noneOf(enumClass)));
     }
 
     /**
@@ -136,9 +136,9 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     public <T> List<T> unmarshallList(final JsonNode node,
                                       final Class<T> elementType) {
         return this.unmarshallCollection(
-                node,
-                elementType,
-                ImmutableList.collector()
+            node,
+            elementType,
+            ImmutableList.collector()
         );
     }
 
@@ -150,8 +150,8 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     public <T> Set<T> unmarshallSet(final JsonNode node,
                                     final Class<T> elementType) {
         return this.unmarshallCollection(node,
-                elementType,
-                Collectors.toCollection(Sets::ordered));
+            elementType,
+            Collectors.toCollection(Sets::ordered));
     }
 
     private <C extends Collection<T>, T> C unmarshallCollection(final JsonNode from,
@@ -159,9 +159,9 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
                                                                 final Collector<T, ?, C> collector) {
         final BasicJsonMarshaller<T> marshaller = BasicJsonMarshaller.marshaller(elementType);
         return from.children()
-                .stream()
-                .map(c -> marshaller.unmarshall(this.preProcess(c, elementType), this))
-                .collect(collector);
+            .stream()
+            .map(c -> marshaller.unmarshall(this.preProcess(c, elementType), this))
+            .collect(collector);
     }
 
     /**
@@ -173,8 +173,8 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
                                           final Class<K> keyType,
                                           final Class<V> valueType) {
         return node.isObject() ?
-                unmarshallMapFromObject(node.objectOrFail(), keyType, valueType) :
-                unmarshallMapFromArray(node, keyType, valueType);
+            unmarshallMapFromObject(node.objectOrFail(), keyType, valueType) :
+            unmarshallMapFromArray(node, keyType, valueType);
     }
 
     private <K, V> Map<K, V> unmarshallMapFromObject(final JsonObject node,
@@ -187,14 +187,14 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
 
         for (final JsonNode entry : node.children()) {
             map.put(
-                    keyMapper.unmarshall(
-                            this.preProcess(entry.name().toJsonString(), keyType),
-                            this
-                    ),
-                    valueMapper.unmarshall(
-                            this.preProcess(entry, valueType),
-                            this
-                    )
+                keyMapper.unmarshall(
+                    this.preProcess(entry.name().toJsonString(), keyType),
+                    this
+                ),
+                valueMapper.unmarshall(
+                    this.preProcess(entry, valueType),
+                    this
+                )
             );
         }
         return map;
@@ -214,14 +214,14 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
             final JsonObject entryObject = entry.objectOrFail();
 
             map.put(
-                    keyMapper.unmarshall(
-                            this.preProcess(entryObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_KEY), keyType),
-                            this
-                    ),
-                    valueMapper.unmarshall(
-                            this.preProcess(entryObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_VALUE), valueType),
-                            this
-                    )
+                keyMapper.unmarshall(
+                    this.preProcess(entryObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_KEY), keyType),
+                    this
+                ),
+                valueMapper.unmarshall(
+                    this.preProcess(entryObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_VALUE), valueType),
+                    this
+                )
             );
         }
         return map;
@@ -243,9 +243,9 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     @Override
     public <T> List<T> unmarshallWithTypeList(final JsonNode node) {
         return this.unmarshallCollectionWithType(
-                node,
-                List.class,
-                ImmutableList.collector()
+            node,
+            List.class,
+            ImmutableList.collector()
         );
     }
 
@@ -255,17 +255,17 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     @Override
     public <T> Set<T> unmarshallWithTypeSet(final JsonNode node) {
         return this.unmarshallCollectionWithType(node,
-                Set.class,
-                Collectors.toCollection(Sets::ordered));
+            Set.class,
+            Collectors.toCollection(Sets::ordered));
     }
 
     private <C extends Collection<T>, T> C unmarshallCollectionWithType(final JsonNode from,
                                                                         final Class<?> label,
                                                                         final Collector<T, ?, C> collector) {
         return this.unmarshallCollection0(from,
-                label,
-                this::unmarshallWithType,
-                collector);
+            label,
+            this::unmarshallWithType,
+            collector);
     }
 
     /**
@@ -281,7 +281,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
             final JsonObject childObject = child.objectOrFail();
 
             map.put(this.unmarshallWithType(childObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_KEY)),
-                    this.unmarshallWithType(childObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_VALUE)));
+                this.unmarshallWithType(childObject.getOrFail(BasicJsonMarshallerTypedMap.ENTRY_VALUE)));
         }
 
         return map;
@@ -306,9 +306,9 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
         fromArrayCheck(from, label);
 
         return from.children()
-                .stream()
-                .map(element)
-                .collect(collector);
+            .stream()
+            .map(element)
+            .collect(collector);
     }
 
     /**

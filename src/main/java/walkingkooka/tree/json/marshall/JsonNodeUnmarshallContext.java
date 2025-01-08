@@ -37,7 +37,7 @@ import java.util.function.Function;
  * A {@link Context} that accompanies transforming {@link JsonNode} into an object.
  */
 public interface JsonNodeUnmarshallContext extends JsonNodeContext,
-        HasExpressionNumberKind, HasMathContext {
+    HasExpressionNumberKind, HasMathContext {
 
     /**
      * A {@link JsonNodeUnmarshallContextPreProcessor processor} that simply returns the given {@link JsonNode} ignoring the type.

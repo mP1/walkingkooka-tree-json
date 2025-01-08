@@ -19,17 +19,17 @@ public class TestGwtTest extends GWTTestCase {
 
     public void testAssertEquals() {
         assertEquals(
-                1,
-                1
+            1,
+            1
         );
     }
 
     public void testParse() {
         assertEquals(
-                JsonNode.booleanNode(true),
-                JsonNode.parse(
-                        "true"
-                )
+            JsonNode.booleanNode(true),
+            JsonNode.parse(
+                "true"
+            )
         );
     }
 
@@ -39,12 +39,12 @@ public class TestGwtTest extends GWTTestCase {
 
         final String encoded = Base64.getEncoder().encodeToString(data.getBytes(charset));
         assertEquals("Started with " + CharSequences.quoteAndEscape(data) + " encoded: " + CharSequences.quoteAndEscape(encoded),
-                data,
-                new String(
-                        Base64.getDecoder()
-                                .decode(encoded),
-                        charset
-                )
+            data,
+            new String(
+                Base64.getDecoder()
+                    .decode(encoded),
+                charset
+            )
         );
     }
 }

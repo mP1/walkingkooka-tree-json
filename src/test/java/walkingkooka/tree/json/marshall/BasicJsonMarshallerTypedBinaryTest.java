@@ -40,8 +40,8 @@ public final class BasicJsonMarshallerTypedBinaryTest extends BasicJsonMarshalle
     @Override
     JsonNode node() {
         return JsonNode.string(
-                Base64.getEncoder()
-                        .encodeToString(BYTES)
+            Base64.getEncoder()
+                .encodeToString(BYTES)
         );
     }
 

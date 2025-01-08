@@ -38,9 +38,9 @@ public final class BasicJsonMarshallerTypedGenericTest extends BasicJsonMarshall
     @Override
     BasicJsonMarshallerTypedGeneric<TestJsonNodeValue> marshaller() {
         return BasicJsonMarshallerTypedGeneric.with(TestJsonNodeValue.TYPE_NAME,
-                TestJsonNodeValue::unmarshall,
-                TestJsonNodeValue::marshall,
-                TestJsonNodeValue.class);
+            TestJsonNodeValue::unmarshall,
+            TestJsonNodeValue::marshall,
+            TestJsonNodeValue.class);
     }
 
     @Override

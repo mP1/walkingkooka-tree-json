@@ -19,6 +19,7 @@ package test;
 import com.google.j2cl.junit.apt.J2clTestInput;
 import org.junit.Assert;
 import org.junit.Test;
+
 import java.nio.charset.Charset;
 import java.util.Base64;
 
@@ -41,13 +42,13 @@ public class JunitTest {
 
         final String encoded = Base64.getEncoder().encodeToString(data.getBytes(charset));
         Assert.assertEquals(
-                "Started with " + CharSequences.quoteAndEscape(data) + " encoded: " + CharSequences.quoteAndEscape(encoded),
-                data,
-                new String(
-                        Base64.getDecoder()
-                                .decode(encoded),
-                        charset
-                )
+            "Started with " + CharSequences.quoteAndEscape(data) + " encoded: " + CharSequences.quoteAndEscape(encoded),
+            data,
+            new String(
+                Base64.getDecoder()
+                    .decode(encoded),
+                charset
+            )
         );
     }
 }

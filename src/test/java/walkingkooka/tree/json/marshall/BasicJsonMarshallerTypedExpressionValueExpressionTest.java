@@ -43,28 +43,28 @@ public final class BasicJsonMarshallerTypedExpressionValueExpressionTest extends
     @Test
     public void testRoundtripExpressionNumber() {
         this.roundTripAndCheck(
-                ExpressionNumberKind.DEFAULT.create(123)
+            ExpressionNumberKind.DEFAULT.create(123)
         );
     }
 
     @Test
     public void testRoundtripLocalDate() {
         this.roundTripAndCheck(
-                LocalDate.of(1999, 12, 31)
+            LocalDate.of(1999, 12, 31)
         );
     }
 
     @Test
     public void testRoundtripLocalDateTime() {
         this.roundTripAndCheck(
-                LocalDateTime.of(1999, 12, 31, 12, 58, 59)
+            LocalDateTime.of(1999, 12, 31, 12, 58, 59)
         );
     }
 
     @Test
     public void testRoundtripLocalTime() {
         this.roundTripAndCheck(
-                LocalTime.of(12, 58, 59)
+            LocalTime.of(12, 58, 59)
         );
     }
 
@@ -76,7 +76,7 @@ public final class BasicJsonMarshallerTypedExpressionValueExpressionTest extends
     private void roundTripAndCheck(final Object value) {
         final ValueExpression<Object> expression = Expression.value(value);
         final JsonNode json = this.marshallContext()
-                .marshall(expression);
+            .marshall(expression);
         this.unmarshallAndCheck(json, expression);
     }
 

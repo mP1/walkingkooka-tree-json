@@ -43,11 +43,11 @@ final class BasicJsonMarshallerTypedJsonNode extends BasicJsonMarshallerTyped<Js
     void register() {
         this.registerTypeNameAndType();
         this.registerTypes(Lists.of(JsonArray.class,
-                JsonBoolean.class,
-                JsonNull.class,
-                JsonNumber.class,
-                JsonObject.class,
-                JsonString.class));
+            JsonBoolean.class,
+            JsonNull.class,
+            JsonNumber.class,
+            JsonObject.class,
+            JsonString.class));
 
     }
 

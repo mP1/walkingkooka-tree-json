@@ -28,8 +28,8 @@ public final class JsonNodeStringParserToken extends JsonNodeValueParserToken<St
 
     static JsonNodeStringParserToken with(final String value, final String text) {
         return new JsonNodeStringParserToken(
-                checkValue(value),
-                CharSequences.failIfNullOrEmpty(text, "text")
+            checkValue(value),
+            CharSequences.failIfNullOrEmpty(text, "text")
         );
     }
 

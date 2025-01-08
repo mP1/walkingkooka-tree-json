@@ -48,11 +48,11 @@ public final class JsonNodeMarshallUnmarshallContextDelegatorTest implements Jso
         @Override
         public JsonNodeMarshallUnmarshallContext jsonNodeMarshallUnmarshallContext() {
             return JsonNodeMarshallUnmarshallContexts.basic(
-                    JsonNodeMarshallContexts.basic(),
-                    JsonNodeUnmarshallContexts.basic(
-                            ExpressionNumberKind.BIG_DECIMAL,
-                            MathContext.DECIMAL64
-                    )
+                JsonNodeMarshallContexts.basic(),
+                JsonNodeUnmarshallContexts.basic(
+                    ExpressionNumberKind.BIG_DECIMAL,
+                    MathContext.DECIMAL64
+                )
             );
         }
 

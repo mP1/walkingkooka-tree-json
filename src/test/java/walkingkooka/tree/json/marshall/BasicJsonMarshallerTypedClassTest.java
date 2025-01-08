@@ -33,8 +33,8 @@ public final class BasicJsonMarshallerTypedClassTest extends BasicJsonMarshaller
     @Override
     public void testUnmarshallJsonNullNode() {
         this.unmarshallFailed(
-                JsonNode.nullNode(),
-                java.lang.NullPointerException.class
+            JsonNode.nullNode(),
+            java.lang.NullPointerException.class
         );
     }
 
@@ -50,16 +50,16 @@ public final class BasicJsonMarshallerTypedClassTest extends BasicJsonMarshaller
 
     private void unmarshallClassAndCheck(final Class<?> classs) {
         this.unmarshallAndCheck(
-                JsonNode.string(BasicJsonMarshaller.classToString(classs)),
-                classs
+            JsonNode.string(BasicJsonMarshaller.classToString(classs)),
+            classs
         );
     }
 
     @Test
     public void testMarshallDivideExpression() {
         this.marshallAndCheck(
-                DivideExpression.class,
-                JsonNode.string(BasicJsonMarshaller.classToString(DivideExpression.class))
+            DivideExpression.class,
+            JsonNode.string(BasicJsonMarshaller.classToString(DivideExpression.class))
         );
     }
 
@@ -87,14 +87,14 @@ public final class BasicJsonMarshallerTypedClassTest extends BasicJsonMarshaller
 
     private void roundtripAndCheck(final Class<?> classs) {
         final JsonNode json = this.marshallContext()
-                .marshall(classs);
+            .marshall(classs);
         this.checkEquals(
-                classs,
-                this.unmarshallContext()
-                        .unmarshall(
-                                json,
-                                Class.class
-                        )
+            classs,
+            this.unmarshallContext()
+                .unmarshall(
+                    json,
+                    Class.class
+                )
         );
     }
 
@@ -111,7 +111,7 @@ public final class BasicJsonMarshallerTypedClassTest extends BasicJsonMarshaller
     @Override
     JsonNode node() {
         return JsonNode.string(
-                BasicJsonMarshaller.classToString(this.value())
+            BasicJsonMarshaller.classToString(this.value())
         );
     }
 

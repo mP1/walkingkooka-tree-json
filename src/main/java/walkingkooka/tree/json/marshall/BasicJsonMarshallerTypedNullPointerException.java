@@ -58,8 +58,8 @@ final class BasicJsonMarshallerTypedNullPointerException extends BasicJsonMarsha
     java.lang.NullPointerException unmarshallNonNull(final JsonNode node,
                                                      final JsonNodeUnmarshallContext context) {
         return NULL.equals(node) ?
-                new NullPointerException() :
-                new NullPointerException(node.stringOrFail());
+            new NullPointerException() :
+            new NullPointerException(node.stringOrFail());
     }
 
     @Override
@@ -67,8 +67,8 @@ final class BasicJsonMarshallerTypedNullPointerException extends BasicJsonMarsha
                              final JsonNodeMarshallContext context) {
         final String message = value.getMessage();
         return null != message ?
-                JsonNode.string(message) :
-                NULL;
+            JsonNode.string(message) :
+            NULL;
     }
 
     private final static JsonNode NULL = JsonNode.number(0);

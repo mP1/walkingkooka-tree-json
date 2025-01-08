@@ -83,35 +83,35 @@ final class JsonNodeEbnfParserCombinatorSyntaxTreeTransformer implements EbnfPar
                                             final Parser<ParserContext> parser) {
         final EbnfIdentifierName name = token.value();
         return name.equals(JsonNodeParsers.ARRAY_IDENTIFIER) ?
-                parser.transform(JsonNodeEbnfParserCombinatorSyntaxTreeTransformer::array) :
-                name.equals(JsonNodeParsers.OBJECT_IDENTIFIER) ?
-                        parser.transform(JsonNodeEbnfParserCombinatorSyntaxTreeTransformer::object) :
-                        this.requiredCheck(name, parser);
+            parser.transform(JsonNodeEbnfParserCombinatorSyntaxTreeTransformer::array) :
+            name.equals(JsonNodeParsers.OBJECT_IDENTIFIER) ?
+                parser.transform(JsonNodeEbnfParserCombinatorSyntaxTreeTransformer::object) :
+                this.requiredCheck(name, parser);
     }
 
     private static ParserToken array(final ParserToken token,
                                      final ParserContext context) {
         return JsonNodeParserToken.array(JsonNodeEbnfParserCombinatorSyntaxTreeTransformer.clean(token),
-                token.text());
+            token.text());
     }
 
     private static ParserToken object(final ParserToken token,
                                       final ParserContext context) {
         return JsonNodeParserToken.object(JsonNodeEbnfParserCombinatorSyntaxTreeTransformer.clean(token),
-                token.text());
+            token.text());
     }
 
     private static List<ParserToken> clean(final ParserToken token) {
         return token.cast(SequenceParserToken.class)
-                .flat()
-                .value();
+            .flat()
+            .value();
     }
 
     private Parser<ParserContext> requiredCheck(final EbnfIdentifierName name,
                                                 final Parser<ParserContext> parser) {
         return name.value().endsWith("REQUIRED") || JsonNodeParsers.REPORT_FAILURE_IDENTIFIER_NAMES.contains(name) ?
-                parser.orReport(ParserReporters.basic()) :
-                parser; // leave as is...
+            parser.orReport(ParserReporters.basic()) :
+            parser; // leave as is...
     }
 
     @Override

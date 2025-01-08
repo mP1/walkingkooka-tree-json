@@ -55,17 +55,17 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
         if (type.isEnum()) {
             final Object[] values = Cast.to(type.getMethod("values").invoke(null));
             this.checkEquals(Lists.empty(),
-                    Arrays.stream(values)
-                            .filter(e -> BasicJsonMarshaller.TYPENAME_TO_MARSHALLER.get(e.getClass().getName()) == null)
-                            .collect(ImmutableList.collector()),
-                    () -> "Not all enum: " + typeName + " value types not registered -> JsonNodeContext.register()=" + BasicJsonMarshaller.TYPENAME_TO_MARSHALLER
+                Arrays.stream(values)
+                    .filter(e -> BasicJsonMarshaller.TYPENAME_TO_MARSHALLER.get(e.getClass().getName()) == null)
+                    .collect(ImmutableList.collector()),
+                () -> "Not all enum: " + typeName + " value types not registered -> JsonNodeContext.register()=" + BasicJsonMarshaller.TYPENAME_TO_MARSHALLER
             );
 
         } else {
             this.checkNotEquals(
-                    null,
-                    BasicJsonMarshaller.TYPENAME_TO_MARSHALLER.get(typeName),
-                    () -> "Type: " + typeName + " factory not registered -> JsonNodeContext.register()=" + BasicJsonMarshaller.TYPENAME_TO_MARSHALLER
+                null,
+                BasicJsonMarshaller.TYPENAME_TO_MARSHALLER.get(typeName),
+                () -> "Type: " + typeName + " factory not registered -> JsonNodeContext.register()=" + BasicJsonMarshaller.TYPENAME_TO_MARSHALLER
             );
         }
     }
@@ -79,8 +79,8 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
         final JsonNode node = context.marshallWithType(value);
         if (node.isObject()) {
             this.checkEquals(node.objectOrFail().get(BasicJsonNodeContext.TYPE).map(Node::removeParent),
-                    context.typeName(value.getClass()),
-                    () -> value + " & " + node);
+                context.typeName(value.getClass()),
+                () -> value + " & " + node);
         }
     }
 
@@ -93,17 +93,17 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
         final Class<V> type = this.type();
         final Optional<JsonString> maybeTypeName = context.typeName(type);
         this.checkNotEquals(
-                Optional.empty(),
-                maybeTypeName,
-                () -> "typeName for " + type.getName() + " failed"
+            Optional.empty(),
+            maybeTypeName,
+            () -> "typeName for " + type.getName() + " failed"
         );
 
         final JsonString typeName = maybeTypeName.get();
         final Optional<Class<?>> maybeRegisteredType = context.registeredType(typeName);
         this.checkNotEquals(
-                Optional.empty(),
-                maybeRegisteredType,
-                () -> "registeredType for " + type.getName() + " failed"
+            Optional.empty(),
+            maybeRegisteredType,
+            () -> "registeredType for " + type.getName() + " failed"
         );
 
         final Class<?> registeredType = maybeRegisteredType.get();
@@ -113,12 +113,12 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
     @Test
     default void testStaticUnmarshallMethodsNonPublic() {
         this.checkEquals(
-                Lists.empty(),
-                Arrays.stream(this.type().getMethods())
-                        .filter(MethodAttributes.STATIC::is)
-                        .filter(m -> m.getName().startsWith("unmarshall"))
-                        .collect(Collectors.toList()),
-                "static unmarshall methods must not be public"
+            Lists.empty(),
+            Arrays.stream(this.type().getMethods())
+                .filter(MethodAttributes.STATIC::is)
+                .filter(m -> m.getName().startsWith("unmarshall"))
+                .collect(Collectors.toList()),
+            "static unmarshall methods must not be public"
         );
     }
 
@@ -135,9 +135,9 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
     default void unmarshallAndCheck(final JsonNode from,
                                     final Object value) {
         this.checkEquals(
-                value,
-                this.unmarshall(from),
-                () -> "unmarshall failed " + from
+            value,
+            this.unmarshall(from),
+            () -> "unmarshall failed " + from
         );
     }
 
@@ -158,8 +158,8 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
 
     default void unmarshallFails(final JsonNode from) {
         this.unmarshallFails(
-                from,
-                this.type());
+            from,
+            this.type());
     }
 
     default void unmarshallFails(final JsonNode from,
@@ -171,11 +171,11 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
                                  final Class<?> type,
                                  final JsonNodeUnmarshallContext context) {
         assertThrows(
-                JsonNodeException.class,
-                () -> context.unmarshall(
-                        from,
-                        type
-                )
+            JsonNodeException.class,
+            () -> context.unmarshall(
+                from,
+                type
+            )
         );
     }
 
@@ -194,9 +194,9 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
         final List<Object> list = Lists.of(this.createJsonNodeMarshallingValue());
 
         this.checkEquals(
-                list,
-                this.unmarshallContext().unmarshallWithTypeList(this.marshallContext().marshallWithTypeCollection(list)),
-                () -> "Roundtrip to -> from -> to failed list=" + list
+            list,
+            this.unmarshallContext().unmarshallWithTypeList(this.marshallContext().marshallWithTypeCollection(list)),
+            () -> "Roundtrip to -> from -> to failed list=" + list
         );
     }
 
@@ -205,9 +205,9 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
         final Set<Object> set = Sets.of(this.createJsonNodeMarshallingValue());
 
         this.checkEquals(
-                set,
-                this.unmarshallContext().unmarshallWithTypeSet(this.marshallContext().marshallWithTypeCollection(set)),
-                () -> "Roundtrip to -> from -> to failed set=" + set
+            set,
+            this.unmarshallContext().unmarshallWithTypeSet(this.marshallContext().marshallWithTypeCollection(set)),
+            () -> "Roundtrip to -> from -> to failed set=" + set
         );
     }
 
@@ -216,9 +216,9 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
         final Map<String, Object> map = Maps.of("key123", this.createJsonNodeMarshallingValue());
 
         this.checkEquals(
-                map,
-                this.unmarshallContext().unmarshallWithTypeMap(this.marshallContext().marshallWithTypeMap(map)),
-                () -> "Roundtrip to -> from -> to failed marshall=" + map
+            map,
+            this.unmarshallContext().unmarshallWithTypeMap(this.marshallContext().marshallWithTypeMap(map)),
+            () -> "Roundtrip to -> from -> to failed marshall=" + map
         );
     }
 
@@ -240,17 +240,17 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
     default void marshallAndCheck(final Object value,
                                   final JsonNode json) {
         this.marshallAndCheck(value,
-                json,
-                this.marshallContext());
+            json,
+            this.marshallContext());
     }
 
     default void marshallAndCheck(final Object value,
                                   final JsonNode json,
                                   final JsonNodeMarshallContext context) {
         this.checkEquals(
-                json,
-                context.marshall(value),
-                () -> "marshall doesnt match=" + value
+            json,
+            context.marshall(value),
+            () -> "marshall doesnt match=" + value
         );
     }
 
@@ -266,16 +266,16 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
         final JsonNode jsonNode2 = context.marshall(fromValue);
 
         this.checkEquals(
-                fromValue,
-                this.unmarshall(jsonNode2),
-                () -> "Roundtrip to -> from -> to failed value=" + CharSequences.quoteIfChars(value)
+            fromValue,
+            this.unmarshall(jsonNode2),
+            () -> "Roundtrip to -> from -> to failed value=" + CharSequences.quoteIfChars(value)
         );
     }
 
     default void marshallWithTypeRoundTripTwiceAndCheck(final Object value) {
         this.marshallWithTypeRoundTripTwiceAndCheck(value,
-                this.unmarshallContext(),
-                this.marshallContext());
+            this.unmarshallContext(),
+            this.marshallContext());
     }
 
     default void marshallWithTypeRoundTripTwiceAndCheck(final Object value,
@@ -287,15 +287,15 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
         final JsonNode jsonNode2 = toContext.marshallWithType(from);
 
         this.checkEquals(
-                from,
-                fromContext.unmarshallWithType(jsonNode2),
-                () -> "BasicJsonMarshaller roundtrip to -> from -> to failed =" + CharSequences.quoteIfChars(value)
+            from,
+            fromContext.unmarshallWithType(jsonNode2),
+            () -> "BasicJsonMarshaller roundtrip to -> from -> to failed =" + CharSequences.quoteIfChars(value)
         );
 
         this.checkEquals(
-                from,
-                fromContext.unmarshallWithType(jsonNode2),
-                () -> "BasicJsonMarshaller roundtrip to -> from -> to failed =" + CharSequences.quoteIfChars(value)
+            from,
+            fromContext.unmarshallWithType(jsonNode2),
+            () -> "BasicJsonMarshaller roundtrip to -> from -> to failed =" + CharSequences.quoteIfChars(value)
         );
     }
 
@@ -303,8 +303,8 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
 
     default JsonNodeUnmarshallContext unmarshallContext() {
         return JsonNodeUnmarshallContexts.basic(
-                ExpressionNumberKind.DEFAULT,
-                MathContext.DECIMAL32
+            ExpressionNumberKind.DEFAULT,
+            MathContext.DECIMAL32
         );
     }
 

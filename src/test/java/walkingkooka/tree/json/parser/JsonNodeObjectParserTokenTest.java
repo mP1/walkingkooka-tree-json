@@ -77,8 +77,8 @@ public final class JsonNodeObjectParserTokenTest extends JsonNodeParentParserTok
     @Test
     public void testMarshall() {
         this.checkEquals(Optional.of(JsonNode.object().set(JsonPropertyName.with("key1"), JsonNode.number(123))),
-                object(string("key1"), number(123))
-                        .toJsonNode());
+            object(string("key1"), number(123))
+                .toJsonNode());
     }
 
     @Test
@@ -95,8 +95,8 @@ public final class JsonNodeObjectParserTokenTest extends JsonNodeParentParserTok
     @Test
     public void testMarshallWhitespace() {
         this.checkEquals(Optional.of(JsonNode.object().set(JsonPropertyName.with("key1"), JsonNode.number(123))),
-                object(whitespace(), string("key1"), whitespace(), number(123))
-                        .toJsonNode());
+            object(whitespace(), string("key1"), whitespace(), number(123))
+                .toJsonNode());
     }
 
     @Test
@@ -188,7 +188,7 @@ public final class JsonNodeObjectParserTokenTest extends JsonNodeParentParserTok
     @Override
     public JsonNodeObjectParserToken createDifferentToken() {
         return object(objectBegin(), string("different-key"), objectAssignment(), string("different-value"), objectEnd())
-                .cast(JsonNodeObjectParserToken.class);
+            .cast(JsonNodeObjectParserToken.class);
     }
 
     @Override

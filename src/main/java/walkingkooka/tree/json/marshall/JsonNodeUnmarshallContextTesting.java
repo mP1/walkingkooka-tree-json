@@ -94,9 +94,9 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                                         final Class<T> type,
                                         final T expected) {
         this.unmarshallAndCheck(this.createContext(),
-                node,
-                type,
-                expected);
+            node,
+            type,
+            expected);
     }
 
     default <T> void unmarshallAndCheck(final JsonNodeUnmarshallContext context,
@@ -104,8 +104,8 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                                         final Class<T> type,
                                         final T expected) {
         this.checkEquals(expected,
-                context.unmarshall(node, type),
-                () -> context + " unmarshall " + node + " type " + type.getName());
+            context.unmarshall(node, type),
+            () -> context + " unmarshall " + node + " type " + type.getName());
     }
 
     // unmarshallEnumSet.................................................................................................
@@ -114,10 +114,10 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                                                                final Class<T> type,
                                                                final Set<T> expected) {
         this.unmarshallEnumSetAndCheck(
-                this.createContext(),
-                node,
-                type,
-                expected
+            this.createContext(),
+            node,
+            type,
+            expected
         );
     }
 
@@ -127,31 +127,31 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                                                                final Class<T> type,
                                                                final Set<T> expected) {
         this.checkEquals(
-                expected,
-                context.unmarshallEnumSet(
-                        node,
-                        type,
-                        (s) -> {
-                            try {
-                                return (T) type.getMethod("valueOf", String.class)
-                                        .invoke(null, s);
-                            } catch (final ReflectiveOperationException cause) {
-                                throw new RuntimeException(cause);
-                            }
-                        }),
-                () -> context + " unmarshallEnumSet " + node + " type " + type.getName()
+            expected,
+            context.unmarshallEnumSet(
+                node,
+                type,
+                (s) -> {
+                    try {
+                        return (T) type.getMethod("valueOf", String.class)
+                            .invoke(null, s);
+                    } catch (final ReflectiveOperationException cause) {
+                        throw new RuntimeException(cause);
+                    }
+                }),
+            () -> context + " unmarshallEnumSet " + node + " type " + type.getName()
         );
     }
-    
+
     // unmarshallList.................................................................................................
 
     default <T> void unmarshallListAndCheck(final JsonNode node,
                                             final Class<T> type,
                                             final List<T> expected) {
         this.unmarshallListAndCheck(this.createContext(),
-                node,
-                type,
-                expected);
+            node,
+            type,
+            expected);
     }
 
     default <T> void unmarshallListAndCheck(final JsonNodeUnmarshallContext context,
@@ -159,8 +159,8 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                                             final Class<T> type,
                                             final List<T> expected) {
         this.checkEquals(expected,
-                context.unmarshallList(node, type),
-                () -> context + " unmarshallList " + node + " type " + type.getName());
+            context.unmarshallList(node, type),
+            () -> context + " unmarshallList " + node + " type " + type.getName());
     }
 
     // unmarshallSet..................................................................................................
@@ -169,9 +169,9 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                                            final Class<T> type,
                                            final Set<T> expected) {
         this.unmarshallSetAndCheck(this.createContext(),
-                node,
-                type,
-                expected);
+            node,
+            type,
+            expected);
     }
 
     default <T> void unmarshallSetAndCheck(final JsonNodeUnmarshallContext context,
@@ -179,8 +179,8 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                                            final Class<T> type,
                                            final Set<T> expected) {
         this.checkEquals(expected,
-                context.unmarshallSet(node, type),
-                () -> context + " unmarshallSet " + node + " type " + type.getName());
+            context.unmarshallSet(node, type),
+            () -> context + " unmarshallSet " + node + " type " + type.getName());
     }
 
     // unmarshallMap.................................................................................................
@@ -190,10 +190,10 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                                               final Class<V> value,
                                               final Map<K, V> expected) {
         this.unmarshallMapAndCheck(this.createContext(),
-                node,
-                key,
-                value,
-                expected);
+            node,
+            key,
+            value,
+            expected);
     }
 
     default <K, V> void unmarshallMapAndCheck(final JsonNodeUnmarshallContext context,
@@ -202,8 +202,8 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                                               final Class<V> value,
                                               final Map<K, V> expected) {
         this.checkEquals(expected,
-                context.unmarshallMap(node, key, value),
-                () -> context + " unmarshallMap " + node + " key " + key.getName() + " value " + value.getName());
+            context.unmarshallMap(node, key, value),
+            () -> context + " unmarshallMap " + node + " key " + key.getName() + " value " + value.getName());
     }
 
     // unmarshallWithType.............................................................................................
@@ -211,16 +211,16 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
     default void unmarshallWithTypeAndCheck(final JsonNode node,
                                             final Object expected) {
         this.unmarshallWithTypeAndCheck(this.createContext(),
-                node,
-                expected);
+            node,
+            expected);
     }
 
     default void unmarshallWithTypeAndCheck(final JsonNodeUnmarshallContext context,
                                             final JsonNode node,
                                             final Object expected) {
         this.checkEquals(expected,
-                context.unmarshallWithType(node),
-                () -> context + " unmarshallWithType " + node);
+            context.unmarshallWithType(node),
+            () -> context + " unmarshallWithType " + node);
     }
 
     // unmarshallWithTypeList..........................................................................................
@@ -228,16 +228,16 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
     default void unmarshallWithTypeListAndCheck(final JsonNode node,
                                                 final List<?> expected) {
         this.unmarshallWithTypeListAndCheck(this.createContext(),
-                node,
-                expected);
+            node,
+            expected);
     }
 
     default void unmarshallWithTypeListAndCheck(final JsonNodeUnmarshallContext context,
                                                 final JsonNode node,
                                                 final List<?> expected) {
         this.checkEquals(expected,
-                context.unmarshallWithTypeList(node),
-                () -> context + " unmarshallWithTypeList " + node);
+            context.unmarshallWithTypeList(node),
+            () -> context + " unmarshallWithTypeList " + node);
     }
 
     // unmarshallWithTypeSet..........................................................................................
@@ -245,16 +245,16 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
     default void unmarshallWithTypeSetAndCheck(final JsonNode node,
                                                final Set<?> expected) {
         this.unmarshallWithTypeSetAndCheck(this.createContext(),
-                node,
-                expected);
+            node,
+            expected);
     }
 
     default void unmarshallWithTypeSetAndCheck(final JsonNodeUnmarshallContext context,
                                                final JsonNode node,
                                                final Set<?> expected) {
         this.checkEquals(expected,
-                context.unmarshallWithTypeSet(node),
-                () -> context + " unmarshallWithTypeSet " + node);
+            context.unmarshallWithTypeSet(node),
+            () -> context + " unmarshallWithTypeSet " + node);
     }
 
     // unmarshallMap.................................................................................................
@@ -262,16 +262,16 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
     default void unmarshallWithTypeMapAndCheck(final JsonNode node,
                                                final Map<?, ?> expected) {
         this.unmarshallMapWithTypeAndCheck(this.createContext(),
-                node,
-                expected);
+            node,
+            expected);
     }
 
     default void unmarshallMapWithTypeAndCheck(final JsonNodeUnmarshallContext context,
                                                final JsonNode node,
                                                final Map<?, ?> expected) {
         this.checkEquals(expected,
-                context.unmarshallWithTypeMap(node),
-                () -> context + " unmarshallWithTypeMap " + node);
+            context.unmarshallWithTypeMap(node),
+            () -> context + " unmarshallWithTypeMap " + node);
     }
 
     // TypeNameTesting..................................................................................................

@@ -85,11 +85,11 @@ final class BasicJsonNodeUnmarshallContextJsonNodeVisitor extends JsonNodeVisito
 
             final JsonNodeUnmarshallContext context = this.context;
             this.value = context.unmarshall(
-                    node.getOrFail(BasicJsonNodeContext.VALUE),
-                    context.registeredType((JsonString) type)
-                            .orElseThrow(
-                                    () -> new JsonNodeUnmarshallException("Missing json unmarshaller for " + type, node)
-                            )
+                node.getOrFail(BasicJsonNodeContext.VALUE),
+                context.registeredType((JsonString) type)
+                    .orElseThrow(
+                        () -> new JsonNodeUnmarshallException("Missing json unmarshaller for " + type, node)
+                    )
             );
         } catch (final java.lang.NullPointerException | JsonNodeUnmarshallException cause) {
             throw cause;

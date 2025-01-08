@@ -65,6 +65,6 @@ final class BasicJsonMarshallerString extends BasicJsonMarshaller<String> {
     JsonNode marshallWithTypeNonNull(final String value,
                                      final JsonNodeMarshallContext context) {
         return this.marshallNonNull(value,
-                context);
+            context);
     }
 }

@@ -5,11 +5,10 @@ import com.google.gwt.junit.client.GWTTestCase;
 import java.nio.charset.Charset;
 import java.util.Base64;
 
-import walkingkooka.j2cl.locale.LocaleAware;
 import walkingkooka.text.CharSequences;
 import walkingkooka.tree.json.JsonNode;
 
-@LocaleAware
+@walkingkooka.j2cl.locale.LocaleAware
 public class TestGwtTest extends GWTTestCase {
 
     @Override

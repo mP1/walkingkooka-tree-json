@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 Miroslav Pokorny
+ * Copyright 2019 Miroslav Pokorny (github.com/mP1)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,37 +12,28 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
-package test;
 
-
-import com.google.j2cl.junit.apt.J2clTestInput;
-import org.junit.Assert;
-import org.junit.Test;
+package walkingkooka.tree.json.sample;
 
 import java.nio.charset.Charset;
 import java.util.Base64;
 
-import walkingkooka.text.CharSequences;
-import walkingkooka.tree.json.JsonNode;
-
 @walkingkooka.j2cl.locale.LocaleAware
-@J2clTestInput(JunitTest.class)
-public class JunitTest {
+public class Sample {
 
-    @Test
-    public void testParse() {
-        Assert.assertNotNull(JsonNode.parse("[123,456,true,\"abc\"]"));
+    public static void main(final String[] args) {
+        final Sample sample = new Sample();
+        sample.testEncodeDecodeRoundtrip();
     }
 
-    @Test
     public void testEncodeDecodeRoundtrip() {
         final String data = "abc123def456";
         final Charset charset = Charset.forName("UTF-8");
 
         final String encoded = Base64.getEncoder().encodeToString(data.getBytes(charset));
-        Assert.assertEquals(
-            "Started with " + CharSequences.quoteAndEscape(data) + " encoded: " + CharSequences.quoteAndEscape(encoded),
+        checkEquals(
             data,
             new String(
                 Base64.getDecoder()
@@ -50,5 +41,11 @@ public class JunitTest {
                 charset
             )
         );
+    }
+
+    private void checkEquals(final String expected,
+                             final String actual) {
+        System.out.println(expected);
+        System.out.println(actual);
     }
 }

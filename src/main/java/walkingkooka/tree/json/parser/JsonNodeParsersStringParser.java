@@ -62,7 +62,7 @@ final class JsonNodeParsersStringParser implements Parser<ParserContext> {
                 Exit:
                 for (; ; ) {
                     if (cursor.isEmpty()) {
-                        throw new JsonNodeParserException("Unterminated string");
+                        throw new JsonNodeParserException("Missing closing \"\'\"");
                     }
 
                     final char c = cursor.at();

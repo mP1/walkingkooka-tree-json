@@ -102,6 +102,14 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     }
 
     @Test
+    public void testStringUnterminatedFails() {
+        this.parseThrows(
+            "\"abc",
+            "Missing closing \"'\""
+        );
+    }
+
+    @Test
     public void testString() {
         final String text = "\"abc-123\"";
 

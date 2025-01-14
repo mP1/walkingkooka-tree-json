@@ -22,12 +22,12 @@ import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.cursor.parser.ParserContext;
 import walkingkooka.text.cursor.parser.ebnf.combinator.EbnfParserCombinatorSyntaxTreeTransformerTesting;
 
-public final class JsonNodeEbnfParserCombinatorSyntaxTreeTransformerTest implements ClassTesting2<JsonNodeEbnfParserCombinatorSyntaxTreeTransformer>,
-    EbnfParserCombinatorSyntaxTreeTransformerTesting<JsonNodeEbnfParserCombinatorSyntaxTreeTransformer, ParserContext> {
+public final class JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformerTest implements ClassTesting2<JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer>,
+    EbnfParserCombinatorSyntaxTreeTransformerTesting<JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer, ParserContext> {
 
     @Override
-    public Class<JsonNodeEbnfParserCombinatorSyntaxTreeTransformer> type() {
-        return JsonNodeEbnfParserCombinatorSyntaxTreeTransformer.class;
+    public Class<JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer> type() {
+        return JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.class;
     }
 
     @Override

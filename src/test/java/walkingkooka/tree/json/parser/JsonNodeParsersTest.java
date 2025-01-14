@@ -105,7 +105,7 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testStringUnterminatedFails() {
         this.parseThrows(
             "\"abc",
-            "Missing closing \"'\""
+            "Missing closing \"\'\""
         );
     }
 
@@ -131,14 +131,22 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     }
 
     @Test
-    public void testEmptyArray() {
+    public void testArrayUnclosedFails() {
+        this.parseThrows(
+            "[",
+            "End of text at (2,1) \"[\" expected [ ARRAY_ELEMENT, [{ [ WHITESPACE ], SEPARATOR, ARRAY_ELEMENT_REQUIRED }]], [ WHITESPACE ], ARRAY_END"
+        );
+    }
+
+    @Test
+    public void testArrayEmpty() {
         final String text = "[]";
 
         this.parseAndCheck(text, array(arrayBegin(), arrayEnd()), text);
     }
 
     @Test
-    public void testEmptyArrayWhitespace() {
+    public void testArrayEmptyWhitespace() {
         final String text = "[  ]";
 
         this.parseAndCheck(text, array(arrayBegin(), whitespace(), arrayEnd()), text);
@@ -243,17 +251,41 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     }
 
     @Test
-    public void testEmptyObject() {
+    public void testObjectEmpty() {
         final String text = "{}";
 
         this.parseAndCheck(text, object(objectBegin(), objectEnd()), text);
     }
 
     @Test
-    public void testEmptyObjectWhitespace() {
+    public void testObjectEmptyWhitespace() {
         final String text = "{  }";
 
         this.parseAndCheck(text, object(objectBegin(), whitespace(), objectEnd()), text);
+    }
+
+    @Test
+    public void testObjectMissingClosingFails() {
+        this.parseThrows(
+            "{",
+            "End of text at (2,1) \"{\" expected [ OBJECT_PROPERTY, [{[ WHITESPACE ], SEPARATOR, OBJECT_PROPERTY_REQUIRED }]], [ WHITESPACE ], OBJECT_END"
+        );
+    }
+
+    @Test
+    public void testObjectMissingValueFails() {
+        this.parseThrows(
+            "{ \"property123\"",
+            "Invalid character ' ' at (2,1) \"{ \\\"property123\\\"\" expected [ OBJECT_PROPERTY, [{[ WHITESPACE ], SEPARATOR, OBJECT_PROPERTY_REQUIRED }]], [ WHITESPACE ], OBJECT_END"
+        );
+    }
+
+    @Test
+    public void testObjectValueMissingClosingFails() {
+        this.parseThrows(
+            "{ \"property123\": true",
+            "Invalid character ' ' at (2,1) \"{ \\\"property123\\\": true\" expected [ OBJECT_PROPERTY, [{[ WHITESPACE ], SEPARATOR, OBJECT_PROPERTY_REQUIRED }]], [ WHITESPACE ], OBJECT_END"
+        );
     }
 
     @Test

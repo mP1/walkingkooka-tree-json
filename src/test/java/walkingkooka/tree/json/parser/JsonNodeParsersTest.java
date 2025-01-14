@@ -379,43 +379,83 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
 
     @Test
     public void testParseInvalidJsonReported() {
-        this.parseThrows("!INVALID", '!', 1, 1);
+        this.parseThrowsInvalidCharacterException(
+            "!INVALID",
+            '!',
+            1,
+            1
+        );
     }
 
     @Test
     public void testParseInvalidObjectPropertyKeyReported() {
-        this.parseThrows("{!INVALID}", '!', 2, 1);
+        this.parseThrowsInvalidCharacterException(
+            "{!INVALID}",
+            '!',
+            2,
+            1
+        );
     }
 
     @Test
     public void testParseInvalidObjectPropertyValueReported() {
-        this.parseThrows("{\"key1\":!INVALID}", '!', 9, 1);
+        this.parseThrowsInvalidCharacterException(
+            "{\"key1\":!INVALID}",
+            '!',
+            9,
+            1
+        );
     }
 
     @Test
     public void testParseInvalidObjectPropertyReportedValue2() {
-        this.parseThrows("{\"key1\":true,\"key2\":false,\"key3\":!INVALID}", '!', 34, 1);
+        this.parseThrowsInvalidCharacterException(
+            "{\"key1\":true,\"key2\":false,\"key3\":!INVALID}",
+            '!',
+            34,
+            1
+        );
     }
 
     @Test
     public void testParseInvalidObjectPropertyAssignmentSymbolReported() {
-        this.parseThrows("{\"key1\":true,\"key2\":false,\"key3\"!true}", '"', 27, 1);
+        this.parseThrowsInvalidCharacterException(
+            "{\"key1\":true,\"key2\":false,\"key3\"!true}",
+            '"',
+            27,
+            1
+        );
     }
 
     @Test
     public void testParseInvalidArrayElementReported() {
-        this.parseThrows("[!ABC]", '!', 2, 1);
+        this.parseThrowsInvalidCharacterException(
+            "[!ABC]",
+            '!',
+            2,
+            1
+        );
     }
 
     @Test
     public void testParseInvalidArrayElementReported2() {
-        this.parseThrows("[true, 123, !ABC]", '!', 13, 1);
+        this.parseThrowsInvalidCharacterException(
+            "[true, 123, !ABC]",
+            '!',
+            13,
+            1
+        );
     }
 
     @Test
     public void testParseInvalidArrayElementSeparatorReported() {
         // is complaining that the token 123 <space> <exclaimation point> abc is invalid rather than the missing separator
-        this.parseThrows("[123 !ABC]", '1', 2, 1);
+        this.parseThrowsInvalidCharacterException(
+            "[123 !ABC]",
+            '1',
+            2,
+            1
+        );
     }
 
     @Test

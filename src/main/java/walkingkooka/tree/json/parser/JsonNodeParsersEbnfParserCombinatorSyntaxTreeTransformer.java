@@ -40,14 +40,14 @@ import java.util.List;
  * A {@link EbnfParserCombinatorSyntaxTreeTransformer} that only transforms terminal and ranges into their corresponding
  * {@link JsonNodeParserToken} equivalents. Processing of other tokens will be done after this process completes.
  */
-final class JsonNodeEbnfParserCombinatorSyntaxTreeTransformer implements EbnfParserCombinatorSyntaxTreeTransformer<ParserContext> {
+final class JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer implements EbnfParserCombinatorSyntaxTreeTransformer<ParserContext> {
 
     /**
      * Singleton
      */
-    static final JsonNodeEbnfParserCombinatorSyntaxTreeTransformer INSTANCE = new JsonNodeEbnfParserCombinatorSyntaxTreeTransformer();
+    static final JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer INSTANCE = new JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer();
 
-    private JsonNodeEbnfParserCombinatorSyntaxTreeTransformer() {
+    private JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer() {
         super();
     }
 
@@ -83,21 +83,21 @@ final class JsonNodeEbnfParserCombinatorSyntaxTreeTransformer implements EbnfPar
                                             final Parser<ParserContext> parser) {
         final EbnfIdentifierName name = token.value();
         return name.equals(JsonNodeParsers.ARRAY_IDENTIFIER) ?
-            parser.transform(JsonNodeEbnfParserCombinatorSyntaxTreeTransformer::array) :
+            parser.transform(JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer::array) :
             name.equals(JsonNodeParsers.OBJECT_IDENTIFIER) ?
-                parser.transform(JsonNodeEbnfParserCombinatorSyntaxTreeTransformer::object) :
+                parser.transform(JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer::object) :
                 this.requiredCheck(name, parser);
     }
 
     private static ParserToken array(final ParserToken token,
                                      final ParserContext context) {
-        return JsonNodeParserToken.array(JsonNodeEbnfParserCombinatorSyntaxTreeTransformer.clean(token),
+        return JsonNodeParserToken.array(JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.clean(token),
             token.text());
     }
 
     private static ParserToken object(final ParserToken token,
                                       final ParserContext context) {
-        return JsonNodeParserToken.object(JsonNodeEbnfParserCombinatorSyntaxTreeTransformer.clean(token),
+        return JsonNodeParserToken.object(JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.clean(token),
             token.text());
     }
 

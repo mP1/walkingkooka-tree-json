@@ -76,7 +76,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
 
     private static final EbnfIdentifierName VALUE_IDENTIFIER = EbnfIdentifierName.with("VALUE");
 
-    // required by JsonNodeEbnfParserCombinatorSyntaxTreeTransformer
+    // required by JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer
     static final Set<EbnfIdentifierName> REPORT_FAILURE_IDENTIFIER_NAMES = Sets.of(OBJECT_ASSIGNMENT_SYMBOL_IDENTIFIER);
 
     /**
@@ -199,7 +199,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
                 .parse(grammarFile, EbnfParserContexts.basic())
                 .orElseThrow(() -> new IllegalStateException("Unable to parse JsonNode parsers grammar file."))
                 .cast(EbnfGrammarParserToken.class)
-                .combinator(predefined, JsonNodeEbnfParserCombinatorSyntaxTreeTransformer.INSTANCE);
+                .combinator(predefined, JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.INSTANCE);
 
             return parsers.get(VALUE_IDENTIFIER);
         } catch (final JsonNodeParserException rethrow) {

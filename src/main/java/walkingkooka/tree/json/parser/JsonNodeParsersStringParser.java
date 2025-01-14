@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.parser;
 
+import walkingkooka.text.CharSequences;
 import walkingkooka.text.cursor.TextCursor;
 import walkingkooka.text.cursor.TextCursorLineInfo;
 import walkingkooka.text.cursor.TextCursorSavePoint;
@@ -45,92 +46,107 @@ final class JsonNodeParsersStringParser implements Parser<ParserContext> {
     }
 
     @Override
-    public Optional<ParserToken> parse(final TextCursor cursor, final ParserContext context) {
+    public Optional<ParserToken> parse(final TextCursor cursor,
+                                       final ParserContext context) {
+        return cursor.isEmpty() ?
+            Optional.empty() :
+            this.parseNotEmpty(cursor);
+    }
+
+    private Optional<ParserToken> parseNotEmpty(final TextCursor cursor) {
         JsonNodeParserToken token = null;
 
-        if (!cursor.isEmpty()) {
-            final char first = cursor.at();
-            if (DOUBLE_QUOTE == first) {
-                final TextCursorSavePoint save = cursor.save();
-                final StringBuilder decoded = new StringBuilder();
-                int mode = 0;
-                int unicode = 0;
-                int unicodeLength = 0;
+        final char first = cursor.at();
+        if (DOUBLE_QUOTE == first) {
+            final TextCursorSavePoint save = cursor.save();
+            final StringBuilder decoded = new StringBuilder();
+            int mode = 0;
+            int unicode = 0;
+            int unicodeLength = 0;
+            TextCursorSavePoint unicodeStart = null;
+
+            cursor.next();
+
+            Exit:
+            for (; ; ) {
+                if (cursor.isEmpty()) {
+                    switch(mode) {
+                        case MODE_UNICODE:
+                            // Incomplete unicode sequenec "\\u123\"
+                            throw new JsonNodeParserException("Incomplete unicode sequence " + CharSequences.quote("\\" + unicodeStart.textBetween()));
+                        default:
+                            throw new JsonNodeParserException("Missing closing \"\'\"");
+                    }
+                }
+
+                final char c = cursor.at();
+
+                switch (mode) {
+                    case MODE_LITERAL:
+                        switch (c) {
+                            case BACKSLASH:
+                                mode = MODE_BACKSLASH;
+                                break;
+                            case DOUBLE_QUOTE:
+                                cursor.next();
+                                token = JsonNodeParserToken.string(
+                                    decoded.toString(),
+                                    save.textBetween().toString()
+                                );
+                                break Exit;
+                            default:
+                                decoded.append(c);
+                                break;
+                        }
+                        break;
+                    case MODE_BACKSLASH:
+                        mode = MODE_LITERAL; // all unescaping will change mode=MODE_LITERAL except unicode=MODE_UNICODE
+
+                        switch (c) {
+                            case 'b':
+                                decoded.append('\b');
+                                break;
+                            case 'f':
+                                decoded.append('\f');
+                                break;
+                            case 'n':
+                                decoded.append('\n');
+                                break;
+                            case 'r':
+                                decoded.append('\r');
+                                break;
+                            case 't':
+                                decoded.append('\t');
+                                break;
+                            case 'u':
+                                unicode = 0;
+                                mode = MODE_UNICODE;
+                                unicodeStart = cursor.save();
+                                break;
+                            default:
+                                // also handles decoding DOUBLE_QUOTE
+                                decoded.append(c);
+                                break;
+                        }
+                        break;
+                    case MODE_UNICODE:
+                        final int hexValue = Character.digit(c, 16);
+                        if (-1 == hexValue) {
+                            final TextCursorLineInfo info = cursor.lineInfo();
+                            throw new JsonNodeParserException("Invalid unicode escape sequence" + info.summary());
+                        }
+                        unicode = unicode * 16 + hexValue;
+                        unicodeLength++;
+                        if (unicodeLength == 4) {
+                            mode = MODE_LITERAL;
+                            decoded.append((char) unicode);
+
+                            unicodeStart = null;
+                        }
+                        break;
+                } // switch
 
                 cursor.next();
-
-                Exit:
-                for (; ; ) {
-                    if (cursor.isEmpty()) {
-                        throw new JsonNodeParserException("Missing closing \"\'\"");
-                    }
-
-                    final char c = cursor.at();
-
-                    switch (mode) {
-                        case MODE_LITERAL:
-                            switch (c) {
-                                case BACKSLASH:
-                                    mode = MODE_BACKSLASH;
-                                    break;
-                                case DOUBLE_QUOTE:
-                                    cursor.next();
-                                    token = JsonNodeParserToken.string(
-                                        decoded.toString(),
-                                        save.textBetween().toString()
-                                    );
-                                    break Exit;
-                                default:
-                                    decoded.append(c);
-                                    break;
-                            }
-                            break;
-                        case MODE_BACKSLASH:
-                            mode = MODE_LITERAL; // all unescaping will change mode=MODE_LITERAL except unicode=MODE_UNICODE
-
-                            switch (c) {
-                                case 'b':
-                                    decoded.append('\b');
-                                    break;
-                                case 'f':
-                                    decoded.append('\f');
-                                    break;
-                                case 'n':
-                                    decoded.append('\n');
-                                    break;
-                                case 'r':
-                                    decoded.append('\r');
-                                    break;
-                                case 't':
-                                    decoded.append('\t');
-                                    break;
-                                case 'u':
-                                    unicode = 0;
-                                    mode = MODE_UNICODE;
-                                    break;
-                                default:
-                                    // also handles decoding DOUBLE_QUOTE
-                                    decoded.append(c);
-                                    break;
-                            }
-                            break;
-                        case MODE_UNICODE:
-                            final int hexValue = Character.digit(c, 16);
-                            if (-1 == hexValue) {
-                                final TextCursorLineInfo info = cursor.lineInfo();
-                                throw new JsonNodeParserException("Invalid unicode escape sequence" + info.summary());
-                            }
-                            unicode = unicode * 16 + hexValue;
-                            unicodeLength++;
-                            if (unicodeLength == 4) {
-                                mode = MODE_LITERAL;
-                                decoded.append((char) unicode);
-                            }
-                            break;
-                    } // switch
-
-                    cursor.next();
-                }
             }
         }
 

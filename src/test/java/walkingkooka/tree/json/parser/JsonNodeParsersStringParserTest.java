@@ -32,103 +32,141 @@ public final class JsonNodeParsersStringParserTest implements ParserTesting2<Jso
     TypeNameTesting<JsonNodeParsersStringParser> {
 
     @Test
-    public void testUnterminatedFails() {
-        this.parseUnterminatedStringFails("\"");
-    }
-
-    @Test
-    public void testUnterminatedCharacterFails() {
-        this.parseUnterminatedStringFails("\"a");
-    }
-
-    @Test
-    public void testUnterminatedBackslashFails() {
-        this.parseUnterminatedStringFails("\"\\");
-    }
-
-    @Test
-    public void testUnterminatedEscapedDoubleQuoteFails() {
-        this.parseUnterminatedStringFails("\"\\\"");
-    }
-
-    @Test
-    public void testUnterminatedUncodeFails() {
-        this.parseUnterminatedStringFails("\"\\u");
-    }
-
-    @Test
-    public void testUnterminatedUncode1Fails() {
-        this.parseUnterminatedStringFails("\"\\u1");
-    }
-
-    @Test
-    public void testUnterminatedUncode2Fails() {
-        this.parseUnterminatedStringFails("\"\\u12");
-    }
-
-    @Test
-    public void testUnterminatedUncode3Fails() {
-        this.parseUnterminatedStringFails("\"\\u123");
-    }
-
-    @Test
-    public void testUnterminatedUncode4Fails() {
-        this.parseUnterminatedStringFails("\"\\u1234");
-    }
-
-    private void parseUnterminatedStringFails(final String text) {
-        assertThrows(JsonNodeParserException.class, () ->
-            this.createParser().parse(TextCursors.charSequence(text), this.createContext())
+    public void testParseUnterminatedFails() {
+        this.parseStringFails(
+            "\"",
+            "Missing closing \"\'\""
         );
     }
 
     @Test
-    public void testLetters() {
+    public void testParseUnterminatedCharacterFails() {
+        this.parseStringFails(
+            "\"a",
+            "Missing closing \"\'\""
+        );
+    }
+
+    @Test
+    public void testParseUnterminatedBackslashFails() {
+        this.parseStringFails(
+            "\"\\",
+            "Missing closing \"\'\""
+        );
+    }
+
+    @Test
+    public void testParseUnterminatedEscapedDoubleQuoteFails() {
+        this.parseStringFails(
+            "\"\\\"",
+            "Missing closing \"\'\""
+        );
+    }
+
+    @Test
+    public void testParseIncompleteUnicodeFails() {
+        this.parseStringFails(
+            "\"abc \\u",
+            "Incomplete unicode sequence \"\\u\""
+        );
+    }
+
+    @Test
+    public void testParseIncompleteUnicode1Fails() {
+        this.parseStringFails(
+            "\"def \\u1",
+            "Incomplete unicode sequence \"\\u1\""
+        );
+    }
+
+    @Test
+    public void testParseIncompleteUnicode2Fails() {
+        this.parseStringFails(
+            "\"ghi \\u12",
+            "Incomplete unicode sequence \"\\u12\""
+        );
+    }
+
+    @Test
+    public void testParseIncompleteUnicode3Fails() {
+        this.parseStringFails(
+            "\"jkl \\u123",
+            "Incomplete unicode sequence \"\\u123\""
+        );
+    }
+
+    @Test
+    public void testParseIncompleteUnicode4Fails() {
+        this.parseStringFails(
+            "\"mno \\u1234",
+            "Missing closing \"\'\""
+        );
+    }
+
+    private void parseStringFails(final String text,
+                                  final String expected) {
+        final JsonNodeParserException thrown = assertThrows(
+            JsonNodeParserException.class,
+            () ->
+            this.createParser()
+                .parse(
+                    TextCursors.charSequence(text),
+                    this.createContext()
+                )
+        );
+        this.checkEquals(
+            expected,
+            thrown.getMessage()
+        );
+    }
+
+    @Test
+    public void testParseLetters() {
         this.parseAndCheck2("abc");
     }
 
     @Test
-    public void testDigits() {
+    public void testParseDigits() {
         this.parseAndCheck2("1234");
     }
 
     @Test
-    public void testFF() {
+    public void testParseFF() {
         this.parseAndCheck2("\\f", "\f");
     }
 
     @Test
-    public void testCarriageReturn() {
+    public void testParseCarriageReturn() {
         this.parseAndCheck2("\\r", "\r");
     }
 
     @Test
-    public void testNewline() {
+    public void testParseNewline() {
         this.parseAndCheck2("\\n", "\n");
     }
 
     @Test
-    public void testUnicode0000() {
+    public void testParseUnicode0000() {
         this.parseAndCheck2("\\u0000", "\u0000");
     }
 
     @Test
-    public void testUnicode1234() {
+    public void testParseUnicode1234() {
         this.parseAndCheck2("\\u1234", "\u1234");
     }
 
     @Test
-    public void testUnicodeABCD() {
+    public void testParseUnicodeABCD() {
         this.parseAndCheck2("\\uABCD", "\uABCD");
     }
 
     @Test
-    public void testUnicodeabcd() {
+    public void testParseUnicodeabcd() {
         this.parseAndCheck2("\\uabcd", "\uabcd");
     }
 
     @Test
-    public void testUnicodeDef0() {
+    public void testParseUnicodeDef0() {
         this.parseAndCheck2("\\uDef0", "\uDef0");
     }
 
@@ -177,11 +215,6 @@ public final class JsonNodeParsersStringParserTest implements ParserTesting2<Jso
         );
     }
 
-    @Test
-    public void testToString() {
-        this.toStringAndCheck(this.createParser(), "STRING");
-    }
-
     @Override
     public JsonNodeParsersStringParser createParser() {
         return JsonNodeParsersStringParser.INSTANCE;
@@ -191,6 +224,15 @@ public final class JsonNodeParsersStringParserTest implements ParserTesting2<Jso
     public ParserContext createContext() {
         return ParserContexts.fake();
     }
+    
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(this.createParser(), "STRING");
+    }
+
+    // class............................................................................................................
 
     @Override
     public Class<JsonNodeParsersStringParser> type() {

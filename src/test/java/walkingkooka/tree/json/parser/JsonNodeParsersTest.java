@@ -34,6 +34,17 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     ParserTesting2<Parser<JsonNodeParserContext>, JsonNodeParserContext> {
 
     @Test
+    public void testParseBooleanInvalidFails() {
+        this.parseThrows(
+            JsonNodeParsers.nullParser()
+                .orFailIfCursorNotEmpty(ParserReporters.basic())
+                .cast(),
+            "null 123",
+            "Invalid character ' ' at (5,1) expected JsonNodeNullParserToken"
+        );
+    }
+
+    @Test
     public void testParseBooleanFalse() {
         final String text = "false";
 
@@ -48,10 +59,32 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     }
 
     @Test
+    public void testParseNullInvalidFails() {
+        this.parseThrows(
+            JsonNodeParsers.nullParser()
+                .orFailIfCursorNotEmpty(ParserReporters.basic())
+                .cast(),
+            "null 123",
+            "Invalid character ' ' at (5,1) expected JsonNodeNullParserToken"
+        );
+    }
+
+    @Test
     public void testParseNull() {
         final String text = "null";
 
         this.parseAndCheck(text, nul(), text);
+    }
+
+    @Test
+    public void testParseNumberInvalidFails() {
+        this.parseThrows(
+            JsonNodeParsers.number()
+                .orFailIfCursorNotEmpty(ParserReporters.basic())
+                .cast(),
+            "123 abc",
+            "Invalid character ' ' at (4,1) expected JsonNodeNumberParserToken"
+        );
     }
 
     @Test
@@ -106,6 +139,17 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
         this.parseThrows(
             "\"abc",
             "Missing closing \"\'\""
+        );
+    }
+
+    @Test
+    public void testParseStringMissingSeparatorFails() {
+        this.parseThrows(
+            JsonNodeParsers.string()
+                .orFailIfCursorNotEmpty(ParserReporters.basic())
+                .cast(),
+            "\"abc\" hello",
+            "Invalid character ' ' at (6,1) expected STRING"
         );
     }
 

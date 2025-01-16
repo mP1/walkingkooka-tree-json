@@ -22,6 +22,7 @@ import walkingkooka.collect.set.Sets;
 import walkingkooka.predicate.character.CharPredicates;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.text.CaseSensitivity;
+import walkingkooka.text.CharSequences;
 import walkingkooka.text.cursor.TextCursor;
 import walkingkooka.text.cursor.TextCursors;
 import walkingkooka.text.cursor.parser.CharacterParserToken;
@@ -46,12 +47,12 @@ import java.util.function.BiFunction;
  */
 public final class JsonNodeParsers implements PublicStaticHelper {
 
-    private static final Parser<ParserContext> ARRAY_BEGIN_SYMBOL = symbol('[', JsonNodeParserToken::arrayBeginSymbol, JsonNodeArrayBeginSymbolParserToken.class);
-    private static final Parser<ParserContext> ARRAY_END_SYMBOL = symbol(']', JsonNodeParserToken::arrayEndSymbol, JsonNodeArrayEndSymbolParserToken.class);
-    private static final Parser<ParserContext> OBJECT_ASSIGNMENT_SYMBOL = symbol(':', JsonNodeParserToken::objectAssignmentSymbol, JsonNodeObjectAssignmentSymbolParserToken.class);
-    private static final Parser<ParserContext> OBJECT_BEGIN_SYMBOL = symbol('{', JsonNodeParserToken::objectBeginSymbol, JsonNodeObjectBeginSymbolParserToken.class);
-    private static final Parser<ParserContext> OBJECT_END_SYMBOL = symbol('}', JsonNodeParserToken::objectEndSymbol, JsonNodeObjectEndSymbolParserToken.class);
-    private static final Parser<ParserContext> SEPARATOR_SYMBOL = symbol(',', JsonNodeParserToken::separatorSymbol, JsonNodeSeparatorSymbolParserToken.class);
+    private static final Parser<ParserContext> ARRAY_BEGIN_SYMBOL = symbol('[', JsonNodeParserToken::arrayBeginSymbol);
+    private static final Parser<ParserContext> ARRAY_END_SYMBOL = symbol(']', JsonNodeParserToken::arrayEndSymbol);
+    private static final Parser<ParserContext> OBJECT_ASSIGNMENT_SYMBOL = symbol(':', JsonNodeParserToken::objectAssignmentSymbol);
+    private static final Parser<ParserContext> OBJECT_BEGIN_SYMBOL = symbol('{', JsonNodeParserToken::objectBeginSymbol);
+    private static final Parser<ParserContext> OBJECT_END_SYMBOL = symbol('}', JsonNodeParserToken::objectEndSymbol);
+    private static final Parser<ParserContext> SEPARATOR_SYMBOL = symbol(',', JsonNodeParserToken::separatorSymbol);
 
     static final EbnfIdentifierName ARRAY_IDENTIFIER = EbnfIdentifierName.with("ARRAY");
 
@@ -86,18 +87,30 @@ public final class JsonNodeParsers implements PublicStaticHelper {
         return BOOLEAN;
     }
 
-    private final static Parser<ParserContext> BOOLEAN = Parsers.string("false", CaseSensitivity.SENSITIVE)
-        .transform(JsonNodeParsers::transformBooleanFalse)
-        .or(Parsers.string("true", CaseSensitivity.SENSITIVE)
-            .transform(JsonNodeParsers::transformBooleanTrue))
-        .setToString(JsonNodeBooleanParserToken.class.getSimpleName());
+    private final static Parser<ParserContext> BOOLEAN = stringParser(
+        "false",
+        JsonNodeParsers::transformBooleanFalse
+    ).or(
+        stringParser(
+            "true",
+            JsonNodeParsers::transformBooleanTrue
+        )
+    );
 
-    private static ParserToken transformBooleanFalse(final ParserToken token, final ParserContext context) {
-        return JsonNodeParserToken.booleanParserToken(false, token.text());
+    private static ParserToken transformBooleanFalse(final ParserToken token,
+                                                     final ParserContext context) {
+        return JsonNodeParserToken.booleanParserToken(
+            false,
+            token.text()
+        );
     }
 
-    private static ParserToken transformBooleanTrue(final ParserToken token, final ParserContext context) {
-        return JsonNodeParserToken.booleanParserToken(true, token.text());
+    private static ParserToken transformBooleanTrue(final ParserToken token,
+                                                    final ParserContext context) {
+        return JsonNodeParserToken.booleanParserToken(
+            true,
+            token.text()
+        );
     }
 
     /**
@@ -107,11 +120,13 @@ public final class JsonNodeParsers implements PublicStaticHelper {
         return NULL;
     }
 
-    private final static Parser<ParserContext> NULL = Parsers.string("null", CaseSensitivity.SENSITIVE)
-        .transform(JsonNodeParsers::transformNull)
-        .setToString(JsonNodeNullParserToken.class.getSimpleName());
+    private final static Parser<ParserContext> NULL = stringParser(
+        "null",
+        JsonNodeParsers::transformNull
+    );
 
-    private static ParserToken transformNull(final ParserToken token, final ParserContext context) {
+    private static ParserToken transformNull(final ParserToken token,
+                                             final ParserContext context) {
         return JsonNodeParserToken.nullParserToken(token.text());
     }
 
@@ -124,7 +139,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
 
     private final static Parser<ParserContext> NUMBER = Parsers.doubleParser()
         .transform(JsonNodeParsers::transformNumber)
-        .setToString(JsonNodeNumberParserToken.class.getSimpleName());
+        .setToString("NUMBER");
 
     private static ParserToken transformNumber(final ParserToken token, final ParserContext context) {
         return JsonNodeParserToken.number(token.cast(DoubleParserToken.class).value(), token.text());
@@ -144,23 +159,30 @@ public final class JsonNodeParsers implements PublicStaticHelper {
         return WHITESPACE;
     }
 
-    private final static Parser<ParserContext> WHITESPACE = Parsers.stringCharPredicate(CharPredicates.whitespace(), 1, Integer.MAX_VALUE)
-        .transform(JsonNodeParsers::transformWhitespace)
-        .setToString(JsonNodeWhitespaceParserToken.class.getSimpleName());
+    private final static Parser<ParserContext> WHITESPACE = Parsers.stringCharPredicate(
+        CharPredicates.whitespace(),
+            1,
+            Integer.MAX_VALUE
+        ).transform(JsonNodeParsers::transformWhitespace)
+        .setToString("WHITESPACE");
 
-    private static ParserToken transformWhitespace(final ParserToken token, final ParserContext context) {
-        return JsonNodeParserToken.whitespace(token.cast(StringParserToken.class).value(), token.text());
+    private static ParserToken transformWhitespace(final ParserToken token,
+                                                   final ParserContext context) {
+        return JsonNodeParserToken.whitespace(
+            token.cast(StringParserToken.class)
+                .value(),
+            token.text()
+        );
     }
 
     /**
      * Factory that parsers and returns a sub class of {@link JsonNodeSymbolParserToken}
      */
     private static Parser<ParserContext> symbol(final char c,
-                                                final BiFunction<String, String, ParserToken> factory,
-                                                final Class<? extends JsonNodeSymbolParserToken> tokenClass) {
+                                                final BiFunction<String, String, ParserToken> factory) {
         return Parsers.character(CharPredicates.is(c))
             .transform((charParserToken, context) -> factory.apply(charParserToken.cast(CharacterParserToken.class).value().toString(), charParserToken.text()))
-            .setToString(tokenClass.getSimpleName());
+            .setToString(CharSequences.quoteAndEscape(c).toString());
     }
 
     /**
@@ -207,6 +229,13 @@ public final class JsonNodeParsers implements PublicStaticHelper {
         } catch (final Exception cause) {
             throw new JsonNodeParserException("Failed to return parsers from JsonNode grammar file, message: " + cause.getMessage(), cause);
         }
+    }
+
+    private static Parser<ParserContext> stringParser(final String text,
+                                                      final BiFunction<ParserToken, ParserContext, ParserToken> factory) {
+        return Parsers.string(text, CaseSensitivity.SENSITIVE)
+            .transform(factory)
+            .setToString(CharSequences.quoteAndEscape(text).toString());
     }
 
     /**

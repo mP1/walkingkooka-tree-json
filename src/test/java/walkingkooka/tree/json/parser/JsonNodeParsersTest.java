@@ -36,11 +36,11 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     @Test
     public void testParseBooleanInvalidFails() {
         this.parseThrows(
-            JsonNodeParsers.nullParser()
+            JsonNodeParsers.booleanParser()
                 .orFailIfCursorNotEmpty(ParserReporters.basic())
                 .cast(),
-            "null 123",
-            "Invalid character ' ' at (5,1) expected JsonNodeNullParserToken"
+            "true 123",
+            "Invalid character ' ' at (5,1) expected (\"false\" | \"true\")"
         );
     }
 
@@ -65,7 +65,7 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
                 .orFailIfCursorNotEmpty(ParserReporters.basic())
                 .cast(),
             "null 123",
-            "Invalid character ' ' at (5,1) expected JsonNodeNullParserToken"
+            "Invalid character ' ' at (5,1) expected \"null\""
         );
     }
 
@@ -83,7 +83,7 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
                 .orFailIfCursorNotEmpty(ParserReporters.basic())
                 .cast(),
             "123 abc",
-            "Invalid character ' ' at (4,1) expected JsonNodeNumberParserToken"
+            "Invalid character ' ' at (4,1) expected NUMBER"
         );
     }
 
@@ -178,7 +178,7 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testParseArrayUnclosedFails() {
         this.parseThrows(
             "[",
-            "End of text at (2,1) expected [ ARRAY_ELEMENT, [{ [ WHITESPACE ], SEPARATOR, ARRAY_ELEMENT_REQUIRED }]], [ WHITESPACE ], ARRAY_END"
+            "End of text at (2,1) expected ([(([WHITESPACE], (\"null\" | \"false\" | \"true\" | STRING | NUMBER | ARRAY | OBJECT)), [{([WHITESPACE], ',', (([WHITESPACE], ((\"null\" | \"false\" | \"true\" | STRING | NUMBER | ARRAY | OBJECT) | (\"null\" | \"false\" | \"true\" | STRING | NUMBER | ARRAY | OBJECT) | Fail)) | ([WHITESPACE], ((\"null\" | \"false\" | \"true\" | STRING | NUMBER | ARRAY | OBJECT) | (\"null\" | \"false\" | \"true\" | STRING | NUMBER | ARRAY | OBJECT) | Fail)) | Fail))}])], [WHITESPACE], ']')"
         );
     }
 
@@ -312,7 +312,7 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testParseObjectMissingClosingFails() {
         this.parseThrows(
             "{",
-            "End of text at (2,1) expected [ OBJECT_PROPERTY, [{[ WHITESPACE ], SEPARATOR, OBJECT_PROPERTY_REQUIRED }]], [ WHITESPACE ], OBJECT_END"
+            "End of text at (2,1) expected ([(([WHITESPACE], STRING, [WHITESPACE], ':', [WHITESPACE], ((\"null\" | \"false\" | \"true\" | STRING | NUMBER | ARRAY | OBJECT) | (\"null\" | \"false\" | \"true\" | STRING | NUMBER | ARRAY | OBJECT) | Fail)), [{([WHITESPACE], ',', (OBJECT_PROPERTY | OBJECT_PROPERTY | Fail))}])], [WHITESPACE], '}')"
         );
     }
 
@@ -320,7 +320,7 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testParseObjectMissingValueFails() {
         this.parseThrows(
             "{ \"property123\"",
-            "Invalid character ' ' at (2,1) expected [ OBJECT_PROPERTY, [{[ WHITESPACE ], SEPARATOR, OBJECT_PROPERTY_REQUIRED }]], [ WHITESPACE ], OBJECT_END"
+            "Invalid character ' ' at (2,1) expected ([(([WHITESPACE], STRING, [WHITESPACE], ':', [WHITESPACE], ((\"null\" | \"false\" | \"true\" | STRING | NUMBER | ARRAY | OBJECT) | (\"null\" | \"false\" | \"true\" | STRING | NUMBER | ARRAY | OBJECT) | Fail)), [{([WHITESPACE], ',', (OBJECT_PROPERTY | OBJECT_PROPERTY | Fail))}])], [WHITESPACE], '}')"
         );
     }
 
@@ -328,7 +328,7 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testParseObjectValueMissingClosingFails() {
         this.parseThrows(
             "{ \"property123\": true",
-            "Invalid character ' ' at (2,1) expected [ OBJECT_PROPERTY, [{[ WHITESPACE ], SEPARATOR, OBJECT_PROPERTY_REQUIRED }]], [ WHITESPACE ], OBJECT_END"
+            "Invalid character ' ' at (2,1) expected ([(([WHITESPACE], STRING, [WHITESPACE], ':', [WHITESPACE], ((\"null\" | \"false\" | \"true\" | STRING | NUMBER | ARRAY | OBJECT) | (\"null\" | \"false\" | \"true\" | STRING | NUMBER | ARRAY | OBJECT) | Fail)), [{([WHITESPACE], ',', (OBJECT_PROPERTY | OBJECT_PROPERTY | Fail))}])], [WHITESPACE], '}')"
         );
     }
 

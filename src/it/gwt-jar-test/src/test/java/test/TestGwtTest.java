@@ -23,27 +23,43 @@ public class TestGwtTest extends GWTTestCase {
         );
     }
 
-    public void testParse() {
-        assertEquals(
-            JsonNode.booleanNode(true),
-            JsonNode.parse(
-                "true"
-            )
-        );
-    }
-
     public void testEncodeDecodeRoundtrip() {
         final String data = "abc123def456";
         final Charset charset = Charset.forName("UTF-8");
 
         final String encoded = Base64.getEncoder().encodeToString(data.getBytes(charset));
-        assertEquals("Started with " + CharSequences.quoteAndEscape(data) + " encoded: " + CharSequences.quoteAndEscape(encoded),
+        this.checkEquals(
             data,
             new String(
                 Base64.getDecoder()
                     .decode(encoded),
                 charset
             )
+        );
+    }
+
+    public void testParseJson() {
+        final JsonNode graph = JsonNode.object()
+            .set(
+                JsonPropertyName.with("string"),
+                JsonNode.string("abc")
+            ).set(
+                JsonPropertyName.with("number"),
+                JsonNode.number(Double.parseDouble("12.5"))
+            ).set(
+                JsonPropertyName.with("boolean"),
+                JsonNode.booleanNode(true)
+            ).set(
+                JsonPropertyName.with("null"),
+                JsonNode.nullNode()
+            ).set(
+                JsonPropertyName.with("array"),
+                JsonNode.array()
+            );
+
+        this.checkEquals(
+            graph,
+            JsonNode.parse(graph.toString())
         );
     }
 }

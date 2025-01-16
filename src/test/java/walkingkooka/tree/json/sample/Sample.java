@@ -17,6 +17,9 @@
 
 package walkingkooka.tree.json.sample;
 
+import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.JsonPropertyName;
+
 import java.nio.charset.Charset;
 import java.util.Base64;
 
@@ -25,7 +28,9 @@ public class Sample {
 
     public static void main(final String[] args) {
         final Sample sample = new Sample();
+
         sample.testEncodeDecodeRoundtrip();
+        sample.testParseJson();
     }
 
     public void testEncodeDecodeRoundtrip() {
@@ -33,7 +38,7 @@ public class Sample {
         final Charset charset = Charset.forName("UTF-8");
 
         final String encoded = Base64.getEncoder().encodeToString(data.getBytes(charset));
-        checkEquals(
+        this.checkEquals(
             data,
             new String(
                 Base64.getDecoder()
@@ -43,8 +48,33 @@ public class Sample {
         );
     }
 
-    private void checkEquals(final String expected,
-                             final String actual) {
+    public void testParseJson() {
+        final JsonNode graph = JsonNode.object()
+            .set(
+                JsonPropertyName.with("string"),
+                JsonNode.string("abc")
+            ).set(
+                JsonPropertyName.with("number"),
+                JsonNode.number(Double.parseDouble("12.5"))
+            ).set(
+                JsonPropertyName.with("boolean"),
+                JsonNode.booleanNode(true)
+            ).set(
+                JsonPropertyName.with("null"),
+                JsonNode.nullNode()
+            ).set(
+                JsonPropertyName.with("array"),
+                JsonNode.array()
+            );
+
+        this.checkEquals(
+            graph,
+            JsonNode.parse(graph.toString())
+        );
+    }
+
+    private void checkEquals(final Object expected,
+                             final Object actual) {
         System.out.println(expected);
         System.out.println(actual);
     }

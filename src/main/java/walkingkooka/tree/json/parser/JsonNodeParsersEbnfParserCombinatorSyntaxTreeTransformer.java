@@ -31,6 +31,7 @@ import walkingkooka.text.cursor.parser.ebnf.EbnfIdentifierParserToken;
 import walkingkooka.text.cursor.parser.ebnf.EbnfOptionalParserToken;
 import walkingkooka.text.cursor.parser.ebnf.EbnfRangeParserToken;
 import walkingkooka.text.cursor.parser.ebnf.EbnfRepeatedParserToken;
+import walkingkooka.text.cursor.parser.ebnf.EbnfRuleParserToken;
 import walkingkooka.text.cursor.parser.ebnf.EbnfTerminalParserToken;
 import walkingkooka.text.cursor.parser.ebnf.combinator.EbnfParserCombinatorSyntaxTreeTransformer;
 
@@ -49,6 +50,12 @@ final class JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer implements 
 
     private JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer() {
         super();
+    }
+
+    @Override
+    public Parser<ParserContext> rule(final EbnfRuleParserToken token,
+                                      final Parser<ParserContext> parser) {
+        return parser;
     }
 
     @Override
@@ -122,7 +129,8 @@ final class JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer implements 
 
     @Override
     public Parser<ParserContext> range(final EbnfRangeParserToken token,
-                                       final Parser<ParserContext> parserd) {
+                                       final String beginText,
+                                       final String endText) {
         throw new UnsupportedOperationException();
     }
 

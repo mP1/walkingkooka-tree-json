@@ -39,8 +39,10 @@ import walkingkooka.text.cursor.parser.ebnf.EbnfParserContexts;
 import walkingkooka.text.cursor.parser.ebnf.EbnfParserToken;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  * Holds numerous {@link Parser parsers} that return individual json nodes including an entire {@link JsonNodeObjectParserToken}.
@@ -194,6 +196,8 @@ public final class JsonNodeParsers implements PublicStaticHelper {
 
     private final static Parser<ParserContext> VALUE = value0();
 
+    private final static String FILENAME = "\"JsonNodeParsersGrammar.txt\"";
+
     private static Parser<ParserContext> value0() {
         try {
             final TextCursor grammarFile = TextCursors.charSequence(new JsonNodeParsersGrammarProvider().text());
@@ -216,18 +220,24 @@ public final class JsonNodeParsers implements PublicStaticHelper {
 
             predefined.put(WHITESPACE_IDENTIFIER, whitespace());
 
-            final Map<EbnfIdentifierName, Parser<ParserContext>> parsers = EbnfParserToken.grammarParser()
+            final Function<EbnfIdentifierName, Optional<Parser<ParserContext>>> parsers = EbnfParserToken.grammarParser()
                 .orFailIfCursorNotEmpty(ParserReporters.basic())
                 .parse(grammarFile, EbnfParserContexts.basic())
-                .orElseThrow(() -> new IllegalStateException("Unable to parse JsonNode parsers grammar file."))
+                .orElseThrow(() -> new IllegalStateException("Unable to read grammar file " + FILENAME))
                 .cast(EbnfGrammarParserToken.class)
-                .combinator(predefined, JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.INSTANCE);
+                .combinator(
+                    (i) -> Optional.ofNullable(
+                        predefined.get(i)
+                    ),
+                    JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.INSTANCE
+                );
 
-            return parsers.get(VALUE_IDENTIFIER);
+            return parsers.apply(VALUE_IDENTIFIER)
+                .orElseThrow(() -> new IllegalStateException("Missing parser " + VALUE_IDENTIFIER + " in " + FILENAME));
         } catch (final JsonNodeParserException rethrow) {
             throw rethrow;
         } catch (final Exception cause) {
-            throw new JsonNodeParserException("Failed to return parsers from JsonNode grammar file, message: " + cause.getMessage(), cause);
+            throw new JsonNodeParserException("Unable to read grammar in file " + FILENAME + ", message: " + cause.getMessage(), cause);
         }
     }
 

@@ -20,11 +20,11 @@ import com.google.j2cl.junit.apt.J2clTestInput;
 import org.junit.Assert;
 import org.junit.Test;
 
+import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.JsonPropertyName;
+
 import java.nio.charset.Charset;
 import java.util.Base64;
-
-import walkingkooka.text.CharSequences;
-import walkingkooka.tree.json.JsonNode;
 
 @walkingkooka.j2cl.locale.LocaleAware
 @J2clTestInput(JunitTest.class)
@@ -69,6 +69,14 @@ public class JunitTest {
         this.checkEquals(
             graph,
             JsonNode.parse(graph.toString())
+        );
+    }
+
+    private void checkEquals(final Object expected,
+                             final Object actual) {
+        Assert.assertEquals(
+            expected,
+            actual
         );
     }
 }

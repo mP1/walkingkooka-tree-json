@@ -23,19 +23,14 @@ import walkingkooka.predicate.character.CharPredicates;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.text.CharSequences;
-import walkingkooka.text.cursor.TextCursor;
-import walkingkooka.text.cursor.TextCursors;
 import walkingkooka.text.cursor.parser.CharacterParserToken;
 import walkingkooka.text.cursor.parser.DoubleParserToken;
 import walkingkooka.text.cursor.parser.Parser;
 import walkingkooka.text.cursor.parser.ParserContext;
-import walkingkooka.text.cursor.parser.ParserReporters;
 import walkingkooka.text.cursor.parser.ParserToken;
 import walkingkooka.text.cursor.parser.Parsers;
 import walkingkooka.text.cursor.parser.StringParserToken;
-import walkingkooka.text.cursor.parser.ebnf.EbnfGrammarParserToken;
 import walkingkooka.text.cursor.parser.ebnf.EbnfIdentifierName;
-import walkingkooka.text.cursor.parser.ebnf.EbnfParserContexts;
 import walkingkooka.text.cursor.parser.ebnf.EbnfParserToken;
 
 import java.util.Map;
@@ -200,8 +195,6 @@ public final class JsonNodeParsers implements PublicStaticHelper {
 
     private static Parser<ParserContext> value0() {
         try {
-            final TextCursor grammarFile = TextCursors.charSequence(new JsonNodeParsersGrammarProvider().text());
-
             final Map<EbnfIdentifierName, Parser<ParserContext>> predefined = Maps.ordered();
             predefined.put(ARRAY_BEGIN_SYMBOL_IDENTIFIER, ARRAY_BEGIN_SYMBOL);
             predefined.put(ARRAY_END_SYMBOL_IDENTIFIER, ARRAY_END_SYMBOL);
@@ -220,17 +213,16 @@ public final class JsonNodeParsers implements PublicStaticHelper {
 
             predefined.put(WHITESPACE_IDENTIFIER, whitespace());
 
-            final Function<EbnfIdentifierName, Optional<Parser<ParserContext>>> parsers = EbnfParserToken.grammarParser()
-                .orFailIfCursorNotEmpty(ParserReporters.basic())
-                .parse(grammarFile, EbnfParserContexts.basic())
-                .orElseThrow(() -> new IllegalStateException("Unable to read grammar file " + FILENAME))
-                .cast(EbnfGrammarParserToken.class)
-                .combinator(
-                    (i) -> Optional.ofNullable(
-                        predefined.get(i)
-                    ),
-                    JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.INSTANCE
-                );
+            final Function<EbnfIdentifierName, Optional<Parser<ParserContext>>> parsers = EbnfParserToken.parseFile(
+                new JsonNodeParsersGrammarProvider()
+                    .text(),
+                FILENAME
+            ).combinator(
+                (i) -> Optional.ofNullable(
+                    predefined.get(i)
+                ),
+                JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.INSTANCE
+            );
 
             return parsers.apply(VALUE_IDENTIFIER)
                 .orElseThrow(() -> new IllegalStateException("Missing parser " + VALUE_IDENTIFIER + " in " + FILENAME));

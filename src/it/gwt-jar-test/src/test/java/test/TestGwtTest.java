@@ -2,11 +2,11 @@ package test;
 
 import com.google.gwt.junit.client.GWTTestCase;
 
+import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.JsonPropertyName;
+
 import java.nio.charset.Charset;
 import java.util.Base64;
-
-import walkingkooka.text.CharSequences;
-import walkingkooka.tree.json.JsonNode;
 
 @walkingkooka.j2cl.locale.LocaleAware
 public class TestGwtTest extends GWTTestCase {
@@ -60,6 +60,14 @@ public class TestGwtTest extends GWTTestCase {
         this.checkEquals(
             graph,
             JsonNode.parse(graph.toString())
+        );
+    }
+
+    private void checkEquals(final Object expected,
+                             final Object actual) {
+        assertEquals(
+            expected,
+            actual
         );
     }
 }

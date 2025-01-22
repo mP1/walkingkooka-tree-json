@@ -191,7 +191,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
 
     private final static Parser<ParserContext> VALUE = value0();
 
-    private final static String FILENAME = "\"JsonNodeParsersGrammar.txt\"";
+    private final static String FILENAME = "JsonNodeParsersGrammar.txt";
 
     private static Parser<ParserContext> value0() {
         try {
@@ -213,19 +213,19 @@ public final class JsonNodeParsers implements PublicStaticHelper {
 
             predefined.put(WHITESPACE_IDENTIFIER, whitespace());
 
-            final Function<EbnfIdentifierName, Optional<Parser<ParserContext>>> parsers = EbnfParserToken.parseFile(
+            final Function<EbnfIdentifierName, Parser<ParserContext>> parsers = EbnfParserToken.parseFile(
                 new JsonNodeParsersGrammarProvider()
                     .text(),
                 FILENAME
-            ).combinator(
+            ).combinatorForFile(
                 (i) -> Optional.ofNullable(
                     predefined.get(i)
                 ),
-                JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.INSTANCE
+                JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.INSTANCE,
+                FILENAME
             );
 
-            return parsers.apply(VALUE_IDENTIFIER)
-                .orElseThrow(() -> new IllegalStateException("Missing parser " + VALUE_IDENTIFIER + " in " + FILENAME));
+            return parsers.apply(VALUE_IDENTIFIER);
         } catch (final JsonNodeParserException rethrow) {
             throw rethrow;
         } catch (final Exception cause) {

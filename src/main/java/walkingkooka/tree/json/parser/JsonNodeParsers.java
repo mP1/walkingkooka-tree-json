@@ -173,13 +173,16 @@ public final class JsonNodeParsers implements PublicStaticHelper {
     }
 
     /**
-     * Factory that parsers and returns a sub class of {@link JsonNodeSymbolParserToken}
+     * Factory that parsers and returns a sub-class of {@link JsonNodeSymbolParserToken}
      */
     private static Parser<ParserContext> symbol(final char c,
                                                 final BiFunction<String, String, ParserToken> factory) {
         return Parsers.character(CharPredicates.is(c))
             .transform((charParserToken, context) -> factory.apply(charParserToken.cast(CharacterParserToken.class).value().toString(), charParserToken.text()))
-            .setToString(CharSequences.quoteAndEscape(c).toString());
+            .setToString(
+                CharSequences.quoteAndEscape(String.valueOf(c))
+                    .toString()
+            );
     }
 
     /**

@@ -156,7 +156,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
         return WHITESPACE;
     }
 
-    private final static Parser<ParserContext> WHITESPACE = Parsers.stringCharPredicate(
+    private final static Parser<ParserContext> WHITESPACE = Parsers.charPredicateString(
         CharPredicates.whitespace(),
             1,
             Integer.MAX_VALUE

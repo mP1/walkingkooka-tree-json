@@ -197,43 +197,37 @@ public final class JsonNodeParsers implements PublicStaticHelper {
     private final static String FILENAME = "JsonNodeParsersGrammar.txt";
 
     private static Parser<ParserContext> value0() {
-        try {
-            final Map<EbnfIdentifierName, Parser<ParserContext>> predefined = Maps.ordered();
-            predefined.put(ARRAY_BEGIN_SYMBOL_IDENTIFIER, ARRAY_BEGIN_SYMBOL);
-            predefined.put(ARRAY_END_SYMBOL_IDENTIFIER, ARRAY_END_SYMBOL);
+        final Map<EbnfIdentifierName, Parser<ParserContext>> predefined = Maps.ordered();
+        predefined.put(ARRAY_BEGIN_SYMBOL_IDENTIFIER, ARRAY_BEGIN_SYMBOL);
+        predefined.put(ARRAY_END_SYMBOL_IDENTIFIER, ARRAY_END_SYMBOL);
 
-            predefined.put(BOOLEAN_IDENTIFIER, booleanParser());
-            predefined.put(NULL_IDENTIFIER, nullParser());
-            predefined.put(NUMBER_IDENTIFIER, number());
+        predefined.put(BOOLEAN_IDENTIFIER, booleanParser());
+        predefined.put(NULL_IDENTIFIER, nullParser());
+        predefined.put(NUMBER_IDENTIFIER, number());
 
-            predefined.put(OBJECT_ASSIGNMENT_SYMBOL_IDENTIFIER, OBJECT_ASSIGNMENT_SYMBOL);
-            predefined.put(OBJECT_BEGIN_SYMBOL_IDENTIFIER, OBJECT_BEGIN_SYMBOL);
-            predefined.put(OBJECT_END_SYMBOL_IDENTIFIER, OBJECT_END_SYMBOL);
+        predefined.put(OBJECT_ASSIGNMENT_SYMBOL_IDENTIFIER, OBJECT_ASSIGNMENT_SYMBOL);
+        predefined.put(OBJECT_BEGIN_SYMBOL_IDENTIFIER, OBJECT_BEGIN_SYMBOL);
+        predefined.put(OBJECT_END_SYMBOL_IDENTIFIER, OBJECT_END_SYMBOL);
 
-            predefined.put(SEPARATOR_SYMBOL_IDENTIFIER, SEPARATOR_SYMBOL);
+        predefined.put(SEPARATOR_SYMBOL_IDENTIFIER, SEPARATOR_SYMBOL);
 
-            predefined.put(STRING_IDENTIFIER, string());
+        predefined.put(STRING_IDENTIFIER, string());
 
-            predefined.put(WHITESPACE_IDENTIFIER, whitespace());
+        predefined.put(WHITESPACE_IDENTIFIER, whitespace());
 
-            final Function<EbnfIdentifierName, Parser<ParserContext>> parsers = EbnfParserToken.parseFile(
-                new JsonNodeParsersGrammarProvider()
-                    .text(),
-                FILENAME
-            ).combinatorForFile(
-                (i) -> Optional.ofNullable(
-                    predefined.get(i)
-                ),
-                JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.INSTANCE,
-                FILENAME
-            );
+        final Function<EbnfIdentifierName, Parser<ParserContext>> parsers = EbnfParserToken.parseFile(
+            new JsonNodeParsersGrammarProvider()
+                .text(),
+            FILENAME
+        ).combinatorForFile(
+            (i) -> Optional.ofNullable(
+                predefined.get(i)
+            ),
+            JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.INSTANCE,
+            FILENAME
+        );
 
-            return parsers.apply(VALUE_IDENTIFIER);
-        } catch (final JsonNodeParserException rethrow) {
-            throw rethrow;
-        } catch (final Exception cause) {
-            throw new JsonNodeParserException("Unable to read grammar in file " + FILENAME + ", message: " + cause.getMessage(), cause);
-        }
+        return parsers.apply(VALUE_IDENTIFIER);
     }
 
     private static Parser<ParserContext> stringParser(final String text,

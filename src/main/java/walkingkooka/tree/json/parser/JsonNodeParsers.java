@@ -74,7 +74,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
 
     private static final EbnfIdentifierName VALUE_IDENTIFIER = EbnfIdentifierName.with("VALUE");
 
-    // required by JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer
+    // required by JsonNodeParsersEbnfParserCombinatorGrammarTransformer
     static final Set<EbnfIdentifierName> REPORT_FAILURE_IDENTIFIER_NAMES = Sets.of(OBJECT_ASSIGNMENT_SYMBOL_IDENTIFIER);
 
     /**
@@ -223,7 +223,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
             (i) -> Optional.ofNullable(
                 predefined.get(i)
             ),
-            JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.INSTANCE,
+            JsonNodeParsersEbnfParserCombinatorGrammarTransformer.INSTANCE,
             FILENAME
         );
 

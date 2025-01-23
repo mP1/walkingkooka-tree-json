@@ -33,29 +33,23 @@ import walkingkooka.text.cursor.parser.ebnf.EbnfRangeParserToken;
 import walkingkooka.text.cursor.parser.ebnf.EbnfRepeatedParserToken;
 import walkingkooka.text.cursor.parser.ebnf.EbnfRuleParserToken;
 import walkingkooka.text.cursor.parser.ebnf.EbnfTerminalParserToken;
-import walkingkooka.text.cursor.parser.ebnf.combinator.EbnfParserCombinatorSyntaxTreeTransformer;
+import walkingkooka.text.cursor.parser.ebnf.combinator.EbnfParserCombinatorGrammarTransformer;
 
 import java.util.List;
 
 /**
- * A {@link EbnfParserCombinatorSyntaxTreeTransformer} that only transforms terminal and ranges into their corresponding
+ * A {@link EbnfParserCombinatorGrammarTransformer} that only transforms terminal and ranges into their corresponding
  * {@link JsonNodeParserToken} equivalents. Processing of other tokens will be done after this process completes.
  */
-final class JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer implements EbnfParserCombinatorSyntaxTreeTransformer<ParserContext> {
+final class JsonNodeParsersEbnfParserCombinatorGrammarTransformer implements EbnfParserCombinatorGrammarTransformer<ParserContext> {
 
     /**
      * Singleton
      */
-    static final JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer INSTANCE = new JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer();
+    static final JsonNodeParsersEbnfParserCombinatorGrammarTransformer INSTANCE = new JsonNodeParsersEbnfParserCombinatorGrammarTransformer();
 
-    private JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer() {
+    private JsonNodeParsersEbnfParserCombinatorGrammarTransformer() {
         super();
-    }
-
-    @Override
-    public Parser<ParserContext> rule(final EbnfRuleParserToken token,
-                                      final Parser<ParserContext> parser) {
-        return parser;
     }
 
     @Override
@@ -82,45 +76,6 @@ final class JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer implements 
         return parser;
     }
 
-    /**
-     * If the identifier name ends in "REQUIRED" mark the parser so that it reports a failure.
-     */
-    @Override
-    public Parser<ParserContext> identifier(final EbnfIdentifierParserToken token,
-                                            final Parser<ParserContext> parser) {
-        final EbnfIdentifierName name = token.value();
-        return name.equals(JsonNodeParsers.ARRAY_IDENTIFIER) ?
-            parser.transform(JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer::array) :
-            name.equals(JsonNodeParsers.OBJECT_IDENTIFIER) ?
-                parser.transform(JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer::object) :
-                this.requiredCheck(name, parser);
-    }
-
-    private static ParserToken array(final ParserToken token,
-                                     final ParserContext context) {
-        return JsonNodeParserToken.array(JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.clean(token),
-            token.text());
-    }
-
-    private static ParserToken object(final ParserToken token,
-                                      final ParserContext context) {
-        return JsonNodeParserToken.object(JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.clean(token),
-            token.text());
-    }
-
-    private static List<ParserToken> clean(final ParserToken token) {
-        return token.cast(SequenceParserToken.class)
-            .flat()
-            .value();
-    }
-
-    private Parser<ParserContext> requiredCheck(final EbnfIdentifierName name,
-                                                final Parser<ParserContext> parser) {
-        return name.value().endsWith("REQUIRED") || JsonNodeParsers.REPORT_FAILURE_IDENTIFIER_NAMES.contains(name) ?
-            parser.orReport(ParserReporters.basic()) :
-            parser; // leave as is...
-    }
-
     @Override
     public Parser<ParserContext> optional(final EbnfOptionalParserToken token,
                                           final Parser<ParserContext> parser) {
@@ -141,8 +96,55 @@ final class JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer implements 
     }
 
     @Override
+    public Parser<ParserContext> rule(final EbnfRuleParserToken token,
+                                      final Parser<ParserContext> parser) {
+        return parser;
+    }
+
+    @Override
     public Parser<ParserContext> terminal(final EbnfTerminalParserToken token,
                                           final Parser<ParserContext> parser) {
         throw new UnsupportedOperationException(token.toString());
+    }
+
+    // identifier ......................................................................................................
+
+    /**
+     * If the identifier name ends in "REQUIRED" mark the parser so that it reports a failure.
+     */
+    @Override
+    public Parser<ParserContext> identifier(final EbnfIdentifierParserToken token,
+                                            final Parser<ParserContext> parser) {
+        final EbnfIdentifierName name = token.value();
+        return name.equals(JsonNodeParsers.ARRAY_IDENTIFIER) ?
+            parser.transform(JsonNodeParsersEbnfParserCombinatorGrammarTransformer::array) :
+            name.equals(JsonNodeParsers.OBJECT_IDENTIFIER) ?
+                parser.transform(JsonNodeParsersEbnfParserCombinatorGrammarTransformer::object) :
+                this.requiredCheck(name, parser);
+    }
+
+    private static ParserToken array(final ParserToken token,
+                                     final ParserContext context) {
+        return JsonNodeParserToken.array(JsonNodeParsersEbnfParserCombinatorGrammarTransformer.clean(token),
+            token.text());
+    }
+
+    private static ParserToken object(final ParserToken token,
+                                      final ParserContext context) {
+        return JsonNodeParserToken.object(JsonNodeParsersEbnfParserCombinatorGrammarTransformer.clean(token),
+            token.text());
+    }
+
+    private static List<ParserToken> clean(final ParserToken token) {
+        return token.cast(SequenceParserToken.class)
+            .flat()
+            .value();
+    }
+
+    private Parser<ParserContext> requiredCheck(final EbnfIdentifierName name,
+                                                final Parser<ParserContext> parser) {
+        return name.value().endsWith("REQUIRED") || JsonNodeParsers.REPORT_FAILURE_IDENTIFIER_NAMES.contains(name) ?
+            parser.orReport(ParserReporters.basic()) :
+            parser; // leave as is...
     }
 }

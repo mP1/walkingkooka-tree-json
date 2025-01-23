@@ -20,14 +20,14 @@ package walkingkooka.tree.json.parser;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.cursor.parser.ParserContext;
-import walkingkooka.text.cursor.parser.ebnf.combinator.EbnfParserCombinatorSyntaxTreeTransformerTesting;
+import walkingkooka.text.cursor.parser.ebnf.combinator.EbnfParserCombinatorGrammarTransformerTesting;
 
-public final class JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformerTest implements ClassTesting2<JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer>,
-    EbnfParserCombinatorSyntaxTreeTransformerTesting<JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer, ParserContext> {
+public final class JsonNodeParsersEbnfParserCombinatorGrammarTransformerTest implements ClassTesting2<JsonNodeParsersEbnfParserCombinatorGrammarTransformer>,
+    EbnfParserCombinatorGrammarTransformerTesting<JsonNodeParsersEbnfParserCombinatorGrammarTransformer, ParserContext> {
 
     @Override
-    public Class<JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer> type() {
-        return JsonNodeParsersEbnfParserCombinatorSyntaxTreeTransformer.class;
+    public Class<JsonNodeParsersEbnfParserCombinatorGrammarTransformer> type() {
+        return JsonNodeParsersEbnfParserCombinatorGrammarTransformer.class;
     }
 
     @Override

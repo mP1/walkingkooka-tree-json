@@ -215,6 +215,20 @@ public final class JsonNodeParsersStringParserTest implements ParserTesting2<Jso
         );
     }
 
+    @Test
+    public void testMinCount() {
+        this.minCountAndCheck(
+            1
+        );
+    }
+
+    @Test
+    public void testMaxCount() {
+        this.maxCountAndCheck(
+            1
+        );
+    }
+
     @Override
     public JsonNodeParsersStringParser createParser() {
         return JsonNodeParsersStringParser.INSTANCE;

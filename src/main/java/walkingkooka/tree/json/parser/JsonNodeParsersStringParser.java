@@ -24,6 +24,7 @@ import walkingkooka.text.cursor.TextCursorSavePoint;
 import walkingkooka.text.cursor.parser.Parser;
 import walkingkooka.text.cursor.parser.ParserContext;
 import walkingkooka.text.cursor.parser.ParserToken;
+import walkingkooka.text.cursor.parser.RequiredParser;
 
 import java.util.Optional;
 
@@ -31,7 +32,8 @@ import java.util.Optional;
  * A parser that consumes JSON strings.
  * https://www.crockford.com/mckeeman.html
  */
-final class JsonNodeParsersStringParser implements Parser<ParserContext> {
+final class JsonNodeParsersStringParser implements Parser<ParserContext>,
+    RequiredParser<ParserContext> {
 
     /**
      * Singleton

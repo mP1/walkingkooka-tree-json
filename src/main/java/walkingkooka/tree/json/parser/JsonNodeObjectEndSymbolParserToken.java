@@ -38,11 +38,4 @@ public final class JsonNodeObjectEndSymbolParserToken extends JsonNodeSymbolPars
     public void accept(final JsonNodeParserTokenVisitor visitor) {
         visitor.visit(this);
     }
-
-    // Object ...............................................................................................
-
-    @Override
-    boolean canBeEqual(final Object other) {
-        return other instanceof JsonNodeObjectEndSymbolParserToken;
-    }
 }

@@ -38,11 +38,4 @@ public final class JsonNodeArrayBeginSymbolParserToken extends JsonNodeSymbolPar
     public void accept(final JsonNodeParserTokenVisitor visitor) {
         visitor.visit(this);
     }
-
-    // Object ...............................................................................................
-
-    @Override
-    boolean canBeEqual(final Object other) {
-        return other instanceof JsonNodeArrayBeginSymbolParserToken;
-    }
 }

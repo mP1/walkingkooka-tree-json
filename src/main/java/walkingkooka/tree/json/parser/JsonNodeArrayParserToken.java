@@ -74,11 +74,4 @@ public final class JsonNodeArrayParserToken extends JsonNodeParentParserToken<Js
         }
         visitor.endVisit(this);
     }
-
-    // Object ...............................................................................................
-
-    @Override
-    boolean canBeEqual(final Object other) {
-        return other instanceof JsonNodeArrayParserToken;
-    }
 }

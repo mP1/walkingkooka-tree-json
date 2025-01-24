@@ -53,11 +53,4 @@ public final class JsonNodeBooleanParserToken extends JsonNodeValueParserToken<B
     public void accept(final JsonNodeParserTokenVisitor visitor) {
         visitor.visit(this);
     }
-
-    // Object ...............................................................................................
-
-    @Override
-    boolean canBeEqual(final Object other) {
-        return other instanceof JsonNodeBooleanParserToken;
-    }
 }

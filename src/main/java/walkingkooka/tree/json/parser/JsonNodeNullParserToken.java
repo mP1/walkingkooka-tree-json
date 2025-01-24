@@ -53,9 +53,4 @@ public final class JsonNodeNullParserToken extends JsonNodeValueParserToken<Void
     void addJsonNode(final List<JsonNode> children) {
         children.add(JsonNode.nullNode());
     }
-
-    @Override
-    boolean canBeEqual(final Object other) {
-        return other instanceof JsonNodeNullParserToken;
-    }
 }

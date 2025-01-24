@@ -40,11 +40,4 @@ public final class JsonNodeWhitespaceParserToken extends JsonNodeSymbolParserTok
     public void accept(final JsonNodeParserTokenVisitor visitor) {
         visitor.visit(this);
     }
-
-    // Object ...............................................................................................
-
-    @Override
-    boolean canBeEqual(final Object other) {
-        return other instanceof JsonNodeWhitespaceParserToken;
-    }
 }

@@ -307,7 +307,7 @@ public abstract class JsonNodeParserToken implements ParserToken {
      */
     abstract void addJsonNode(final List<JsonNode> children);
 
-    // Object ...........................................................................................................
+    // Object ..........................................................................................................
 
     @Override
     public final int hashCode() {
@@ -317,11 +317,8 @@ public abstract class JsonNodeParserToken implements ParserToken {
     @Override
     public final boolean equals(final Object other) {
         return this == other ||
-            this.canBeEqual(other) &&
-                this.equals0(Cast.to(other));
+            null != other && this.getClass() == other.getClass() && this.equals0(Cast.to(other));
     }
-
-    abstract boolean canBeEqual(final Object other);
 
     private boolean equals0(final JsonNodeParserToken other) {
         return this.text().equals(other.text()) &&

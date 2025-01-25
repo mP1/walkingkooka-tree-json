@@ -178,7 +178,7 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testParseArrayUnclosedFails() {
         this.parseThrows(
             "[",
-            "End of text at (2,1) expected ([(ARRAY_ELEMENT, [{([WHITESPACE], \",\", ARRAY_ELEMENT_REQUIRED)}])], [WHITESPACE], \"]\")"
+            "End of text at (2,1) expected ([(ARRAY_ELEMENT, {([WHITESPACE], \",\", ARRAY_ELEMENT_REQUIRED)})], [WHITESPACE], \"]\")"
         );
     }
 
@@ -312,7 +312,7 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testParseObjectMissingClosingFails() {
         this.parseThrows(
             "{",
-            "End of text at (2,1) expected ([(OBJECT_PROPERTY, [{([WHITESPACE], \",\", OBJECT_PROPERTY_REQUIRED)}])], [WHITESPACE], \"}\")"
+            "End of text at (2,1) expected ([(OBJECT_PROPERTY, {([WHITESPACE], \",\", OBJECT_PROPERTY_REQUIRED)})], [WHITESPACE], \"}\")"
         );
     }
 
@@ -320,7 +320,7 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testParseObjectMissingValueFails() {
         this.parseThrows(
             "{ \"property123\"",
-            "Invalid character ' ' at (2,1) expected ([(OBJECT_PROPERTY, [{([WHITESPACE], \",\", OBJECT_PROPERTY_REQUIRED)}])], [WHITESPACE], \"}\")"
+            "Invalid character ' ' at (2,1) expected ([(OBJECT_PROPERTY, {([WHITESPACE], \",\", OBJECT_PROPERTY_REQUIRED)})], [WHITESPACE], \"}\")"
         );
     }
 
@@ -328,7 +328,7 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testParseObjectValueMissingClosingFails() {
         this.parseThrows(
             "{ \"property123\": true",
-            "Invalid character ' ' at (2,1) expected ([(OBJECT_PROPERTY, [{([WHITESPACE], \",\", OBJECT_PROPERTY_REQUIRED)}])], [WHITESPACE], \"}\")"
+            "Invalid character ' ' at (2,1) expected ([(OBJECT_PROPERTY, {([WHITESPACE], \",\", OBJECT_PROPERTY_REQUIRED)})], [WHITESPACE], \"}\")"
         );
     }
 

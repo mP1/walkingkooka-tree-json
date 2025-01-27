@@ -36,7 +36,7 @@ import walkingkooka.tree.json.parser.JsonNodeParserContexts;
 import walkingkooka.tree.json.parser.JsonNodeParserToken;
 import walkingkooka.tree.json.parser.JsonNodeParsers;
 import walkingkooka.tree.select.NodeSelector;
-import walkingkooka.tree.select.parser.NodeSelectorExpressionParserToken;
+import walkingkooka.tree.select.parser.ExpressionNodeSelectorParserToken;
 
 import java.util.Map;
 import java.util.Objects;
@@ -471,9 +471,9 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     }
 
     /**
-     * Creates a {@link NodeSelector} for {@link JsonNode} from a {@link NodeSelectorExpressionParserToken}.
+     * Creates a {@link NodeSelector} for {@link JsonNode} from a {@link ExpressionNodeSelectorParserToken}.
      */
-    public static NodeSelector<JsonNode, JsonPropertyName, Name, Object> nodeSelectorExpressionParserToken(final NodeSelectorExpressionParserToken token,
+    public static NodeSelector<JsonNode, JsonPropertyName, Name, Object> nodeSelectorExpressionParserToken(final ExpressionNodeSelectorParserToken token,
                                                                                                            final Predicate<ExpressionFunctionName> functions) {
         return NodeSelector.parserToken(token,
             n -> JsonPropertyName.with(n.value()),

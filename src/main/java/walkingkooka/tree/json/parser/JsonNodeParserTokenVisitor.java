@@ -23,69 +23,69 @@ import walkingkooka.visit.Visiting;
 
 public abstract class JsonNodeParserTokenVisitor extends ParserTokenVisitor {
 
-    // JsonNodeArrayParserToken....................................................................................
+    // ArrayJsonNodeParserToken....................................................................................
 
-    protected Visiting startVisit(final JsonNodeArrayParserToken token) {
+    protected Visiting startVisit(final ArrayJsonNodeParserToken token) {
         return Visiting.CONTINUE;
     }
 
-    protected void endVisit(final JsonNodeArrayParserToken token) {
+    protected void endVisit(final ArrayJsonNodeParserToken token) {
         // nop
     }
 
-    // JsonNodeObjectParserToken....................................................................................
+    // ObjectJsonNodeParserToken....................................................................................
 
-    protected Visiting startVisit(final JsonNodeObjectParserToken token) {
+    protected Visiting startVisit(final ObjectJsonNodeParserToken token) {
         return Visiting.CONTINUE;
     }
 
-    protected void endVisit(final JsonNodeObjectParserToken token) {
+    protected void endVisit(final ObjectJsonNodeParserToken token) {
         // nop
     }
 
-    // JsonNodeLeafParserToken ....................................................................................
+    // LeafJsonNodeParserToken ....................................................................................
 
-    protected void visit(final JsonNodeArrayBeginSymbolParserToken token) {
+    protected void visit(final ArrayBeginSymbolJsonNodeParserToken token) {
         // nop
     }
 
-    protected void visit(final JsonNodeArrayEndSymbolParserToken token) {
+    protected void visit(final ArrayEndSymbolJsonNodeParserToken token) {
         // nop
     }
 
-    protected void visit(final JsonNodeBooleanParserToken token) {
+    protected void visit(final BooleanJsonNodeParserToken token) {
         // nop
     }
 
-    protected void visit(final JsonNodeNullParserToken token) {
+    protected void visit(final NullJsonNodeParserToken token) {
         // nop
     }
 
-    protected void visit(final JsonNodeNumberParserToken token) {
+    protected void visit(final NumberJsonNodeParserToken token) {
         // nop
     }
 
-    protected void visit(final JsonNodeObjectAssignmentSymbolParserToken token) {
+    protected void visit(final ObjectAssignmentSymbolJsonNodeParserToken token) {
         // nop
     }
 
-    protected void visit(final JsonNodeObjectBeginSymbolParserToken token) {
+    protected void visit(final ObjectBeginSymbolJsonNodeParserToken token) {
         // nop
     }
 
-    protected void visit(final JsonNodeObjectEndSymbolParserToken token) {
+    protected void visit(final ObjectEndSymbolJsonNodeParserToken token) {
         // nop
     }
 
-    protected void visit(final JsonNodeSeparatorSymbolParserToken token) {
+    protected void visit(final SeparatorSymbolJsonNodeParserToken token) {
         // nop
     }
 
-    protected void visit(final JsonNodeStringParserToken token) {
+    protected void visit(final StringJsonNodeParserToken token) {
         // nop
     }
 
-    protected void visit(final JsonNodeWhitespaceParserToken token) {
+    protected void visit(final WhitespaceJsonNodeParserToken token) {
         // nop
     }
 

@@ -34,94 +34,94 @@ import java.util.Optional;
 public abstract class JsonNodeParserToken implements ParserToken {
 
     /**
-     * {@see JsonNodeArrayParserToken}
+     * {@see ArrayJsonNodeParserToken}
      */
-    public static JsonNodeArrayParserToken array(final List<ParserToken> value, final String text) {
-        return JsonNodeArrayParserToken.with(value, text);
+    public static ArrayJsonNodeParserToken array(final List<ParserToken> value, final String text) {
+        return ArrayJsonNodeParserToken.with(value, text);
     }
 
     /**
-     * {@see JsonNodeArrayBeginSymbolParserToken}
+     * {@see ArrayBeginSymbolJsonNodeParserToken}
      */
-    public static JsonNodeArrayBeginSymbolParserToken arrayBeginSymbol(final String value, final String text) {
-        return JsonNodeArrayBeginSymbolParserToken.with(value, text);
+    public static ArrayBeginSymbolJsonNodeParserToken arrayBeginSymbol(final String value, final String text) {
+        return ArrayBeginSymbolJsonNodeParserToken.with(value, text);
     }
 
     /**
-     * {@see JsonNodeArrayEndSymbolParserToken}
+     * {@see ArrayEndSymbolJsonNodeParserToken}
      */
-    public static JsonNodeArrayEndSymbolParserToken arrayEndSymbol(final String value, final String text) {
-        return JsonNodeArrayEndSymbolParserToken.with(value, text);
+    public static ArrayEndSymbolJsonNodeParserToken arrayEndSymbol(final String value, final String text) {
+        return ArrayEndSymbolJsonNodeParserToken.with(value, text);
     }
 
     /**
-     * {@see JsonNodeBooleanParserToken}
+     * {@see BooleanJsonNodeParserToken}
      */
-    public static JsonNodeBooleanParserToken booleanParserToken(final boolean value, final String text) {
-        return JsonNodeBooleanParserToken.with(value, text);
+    public static BooleanJsonNodeParserToken booleanJsonNodeParserToken(final boolean value, final String text) {
+        return BooleanJsonNodeParserToken.with(value, text);
     }
 
     /**
-     * {@see JsonNodeNullParserToken}
+     * {@see NullJsonNodeParserToken}
      */
-    public static JsonNodeNullParserToken nullParserToken(final String text) {
-        return JsonNodeNullParserToken.with(null, text);
+    public static NullJsonNodeParserToken nullJsonNodeParserToken(final String text) {
+        return NullJsonNodeParserToken.with(null, text);
     }
 
     /**
-     * {@see JsonNodeNumberParserToken}
+     * {@see NumberJsonNodeParserToken}
      */
-    public static JsonNodeNumberParserToken number(final double value, final String text) {
-        return JsonNodeNumberParserToken.with(value, text);
+    public static NumberJsonNodeParserToken number(final double value, final String text) {
+        return NumberJsonNodeParserToken.with(value, text);
     }
 
     /**
-     * {@see JsonNodeObjectParserToken}
+     * {@see ObjectJsonNodeParserToken}
      */
-    public static JsonNodeObjectParserToken object(final List<ParserToken> value, final String text) {
-        return JsonNodeObjectParserToken.with(value, text);
+    public static ObjectJsonNodeParserToken object(final List<ParserToken> value, final String text) {
+        return ObjectJsonNodeParserToken.with(value, text);
     }
 
     /**
-     * {@see JsonNodeObjectAssignmentSymbolParserToken}
+     * {@see ObjectAssignmentSymbolJsonNodeParserToken}
      */
-    public static JsonNodeObjectAssignmentSymbolParserToken objectAssignmentSymbol(final String value, final String text) {
-        return JsonNodeObjectAssignmentSymbolParserToken.with(value, text);
+    public static ObjectAssignmentSymbolJsonNodeParserToken objectAssignmentSymbol(final String value, final String text) {
+        return ObjectAssignmentSymbolJsonNodeParserToken.with(value, text);
     }
 
     /**
-     * {@see JsonNodeObjectBeginSymbolParserToken}
+     * {@see ObjectBeginSymbolJsonNodeParserToken}
      */
-    public static JsonNodeObjectBeginSymbolParserToken objectBeginSymbol(final String value, final String text) {
-        return JsonNodeObjectBeginSymbolParserToken.with(value, text);
+    public static ObjectBeginSymbolJsonNodeParserToken objectBeginSymbol(final String value, final String text) {
+        return ObjectBeginSymbolJsonNodeParserToken.with(value, text);
     }
 
     /**
-     * {@see JsonNodeObjectEndSymbolParserToken}
+     * {@see ObjectEndSymbolJsonNodeParserToken}
      */
-    public static JsonNodeObjectEndSymbolParserToken objectEndSymbol(final String value, final String text) {
-        return JsonNodeObjectEndSymbolParserToken.with(value, text);
+    public static ObjectEndSymbolJsonNodeParserToken objectEndSymbol(final String value, final String text) {
+        return ObjectEndSymbolJsonNodeParserToken.with(value, text);
     }
 
     /**
-     * {@see JsonNodeSeparatorSymbolParserToken}
+     * {@see SeparatorSymbolJsonNodeParserToken}
      */
-    public static JsonNodeSeparatorSymbolParserToken separatorSymbol(final String value, final String text) {
-        return JsonNodeSeparatorSymbolParserToken.with(value, text);
+    public static SeparatorSymbolJsonNodeParserToken separatorSymbol(final String value, final String text) {
+        return SeparatorSymbolJsonNodeParserToken.with(value, text);
     }
 
     /**
-     * {@see JsonNodeStringParserToken}
+     * {@see StringJsonNodeParserToken}
      */
-    public static JsonNodeStringParserToken string(final String value, final String text) {
-        return JsonNodeStringParserToken.with(value, text);
+    public static StringJsonNodeParserToken string(final String value, final String text) {
+        return StringJsonNodeParserToken.with(value, text);
     }
 
     /**
-     * {@see JsonNodeWhitespaceParserToken}
+     * {@see WhitespaceJsonNodeParserToken}
      */
-    public static JsonNodeWhitespaceParserToken whitespace(final String value, final String text) {
-        return JsonNodeWhitespaceParserToken.with(value, text);
+    public static WhitespaceJsonNodeParserToken whitespace(final String value, final String text) {
+        return WhitespaceJsonNodeParserToken.with(value, text);
     }
 
     static List<ParserToken> copyAndCheckTokens(final List<ParserToken> tokens) {
@@ -155,31 +155,31 @@ public abstract class JsonNodeParserToken implements ParserToken {
     // isXXX.............................................................................................................
 
     /**
-     * Only {@link JsonNodeArrayParserToken} return true
+     * Only {@link ArrayJsonNodeParserToken} return true
      */
     public final boolean isArray() {
-        return this instanceof JsonNodeArrayParserToken;
+        return this instanceof ArrayJsonNodeParserToken;
     }
 
     /**
-     * Only {@link JsonNodeArrayBeginSymbolParserToken} return true
+     * Only {@link ArrayBeginSymbolJsonNodeParserToken} return true
      */
     public final boolean isArrayBeginSymbol() {
-        return this instanceof JsonNodeArrayBeginSymbolParserToken;
+        return this instanceof ArrayBeginSymbolJsonNodeParserToken;
     }
 
     /**
-     * Only {@link JsonNodeArrayEndSymbolParserToken} return true
+     * Only {@link ArrayEndSymbolJsonNodeParserToken} return true
      */
     public final boolean isArrayEndSymbol() {
-        return this instanceof JsonNodeArrayEndSymbolParserToken;
+        return this instanceof ArrayEndSymbolJsonNodeParserToken;
     }
 
     /**
-     * Only {@link JsonNodeBooleanParserToken} return true
+     * Only {@link BooleanJsonNodeParserToken} return true
      */
     public final boolean isBoolean() {
-        return this instanceof JsonNodeBooleanParserToken;
+        return this instanceof BooleanJsonNodeParserToken;
     }
 
     /**
@@ -187,49 +187,49 @@ public abstract class JsonNodeParserToken implements ParserToken {
      */
     @Override
     public final boolean isLeaf() {
-        return this instanceof JsonNodeLeafParserToken;
+        return this instanceof LeafJsonNodeParserToken;
     }
 
     /**
-     * Only {@link JsonNodeNullParserToken} return true
+     * Only {@link NullJsonNodeParserToken} return true
      */
     public final boolean isNull() {
-        return this instanceof JsonNodeNullParserToken;
+        return this instanceof NullJsonNodeParserToken;
     }
 
     /**
-     * Only {@link JsonNodeNumberParserToken} return true
+     * Only {@link NumberJsonNodeParserToken} return true
      */
     public final boolean isNumber() {
-        return this instanceof JsonNodeNumberParserToken;
+        return this instanceof NumberJsonNodeParserToken;
     }
 
     /**
-     * Only {@link JsonNodeObjectParserToken} return true
+     * Only {@link ObjectJsonNodeParserToken} return true
      */
     public final boolean isObject() {
-        return this instanceof JsonNodeObjectParserToken;
+        return this instanceof ObjectJsonNodeParserToken;
     }
 
     /**
-     * Only {@link JsonNodeObjectAssignmentSymbolParserToken} return true
+     * Only {@link ObjectAssignmentSymbolJsonNodeParserToken} return true
      */
     public final boolean isObjectAssignmentSymbol() {
-        return this instanceof JsonNodeObjectAssignmentSymbolParserToken;
+        return this instanceof ObjectAssignmentSymbolJsonNodeParserToken;
     }
 
     /**
-     * Only {@link JsonNodeObjectBeginSymbolParserToken} return true
+     * Only {@link ObjectBeginSymbolJsonNodeParserToken} return true
      */
     public final boolean isObjectBeginSymbol() {
-        return this instanceof JsonNodeObjectBeginSymbolParserToken;
+        return this instanceof ObjectBeginSymbolJsonNodeParserToken;
     }
 
     /**
-     * Only {@link JsonNodeObjectEndSymbolParserToken} return true
+     * Only {@link ObjectEndSymbolJsonNodeParserToken} return true
      */
     public final boolean isObjectEndSymbol() {
-        return this instanceof JsonNodeObjectEndSymbolParserToken;
+        return this instanceof ObjectEndSymbolJsonNodeParserToken;
     }
 
     /**
@@ -237,37 +237,37 @@ public abstract class JsonNodeParserToken implements ParserToken {
      */
     @Override
     public final boolean isParent() {
-        return this instanceof JsonNodeParentParserToken;
+        return this instanceof ParentJsonNodeParserToken;
     }
 
     /**
-     * Only {@link JsonNodeSeparatorSymbolParserToken} return true
+     * Only {@link SeparatorSymbolJsonNodeParserToken} return true
      */
     public final boolean isSeparatorSymbol() {
-        return this instanceof JsonNodeSeparatorSymbolParserToken;
+        return this instanceof SeparatorSymbolJsonNodeParserToken;
     }
 
     /**
-     * Only {@link JsonNodeSymbolParserToken} return true
+     * Only {@link SymbolJsonNodeParserToken} return true
      */
     @Override
     public final boolean isSymbol() {
-        return this instanceof JsonNodeSymbolParserToken;
+        return this instanceof SymbolJsonNodeParserToken;
     }
 
     /**
-     * Only {@link JsonNodeStringParserToken} return true
+     * Only {@link StringJsonNodeParserToken} return true
      */
     public final boolean isString() {
-        return this instanceof JsonNodeStringParserToken;
+        return this instanceof StringJsonNodeParserToken;
     }
 
     /**
-     * Only {@link JsonNodeWhitespaceParserToken} return true
+     * Only {@link WhitespaceJsonNodeParserToken} return true
      */
     @Override
     public final boolean isWhitespace() {
-        return this instanceof JsonNodeWhitespaceParserToken;
+        return this instanceof WhitespaceJsonNodeParserToken;
     }
 
     // Visitor .........................................................................................................
@@ -290,7 +290,7 @@ public abstract class JsonNodeParserToken implements ParserToken {
     abstract void accept(final JsonNodeParserTokenVisitor visitor);
 
     /**
-     * Converts this token to its {@link JsonNode} equivalent. Note that {@link JsonNodeWhitespaceParserToken} will
+     * Converts this token to its {@link JsonNode} equivalent. Note that {@link WhitespaceJsonNodeParserToken} will
      * be removed
      */
     final public Optional<JsonNode> toJsonNode() {
@@ -322,7 +322,7 @@ public abstract class JsonNodeParserToken implements ParserToken {
 
     private boolean equals0(final JsonNodeParserToken other) {
         return this.text().equals(other.text()) &&
-            Objects.equals(this.value(), other.value()); // needs to be null safe because of JsonNodeNullParserToken
+            Objects.equals(this.value(), other.value()); // needs to be null safe because of NullJsonNodeParserToken
     }
 
     @Override

@@ -40,7 +40,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
- * Holds numerous {@link Parser parsers} that return individual json nodes including an entire {@link JsonNodeObjectParserToken}.
+ * Holds numerous {@link Parser parsers} that return individual json nodes including an entire {@link ObjectJsonNodeParserToken}.
  */
 public final class JsonNodeParsers implements PublicStaticHelper {
 
@@ -96,7 +96,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
 
     private static ParserToken transformBooleanFalse(final ParserToken token,
                                                      final ParserContext context) {
-        return JsonNodeParserToken.booleanParserToken(
+        return JsonNodeParserToken.booleanJsonNodeParserToken(
             false,
             token.text()
         );
@@ -104,7 +104,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
 
     private static ParserToken transformBooleanTrue(final ParserToken token,
                                                     final ParserContext context) {
-        return JsonNodeParserToken.booleanParserToken(
+        return JsonNodeParserToken.booleanJsonNodeParserToken(
             true,
             token.text()
         );
@@ -124,7 +124,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
 
     private static ParserToken transformNull(final ParserToken token,
                                              final ParserContext context) {
-        return JsonNodeParserToken.nullParserToken(token.text());
+        return JsonNodeParserToken.nullJsonNodeParserToken(token.text());
     }
 
     /**
@@ -173,7 +173,7 @@ public final class JsonNodeParsers implements PublicStaticHelper {
     }
 
     /**
-     * Factory that parsers and returns a sub-class of {@link JsonNodeSymbolParserToken}
+     * Factory that parsers and returns a sub-class of {@link SymbolJsonNodeParserToken}
      */
     private static Parser<ParserContext> symbol(final char c,
                                                 final BiFunction<String, String, ParserToken> factory) {

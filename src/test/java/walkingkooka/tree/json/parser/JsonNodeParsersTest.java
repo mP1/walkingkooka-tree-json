@@ -540,11 +540,11 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     }
 
     private JsonNodeParserToken booleanToken(final boolean value) {
-        return JsonNodeParserToken.booleanParserToken(value, String.valueOf(value));
+        return JsonNodeParserToken.booleanJsonNodeParserToken(value, String.valueOf(value));
     }
 
     private JsonNodeParserToken nul() {
-        return JsonNodeParserToken.nullParserToken("null");
+        return JsonNodeParserToken.nullJsonNodeParserToken("null");
     }
 
     private JsonNodeParserToken number(final int value) {

@@ -37,7 +37,7 @@ import walkingkooka.tree.select.NodeSelector;
 import walkingkooka.tree.select.parser.NodeSelectorParserContext;
 import walkingkooka.tree.select.parser.NodeSelectorParserContexts;
 import walkingkooka.tree.select.parser.NodeSelectorParsers;
-import walkingkooka.tree.select.parser.NodeSelectorPredicateParserToken;
+import walkingkooka.tree.select.parser.PredicateNodeSelectorParserToken;
 
 import java.util.function.BiFunction;
 
@@ -231,7 +231,7 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
     final static char SEPARATOR = ':';
 
     /**
-     * Creates a {@link Parser} and parses the {@link String expression} into a {@link NodeSelectorPredicateParserToken} and then that into an {@link Expression}.
+     * Creates a {@link Parser} and parses the {@link String expression} into a {@link PredicateNodeSelectorParserToken} and then that into an {@link Expression}.
      */
     private static Expression parseExpression(final String expression,
                                               final JsonNodeUnmarshallContext context) {
@@ -240,7 +240,7 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
             .cast();
         return parser.parse(TextCursors.charSequence(expression), NodeSelectorParserContexts.basic(context.expressionNumberKind(), context.mathContext()))
             .get()
-            .cast(NodeSelectorPredicateParserToken.class)
+            .cast(PredicateNodeSelectorParserToken.class)
             .toExpression(Predicates.always());
     }
 

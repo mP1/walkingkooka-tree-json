@@ -41,10 +41,12 @@ public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken>
     @Test
     @Override
     public final void testPublicStaticFactoryMethod() {
-        PublicStaticFactoryTesting.checkFactoryMethods(JsonNodeParserToken.class,
-            "JsonNode",
-            ParserToken.class.getSimpleName(),
-            this.type());
+        PublicStaticFactoryTesting.checkFactoryMethods(
+            JsonNodeParserToken.class,
+            "",
+            JsonNodeParserToken.class.getSimpleName(),
+            this.type()
+        );
     }
 
     @Test
@@ -79,11 +81,11 @@ public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken>
     }
 
     final JsonNodeParserToken booleanToken(final boolean value) {
-        return JsonNodeParserToken.booleanParserToken(value, String.valueOf(value));
+        return JsonNodeParserToken.booleanJsonNodeParserToken(value, String.valueOf(value));
     }
 
     final JsonNodeParserToken nul() {
-        return JsonNodeParserToken.nullParserToken("null");
+        return JsonNodeParserToken.nullJsonNodeParserToken("null");
     }
 
     final JsonNodeParserToken number(final int value) {
@@ -132,12 +134,12 @@ public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken>
 
     @Override
     public final String isMethodTypeNamePrefix() {
-        return "JsonNode";
+        return "";
     }
 
     @Override
     public final String isMethodTypeNameSuffix() {
-        return ParserToken.class.getSimpleName();
+        return JsonNodeParserToken.class.getSimpleName();
     }
 
     @Override
@@ -147,7 +149,8 @@ public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken>
             m.equals("isParent") ||
             m.equals("isSymbol") ||
             m.equals("isEmpty") ||
-            m.equals("isNotEmpty");
+            m.equals("isNotEmpty"
+            );
     }
 
     @Override

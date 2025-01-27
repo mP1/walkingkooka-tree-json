@@ -1,0 +1,77 @@
+/*
+ * Copyright 2019 Miroslav Pokorny (github.com/mP1)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+package walkingkooka.tree.json.parser;
+
+import walkingkooka.collect.list.Lists;
+import walkingkooka.text.cursor.parser.ParserToken;
+import walkingkooka.tree.json.JsonNode;
+import walkingkooka.visit.Visiting;
+
+import java.util.List;
+
+/**
+ * Holds a json array which may contain further json values.
+ */
+public final class ArrayJsonNodeParserToken extends ParentJsonNodeParserToken<ArrayJsonNodeParserToken> {
+
+    static ArrayJsonNodeParserToken with(final List<ParserToken> value, final String text) {
+        return new ArrayJsonNodeParserToken(copyAndCheckTokens(value),
+            checkText(text));
+    }
+
+    private ArrayJsonNodeParserToken(final List<ParserToken> value, final String text) {
+        super(value, text);
+    }
+
+    @Override
+    JsonNode toJsonNodeOrNull() {
+        final List<JsonNode> children = Lists.array();
+        this.addJsonNode(children);
+
+        return JsonNode.array().setChildren(children);
+    }
+
+    @Override
+    void addJsonNode(final List<JsonNode> children) {
+        for (ParserToken element : this.value()) {
+            if (element instanceof JsonNodeParserToken) {
+                element.cast(JsonNodeParserToken.class).addJsonNode(children);
+            }
+        }
+    }
+
+    // children.........................................................................................................
+
+    @Override
+    public ArrayJsonNodeParserToken setChildren(final List<ParserToken> children) {
+        return ParserToken.parentSetChildren(
+            this,
+            children,
+            ArrayJsonNodeParserToken::with
+        );
+    }
+
+    // visitor .........................................................................................................
+
+    @Override
+    public void accept(final JsonNodeParserTokenVisitor visitor) {
+        if (Visiting.CONTINUE == visitor.startVisit(this)) {
+            this.acceptValues(visitor);
+        }
+        visitor.endVisit(this);
+    }
+}

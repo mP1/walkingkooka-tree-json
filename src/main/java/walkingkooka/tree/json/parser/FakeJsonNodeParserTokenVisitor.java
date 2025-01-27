@@ -28,77 +28,77 @@ public class FakeJsonNodeParserTokenVisitor extends JsonNodeParserTokenVisitor i
     }
 
     @Override
-    protected Visiting startVisit(final JsonNodeArrayParserToken token) {
+    protected Visiting startVisit(final ArrayJsonNodeParserToken token) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void endVisit(final JsonNodeArrayParserToken token) {
+    protected void endVisit(final ArrayJsonNodeParserToken token) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected Visiting startVisit(final JsonNodeObjectParserToken token) {
+    protected Visiting startVisit(final ObjectJsonNodeParserToken token) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void endVisit(final JsonNodeObjectParserToken token) {
+    protected void endVisit(final ObjectJsonNodeParserToken token) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void visit(final JsonNodeArrayBeginSymbolParserToken token) {
+    protected void visit(final ArrayBeginSymbolJsonNodeParserToken token) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void visit(final JsonNodeArrayEndSymbolParserToken token) {
+    protected void visit(final ArrayEndSymbolJsonNodeParserToken token) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void visit(final JsonNodeBooleanParserToken token) {
+    protected void visit(final BooleanJsonNodeParserToken token) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void visit(final JsonNodeNullParserToken token) {
+    protected void visit(final NullJsonNodeParserToken token) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void visit(final JsonNodeNumberParserToken token) {
+    protected void visit(final NumberJsonNodeParserToken token) {
         super.visit(token);
     }
 
     @Override
-    protected void visit(final JsonNodeObjectAssignmentSymbolParserToken token) {
+    protected void visit(final ObjectAssignmentSymbolJsonNodeParserToken token) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void visit(final JsonNodeObjectBeginSymbolParserToken token) {
+    protected void visit(final ObjectBeginSymbolJsonNodeParserToken token) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void visit(final JsonNodeObjectEndSymbolParserToken token) {
+    protected void visit(final ObjectEndSymbolJsonNodeParserToken token) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void visit(final JsonNodeSeparatorSymbolParserToken token) {
+    protected void visit(final SeparatorSymbolJsonNodeParserToken token) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void visit(final JsonNodeStringParserToken token) {
+    protected void visit(final StringJsonNodeParserToken token) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    protected void visit(final JsonNodeWhitespaceParserToken token) {
+    protected void visit(final WhitespaceJsonNodeParserToken token) {
         throw new UnsupportedOperationException();
     }
 

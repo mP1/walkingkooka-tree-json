@@ -249,21 +249,20 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     }
 
     @Override
-    public final String isMethodTypeNamePrefix() {
-        return "Json";
-    }
-
-    @Override
-    public final String isMethodTypeNameSuffix() {
-        return "";
-    }
-
-    @Override
     public final Predicate<String> isMethodIgnoreMethodFilter() {
         return (m) -> m.equals("isRoot") ||
             m.equals("toBoolean") ||
             m.equals("isEmpty") ||
             m.equals("isFalseLike");
+    }
+
+    @Override
+    public String toIsMethodName(final String typeName) {
+        return this.toIsMethodNameWithPrefixSuffix(
+            typeName,
+            "Json",
+            ""
+        );
     }
 
     // ClassTesting....................................................................................................

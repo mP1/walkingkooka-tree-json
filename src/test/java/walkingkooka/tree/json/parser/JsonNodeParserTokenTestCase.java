@@ -128,18 +128,8 @@ public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken>
     // isMethodTesting2.....................................................................................
 
     @Override
-    public T createIsMethodObject() {
+    public final T createIsMethodObject() {
         return this.createToken();
-    }
-
-    @Override
-    public final String isMethodTypeNamePrefix() {
-        return "";
-    }
-
-    @Override
-    public final String isMethodTypeNameSuffix() {
-        return JsonNodeParserToken.class.getSimpleName();
     }
 
     @Override
@@ -152,6 +142,17 @@ public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken>
             m.equals("isNotEmpty"
             );
     }
+
+    @Override
+    public final String toIsMethodName(final String typeName) {
+        return this.toIsMethodNameWithPrefixSuffix(
+            typeName,
+            "", // prefix
+            JsonNodeParserToken.class.getSimpleName() // suffix
+        );
+    }
+
+    // class............................................................................................................
 
     @Override
     public final JavaVisibility typeVisibility() {

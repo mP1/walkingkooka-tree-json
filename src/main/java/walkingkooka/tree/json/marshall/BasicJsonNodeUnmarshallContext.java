@@ -241,7 +241,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
      * Assumes a {@link JsonArray} holding objects tagged with type and values.
      */
     @Override
-    public <T> List<T> unmarshallWithTypeList(final JsonNode node) {
+    public <T> List<T> unmarshallListWithType(final JsonNode node) {
         return this.unmarshallCollectionWithType(
             node,
             List.class,
@@ -253,7 +253,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
      * Assumes a {@link JsonArray} holding objects tagged with type and values.
      */
     @Override
-    public <T> Set<T> unmarshallWithTypeSet(final JsonNode node) {
+    public <T> Set<T> unmarshallSetWithType(final JsonNode node) {
         return this.unmarshallCollectionWithType(node,
             Set.class,
             Collectors.toCollection(Sets::ordered));
@@ -272,7 +272,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
      * Assumes a {@link JsonArray} holding entries of the {@link Map} tagged with type and values.
      */
     @Override
-    public <K, V> Map<K, V> unmarshallWithTypeMap(final JsonNode node) {
+    public <K, V> Map<K, V> unmarshallMapWithType(final JsonNode node) {
         fromArrayCheck(node, Map.class);
 
         final Map<K, V> map = Maps.ordered();

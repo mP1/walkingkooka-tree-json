@@ -109,17 +109,17 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext,
     /**
      * Assumes a {@link JsonArray} holding objects tagged with type and values.
      */
-    <T> List<T> unmarshallWithTypeList(final JsonNode node);
+    <T> List<T> unmarshallListWithType(final JsonNode node);
 
     /**
      * Assumes a {@link JsonArray} holding objects tagged with type and values.
      */
-    <T> Set<T> unmarshallWithTypeSet(final JsonNode node);
+    <T> Set<T> unmarshallSetWithType(final JsonNode node);
 
     /**
      * Assumes a {@link JsonArray} holding entries of the {@link Map} tagged with type and values.
      */
-    <K, V> Map<K, V> unmarshallWithTypeMap(final JsonNode node);
+    <K, V> Map<K, V> unmarshallMapWithType(final JsonNode node);
 
     /**
      * {@see JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction}

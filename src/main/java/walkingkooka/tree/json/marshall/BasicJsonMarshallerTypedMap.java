@@ -56,7 +56,7 @@ final class BasicJsonMarshallerTypedMap extends BasicJsonMarshallerTyped<Map<?, 
     @Override
     Map<?, ?> unmarshallNonNull(final JsonNode node,
                                 final JsonNodeUnmarshallContext context) {
-        return context.unmarshallWithTypeMap(node);
+        return context.unmarshallMapWithType(node);
     }
 
     @Override

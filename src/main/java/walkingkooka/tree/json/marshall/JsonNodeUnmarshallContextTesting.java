@@ -58,21 +58,21 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
     // unmarshall.....................................................................................................
 
     @Test
-    default void testUnmarshallNullTypeFails() {
+    default void testUnmarshallWithNullTypeFails() {
         assertThrows(java.lang.NullPointerException.class, () -> this.createContext().unmarshall(JsonNode.nullNode(), null));
     }
 
     // unmarshallList.................................................................................................
 
     @Test
-    default void testUnmarshallListNullTypeFails() {
+    default void testUnmarshallListWithNullTypeFails() {
         assertThrows(java.lang.NullPointerException.class, () -> this.createContext().unmarshallList(JsonNode.nullNode(), null));
     }
 
     // unmarshallSet..................................................................................................
 
     @Test
-    default void testUnmarshallSetNullTypeFails() {
+    default void testUnmarshallSetWithNullTypeFails() {
         assertThrows(java.lang.NullPointerException.class, () -> this.createContext().unmarshallSet(JsonNode.nullNode(), null));
     }
 
@@ -225,41 +225,41 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
 
     // unmarshallWithTypeList..........................................................................................
 
-    default void unmarshallWithTypeListAndCheck(final JsonNode node,
+    default void unmarshallListWithTypeAndCheck(final JsonNode node,
                                                 final List<?> expected) {
-        this.unmarshallWithTypeListAndCheck(this.createContext(),
+        this.unmarshallListWithTypeAndCheck(this.createContext(),
             node,
             expected);
     }
 
-    default void unmarshallWithTypeListAndCheck(final JsonNodeUnmarshallContext context,
+    default void unmarshallListWithTypeAndCheck(final JsonNodeUnmarshallContext context,
                                                 final JsonNode node,
                                                 final List<?> expected) {
         this.checkEquals(expected,
-            context.unmarshallWithTypeList(node),
+            context.unmarshallListWithType(node),
             () -> context + " unmarshallWithTypeList " + node);
     }
 
     // unmarshallWithTypeSet..........................................................................................
 
-    default void unmarshallWithTypeSetAndCheck(final JsonNode node,
+    default void unmarshallSetWithTypeAndCheck(final JsonNode node,
                                                final Set<?> expected) {
-        this.unmarshallWithTypeSetAndCheck(this.createContext(),
+        this.unmarshallSetWithTypeAndCheck(this.createContext(),
             node,
             expected);
     }
 
-    default void unmarshallWithTypeSetAndCheck(final JsonNodeUnmarshallContext context,
+    default void unmarshallSetWithTypeAndCheck(final JsonNodeUnmarshallContext context,
                                                final JsonNode node,
                                                final Set<?> expected) {
         this.checkEquals(expected,
-            context.unmarshallWithTypeSet(node),
+            context.unmarshallSetWithType(node),
             () -> context + " unmarshallWithTypeSet " + node);
     }
 
     // unmarshallMap.................................................................................................
 
-    default void unmarshallWithTypeMapAndCheck(final JsonNode node,
+    default void unmarshallMapWithTypeAndCheck(final JsonNode node,
                                                final Map<?, ?> expected) {
         this.unmarshallMapWithTypeAndCheck(this.createContext(),
             node,
@@ -270,7 +270,7 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
                                                final JsonNode node,
                                                final Map<?, ?> expected) {
         this.checkEquals(expected,
-            context.unmarshallWithTypeMap(node),
+            context.unmarshallMapWithType(node),
             () -> context + " unmarshallWithTypeMap " + node);
     }
 

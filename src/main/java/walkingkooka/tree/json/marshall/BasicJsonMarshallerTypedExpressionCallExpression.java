@@ -51,7 +51,7 @@ final class BasicJsonMarshallerTypedExpressionCallExpression extends BasicJsonMa
                     callable = context.unmarshallWithType(child);
                     break;
                 case PARAMETERS_PROPERTY_STRING:
-                    parameters = context.unmarshallWithTypeList(child);
+                    parameters = context.unmarshallListWithType(child);
                     break;
                 default:
                     JsonNodeUnmarshallContext.unknownPropertyPresent(name, node);

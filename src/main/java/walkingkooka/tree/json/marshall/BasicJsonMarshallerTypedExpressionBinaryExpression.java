@@ -43,7 +43,7 @@ final class BasicJsonMarshallerTypedExpressionBinaryExpression<N extends Express
     @Override
     N unmarshallNonNull(final JsonNode node,
                         final JsonNodeUnmarshallContext context) {
-        final List<Expression> children = context.unmarshallWithTypeList(node);
+        final List<Expression> children = context.unmarshallListWithType(node);
         final int count = children.size();
         if (count != 2) {
             throw new JsonNodeUnmarshallException("Expected 2 children but got " + count, node);

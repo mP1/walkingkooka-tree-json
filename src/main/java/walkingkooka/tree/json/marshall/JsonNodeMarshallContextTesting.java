@@ -32,7 +32,11 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
 
     @Test
     default void testSetObjectPostProcessorNullFails() {
-        assertThrows(java.lang.NullPointerException.class, () -> this.createContext().setObjectPostProcessor(null));
+        assertThrows(
+            java.lang.NullPointerException.class,
+            () -> this.createContext()
+                .setObjectPostProcessor(null)
+        );
     }
 
     @Test
@@ -41,7 +45,10 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
         final JsonNodeMarshallContextObjectPostProcessor processor = (value, jsonObject) -> jsonObject;
 
         final JsonNodeMarshallContext with = context.setObjectPostProcessor(processor);
-        assertNotSame(context, with);
+        assertNotSame(
+            context,
+            with
+        );
     }
 
     @Test
@@ -50,71 +57,100 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
         final JsonNodeMarshallContextObjectPostProcessor processor = (value, jsonObject) -> jsonObject;
 
         final JsonNodeMarshallContext with = context.setObjectPostProcessor(processor);
-        assertSame(with, with.setObjectPostProcessor(processor));
+        assertSame(
+            with,
+            with.setObjectPostProcessor(processor)
+        );
     }
 
     @Test
     default void testMarshallNull() {
-        this.marshallAndCheck(null, JsonNode.nullNode());
+        this.marshallAndCheck(
+            null,
+            JsonNode.nullNode()
+        );
     }
 
     @Test
     default void testMarshallCollectionNull() {
-        this.marshallCollectionAndCheck(null, JsonNode.nullNode());
+        this.marshallCollectionAndCheck(
+            null,
+            JsonNode.nullNode()
+        );
     }
 
     @Test
     default void testMarshallMapNull() {
-        this.marshallMapAndCheck(null, JsonNode.nullNode());
+        this.marshallMapAndCheck(
+            null,
+            JsonNode.nullNode()
+        );
     }
 
     @Test
     default void testMarshallWithTypeNull() {
-        this.marshallWithTypeAndCheck(null, JsonNode.nullNode());
+        this.marshallWithTypeAndCheck(
+            null,
+            JsonNode.nullNode()
+        );
     }
 
     @Test
     default void testMarshallCollectionWithTypeNull() {
-        this.marshallCollectionWithTypeAndCheck(null, JsonNode.nullNode());
+        this.marshallCollectionWithTypeAndCheck(
+            null,
+            JsonNode.nullNode()
+        );
     }
 
     @Test
     default void testMarshallMapWithTypeNull() {
-        this.marshallMapWithTypeAndCheck(null, JsonNode.nullNode());
+        this.marshallMapWithTypeAndCheck(
+            null,
+            JsonNode.nullNode()
+        );
     }
 
-    // marshall.......................................................................................................
+    // marshall.........................................................................................................
 
     default void marshallAndCheck(final Object value,
                                   final JsonNode expected) {
-        this.marshallAndCheck(this.createContext(),
+        this.marshallAndCheck(
+            this.createContext(),
             value,
-            expected);
+            expected
+        );
     }
 
     default void marshallAndCheck(final JsonNodeMarshallContext context,
                                   final Object value,
                                   final JsonNode expected) {
-        this.checkEquals(expected,
+        this.checkEquals(
+            expected,
             context.marshall(value),
-            () -> context + " marshall " + value);
+            () -> context + " marshall " + value
+        );
     }
 
-    // marshallCollection....................................................................................................
+    // marshallCollection...............................................................................................
 
     default void marshallCollectionAndCheck(final Collection<?> Collection,
                                             final JsonNode expected) {
-        this.marshallCollectionAndCheck(this.createContext(),
+        this.marshallCollectionAndCheck(
+            this.createContext(),
             Collection,
-            expected);
+            expected
+        );
     }
 
     default void marshallCollectionAndCheck(final JsonNodeMarshallContext context,
                                             final Collection<?> Collection,
                                             final JsonNode expected) {
-        this.checkEquals(expected,
+        this.checkEquals(
+            expected,
             context.marshallCollection(Collection),
-            () -> context + " marshallCollection " + Collection);
+            () -> context + " marshallCollection " + Collection
+        );
     }
 
     // marshallEnumSet..................................................................................................
@@ -142,34 +178,42 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
 
     default void marshallMapAndCheck(final Map<?, ?> map,
                                      final JsonNode expected) {
-        this.marshallMapAndCheck(this.createContext(),
+        this.marshallMapAndCheck(
+            this.createContext(),
             map,
-            expected);
+            expected
+        );
     }
 
     default void marshallMapAndCheck(final JsonNodeMarshallContext context,
                                      final Map<?, ?> map,
                                      final JsonNode expected) {
-        this.checkEquals(expected,
+        this.checkEquals(
+            expected,
             context.marshallMap(map),
-            () -> context + " marshallMap " + map);
+            () -> context + " marshallMap " + map
+        );
     }
 
     // marshallWithType.................................................................................................
 
     default void marshallWithTypeAndCheck(final Object value,
                                           final JsonNode expected) {
-        this.marshallWithTypeAndCheck(this.createContext(),
+        this.marshallWithTypeAndCheck(
+            this.createContext(),
             value,
-            expected);
+            expected
+        );
     }
 
     default void marshallWithTypeAndCheck(final JsonNodeMarshallContext context,
                                           final Object value,
                                           final JsonNode expected) {
-        this.checkEquals(expected,
+        this.checkEquals(
+            expected,
             context.marshallWithType(value),
-            () -> context + " marshallWithType " + value);
+            () -> context + " marshallWithType " + value
+        );
     }
 
     // marshallCollectionWithType.......................................................................................

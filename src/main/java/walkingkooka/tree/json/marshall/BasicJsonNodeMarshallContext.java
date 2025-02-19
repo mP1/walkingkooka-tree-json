@@ -198,7 +198,7 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
      * Accepts a {@link Collection} of elements which are assumed to be the same type and creates a {@link JsonArray}.
      */
     @Override
-    public JsonNode marshallWithTypeCollection(final Collection<?> collection) {
+    public JsonNode marshallCollectionWithType(final Collection<?> collection) {
         return BasicJsonMarshallerTypedCollectionCollection.instance()
             .marshall(collection, this);
     }
@@ -207,7 +207,7 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
      * Accepts a {@link Map} and returns its {@link JsonNode} equivalent.
      */
     @Override
-    public JsonNode marshallWithTypeMap(final Map<?, ?> map) {
+    public JsonNode marshallMapWithType(final Map<?, ?> map) {
         return BasicJsonMarshallerTypedMap.instance().marshall(map, this);
     }
 }

@@ -195,7 +195,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     public void testRoundtripTypeList() {
         final List<T> list = List.of(this.value());
 
-        final JsonNode jsonNode = this.marshallContext().marshallWithTypeCollection(list);
+        final JsonNode jsonNode = this.marshallContext().marshallCollectionWithType(list);
 
         this.checkEquals(list,
             this.unmarshallContext().unmarshallWithTypeList(jsonNode),
@@ -206,7 +206,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     public void testRoundtripTypeSet() {
         final Set<T> set = Set.of(this.value());
 
-        final JsonNode jsonNode = this.marshallContext().marshallWithTypeCollection(set);
+        final JsonNode jsonNode = this.marshallContext().marshallCollectionWithType(set);
 
         this.checkEquals(set,
             this.unmarshallContext().unmarshallWithTypeSet(jsonNode),
@@ -217,7 +217,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     public void testRoundtripTypeMap() {
         final Map<String, T> map = Map.of("key1", this.value());
 
-        final JsonNode jsonNode = this.marshallContext().marshallWithTypeMap(map);
+        final JsonNode jsonNode = this.marshallContext().marshallMapWithType(map);
 
         this.checkEquals(map,
             this.unmarshallContext().unmarshallWithTypeMap(jsonNode),

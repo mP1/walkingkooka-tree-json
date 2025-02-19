@@ -74,13 +74,13 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
     }
 
     @Test
-    default void testMarshallWithTypeCollectionNull() {
-        this.marshallWithTypeCollectionAndCheck(null, JsonNode.nullNode());
+    default void testMarshallCollectionWithTypeNull() {
+        this.marshallCollectionWithTypeAndCheck(null, JsonNode.nullNode());
     }
 
     @Test
-    default void testMarshallWithTypeMapNull() {
-        this.marshallWithTypeMapAndCheck(null, JsonNode.nullNode());
+    default void testMarshallMapWithTypeNull() {
+        this.marshallMapWithTypeAndCheck(null, JsonNode.nullNode());
     }
 
     // marshall.......................................................................................................
@@ -155,7 +155,7 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
             () -> context + " marshallMap " + map);
     }
 
-    // marshallWithType...............................................................................................
+    // marshallWithType.................................................................................................
 
     default void marshallWithTypeAndCheck(final Object value,
                                           final JsonNode expected) {
@@ -172,38 +172,46 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
             () -> context + " marshallWithType " + value);
     }
 
-    // marshallWithTypeCollection...........................................................................................
+    // marshallCollectionWithType.......................................................................................
 
-    default void marshallWithTypeCollectionAndCheck(final Collection<?> Collection,
+    default void marshallCollectionWithTypeAndCheck(final Collection<?> Collection,
                                                     final JsonNode expected) {
-        this.marshallWithTypeCollectionAndCheck(this.createContext(),
+        this.marshallCollectionWithTypeAndCheck(
+            this.createContext(),
             Collection,
-            expected);
+            expected
+        );
     }
 
-    default void marshallWithTypeCollectionAndCheck(final JsonNodeMarshallContext context,
+    default void marshallCollectionWithTypeAndCheck(final JsonNodeMarshallContext context,
                                                     final Collection<?> Collection,
                                                     final JsonNode expected) {
-        this.checkEquals(expected,
-            context.marshallWithTypeCollection(Collection),
-            () -> context + " marshallWithTypeCollection " + Collection);
+        this.checkEquals(
+            expected,
+            context.marshallCollectionWithType(Collection),
+            () -> context + " marshallCollectionWithType " + Collection
+        );
     }
 
-    // marshallWithTypeMap............................................................................................
+    // marshallMapWithType..............................................................................................
 
-    default void marshallWithTypeMapAndCheck(final Map<?, ?> map,
+    default void marshallMapWithTypeAndCheck(final Map<?, ?> map,
                                              final JsonNode expected) {
-        this.marshallWithTypeMapAndCheck(this.createContext(),
+        this.marshallMapWithTypeAndCheck(
+            this.createContext(),
             map,
-            expected);
+            expected
+        );
     }
 
-    default void marshallWithTypeMapAndCheck(final JsonNodeMarshallContext context,
+    default void marshallMapWithTypeAndCheck(final JsonNodeMarshallContext context,
                                              final Map<?, ?> map,
                                              final JsonNode expected) {
-        this.checkEquals(expected,
-            context.marshallWithTypeMap(map),
-            () -> context + " marshallWithTypeMap " + map);
+        this.checkEquals(
+            expected,
+            context.marshallMapWithType(map),
+            () -> context + " marshallMapWithType " + map
+        );
     }
 
     // TypeNameTesting..................................................................................................

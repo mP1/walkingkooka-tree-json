@@ -77,7 +77,7 @@ final class BasicJsonMarshallerTypedExpressionCallExpression extends BasicJsonMa
 
         final List<Expression> parameters = call.value();
         if (parameters.size() > 0) {
-            json = json.set(PARAMETERS_PROPERTY, context.marshallWithTypeCollection(call.value()));
+            json = json.set(PARAMETERS_PROPERTY, context.marshallCollectionWithType(call.value()));
         }
 
         return json;

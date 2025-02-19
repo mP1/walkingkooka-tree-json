@@ -61,15 +61,15 @@ public interface JsonNodeMarshallContextDelegator extends JsonNodeMarshallContex
     }
 
     @Override
-    default JsonNode marshallWithTypeCollection(final Collection<?> collection) {
+    default JsonNode marshallCollectionWithType(final Collection<?> collection) {
         return this.jsonNodeMarshallContext()
-            .marshallWithTypeCollection(collection);
+            .marshallCollectionWithType(collection);
     }
 
     @Override
-    default JsonNode marshallWithTypeMap(final Map<?, ?> map) {
+    default JsonNode marshallMapWithType(final Map<?, ?> map) {
         return this.jsonNodeMarshallContext()
-            .marshallWithTypeMap(map);
+            .marshallMapWithType(map);
     }
 
     @Override

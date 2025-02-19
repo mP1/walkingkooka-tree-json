@@ -68,10 +68,10 @@ public interface JsonNodeMarshallContext extends JsonNodeContext {
     /**
      * Accepts a {@link Collection} of elements which are assumed to be supported.
      */
-    JsonNode marshallWithTypeCollection(final Collection<?> collection);
+    JsonNode marshallCollectionWithType(final Collection<?> collection);
 
     /**
      * Accepts a {@link Map} and returns its {@link JsonNode} equivalent.
      */
-    JsonNode marshallWithTypeMap(final Map<?, ?> map);
+    JsonNode marshallMapWithType(final Map<?, ?> map);
 }

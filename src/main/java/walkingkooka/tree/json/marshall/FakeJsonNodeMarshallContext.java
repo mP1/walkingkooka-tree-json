@@ -56,12 +56,12 @@ public class FakeJsonNodeMarshallContext extends FakeJsonNodeContext implements 
     }
 
     @Override
-    public JsonNode marshallWithTypeCollection(final Collection<?> collection) {
+    public JsonNode marshallCollectionWithType(final Collection<?> collection) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public JsonNode marshallWithTypeMap(final Map<?, ?> map) {
+    public JsonNode marshallMapWithType(final Map<?, ?> map) {
         throw new UnsupportedOperationException();
     }
 }

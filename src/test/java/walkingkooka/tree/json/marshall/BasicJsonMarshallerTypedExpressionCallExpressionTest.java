@@ -93,7 +93,7 @@ public final class BasicJsonMarshallerTypedExpressionCallExpressionTest extends 
 
         return JsonNode.object()
             .set(BasicJsonMarshallerTypedExpressionCallExpression.CALLABLE_PROPERTY, context.marshallWithType(this.namedFunction()))
-            .set(BasicJsonMarshallerTypedExpressionCallExpression.PARAMETERS_PROPERTY, context.marshallWithTypeCollection(this.parameters()));
+            .set(BasicJsonMarshallerTypedExpressionCallExpression.PARAMETERS_PROPERTY, context.marshallCollectionWithType(this.parameters()));
     }
 
     @Override

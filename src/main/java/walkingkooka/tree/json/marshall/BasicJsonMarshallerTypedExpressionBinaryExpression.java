@@ -57,6 +57,6 @@ final class BasicJsonMarshallerTypedExpressionBinaryExpression<N extends Express
     @Override
     JsonNode marshallNonNull(final N value,
                              final JsonNodeMarshallContext context) {
-        return context.marshallWithTypeCollection(value.children());
+        return context.marshallCollectionWithType(value.children());
     }
 }

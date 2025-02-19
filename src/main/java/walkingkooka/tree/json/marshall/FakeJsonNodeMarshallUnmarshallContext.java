@@ -75,17 +75,17 @@ public class FakeJsonNodeMarshallUnmarshallContext extends FakeJsonNodeMarshallC
     }
 
     @Override
-    public <T> List<T> unmarshallWithTypeList(final JsonNode node) {
+    public <T> List<T> unmarshallListWithType(final JsonNode node) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public <T> Set<T> unmarshallWithTypeSet(final JsonNode node) {
+    public <T> Set<T> unmarshallSetWithType(final JsonNode node) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public <K, V> Map<K, V> unmarshallWithTypeMap(final JsonNode node) {
+    public <K, V> Map<K, V> unmarshallMapWithType(final JsonNode node) {
         throw new UnsupportedOperationException();
     }
 

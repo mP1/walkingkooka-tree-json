@@ -96,20 +96,20 @@ public interface JsonNodeUnmarshallContextDelegator extends JsonNodeUnmarshallCo
     }
 
     @Override
-    default <T> List<T> unmarshallWithTypeList(final JsonNode node) {
+    default <T> List<T> unmarshallListWithType(final JsonNode node) {
         return this.jsonNodeUnmarshallContext()
-            .unmarshallWithTypeList(node);
+            .unmarshallListWithType(node);
     }
 
-    @Override default <T> Set<T> unmarshallWithTypeSet(final JsonNode node) {
+    @Override default <T> Set<T> unmarshallSetWithType(final JsonNode node) {
         return this.jsonNodeUnmarshallContext()
-            .unmarshallWithTypeSet(node);
+            .unmarshallSetWithType(node);
     }
 
     @Override
-    default <K, V> Map<K, V> unmarshallWithTypeMap(final JsonNode node) {
+    default <K, V> Map<K, V> unmarshallMapWithType(final JsonNode node) {
         return this.jsonNodeUnmarshallContext()
-            .unmarshallWithTypeMap(node);
+            .unmarshallMapWithType(node);
     }
 
     @Override

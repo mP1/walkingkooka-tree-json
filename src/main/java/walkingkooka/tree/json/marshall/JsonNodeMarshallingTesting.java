@@ -195,7 +195,7 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
 
         this.checkEquals(
             list,
-            this.unmarshallContext().unmarshallWithTypeList(this.marshallContext().marshallCollectionWithType(list)),
+            this.unmarshallContext().unmarshallListWithType(this.marshallContext().marshallCollectionWithType(list)),
             () -> "Roundtrip to -> from -> to failed list=" + list
         );
     }
@@ -206,7 +206,7 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
 
         this.checkEquals(
             set,
-            this.unmarshallContext().unmarshallWithTypeSet(this.marshallContext().marshallCollectionWithType(set)),
+            this.unmarshallContext().unmarshallSetWithType(this.marshallContext().marshallCollectionWithType(set)),
             () -> "Roundtrip to -> from -> to failed set=" + set
         );
     }
@@ -217,7 +217,7 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
 
         this.checkEquals(
             map,
-            this.unmarshallContext().unmarshallWithTypeMap(this.marshallContext().marshallMapWithType(map)),
+            this.unmarshallContext().unmarshallMapWithType(this.marshallContext().marshallMapWithType(map)),
             () -> "Roundtrip to -> from -> to failed marshall=" + map
         );
     }

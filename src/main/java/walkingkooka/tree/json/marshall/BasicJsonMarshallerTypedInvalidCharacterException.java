@@ -21,6 +21,10 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonPropertyName;
 
+import java.lang.IllegalArgumentException;
+import java.util.List;
+import java.util.OptionalInt;
+
 /**
  * A {@link BasicJsonMarshaller} that handles {@link walkingkooka.InvalidCharacterException} ignoring any stack trace
  */
@@ -60,6 +64,9 @@ final class BasicJsonMarshallerTypedInvalidCharacterException extends BasicJsonM
                                                              final JsonNodeUnmarshallContext context) {
         String text = null;
         int position = -1;
+        OptionalInt column = OptionalInt.empty();
+        OptionalInt line = OptionalInt.empty();
+        String appendToMessage = InvalidCharacterException.NO_APPEND_TO_MESSAGE;
 
         for (final JsonNode child : node.objectOrFail().children()) {
             final JsonPropertyName name = child.name();
@@ -68,7 +75,27 @@ final class BasicJsonMarshallerTypedInvalidCharacterException extends BasicJsonM
                     text = child.stringOrFail();
                     break;
                 case POSITION:
-                    position = child.numberOrFail().intValue();
+                    position = child.numberOrFail()
+                        .intValue();
+                    break;
+                case COLUMN:
+                    final int columnValue = child.numberOrFail()
+                        .intValue();
+                    if (columnValue < 1) {
+                        throw new IllegalArgumentException("Invalid column " + columnValue + " < 1");
+                    }
+                    column = OptionalInt.of(columnValue);
+                    break;
+                case LINE:
+                    final int lineValue = child.numberOrFail()
+                        .intValue();
+                    if (lineValue < 1) {
+                        throw new IllegalArgumentException("Invalid line " + lineValue + " < 1");
+                    }
+                    line = OptionalInt.of(lineValue);
+                    break;
+                case APPEND_TO_MESSAGE:
+                    appendToMessage = child.stringOrFail();
                     break;
                 default:
                     JsonNodeUnmarshallContext.unknownPropertyPresent(name, node);
@@ -81,27 +108,76 @@ final class BasicJsonMarshallerTypedInvalidCharacterException extends BasicJsonM
         if (-1 == position) {
             JsonNodeUnmarshallContext.missingProperty(POSITION_JSON_PROPERTY, node);
         }
+        if (null == appendToMessage) {
+            JsonNodeUnmarshallContext.missingProperty(APPEND_TO_MESSAGE_PROPERTY, node);
+        }
 
-        return new InvalidCharacterException(text, position);
+        return new InvalidCharacterException(
+            text,
+            position,
+            column,
+            line,
+            appendToMessage,
+            null // ignore cause
+        );
     }
 
     @Override
-    JsonNode marshallNonNull(final walkingkooka.InvalidCharacterException value,
+    JsonNode marshallNonNull(final walkingkooka.InvalidCharacterException ice,
                              final JsonNodeMarshallContext context) {
         // Added type parameter to avoid
         // Error:BasicJsonMarshallerTypedInvalidCharacterException.java:93: The method of(T...) of type Lists is not applicable as the formal varargs element type T is not accessible here
-        return JsonNode.object()
-            .setChildren(
-                Lists.<JsonNode>of(
-                    JsonNode.string(value.text()).setName(TEXT_JSON_PROPERTY),
-                    JsonNode.number(value.position()).setName(POSITION_JSON_PROPERTY)
-                )
+        final List<JsonNode> children = Lists.array();
+
+        children.add(
+            JsonNode.string(
+                ice.text()
+            ).setName(TEXT_JSON_PROPERTY)
+        );
+        children.add(
+            JsonNode.number(
+                ice.position()
+            ).setName(POSITION_JSON_PROPERTY)
+        );
+
+        final OptionalInt column = ice.column();
+        if (column.isPresent()) {
+            children.add(
+                JsonNode.number(
+                    ice.column()
+                        .getAsInt()
+                ).setName(COLUMN_JSON_PROPERTY)
             );
+
+            children.add(
+                JsonNode.number(
+                    ice.line()
+                        .getAsInt()
+                ).setName(LINE_JSON_PROPERTY)
+            );
+        }
+
+        final String appendToMessage = ice.appendToMessage();
+        if (false == appendToMessage.isEmpty()) {
+            children.add(
+                JsonNode.string(appendToMessage)
+                    .setName(APPEND_TO_MESSAGE_PROPERTY)
+            );
+        }
+
+        return JsonNode.object()
+            .setChildren(children);
     }
 
     private final static String TEXT = "text";
     private final static String POSITION = "position";
+    private final static String COLUMN = "column";
+    private final static String LINE = "line";
+    private final static String APPEND_TO_MESSAGE = "appendToMessage";
 
     private final static JsonPropertyName TEXT_JSON_PROPERTY = JsonPropertyName.with(TEXT);
     private final static JsonPropertyName POSITION_JSON_PROPERTY = JsonPropertyName.with(POSITION);
+    private final static JsonPropertyName COLUMN_JSON_PROPERTY = JsonPropertyName.with(COLUMN);
+    private final static JsonPropertyName LINE_JSON_PROPERTY = JsonPropertyName.with(LINE);
+    private final static JsonPropertyName APPEND_TO_MESSAGE_PROPERTY = JsonPropertyName.with(APPEND_TO_MESSAGE);
 }

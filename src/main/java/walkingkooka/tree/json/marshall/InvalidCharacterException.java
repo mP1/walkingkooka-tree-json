@@ -17,6 +17,8 @@
 
 package walkingkooka.tree.json.marshall;
 
+import java.util.OptionalInt;
+
 /**
  * A sub class of {@link walkingkooka.InvalidCharacterException} with an empty stacktrace. This is only returned by {@link BasicJsonMarshallerTypedInvalidCharacterException}
  */
@@ -24,8 +26,20 @@ final class InvalidCharacterException extends walkingkooka.InvalidCharacterExcep
 
     private static final long serialVersionUID = 1;
 
-    InvalidCharacterException(final String text, final int position) {
-        super(text, position);
+    InvalidCharacterException(final String text,
+                              final int position,
+                              final OptionalInt column,
+                              final OptionalInt line,
+                              final String appendToMessage,
+                              final Throwable cause) {
+        super(
+            text,
+            position,
+            column,
+            line,
+            appendToMessage,
+            cause
+        );
     }
 
     @Override

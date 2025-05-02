@@ -27,9 +27,22 @@ public class InvalidCharacterExceptionTest implements ClassTesting<InvalidCharac
 
     @Test
     public void testGetStackTrace() {
-        final InvalidCharacterException exception = new InvalidCharacterException("text", 2);
-        assertArrayEquals(new StackTraceElement[0], exception.getStackTrace(), "stack trace");
+        final InvalidCharacterException exception = new InvalidCharacterException(
+            "text",
+            2, // position
+            InvalidCharacterException.NO_COLUMN,
+            InvalidCharacterException.NO_LINE,
+            InvalidCharacterException.NO_APPEND_TO_MESSAGE,
+            null
+        );
+        assertArrayEquals(
+            new StackTraceElement[0],
+            exception.getStackTrace(),
+            "stack trace"
+        );
     }
+
+    // class............................................................................................................
 
     @Override
     public Class<InvalidCharacterException> type() {

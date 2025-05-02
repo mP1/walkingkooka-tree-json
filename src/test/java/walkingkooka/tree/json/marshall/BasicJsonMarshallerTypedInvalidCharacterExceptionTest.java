@@ -20,6 +20,8 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.Test;
 import walkingkooka.tree.json.JsonNode;
 
+import java.util.OptionalInt;
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public final class BasicJsonMarshallerTypedInvalidCharacterExceptionTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedInvalidCharacterException, walkingkooka.InvalidCharacterException> {
@@ -51,6 +53,46 @@ public final class BasicJsonMarshallerTypedInvalidCharacterExceptionTest extends
         assertArrayEquals(new StackTraceElement[0], thrown.getStackTrace(), "stack trace");
     }
 
+    @Test
+    public void testMarshallTextAndPosition() {
+        this.marshallAndCheck(
+            new InvalidCharacterException(
+                TEXT,
+                POSITION,
+                InvalidCharacterException.NO_COLUMN,
+                InvalidCharacterException.NO_LINE,
+                InvalidCharacterException.NO_APPEND_TO_MESSAGE,
+                new NullPointerException() // cause ignored!
+            ),
+            JsonNode.parse(
+                "{\n" +
+                    "  \"text\": \"some-text-123\",\n" +
+                    "  \"position\": 2\n" +
+                    "}"
+            )
+        );
+    }
+
+    @Test
+    public void testUnmarshallTextAndPosition() {
+        this.unmarshallAndCheck(
+            JsonNode.parse(
+                "{\n" +
+                    "  \"text\": \"some-text-123\",\n" +
+                    "  \"position\": 2\n" +
+                    "}"
+            ),
+            new InvalidCharacterException(
+                TEXT,
+                POSITION,
+                InvalidCharacterException.NO_COLUMN,
+                InvalidCharacterException.NO_LINE,
+                InvalidCharacterException.NO_APPEND_TO_MESSAGE,
+                new NullPointerException() // cause ignored!
+            )
+        );
+    }
+
     @Override
     BasicJsonMarshallerTypedInvalidCharacterException marshaller() {
         return BasicJsonMarshallerTypedInvalidCharacterException.instance();
@@ -61,12 +103,27 @@ public final class BasicJsonMarshallerTypedInvalidCharacterExceptionTest extends
 
     @Override
     walkingkooka.InvalidCharacterException value() {
-        return new InvalidCharacterException(TEXT, POSITION);
+        return new InvalidCharacterException(
+            TEXT,
+            POSITION,
+            OptionalInt.of(3), // column
+            OptionalInt.of(4), // line
+            "appendToMessage5",
+            new NullPointerException() // cause ignored!
+        );
     }
 
     @Override
     JsonNode node() {
-        return JsonNode.parse("{ \"text\": \"some-text-123\", \"position\": 2}");
+        return JsonNode.parse(
+            "{\n" +
+                "  \"text\": \"some-text-123\",\n" +
+                "  \"position\": 2,\n" +
+                "  \"column\": 3,\n" +
+                "  \"line\": 4,\n" +
+                "  \"appendToMessage\": \"appendToMessage5\"\n" +
+                "}"
+        );
     }
 
     @Override

@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.parser;
 
+import walkingkooka.InvalidCharacterException;
 import walkingkooka.ToStringBuilder;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
@@ -24,6 +25,9 @@ import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
+import walkingkooka.text.cursor.TextCursor;
+import walkingkooka.text.cursor.parser.InvalidCharacterExceptionFactory;
+import walkingkooka.text.cursor.parser.Parser;
 
 import java.math.MathContext;
 import java.util.Locale;
@@ -58,6 +62,15 @@ final class BasicJsonNodeParserContext implements JsonNodeParserContext,
             }
         );
         this.decimalNumberContext = DecimalNumberContexts.american(MathContext.DECIMAL64);
+    }
+
+    @Override
+    public InvalidCharacterException invalidCharacterException(final Parser<?> parser,
+                                                               final TextCursor cursor) {
+        return InvalidCharacterExceptionFactory.COLUMN_AND_LINE.apply(
+            parser,
+            cursor
+        );
     }
 
     @Override

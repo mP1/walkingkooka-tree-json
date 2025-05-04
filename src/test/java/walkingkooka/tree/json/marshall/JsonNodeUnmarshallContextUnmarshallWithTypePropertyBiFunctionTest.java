@@ -118,7 +118,7 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
     public void testApplyTypeMissingFromSource() {
         final JsonNodeUnmarshallException thrown = assertThrows(JsonNodeUnmarshallException.class, () -> this.createBiFunction(JsonNode.object())
             .apply(this.value().marshall(this.marshallContext()), this.unmarshallContext()));
-        checkMessage(thrown, "Unknown property \"typeNameProperty1\" in {}");
+        checkMessage(thrown, "Unknown property \"typeNameProperty1\"");
     }
 
     @Test

@@ -57,7 +57,11 @@ abstract class PropertyJsonNodeException extends JsonNodeException {
 
     @Override
     public String getMessage() {
-        return this.messagePrefix() + " " + CharSequences.quoteAndEscape(this.name().value()) + " in " + this.node();
+        return this.messagePrefix() +
+            " " +
+            CharSequences.quoteAndEscape(
+                this.name().value()
+            );
     }
 
     abstract String messagePrefix();

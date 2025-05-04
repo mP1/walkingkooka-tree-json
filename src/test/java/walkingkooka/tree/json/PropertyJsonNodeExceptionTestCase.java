@@ -49,7 +49,10 @@ public abstract class PropertyJsonNodeExceptionTestCase<T extends PropertyJsonNo
 
         final JsonPropertyName property = JsonPropertyName.with("abc");
         final T thrown = this.create(property, json);
-        this.checkMessage(thrown, this.messagePrefix() + " \"" + property + "\" in " + json);
+        this.checkMessage(
+            thrown,
+            this.messagePrefix() + " \"" + property + "\""
+        );
         assertSame(json, thrown.node(), "node");
     }
 
@@ -57,7 +60,7 @@ public abstract class PropertyJsonNodeExceptionTestCase<T extends PropertyJsonNo
     public final void testToString() {
         this.toStringAndCheck(
             this.create(JsonPropertyName.with("abc"), JsonNode.string("xyz")),
-            this.type().getName() + ": " + this.messagePrefix() + " \"abc\" in \"xyz\""
+            this.type().getName() + ": " + this.messagePrefix() + " \"abc\""
         );
     }
 

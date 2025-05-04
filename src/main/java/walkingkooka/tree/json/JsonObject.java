@@ -114,9 +114,12 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
      * Retrieves a property value or throws a {@link IllegalArgumentException}.
      */
     public JsonNode getOrFail(final JsonPropertyName name) {
-        return this.get(name).orElseThrow(() -> {
-            throw new IllegalArgumentException("Unknown property " + CharSequences.quoteAndEscape(name.value()) + " in " + this);
-        });
+        return this.get(name)
+            .orElseThrow(
+                () -> {
+                    throw new IllegalArgumentException("Unknown property " + CharSequences.quoteAndEscape(name.value())
+                    );
+                });
     }
 
     @Override

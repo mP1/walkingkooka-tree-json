@@ -67,7 +67,7 @@ final class BasicJsonNodeParserContext implements JsonNodeParserContext,
     @Override
     public InvalidCharacterException invalidCharacterException(final Parser<?> parser,
                                                                final TextCursor cursor) {
-        return InvalidCharacterExceptionFactory.COLUMN_AND_LINE.apply(
+        return InvalidCharacterExceptionFactory.COLUMN_AND_LINE_EXPECTED.apply(
             parser,
             cursor
         );

@@ -22,6 +22,7 @@ import walkingkooka.ToStringBuilder;
 import walkingkooka.datetime.DateTimeContext;
 import walkingkooka.datetime.DateTimeContextDelegator;
 import walkingkooka.datetime.DateTimeContexts;
+import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
@@ -30,6 +31,7 @@ import walkingkooka.text.cursor.parser.InvalidCharacterExceptionFactory;
 import walkingkooka.text.cursor.parser.Parser;
 
 import java.math.MathContext;
+import java.text.DateFormatSymbols;
 import java.util.Locale;
 
 /**
@@ -53,8 +55,14 @@ final class BasicJsonNodeParserContext implements JsonNodeParserContext,
 
     private BasicJsonNodeParserContext() {
         super();
-        this.dateTimeContext = DateTimeContexts.locale(
-            Locale.getDefault(),
+
+        final Locale locale = Locale.getDefault();
+
+        this.dateTimeContext = DateTimeContexts.basic(
+            DateTimeSymbols.fromDateFormatSymbols(
+                new DateFormatSymbols(locale)
+            ),
+            locale,
             1900, // defaultYear
             50, // twoDigitYear
             () -> {

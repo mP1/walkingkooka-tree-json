@@ -126,6 +126,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedBinary.instance(),
             BasicJsonMarshallerTypedCharacter.instance(),
             BasicJsonMarshallerTypedClass.instance(),
+            BasicJsonMarshallerTypedDateTimeSymbols.instance(),
             BasicJsonMarshallerTypedExpression.value(),
             BasicJsonMarshallerTypedExpression.binary(Expression::add, AddExpression.class),
             BasicJsonMarshallerTypedExpression.binary(Expression::and, AndExpression.class),

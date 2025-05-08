@@ -18,11 +18,27 @@
 package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.InvalidCharacterException;
 import walkingkooka.text.CaseSensitivity;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.json.JsonNode;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public final class BasicJsonMarshallerTypedExpressionFunctionNameTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedExpressionFunctionName, ExpressionFunctionName> {
+
+    @Test
+    public void testExpressionFunctionNameWithAtSignPrefixFails() {
+        final InvalidCharacterException thrown = assertThrows(
+            InvalidCharacterException.class,
+            () -> ExpressionFunctionName.with("@Hello")
+        );
+
+        this.checkEquals(
+            0,
+            thrown.position()
+        );
+    }
 
     @Test
     public void testUnmarshallBooleanFails() {

@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.text.CaseSensitivity;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.json.JsonNode;
 
@@ -58,12 +59,34 @@ final class BasicJsonMarshallerTypedExpressionFunctionName extends BasicJsonMars
     @Override
     ExpressionFunctionName unmarshallNonNull(final JsonNode node,
                                              final JsonNodeUnmarshallContext context) {
-        return ExpressionFunctionName.with(node.stringOrFail());
+        String name = node.stringOrFail();
+
+        final CaseSensitivity caseSensitivity;
+
+        if(INSENSITIVE == name.charAt(0)) {
+            name = name.substring(1); // drop '@'
+            caseSensitivity = CaseSensitivity.INSENSITIVE;
+        } else {
+            caseSensitivity = CaseSensitivity.SENSITIVE;
+        }
+
+        return ExpressionFunctionName.with(name)
+            .setCaseSensitivity(caseSensitivity);
     }
 
     @Override
     JsonNode marshallNonNull(final ExpressionFunctionName value,
                              final JsonNodeMarshallContext context) {
-        return JsonNode.string(value.toString());
+        String name = value.value();
+        if(value.caseSensitivity() == CaseSensitivity.INSENSITIVE) {
+            name = INSENSITIVE + name;
+        }
+
+        return JsonNode.string(name);
     }
+
+    /**
+     * Magic character prefixing names that are case-insensitive
+     */
+    private final static char INSENSITIVE = '@';
 }

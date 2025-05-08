@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.text.CaseSensitivity;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.json.JsonNode;
 
@@ -60,6 +61,15 @@ public final class BasicJsonMarshallerTypedExpressionFunctionNameTest extends Ba
         this.unmarshallFailed(
             JsonNode.string(""),
             java.lang.IllegalArgumentException.class
+        );
+    }
+
+    @Test
+    public void testUnmarshallStringWithCaseInsensitiveName() {
+        this.unmarshallAndCheck(
+            JsonNode.string("@Hello"),
+            ExpressionFunctionName.with("Hello")
+                .setCaseSensitivity(CaseSensitivity.INSENSITIVE)
         );
     }
 

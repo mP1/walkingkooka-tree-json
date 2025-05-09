@@ -114,9 +114,10 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
      * If the given index is passed the current number of children, {@link JsonNull} will be used to fill the new slots.
      * This matches behaviour in javascript.
      */
-    public JsonArray set(final int index, final JsonNode element) {
+    public JsonArray set(final int index,
+                         final JsonNode element) {
         if (index < 0) {
-            throw new IndexOutOfBoundsException("Invalid index " + index + "=" + this);
+            throw new IndexOutOfBoundsException("Invalid index " + index + " < 0");
         }
         Objects.requireNonNull(element, "element");
 

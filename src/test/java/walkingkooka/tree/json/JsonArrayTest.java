@@ -29,7 +29,104 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<JsonNode>> {
 
-    // append
+    // insert...........................................................................................................
+
+    @Test
+    public void testInsertIndexLessThanZeroFails() {
+        final IndexOutOfBoundsException thrown = assertThrows(
+            IndexOutOfBoundsException.class,
+            () -> JsonNode.array()
+                .insertChild(
+                    -1,
+                    JsonNode.string("Insert")
+                )
+        );
+
+        this.checkEquals(
+            "Invalid index -1 < 0",
+            thrown.getMessage()
+        );
+    }
+
+    @Test
+    public void testInsertIndexGreaterThanLengthFails() {
+        final IndexOutOfBoundsException thrown = assertThrows(
+            IndexOutOfBoundsException.class,
+            () -> JsonNode.array()
+                .insertChild(
+                    0,
+                    JsonNode.string("Insert")
+                )
+        );
+
+        this.checkEquals(
+            "Invalid index 0 >= 0",
+            thrown.getMessage()
+        );
+    }
+
+    @Test
+    public void testInsert() {
+        final JsonNode first = JsonNode.string("1A");
+        final JsonNode second = JsonNode.string("2B");
+        final JsonNode third = JsonNode.string("3C");
+
+        this.checkEquals(
+            JsonNode.array()
+                .setChildren(
+                    Lists.of(
+                        first,
+                        second,
+                        third
+                    )
+                ),
+            JsonNode.array()
+                .setChildren(
+                    Lists.of(
+                        first,
+                        third
+                    )
+                ).insertChild(
+                    1,
+                    second
+                )
+        );
+    }
+
+    @Test
+    public void testInsert2() {
+        final JsonNode first = JsonNode.string("1A");
+        final JsonNode second = JsonNode.string("2B");
+        final JsonNode third = JsonNode.string("3C");
+        final JsonNode fourth = JsonNode.string("4D");
+
+        this.checkEquals(
+            JsonNode.array()
+                .setChildren(
+                    Lists.of(
+                        first,
+                        second,
+                        third,
+                        fourth
+                    )
+                ),
+            JsonNode.array()
+                .setChildren(
+                    Lists.of(
+                        first,
+                        fourth
+                    )
+                ).insertChild(
+                    1,
+                    second
+                ).insertChild(
+                    2,
+                    third
+                )
+        );
+    }
+
+    // append...........................................................................................................
 
     @Test
     public void testAppendEmptyArray() {

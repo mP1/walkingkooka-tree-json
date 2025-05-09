@@ -412,11 +412,9 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     @Override
     public final boolean equals(final Object other) {
         return this == other ||
-            this.canBeEqual(other) &&
+            null != other && this.getClass() == other.getClass() &&
                 this.equals0(Cast.to(other));
     }
-
-    abstract boolean canBeEqual(final Object other);
 
     private boolean equals0(final JsonNode other) {
         return this.name.equals(other.name) &&

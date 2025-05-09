@@ -96,11 +96,6 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
         visitor.visit(this);
     }
 
-    @Override
-    boolean canBeEqual(final Object other) {
-        return other instanceof JsonString;
-    }
-
     // https://www.json.org/json-en.html
     // https://en.wikipedia.org/wiki/JSON
 

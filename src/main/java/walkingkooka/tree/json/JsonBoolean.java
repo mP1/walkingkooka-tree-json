@@ -104,11 +104,6 @@ public final class JsonBoolean extends JsonLeafNonNullNode<Boolean> {
     }
 
     @Override
-    boolean canBeEqual(final Object other) {
-        return other instanceof JsonBoolean;
-    }
-
-    @Override
     void printJson0(final IndentingPrinter printer) {
         printer.print(String.valueOf(this.value));
     }

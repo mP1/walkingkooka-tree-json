@@ -300,11 +300,6 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
 
     // Object...........................................................................................................
 
-    @Override
-    boolean canBeEqual(final Object other) {
-        return other instanceof JsonArray;
-    }
-
     @Override //
     boolean equalsChildren(final JsonNode other) {
         return this.children.equals(other.children());

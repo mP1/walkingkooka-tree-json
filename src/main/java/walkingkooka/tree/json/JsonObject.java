@@ -351,11 +351,6 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
 
     // JsonNode.........................................................................................................
 
-    @Override
-    boolean canBeEqual(final Object other) {
-        return other instanceof JsonObject;
-    }
-
     /**
      * Only returns true if the child count is the same and all children are equal, note order is not important
      */

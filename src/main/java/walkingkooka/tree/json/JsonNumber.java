@@ -98,11 +98,6 @@ public final class JsonNumber extends JsonLeafNonNullNode<Double> {
     // JsonNode .................................................................................................
 
     @Override
-    boolean canBeEqual(final Object other) {
-        return other instanceof JsonNumber;
-    }
-
-    @Override
     void printJson0(final IndentingPrinter printer) {
         printer.print(this.text());
     }

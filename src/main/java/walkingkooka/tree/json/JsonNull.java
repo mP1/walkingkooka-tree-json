@@ -112,11 +112,6 @@ public final class JsonNull extends JsonLeafNode<Void> {
     }
 
     @Override
-    boolean canBeEqual(final Object other) {
-        return other instanceof JsonNull;
-    }
-
-    @Override
     void printJson0(final IndentingPrinter printer) {
         printer.print(String.valueOf(this.value));
     }

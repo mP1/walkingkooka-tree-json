@@ -102,7 +102,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
      * Combine the text of all children(descendants). Note property names and indices will not be included.
      */
     @Override
-    public String text() {
+    public final String text() {
         return this.children().stream()
             .map(HasText::text)
             .collect(Collectors.joining());
@@ -111,7 +111,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
     // HasTextLength...................................................................................................
 
     @Override
-    public int textLength() {
+    public final int textLength() {
         return this.children().stream()
             .mapToInt(HasText::textLength)
             .sum();

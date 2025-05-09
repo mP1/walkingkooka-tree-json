@@ -137,6 +137,32 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
     }
 
     /**
+     * Inserts an element at the given index.<br>
+     * If the index is out of bounds an {@link IndexOutOfBoundsException}.
+     */
+    public JsonArray insertChild(final int index,
+                                 final JsonNode element) {
+        if (index < 0) {
+            throw new IndexOutOfBoundsException("Invalid index " + index + " < 0");
+        }
+        final List<JsonNode> children = this.copyChildren();
+        final int count = children.size();
+        if (index >= count) {
+            throw new IndexOutOfBoundsException("Invalid index " + index + " >= " + count);
+        }
+
+        Objects.requireNonNull(element, "element");
+
+        children.add(
+            index,
+            element
+        );
+
+        return this.setChildren0(children)
+            .cast(JsonArray.class);
+    }
+
+    /**
      * Appends the given element returning a new instance.
      */
     @Override

@@ -50,23 +50,38 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         super();
     }
 
+    // setName..........................................................................................................
+
     @Test
     public final void testSetNameNullFails() {
-        assertThrows(NullPointerException.class, () -> this.createJsonNode().setName(null));
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createJsonNode()
+                .setName(null)
+        );
     }
 
     @Test
     public final void testSetNameSame() {
         final N node = this.createJsonNode();
-        assertSame(node, node.setName(node.name()));
+        assertSame(
+            node,
+            node.setName(node.name())
+        );
     }
 
     @Test
     public abstract void testSetNameDifferent();
 
+    // setAttributes....................................................................................................
+
     @Test
     public final void testSetAttributesFails() {
-        assertThrows(UnsupportedOperationException.class, () -> this.createJsonNode().setAttributes(Maps.empty()));
+        assertThrows(
+            UnsupportedOperationException.class,
+            () -> this.createJsonNode()
+                .setAttributes(Maps.empty())
+        );
     }
 
     // ToXXXValueOrFail.................................................................................................
@@ -97,16 +112,24 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         if (node instanceof JsonObject) {
             assertSame(node, node.objectOrFail());
         } else {
-            final ClassCastException thrown = assertThrows(ClassCastException.class, node::objectOrFail);
-            this.checkEquals("Expected Object got " + node.defaultName() + ": " + node, thrown.getMessage());
+            final ClassCastException thrown = assertThrows(
+                ClassCastException.class,
+                node::objectOrFail
+            );
+            this.checkEquals(
+                "Expected Object got " + node.defaultName() + ": " + node,
+                thrown.getMessage()
+            );
         }
     }
 
     @Test
     @Override
     public final void testPropertiesNeverReturnNull() throws Exception {
-        this.allPropertiesNeverReturnNullCheck(this.createJsonNode(),
-            (m) -> this.propertiesNeverReturnNullSkipProperties().contains(m.getName()));
+        this.allPropertiesNeverReturnNullCheck(
+            this.createJsonNode(),
+            (m) -> this.propertiesNeverReturnNullSkipProperties().contains(m.getName())
+        );
     }
 
     abstract List<String> propertiesNeverReturnNullSkipProperties();
@@ -136,7 +159,10 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
 
     @Test
     public final void testTextOffset() {
-        this.textOffsetAndCheck(this.createNode(), 0);
+        this.textOffsetAndCheck(
+            this.createNode(),
+            0
+        );
     }
 
     // isFalseLike......................................................................................................
@@ -192,24 +218,6 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         );
     }
 
-    // printJson........................................................................................................
-
-    @Test
-    public void testPrintJsonNullPrinterFails() {
-        assertThrows(NullPointerException.class, () -> this.createJsonNode().printJson(null));
-    }
-
-    @Test
-    public void testPrintJson() {
-        final N node = this.createJsonNode();
-        final StringBuilder b = new StringBuilder();
-        try (final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM).indenting(Indentation.SPACES2)) {
-            node.printJson(printer);
-        }
-
-        this.checkEquals(node.toString(), b.toString());
-    }
-
     @Override
     public JsonNode createNode() {
         return this.createJsonNode();
@@ -217,22 +225,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
 
     abstract N createJsonNode();
 
-    @Override
-    public Class<JsonNode> type() {
-        return Cast.to(this.jsonNodeType());
-    }
-
     abstract Class<N> jsonNodeType();
-
-    @Override
-    public final String typeNamePrefix() {
-        return "Json";
-    }
-
-    @Override
-    public final String typeNameSuffix() {
-        return "";
-    }
 
     // equals...........................................................................................................
 
@@ -252,6 +245,31 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         this.checkNotEquals(
             JsonNode.array()
                 .appendChild(this.createObject())
+        );
+    }
+
+    // TreePrintable....................................................................................................
+
+    @Test
+    public final void testPrintJsonNullPrinterFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createJsonNode()
+                .printJson(null)
+        );
+    }
+
+    @Test
+    public final void testPrintJson() {
+        final N node = this.createJsonNode();
+        final StringBuilder b = new StringBuilder();
+        try (final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM).indenting(Indentation.SPACES2)) {
+            node.printJson(printer);
+        }
+
+        this.checkEquals(
+            node.toString(),
+            b.toString()
         );
     }
 
@@ -279,10 +297,25 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         );
     }
 
-    // ClassTesting....................................................................................................
+    // Class............................................................................................................
+
+    @Override
+    public final Class<JsonNode> type() {
+        return Cast.to(this.jsonNodeType());
+    }
 
     @Override
     public final JavaVisibility typeVisibility() {
         return JavaVisibility.PUBLIC;
+    }
+
+    @Override
+    public final String typeNamePrefix() {
+        return "Json";
+    }
+
+    @Override
+    public final String typeNameSuffix() {
+        return "";
     }
 }

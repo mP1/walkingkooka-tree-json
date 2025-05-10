@@ -417,8 +417,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     }
 
     private boolean equals0(final JsonNode other) {
-        return this.name.equals(other.name) &&
-            this.equalsValue(other) &&
+        return this.equalsValue(other) &&
             this.equalsChildren(other);
     }
 

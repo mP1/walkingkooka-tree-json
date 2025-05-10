@@ -634,8 +634,10 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonObject object = JsonNode.object()
             .set(key1, value1)
             .set(this.key2(), this.value2());
-        this.containsValueAndCheckAbsent(object.asMap(),
-            value1); // match fails because value gotten has a parent the enclosing object
+        this.containsValueAndCheckAbsent(
+            object.asMap(),
+            JsonNode.string("absent")
+        );
     }
 
     @Test

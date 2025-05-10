@@ -132,13 +132,6 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         }.accept(this.createNode());
     }
 
-    // Object...........................................................................................................
-
-    @Test
-    public final void testEqualsDifferentParent() {
-        this.checkNotEquals(JsonNode.array().appendChild(this.createObject()));
-    }
-
     // HasTextOffset....................................................................................................
 
     @Test
@@ -239,6 +232,27 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     @Override
     public final String typeNameSuffix() {
         return "";
+    }
+
+    // equals...........................................................................................................
+
+    @Test
+    public final void testEqualsDifferentName() {
+        final JsonNode node = this.createJsonNode();
+
+        this.checkEquals(
+            node.setName(JsonPropertyName.with("name1")),
+            node.setName(JsonPropertyName.with("differentName"))
+        );
+    }
+
+
+    @Test
+    public final void testEqualsDifferentParent() {
+        this.checkNotEquals(
+            JsonNode.array()
+                .appendChild(this.createObject())
+        );
     }
 
     // IsMethodTesting.................................................................................................

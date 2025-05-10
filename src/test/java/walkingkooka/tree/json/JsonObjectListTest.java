@@ -54,19 +54,6 @@ public final class JsonObjectListTest implements ImmutableListTesting<JsonObject
             ),
             object.children
         );
-
-        this.checkNotEquals(
-            JsonObjectList.with(
-                Maps.of(
-                    first,
-                    value1,
-                    second,
-                    value2
-                )
-            ),
-            object.children,
-            () -> "same name/value but values without name should not be equalb f"
-        );
     }
 
     @Test

@@ -58,6 +58,8 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         throw new UnsupportedOperationException();
     }
 
+    // setChildren......................................................................................................
+
     @Test
     @Override
     public void testSetDifferentChildren() {

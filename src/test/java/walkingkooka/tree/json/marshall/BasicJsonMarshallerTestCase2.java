@@ -19,6 +19,7 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
+import walkingkooka.collect.list.CsvStringList;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonNodeException;
@@ -183,12 +184,14 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     }
 
     private static Class<?> type(final Object value) {
-        return value instanceof List ?
-            List.class :
-            value instanceof Set ?
-                Set.class : value instanceof Map ?
-                Map.class :
-                value.getClass();
+        return value instanceof CsvStringList ?
+            CsvStringList.class :
+            value instanceof List ?
+                List.class :
+                value instanceof Set ?
+                    Set.class : value instanceof Map ?
+                    Map.class :
+                    value.getClass();
     }
 
     @Test

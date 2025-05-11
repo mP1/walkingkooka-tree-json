@@ -19,6 +19,7 @@ package walkingkooka.tree.json;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
+import walkingkooka.collect.list.Lists;
 import walkingkooka.naming.Name;
 import walkingkooka.text.LineEnding;
 import walkingkooka.tree.Node;
@@ -64,6 +65,20 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
 
         this.checkEquals(originalName, node.name(), "original name");
         this.checkChildren(node, value);
+    }
+
+    @Test
+    public final void testChildrenIncludesNullFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createNode()
+                .setChildren(
+                    Lists.of(
+                        null,
+                        JsonNode.string("string")
+                    )
+                )
+        );
     }
 
     @Override

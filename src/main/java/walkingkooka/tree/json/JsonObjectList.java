@@ -84,6 +84,14 @@ final class JsonObjectList extends AbstractList<JsonNode> implements ImmutableLi
 
     // ImmutableList....................................................................................................
 
+    /**
+     * Null elements within an array or object are not allowed.
+     */
+    @Override
+    public void elementCheck(final JsonNode node) {
+        Objects.requireNonNull(node, "node");
+    }
+
     @Override
     public ImmutableList<JsonNode> setElements(final List<JsonNode> list) {
         Objects.requireNonNull(list, "list");

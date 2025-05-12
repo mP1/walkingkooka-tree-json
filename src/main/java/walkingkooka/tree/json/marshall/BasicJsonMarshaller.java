@@ -127,6 +127,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedCharacter.instance(),
             BasicJsonMarshallerTypedClass.instance(),
             BasicJsonMarshallerTypedCsvStringList.instance(),
+            BasicJsonMarshallerTypedCsvStringSet.instance(),
             BasicJsonMarshallerTypedDateTimeSymbols.instance(),
             BasicJsonMarshallerTypedDecimalNumberSymbols.instance(),
             BasicJsonMarshallerTypedExpression.value(),

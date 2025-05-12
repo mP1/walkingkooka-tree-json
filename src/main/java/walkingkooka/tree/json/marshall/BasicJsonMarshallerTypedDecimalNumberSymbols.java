@@ -59,6 +59,7 @@ final class BasicJsonMarshallerTypedDecimalNumberSymbols extends BasicJsonMarsha
                                            final JsonNodeUnmarshallContext context) {
         Character negativeSign = null;
         Character positiveSign = null;
+        Character zeroDigit = null;
         String currencySymbol = null;
         Character decimalSeparator = null;
         String exponentSymbol = null;
@@ -76,6 +77,12 @@ final class BasicJsonMarshallerTypedDecimalNumberSymbols extends BasicJsonMarsha
                     break;
                 case POSITIVE_SIGN_PROPERTY_STRING:
                     positiveSign = context.unmarshall(
+                        child,
+                        Character.class
+                    );
+                    break;
+                case ZERO_DIGIT_PROPERTY_STRING:
+                    zeroDigit = context.unmarshall(
                         child,
                         Character.class
                     );
@@ -128,6 +135,12 @@ final class BasicJsonMarshallerTypedDecimalNumberSymbols extends BasicJsonMarsha
                 node
             );
         }
+        if (null == zeroDigit) {
+            JsonNodeUnmarshallContext.missingProperty(
+                ZERO_DIGIT_PROPERTY,
+                node
+            );
+        }
         if (null == currencySymbol) {
             JsonNodeUnmarshallContext.missingProperty(
                 CURRENCY_SYMBOL_PROPERTY,
@@ -162,6 +175,7 @@ final class BasicJsonMarshallerTypedDecimalNumberSymbols extends BasicJsonMarsha
         return DecimalNumberSymbols.with(
             negativeSign,
             positiveSign,
+            zeroDigit,
             currencySymbol,
             decimalSeparator,
             exponentSymbol,
@@ -176,6 +190,7 @@ final class BasicJsonMarshallerTypedDecimalNumberSymbols extends BasicJsonMarsha
         return JsonNode.object()
             .set(NEGATIVE_SIGN_PROPERTY, context.marshall(value.negativeSign()))
             .set(POSITIVE_SIGN_PROPERTY, context.marshall(value.positiveSign()))
+            .set(ZERO_DIGIT_PROPERTY, context.marshall(value.zeroDigit()))
             .set(CURRENCY_SYMBOL_PROPERTY, context.marshall(value.currencySymbol()))
             .set(DECIMAL_SEPARATOR_PROPERTY, context.marshall(value.decimalSeparator()))
             .set(EXPONENT_SYMBOL_PROPERTY, context.marshall(value.exponentSymbol()))
@@ -186,6 +201,8 @@ final class BasicJsonMarshallerTypedDecimalNumberSymbols extends BasicJsonMarsha
     private final static String NEGATIVE_SIGN_PROPERTY_STRING = "negativeSign";
 
     private final static String POSITIVE_SIGN_PROPERTY_STRING = "positiveSign";
+
+    private final static String ZERO_DIGIT_PROPERTY_STRING = "zeroDigit";
 
     private final static String CURRENCY_SYMBOL_PROPERTY_STRING = "currencySymbol";
 
@@ -201,6 +218,8 @@ final class BasicJsonMarshallerTypedDecimalNumberSymbols extends BasicJsonMarsha
     final static JsonPropertyName NEGATIVE_SIGN_PROPERTY = JsonPropertyName.with(NEGATIVE_SIGN_PROPERTY_STRING);
 
     final static JsonPropertyName POSITIVE_SIGN_PROPERTY = JsonPropertyName.with(POSITIVE_SIGN_PROPERTY_STRING);
+
+    final static JsonPropertyName ZERO_DIGIT_PROPERTY = JsonPropertyName.with(ZERO_DIGIT_PROPERTY_STRING);
 
     final static JsonPropertyName CURRENCY_SYMBOL_PROPERTY = JsonPropertyName.with(CURRENCY_SYMBOL_PROPERTY_STRING);
 

@@ -49,6 +49,7 @@ public final class BasicJsonMarshallerTypedDecimalNumberSymbolsTest extends Basi
         return JsonNode.object()
             .set(BasicJsonMarshallerTypedDecimalNumberSymbols.NEGATIVE_SIGN_PROPERTY, JsonNode.string("-"))
             .set(BasicJsonMarshallerTypedDecimalNumberSymbols.POSITIVE_SIGN_PROPERTY, JsonNode.string("+"))
+            .set(BasicJsonMarshallerTypedDecimalNumberSymbols.ZERO_DIGIT_PROPERTY, JsonNode.string("0"))
             .set(BasicJsonMarshallerTypedDecimalNumberSymbols.CURRENCY_SYMBOL_PROPERTY, JsonNode.string("$"))
             .set(BasicJsonMarshallerTypedDecimalNumberSymbols.DECIMAL_SEPARATOR_PROPERTY, JsonNode.string("."))
             .set(BasicJsonMarshallerTypedDecimalNumberSymbols.EXPONENT_SYMBOL_PROPERTY, JsonNode.string("e"))

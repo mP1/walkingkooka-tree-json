@@ -19,6 +19,7 @@ package walkingkooka.tree.json.parser;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.math.DecimalNumberContext;
+import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
@@ -26,19 +27,8 @@ import walkingkooka.reflect.JavaVisibility;
 import java.math.MathContext;
 
 public final class BasicJsonNodeParserContextTest implements ClassTesting2<BasicJsonNodeParserContext>,
-    JsonNodeParserContextTesting<BasicJsonNodeParserContext> {
-
-    @Override
-    public void testCurrencySymbol() {
-    }
-
-    @Override
-    public void testGroupSeparator() {
-    }
-
-    @Override
-    public void testMathContext() {
-    }
+    JsonNodeParserContextTesting<BasicJsonNodeParserContext>,
+    DecimalNumberContextDelegator {
 
     @Test
     public void testToString() {
@@ -51,49 +41,20 @@ public final class BasicJsonNodeParserContextTest implements ClassTesting2<Basic
         return BasicJsonNodeParserContext.instance();
     }
 
-    @Override
-    public String currencySymbol() {
-        return this.decimalNumberContext().currencySymbol();
-    }
-
-    @Override
-    public char decimalSeparator() {
-        return this.decimalNumberContext().decimalSeparator();
-    }
-
-    @Override
-    public String exponentSymbol() {
-        return this.decimalNumberContext().exponentSymbol();
-    }
-
-    @Override
-    public char groupSeparator() {
-        return this.decimalNumberContext().groupSeparator();
-    }
 
     @Override
     public MathContext mathContext() {
-        return MathContext.DECIMAL32;
+        return MathContext.DECIMAL64;
     }
+
+    // DecimalNumberContext.............................................................................................
 
     @Override
-    public char negativeSign() {
-        return this.decimalNumberContext().negativeSign();
-    }
-
-    @Override
-    public char percentSymbol() {
-        return this.decimalNumberContext().percentSymbol();
-    }
-
-    @Override
-    public char positiveSign() {
-        return this.decimalNumberContext().positiveSign();
-    }
-
-    private DecimalNumberContext decimalNumberContext() {
+    public DecimalNumberContext decimalNumberContext() {
         return DecimalNumberContexts.american(this.mathContext());
     }
+
+    // class............................................................................................................
 
     @Override
     public Class<BasicJsonNodeParserContext> type() {

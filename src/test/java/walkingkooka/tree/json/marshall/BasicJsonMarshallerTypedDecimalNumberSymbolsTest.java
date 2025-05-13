@@ -59,7 +59,7 @@ public final class BasicJsonMarshallerTypedDecimalNumberSymbolsTest extends Basi
             .set(BasicJsonMarshallerTypedDecimalNumberSymbols.INFINITY_SYMBOL_PROPERTY, JsonNode.string("Infinity"))
             .set(BasicJsonMarshallerTypedDecimalNumberSymbols.MONETARY_DECIMAL_SEPARATOR_PROPERTY, JsonNode.string("."))
             .set(BasicJsonMarshallerTypedDecimalNumberSymbols.NAN_SYMBOL_PROPERTY, JsonNode.string("NaN"))
-            .set(BasicJsonMarshallerTypedDecimalNumberSymbols.PERCENTAGE_SYMBOL_PROPERTY, JsonNode.string("%"))
+            .set(BasicJsonMarshallerTypedDecimalNumberSymbols.PERCENT_SYMBOL_PROPERTY, JsonNode.string("%"))
             .set(BasicJsonMarshallerTypedDecimalNumberSymbols.PERMILL_SYMBOL_PROPERTY, JsonNode.string("^"));
     }
 

@@ -110,7 +110,7 @@ final class BasicJsonNodeParserContext implements JsonNodeParserContext,
             .label("decimalSeparator").value(this.decimalSeparator())
             .label("exponentSymbol").value(this.exponentSymbol())
             .label("negativeSign").value(this.negativeSign())
-            .label("percentageSymbol").value(this.percentageSymbol())
+            .label("percentSymbol").value(this.percentSymbol())
             .label("positiveSign").value(this.positiveSign())
             .build();
     }

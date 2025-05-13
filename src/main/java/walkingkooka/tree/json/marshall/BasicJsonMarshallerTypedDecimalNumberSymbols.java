@@ -67,7 +67,7 @@ final class BasicJsonMarshallerTypedDecimalNumberSymbols extends BasicJsonMarsha
         String infinitySymbol = null;
         Character monetaryDecimalSeparator = null;
         String nanSymbol = null;
-        Character percentageSymbol = null;
+        Character percentSymbol = null;
         Character permillSymbol = null;
 
         for (final JsonNode child : node.objectOrFail().children()) {
@@ -133,8 +133,8 @@ final class BasicJsonMarshallerTypedDecimalNumberSymbols extends BasicJsonMarsha
                         String.class
                     );
                     break;
-                case PERCENTAGE_SYMBOL_PROPERTY_STRING:
-                    percentageSymbol = context.unmarshall(
+                case PERCENT_SYMBOL_PROPERTY_STRING:
+                    percentSymbol = context.unmarshall(
                         child,
                         Character.class
                     );
@@ -211,9 +211,9 @@ final class BasicJsonMarshallerTypedDecimalNumberSymbols extends BasicJsonMarsha
                 node
             );
         }
-        if (null == percentageSymbol) {
+        if (null == percentSymbol) {
             JsonNodeUnmarshallContext.missingProperty(
-                PERCENTAGE_SYMBOL_PROPERTY,
+                PERCENT_SYMBOL_PROPERTY,
                 node
             );
         }
@@ -235,7 +235,7 @@ final class BasicJsonMarshallerTypedDecimalNumberSymbols extends BasicJsonMarsha
             infinitySymbol,
             monetaryDecimalSeparator,
             nanSymbol,
-            percentageSymbol,
+            percentSymbol,
             permillSymbol
         );
     }
@@ -254,7 +254,7 @@ final class BasicJsonMarshallerTypedDecimalNumberSymbols extends BasicJsonMarsha
             .set(INFINITY_SYMBOL_PROPERTY, context.marshall(value.infinitySymbol()))
             .set(MONETARY_DECIMAL_SEPARATOR_PROPERTY, context.marshall(value.monetaryDecimalSeparator()))
             .set(NAN_SYMBOL_PROPERTY, context.marshall(value.nanSymbol()))
-            .set(PERCENTAGE_SYMBOL_PROPERTY, context.marshall(value.percentageSymbol()))
+            .set(PERCENT_SYMBOL_PROPERTY, context.marshall(value.percentSymbol()))
             .set(PERMILL_SYMBOL_PROPERTY, context.marshall(value.permillSymbol()));
     }
 
@@ -278,7 +278,7 @@ final class BasicJsonMarshallerTypedDecimalNumberSymbols extends BasicJsonMarsha
 
     private final static String NAN_SYMBOL_PROPERTY_STRING = "nanSymbol";
 
-    private final static String PERCENTAGE_SYMBOL_PROPERTY_STRING = "percentageSymbol";
+    private final static String PERCENT_SYMBOL_PROPERTY_STRING = "percentSymbol";
 
     private final static String PERMILL_SYMBOL_PROPERTY_STRING = "permillSymbol";
 
@@ -302,7 +302,7 @@ final class BasicJsonMarshallerTypedDecimalNumberSymbols extends BasicJsonMarsha
 
     final static JsonPropertyName NAN_SYMBOL_PROPERTY = JsonPropertyName.with(NAN_SYMBOL_PROPERTY_STRING);
 
-    final static JsonPropertyName PERCENTAGE_SYMBOL_PROPERTY = JsonPropertyName.with(PERCENTAGE_SYMBOL_PROPERTY_STRING);
+    final static JsonPropertyName PERCENT_SYMBOL_PROPERTY = JsonPropertyName.with(PERCENT_SYMBOL_PROPERTY_STRING);
 
     final static JsonPropertyName PERMILL_SYMBOL_PROPERTY = JsonPropertyName.with(PERMILL_SYMBOL_PROPERTY_STRING);
 }

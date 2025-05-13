@@ -39,7 +39,9 @@ public final class BasicJsonMarshallerTypedDecimalNumberSymbolsTest extends Basi
             new DecimalFormatSymbols(
                 Locale.forLanguageTag("EN-AU")
             )
-        );
+        ).setInfinitySymbol("Infinity")
+            .setNanSymbol("NaN")
+            .setPermillSymbol('^');
     }
 
     @Override
@@ -54,7 +56,11 @@ public final class BasicJsonMarshallerTypedDecimalNumberSymbolsTest extends Basi
             .set(BasicJsonMarshallerTypedDecimalNumberSymbols.DECIMAL_SEPARATOR_PROPERTY, JsonNode.string("."))
             .set(BasicJsonMarshallerTypedDecimalNumberSymbols.EXPONENT_SYMBOL_PROPERTY, JsonNode.string("e"))
             .set(BasicJsonMarshallerTypedDecimalNumberSymbols.GROUP_SEPARATOR_PROPERTY, JsonNode.string(","))
-            .set(BasicJsonMarshallerTypedDecimalNumberSymbols.PERCENTAGE_SYMBOL_PROPERTY, JsonNode.string("%"));
+            .set(BasicJsonMarshallerTypedDecimalNumberSymbols.INFINITY_SYMBOL_PROPERTY, JsonNode.string("Infinity"))
+            .set(BasicJsonMarshallerTypedDecimalNumberSymbols.MONETARY_DECIMAL_SEPARATOR_PROPERTY, JsonNode.string("."))
+            .set(BasicJsonMarshallerTypedDecimalNumberSymbols.NAN_SYMBOL_PROPERTY, JsonNode.string("NaN"))
+            .set(BasicJsonMarshallerTypedDecimalNumberSymbols.PERCENTAGE_SYMBOL_PROPERTY, JsonNode.string("%"))
+            .set(BasicJsonMarshallerTypedDecimalNumberSymbols.PERMILL_SYMBOL_PROPERTY, JsonNode.string("^"));
     }
 
     private static JsonNode jsonArray(final List<String> strings) {

@@ -199,7 +199,7 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
             this.unmarshallContext()
                 .unmarshallOptional(
                     this.marshallContext()
-                        .marshall(optional),
+                        .marshallOptional(optional),
                     value.getClass()
                 )
         );

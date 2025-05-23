@@ -213,6 +213,67 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         );
     }
 
+    // unmarshallOptionalWithType.......................................................................................
+
+    @Test
+    public void testUnmarshallOptionalWithType() {
+        this.unmarshallOptionalWithTypeAndCheck(
+            JsonNode.nullNode(),
+            Optional.empty()
+        );
+    }
+
+    @Test
+    public void testUnmarshallOptionalWithTypeEmptyString() {
+        this.unmarshallOptionalWithTypeAndCheck(
+            JsonNode.string(""),
+            Optional.of("")
+        );
+    }
+
+    @Test
+    public void testUnmarshallOptionalWithTypeNotEmpty() {
+        this.unmarshallOptionalWithTypeAndCheck(
+            JsonNode.object()
+                .set(
+                    JsonPropertyName.with("type"),
+                    JsonNode.string("rounding-mode")
+                ).set(
+                    JsonPropertyName.with("value"),
+                    JsonNode.string("CEILING")
+                ),
+            Optional.of(
+                RoundingMode.CEILING
+            )
+        );
+    }
+
+    @Test
+    public void testRoundtripOptionalWithTypeEmpty() {
+        final Optional<?> optional = Optional.empty();
+
+        this.checkEquals(
+            optional,
+            this.createContext()
+                .unmarshallOptionalWithType(
+                    BasicJsonNodeMarshallContext.INSTANCE.marshallOptionalWithType(optional)
+                )
+        );
+    }
+
+    @Test
+    public void testRoundtripOptionalWithTypeNotEmpty() {
+        final Optional<?> optional = Optional.of("Hello");
+
+        this.checkEquals(
+            optional,
+            this.createContext()
+                .unmarshallOptionalWithType(
+                    BasicJsonNodeMarshallContext.INSTANCE.marshallOptionalWithType(optional)
+                )
+        );
+    }
+
     // unmarshallList.................................................................................................
 
     @Test

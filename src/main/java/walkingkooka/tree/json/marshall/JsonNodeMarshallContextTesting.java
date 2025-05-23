@@ -164,6 +164,36 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
         );
     }
 
+    // marshallOptionalWithType.........................................................................................
+
+    @Test
+    default void testMarshallOptionalWithTypeWithNullFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .marshallOptionalWithType(null)
+        );
+    }
+
+    default void marshallOptionalWithTypeAndCheck(final Optional<?> value,
+                                                  final JsonNode expected) {
+        this.marshallOptionalWithTypeAndCheck(
+            this.createContext(),
+            value,
+            expected
+        );
+    }
+
+    default void marshallOptionalWithTypeAndCheck(final JsonNodeMarshallContext context,
+                                                  final Optional<?> value,
+                                                  final JsonNode expected) {
+        this.checkEquals(
+            expected,
+            context.marshallOptionalWithType(value),
+            () -> context + " marshallOptionalWithType " + value
+        );
+    }
+    
     // marshallCollection...............................................................................................
 
     default void marshallCollectionAndCheck(final Collection<?> Collection,

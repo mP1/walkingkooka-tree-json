@@ -62,6 +62,11 @@ public interface JsonNodeMarshallContext extends JsonNodeContext {
     JsonNode marshallOptional(final Optional<?> optional);
 
     /**
+     * Marshalls the given {@link Optional} WITH the value type.
+     */
+    JsonNode marshallOptionalWithType(final Optional<?> optional);
+
+    /**
      * Accepts a {@link Collection} of elements which are assumed to be the same supported type.
      */
     JsonNode marshallCollection(final Collection<?> collection);

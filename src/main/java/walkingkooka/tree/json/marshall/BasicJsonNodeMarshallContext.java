@@ -129,6 +129,14 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
         );
     }
 
+    @Override
+    public JsonNode marshallOptionalWithType(final Optional<?> optional) {
+        return this.marshallWithType(
+            Objects.requireNonNull(optional, "optional")
+                .orElse(null)
+        );
+    }
+
     /**
      * Accepts a {@link Map} of elements creating a {@link JsonArray} holding the entries with the raw key and values,
      * without recording the types for either.

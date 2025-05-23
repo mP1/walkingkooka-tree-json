@@ -69,6 +69,12 @@ public interface JsonNodeUnmarshallContextDelegator extends JsonNodeUnmarshallCo
     }
 
     @Override
+    default  <T> Optional<T> unmarshallOptionalWithType(final JsonNode node) {
+        return this.jsonNodeUnmarshallContext()
+            .unmarshallOptionalWithType(node);
+    }
+
+    @Override
     default <T> List<T> unmarshallList(final JsonNode node,
                                        final Class<T> elementType) {
         return this.jsonNodeUnmarshallContext()

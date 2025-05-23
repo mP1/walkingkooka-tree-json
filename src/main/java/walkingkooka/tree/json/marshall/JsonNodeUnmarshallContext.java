@@ -88,6 +88,11 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext,
                                        final Class<T> valueType);
 
     /**
+     * Assumes a {@link JsonNode} into an {@link java.util.Optional}.
+     */
+    <T> Optional<T> unmarshallOptionalWithType(final JsonNode node);
+
+    /**
      * Assumes something like a {@link JsonArray} and returns a {@link List} assuming the type of each element is fixed.
      */
     <T> List<T> unmarshallList(final JsonNode node,

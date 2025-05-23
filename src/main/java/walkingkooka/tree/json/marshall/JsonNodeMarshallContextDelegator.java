@@ -50,6 +50,12 @@ public interface JsonNodeMarshallContextDelegator extends JsonNodeMarshallContex
     }
 
     @Override
+    default JsonNode marshallOptionalWithType(final Optional<?> optional) {
+        return this.jsonNodeMarshallContext()
+            .marshallOptionalWithType(optional);
+    }
+
+    @Override
     default JsonNode marshallWithType(final Object value) {
         return this.jsonNodeMarshallContext()
             .marshallWithType(value);

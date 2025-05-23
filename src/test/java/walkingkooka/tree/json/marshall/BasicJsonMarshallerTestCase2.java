@@ -144,6 +144,21 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
                 ),
             () -> "roundtrip optional: " + optional + " -> json: " + jsonNode);
     }
+
+    @Test
+    public void testRoundtripOptionalWithType() {
+        final T value = this.value();
+        final Optional<T> optional = Optional.of(value);
+
+        final JsonNode jsonNode = this.marshallContext()
+            .marshallOptionalWithType(optional);
+
+        this.checkEquals(
+            optional,
+            this.unmarshallContext()
+                .unmarshallOptionalWithType(jsonNode),
+            () -> "roundtrip optional: " + optional + " -> json: " + jsonNode);
+    }
     
     @Test
     public void testRoundtripList() {

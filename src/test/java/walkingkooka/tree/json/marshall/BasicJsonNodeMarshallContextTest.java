@@ -27,6 +27,7 @@ import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.EnumSet;
 import java.util.Locale;
@@ -369,7 +370,34 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         );
     }
 
-    // marshallWithType...............................................................................................
+    // marshallOptionalWithType.........................................................................................
+
+    @Test
+    public void testMarshallOptionalWithTypeEmpty() {
+        this.marshallOptionalWithTypeAndCheck(
+            Optional.empty(),
+            JsonNode.nullNode()
+        );
+    }
+
+    @Test
+    public void testMarshallOptionalWithTypeNotEmpty() {
+        final BigDecimal value = new BigDecimal("1.25");
+
+        this.marshallOptionalWithTypeAndCheck(
+            Optional.of(value),
+            JsonNode.object()
+                .set(
+                    JsonPropertyName.with("type"),
+                    JsonNode.string("big-decimal")
+                ).set(
+                    JsonPropertyName.with("value"),
+                    JsonNode.string("1.25")
+                )
+        );
+    }
+
+    // marshallWithType.................................................................................................
 
     @Test
     public void testMarshallWithTypeBooleanTrue() {

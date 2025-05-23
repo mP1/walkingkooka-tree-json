@@ -47,6 +47,11 @@ public class FakeJsonNodeMarshallContext extends FakeJsonNodeContext implements 
     }
 
     @Override
+    public JsonNode marshallOptionalWithType(final Optional<?> optional) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public JsonNode marshallWithType(final Object value) {
         throw new UnsupportedOperationException();
     }

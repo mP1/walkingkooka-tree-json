@@ -67,6 +67,11 @@ public class FakeJsonNodeUnmarshallContext extends FakeJsonNodeContext implement
     }
 
     @Override
+    public <T> Optional<T> unmarshallOptionalWithType(final JsonNode node) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public <T> List<T> unmarshallList(final JsonNode node,
                                       final Class<T> elementType) {
         throw new UnsupportedOperationException();

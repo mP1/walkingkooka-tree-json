@@ -140,6 +140,13 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
         );
     }
 
+    @Override
+    public <T> Optional<T> unmarshallOptionalWithType(final JsonNode node) {
+        return Optional.ofNullable(
+            this.unmarshallWithType(node)
+        );
+    }
+
     /**
      * Assumes this json object is an array holding elements that will be converted to the requested element type, returning
      * a {@link List} of them.

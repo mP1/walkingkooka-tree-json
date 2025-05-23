@@ -64,25 +64,35 @@ final class BasicJsonMarshallerTypedOptional extends BasicJsonMarshallerTyped<Op
     @Override
     Optional<?> unmarshallNonNull(final JsonNode node,
                                   final JsonNodeUnmarshallContext context) {
-        return unmarshallNonNull0(node.arrayOrFail(), context);
+        return unmarshallNonNullArray(
+            node.arrayOrFail(),
+            context
+        );
     }
 
-    private Optional<?> unmarshallNonNull0(final JsonArray array,
-                                           final JsonNodeUnmarshallContext context) {
+    private Optional<?> unmarshallNonNullArray(final JsonArray array,
+                                               final JsonNodeUnmarshallContext context) {
         final List<JsonNode> children = array.children();
         return children.isEmpty() ?
             Optional.empty() :
-            this.unmarshallNonNull1(children, array, context);
+            this.unmarshallNonNullArrayElement(children, array, context);
     }
 
-    private Optional<?> unmarshallNonNull1(final List<JsonNode> children,
-                                           final JsonNode parent,
-                                           final JsonNodeUnmarshallContext context) {
+    /**
+     * Optional values will appear in an array with only ONE element.
+     */
+    private Optional<?> unmarshallNonNullArrayElement(final List<JsonNode> children,
+                                                      final JsonNode parent,
+                                                      final JsonNodeUnmarshallContext context) {
         if (children.size() > 1) {
             throw new JsonNodeUnmarshallException("Optional expected only 0/1 children but got " + children, parent);
         }
 
-        return Optional.of(context.unmarshallWithType(children.get(0)));
+        return Optional.of(
+            context.unmarshallWithType(
+                children.get(0)
+            )
+        );
     }
 
     /**
@@ -91,12 +101,16 @@ final class BasicJsonMarshallerTypedOptional extends BasicJsonMarshallerTyped<Op
     @Override
     JsonNode marshallNonNull(final Optional<?> value,
                              final JsonNodeMarshallContext context) {
-        return value.map(v -> marshallNonNullValue(v, context))
-            .orElse(JsonNode.array());
+        return value.map(
+            v -> marshallNonNullValue(v, context)
+            ).orElse(JsonNode.array());
     }
 
     private static JsonArray marshallNonNullValue(final Object value,
                                                   final JsonNodeMarshallContext context) {
-        return JsonNode.array().appendChild(context.marshallWithType(value));
+        return JsonNode.array()
+            .appendChild(
+                context.marshallWithType(value)
+            );
     }
 }

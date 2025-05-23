@@ -65,6 +65,8 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
         );
     }
 
+    // marshall.........................................................................................................
+
     @Test
     default void testMarshallNull() {
         this.marshallAndCheck(
@@ -72,48 +74,6 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
             JsonNode.nullNode()
         );
     }
-
-    @Test
-    default void testMarshallCollectionNull() {
-        this.marshallCollectionAndCheck(
-            null,
-            JsonNode.nullNode()
-        );
-    }
-
-    @Test
-    default void testMarshallMapNull() {
-        this.marshallMapAndCheck(
-            null,
-            JsonNode.nullNode()
-        );
-    }
-
-    @Test
-    default void testMarshallWithTypeNull() {
-        this.marshallWithTypeAndCheck(
-            null,
-            JsonNode.nullNode()
-        );
-    }
-
-    @Test
-    default void testMarshallCollectionWithTypeNull() {
-        this.marshallCollectionWithTypeAndCheck(
-            null,
-            JsonNode.nullNode()
-        );
-    }
-
-    @Test
-    default void testMarshallMapWithTypeNull() {
-        this.marshallMapWithTypeAndCheck(
-            null,
-            JsonNode.nullNode()
-        );
-    }
-
-    // marshall.........................................................................................................
 
     default void marshallAndCheck(final Object value,
                                   final JsonNode expected) {
@@ -196,6 +156,14 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
     
     // marshallCollection...............................................................................................
 
+    @Test
+    default void testMarshallCollectionNull() {
+        this.marshallCollectionAndCheck(
+            null,
+            JsonNode.nullNode()
+        );
+    }
+
     default void marshallCollectionAndCheck(final Collection<?> Collection,
                                             final JsonNode expected) {
         this.marshallCollectionAndCheck(
@@ -236,7 +204,15 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
         );
     }
 
-    // marshallMap....................................................................................................
+    // marshallMap......................................................................................................
+
+    @Test
+    default void testMarshallMapNull() {
+        this.marshallMapAndCheck(
+            null,
+            JsonNode.nullNode()
+        );
+    }
 
     default void marshallMapAndCheck(final Map<?, ?> map,
                                      final JsonNode expected) {
@@ -259,6 +235,14 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
 
     // marshallWithType.................................................................................................
 
+    @Test
+    default void testMarshallWithTypeNull() {
+        this.marshallWithTypeAndCheck(
+            null,
+            JsonNode.nullNode()
+        );
+    }
+
     default void marshallWithTypeAndCheck(final Object value,
                                           final JsonNode expected) {
         this.marshallWithTypeAndCheck(
@@ -280,6 +264,14 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
 
     // marshallCollectionWithType.......................................................................................
 
+    @Test
+    default void testMarshallCollectionWithTypeNull() {
+        this.marshallCollectionWithTypeAndCheck(
+            null,
+            JsonNode.nullNode()
+        );
+    }
+
     default void marshallCollectionWithTypeAndCheck(final Collection<?> Collection,
                                                     final JsonNode expected) {
         this.marshallCollectionWithTypeAndCheck(
@@ -300,6 +292,14 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
     }
 
     // marshallMapWithType..............................................................................................
+
+    @Test
+    default void testMarshallMapWithTypeNull() {
+        this.marshallMapWithTypeAndCheck(
+            null,
+            JsonNode.nullNode()
+        );
+    }
 
     default void marshallMapWithTypeAndCheck(final Map<?, ?> map,
                                              final JsonNode expected) {

@@ -124,10 +124,8 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     @Override
     public JsonNode marshallOptional(final Optional<?> optional) {
         return this.marshall(
-            Objects.requireNonNull(
-                optional.orElse(null),
-                "optional"
-            )
+            Objects.requireNonNull(optional, "optional")
+                .orElse(null)
         );
     }
 

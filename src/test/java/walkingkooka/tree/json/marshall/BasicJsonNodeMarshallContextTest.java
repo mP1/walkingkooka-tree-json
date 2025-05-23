@@ -20,6 +20,7 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
+import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
@@ -29,6 +30,7 @@ import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 import java.math.RoundingMode;
 import java.util.EnumSet;
 import java.util.Locale;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -301,6 +303,70 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
                     .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, JsonNode.number(key))
                     .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, value)
             );
+    }
+
+    // marshallOptional.................................................................................................
+
+    @Test
+    public void testMarshallOptionalEmpty() {
+        this.marshallOptionalAndCheck(
+            Optional.empty(),
+            JsonNode.nullNode()
+        );
+    }
+
+    @Test
+    public void testMarshallOptionalNotEmpty() {
+        final String string = "Hello";
+
+        this.marshallOptionalAndCheck(
+            Optional.of(string),
+            JsonNode.string(string)
+        );
+    }
+
+    @Test
+    public void testMarshallOptionalNotEmpty2() {
+        final Expression expression = Expression.add(
+            Expression.value("Left"),
+            Expression.value("Right")
+        );
+
+        // walkingkooka.tree.json.JsonArray
+        //  [
+        //    {
+        //      "type": "value-expression",
+        //      "value": "Left"
+        //    },
+        //    {
+        //      "type": "value-expression",
+        //      "value": "Right"
+        //    }
+        //  ]
+        this.marshallOptionalAndCheck(
+            Optional.of(expression),
+            JsonNode.array()
+                .setChildren(
+                    Lists.of(
+                        JsonNode.object()
+                            .set(
+                                JsonPropertyName.with("type"),
+                                JsonNode.string("value-expression")
+                            ).set(
+                                JsonPropertyName.with("value"),
+                                JsonNode.string("Left")
+                            ),
+                        JsonNode.object()
+                            .set(
+                                JsonPropertyName.with("type"),
+                                JsonNode.string("value-expression")
+                            ).set(
+                                JsonPropertyName.with("value"),
+                                JsonNode.string("Right")
+                            )
+                    )
+                )
+        );
     }
 
     // marshallWithType...............................................................................................

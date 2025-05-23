@@ -185,6 +185,34 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         );
     }
 
+    @Test
+    public void testRoundtripOptionalEmpty() {
+        final Optional<?> optional = Optional.empty();
+
+        this.checkEquals(
+            optional,
+            this.createContext()
+                .unmarshallOptional(
+                    BasicJsonNodeMarshallContext.INSTANCE.marshallOptional(optional),
+                    String.class
+                )
+        );
+    }
+
+    @Test
+    public void testRoundtripOptionalNotEmpty() {
+        final Optional<?> optional = Optional.of("Hello");
+
+        this.checkEquals(
+            optional,
+            this.createContext()
+                .unmarshallOptional(
+                    BasicJsonNodeMarshallContext.INSTANCE.marshallOptional(optional),
+                    String.class
+                )
+        );
+    }
+
     // unmarshallList.................................................................................................
 
     @Test

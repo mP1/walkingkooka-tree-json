@@ -23,6 +23,7 @@ import walkingkooka.tree.json.JsonNode;
 import java.math.MathContext;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 
@@ -47,6 +48,12 @@ public class FakeJsonNodeMarshallUnmarshallContext extends FakeJsonNodeMarshallC
     public <T extends Enum<T>> Set<T> unmarshallEnumSet(final JsonNode node,
                                                         final Class<T> enumClass,
                                                         final Function<String, T> stringToEnum) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public <T> Optional<T> unmarshallOptional(final JsonNode node,
+                                              final Class<T> type) {
         throw new UnsupportedOperationException();
     }
 

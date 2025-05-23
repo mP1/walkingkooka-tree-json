@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
@@ -117,6 +118,16 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
             enumSet.stream()
                 .map(Enum::name)
                 .collect(Collectors.joining(","))
+        );
+    }
+
+    @Override
+    public JsonNode marshallOptional(final Optional<?> optional) {
+        return this.marshall(
+            Objects.requireNonNull(
+                optional.orElse(null),
+                "optional"
+            )
         );
     }
 

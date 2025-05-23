@@ -32,6 +32,7 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.EnumSet;
 import java.util.Locale;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -150,6 +151,37 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
             JsonNode.string("CEILING,FLOOR"),
             RoundingMode.class,
             EnumSet.of(RoundingMode.CEILING, RoundingMode.FLOOR)
+        );
+    }
+
+    // unmarshallOptional...............................................................................................
+
+    @Test
+    public void testUnmarshallOptional() {
+        this.unmarshallOptionalAndCheck(
+            JsonNode.nullNode(),
+            RoundingMode.class,
+            Optional.empty()
+        );
+    }
+
+    @Test
+    public void testUnmarshallOptionalEmptyString() {
+        this.unmarshallOptionalAndCheck(
+            JsonNode.string(""),
+            String.class,
+            Optional.of("")
+        );
+    }
+
+    @Test
+    public void testUnmarshallOptionalNotEmpty() {
+        this.unmarshallOptionalAndCheck(
+            JsonNode.string("CEILING"),
+            RoundingMode.class,
+            Optional.of(
+                RoundingMode.CEILING
+            )
         );
     }
 

@@ -29,6 +29,7 @@ import walkingkooka.tree.json.JsonObject;
 import java.math.MathContext;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -126,6 +127,24 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             () -> "roundtrip starting with value failed, value: " + value + " -> json: " + json);
     }
 
+    @Test
+    public void testRoundtripOptional() {
+        final T value = this.value();
+        final Optional<T> optional = Optional.of(value);
+
+        final JsonNode jsonNode = this.marshallContext()
+            .marshallOptional(optional);
+
+        this.checkEquals(
+            optional,
+            this.unmarshallContext()
+                .unmarshallOptional(
+                    jsonNode, 
+                    type(value)
+                ),
+            () -> "roundtrip optional: " + optional + " -> json: " + jsonNode);
+    }
+    
     @Test
     public void testRoundtripList() {
         final T value = this.value();

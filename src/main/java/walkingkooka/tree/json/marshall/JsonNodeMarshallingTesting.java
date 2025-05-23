@@ -190,6 +190,22 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
     }
 
     @Test
+    default void testMarshallRoundtripOptional() {
+        final Object value = this.createJsonNodeMarshallingValue();
+        final Optional<Object> optional = Optional.ofNullable(value);
+
+        this.checkEquals(
+            optional,
+            this.unmarshallContext()
+                .unmarshallOptional(
+                    this.marshallContext()
+                        .marshall(optional),
+                    value.getClass()
+                )
+        );
+    }
+
+    @Test
     default void testMarshallRoundtripList() {
         final List<Object> list = Lists.of(this.createJsonNodeMarshallingValue());
 

@@ -22,6 +22,7 @@ import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertNotSame;
@@ -72,6 +73,32 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
             java.lang.NullPointerException.class,
             () -> this.createContext()
                 .unmarshall(
+                    JsonNode.nullNode(),
+                    null
+                )
+        );
+    }
+
+    // unmarshallOptional...............................................................................................
+
+    @Test
+    default void testUnmarshallOptionalWithNullJsonNodeFails() {
+        assertThrows(
+            java.lang.NullPointerException.class,
+            () -> this.createContext()
+                .unmarshallOptional(
+                    null,
+                    String.class
+                )
+        );
+    }
+
+    @Test
+    default void testUnmarshallOptionalWithNullTypeFails() {
+        assertThrows(
+            java.lang.NullPointerException.class,
+            () -> this.createContext()
+                .unmarshallOptional(
                     JsonNode.nullNode(),
                     null
                 )
@@ -191,6 +218,33 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
         );
     }
 
+    // unmarshallOptional...............................................................................................
+
+    default <T> void unmarshallOptionalAndCheck(final JsonNode node,
+                                                final Class<T> type,
+                                                final Optional<T> expected) {
+        this.unmarshallOptionalAndCheck(
+            this.createContext(),
+            node,
+            type,
+            expected
+        );
+    }
+
+    default <T> void unmarshallOptionalAndCheck(final JsonNodeUnmarshallContext context,
+                                                final JsonNode node,
+                                                final Class<T> type,
+                                                final Optional<T> expected) {
+        this.checkEquals(
+            expected,
+            context.unmarshallOptional(
+                node,
+                type
+            ),
+            () -> context + " unmarshallOptional " + node + " type " + type.getName()
+        );
+    }
+    
     // unmarshallList.................................................................................................
 
     default <T> void unmarshallListAndCheck(final JsonNode node,

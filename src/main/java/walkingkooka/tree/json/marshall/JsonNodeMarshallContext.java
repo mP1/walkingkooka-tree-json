@@ -22,6 +22,7 @@ import walkingkooka.tree.json.JsonNode;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiFunction;
 
@@ -54,6 +55,11 @@ public interface JsonNodeMarshallContext extends JsonNodeContext {
      * Creates a {@link JsonNode} that records the type name and the json representation of the given object.
      */
     JsonNode marshallWithType(final Object value);
+
+    /**
+     * Marshalls the given {@link Optional} without recording the type.
+     */
+    JsonNode marshallOptional(final Optional<?> optional);
 
     /**
      * Accepts a {@link Collection} of elements which are assumed to be the same supported type.

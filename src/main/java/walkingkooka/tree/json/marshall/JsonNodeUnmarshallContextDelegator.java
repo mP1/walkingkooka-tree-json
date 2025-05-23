@@ -23,6 +23,7 @@ import walkingkooka.tree.json.JsonNode;
 import java.math.MathContext;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 
@@ -54,6 +55,16 @@ public interface JsonNodeUnmarshallContextDelegator extends JsonNodeUnmarshallCo
                 node,
                 enumClass,
                 stringToEnum
+            );
+    }
+
+    @Override
+    default  <T> Optional<T> unmarshallOptional(final JsonNode node,
+                                                final Class<T> valueType) {
+        return this.jsonNodeUnmarshallContext()
+            .unmarshallOptional(
+                node,
+                valueType
             );
     }
 

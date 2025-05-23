@@ -33,6 +33,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collector;
@@ -126,6 +127,17 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
             Arrays.stream(csv.split(","))
                 .map(stringToEnum::apply)
                 .collect(Collectors.toCollection(() -> EnumSet.noneOf(enumClass)));
+    }
+
+    @Override
+    public <T> Optional<T> unmarshallOptional(final JsonNode node,
+                                              final Class<T> valueType) {
+        return Optional.ofNullable(
+            this.unmarshall(
+                node,
+                valueType
+            )
+        );
     }
 
     /**

@@ -29,6 +29,7 @@ import walkingkooka.tree.json.UnknownPropertyJsonNodeException;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -79,6 +80,12 @@ public interface JsonNodeUnmarshallContext extends JsonNodeContext,
     <T extends Enum<T>> Set<T> unmarshallEnumSet(final JsonNode node,
                                                  final Class<T> enumClass,
                                                  final Function<String, T> stringToEnum);
+
+    /**
+     * Assumes a {@link JsonNode} into an {@link java.util.Optional}.
+     */
+    <T> Optional<T> unmarshallOptional(final JsonNode node,
+                                       final Class<T> valueType);
 
     /**
      * Assumes something like a {@link JsonArray} and returns a {@link List} assuming the type of each element is fixed.

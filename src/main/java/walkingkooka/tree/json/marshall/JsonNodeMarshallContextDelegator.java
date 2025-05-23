@@ -21,6 +21,7 @@ import walkingkooka.tree.json.JsonNode;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 public interface JsonNodeMarshallContextDelegator extends JsonNodeMarshallContext, JsonNodeContextDelegator {
@@ -40,6 +41,12 @@ public interface JsonNodeMarshallContextDelegator extends JsonNodeMarshallContex
     default JsonNode marshallEnumSet(final Set<? extends Enum<?>> enumSet) {
         return this.jsonNodeMarshallContext()
             .marshallEnumSet(enumSet);
+    }
+
+    @Override
+    default JsonNode marshallOptional(final Optional<?> optional) {
+        return this.jsonNodeMarshallContext()
+            .marshallOptional(optional);
     }
 
     @Override

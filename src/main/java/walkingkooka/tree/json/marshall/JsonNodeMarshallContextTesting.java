@@ -20,8 +20,10 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.Test;
 import walkingkooka.tree.json.JsonNode;
 
+import java.lang.NullPointerException;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertNotSame;
@@ -129,6 +131,36 @@ public interface JsonNodeMarshallContextTesting<C extends JsonNodeMarshallContex
             expected,
             context.marshall(value),
             () -> context + " marshall " + value
+        );
+    }
+
+    // marshallOptional.................................................................................................
+
+    @Test
+    default void testMarshallOptionalWithNullFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .marshallOptional(null)
+        );
+    }
+
+    default void marshallOptionalAndCheck(final Optional<?> value,
+                                          final JsonNode expected) {
+        this.marshallOptionalAndCheck(
+            this.createContext(),
+            value,
+            expected
+        );
+    }
+
+    default void marshallOptionalAndCheck(final JsonNodeMarshallContext context,
+                                          final Optional<?> value,
+                                          final JsonNode expected) {
+        this.checkEquals(
+            expected,
+            context.marshallOptional(value),
+            () -> context + " marshallOptional " + value
         );
     }
 

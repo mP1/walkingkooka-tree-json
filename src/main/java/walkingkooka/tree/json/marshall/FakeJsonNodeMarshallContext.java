@@ -21,6 +21,7 @@ import walkingkooka.tree.json.JsonNode;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 public class FakeJsonNodeMarshallContext extends FakeJsonNodeContext implements JsonNodeMarshallContext {
@@ -37,6 +38,11 @@ public class FakeJsonNodeMarshallContext extends FakeJsonNodeContext implements 
 
     @Override
     public JsonNode marshallEnumSet(final Set<? extends Enum<?>> enumSet) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public JsonNode marshallOptional(final Optional<?> optional) {
         throw new UnsupportedOperationException();
     }
 

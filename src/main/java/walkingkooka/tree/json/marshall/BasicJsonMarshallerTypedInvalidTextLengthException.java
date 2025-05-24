@@ -101,7 +101,7 @@ final class BasicJsonMarshallerTypedInvalidTextLengthException extends BasicJson
         return JsonNode.object()
             .setChildren(
                 Lists.<JsonNode>of(
-                    JsonNode.string(value.label()).setName(LABEL_JSON_PROPERTY),
+                    JsonNode.string(value.label().orElse("")).setName(LABEL_JSON_PROPERTY), // label is never Optional#empty
                     JsonNode.string(value.text()).setName(TEXT_JSON_PROPERTY),
                     JsonNode.number(value.min()).setName(MIN_JSON_PROPERTY),
                     JsonNode.number(value.max()).setName(MAX_JSON_PROPERTY)

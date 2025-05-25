@@ -47,7 +47,7 @@ public interface JsonNodeMarshallContext extends JsonNodeContext {
     JsonNode marshall(final Object value);
 
     /**
-     * Marshealls the {@link Set} to a {@link JsonNode}.
+     * Marshalls the {@link Set} to a {@link JsonNode}.
      */
     JsonNode marshallEnumSet(final Set<? extends Enum<?>> enumSet);
 
@@ -72,7 +72,7 @@ public interface JsonNodeMarshallContext extends JsonNodeContext {
     JsonNode marshallCollection(final Collection<?> collection);
 
     /**
-     * Accepts a {@link Set} of elements which are assumed to be supported.
+     * Accepts a {@link Map} of elements which are assumed to be supported.
      */
     JsonNode marshallMap(final Map<?, ?> map);
 

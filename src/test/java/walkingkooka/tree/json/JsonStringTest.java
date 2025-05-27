@@ -53,19 +53,34 @@ public final class JsonStringTest extends JsonLeafNonNullNodeTestCase<JsonString
 
     @Test
     public void testCharacterOrFailEmptyString() {
-        final IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> JsonString.with("").characterOrFail());
-        this.checkEquals("Character string must have length of 1 not 0 got \"\"", thrown.getMessage());
+        final IllegalArgumentException thrown = assertThrows(
+            IllegalArgumentException.class,
+            () -> JsonString.with("").characterOrFail()
+        );
+        this.checkEquals(
+            "A String with a character, length must be 1 not 0 got \"\"",
+            thrown.getMessage()
+        );
     }
 
     @Test
     public void testCharacterOrFailNonOneCharacterString() {
-        final IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> JsonString.with("abc").characterOrFail());
-        this.checkEquals("Character string must have length of 1 not 3 got \"abc\"", thrown.getMessage());
+        final IllegalArgumentException thrown = assertThrows(
+            IllegalArgumentException.class,
+            () -> JsonString.with("abc").characterOrFail()
+        );
+        this.checkEquals(
+            "A String with a character, length must be 1 not 3 got \"abc\"",
+            thrown.getMessage()
+        );
     }
 
     @Test
     public void testCharacterOrFail() {
-        this.checkEquals('A', JsonString.with("A").characterOrFail());
+        this.checkEquals(
+            'A',
+            JsonString.with("A").characterOrFail()
+        );
     }
 
     @Test

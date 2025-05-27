@@ -273,7 +273,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
 
         final int length = string.length();
         if (1 != length) {
-            throw new java.lang.IllegalArgumentException("Character string must have length of 1 not " + length + " got " + CharSequences.quoteAndEscape(string));
+            throw new java.lang.IllegalArgumentException("A String with a character, length must be 1 not " + length + " got " + CharSequences.quoteAndEscape(string));
         }
         return string.charAt(0);
     }

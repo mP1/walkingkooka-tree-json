@@ -27,14 +27,12 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 
+/**
+ * Delegate all methods for {@link JsonNodeUnmarshallContext} except for {@link #setPreProcessor(JsonNodeUnmarshallContextPreProcessor)},
+ * forcing implementations to implement.
+ */
 public interface JsonNodeUnmarshallContextDelegator extends JsonNodeUnmarshallContext,
     JsonNodeContextDelegator {
-
-    @Override
-    default JsonNodeUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
-        return this.jsonNodeUnmarshallContext()
-            .setPreProcessor(processor);
-    }
 
     @Override
     default <T> T unmarshall(final JsonNode node,

@@ -25,6 +25,21 @@ import java.math.MathContext;
 public final class JsonNodeMarshallUnmarshallContextDelegatorTest implements JsonNodeMarshallUnmarshallContextTesting<TestJsonNodeMarshallUnmarshallContextDelegator> {
 
     @Override
+    public void testSetPreProcessorNullFails() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetPreProcessor() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetPreProcessorSame() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void testTypeNaming() {
         throw new UnsupportedOperationException();
     }
@@ -44,6 +59,11 @@ public final class JsonNodeMarshallUnmarshallContextDelegatorTest implements Jso
     }
 
     static class TestJsonNodeMarshallUnmarshallContextDelegator implements JsonNodeMarshallUnmarshallContextDelegator {
+
+        @Override
+        public JsonNodeUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
+            throw new UnsupportedOperationException();
+        }
 
         @Override
         public JsonNodeMarshallUnmarshallContext jsonNodeMarshallUnmarshallContext() {

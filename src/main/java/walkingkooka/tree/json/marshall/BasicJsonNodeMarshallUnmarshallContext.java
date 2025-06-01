@@ -31,10 +31,22 @@ final class BasicJsonNodeMarshallUnmarshallContext implements JsonNodeMarshallUn
         );
     }
 
-    private BasicJsonNodeMarshallUnmarshallContext(final JsonNodeMarshallContext jsonNodeMarshallContext,
-                                                   final JsonNodeUnmarshallContext jsonNodeUnmarshallContext) {
+        private BasicJsonNodeMarshallUnmarshallContext(final JsonNodeMarshallContext jsonNodeMarshallContext,
+                                                       final JsonNodeUnmarshallContext jsonNodeUnmarshallContext) {
         this.jsonNodeMarshallContext = jsonNodeMarshallContext;
         this.jsonNodeUnmarshallContext = jsonNodeUnmarshallContext;
+    }
+
+    @Override
+    public JsonNodeUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
+        final JsonNodeUnmarshallContext unmarshallContext = this.jsonNodeUnmarshallContext()
+            .setPreProcessor(processor);
+        return this.jsonNodeUnmarshallContext.equals(unmarshallContext) ?
+            this :
+            new BasicJsonNodeMarshallUnmarshallContext(
+                this.jsonNodeMarshallContext,
+                unmarshallContext
+            );
     }
 
     @Override
@@ -56,6 +68,7 @@ final class BasicJsonNodeMarshallUnmarshallContext implements JsonNodeMarshallUn
         return this.jsonNodeMarshallContext;
     }
 
+    @Override
     public String toString() {
         return this.jsonNodeMarshallContext + " " + this.jsonNodeUnmarshallContext;
     }

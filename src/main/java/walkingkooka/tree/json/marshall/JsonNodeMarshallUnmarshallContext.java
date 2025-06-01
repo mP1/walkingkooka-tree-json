@@ -22,4 +22,7 @@ package walkingkooka.tree.json.marshall;
  */
 public interface JsonNodeMarshallUnmarshallContext extends JsonNodeMarshallContext,
     JsonNodeUnmarshallContext {
+
+    @Override
+    JsonNodeMarshallUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor);
 }

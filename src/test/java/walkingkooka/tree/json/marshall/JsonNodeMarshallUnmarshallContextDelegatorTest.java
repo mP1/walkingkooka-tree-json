@@ -61,7 +61,7 @@ public final class JsonNodeMarshallUnmarshallContextDelegatorTest implements Jso
     static class TestJsonNodeMarshallUnmarshallContextDelegator implements JsonNodeMarshallUnmarshallContextDelegator {
 
         @Override
-        public JsonNodeUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
+        public JsonNodeMarshallUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
             throw new UnsupportedOperationException();
         }
 

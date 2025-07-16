@@ -210,13 +210,15 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      * Sub-classes must create a new copy of the parent and replace the identified child using its index or similar,
      * and also sets its parent after creation, returning the equivalent child at the same index.
      */
-    abstract JsonNode setChild0(final JsonNode newChild, final int index);
+    abstract JsonNode setChild0(final JsonNode newChild,
+                                final int index);
 
     /**
      * Only ever called after during the completion of a setChildren, basically used to recreate the parent graph
      * containing this child.
      */
-    final JsonNode replaceChild(final Optional<JsonNode> previousParent, final int index) {
+    final JsonNode replaceChild(final Optional<JsonNode> previousParent,
+                                final int index) {
         return previousParent.isPresent() ?
             previousParent.get()
                 .setChild0(this, index) :
@@ -472,9 +474,11 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     public static NodeSelector<JsonNode, JsonPropertyName, Name, Object> nodeSelectorExpressionParserToken(final ExpressionNodeSelectorParserToken token,
                                                                                                            final Predicate<ExpressionFunctionName> functions) {
-        return NodeSelector.parserToken(token,
+        return NodeSelector.parserToken(
+            token,
             n -> JsonPropertyName.with(n.value()),
             functions,
-            JsonNode.class);
+            JsonNode.class
+        );
     }
 }

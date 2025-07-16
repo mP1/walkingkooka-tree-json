@@ -88,22 +88,40 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     @Test
     public void testBooleanOrFail() {
         final JsonNode node = this.createNode();
-        final ClassCastException thrown = assertThrows(ClassCastException.class, node::booleanOrFail);
-        this.checkEquals("Expected Boolean got " + node.defaultName() + ": " + node, thrown.getMessage());
+        final ClassCastException thrown = assertThrows(
+            ClassCastException.class,
+            node::booleanOrFail
+        );
+        this.checkEquals(
+            "Expected Boolean got " + node.defaultName() + ": " + node,
+            thrown.getMessage()
+        );
     }
 
     @Test
     public void testNumberOrFail() {
         final JsonNode node = this.createNode();
-        final ClassCastException thrown = assertThrows(ClassCastException.class, node::numberOrFail);
-        this.checkEquals("Expected Number got " + node.defaultName() + ": " + node, thrown.getMessage());
+        final ClassCastException thrown = assertThrows(
+            ClassCastException.class,
+            node::numberOrFail
+        );
+        this.checkEquals(
+            "Expected Number got " + node.defaultName() + ": " + node,
+            thrown.getMessage()
+        );
     }
 
     @Test
     public void testStringOrFail() {
         final JsonNode node = this.createNode();
-        final ClassCastException thrown = assertThrows(ClassCastException.class, node::stringOrFail);
-        this.checkEquals("Expected String got " + node.defaultName() + ": " + node, thrown.getMessage());
+        final ClassCastException thrown = assertThrows(
+            ClassCastException.class,
+            node::stringOrFail
+        );
+        this.checkEquals(
+            "Expected String got " + node.defaultName() + ": " + node,
+            thrown.getMessage()
+        );
     }
 
     @Test
@@ -128,7 +146,8 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     public final void testPropertiesNeverReturnNull() throws Exception {
         this.allPropertiesNeverReturnNullCheck(
             this.createJsonNode(),
-            (m) -> this.propertiesNeverReturnNullSkipProperties().contains(m.getName())
+            (m) -> this.propertiesNeverReturnNullSkipProperties()
+                .contains(m.getName())
         );
     }
 

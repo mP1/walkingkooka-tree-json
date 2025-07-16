@@ -39,8 +39,14 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
     private final static CharacterConstant BEGIN = CharacterConstant.with('[');
     private final static CharacterConstant END = CharacterConstant.with(']');
 
-    private JsonArray(final JsonPropertyName name, final int index, final List<JsonNode> children) {
-        super(name, index, children);
+    private JsonArray(final JsonPropertyName name,
+                      final int index,
+                      final List<JsonNode> children) {
+        super(
+            name,
+            index,
+            children
+        );
     }
 
     /**
@@ -94,7 +100,11 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
      */
     @Override
     boolean childrenEquals(final List<JsonNode> children) {
-        return Lists.equals(this.children, children, JsonParentNodeChildPredicate.INSTANCE);
+        return Lists.equals(
+            this.children,
+            children,
+            JsonParentNodeChildPredicate.INSTANCE
+        );
     }
 
     /**
@@ -105,8 +115,12 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
     }
 
     @Override
-    public JsonArray setChild(final int index, final JsonNode element) {
-        return this.set(index, element);
+    public JsonArray setChild(final int index,
+                              final JsonNode element) {
+        return this.set(
+            index,
+            element
+        );
     }
 
     /**
@@ -231,12 +245,20 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
         final List<JsonNode> newChildren = this.copyChildren();
         newChildren.set(index, newChild);
 
-        return this.replaceChildren(newChildren).children().get(index);
+        return this.replaceChildren(newChildren)
+            .children()
+            .get(index);
     }
 
     @Override
-    JsonArray replace0(final JsonPropertyName name, final int index, final List<JsonNode> children) {
-        return new JsonArray(name, index, children);
+    JsonArray replace0(final JsonPropertyName name,
+                       final int index,
+                       final List<JsonNode> children) {
+        return new JsonArray(
+            name,
+            index,
+            children
+        );
     }
 
     /**

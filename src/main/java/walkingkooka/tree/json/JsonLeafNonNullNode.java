@@ -20,24 +20,34 @@ package walkingkooka.tree.json;
 import java.util.Objects;
 
 /**
- * Base type for all the leaf json nodes that are not {@link JsonNull}
+ * Base type for all the leaf json nodes that are not {@link JsonNull} such as {@link JsonString}, {@link JsonBoolean} and {@link JsonNumber}.
  */
 @SuppressWarnings("lgtm[java/inconsistent-equals-and-hashcode]")
 abstract class JsonLeafNonNullNode<V> extends JsonLeafNode<V> {
 
-    JsonLeafNonNullNode(final JsonPropertyName name, final int index, final V value) {
-        super(name, index, value);
+    JsonLeafNonNullNode(final JsonPropertyName name,
+                        final int index,
+                        final V value) {
+        super(
+            name,
+            index,
+            value
+        );
     }
 
     // Object...........................................................................................................
 
     @Override
     public final int hashCode() {
-        return Objects.hash(this.name, this.value);
+        return Objects.hash(
+            this.name,
+            this.value
+        );
     }
 
 
-    @Override final boolean equalsValue(final JsonNode other) {
+    @Override //
+    final boolean equalsValue(final JsonNode other) {
         return Objects.equals(
             this.value,
             other.value()

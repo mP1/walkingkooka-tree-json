@@ -35,8 +35,14 @@ public final class JsonNull extends JsonLeafNode<Void> {
     /**
      * Private ctor use singleton
      */
-    private JsonNull(final JsonPropertyName name, final int index, final Void value) {
-        super(name, index, value);
+    private JsonNull(final JsonPropertyName name,
+                     final int index,
+                     final Void value) {
+        super(
+            name,
+            index,
+            value
+        );
     }
 
     @Override
@@ -62,8 +68,14 @@ public final class JsonNull extends JsonLeafNode<Void> {
     }
 
     @Override
-    JsonNull replace0(final JsonPropertyName name, final int index, final Void value) {
-        return new JsonNull(name, index, value);
+    JsonNull replace0(final JsonPropertyName name,
+                      final int index,
+                      final Void value) {
+        return new JsonNull(
+            name,
+            index,
+            value
+        );
     }
 
     @Override
@@ -113,6 +125,8 @@ public final class JsonNull extends JsonLeafNode<Void> {
 
     @Override
     void printJson0(final IndentingPrinter printer) {
-        printer.print(String.valueOf(this.value));
+        printer.print(
+            String.valueOf(this.value)
+        );
     }
 }

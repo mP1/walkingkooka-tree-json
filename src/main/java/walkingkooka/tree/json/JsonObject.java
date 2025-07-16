@@ -50,8 +50,14 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
     /**
      * Private ctor use {@link #EMPTY} to start.
      */
-    private JsonObject(final JsonPropertyName name, final int index, final JsonObjectList children) {
-        super(name, index, children);
+    private JsonObject(final JsonPropertyName name,
+                       final int index,
+                       final JsonObjectList children) {
+        super(
+            name,
+            index,
+            children
+        );
     }
 
     /**
@@ -123,14 +129,19 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
     }
 
     @Override
-    public JsonObject setChild(final JsonPropertyName name, final JsonNode value) {
-        return this.set(name, value);
+    public JsonObject setChild(final JsonPropertyName name,
+                               final JsonNode value) {
+        return this.set(
+            name,
+            value
+        );
     }
 
     /**
      * Sets a new property or replaces an existing.
      */
-    public JsonObject set(final JsonPropertyName name, final JsonNode value) {
+    public JsonObject set(final JsonPropertyName name,
+                          final JsonNode value) {
         checkName(name);
         Objects.requireNonNull(value, "value");
 
@@ -168,7 +179,8 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
             .cast(JsonObject.class);
     }
 
-    private JsonObject addChild(final JsonPropertyName name, final JsonNode value) {
+    private JsonObject addChild(final JsonPropertyName name,
+                                final JsonNode value) {
         final Map<JsonPropertyName, JsonNode> children = Maps.ordered();
         children.putAll(this.children.nameToValues);
         children.put(name, value.setName0(name));
@@ -181,7 +193,8 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
      * Creates a new list of children and replaces the child at the given slot.
      */
     //@Override
-    private JsonObject replaceChild0(final JsonNode newChild, final int index) {
+    private JsonObject replaceChild0(final JsonNode newChild,
+                                     final int index) {
         final Map<JsonPropertyName, JsonNode> newChildren = Maps.ordered();
         final JsonPropertyName newChildName = newChild.name;
 
@@ -218,10 +231,16 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
     }
 
     @Override
-    JsonNode setChild0(final JsonNode newChild, final int index) {
-        return JsonParentNodeChildPredicate.INSTANCE.test(this.children.get(index), newChild) ?
+    JsonNode setChild0(final JsonNode newChild,
+                       final int index) {
+        return JsonParentNodeChildPredicate.INSTANCE.test(
+            this.children.get(index),
+            newChild
+        ) ?
             this :
-            this.replaceChild0(newChild, index).children.nameToValues.get(newChild.name);
+            this.replaceChild0(newChild, index)
+                .children
+                .nameToValues.get(newChild.name);
     }
 
     /**
@@ -248,8 +267,14 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
     }
 
     @Override
-    JsonObject replace0(final JsonPropertyName name, final int index, final JsonObjectList children) {
-        return new JsonObject(name, index, children);
+    JsonObject replace0(final JsonPropertyName name,
+                        final int index,
+                        final JsonObjectList children) {
+        return new JsonObject(
+            name,
+            index,
+            children
+        );
     }
 
     /**

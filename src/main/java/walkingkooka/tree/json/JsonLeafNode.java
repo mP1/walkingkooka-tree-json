@@ -29,7 +29,9 @@ import java.util.Objects;
  */
 abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
 
-    JsonLeafNode(final JsonPropertyName name, final int index, final V value) {
+    JsonLeafNode(final JsonPropertyName name,
+                 final int index,
+                 final V value) {
         super(name, index);
         this.value = value;
     }
@@ -40,8 +42,6 @@ abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
     }
 
     final V value;
-
-    //abstract JsonLeafNode<V> setValue(final V value);
 
     final JsonLeafNode<V> setValue0(final V value) {
         return Objects.equals(this.value(), value) ?
@@ -55,11 +55,19 @@ abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
             .cast(JsonLeafNode.class);
     }
 
-    @Override final JsonNode replace(final JsonPropertyName name, final int index) {
-        return this.replace0(name, index, this.value);
+    @Override//
+    final JsonNode replace(final JsonPropertyName name,
+                           final int index) {
+        return this.replace0(
+            name,
+            index,
+            this.value
+        );
     }
 
-    abstract JsonLeafNode<V> replace0(final JsonPropertyName name, final int index, final V value);
+    abstract JsonLeafNode<V> replace0(final JsonPropertyName name,
+                                      final int index,
+                                      final V value);
 
     /**
      * leaf nodes are not an array and always fail.
@@ -93,7 +101,9 @@ abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
         return this;
     }
 
-    @Override final JsonNode setChild0(final JsonNode newChild, final int index) {
+    @Override //
+    final JsonNode setChild0(final JsonNode newChild,
+                             final int index) {
         throw new NeverError(this.getClass().getSimpleName() + ".setChild");
     }
 
@@ -104,9 +114,10 @@ abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
         return this;
     }
 
-    // equals............................................................................................................
+    // equals...........................................................................................................
 
-    @Override final boolean equalsChildren(final JsonNode other) {
+    @Override //
+    final boolean equalsChildren(final JsonNode other) {
         return true;
     }
 }

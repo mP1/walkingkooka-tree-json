@@ -28,7 +28,9 @@ import java.util.stream.Collectors;
 @SuppressWarnings("lgtm[java/inconsistent-equals-and-hashcode]")
 abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
 
-    JsonParentNode(final JsonPropertyName name, final int index, final C children) {
+    JsonParentNode(final JsonPropertyName name,
+                   final int index,
+                   final C children) {
         super(name, index);
 
         this.children = this.adoptChildren(children);
@@ -72,14 +74,22 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
             .cast(JsonParentNode.class);
     }
 
-    @Override final JsonNode replace(final JsonPropertyName name, final int index) {
-        return this.replace0(name, index, this.children);
+    @Override //
+    final JsonNode replace(final JsonPropertyName name,
+                           final int index) {
+        return this.replace0(
+            name,
+            index,
+            this.children
+        );
     }
 
     /**
      * Factory that creates a {@link JsonParentNode} of the same type as this with the given new properties.
      */
-    abstract JsonParentNode<C> replace0(final JsonPropertyName name, final int index, final C children);
+    abstract JsonParentNode<C> replace0(final JsonPropertyName name,
+                                        final int index,
+                                        final C children);
 
     // Value....................................................................................................
 
@@ -136,7 +146,8 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
         return this.children.hashCode();
     }
 
-    @Override final boolean equalsValue(final JsonNode other) {
+    @Override //
+    final boolean equalsValue(final JsonNode other) {
         return true; // no other properties name already tested.
     }
 }

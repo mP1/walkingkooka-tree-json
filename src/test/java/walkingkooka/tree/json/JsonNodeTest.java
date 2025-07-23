@@ -113,50 +113,74 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
 
     @Test
     public void testParseObjectKeyMissingValueFails() {
-        this.parseStringFails("\"a1\":", IllegalArgumentException.class);
+        this.parseStringFails(
+            "\"a1\":",
+            IllegalArgumentException.class
+        );
     }
 
     @Test
     public void testParseObjectKeyValuePairFails() {
-        this.parseStringFails("\"a1\": \"b2\"", IllegalArgumentException.class);
+        this.parseStringFails(
+            "\"a1\": \"b2\"",
+            IllegalArgumentException.class
+        );
     }
 
     @Test
     public void testParseObjectKeyValuePairTwiceFails() {
-        this.parseStringFails("\"a1\": \"b2\", \"c3\": \"d4\"", IllegalArgumentException.class);
+        this.parseStringFails(
+            "\"a1\": \"b2\", \"c3\": \"d4\"",
+            IllegalArgumentException.class
+        );
     }
 
     @Test
     public void testParseObjectIncompleteFails() {
-        this.parseStringFails("{\"", IllegalArgumentException.class);
+        this.parseStringFails(
+            "{\"",
+            IllegalArgumentException.class
+        );
     }
 
     @Test
     public void testParseArrayIncompleteFails() {
-        this.parseStringFails("[1,", IllegalArgumentException.class);
+        this.parseStringFails(
+            "[1,",
+            IllegalArgumentException.class
+        );
     }
 
     @Test
     public void testParseArrayIncompleteFails2() {
-        this.parseStringFails("[1,", IllegalArgumentException.class);
+        this.parseStringFails(
+            "[1,",
+            IllegalArgumentException.class
+        );
     }
 
     @Test
     public void testParseBoolean() {
-        this.parseStringAndCheck("true",
-            JsonNode.booleanNode(true));
+        this.parseStringAndCheck(
+            "true",
+            JsonNode.booleanNode(true)
+        );
     }
 
     @Test
     public void testParseNull() {
-        this.parseStringAndCheck("null",
-            JsonNode.nullNode());
+        this.parseStringAndCheck(
+            "null",
+            JsonNode.nullNode()
+        );
     }
 
     @Test
     public void testParseNumber() {
-        this.parseStringAndCheck("123.5",
-            JsonNode.number(123.5));
+        this.parseStringAndCheck(
+            "123.5",
+            JsonNode.number(123.5)
+        );
     }
 
     @Test
@@ -185,44 +209,97 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
 
     @Test
     public void testParseString() {
-        this.parseStringAndCheck("\"abc123\"",
-            JsonNode.string("abc123"));
+        this.parseStringAndCheck(
+            "\"abc123\"",
+            JsonNode.string("abc123")
+        );
     }
 
     @Test
     public void testParseArray() {
-        this.parseStringAndCheck("[\"abc123\", true]",
+        this.parseStringAndCheck(
+            "[\"abc123\", true]",
             JsonNode.array()
-                .appendChild(JsonNode.string("abc123"))
-                .appendChild(JsonNode.booleanNode(true)));
+                .appendChild(
+                    JsonNode.string("abc123")
+                ).appendChild(
+                    JsonNode.booleanNode(true)
+                )
+        );
     }
 
     @Test
     public void testParseObject() {
-        this.parseStringAndCheck("{\"prop1\": \"value1\"}",
-            JsonNode.object().set(JsonPropertyName.with("prop1"), JsonNode.string("value1")));
+        this.parseStringAndCheck(
+            "{\"prop1\": \"value1\"}",
+            JsonNode.object()
+                .set(
+                    JsonPropertyName.with("prop1"),
+                    JsonNode.string("value1")
+                )
+        );
     }
 
     @Test
     public void testParseObject2() {
-        this.parseStringAndCheck("{ \"prop1\": \"value1\" }",
-            JsonNode.object().set(JsonPropertyName.with("prop1"), JsonNode.string("value1")));
+        this.parseStringAndCheck(
+            "{ \"prop1\": \"value1\" }",
+            JsonNode.object()
+                .set(
+                    JsonPropertyName.with("prop1"),
+                    JsonNode.string("value1")
+                )
+        );
     }
 
     @Test
     public void testParseObjectManyProperties() {
-        this.parseStringAndCheck("{\"prop1\": \"value1\", \"prop2\": \"value2\"}",
+        this.parseStringAndCheck(
+            "{\"prop1\": \"value1\", \"prop2\": \"value2\"}",
             JsonNode.object()
-                .set(JsonPropertyName.with("prop1"), JsonNode.string("value1"))
-                .set(JsonPropertyName.with("prop2"), JsonNode.string("value2")));
+                .set(
+                    JsonPropertyName.with("prop1"),
+                    JsonNode.string("value1")
+                )
+                .set(
+                    JsonPropertyName.with("prop2"),
+                    JsonNode.string("value2")
+                )
+        );
     }
 
     @Test
     public void testParseObjectOrderUnimportant() {
-        this.parseStringAndCheck("{\"prop1\": \"value1\", \"prop2\": \"value2\"}",
+        this.parseStringAndCheck(
+            "{\"prop1\": \"value1\", \"prop2\": \"value2\"}",
             JsonNode.object()
-                .set(JsonPropertyName.with("prop2"), JsonNode.string("value2"))
-                .set(JsonPropertyName.with("prop1"), JsonNode.string("value1")));
+                .set(
+                    JsonPropertyName.with("prop2"),
+                    JsonNode.string("value2")
+                ).set(
+                    JsonPropertyName.with("prop1"),
+                    JsonNode.string("value1")
+                )
+        );
+    }
+
+    @Override
+    public JsonNode parseString(final String text) {
+        return JsonNode.parse(text);
+    }
+
+    @Override
+    public RuntimeException parseStringFailedExpected(final RuntimeException expected) {
+        this.checkEquals(
+            expected instanceof IllegalArgumentException,
+            expected + " is not a sub class of " + IllegalArgumentException.class
+        );
+        return expected;
+    }
+
+    @Override
+    public Class<? extends RuntimeException> parseStringFailedExpected(final Class<? extends RuntimeException> expected) {
+        return IllegalArgumentException.class;
     }
 
     // HasTextOffset.................................................................................................
@@ -259,7 +336,7 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
             "a1b2c3");
     }
 
-    // ClassTesting.............................................................................................
+    // ClassTesting.....................................................................................................
 
     @Override
     public Class<JsonNode> type() {
@@ -269,23 +346,5 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
     @Override
     public JavaVisibility typeVisibility() {
         return JavaVisibility.PUBLIC;
-    }
-
-    // ParseStringTesting ........................................................................................
-
-    @Override
-    public JsonNode parseString(final String text) {
-        return JsonNode.parse(text);
-    }
-
-    @Override
-    public RuntimeException parseStringFailedExpected(final RuntimeException expected) {
-        this.checkEquals(expected instanceof IllegalArgumentException, expected + " is not a sub class of " + IllegalArgumentException.class);
-        return expected;
-    }
-
-    @Override
-    public Class<? extends RuntimeException> parseStringFailedExpected(final Class<? extends RuntimeException> expected) {
-        return IllegalArgumentException.class;
     }
 }

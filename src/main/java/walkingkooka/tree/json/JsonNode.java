@@ -436,8 +436,22 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     @Override
     public final String toString() {
+        return this.toJsonText(
+            INDENTATION,
+            LineEnding.SYSTEM
+        );
+    }
+
+    /**
+     * Helper that returns this node in json, supporting indentation and using the selected line ending.
+     */
+    public final String toJsonText(final Indentation indentation,
+                                   final LineEnding lineEnding) {
+        Objects.requireNonNull(indentation, "indentation");
+        Objects.requireNonNull(lineEnding, "lineEnding");
+
         final StringBuilder b = new StringBuilder();
-        try (final IndentingPrinter printer = Printers.stringBuilder(b, LineEnding.SYSTEM).indenting(INDENTATION)) {
+        try (final IndentingPrinter printer = Printers.stringBuilder(b, lineEnding).indenting(indentation)) {
             this.printJson(printer);
         }
         return b.toString();

@@ -21,7 +21,11 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.test.ParseStringTesting;
+import walkingkooka.text.Indentation;
+import walkingkooka.text.LineEnding;
 import walkingkooka.tree.HasTextOffsetTesting;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class JsonNodeTest implements ClassTesting2<JsonNode>,
     HasTextOffsetTesting,
@@ -334,6 +338,76 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
                 .children()
                 .get(2),
             "a1b2c3");
+    }
+
+    // toJsonText.......................................................................................................
+
+    @Test
+    public void testToJsonTextWithNullIndentationFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> JsonNode.nullNode()
+                .toJsonText(
+                    null,
+                    LineEnding.NONE
+                )
+        );
+    }
+
+    @Test
+    public void testToJsonTextWithNullLineEndingFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> JsonNode.nullNode()
+                .toJsonText(
+                    Indentation.SPACES2,
+                    null
+                )
+        );
+    }
+
+    @Test
+    public void testToJsonTextWithIndentationAndNlLineEnding() {
+        this.toJsonTextAndCheck(
+            JsonNode.object()
+                .set(
+                    JsonPropertyName.with("Hello"),
+                    JsonNode.number(123)
+                ),
+            Indentation.SPACES2,
+            LineEnding.NL,
+            "{\n" +
+                "  \"Hello\": 123\n" +
+                "}"
+        );
+    }
+
+    @Test
+    public void testToJsonTextWithNoIndentationAndLineEndingNone() {
+        this.toJsonTextAndCheck(
+            JsonNode.object()
+                .set(
+                    JsonPropertyName.with("Hello"),
+                    JsonNode.number(123)
+                ),
+            Indentation.EMPTY,
+            LineEnding.NONE,
+            "{\"Hello\": 123}"
+        );
+    }
+
+    private void toJsonTextAndCheck(final JsonNode json,
+                                    final Indentation indentation,
+                                    final LineEnding lineEnding,
+                                    final String expected) {
+        this.checkEquals(
+            expected,
+            json.toJsonText(
+                indentation,
+                lineEnding
+            ),
+            json::toString
+        );
     }
 
     // ClassTesting.....................................................................................................

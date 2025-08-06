@@ -27,6 +27,7 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public final class BasicJsonMarshallerTypedExpressionFunctionParameterTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedExpressionFunctionParameter, ExpressionFunctionParameter<?>> {
@@ -38,6 +39,13 @@ public final class BasicJsonMarshallerTypedExpressionFunctionParameterTest exten
     private final static List<Class<?>> TYPE_PARAMETERS = Lists.of(String.class);
 
     private final static ExpressionFunctionParameterCardinality CARDINALITY = ExpressionFunctionParameterCardinality.REQUIRED;
+
+    private final static Optional<List<String>> DEFAULT_VALUE = Optional.of(
+        Lists.of(
+            "Hello1",
+            "Hello2"
+        )
+    );
 
     private final static Set<ExpressionFunctionParameterKind> KINDS = ExpressionFunctionParameterKind.CONVERT_EVALUATE;
 
@@ -62,6 +70,7 @@ public final class BasicJsonMarshallerTypedExpressionFunctionParameterTest exten
             TYPE,
             TYPE_PARAMETERS,
             CARDINALITY,
+            DEFAULT_VALUE,
             KINDS
         );
     }
@@ -73,7 +82,11 @@ public final class BasicJsonMarshallerTypedExpressionFunctionParameterTest exten
             .set(BasicJsonMarshallerTypedExpressionFunctionParameter.TYPE_PROPERTY, JsonNode.string("java.util.List"))
             .set(BasicJsonMarshallerTypedExpressionFunctionParameter.TYPE_PARAMETERS_PROPERTY, JsonNode.array().appendChild(JsonNode.string("java.lang.String")))
             .set(BasicJsonMarshallerTypedExpressionFunctionParameter.CARDINALITY_PROPERTY, JsonNode.string("REQUIRED"))
-            .set(BasicJsonMarshallerTypedExpressionFunctionParameter.KINDS_PROPERTY, JsonNode.string("CONVERT,EVALUATE"));
+            .set(
+                BasicJsonMarshallerTypedExpressionFunctionParameter.DEFAULT_VALUE_PROPERTY,
+                marshallContext()
+                    .marshallOptionalWithType(DEFAULT_VALUE)
+            ).set(BasicJsonMarshallerTypedExpressionFunctionParameter.KINDS_PROPERTY, JsonNode.string("CONVERT,EVALUATE"));
     }
 
     @Override

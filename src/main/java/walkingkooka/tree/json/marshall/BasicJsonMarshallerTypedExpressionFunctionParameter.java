@@ -171,7 +171,7 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
     private final static String NAME_PROPERTY_STRING = "name";
     private final static String TYPE_PROPERTY_STRING = "type";
     private final static String CARDINALITY_PROPERTY_STRING = "cardinality";
-    private final static String TYPE_PARAMETERS_PROPERTY_STRING = "type-parameters";
+    private final static String TYPE_PARAMETERS_PROPERTY_STRING = "typeParameters";
     private final static String DEFAULT_VALUE_PROPERTY_STRING = "defaultValue";
     private final static String KINDS_PROPERTY_STRING = "kinds";
 

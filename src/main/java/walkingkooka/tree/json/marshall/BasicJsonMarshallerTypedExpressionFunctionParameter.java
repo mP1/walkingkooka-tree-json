@@ -29,6 +29,7 @@ import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -71,6 +72,7 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
         Class<?> type = null;
         List<Class<?>> typeParameters = Lists.empty();
         ExpressionFunctionParameterCardinality cardinality = null;
+        Optional<?> defaultValue = Optional.empty();
         Set<ExpressionFunctionParameterKind> kinds = Sets.empty();
 
         for (final JsonNode child : node.objectOrFail().children()) {
@@ -100,6 +102,9 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
                         child.stringOrFail()
                     );
                     break;
+                case DEFAULT_VALUE_PROPERTY_STRING:
+                    defaultValue = context.unmarshallOptionalWithType(child);
+                    break;
                 case KINDS_PROPERTY_STRING:
                     kinds = context.unmarshallEnumSet(
                         child,
@@ -125,9 +130,10 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
 
         return ExpressionFunctionParameter.with(
             parameterName,
-            type,
+            Cast.to(type),
             typeParameters,
             cardinality,
+            Cast.to(defaultValue),
             kinds
         );
     }
@@ -146,6 +152,14 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
 
         json = json.set(CARDINALITY_PROPERTY, context.marshall(parameter.cardinality().name()));
 
+        final Optional<?> defaultValue = parameter.defaultValue();
+        if(defaultValue.isPresent()) {
+            json = json.set(
+                DEFAULT_VALUE_PROPERTY,
+                context.marshallOptionalWithType(defaultValue)
+            );
+        }
+
         final Set<ExpressionFunctionParameterKind> kinds = parameter.kinds();
         if (kinds.size() > 0) {
             json = json.set(KINDS_PROPERTY, context.marshallEnumSet(parameter.kinds()));
@@ -158,11 +172,13 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
     private final static String TYPE_PROPERTY_STRING = "type";
     private final static String CARDINALITY_PROPERTY_STRING = "cardinality";
     private final static String TYPE_PARAMETERS_PROPERTY_STRING = "type-parameters";
+    private final static String DEFAULT_VALUE_PROPERTY_STRING = "defaultValue";
     private final static String KINDS_PROPERTY_STRING = "kinds";
 
     final static JsonPropertyName NAME_PROPERTY = JsonPropertyName.with(NAME_PROPERTY_STRING);
     final static JsonPropertyName TYPE_PROPERTY = JsonPropertyName.with(TYPE_PROPERTY_STRING);
     final static JsonPropertyName CARDINALITY_PROPERTY = JsonPropertyName.with(CARDINALITY_PROPERTY_STRING);
     final static JsonPropertyName TYPE_PARAMETERS_PROPERTY = JsonPropertyName.with(TYPE_PARAMETERS_PROPERTY_STRING);
+    final static JsonPropertyName DEFAULT_VALUE_PROPERTY = JsonPropertyName.with(DEFAULT_VALUE_PROPERTY_STRING);
     final static JsonPropertyName KINDS_PROPERTY = JsonPropertyName.with(KINDS_PROPERTY_STRING);
 }

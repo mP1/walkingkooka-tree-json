@@ -178,7 +178,7 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testParseArrayUnclosedFails() {
         this.parseThrows(
             "[",
-            "End of text at (2,1) expected [ARRAY_ELEMENT, {[WHITESPACE], \",\", ARRAY_ELEMENT_REQUIRED}], [WHITESPACE], \"]\""
+            "End of text, expected [ARRAY_ELEMENT, {[WHITESPACE], \",\", ARRAY_ELEMENT_REQUIRED}], [WHITESPACE], \"]\""
         );
     }
 
@@ -312,7 +312,7 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testParseObjectMissingClosingFails() {
         this.parseThrows(
             "{",
-            "End of text at (2,1) expected [OBJECT_PROPERTY, {[WHITESPACE], \",\", OBJECT_PROPERTY_REQUIRED}], [WHITESPACE], \"}\""
+            "End of text, expected [OBJECT_PROPERTY, {[WHITESPACE], \",\", OBJECT_PROPERTY_REQUIRED}], [WHITESPACE], \"}\""
         );
     }
 

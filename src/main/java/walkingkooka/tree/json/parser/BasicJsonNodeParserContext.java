@@ -73,6 +73,11 @@ final class BasicJsonNodeParserContext implements JsonNodeParserContext,
     }
 
     @Override
+    public boolean isGroupSeparatorWithinNumbersSupported() {
+        return false;
+    }
+
+    @Override
     public InvalidCharacterException invalidCharacterException(final Parser<?> parser,
                                                                final TextCursor cursor) {
         return InvalidCharacterExceptionFactory.COLUMN_AND_LINE_EXPECTED.apply(

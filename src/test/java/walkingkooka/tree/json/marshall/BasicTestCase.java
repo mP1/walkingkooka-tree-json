@@ -20,10 +20,12 @@ package walkingkooka.tree.json.marshall;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.TypeNameTesting;
+import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 
-public abstract class BasicTestCase<T> implements ClassTesting2<T>, TypeNameTesting<T> {
+public abstract class BasicTestCase<T> implements ClassTesting2<T>, TypeNameTesting<T>,
+    TreePrintableTesting {
 
     BasicTestCase() {
         super();

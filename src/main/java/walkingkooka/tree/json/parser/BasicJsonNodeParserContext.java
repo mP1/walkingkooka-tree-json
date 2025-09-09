@@ -91,6 +91,11 @@ final class BasicJsonNodeParserContext implements JsonNodeParserContext,
         return this.dateTimeContext.locale();
     }
 
+    @Override
+    public char valueSeparator() {
+        return ',';
+    }
+
     // DateTimeContextDelegator.........................................................................................
 
     @Override

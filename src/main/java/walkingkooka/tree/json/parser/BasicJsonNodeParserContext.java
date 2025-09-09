@@ -73,7 +73,7 @@ final class BasicJsonNodeParserContext implements JsonNodeParserContext,
     }
 
     @Override
-    public boolean isGroupSeparatorWithinNumbersSupported() {
+    public boolean canNumbersHaveGroupSeparator() {
         return false;
     }
 

@@ -166,6 +166,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedLocalDate.instance(),
             BasicJsonMarshallerTypedLocalDateList.instance(),
             BasicJsonMarshallerTypedLocalDateTime.instance(),
+            BasicJsonMarshallerTypedLocalDateTimeList.instance(),
             BasicJsonMarshallerTypedLocale.instance(),
             BasicJsonMarshallerTypedLocalTime.instance(),
             BasicJsonMarshallerTypedMap.instance(),

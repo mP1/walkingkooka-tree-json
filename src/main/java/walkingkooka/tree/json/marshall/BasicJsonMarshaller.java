@@ -177,6 +177,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedNumberByte.instance(),
             BasicJsonMarshallerTypedNumberShort.instance(),
             BasicJsonMarshallerTypedNumberInteger.instance(),
+            BasicJsonMarshallerTypedNumberList.instance(),
             BasicJsonMarshallerTypedNumberLong.instance(),
             BasicJsonMarshallerTypedNumberFloat.instance(),
             BasicJsonMarshallerTypedOptional.instance(),

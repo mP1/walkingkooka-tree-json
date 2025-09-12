@@ -20,6 +20,7 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 import walkingkooka.collect.list.CsvStringList;
+import walkingkooka.collect.list.StringList;
 import walkingkooka.collect.set.CsvStringSet;
 import walkingkooka.datetime.LocalDateList;
 import walkingkooka.datetime.LocalDateTimeList;
@@ -228,7 +229,8 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             value instanceof LocalDateList ||
             value instanceof LocalDateTimeList ||
             value instanceof LocalTimeList ||
-            value instanceof NumberList ?
+            value instanceof NumberList ||
+            value instanceof StringList ?
             value.getClass() :
             value instanceof List ?
                 List.class :

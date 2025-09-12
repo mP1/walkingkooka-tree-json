@@ -183,6 +183,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedOptional.instance(),
             BasicJsonMarshallerTypedRange.instance(),
             BasicJsonMarshallerTypedRoundingMode.instance(),
+            BasicJsonMarshallerTypedStringList.instance(),
             BasicJsonMarshallerTypedStringName.instance()
         ).forEach(BasicJsonMarshaller::register);
     }

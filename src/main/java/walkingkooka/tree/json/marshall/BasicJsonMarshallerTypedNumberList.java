@@ -52,8 +52,8 @@ final class BasicJsonMarshallerTypedNumberList extends BasicJsonMarshallerTyped<
 
     @Override
     NumberList unmarshallNonNull(final JsonNode node,
-                                    final JsonNodeUnmarshallContext context) {
-        return NumberList.with(
+                                 final JsonNodeUnmarshallContext context) {
+        return NumberList.EMPTY.setElements(
             context.unmarshallListWithType(node)
         );
     }

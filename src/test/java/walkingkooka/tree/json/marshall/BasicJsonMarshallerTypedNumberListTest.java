@@ -30,7 +30,7 @@ public final class BasicJsonMarshallerTypedNumberListTest extends BasicJsonMarsh
 
     @Override
     NumberList value() {
-        return NumberList.with(
+        return NumberList.EMPTY.setElements(
             Lists.of(
                 Byte.valueOf((byte)1),
                 Short.valueOf((short)2),

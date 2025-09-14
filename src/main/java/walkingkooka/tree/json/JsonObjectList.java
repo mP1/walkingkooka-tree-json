@@ -23,6 +23,7 @@ import walkingkooka.collect.map.Maps;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -93,12 +94,12 @@ final class JsonObjectList extends AbstractList<JsonNode> implements ImmutableLi
     }
 
     @Override
-    public ImmutableList<JsonNode> setElements(final List<JsonNode> list) {
-        Objects.requireNonNull(list, "list");
+    public ImmutableList<JsonNode> setElements(final Collection<JsonNode> collection) {
+        Objects.requireNonNull(collection, "collection");
 
         final Map<JsonPropertyName, JsonNode> map = Maps.sorted();
 
-        for (final JsonNode json : list) {
+        for (final JsonNode json : collection) {
             map.put(
                 json.name(),
                 json

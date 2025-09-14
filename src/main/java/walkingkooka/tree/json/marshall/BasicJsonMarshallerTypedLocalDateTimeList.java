@@ -55,7 +55,7 @@ final class BasicJsonMarshallerTypedLocalDateTimeList extends BasicJsonMarshalle
     @Override
     LocalDateTimeList unmarshallNonNull(final JsonNode node,
                                         final JsonNodeUnmarshallContext context) {
-        return LocalDateTimeList.with(
+        return LocalDateTimeList.EMPTY.setElements(
             context.unmarshallList(
                 node,
                 LocalDateTime.class

@@ -32,7 +32,7 @@ public final class BasicJsonMarshallerTypedLocalTimeListTest extends BasicJsonMa
 
     @Override
     LocalTimeList value() {
-        return LocalTimeList.with(
+        return LocalTimeList.EMPTY.setElements(
             Lists.of(
                 LocalTime.of(1, 11, 58),
                 LocalTime.of(2, 22, 59)

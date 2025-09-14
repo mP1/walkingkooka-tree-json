@@ -32,7 +32,7 @@ public final class BasicJsonMarshallerTypedLocalDateListTest extends BasicJsonMa
 
     @Override
     LocalDateList value() {
-        return LocalDateList.with(
+        return LocalDateList.EMPTY.setElements(
             Lists.of(
                 LocalDate.of(1999, 1, 1),
                 LocalDate.of(2000, 2, 2)

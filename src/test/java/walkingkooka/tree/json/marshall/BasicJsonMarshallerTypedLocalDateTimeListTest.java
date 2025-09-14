@@ -32,7 +32,7 @@ public final class BasicJsonMarshallerTypedLocalDateTimeListTest extends BasicJs
 
     @Override
     LocalDateTimeList value() {
-        return LocalDateTimeList.with(
+        return LocalDateTimeList.EMPTY.setElements(
             Lists.of(
                 LocalDateTime.of(1999, 1, 1, 1, 0, 0),
                 LocalDateTime.of(2000, 2, 2, 2, 0, 0)

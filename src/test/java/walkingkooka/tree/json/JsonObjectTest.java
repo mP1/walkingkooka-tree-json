@@ -384,6 +384,47 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     }
 
     @Test
+    public void testSetNumberZero() {
+        this.setNumberAndCheck(0);
+    }
+
+    @Test
+    public void testSetNumber() {
+        this.setNumberAndCheck(12.5);
+    }
+
+    private void setNumberAndCheck(final double value) {
+        final JsonPropertyName propertyName1 = this.key1();
+        final JsonPropertyName propertyName2 = this.key2();
+
+        final JsonNode value2 = this.value2();
+
+        final JsonObject object = JsonNode.object()
+            .set(
+                propertyName1,
+                "value1"
+            ).set(
+                propertyName2,
+                value2
+            ).set(
+                propertyName1,
+                value
+            );
+
+        this.checkEquals(
+            JsonNode.object()
+                .set(
+                    propertyName1,
+                    JsonNode.number(value)
+                ).set(
+                    propertyName2,
+                    value2
+                ),
+            object
+        );
+    }
+
+    @Test
     public void testSetString() {
         final String string = "Hello123";
 
@@ -630,7 +671,10 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testMergeWithEmptyObject() {
         final JsonObject object = JsonNode.object()
-            .set(JsonPropertyName.with("a"), JsonNode.number(123.5));
+            .set(
+                JsonPropertyName.with("a"),
+                123.5
+            );
 
         assertSame(
             object,
@@ -641,7 +685,10 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testMergeSame() {
         final JsonObject object = JsonNode.object()
-            .set(JsonPropertyName.with("a"), JsonNode.number(123.5));
+            .set(
+                JsonPropertyName.with("a"),
+                123.5
+            );
 
         assertSame(
             object,
@@ -654,7 +701,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonPropertyName a = JsonPropertyName.with("a");
         final String string = "abc";
         final JsonPropertyName b = JsonPropertyName.with("b");
-        final JsonNumber number = JsonNode.number(123);
+        final double number = 123;
 
         this.mergeAndCheck(
             JsonNode.object()
@@ -673,7 +720,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final String string = "abc";
 
         final JsonPropertyName b = JsonPropertyName.with("b");
-        final JsonNumber number = JsonNode.number(123);
+        final double number = 123;
 
         final JsonPropertyName c = JsonPropertyName.with("b");
         final JsonBoolean bool = JsonNode.booleanNode(true);

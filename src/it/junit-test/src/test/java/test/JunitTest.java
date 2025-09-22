@@ -58,9 +58,8 @@ public class JunitTest {
             ).set(
                 JsonPropertyName.with("boolean"),
                 JsonNode.booleanNode(true)
-            ).set(
-                JsonPropertyName.with("null"),
-                JsonNode.nullNode()
+            ).setNull(
+                JsonPropertyName.with("null")
             ).set(
                 JsonPropertyName.with("array"),
                 JsonNode.array()

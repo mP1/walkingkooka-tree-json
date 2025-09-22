@@ -136,6 +136,16 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
         );
     }
 
+    public JsonObject set(final JsonPropertyName name,
+                          final String value) {
+        return null == value ?
+            this.setNull(name) :
+            this.set(
+                name,
+                JsonNode.string(value)
+            );
+    }
+
     @Override
     public JsonObject setChild(final JsonPropertyName name,
                                final JsonNode value) {

@@ -51,7 +51,7 @@ public class JunitTest {
         final JsonNode graph = JsonNode.object()
             .set(
                 JsonPropertyName.with("string"),
-                JsonNode.string("abc")
+                "abc"
             ).set(
                 JsonPropertyName.with("number"),
                 JsonNode.number(Double.parseDouble("12.5"))

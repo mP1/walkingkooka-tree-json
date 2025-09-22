@@ -178,9 +178,13 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
 
     @Test
     public void testSetNullValueFails() {
-        assertThrows(NullPointerException.class, () -> JsonNode.object().set(
-            this.key1(),
-            null));
+        assertThrows(
+            NullPointerException.class,
+            () -> JsonNode.object().set(
+                this.key1(),
+                (JsonNode)null
+            )
+        );
     }
 
     @Test
@@ -328,7 +332,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonObject object = JsonNode.object()
             .set(
                 propertyName1,
-                JsonNode.string("value1")
+                "value1"
             ).set(
                 propertyName2,
                 value2
@@ -360,7 +364,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         final JsonObject object = JsonNode.object()
             .set(
                 propertyName1,
-                JsonNode.string("value1")
+                "value1"
             ).set(
                 propertyName2,
                 value2
@@ -374,6 +378,61 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
                 ).set(
                     propertyName2,
                     value2
+                ),
+            object
+        );
+    }
+
+    @Test
+    public void testSetString() {
+        final String string = "Hello123";
+
+        this.setStringAndCheck(
+            string,
+            JsonNode.string(string)
+        );
+    }
+
+    @Test
+    public void testSetStringWithEmptyString() {
+        final String string = "";
+
+        this.setStringAndCheck(
+            string,
+            JsonNode.string(string)
+        );
+    }
+
+    @Test
+    public void testSetStringWithNull() {
+        this.setStringAndCheck(
+            null,
+            JsonNode.nullNode()
+        );
+    }
+
+    private void setStringAndCheck(final String string,
+                                   final JsonNode jsonNode) {
+        final JsonPropertyName propertyName1 = this.key1();
+        final JsonPropertyName propertyName2 = this.key2();
+
+        final JsonObject object = JsonNode.object()
+            .set(
+                propertyName1,
+                JsonNode.string("value1")
+            ).set(
+                propertyName2,
+                string
+            ).setNull(propertyName1);
+
+        this.checkEquals(
+            JsonNode.object()
+                .set(
+                    propertyName1,
+                    JsonNode.nullNode()
+                ).set(
+                    propertyName2,
+                    jsonNode
                 ),
             object
         );
@@ -593,7 +652,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testMerge() {
         final JsonPropertyName a = JsonPropertyName.with("a");
-        final JsonString string = JsonNode.string("abc");
+        final String string = "abc";
         final JsonPropertyName b = JsonPropertyName.with("b");
         final JsonNumber number = JsonNode.number(123);
 
@@ -611,7 +670,7 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     @Test
     public void testMergeReplaced() {
         final JsonPropertyName a = JsonPropertyName.with("a");
-        final JsonString string = JsonNode.string("abc");
+        final String string = "abc";
 
         final JsonPropertyName b = JsonPropertyName.with("b");
         final JsonNumber number = JsonNode.number(123);

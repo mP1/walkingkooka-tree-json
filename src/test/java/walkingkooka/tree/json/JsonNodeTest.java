@@ -239,7 +239,7 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
             JsonNode.object()
                 .set(
                     JsonPropertyName.with("prop1"),
-                    JsonNode.string("value1")
+                    "value1"
                 )
         );
     }
@@ -251,7 +251,7 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
             JsonNode.object()
                 .set(
                     JsonPropertyName.with("prop1"),
-                    JsonNode.string("value1")
+                    "value1"
                 )
         );
     }
@@ -263,11 +263,10 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
             JsonNode.object()
                 .set(
                     JsonPropertyName.with("prop1"),
-                    JsonNode.string("value1")
-                )
-                .set(
+                    "value1"
+                ).set(
                     JsonPropertyName.with("prop2"),
-                    JsonNode.string("value2")
+                    "value2"
                 )
         );
     }
@@ -279,10 +278,10 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
             JsonNode.object()
                 .set(
                     JsonPropertyName.with("prop2"),
-                    JsonNode.string("value2")
+                    "value2"
                 ).set(
                     JsonPropertyName.with("prop1"),
-                    JsonNode.string("value1")
+                    "value1"
                 )
         );
     }
@@ -315,14 +314,16 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
 
     @Test
     public void testHasTextOffsetJsonObject() {
-        this.textOffsetAndCheck(JsonObject.object()
-                .set(JsonPropertyName.with("key1"), JsonNode.string("a1"))
-                .set(JsonPropertyName.with("key2"), JsonNode.string("b2"))
-                .set(JsonPropertyName.with("key3"), JsonNode.string("c3"))
-                .set(JsonPropertyName.with("key4"), JsonNode.string("d4"))
+        this.textOffsetAndCheck(
+            JsonObject.object()
+                .set(JsonPropertyName.with("key1"), "a1")
+                .set(JsonPropertyName.with("key2"), "b2")
+                .set(JsonPropertyName.with("key3"), "c3")
+                .set(JsonPropertyName.with("key4"), "d4")
                 .children()
                 .get(2),
-            "a1b2");
+            "a1b2"
+        );
     }
 
     @Test

@@ -137,6 +137,13 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
         );
     }
 
+    public JsonObject setNull(final JsonPropertyName name) {
+        return this.set(
+            name,
+            JsonNode.nullNode()
+        );
+    }
+
     /**
      * Sets a new property or replaces an existing.
      */

@@ -19,6 +19,8 @@ package walkingkooka.tree.json;
 
 import walkingkooka.text.printer.IndentingPrinter;
 
+import java.util.Objects;
+
 /**
  * Represents an immutable json number.
  */
@@ -37,7 +39,7 @@ public final class JsonNumber extends JsonLeafNonNullNode<Double> {
 
     @Override
     public JsonNumber setName(final JsonPropertyName name) {
-        checkName(name);
+        Objects.requireNonNull(name, "name");
         return this.setName0(name)
             .cast(JsonNumber.class);
     }

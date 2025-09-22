@@ -70,7 +70,7 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
 
     @Override
     public JsonArray setName(final JsonPropertyName name) {
-        checkName(name);
+        Objects.requireNonNull(name, "name");
         return this.setName0(name)
             .cast(JsonArray.class);
     }

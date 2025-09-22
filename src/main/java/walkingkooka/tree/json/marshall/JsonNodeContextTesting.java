@@ -44,224 +44,399 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
 
     @Test
     default void testRegisteredTypeNullFails() {
-        assertThrows(java.lang.NullPointerException.class, () -> this.createContext().registeredType(null));
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext()
+                .registeredType(null)
+        );
     }
 
     @Test
     default void testRegisteredTypeUnknown() {
-        this.registeredTypeAndCheck(JsonNode.string(this.getClass().getName()), Optional.empty());
+        this.registeredTypeAndCheck(
+            JsonNode.string(
+                this.getClass().getName()
+            ),
+            Optional.empty()
+        );
     }
 
     @Test
     default void testRegisteredTypeBoolean() {
-        this.registeredTypeAndCheck(JsonNode.string("boolean"), Optional.of(Boolean.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("boolean"),
+            Optional.of(Boolean.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeByte() {
-        this.registeredTypeAndCheck(JsonNode.string("byte"), Optional.of(Byte.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("byte"),
+            Optional.of(Byte.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeShort() {
-        this.registeredTypeAndCheck(JsonNode.string("short"), Optional.of(Short.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("short"),
+            Optional.of(Short.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeInteger() {
-        this.registeredTypeAndCheck(JsonNode.string("int"), Optional.of(Integer.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("int"),
+            Optional.of(Integer.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeLong() {
-        this.registeredTypeAndCheck(JsonNode.string("long"), Optional.of(Long.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("long"),
+            Optional.of(Long.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeFloat() {
-        this.registeredTypeAndCheck(JsonNode.string("float"), Optional.of(Float.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("float"),
+            Optional.of(Float.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeDouble() {
-        this.registeredTypeAndCheck(JsonNode.string("double"), Optional.of(Double.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("double"),
+            Optional.of(Double.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeCharacter() {
-        this.registeredTypeAndCheck(JsonNode.string("character"), Optional.of(Character.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("character"),
+            Optional.of(Character.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeString() {
-        this.registeredTypeAndCheck(JsonNode.string("string"), Optional.of(String.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("string"),
+            Optional.of(String.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeBigDecimal() {
-        this.registeredTypeAndCheck(JsonNode.string("big-decimal"), Optional.of(BigDecimal.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("big-decimal"),
+            Optional.of(BigDecimal.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeBigInteger() {
-        this.registeredTypeAndCheck(JsonNode.string("big-integer"), Optional.of(BigInteger.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("big-integer"),
+            Optional.of(BigInteger.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeLocalDate() {
-        this.registeredTypeAndCheck(JsonNode.string("local-date"), Optional.of(LocalDate.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("local-date"),
+            Optional.of(LocalDate.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeLocalDateTime() {
-        this.registeredTypeAndCheck(JsonNode.string("local-date-time"), Optional.of(LocalDateTime.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("local-date-time"),
+            Optional.of(LocalDateTime.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeLocalTime() {
-        this.registeredTypeAndCheck(JsonNode.string("local-time"), Optional.of(LocalTime.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("local-time"),
+            Optional.of(LocalTime.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeLocale() {
-        this.registeredTypeAndCheck(JsonNode.string("locale"), Optional.of(Locale.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("locale"),
+            Optional.of(Locale.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeMathContext() {
-        this.registeredTypeAndCheck(JsonNode.string("math-context"), Optional.of(MathContext.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("math-context"),
+            Optional.of(MathContext.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeList() {
-        this.registeredTypeAndCheck(JsonNode.string("list"), Optional.of(List.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("list"),
+            Optional.of(List.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeSet() {
-        this.registeredTypeAndCheck(JsonNode.string("set"), Optional.of(Set.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("set"),
+            Optional.of(Set.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeMap() {
-        this.registeredTypeAndCheck(JsonNode.string("map"), Optional.of(Map.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("map"),
+            Optional.of(Map.class)
+        );
     }
 
     @Test
     default void testRegisteredTypeOptional() {
-        this.registeredTypeAndCheck(JsonNode.string("optional"), Optional.of(Optional.class));
+        this.registeredTypeAndCheck(
+            JsonNode.string("optional"),
+            Optional.of(Optional.class)
+        );
     }
 
     // typeName ........................................................................................................
 
     @Test
     default void testTypeNameNullFails() {
-        assertThrows(java.lang.NullPointerException.class, () -> this.createContext().typeName(null));
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createContext().typeName(null)
+        );
     }
 
     @Test
     default void testTypeNameUnknown() {
-        this.typeNameAndCheck(this.getClass(), Optional.empty());
+        this.typeNameAndCheck(
+            this.getClass(),
+            Optional.empty()
+        );
     }
 
     @Test
     default void testTypeNameBoolean() {
-        this.typeNameAndCheck(Boolean.class, Optional.of(JsonNode.string("boolean")));
+        this.typeNameAndCheck(
+            Boolean.class,
+            Optional.of(
+                JsonNode.string("boolean")
+            )
+        );
     }
 
     @Test
     default void testTypeNameByte() {
-        this.typeNameAndCheck(Byte.class, Optional.of(JsonNode.string("byte")));
+        this.typeNameAndCheck(
+            Byte.class,
+            Optional.of(
+                JsonNode.string("byte")
+            )
+        );
     }
 
     @Test
     default void testTypeNameShort() {
-        this.typeNameAndCheck(Short.class, Optional.of(JsonNode.string("short")));
+        this.typeNameAndCheck(
+            Short.class,
+            Optional.of(
+                JsonNode.string("short")
+            )
+        );
     }
 
     @Test
     default void testTypeNameInteger() {
-        this.typeNameAndCheck(Integer.class, Optional.of(JsonNode.string("int")));
+        this.typeNameAndCheck(
+            Integer.class,
+            Optional.of(
+                JsonNode.string("int")
+            )
+        );
     }
 
     @Test
     default void testTypeNameLong() {
-        this.typeNameAndCheck(Long.class, Optional.of(JsonNode.string("long")));
+        this.typeNameAndCheck(
+            Long.class,
+            Optional.of(
+                JsonNode.string("long")
+            )
+        );
     }
 
     @Test
     default void testTypeNameFloat() {
-        this.typeNameAndCheck(Float.class, Optional.of(JsonNode.string("float")));
+        this.typeNameAndCheck(
+            Float.class,
+            Optional.of(
+                JsonNode.string("float")
+            )
+        );
     }
 
     @Test
     default void testTypeNameDouble() {
-        this.typeNameAndCheck(Double.class, Optional.of(JsonNode.string("double")));
+        this.typeNameAndCheck(
+            Double.class,
+            Optional.of(
+                JsonNode.string("double")
+            )
+        );
     }
 
     @Test
     default void testTypeNameCharacter() {
-        this.typeNameAndCheck(Character.class, Optional.of(JsonNode.string("character")));
+        this.typeNameAndCheck(
+            Character.class,
+            Optional.of(
+                JsonNode.string("character")
+            )
+        );
     }
 
     @Test
     default void testTypeNameString() {
-        this.typeNameAndCheck(String.class, Optional.of(JsonNode.string("string")));
+        this.typeNameAndCheck(
+            String.class,
+            Optional.of(
+                JsonNode.string("string")
+            )
+        );
     }
 
     @Test
     default void testTypeNameBigDecimal() {
-        this.typeNameAndCheck(BigDecimal.class, Optional.of(JsonNode.string("big-decimal")));
+        this.typeNameAndCheck(
+            BigDecimal.class,
+            Optional.of(
+                JsonNode.string("big-decimal")
+            )
+        );
     }
 
     @Test
     default void testTypeNameBigInteger() {
-        this.typeNameAndCheck(BigInteger.class, Optional.of(JsonNode.string("big-integer")));
+        this.typeNameAndCheck(
+            BigInteger.class,
+            Optional.of(
+                JsonNode.string("big-integer")
+            )
+        );
     }
 
     @Test
     default void testTypeNameLocalDate() {
-        this.typeNameAndCheck(LocalDate.class, Optional.of(JsonNode.string("local-date")));
+        this.typeNameAndCheck(
+            LocalDate.class,
+            Optional.of(
+                JsonNode.string("local-date")
+            )
+        );
     }
 
     @Test
     default void testTypeNameLocalDateTime() {
-        this.typeNameAndCheck(LocalDateTime.class, Optional.of(JsonNode.string("local-date-time")));
+        this.typeNameAndCheck(
+            LocalDateTime.class,
+            Optional.of(
+                JsonNode.string("local-date-time")
+            )
+        );
     }
 
     @Test
     default void testTypeNameLocalTime() {
-        this.typeNameAndCheck(LocalTime.class, Optional.of(JsonNode.string("local-time")));
+        this.typeNameAndCheck(
+            LocalTime.class,
+            Optional.of(
+                JsonNode.string("local-time")
+            )
+        );
     }
 
     @Test
     default void testTypeNameLocale() {
-        this.typeNameAndCheck(Locale.class, Optional.of(JsonNode.string("locale")));
+        this.typeNameAndCheck(
+            Locale.class,
+            Optional.of(
+                JsonNode.string("locale")
+            )
+        );
     }
 
     @Test
     default void testTypeNameMathContext() {
-        this.typeNameAndCheck(MathContext.class, Optional.of(JsonNode.string("math-context")));
+        this.typeNameAndCheck(
+            MathContext.class,
+            Optional.of(
+                JsonNode.string("math-context")
+            )
+        );
     }
 
     @Test
     default void testTypeNameList() {
-        this.typeNameAndCheck(List.class, Optional.of(JsonNode.string("list")));
+        this.typeNameAndCheck(
+            List.class,
+            Optional.of(
+                JsonNode.string("list")
+            )
+        );
     }
 
     @Test
     default void testTypeNameMap() {
-        this.typeNameAndCheck(Map.class, Optional.of(JsonNode.string("map")));
+        this.typeNameAndCheck(
+            Map.class,
+            Optional.of(
+                JsonNode.string("map")
+            )
+        );
     }
 
     @Test
     default void testTypeNameSet() {
-        this.typeNameAndCheck(Set.class, Optional.of(JsonNode.string("set")));
+        this.typeNameAndCheck(
+            Set.class,
+            Optional.of(
+                JsonNode.string("set")
+            )
+        );
     }
 
     @Test
     default void testTypeNameOptional() {
-        this.typeNameAndCheck(Optional.class, Optional.of(JsonNode.string("optional")));
+        this.typeNameAndCheck(
+            Optional.class,
+            Optional.of(
+                JsonNode.string("optional")
+            )
+        );
     }
 
     // registeredType....................................................................................................

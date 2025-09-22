@@ -54,9 +54,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeUnknown() {
         this.registeredTypeAndCheck(
-            JsonNode.string(
-                this.getClass().getName()
-            ),
+            this.getClass().getName(),
             Optional.empty()
         );
     }
@@ -64,7 +62,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeBoolean() {
         this.registeredTypeAndCheck(
-            JsonNode.string("boolean"),
+            "boolean",
             Optional.of(Boolean.class)
         );
     }
@@ -72,7 +70,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeByte() {
         this.registeredTypeAndCheck(
-            JsonNode.string("byte"),
+            "byte",
             Optional.of(Byte.class)
         );
     }
@@ -80,7 +78,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeShort() {
         this.registeredTypeAndCheck(
-            JsonNode.string("short"),
+            "short",
             Optional.of(Short.class)
         );
     }
@@ -88,7 +86,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeInteger() {
         this.registeredTypeAndCheck(
-            JsonNode.string("int"),
+            "int",
             Optional.of(Integer.class)
         );
     }
@@ -96,7 +94,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeLong() {
         this.registeredTypeAndCheck(
-            JsonNode.string("long"),
+            "long",
             Optional.of(Long.class)
         );
     }
@@ -104,7 +102,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeFloat() {
         this.registeredTypeAndCheck(
-            JsonNode.string("float"),
+            "float",
             Optional.of(Float.class)
         );
     }
@@ -112,7 +110,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeDouble() {
         this.registeredTypeAndCheck(
-            JsonNode.string("double"),
+            "double",
             Optional.of(Double.class)
         );
     }
@@ -120,7 +118,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeCharacter() {
         this.registeredTypeAndCheck(
-            JsonNode.string("character"),
+            "character",
             Optional.of(Character.class)
         );
     }
@@ -128,7 +126,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeString() {
         this.registeredTypeAndCheck(
-            JsonNode.string("string"),
+            "string",
             Optional.of(String.class)
         );
     }
@@ -136,7 +134,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeBigDecimal() {
         this.registeredTypeAndCheck(
-            JsonNode.string("big-decimal"),
+            "big-decimal",
             Optional.of(BigDecimal.class)
         );
     }
@@ -144,7 +142,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeBigInteger() {
         this.registeredTypeAndCheck(
-            JsonNode.string("big-integer"),
+            "big-integer",
             Optional.of(BigInteger.class)
         );
     }
@@ -152,7 +150,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeLocalDate() {
         this.registeredTypeAndCheck(
-            JsonNode.string("local-date"),
+            "local-date",
             Optional.of(LocalDate.class)
         );
     }
@@ -160,7 +158,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeLocalDateTime() {
         this.registeredTypeAndCheck(
-            JsonNode.string("local-date-time"),
+            "local-date-time",
             Optional.of(LocalDateTime.class)
         );
     }
@@ -168,7 +166,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeLocalTime() {
         this.registeredTypeAndCheck(
-            JsonNode.string("local-time"),
+            "local-time",
             Optional.of(LocalTime.class)
         );
     }
@@ -176,7 +174,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeLocale() {
         this.registeredTypeAndCheck(
-            JsonNode.string("locale"),
+            "locale",
             Optional.of(Locale.class)
         );
     }
@@ -184,7 +182,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeMathContext() {
         this.registeredTypeAndCheck(
-            JsonNode.string("math-context"),
+            "math-context",
             Optional.of(MathContext.class)
         );
     }
@@ -192,7 +190,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeList() {
         this.registeredTypeAndCheck(
-            JsonNode.string("list"),
+            "list",
             Optional.of(List.class)
         );
     }
@@ -200,7 +198,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeSet() {
         this.registeredTypeAndCheck(
-            JsonNode.string("set"),
+            "set",
             Optional.of(Set.class)
         );
     }
@@ -208,7 +206,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeMap() {
         this.registeredTypeAndCheck(
-            JsonNode.string("map"),
+            "map",
             Optional.of(Map.class)
         );
     }
@@ -216,7 +214,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testRegisteredTypeOptional() {
         this.registeredTypeAndCheck(
-            JsonNode.string("optional"),
+            "optional",
             Optional.of(Optional.class)
         );
     }
@@ -234,8 +232,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     @Test
     default void testTypeNameUnknown() {
         this.typeNameAndCheck(
-            this.getClass(),
-            Optional.empty()
+            this.getClass()
         );
     }
 
@@ -243,9 +240,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameBoolean() {
         this.typeNameAndCheck(
             Boolean.class,
-            Optional.of(
-                JsonNode.string("boolean")
-            )
+            "boolean"
         );
     }
 
@@ -253,9 +248,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameByte() {
         this.typeNameAndCheck(
             Byte.class,
-            Optional.of(
-                JsonNode.string("byte")
-            )
+            "byte"
         );
     }
 
@@ -263,9 +256,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameShort() {
         this.typeNameAndCheck(
             Short.class,
-            Optional.of(
-                JsonNode.string("short")
-            )
+            "short"
         );
     }
 
@@ -273,9 +264,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameInteger() {
         this.typeNameAndCheck(
             Integer.class,
-            Optional.of(
-                JsonNode.string("int")
-            )
+            "int"
         );
     }
 
@@ -283,9 +272,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameLong() {
         this.typeNameAndCheck(
             Long.class,
-            Optional.of(
-                JsonNode.string("long")
-            )
+            "long"
         );
     }
 
@@ -293,9 +280,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameFloat() {
         this.typeNameAndCheck(
             Float.class,
-            Optional.of(
-                JsonNode.string("float")
-            )
+            "float"
         );
     }
 
@@ -303,9 +288,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameDouble() {
         this.typeNameAndCheck(
             Double.class,
-            Optional.of(
-                JsonNode.string("double")
-            )
+            "double"
         );
     }
 
@@ -313,9 +296,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameCharacter() {
         this.typeNameAndCheck(
             Character.class,
-            Optional.of(
-                JsonNode.string("character")
-            )
+            "character"
         );
     }
 
@@ -323,9 +304,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameString() {
         this.typeNameAndCheck(
             String.class,
-            Optional.of(
-                JsonNode.string("string")
-            )
+            "string"
         );
     }
 
@@ -333,9 +312,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameBigDecimal() {
         this.typeNameAndCheck(
             BigDecimal.class,
-            Optional.of(
-                JsonNode.string("big-decimal")
-            )
+            "big-decimal"
         );
     }
 
@@ -343,9 +320,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameBigInteger() {
         this.typeNameAndCheck(
             BigInteger.class,
-            Optional.of(
-                JsonNode.string("big-integer")
-            )
+            "big-integer"
         );
     }
 
@@ -353,9 +328,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameLocalDate() {
         this.typeNameAndCheck(
             LocalDate.class,
-            Optional.of(
-                JsonNode.string("local-date")
-            )
+            "local-date"
         );
     }
 
@@ -363,9 +336,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameLocalDateTime() {
         this.typeNameAndCheck(
             LocalDateTime.class,
-            Optional.of(
-                JsonNode.string("local-date-time")
-            )
+            "local-date-time"
         );
     }
 
@@ -373,9 +344,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameLocalTime() {
         this.typeNameAndCheck(
             LocalTime.class,
-            Optional.of(
-                JsonNode.string("local-time")
-            )
+            "local-time"
         );
     }
 
@@ -383,9 +352,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameLocale() {
         this.typeNameAndCheck(
             Locale.class,
-            Optional.of(
-                JsonNode.string("locale")
-            )
+            "locale"
         );
     }
 
@@ -393,9 +360,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameMathContext() {
         this.typeNameAndCheck(
             MathContext.class,
-            Optional.of(
-                JsonNode.string("math-context")
-            )
+            "math-context"
         );
     }
 
@@ -403,9 +368,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameList() {
         this.typeNameAndCheck(
             List.class,
-            Optional.of(
-                JsonNode.string("list")
-            )
+            "list"
         );
     }
 
@@ -413,9 +376,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameMap() {
         this.typeNameAndCheck(
             Map.class,
-            Optional.of(
-                JsonNode.string("map")
-            )
+            "map"
         );
     }
 
@@ -423,9 +384,7 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameSet() {
         this.typeNameAndCheck(
             Set.class,
-            Optional.of(
-                JsonNode.string("set")
-            )
+            "set"
         );
     }
 
@@ -433,13 +392,20 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     default void testTypeNameOptional() {
         this.typeNameAndCheck(
             Optional.class,
-            Optional.of(
-                JsonNode.string("optional")
-            )
+            "optional"
         );
     }
 
     // registeredType....................................................................................................
+
+    default void registeredTypeAndCheck(final String name,
+                                        final Optional<Class<?>> type) {
+        this.registeredTypeAndCheck(
+            this.createContext(),
+            JsonNode.string(name),
+            type
+        );
+    }
 
     default void registeredTypeAndCheck(final JsonString name,
                                         final Optional<Class<?>> type) {
@@ -461,6 +427,30 @@ public interface JsonNodeContextTesting<C extends JsonNodeContext> extends Conte
     }
 
     // typeName ........................................................................................................
+
+    default void typeNameAndCheck(final Class<?> type) {
+        this.typeNameAndCheck(
+            type,
+            Optional.empty()
+        );
+    }
+
+    default void typeNameAndCheck(final Class<?> type,
+                                  final String expected) {
+        this.typeNameAndCheck(
+            type,
+            JsonNode.string(expected)
+        );
+    }
+
+    default void typeNameAndCheck(final Class<?> type,
+                                  final JsonString expected) {
+        this.typeNameAndCheck(
+            this.createContext(),
+            type,
+            Optional.of(expected)
+        );
+    }
 
     default void typeNameAndCheck(final Class<?> type,
                                   final Optional<JsonString> expected) {

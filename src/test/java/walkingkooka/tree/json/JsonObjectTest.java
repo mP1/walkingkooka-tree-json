@@ -310,6 +310,47 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     }
 
     @Test
+    public void testSetBooleanTrue() {
+        this.setBooleanAndCheck(true);
+    }
+
+    @Test
+    public void testSetBooleanFalse() {
+        this.setBooleanAndCheck(false);
+    }
+
+    private void setBooleanAndCheck(final boolean value) {
+        final JsonPropertyName propertyName1 = this.key1();
+        final JsonPropertyName propertyName2 = this.key2();
+
+        final JsonNode value2 = this.value2();
+
+        final JsonObject object = JsonNode.object()
+            .set(
+                propertyName1,
+                JsonNode.string("value1")
+            ).set(
+                propertyName2,
+                value2
+            ).set(
+                propertyName1,
+                value
+            );
+
+        this.checkEquals(
+            JsonNode.object()
+                .set(
+                    propertyName1,
+                    JsonNode.booleanNode(value)
+                ).set(
+                    propertyName2,
+                    value2
+                ),
+            object
+        );
+    }
+
+    @Test
     public void testSetNull() {
         final JsonPropertyName propertyName1 = this.key1();
         final JsonPropertyName propertyName2 = this.key2();

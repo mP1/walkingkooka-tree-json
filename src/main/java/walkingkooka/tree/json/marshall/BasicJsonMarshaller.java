@@ -174,7 +174,6 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedMap.instance(),
             BasicJsonMarshallerTypedMathContext.instance(),
             BasicJsonMarshallerTypedNodeSelector.instance(),
-            BasicJsonMarshallerTypedNullPointerException.instance(),
             BasicJsonMarshallerTypedNumberByte.instance(),
             BasicJsonMarshallerTypedNumberShort.instance(),
             BasicJsonMarshallerTypedNumberInteger.instance(),

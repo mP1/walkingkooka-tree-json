@@ -45,7 +45,7 @@ public class TestGwtTest extends GWTTestCase {
                 "abc"
             ).set(
                 JsonPropertyName.with("number"),
-                JsonNode.number(Double.parseDouble("12.5"))
+                12.5
             ).set(
                 JsonPropertyName.with("boolean"),
                 true

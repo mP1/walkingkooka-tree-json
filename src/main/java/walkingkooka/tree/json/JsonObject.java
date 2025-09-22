@@ -128,6 +128,14 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
                 });
     }
 
+    public JsonObject set(final JsonPropertyName name,
+                          final boolean value) {
+        return this.set(
+            name,
+            JsonNode.booleanNode(value)
+        );
+    }
+
     @Override
     public JsonObject setChild(final JsonPropertyName name,
                                final JsonNode value) {

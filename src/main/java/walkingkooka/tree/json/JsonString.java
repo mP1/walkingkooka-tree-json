@@ -40,7 +40,7 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
 
     @Override
     public JsonString setName(final JsonPropertyName name) {
-        checkName(name);
+        Objects.requireNonNull(name, "name");
         return this.setName0(name)
             .cast(JsonString.class);
     }

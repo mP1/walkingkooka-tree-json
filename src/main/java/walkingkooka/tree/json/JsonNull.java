@@ -19,6 +19,8 @@ package walkingkooka.tree.json;
 
 import walkingkooka.text.printer.IndentingPrinter;
 
+import java.util.Objects;
+
 /**
  * Represents a json null.
  */
@@ -47,7 +49,7 @@ public final class JsonNull extends JsonLeafNode<Void> {
 
     @Override
     public JsonNull setName(final JsonPropertyName name) {
-        checkName(name);
+        Objects.requireNonNull(name, "name");
         return this.setName0(name)
             .cast(JsonNull.class);
     }

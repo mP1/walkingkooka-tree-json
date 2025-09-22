@@ -19,6 +19,8 @@ package walkingkooka.tree.json;
 
 import walkingkooka.text.printer.IndentingPrinter;
 
+import java.util.Objects;
+
 /**
  * Represents an immutable json boolean.
  */
@@ -48,7 +50,7 @@ public final class JsonBoolean extends JsonLeafNonNullNode<Boolean> {
 
     @Override
     public JsonBoolean setName(final JsonPropertyName name) {
-        checkName(name);
+        Objects.requireNonNull(name, "name");
         return this.setName0(name)
             .cast(JsonBoolean.class);
     }

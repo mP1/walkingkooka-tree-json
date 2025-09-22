@@ -131,10 +131,6 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     abstract public JsonNode setName(final JsonPropertyName name);
 
-    static void checkName(final JsonPropertyName name) {
-        Objects.requireNonNull(name, "name");
-    }
-
     final JsonNode setName0(final JsonPropertyName name) {
         return this.name.equals(name) ?
             this :

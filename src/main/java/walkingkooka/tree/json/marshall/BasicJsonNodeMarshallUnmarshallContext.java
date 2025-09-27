@@ -38,6 +38,19 @@ final class BasicJsonNodeMarshallUnmarshallContext implements JsonNodeMarshallUn
     }
 
     @Override
+    public JsonNodeMarshallUnmarshallContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor) {
+        final JsonNodeMarshallContext before = this.jsonNodeMarshallContext;
+        final JsonNodeMarshallContext after = before.setObjectPostProcessor(processor);
+
+        return before.equals(after) ?
+            this :
+            new BasicJsonNodeMarshallUnmarshallContext(
+                after,
+                this.jsonNodeUnmarshallContext
+            );
+    }
+
+    @Override
     public JsonNodeMarshallUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
         final JsonNodeUnmarshallContext before = this.jsonNodeUnmarshallContext;
         final JsonNodeUnmarshallContext after = before.setPreProcessor(processor);

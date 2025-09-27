@@ -24,5 +24,8 @@ public interface JsonNodeMarshallUnmarshallContext extends JsonNodeMarshallConte
     JsonNodeUnmarshallContext {
 
     @Override
+    JsonNodeMarshallUnmarshallContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor);
+
+    @Override
     JsonNodeMarshallUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor);
 }

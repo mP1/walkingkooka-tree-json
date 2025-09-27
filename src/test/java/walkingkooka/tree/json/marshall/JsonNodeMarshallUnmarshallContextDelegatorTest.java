@@ -21,8 +21,19 @@ import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextDelegatorTest.TestJsonNodeMarshallUnmarshallContextDelegator;
 
 import java.math.MathContext;
+import java.util.Objects;
 
 public final class JsonNodeMarshallUnmarshallContextDelegatorTest implements JsonNodeMarshallUnmarshallContextTesting<TestJsonNodeMarshallUnmarshallContextDelegator> {
+
+    @Override
+    public void testSetObjectPostProcessor() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testSetObjectPostProcessorSame() {
+        throw new UnsupportedOperationException();
+    }
 
     @Override
     public void testSetPreProcessorNullFails() {
@@ -59,6 +70,12 @@ public final class JsonNodeMarshallUnmarshallContextDelegatorTest implements Jso
     }
 
     static class TestJsonNodeMarshallUnmarshallContextDelegator implements JsonNodeMarshallUnmarshallContextDelegator {
+
+        @Override
+        public JsonNodeMarshallUnmarshallContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor) {
+            Objects.requireNonNull(processor, "processor");
+            throw new UnsupportedOperationException();
+        }
 
         @Override
         public JsonNodeMarshallUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {

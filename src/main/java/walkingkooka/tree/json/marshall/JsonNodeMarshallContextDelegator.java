@@ -25,11 +25,6 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface JsonNodeMarshallContextDelegator extends JsonNodeMarshallContext, JsonNodeContextDelegator {
-    @Override
-    default JsonNodeMarshallContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor) {
-        return this.jsonNodeMarshallContext()
-            .setObjectPostProcessor(processor);
-    }
 
     @Override
     default JsonNode marshall(final Object value) {

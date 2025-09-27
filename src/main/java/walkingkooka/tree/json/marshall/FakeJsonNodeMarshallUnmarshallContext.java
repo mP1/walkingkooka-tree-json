@@ -34,6 +34,11 @@ public class FakeJsonNodeMarshallUnmarshallContext extends FakeJsonNodeMarshallC
     }
 
     @Override
+    public JsonNodeMarshallUnmarshallContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public JsonNodeMarshallUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
         throw new UnsupportedOperationException();
     }

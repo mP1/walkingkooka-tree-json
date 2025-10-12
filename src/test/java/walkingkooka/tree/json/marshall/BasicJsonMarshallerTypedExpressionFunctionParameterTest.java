@@ -36,8 +36,6 @@ public final class BasicJsonMarshallerTypedExpressionFunctionParameterTest exten
 
     private final static Class<List<String>> TYPE = Cast.to(List.class);
 
-    private final static List<Class<?>> TYPE_PARAMETERS = Lists.of(String.class);
-
     private final static ExpressionFunctionParameterCardinality CARDINALITY = ExpressionFunctionParameterCardinality.REQUIRED;
 
     private final static Optional<List<String>> DEFAULT_VALUE = Optional.of(
@@ -68,7 +66,6 @@ public final class BasicJsonMarshallerTypedExpressionFunctionParameterTest exten
         return ExpressionFunctionParameter.with(
             NAME,
             TYPE,
-            TYPE_PARAMETERS,
             CARDINALITY,
             DEFAULT_VALUE,
             KINDS
@@ -80,7 +77,6 @@ public final class BasicJsonMarshallerTypedExpressionFunctionParameterTest exten
         return JsonNode.object()
             .set(BasicJsonMarshallerTypedExpressionFunctionParameter.NAME_PROPERTY, JsonNode.string(NAME.value()))
             .set(BasicJsonMarshallerTypedExpressionFunctionParameter.TYPE_PROPERTY, JsonNode.string("java.util.List"))
-            .set(BasicJsonMarshallerTypedExpressionFunctionParameter.TYPE_PARAMETERS_PROPERTY, JsonNode.array().appendChild(JsonNode.string("java.lang.String")))
             .set(BasicJsonMarshallerTypedExpressionFunctionParameter.CARDINALITY_PROPERTY, JsonNode.string("REQUIRED"))
             .set(
                 BasicJsonMarshallerTypedExpressionFunctionParameter.DEFAULT_VALUE_PROPERTY,

@@ -18,7 +18,6 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Cast;
-import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterCardinality;
@@ -28,7 +27,6 @@ import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -70,7 +68,6 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
                                                      final JsonNodeUnmarshallContext context) {
         ExpressionFunctionParameterName parameterName = null;
         Class<?> type = null;
-        List<Class<?>> typeParameters = Lists.empty();
         ExpressionFunctionParameterCardinality cardinality = null;
         Optional<?> defaultValue = Optional.empty();
         Set<ExpressionFunctionParameterKind> kinds = Sets.empty();
@@ -89,12 +86,6 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
                     type = context.unmarshall(
                         child,
                         Class.class
-                    );
-                    break;
-                case TYPE_PARAMETERS_PROPERTY_STRING:
-                    typeParameters = context.unmarshallList(
-                        child,
-                        Cast.to(Class.class)
                     );
                     break;
                 case CARDINALITY_PROPERTY_STRING:
@@ -131,7 +122,6 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
         return ExpressionFunctionParameter.with(
             parameterName,
             Cast.to(type),
-            typeParameters,
             cardinality,
             Cast.to(defaultValue),
             kinds
@@ -144,11 +134,6 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
         JsonObject json = JsonNode.object()
             .set(NAME_PROPERTY, context.marshall(parameter.name()))
             .set(TYPE_PROPERTY, context.marshall(parameter.type()));
-
-        final List<Class<?>> typeParameters = parameter.typeParameters();
-        if (typeParameters.size() > 0) {
-            json = json.set(TYPE_PARAMETERS_PROPERTY, context.marshallCollection(parameter.typeParameters()));
-        }
 
         json = json.set(CARDINALITY_PROPERTY, context.marshall(parameter.cardinality().name()));
 
@@ -171,14 +156,12 @@ final class BasicJsonMarshallerTypedExpressionFunctionParameter extends BasicJso
     private final static String NAME_PROPERTY_STRING = "name";
     private final static String TYPE_PROPERTY_STRING = "type";
     private final static String CARDINALITY_PROPERTY_STRING = "cardinality";
-    private final static String TYPE_PARAMETERS_PROPERTY_STRING = "typeParameters";
     private final static String DEFAULT_VALUE_PROPERTY_STRING = "defaultValue";
     private final static String KINDS_PROPERTY_STRING = "kinds";
 
     final static JsonPropertyName NAME_PROPERTY = JsonPropertyName.with(NAME_PROPERTY_STRING);
     final static JsonPropertyName TYPE_PROPERTY = JsonPropertyName.with(TYPE_PROPERTY_STRING);
     final static JsonPropertyName CARDINALITY_PROPERTY = JsonPropertyName.with(CARDINALITY_PROPERTY_STRING);
-    final static JsonPropertyName TYPE_PARAMETERS_PROPERTY = JsonPropertyName.with(TYPE_PARAMETERS_PROPERTY_STRING);
     final static JsonPropertyName DEFAULT_VALUE_PROPERTY = JsonPropertyName.with(DEFAULT_VALUE_PROPERTY_STRING);
     final static JsonPropertyName KINDS_PROPERTY = JsonPropertyName.with(KINDS_PROPERTY_STRING);
 }

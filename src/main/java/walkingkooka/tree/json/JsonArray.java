@@ -34,7 +34,11 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
 
     private final static JsonPropertyName NAME = JsonPropertyName.fromClass(JsonArray.class);
 
-    final static JsonArray EMPTY = new JsonArray(NAME, NO_INDEX, Lists.empty());
+    final static JsonArray EMPTY = new JsonArray(
+        NAME,
+        NO_INDEX,
+        Lists.empty()
+    );
 
     private final static CharacterConstant BEGIN = CharacterConstant.with('[');
     private final static CharacterConstant END = CharacterConstant.with(']');
@@ -59,9 +63,13 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
         final List<JsonNode> copy = Lists.array();
         int i = 0;
         for (JsonNode child : children) {
-            copy.add(child.setParent(parent,
-                JsonPropertyName.index(i),
-                i));
+            copy.add(
+                child.setParent(
+                    parent,
+                    JsonPropertyName.index(i),
+                    i
+                )
+            );
             i++;
         }
 
@@ -111,7 +119,8 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
      * Retrieves the element at the provided index.
      */
     public JsonNode get(final int index) {
-        return this.children().get(index);
+        return this.children()
+            .get(index);
     }
 
     @Override
@@ -186,8 +195,11 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
         final List<JsonNode> children = this.copyChildren();
         children.add(element);
 
-        return this.replace0(this.name, this.index, children)
-            .cast(JsonArray.class);
+        return this.replace0(
+            this.name,
+            this.index,
+            children
+        ).cast(JsonArray.class);
     }
 
     /**
@@ -197,7 +209,11 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
         final List<JsonNode> children = this.copyChildren();
         children.remove(index);
 
-        return this.replace0(this.name, this.index, children);
+        return this.replace0(
+            this.name,
+            this.index,
+            children
+        );
     }
 
     /**
@@ -293,7 +309,7 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
         return this.reportInvalidNode(Object.class);
     }
 
-    // Visitor .................................................................................................
+    // Visitor .........................................................................................................
 
     @Override
     public void accept(final JsonNodeVisitor visitor) {

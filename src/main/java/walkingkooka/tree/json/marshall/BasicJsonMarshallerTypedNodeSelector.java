@@ -248,7 +248,7 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
      * Reports an invalid component in the components array of the JSON representation.
      */
     private static void reportUnknownComponent(final String component, final JsonNode from) {
-        throw new java.lang.IllegalArgumentException("Unknown component: " + CharSequences.quoteAndEscape(component) + " in " + from);
+        throw new IllegalArgumentException("Unknown component: " + CharSequences.quoteAndEscape(component) + " in " + from);
     }
 
     @SuppressWarnings("unchecked")

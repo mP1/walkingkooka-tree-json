@@ -33,7 +33,7 @@ public final class BasicJsonMarshallerTypedCharacterTest extends BasicJsonMarsha
 
     @Test
     public void testUnmarshallMoreThanOneLengthStringFails() {
-        this.unmarshallFailed(JsonNode.string("abc"), java.lang.IllegalArgumentException.class);
+        this.unmarshallFailed(JsonNode.string("abc"), IllegalArgumentException.class);
     }
 
     @Test

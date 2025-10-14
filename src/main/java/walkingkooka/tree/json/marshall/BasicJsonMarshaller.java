@@ -256,12 +256,12 @@ abstract class BasicJsonMarshaller<T> {
 
     /**
      * Registers a {@link BasicJsonMarshaller} for a {@link String type name}.
-     * If the name is already registered an {@link java.lang.IllegalArgumentException} will be thrown.
+     * If the name is already registered an {@link IllegalArgumentException} will be thrown.
      */
     final synchronized void registerWithTypeName(final String typeName) {
         final BasicJsonMarshaller<?> previous = TYPENAME_TO_MARSHALLER.get(typeName);
         if (null != previous) {
-            throw new java.lang.IllegalArgumentException(
+            throw new IllegalArgumentException(
                 "Type " +
                     CharSequences.quote(typeName) +
                     " already registered to " +

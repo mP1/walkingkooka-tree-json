@@ -391,7 +391,8 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     }
 
     /**
-     * Recursively returns all object without their false like properties.
+     * Recursively removes all children from objects or arrays that are false like. For {@link JsonObject}, this means
+     * property values that are null/false/empty string/zero will be removed.
      */
     public abstract JsonNode removeFalseLike();
 

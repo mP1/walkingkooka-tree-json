@@ -81,7 +81,7 @@ final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<T> imp
                     type
                 )
             );
-        } catch (final java.lang.IllegalArgumentException cause) {
+        } catch (final IllegalArgumentException cause) {
             throw new JsonNodeUnmarshallException(cause.getMessage(), node);
         }
     }

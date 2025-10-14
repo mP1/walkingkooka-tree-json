@@ -76,7 +76,7 @@ public final class BasicJsonMarshallerTypedExpressionFunctionNameTest extends Ba
     public void testUnmarshallStringEmptyFails() {
         this.unmarshallFailed(
             JsonNode.string(""),
-            java.lang.IllegalArgumentException.class
+            IllegalArgumentException.class
         );
     }
 

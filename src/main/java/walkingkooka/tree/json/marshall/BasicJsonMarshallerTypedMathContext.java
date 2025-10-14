@@ -82,19 +82,19 @@ final class BasicJsonMarshallerTypedMathContext extends BasicJsonMarshallerTyped
             default:
                 final int separator = string.indexOf(SEPARATOR.character());
                 if (-1 == separator) {
-                    throw new java.lang.IllegalArgumentException("Unknown constant and missing separator");
+                    throw new IllegalArgumentException("Unknown constant and missing separator");
                 }
                 if (0 == separator) {
-                    throw new java.lang.IllegalArgumentException("Missing precision");
+                    throw new IllegalArgumentException("Missing precision");
                 }
                 if (string.length() == separator) {
-                    throw new java.lang.IllegalArgumentException("Missing ROUNDING_MODE");
+                    throw new IllegalArgumentException("Missing ROUNDING_MODE");
                 }
                 int precision;
                 try {
                     precision = Integer.parseInt(string.substring(0, separator));
                 } catch (final NumberFormatException cause) {
-                    throw new java.lang.IllegalArgumentException("Invalid precision", cause);
+                    throw new IllegalArgumentException("Invalid precision", cause);
                 }
                 mathContext = new MathContext(precision, RoundingMode.valueOf(string.substring(separator + 1)));
         }

@@ -32,7 +32,11 @@ public final class JsonNull extends JsonLeafNode<Void> {
     /**
      * Singleton
      */
-    final static JsonNull INSTANCE = new JsonNull(NAME, NO_INDEX, null);
+    final static JsonNull INSTANCE = new JsonNull(
+        NAME,
+        NO_INDEX,
+        null
+    );
 
     /**
      * Private ctor use singleton
@@ -106,7 +110,7 @@ public final class JsonNull extends JsonLeafNode<Void> {
         return true;
     }
 
-    // Object......................................................................................................
+    // Object...........................................................................................................
 
     @Override
     public int hashCode() {
@@ -118,7 +122,7 @@ public final class JsonNull extends JsonLeafNode<Void> {
         return true;
     }
 
-    // Visitor .................................................................................................
+    // Visitor .........................................................................................................
 
     @Override
     public void accept(final JsonNodeVisitor visitor) {

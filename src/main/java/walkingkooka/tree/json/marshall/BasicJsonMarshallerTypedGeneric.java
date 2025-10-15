@@ -44,11 +44,19 @@ final class BasicJsonMarshallerTypedGeneric<T> extends BasicJsonMarshallerTyped<
         Objects.requireNonNull(type, "type");
         Objects.requireNonNull(types, "types");
 
-        final List<Class<?>> all = Stream.concat(Stream.of(type), Stream.of(types))
-            .peek(t -> Objects.requireNonNull(t, "null type"))
+        final List<Class<?>> all = Stream.concat(
+                Stream.of(type),
+                Stream.of(types)
+            ).peek(t -> Objects.requireNonNull(t, "null type"))
             .collect(ImmutableList.collector());
 
-        return new BasicJsonMarshallerTypedGeneric<>(typeName, from, to, type, all);
+        return new BasicJsonMarshallerTypedGeneric<>(
+            typeName,
+            from,
+            to,
+            type,
+            all
+        );
     }
 
     private BasicJsonMarshallerTypedGeneric(final String typeName,
@@ -115,7 +123,10 @@ final class BasicJsonMarshallerTypedGeneric<T> extends BasicJsonMarshallerTyped<
     @Override
     T unmarshallNonNull(final JsonNode node,
                         final JsonNodeUnmarshallContext context) {
-        return this.from.apply(node, context);
+        return this.from.apply(
+            node,
+            context
+        );
     }
 
     private final BiFunction<JsonNode, JsonNodeUnmarshallContext, T> from;
@@ -123,7 +134,10 @@ final class BasicJsonMarshallerTypedGeneric<T> extends BasicJsonMarshallerTyped<
     @Override
     JsonNode marshallNonNull(final T value,
                              final JsonNodeMarshallContext context) {
-        return to.apply(value, context);
+        return to.apply(
+            value,
+            context
+        );
     }
 
     final BiFunction<T, JsonNodeMarshallContext, JsonNode> to;

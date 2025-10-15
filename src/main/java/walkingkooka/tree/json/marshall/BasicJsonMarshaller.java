@@ -197,8 +197,13 @@ abstract class BasicJsonMarshaller<T> {
                                               final BiFunction<T, JsonNodeMarshallContext, JsonNode> to,
                                               final Class<T> type,
                                               final Class<? extends T>... types) {
-        return BasicJsonMarshallerTypedGeneric.with(typeName, from, to, type, types)
-            .registerGeneric();
+        return BasicJsonMarshallerTypedGeneric.with(
+            typeName,
+            from,
+            to,
+            type,
+            types
+        ).registerGeneric();
     }
 
     /**
@@ -207,7 +212,11 @@ abstract class BasicJsonMarshaller<T> {
     static Optional<Class<?>> registeredType(final JsonString name) {
         Objects.requireNonNull(name, "name");
 
-        return Optional.ofNullable(TYPENAME_TO_MARSHALLER.get(name.value())).map(BasicJsonMarshaller::type);
+        return Optional.ofNullable(
+            TYPENAME_TO_MARSHALLER.get(
+                name.value()
+            )
+        ).map(BasicJsonMarshaller::type);
     }
 
     /**
@@ -324,7 +333,10 @@ abstract class BasicJsonMarshaller<T> {
                                     final JsonNodeMarshallContext context) {
         return null == value ?
             JsonNode.nullNode() :
-            this.marshallWithTypeNonNull(value, context);
+            this.marshallWithTypeNonNull(
+                value,
+                context
+            );
     }
 
     abstract JsonNode marshallWithTypeNonNull(final T value,

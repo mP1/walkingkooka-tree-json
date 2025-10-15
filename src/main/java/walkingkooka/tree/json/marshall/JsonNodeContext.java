@@ -53,10 +53,13 @@ public interface JsonNodeContext extends Context {
                                  final BiFunction<T, JsonNodeMarshallContext, JsonNode> to,
                                  final Class<T> type,
                                  final Class<? extends T>... types) {
-        return BasicJsonMarshaller.register(typeName,
+        return BasicJsonMarshaller.register(
+            typeName,
             from,
             to,
-            type, types);
+            type,
+            types
+        );
     }
 
     // registeredType ..................................................................................................

@@ -29,18 +29,30 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
 
     static JsonString with(final String value) {
         Objects.requireNonNull(value, "value");
-        return new JsonString(NAME, NO_INDEX, value);
+
+        return new JsonString(
+            NAME,
+            NO_INDEX,
+            value
+        );
     }
 
     private final static JsonPropertyName NAME = JsonPropertyName.fromClass(JsonString.class);
 
-    private JsonString(final JsonPropertyName name, final int index, final String value) {
-        super(name, index, value);
+    private JsonString(final JsonPropertyName name,
+                       final int index,
+                       final String value) {
+        super(
+            name,
+            index,
+            value
+        );
     }
 
     @Override
     public JsonString setName(final JsonPropertyName name) {
         Objects.requireNonNull(name, "name");
+
         return this.setName0(name)
             .cast(JsonString.class);
     }
@@ -51,8 +63,14 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
     }
 
     @Override
-    JsonString replace0(final JsonPropertyName name, final int index, final String value) {
-        return new JsonString(name, index, value);
+    JsonString replace0(final JsonPropertyName name,
+                        final int index,
+                        final String value) {
+        return new JsonString(
+            name,
+            index,
+            value
+        );
     }
 
     /**
@@ -69,7 +87,7 @@ public final class JsonString extends JsonLeafNonNullNode<String> {
         return NAME;
     }
 
-    // HasText......................................................................................................
+    // HasText..........................................................................................................
 
     @Override
     public String text() {

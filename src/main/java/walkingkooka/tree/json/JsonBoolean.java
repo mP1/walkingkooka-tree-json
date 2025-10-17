@@ -37,20 +37,35 @@ public final class JsonBoolean extends JsonLeafNonNullNode<Boolean> {
     /**
      * Singleton with a false value and no parent.
      */
-    private final static JsonBoolean FALSE = new JsonBoolean(NAME, NO_INDEX, false);
+    private final static JsonBoolean FALSE = new JsonBoolean(
+        NAME,
+        NO_INDEX,
+        false
+    );
 
     /**
      * Singleton with a true value and no parent.
      */
-    private final static JsonBoolean TRUE = new JsonBoolean(NAME, NO_INDEX, true);
+    private final static JsonBoolean TRUE = new JsonBoolean(
+        NAME,
+        NO_INDEX,
+        true
+    );
 
-    private JsonBoolean(final JsonPropertyName name, final int index, final boolean value) {
-        super(name, index, value);
+    private JsonBoolean(final JsonPropertyName name,
+                        final int index,
+                        final boolean value) {
+        super(
+            name,
+            index,
+            value
+        );
     }
 
     @Override
     public JsonBoolean setName(final JsonPropertyName name) {
         Objects.requireNonNull(name, "name");
+
         return this.setName0(name)
             .cast(JsonBoolean.class);
     }
@@ -61,8 +76,14 @@ public final class JsonBoolean extends JsonLeafNonNullNode<Boolean> {
     }
 
     @Override
-    JsonBoolean replace0(final JsonPropertyName name, final int index, final Boolean value) {
-        return new JsonBoolean(name, index, value);
+    JsonBoolean replace0(final JsonPropertyName name,
+                         final int index,
+                         final Boolean value) {
+        return new JsonBoolean(
+            name,
+            index,
+            value
+        );
     }
 
     /**
@@ -79,7 +100,7 @@ public final class JsonBoolean extends JsonLeafNonNullNode<Boolean> {
         return NAME;
     }
 
-    // HasText......................................................................................................
+    // HasText..........................................................................................................
 
     @Override
     public String text() {
@@ -98,7 +119,7 @@ public final class JsonBoolean extends JsonLeafNonNullNode<Boolean> {
         return this.value.booleanValue();
     }
 
-    // Visitor ........................................................................................................
+    // Visitor .........................................................................................................
 
     @Override
     public void accept(final JsonNodeVisitor visitor) {

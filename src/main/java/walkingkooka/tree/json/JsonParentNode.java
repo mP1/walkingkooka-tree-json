@@ -91,14 +91,14 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
                                         final int index,
                                         final C children);
 
-    // Value....................................................................................................
+    // Value............................................................................................................
 
     @Override
     public final Object value() {
         throw new UnsupportedOperationException();
     }
 
-    // Visitor ........................................................................................................
+    // Visitor .........................................................................................................
 
     final void acceptValues(final JsonNodeVisitor visitor) {
         for (JsonNode node : this.children()) {
@@ -106,7 +106,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
         }
     }
 
-    // HasText......................................................................................................
+    // HasText..........................................................................................................
 
     /**
      * Combine the text of all children(descendants). Note property names and indices will not be included.
@@ -118,7 +118,7 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
             .collect(Collectors.joining());
     }
 
-    // HasTextLength...................................................................................................
+    // HasTextLength....................................................................................................
 
     @Override
     public final int textLength() {

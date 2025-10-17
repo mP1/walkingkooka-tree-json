@@ -27,19 +27,30 @@ import java.util.Objects;
 public final class JsonNumber extends JsonLeafNonNullNode<Double> {
 
     static JsonNumber with(final double value) {
-        return new JsonNumber(NAME, NO_INDEX, value);
+        return new JsonNumber(
+            NAME,
+            NO_INDEX,
+            value
+        );
     }
 
     private final static JsonPropertyName NAME = JsonPropertyName.fromClass(JsonNumber.class);
 
 
-    private JsonNumber(final JsonPropertyName name, final int index, final double value) {
-        super(name, index, value);
+    private JsonNumber(final JsonPropertyName name,
+                       final int index,
+                       final double value) {
+        super(
+            name,
+            index,
+            value
+        );
     }
 
     @Override
     public JsonNumber setName(final JsonPropertyName name) {
         Objects.requireNonNull(name, "name");
+
         return this.setName0(name)
             .cast(JsonNumber.class);
     }
@@ -68,11 +79,12 @@ public final class JsonNumber extends JsonLeafNonNullNode<Double> {
         return NAME;
     }
 
-    // HasText......................................................................................................
+    // HasText..........................................................................................................
 
     @Override
     public String text() {
         final long i = this.value.longValue();
+
         return i == this.value ?
             String.valueOf(i) :
             String.valueOf(this.value);
@@ -97,7 +109,7 @@ public final class JsonNumber extends JsonLeafNonNullNode<Double> {
         return this.value != 0;
     }
 
-    // JsonNode .................................................................................................
+    // JsonNode ........................................................................................................
 
     @Override
     void printJson0(final IndentingPrinter printer) {

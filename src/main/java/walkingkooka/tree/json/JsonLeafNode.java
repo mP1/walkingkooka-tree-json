@@ -18,7 +18,6 @@
 package walkingkooka.tree.json;
 
 import walkingkooka.NeverError;
-import walkingkooka.Value;
 import walkingkooka.collect.list.Lists;
 
 import java.util.List;
@@ -27,7 +26,7 @@ import java.util.Objects;
 /**
  * Base type for all the leaf json nodes that hold a simple value, including null.
  */
-abstract class JsonLeafNode<V> extends JsonNode implements Value<V> {
+abstract class JsonLeafNode<V> extends JsonNode {
 
     JsonLeafNode(final JsonPropertyName name,
                  final int index,

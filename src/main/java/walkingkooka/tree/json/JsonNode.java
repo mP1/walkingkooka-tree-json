@@ -18,6 +18,7 @@
 package walkingkooka.tree.json;
 
 import walkingkooka.Cast;
+import walkingkooka.Value;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.naming.Name;
 import walkingkooka.text.CharSequences;
@@ -50,7 +51,8 @@ import java.util.function.Predicate;
 public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name, Object>,
     HasText,
     TraversableHasTextOffset<JsonNode>,
-    TreePrintable {
+    TreePrintable,
+    Value<Object> {
 
     /**
      * Tests if the given {@link Class} is a {@link JsonNode} or sub-class.
@@ -251,6 +253,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
 
     // Value<Object>....................................................................................................
 
+    @Override
     public abstract Object value();
 
     // cast.............................................................................................................

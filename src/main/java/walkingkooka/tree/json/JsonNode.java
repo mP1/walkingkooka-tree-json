@@ -112,14 +112,15 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     /**
      * Package private ctor to limit sub classing.
      */
-    JsonNode(final JsonPropertyName name, final int index) {
+    JsonNode(final JsonPropertyName name,
+             final int index) {
         super();
         this.name = name;
         this.parent = NO_PARENT;
         this.index = index;
     }
 
-    // Name ..............................................................................................
+    // Name ............................................................................................................
 
     @Override
     public final JsonPropertyName name() {
@@ -151,7 +152,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         return true;
     }
 
-    // parent ..................................................................................................
+    // parent ..........................................................................................................
 
     @Override
     public final Optional<JsonNode> parent() {
@@ -235,7 +236,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     abstract JsonNode replace(final JsonPropertyName name, final int index);
 
-    // attributes............................................................................................................
+    // attributes.......................................................................................................
 
     @Override
     public final Map<Name, Object> attributes() {
@@ -248,9 +249,11 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         throw new UnsupportedOperationException();
     }
 
-    // Value<Object>................................................................................................
+    // Value<Object>....................................................................................................
 
     public abstract Object value();
+
+    // cast.............................................................................................................
 
     /**
      * If a {@link JsonBoolean} returns the boolean value or fails.
@@ -396,7 +399,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     public abstract JsonNode removeFalseLike();
 
-    // TreePrintable.....................................................................................................
+    // TreePrintable....................................................................................................
 
     @Override
     public final void printTree(final IndentingPrinter printer) {

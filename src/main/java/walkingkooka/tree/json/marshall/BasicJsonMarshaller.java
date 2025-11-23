@@ -140,6 +140,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedExpression.binary(Expression::greaterThanEquals, GreaterThanEqualsExpression.class),
             BasicJsonMarshallerTypedExpression.binary(Expression::lessThan, LessThanExpression.class),
             BasicJsonMarshallerTypedExpression.binary(Expression::lessThanEquals, LessThanEqualsExpression.class),
+            BasicJsonMarshallerTypedExpression.list(),
             BasicJsonMarshallerTypedExpression.binary(Expression::modulo, ModuloExpression.class),
             BasicJsonMarshallerTypedExpression.binary(Expression::multiply, MultiplyExpression.class),
             BasicJsonMarshallerTypedExpression.unary(Expression::negative, NegativeExpression.class),

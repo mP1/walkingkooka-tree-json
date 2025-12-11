@@ -50,6 +50,12 @@ public final class BasicJsonNodeParserContextTest implements ClassTesting2<Basic
     // DecimalNumberContext.............................................................................................
 
     @Override
+    public int decimalNumberDigitCount() {
+        return this.decimalNumberContext()
+            .decimalNumberDigitCount();
+    }
+
+    @Override
     public DecimalNumberContext decimalNumberContext() {
         return DecimalNumberContexts.american(this.mathContext());
     }

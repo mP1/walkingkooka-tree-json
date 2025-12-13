@@ -121,6 +121,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerDouble.instance(),
             BasicJsonMarshallerNumber.instance(),
             BasicJsonMarshallerString.instance(),
+            BasicJsonMarshallerTypedAuditInfo.instance(),
             BasicJsonMarshallerTypedBooleanList.instance(),
             BasicJsonMarshallerTypedBigDecimal.instance(),
             BasicJsonMarshallerTypedBigInteger.instance(),

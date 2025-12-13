@@ -133,6 +133,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedDateTimeSymbols.instance(),
             BasicJsonMarshallerTypedDecimalNumberSymbols.instance(),
             BasicJsonMarshallerTypedEnvironmentValueName.instance(),
+            BasicJsonMarshallerTypedEnvironmentValueNameSet.instance(),
             BasicJsonMarshallerTypedExpression.value(),
             BasicJsonMarshallerTypedExpression.binary(Expression::add, AddExpression.class),
             BasicJsonMarshallerTypedExpression.binary(Expression::and, AndExpression.class),

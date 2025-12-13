@@ -25,6 +25,7 @@ import walkingkooka.collect.set.CsvStringSet;
 import walkingkooka.datetime.LocalDateList;
 import walkingkooka.datetime.LocalDateTimeList;
 import walkingkooka.datetime.LocalTimeList;
+import walkingkooka.environment.EnvironmentValueNameSet;
 import walkingkooka.math.NumberList;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
@@ -226,6 +227,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     private static Class<?> type(final Object value) {
         return value instanceof CsvStringList ||
             value instanceof CsvStringSet ||
+            value instanceof EnvironmentValueNameSet ||
             value instanceof LocalDateList ||
             value instanceof LocalDateTimeList ||
             value instanceof LocalTimeList ||

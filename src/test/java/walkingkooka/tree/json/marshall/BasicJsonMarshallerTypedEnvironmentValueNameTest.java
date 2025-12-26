@@ -29,7 +29,7 @@ public final class BasicJsonMarshallerTypedEnvironmentValueNameTest extends Basi
 
     @Override
     EnvironmentValueName value() {
-        return EnvironmentValueName.with("locale");
+        return EnvironmentValueName.LOCALE;
     }
 
     @Override

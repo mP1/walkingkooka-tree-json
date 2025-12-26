@@ -17,10 +17,11 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.Cast;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.tree.json.JsonNode;
 
-public final class BasicJsonMarshallerTypedEnvironmentValueNameTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedEnvironmentValueName, EnvironmentValueName> {
+public final class BasicJsonMarshallerTypedEnvironmentValueNameTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedEnvironmentValueName, EnvironmentValueName<?>> {
 
     @Override
     BasicJsonMarshallerTypedEnvironmentValueName marshaller() {
@@ -28,7 +29,7 @@ public final class BasicJsonMarshallerTypedEnvironmentValueNameTest extends Basi
     }
 
     @Override
-    EnvironmentValueName value() {
+    EnvironmentValueName<?> value() {
         return EnvironmentValueName.LOCALE;
     }
 
@@ -38,7 +39,7 @@ public final class BasicJsonMarshallerTypedEnvironmentValueNameTest extends Basi
     }
 
     @Override
-    EnvironmentValueName jsonNullNode() {
+    EnvironmentValueName<?> jsonNullNode() {
         return null;
     }
 
@@ -48,8 +49,8 @@ public final class BasicJsonMarshallerTypedEnvironmentValueNameTest extends Basi
     }
 
     @Override
-    Class<EnvironmentValueName> marshallerType() {
-        return EnvironmentValueName.class;
+    Class<EnvironmentValueName<?>> marshallerType() {
+        return Cast.to(EnvironmentValueName.class);
     }
 
     @Override

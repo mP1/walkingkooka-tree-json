@@ -20,7 +20,7 @@ package walkingkooka.tree.json.marshall;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.tree.json.JsonNode;
 
-final class BasicJsonMarshallerTypedEnvironmentValueName extends BasicJsonMarshallerTyped<EnvironmentValueName> {
+final class BasicJsonMarshallerTypedEnvironmentValueName extends BasicJsonMarshallerTyped<EnvironmentValueName<?>> {
 
     static BasicJsonMarshallerTypedEnvironmentValueName instance() {
         return new BasicJsonMarshallerTypedEnvironmentValueName();
@@ -36,8 +36,8 @@ final class BasicJsonMarshallerTypedEnvironmentValueName extends BasicJsonMarsha
     }
 
     @Override
-    Class<EnvironmentValueName> type() {
-        return EnvironmentValueName.class;
+    Class<EnvironmentValueName<?>> type() {
+        return EnvironmentValueName.CLASS_WILDCARD;
     }
 
     @Override
@@ -46,18 +46,18 @@ final class BasicJsonMarshallerTypedEnvironmentValueName extends BasicJsonMarsha
     }
 
     @Override
-    EnvironmentValueName unmarshallNonNull(final JsonNode node,
-                                       final JsonNodeUnmarshallContext context) {
+    EnvironmentValueName<?> unmarshallNonNull(final JsonNode node,
+                                              final JsonNodeUnmarshallContext context) {
         return EnvironmentValueName.with(node.stringOrFail());
     }
 
     @Override
-    EnvironmentValueName unmarshallNull(final JsonNodeUnmarshallContext context) {
+    EnvironmentValueName<?> unmarshallNull(final JsonNodeUnmarshallContext context) {
         return null;
     }
 
     @Override
-    JsonNode marshallNonNull(final EnvironmentValueName value,
+    JsonNode marshallNonNull(final EnvironmentValueName<?> value,
                              final JsonNodeMarshallContext context) {
         return JsonNode.string(value.toString());
     }

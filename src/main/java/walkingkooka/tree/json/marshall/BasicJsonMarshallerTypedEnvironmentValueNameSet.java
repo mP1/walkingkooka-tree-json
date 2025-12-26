@@ -4,7 +4,9 @@ import walkingkooka.environment.EnvironmentValueNameSet;
 import walkingkooka.tree.json.JsonNode;
 
 /**
- * A {@link BasicJsonMarshaller} that handles {@link EnvironmentValueNameSet}
+ * A {@link BasicJsonMarshaller} that handles {@link EnvironmentValueNameSet}.
+ * Note the {@link walkingkooka.environment.EnvironmentValueName} are marshalled but not the types of each, instead they
+ * will be unmarshalled with {@link Object}.
  */
 final class BasicJsonMarshallerTypedEnvironmentValueNameSet extends BasicJsonMarshallerTyped<EnvironmentValueNameSet> {
 

@@ -19,6 +19,7 @@ package walkingkooka.tree.json.marshall;
 
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.JsonPropertyName;
 
 final class BasicJsonMarshallerTypedEnvironmentValueName extends BasicJsonMarshallerTyped<EnvironmentValueName<?>> {
 
@@ -48,7 +49,42 @@ final class BasicJsonMarshallerTypedEnvironmentValueName extends BasicJsonMarsha
     @Override
     EnvironmentValueName<?> unmarshallNonNull(final JsonNode node,
                                               final JsonNodeUnmarshallContext context) {
-        return EnvironmentValueName.with(node.stringOrFail());
+        String environmentValueName = null;
+        Class<?> type = null;
+
+        for (final JsonNode child : node.objectOrFail().children()) {
+            final JsonPropertyName name = child.name();
+
+            switch (name.value()) {
+                case NAME_PROPERTY_STRING:
+                    environmentValueName = context.unmarshall(
+                        child,
+                        String.class
+                    );
+                    break;
+                case TYPE_PROPERTY_STRING:
+                    type = context.unmarshall(
+                        child,
+                        Class.class
+                    );
+                    break;
+                default:
+                    JsonNodeUnmarshallContext.unknownPropertyPresent(name, node);
+                    break;
+            }
+        }
+
+        if (null == environmentValueName) {
+            JsonNodeUnmarshallContext.missingProperty(NAME_PROPERTY, node);
+        }
+        if (null == type) {
+            JsonNodeUnmarshallContext.missingProperty(TYPE_PROPERTY, node);
+        }
+
+        return EnvironmentValueName.with(
+            environmentValueName,
+            type
+        );
     }
 
     @Override
@@ -59,6 +95,20 @@ final class BasicJsonMarshallerTypedEnvironmentValueName extends BasicJsonMarsha
     @Override
     JsonNode marshallNonNull(final EnvironmentValueName<?> value,
                              final JsonNodeMarshallContext context) {
-        return JsonNode.string(value.toString());
+        return JsonNode.object()
+            .set(
+                NAME_PROPERTY,
+                value.value()
+            ).set(
+                TYPE_PROPERTY,
+                context.marshall(value.type())
+            );
     }
+
+    private final static String NAME_PROPERTY_STRING = "name";
+    private final static String TYPE_PROPERTY_STRING = "type";
+
+    final static JsonPropertyName NAME_PROPERTY = JsonPropertyName.with(NAME_PROPERTY_STRING);
+    final static JsonPropertyName TYPE_PROPERTY = JsonPropertyName.with(TYPE_PROPERTY_STRING);
+
 }

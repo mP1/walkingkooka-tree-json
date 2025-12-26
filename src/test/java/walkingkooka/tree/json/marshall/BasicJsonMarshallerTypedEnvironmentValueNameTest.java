@@ -21,6 +21,8 @@ import walkingkooka.Cast;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.tree.json.JsonNode;
 
+import java.util.Locale;
+
 public final class BasicJsonMarshallerTypedEnvironmentValueNameTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedEnvironmentValueName, EnvironmentValueName<?>> {
 
     @Override
@@ -35,7 +37,14 @@ public final class BasicJsonMarshallerTypedEnvironmentValueNameTest extends Basi
 
     @Override
     JsonNode node() {
-        return JsonNode.string(this.value().toString());
+        return JsonNode.object()
+            .set(
+                BasicJsonMarshallerTypedEnvironmentValueName.NAME_PROPERTY,
+                "locale"
+            ).set(
+                BasicJsonMarshallerTypedEnvironmentValueName.TYPE_PROPERTY,
+                Locale.class.getName()
+            );
     }
 
     @Override

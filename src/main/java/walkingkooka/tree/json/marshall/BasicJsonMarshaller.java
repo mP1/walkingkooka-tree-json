@@ -169,6 +169,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedExpressionFunctionParameter.instance(), // ExpressionFunctionParameter
             BasicJsonMarshallerTypedExpressionFunctionParameterName.instance(), // ExpressionFunctionParameterName
             BasicJsonMarshallerTypedHttpRequest.instance(),
+            BasicJsonMarshallerTypedHttpResponse.instance(),
             BasicJsonMarshallerTypedJsonNode.instance(),
             BasicJsonMarshallerTypedJsonPropertyName.instance(),
             BasicJsonMarshallerTypedLink.instance(),

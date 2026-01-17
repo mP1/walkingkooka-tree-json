@@ -117,7 +117,8 @@ abstract class BasicJsonMarshaller<T> {
      * this is now running.
      */
     static {
-        Lists.of(BasicJsonMarshallerBoolean.instance(),
+        Lists.of(
+            BasicJsonMarshallerBoolean.instance(),
             BasicJsonMarshallerDouble.instance(),
             BasicJsonMarshallerNumber.instance(),
             BasicJsonMarshallerString.instance(),
@@ -128,6 +129,9 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedBinary.instance(),
             BasicJsonMarshallerTypedCharacter.instance(),
             BasicJsonMarshallerTypedClass.instance(),
+            BasicJsonMarshallerTypedCollectionCollection.instance(),
+            BasicJsonMarshallerTypedCollectionList.instance(),
+            BasicJsonMarshallerTypedCollectionSet.instance(),
             BasicJsonMarshallerTypedCsvStringList.instance(),
             BasicJsonMarshallerTypedCsvStringSet.instance(),
             BasicJsonMarshallerTypedDateTimeSymbols.instance(),
@@ -157,7 +161,6 @@ abstract class BasicJsonMarshaller<T> {
 //                BasicJsonMarshallerTypedExpression.value(),
             BasicJsonMarshallerTypedExpression.binary(Expression::xor, XorExpression.class),
             BasicJsonMarshallerTypedExpression.lambdaFunction(),
-            BasicJsonMarshallerTypedLink.instance(),
             BasicJsonMarshallerTypedExpression.namedFunction(),
             BasicJsonMarshallerTypedExpression.call(), // must be after namedFunction
             BasicJsonMarshallerTypedExpressionNumber.instance(),
@@ -167,9 +170,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedExpressionFunctionParameterName.instance(), // ExpressionFunctionParameterName
             BasicJsonMarshallerTypedJsonNode.instance(),
             BasicJsonMarshallerTypedJsonPropertyName.instance(),
-            BasicJsonMarshallerTypedCollectionCollection.instance(),
-            BasicJsonMarshallerTypedCollectionList.instance(),
-            BasicJsonMarshallerTypedCollectionSet.instance(),
+            BasicJsonMarshallerTypedLink.instance(),
             BasicJsonMarshallerTypedLocalDate.instance(),
             BasicJsonMarshallerTypedLocalDateList.instance(),
             BasicJsonMarshallerTypedLocalDateTime.instance(),

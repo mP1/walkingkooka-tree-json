@@ -157,6 +157,7 @@ abstract class BasicJsonMarshaller<T> {
 //                BasicJsonMarshallerTypedExpression.value(),
             BasicJsonMarshallerTypedExpression.binary(Expression::xor, XorExpression.class),
             BasicJsonMarshallerTypedExpression.lambdaFunction(),
+            BasicJsonMarshallerTypedLink.instance(),
             BasicJsonMarshallerTypedExpression.namedFunction(),
             BasicJsonMarshallerTypedExpression.call(), // must be after namedFunction
             BasicJsonMarshallerTypedExpressionNumber.instance(),

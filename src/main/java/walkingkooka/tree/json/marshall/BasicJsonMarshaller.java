@@ -122,6 +122,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerDouble.instance(),
             BasicJsonMarshallerNumber.instance(),
             BasicJsonMarshallerString.instance(),
+            BasicJsonMarshallerTypedAbsoluteUrl.instance(),
             BasicJsonMarshallerTypedAuditInfo.instance(),
             BasicJsonMarshallerTypedBooleanList.instance(),
             BasicJsonMarshallerTypedBigDecimal.instance(),
@@ -135,6 +136,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedCsvStringList.instance(),
             BasicJsonMarshallerTypedCsvStringSet.instance(),
             BasicJsonMarshallerTypedDateTimeSymbols.instance(),
+            BasicJsonMarshallerTypedDataUrl.instance(),
             BasicJsonMarshallerTypedDecimalNumberSymbols.instance(),
             BasicJsonMarshallerTypedEmailAddress.instance(),
             BasicJsonMarshallerTypedEnvironmentValueName.instance(),
@@ -180,6 +182,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedLocale.instance(),
             BasicJsonMarshallerTypedLocalTime.instance(),
             BasicJsonMarshallerTypedLocalTimeList.instance(),
+            BasicJsonMarshallerTypedMailToUrl.instance(),
             BasicJsonMarshallerTypedMap.instance(),
             BasicJsonMarshallerTypedMathContext.instance(),
             BasicJsonMarshallerTypedNodeSelector.instance(),
@@ -191,9 +194,11 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedNumberFloat.instance(),
             BasicJsonMarshallerTypedOptional.instance(),
             BasicJsonMarshallerTypedRange.instance(),
+            BasicJsonMarshallerTypedRelativeUrl.instance(),
             BasicJsonMarshallerTypedRoundingMode.instance(),
             BasicJsonMarshallerTypedStringList.instance(),
-            BasicJsonMarshallerTypedStringName.instance()
+            BasicJsonMarshallerTypedStringName.instance(),
+            BasicJsonMarshallerTypedUrl.instance()
         ).forEach(BasicJsonMarshaller::register);
     }
 

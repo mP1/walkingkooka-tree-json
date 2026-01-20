@@ -185,6 +185,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedMailToUrl.instance(),
             BasicJsonMarshallerTypedMap.instance(),
             BasicJsonMarshallerTypedMathContext.instance(),
+            BasicJsonMarshallerTypedMediaType.instance(),
             BasicJsonMarshallerTypedNodeSelector.instance(),
             BasicJsonMarshallerTypedNumberByte.instance(),
             BasicJsonMarshallerTypedNumberShort.instance(),

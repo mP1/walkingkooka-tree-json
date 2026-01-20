@@ -56,7 +56,7 @@ final class BasicJsonMarshallerTypedAuditInfo extends BasicJsonMarshallerTyped<A
 
     @Override
     AuditInfo unmarshallNonNull(final JsonNode node,
-                                 final JsonNodeUnmarshallContext context) {
+                                final JsonNodeUnmarshallContext context) {
         EmailAddress createdBy = null;
         LocalDateTime createdTimestamp = null;
         EmailAddress modifiedBy = null;

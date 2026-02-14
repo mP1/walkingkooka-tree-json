@@ -87,6 +87,9 @@ public final class JsonNodeMarshallUnmarshallContextDelegatorTest implements Jso
             return JsonNodeMarshallUnmarshallContexts.basic(
                 JsonNodeMarshallContexts.basic(),
                 JsonNodeUnmarshallContexts.basic(
+                    (cc) -> {
+                        throw new UnsupportedOperationException();
+                    },
                     ExpressionNumberKind.BIG_DECIMAL,
                     MathContext.DECIMAL64
                 )

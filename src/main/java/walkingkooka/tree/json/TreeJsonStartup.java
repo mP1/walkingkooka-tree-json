@@ -34,6 +34,9 @@ public final class TreeJsonStartup implements PublicStaticHelper {
         JsonNodeMarshallUnmarshallContexts.basic(
             JsonNodeMarshallContexts.basic(),
             JsonNodeUnmarshallContexts.basic(
+                (cc) -> {
+                    throw new UnsupportedOperationException();
+                },
                 ExpressionNumberKind.BIG_DECIMAL,
                 MathContext.DECIMAL32
             )

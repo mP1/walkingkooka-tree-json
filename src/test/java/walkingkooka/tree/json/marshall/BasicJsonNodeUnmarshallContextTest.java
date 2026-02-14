@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
+import walkingkooka.currency.CanCurrencyForCurrencyCode;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
@@ -30,6 +31,7 @@ import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.util.Currency;
 import java.util.EnumSet;
 import java.util.Locale;
 import java.util.Optional;
@@ -39,11 +41,31 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeContextTestCase<BasicJsonNodeUnmarshallContext>
     implements JsonNodeUnmarshallContextTesting<BasicJsonNodeUnmarshallContext> {
 
+    private final CanCurrencyForCurrencyCode CAN_CURRENCY_FOR_CURRENCY_CODE = (String cc) -> Optional.ofNullable(
+        Currency.getInstance(cc)
+    );
+
+    @Test
+    public void testWithNullCanCurrencyForCurrencyCodeFails() {
+        assertThrows(
+            java.lang.NullPointerException.class,
+            () -> BasicJsonNodeUnmarshallContext.with(
+                null,
+                ExpressionNumberKind.BIG_DECIMAL,
+                MathContext.DECIMAL32
+            )
+        );
+    }
+
     @Test
     public void testWithNullKindFails() {
         assertThrows(
             java.lang.NullPointerException.class,
-            () -> BasicJsonNodeUnmarshallContext.with(null, MathContext.DECIMAL32)
+            () -> BasicJsonNodeUnmarshallContext.with(
+                CAN_CURRENCY_FOR_CURRENCY_CODE,
+                null,
+                MathContext.DECIMAL32
+            )
         );
     }
 
@@ -51,7 +73,11 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     public void testWithNullContextFails() {
         assertThrows(
             java.lang.NullPointerException.class,
-            () -> BasicJsonNodeUnmarshallContext.with(ExpressionNumberKind.DEFAULT, null)
+            () -> BasicJsonNodeUnmarshallContext.with(
+                CAN_CURRENCY_FOR_CURRENCY_CODE,
+                ExpressionNumberKind.DEFAULT,
+                null
+            )
         );
     }
 
@@ -928,6 +954,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     @Override
     public BasicJsonNodeUnmarshallContext createContext() {
         return BasicJsonNodeUnmarshallContext.with(
+            CAN_CURRENCY_FOR_CURRENCY_CODE,
             ExpressionNumberKind.DEFAULT,
             MathContext.DECIMAL32
         );

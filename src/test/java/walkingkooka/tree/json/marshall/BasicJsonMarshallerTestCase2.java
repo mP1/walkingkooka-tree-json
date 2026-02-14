@@ -33,6 +33,7 @@ import walkingkooka.tree.json.JsonNodeException;
 import walkingkooka.tree.json.JsonObject;
 
 import java.math.MathContext;
+import java.util.Currency;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -367,6 +368,9 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
 
     final JsonNodeUnmarshallContext unmarshallContext() {
         return BasicJsonNodeUnmarshallContext.with(
+            (String cc) -> Optional.ofNullable(
+                Currency.getInstance(cc)
+            ),
             ExpressionNumberKind.DEFAULT,
             MathContext.DECIMAL32
         );

@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Context;
+import walkingkooka.currency.CanCurrencyForCurrencyCode;
 import walkingkooka.math.HasMathContext;
 import walkingkooka.tree.expression.HasExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
@@ -38,6 +39,7 @@ import java.util.function.Function;
  * A {@link Context} that accompanies transforming {@link JsonNode} into an object.
  */
 public interface JsonNodeUnmarshallContext extends JsonNodeContext,
+    CanCurrencyForCurrencyCode,
     HasExpressionNumberKind,
     HasMathContext {
 

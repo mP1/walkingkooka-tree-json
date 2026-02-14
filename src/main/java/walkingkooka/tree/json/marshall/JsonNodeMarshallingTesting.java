@@ -34,6 +34,7 @@ import walkingkooka.tree.json.JsonString;
 
 import java.math.MathContext;
 import java.util.Arrays;
+import java.util.Currency;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -319,6 +320,9 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
 
     default JsonNodeUnmarshallContext unmarshallContext() {
         return JsonNodeUnmarshallContexts.basic(
+            (cc) -> Optional.ofNullable(
+                Currency.getInstance(cc)
+            ),
             ExpressionNumberKind.DEFAULT,
             MathContext.DECIMAL32
         );

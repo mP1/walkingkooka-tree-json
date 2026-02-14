@@ -21,6 +21,7 @@ import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 
 import java.math.MathContext;
+import java.util.Currency;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -107,6 +108,13 @@ public class FakeJsonNodeUnmarshallContext extends FakeJsonNodeContext implement
 
     @Override
     public <K, V> Map<K, V> unmarshallMapWithType(final JsonNode node) {
+        throw new UnsupportedOperationException();
+    }
+
+    // CanCurrencyForCurrencyCode.......................................................................................
+
+    @Override
+    public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
         throw new UnsupportedOperationException();
     }
 }

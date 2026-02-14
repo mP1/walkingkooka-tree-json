@@ -21,6 +21,7 @@ import walkingkooka.Cast;
 import walkingkooka.collect.list.ImmutableList;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
+import walkingkooka.currency.CanCurrencyForCurrencyCode;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
@@ -29,6 +30,7 @@ import walkingkooka.tree.json.JsonObject;
 import java.math.MathContext;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Currency;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
@@ -44,12 +46,15 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     /**
      * Factory
      */
-    static BasicJsonNodeUnmarshallContext with(final ExpressionNumberKind kind,
+    static BasicJsonNodeUnmarshallContext with(final CanCurrencyForCurrencyCode canCurrencyForCurrencyCode,
+                                               final ExpressionNumberKind kind,
                                                final MathContext mathContext) {
+        Objects.requireNonNull(canCurrencyForCurrencyCode, "canCurrencyForCurrencyCode");
         Objects.requireNonNull(kind, "kind");
         Objects.requireNonNull(mathContext, "mathContext");
 
         return new BasicJsonNodeUnmarshallContext(
+            canCurrencyForCurrencyCode,
             kind,
             mathContext,
             JsonNodeUnmarshallContext.PRE_PROCESSOR
@@ -59,14 +64,25 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     /**
      * Private ctor
      */
-    private BasicJsonNodeUnmarshallContext(final ExpressionNumberKind kind,
+    private BasicJsonNodeUnmarshallContext(final CanCurrencyForCurrencyCode canCurrencyForCurrencyCode,
+                                           final ExpressionNumberKind kind,
                                            final MathContext mathContext,
                                            final JsonNodeUnmarshallContextPreProcessor processor) {
         super();
+        this.canCurrencyForCurrencyCode = canCurrencyForCurrencyCode;
         this.kind = kind;
         this.mathContext = mathContext;
         this.processor = processor;
     }
+
+    // CanCurrencyForCurrencyCode.......................................................................................
+
+    @Override
+    public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+        return this.canCurrencyForCurrencyCode.currencyForCurrencyCode(currencyCode);
+    }
+
+    private final CanCurrencyForCurrencyCode canCurrencyForCurrencyCode;
 
     // HasExpressionNumberKind..........................................................................................
 
@@ -95,6 +111,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
         return this.processor.equals(processor) ?
             this :
             new BasicJsonNodeUnmarshallContext(
+                this.canCurrencyForCurrencyCode,
                 this.kind,
                 this.mathContext,
                 processor

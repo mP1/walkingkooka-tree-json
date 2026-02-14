@@ -21,6 +21,7 @@ import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 
 import java.math.MathContext;
+import java.util.Currency;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -131,6 +132,12 @@ public interface JsonNodeUnmarshallContextDelegator extends JsonNodeUnmarshallCo
     default MathContext mathContext() {
         return this.jsonNodeUnmarshallContext()
             .mathContext();
+    }
+
+    @Override
+    default Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+        return this.jsonNodeUnmarshallContext()
+            .currencyForCurrencyCode(currencyCode);
     }
 
     @Override

@@ -25,6 +25,8 @@ import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonNodeVisitorTesting;
 
 import java.math.MathContext;
+import java.util.Currency;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -121,6 +123,9 @@ public final class BasicJsonNodeUnmarshallContextJsonNodeVisitorTest implements 
 
     private JsonNodeUnmarshallContext context() {
         return BasicJsonNodeUnmarshallContext.with(
+            (String cc) -> Optional.ofNullable(
+                Currency.getInstance(cc)
+            ),
             ExpressionNumberKind.DEFAULT,
             MathContext.DECIMAL32
         );

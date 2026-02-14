@@ -54,7 +54,9 @@ final class BasicJsonMarshallerTypedCurrency extends BasicJsonMarshallerTyped<Cu
     @Override
     Currency unmarshallNonNull(final JsonNode node,
                                final JsonNodeUnmarshallContext context) {
-        return Currency.getInstance(node.stringOrFail());
+        return context.currencyForCurrencyCodeOrFail(
+            node.stringOrFail()
+        );
     }
 
     @Override

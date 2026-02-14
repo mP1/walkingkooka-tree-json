@@ -322,8 +322,24 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     final void unmarshallAndCheck(final BasicJsonMarshaller<T> marshaller,
                                   final JsonNode node,
                                   final T value) {
-        this.checkEquals(value,
-            marshaller.unmarshall(node, this.unmarshallContext()),
+        this.unmarshallAndCheck(
+            marshaller,
+            node,
+            this.unmarshallContext(),
+            value
+        );
+    }
+
+    final void unmarshallAndCheck(final BasicJsonMarshaller<T> marshaller,
+                                  final JsonNode node,
+                                  final JsonNodeUnmarshallContext context,
+                                  final T value) {
+        this.checkEquals(
+            value,
+            marshaller.unmarshall(
+                node,
+                context
+            ),
             () -> "unmarshall failed " + node);
     }
 

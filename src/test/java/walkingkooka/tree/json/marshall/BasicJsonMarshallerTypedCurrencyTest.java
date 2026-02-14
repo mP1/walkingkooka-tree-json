@@ -17,11 +17,32 @@
 
 package walkingkooka.tree.json.marshall;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.Currency;
+import java.util.Optional;
 
 public final class BasicJsonMarshallerTypedCurrencyTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedCurrency, Currency> {
+
+    @Test
+    public void testUnmarshall2() {
+        final String currencyCode = "AUD";
+        final Currency currency = Currency.getInstance("NZD");
+
+        this.unmarshallAndCheck(
+            BasicJsonMarshallerTypedCurrency.instance(),
+            JsonNode.string(currencyCode),
+            new FakeJsonNodeUnmarshallContext() {
+                @Override
+                public Optional<Currency> currencyForCurrencyCode(final String cc) {
+                    checkEquals(currencyCode, cc, "currencyCode");
+                    return Optional.of(currency);
+                }
+            },
+            currency
+        );
+    }
 
     @Override
     BasicJsonMarshallerTypedCurrency marshaller() {

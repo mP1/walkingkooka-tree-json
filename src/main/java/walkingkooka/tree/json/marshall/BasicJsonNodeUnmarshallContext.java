@@ -68,6 +68,8 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
         this.processor = processor;
     }
 
+    // HasExpressionNumberKind..........................................................................................
+
     @Override
     public ExpressionNumberKind expressionNumberKind() {
         return this.kind;
@@ -75,12 +77,16 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
 
     private final ExpressionNumberKind kind;
 
+    // HasMathContext...................................................................................................
+
     @Override
     public MathContext mathContext() {
         return this.mathContext;
     }
 
     private final MathContext mathContext;
+
+    // JsonNodeUnmarshallContext........................................................................................
 
     @Override
     public JsonNodeUnmarshallContext setPreProcessor(final JsonNodeUnmarshallContextPreProcessor processor) {
@@ -95,15 +101,21 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
             );
     }
 
-    // from.............................................................................................................
-
     /**
      * Attempts to convert this node to the requested {@link Class type}.
      */
     @Override
     public <T> T unmarshall(final JsonNode node,
                             final Class<T> type) {
-        return Cast.to(BasicJsonMarshaller.marshaller(type).unmarshall(this.preProcess(node, type), this));
+        return Cast.to(BasicJsonMarshaller.marshaller(type)
+            .unmarshall(
+                this.preProcess(
+                    node,
+                    type
+                ),
+                this
+            )
+        );
     }
 
     @Override
@@ -126,7 +138,11 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
             EnumSet.noneOf(enumClass) :
             Arrays.stream(csv.split(","))
                 .map(stringToEnum::apply)
-                .collect(Collectors.toCollection(() -> EnumSet.noneOf(enumClass)));
+                .collect(
+                    Collectors.toCollection(
+                        () -> EnumSet.noneOf(enumClass)
+                    )
+                );
     }
 
     @Override
@@ -168,16 +184,19 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     @Override
     public <T> Set<T> unmarshallSet(final JsonNode node,
                                     final Class<T> elementType) {
-        return this.unmarshallCollection(node,
+        return this.unmarshallCollection(
+            node,
             elementType,
-            Collectors.toCollection(Sets::ordered));
+            Collectors.toCollection(Sets::ordered)
+        );
     }
 
-    private <C extends Collection<T>, T> C unmarshallCollection(final JsonNode from,
+    private <C extends Collection<T>, T> C unmarshallCollection(final JsonNode node,
                                                                 final Class<T> elementType,
                                                                 final Collector<T, ?, C> collector) {
         final BasicJsonMarshaller<T> marshaller = BasicJsonMarshaller.marshaller(elementType);
-        return from.children()
+
+        return node.children()
             .stream()
             .map(c -> marshaller.unmarshall(this.preProcess(c, elementType), this))
             .collect(collector);
@@ -246,14 +265,17 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
         return map;
     }
 
-    // unmarshallWithType.............................................................................................
+    // unmarshallWithType...............................................................................................
 
     /**
      * Assumes a wrapper object with the type and value, basically the inverse of {@link JsonNodeMarshallContext#marshallWithType(Object)}.
      */
     @Override
     public <T> T unmarshallWithType(final JsonNode node) {
-        return BasicJsonNodeUnmarshallContextJsonNodeVisitor.value(node, this);
+        return BasicJsonNodeUnmarshallContextJsonNodeVisitor.value(
+            node,
+            this
+        );
     }
 
     /**
@@ -278,13 +300,15 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
             Collectors.toCollection(Sets::ordered));
     }
 
-    private <C extends Collection<T>, T> C unmarshallCollectionWithType(final JsonNode from,
+    private <C extends Collection<T>, T> C unmarshallCollectionWithType(final JsonNode node,
                                                                         final Class<?> label,
                                                                         final Collector<T, ?, C> collector) {
-        return this.unmarshallCollection0(from,
+        return this.unmarshallCollection0(
+            node,
             label,
             this::unmarshallWithType,
-            collector);
+            collector
+        );
     }
 
     /**
@@ -306,7 +330,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
         return map;
     }
 
-    // from helpers......................................................................................................
+    // from helpers.....................................................................................................
 
     private static void fromArrayCheck(final JsonNode node,
                                        final Class<?> label) {
@@ -335,7 +359,10 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
      */
     private JsonNode preProcess(final JsonNode node,
                                 final Class<?> type) {
-        return this.processor.apply(node, type);
+        return this.processor.apply(
+            node,
+            type
+        );
     }
 
     private final JsonNodeUnmarshallContextPreProcessor processor;

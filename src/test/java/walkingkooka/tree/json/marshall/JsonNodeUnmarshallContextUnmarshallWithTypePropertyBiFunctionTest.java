@@ -189,6 +189,9 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
 
     private JsonNodeUnmarshallContext unmarshallContext() {
         return JsonNodeUnmarshallContexts.basic(
+            (cc) -> {
+                throw new UnsupportedOperationException();
+            },
             ExpressionNumberKind.DEFAULT,
             MathContext.DECIMAL32
         );

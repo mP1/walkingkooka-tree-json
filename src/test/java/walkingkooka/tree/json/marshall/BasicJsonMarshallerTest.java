@@ -33,6 +33,7 @@ import java.math.MathContext;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Currency;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -341,6 +342,9 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
         this.checkEquals(
             value,
             JsonNodeUnmarshallContexts.basic(
+                (String cc) -> Optional.ofNullable(
+                    Currency.getInstance(cc)
+                ),
                 EXPRESSION_NUMBER_KIND,
                 MathContext.DECIMAL32
             ).unmarshall(json, value.getClass()),

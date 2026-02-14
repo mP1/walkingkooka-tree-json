@@ -22,6 +22,8 @@ import walkingkooka.ToStringTesting;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 
 import java.math.MathContext;
+import java.util.Currency;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -55,6 +57,9 @@ public final class BasicJsonNodeMarshallUnmarshallContextTest implements JsonNod
         return BasicJsonNodeMarshallUnmarshallContext.with(
             JsonNodeMarshallContexts.basic(),
             JsonNodeUnmarshallContexts.basic(
+                (String cc) -> Optional.ofNullable(
+                    Currency.getInstance(cc)
+                ),
                 ExpressionNumberKind.BIG_DECIMAL,
                 MathContext.DECIMAL32
             )

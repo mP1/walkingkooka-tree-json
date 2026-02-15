@@ -198,6 +198,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedOptionalCurrency.instance(),
             BasicJsonMarshallerTypedOptionalDateTimeSymbols.instance(),
             BasicJsonMarshallerTypedOptionalDecimalNumberSymbols.instance(),
+            BasicJsonMarshallerTypedOptionalLocale.instance(),
             BasicJsonMarshallerTypedRange.instance(),
             BasicJsonMarshallerTypedRelativeUrl.instance(),
             BasicJsonMarshallerTypedRoundingMode.instance(),

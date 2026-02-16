@@ -19,8 +19,8 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
+import walkingkooka.currency.OptionalCurrency;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.util.OptionalCurrency;
 
 import java.util.Currency;
 import java.util.Optional;

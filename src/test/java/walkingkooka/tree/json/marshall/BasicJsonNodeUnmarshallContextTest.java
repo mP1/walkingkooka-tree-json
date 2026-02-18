@@ -22,6 +22,7 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.currency.CanCurrencyForCurrencyCode;
+import walkingkooka.locale.CanLocaleForLanguageTag;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
@@ -45,11 +46,29 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         Currency.getInstance(cc)
     );
 
+    private final CanLocaleForLanguageTag CAN_LOCALE_FOR_LANGUAGE_TAG = (String lt) -> Optional.of(
+        Locale.forLanguageTag(lt)
+    );
+    
     @Test
     public void testWithNullCanCurrencyForCurrencyCodeFails() {
         assertThrows(
             java.lang.NullPointerException.class,
             () -> BasicJsonNodeUnmarshallContext.with(
+                null,
+                CAN_LOCALE_FOR_LANGUAGE_TAG,
+                ExpressionNumberKind.BIG_DECIMAL,
+                MathContext.DECIMAL32
+            )
+        );
+    }
+
+    @Test
+    public void testWithNullCanLocaleForLanguageTagFails() {
+        assertThrows(
+            java.lang.NullPointerException.class,
+            () -> BasicJsonNodeUnmarshallContext.with(
+                CAN_CURRENCY_FOR_CURRENCY_CODE,
                 null,
                 ExpressionNumberKind.BIG_DECIMAL,
                 MathContext.DECIMAL32
@@ -63,6 +82,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
             java.lang.NullPointerException.class,
             () -> BasicJsonNodeUnmarshallContext.with(
                 CAN_CURRENCY_FOR_CURRENCY_CODE,
+                CAN_LOCALE_FOR_LANGUAGE_TAG,
                 null,
                 MathContext.DECIMAL32
             )
@@ -75,6 +95,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
             java.lang.NullPointerException.class,
             () -> BasicJsonNodeUnmarshallContext.with(
                 CAN_CURRENCY_FOR_CURRENCY_CODE,
+                CAN_LOCALE_FOR_LANGUAGE_TAG,
                 ExpressionNumberKind.DEFAULT,
                 null
             )
@@ -955,6 +976,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     public BasicJsonNodeUnmarshallContext createContext() {
         return BasicJsonNodeUnmarshallContext.with(
             CAN_CURRENCY_FOR_CURRENCY_CODE,
+            CAN_LOCALE_FOR_LANGUAGE_TAG,
             ExpressionNumberKind.DEFAULT,
             MathContext.DECIMAL32
         );

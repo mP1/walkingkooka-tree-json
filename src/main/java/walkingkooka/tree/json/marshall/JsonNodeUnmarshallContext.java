@@ -19,6 +19,7 @@ package walkingkooka.tree.json.marshall;
 
 import walkingkooka.Context;
 import walkingkooka.currency.CanCurrencyForCurrencyCode;
+import walkingkooka.locale.CanLocaleForLanguageTag;
 import walkingkooka.math.HasMathContext;
 import walkingkooka.tree.expression.HasExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
@@ -40,6 +41,7 @@ import java.util.function.Function;
  */
 public interface JsonNodeUnmarshallContext extends JsonNodeContext,
     CanCurrencyForCurrencyCode,
+    CanLocaleForLanguageTag,
     HasExpressionNumberKind,
     HasMathContext {
 

@@ -23,6 +23,7 @@ import walkingkooka.tree.json.JsonNode;
 import java.math.MathContext;
 import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -146,6 +147,11 @@ public interface JsonNodeUnmarshallContextDelegator extends JsonNodeUnmarshallCo
             .expressionNumberKind();
     }
 
+    @Override
+    default Optional<Locale> localeForLanguageTag(final String languageTag) {
+        return this.jsonNodeUnmarshallContext()
+            .localeForLanguageTag(languageTag);
+    }
 
     @Override
     default JsonNodeContext jsonNodeContext() {

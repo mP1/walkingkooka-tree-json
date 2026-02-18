@@ -23,6 +23,7 @@ import walkingkooka.tree.json.JsonNode;
 import java.math.MathContext;
 import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -115,6 +116,13 @@ public class FakeJsonNodeUnmarshallContext extends FakeJsonNodeContext implement
 
     @Override
     public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+        throw new UnsupportedOperationException();
+    }
+
+    // CanLocaleForLanguageTag..........................................................................................
+
+    @Override
+    public Optional<Locale> localeForLanguageTag(final String languageTag) {
         throw new UnsupportedOperationException();
     }
 }

@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.locale.CanLocaleForLanguageTagTesting2;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
@@ -29,7 +30,8 @@ import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallContext> extends JsonNodeContextTesting<C> {
+public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallContext> extends JsonNodeContextTesting<C>,
+    CanLocaleForLanguageTagTesting2<C> {
 
     // setPreProcessor..................................................................................................
 
@@ -422,6 +424,11 @@ public interface JsonNodeUnmarshallContextTesting<C extends JsonNodeUnmarshallCo
             context.unmarshallMapWithType(node),
             () -> context + " unmarshallMapWithType " + node
         );
+    }
+
+    @Override
+    default C createCanLocaleForLanguageTag() {
+        return this.createContext();
     }
 
     // TypeNameTesting..................................................................................................

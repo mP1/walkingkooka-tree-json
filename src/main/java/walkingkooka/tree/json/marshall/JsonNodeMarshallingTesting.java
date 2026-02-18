@@ -36,6 +36,7 @@ import java.math.MathContext;
 import java.util.Arrays;
 import java.util.Currency;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -322,6 +323,9 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
         return JsonNodeUnmarshallContexts.basic(
             (cc) -> Optional.ofNullable(
                 Currency.getInstance(cc)
+            ),
+            (lt) -> Optional.of(
+                Locale.forLanguageTag(lt)
             ),
             ExpressionNumberKind.DEFAULT,
             MathContext.DECIMAL32

@@ -192,6 +192,9 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
             (cc) -> {
                 throw new UnsupportedOperationException();
             },
+            (lt) -> {
+                throw new UnsupportedOperationException();
+            },
             ExpressionNumberKind.DEFAULT,
             MathContext.DECIMAL32
         );

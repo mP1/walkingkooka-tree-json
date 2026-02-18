@@ -37,6 +37,9 @@ public final class TreeJsonStartup implements PublicStaticHelper {
                 (cc) -> {
                     throw new UnsupportedOperationException();
                 },
+                (lt) -> {
+                    throw new UnsupportedOperationException();
+                },
                 ExpressionNumberKind.BIG_DECIMAL,
                 MathContext.DECIMAL32
             )

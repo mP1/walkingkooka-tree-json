@@ -90,6 +90,10 @@ public final class JsonNodeMarshallUnmarshallContextDelegatorTest implements Jso
                     (cc) -> {
                         throw new UnsupportedOperationException();
                     },
+                    (lt) -> {
+                        Objects.requireNonNull(lt, "languageTag");
+                        throw new UnsupportedOperationException();
+                    },
                     ExpressionNumberKind.BIG_DECIMAL,
                     MathContext.DECIMAL64
                 )

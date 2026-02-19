@@ -6,7 +6,13 @@
 ![](https://tokei.rs/b1/github/mP1/walkingkooka-tree-json)
 [![J2CL compatible](https://img.shields.io/badge/J2CL-compatible-brightgreen.svg)](https://github.com/mP1/j2cl-central)
 
-
-
 # walkingkooka-tree-json
-An immutable & functional Json library with support for marshalling, pointers (think JsonPointer), selecting (almost xpath).
+
+A quality and feature first json library that provides basic and many quality of life extras not found in other popular libraries
+
+- Immutability, nodes, graphs, selectors are all immutable.
+- Functional programming support
+- Advanced tree Navigations, walk a json node tree in all directions and axis
+- Combines Query technology found in other graphing systems
+- Brings XSLT path navigation and gathering from XML to json
+- A Java first implementation of json pointer.

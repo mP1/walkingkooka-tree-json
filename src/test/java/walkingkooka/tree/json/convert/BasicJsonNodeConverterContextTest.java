@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
+import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.locale.LocaleContext;
 import walkingkooka.locale.LocaleContexts;
@@ -63,15 +64,20 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
                 )
             ),
             ConverterContexts.basic(
-                (l) -> Optional.of(
-                    Currency.getInstance(l)
-                ), // CanCurrencyForLocale
                 false, // canNumbersHaveGroupSeparator
                 Converters.JAVA_EPOCH_OFFSET,
                 Indentation.SPACES2,
                 LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
+                new FakeCurrencyContext() {
+                    @Override
+                    public Optional<Currency> currencyForLocale(final Locale locale) {
+                        return Optional.of(
+                            Currency.getInstance(locale)
+                        );
+                    }
+                }.setLocaleContext(localeContext),
                 DateTimeContexts.basic(
                     localeContext.dateTimeSymbolsForLocale(locale)
                         .get(),
@@ -80,8 +86,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
                     50,
                     LocalDateTime::now
                 ),
-                DecimalNumberContexts.american(MathContext.DECIMAL32),
-                localeContext
+                DecimalNumberContexts.american(MathContext.DECIMAL32)
             ),
             ExpressionNumberKind.DEFAULT
         );

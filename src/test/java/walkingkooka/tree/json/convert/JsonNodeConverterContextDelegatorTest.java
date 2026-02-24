@@ -19,6 +19,7 @@ package walkingkooka.tree.json.convert;
 
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
+import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.locale.LocaleContexts;
@@ -39,8 +40,10 @@ import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 import java.math.MathContext;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
+import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Optional;
 
 public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConverterContextTesting<TestJsonNodeConverterContextDelegator>,
     DecimalNumberContextDelegator {
@@ -133,16 +136,22 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
                 ExpressionNumberConverterContexts.basic(
                     Converters.fake(),
                     ConverterContexts.basic(
-                        (l) -> {
-                            Objects.requireNonNull(l, "locale");
-                            throw new UnsupportedOperationException();
-                        }, // canCurrencyForLocale
                         false, // canNumbersHaveGroupSeparator
                         0, // dateOffset
                         Indentation.SPACES2,
                         LineEnding.NL,
                         ',', // valueSeparator
                         Converters.fake(),
+                        new FakeCurrencyContext() {
+                            @Override
+                            public Optional<Currency> currencyForLocale(final Locale locale) {
+                                return Optional.of(
+                                    Currency.getInstance(locale)
+                                );
+                            }
+                        }.setLocaleContext(
+                            LocaleContexts.jre(locale)
+                        ),
                         DateTimeContexts.basic(
                             DateTimeSymbols.fromDateFormatSymbols(
                                 new DateFormatSymbols(locale)
@@ -152,8 +161,7 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
                             50, // twoDigitYear
                             LocalDateTime::now
                         ),
-                        DECIMAL_NUMBER_CONTEXT,
-                        LocaleContexts.jre(locale)
+                        DECIMAL_NUMBER_CONTEXT
                     ),
                     numberKind
                 ),

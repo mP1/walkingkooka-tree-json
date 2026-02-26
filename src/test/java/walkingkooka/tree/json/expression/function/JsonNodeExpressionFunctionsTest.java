@@ -17,14 +17,25 @@
 
 package walkingkooka.tree.json.expression.function;
 
-import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PublicStaticHelperTesting;
 
-public final class JsonExpressionFunctions implements PublicStaticHelper {
+import java.lang.reflect.Method;
 
-    /**
-     * Stop creation
-     */
-    private JsonExpressionFunctions() {
-        throw new UnsupportedOperationException();
+public final class JsonNodeExpressionFunctionsTest implements PublicStaticHelperTesting<JsonNodeExpressionFunctions> {
+
+    @Override
+    public Class<JsonNodeExpressionFunctions> type() {
+        return JsonNodeExpressionFunctions.class;
+    }
+
+    @Override
+    public JavaVisibility typeVisibility() {
+        return JavaVisibility.PUBLIC;
+    }
+
+    @Override
+    public boolean canHavePublicTypes(final Method method) {
+        return false;
     }
 }

@@ -33,6 +33,7 @@ public interface JsonNodeContext extends Context {
 
     /**
      * Computes the type name given a {@link Class}.
+     * The current standard is to turn the {@link Class#getSimpleName()} into {@link CaseKind#KEBAB}.
      */
     static String computeTypeName(final Class<?> type) {
         Objects.requireNonNull(type, "type");

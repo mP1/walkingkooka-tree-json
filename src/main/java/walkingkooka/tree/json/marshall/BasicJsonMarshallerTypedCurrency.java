@@ -62,6 +62,8 @@ final class BasicJsonMarshallerTypedCurrency extends BasicJsonMarshallerTyped<Cu
     @Override
     JsonNode marshallNonNull(final Currency value,
                              final JsonNodeMarshallContext context) {
-        return JsonNode.string(value.toString());
+        return JsonNode.string(
+            value.getCurrencyCode()
+        );
     }
 }

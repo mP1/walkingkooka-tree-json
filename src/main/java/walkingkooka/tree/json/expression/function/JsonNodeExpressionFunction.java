@@ -3,6 +3,10 @@ package walkingkooka.tree.json.expression.function;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.ExpressionPurityContext;
 import walkingkooka.tree.expression.function.ExpressionFunction;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
+import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
+import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
 
 import java.util.Optional;
@@ -28,6 +32,10 @@ abstract class JsonNodeExpressionFunction<C extends JsonNodeExpressionEvaluation
     public final boolean isPure(final ExpressionPurityContext expressionPurityContext) {
         return true; // JsonNode functions are always pure
     }
+
+    final static ExpressionFunctionParameter<JsonNode> JSON = ExpressionFunctionParameterName.with("json")
+        .required(JsonNode.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     // Object...........................................................................................................
 

@@ -18,8 +18,18 @@
 package walkingkooka.tree.json.expression.function;
 
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.tree.expression.function.ExpressionFunction;
+import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
 
 public final class JsonNodeExpressionFunctions implements PublicStaticHelper {
+
+    /**
+     * {@see TreeTextExpressionFunctionFlag}
+     */
+    public static <C extends JsonNodeExpressionEvaluationContext> ExpressionFunction<JsonNode, C> json() {
+        return JsonNodeExpressionFunctionJson.instance();
+    }
 
     /**
      * Stop creation

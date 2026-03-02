@@ -19,7 +19,8 @@ package walkingkooka.tree.json.expression;
 
 import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
 
-public class FakeJsonNodeExpressionEvaluationContext extends FakeExpressionEvaluationContext {
+public class FakeJsonNodeExpressionEvaluationContext extends FakeExpressionEvaluationContext
+    implements JsonNodeExpressionEvaluationContext {
 
     public FakeJsonNodeExpressionEvaluationContext() {
         super();

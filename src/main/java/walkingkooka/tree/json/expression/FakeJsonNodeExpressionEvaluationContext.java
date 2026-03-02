@@ -17,21 +17,11 @@
 
 package walkingkooka.tree.json.expression;
 
-import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
 
-public final class JsonNodeExpressionEvaluationContexts implements PublicStaticHelper {
+public class FakeJsonNodeExpressionEvaluationContext extends FakeExpressionEvaluationContext {
 
-    /**
-     * {@see FakeJsonNodeExpressionEvaluationContext}
-     */
-    public static FakeJsonNodeExpressionEvaluationContext fake() {
-        return new FakeJsonNodeExpressionEvaluationContext();
-    }
-
-    /**
-     * Stop creation
-     */
-    private JsonNodeExpressionEvaluationContexts() {
-        throw new UnsupportedOperationException();
+    public FakeJsonNodeExpressionEvaluationContext() {
+        super();
     }
 }

@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
+import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.locale.LocaleContext;
@@ -97,13 +98,8 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
     private final static JsonNodeMarshallUnmarshallContext MARSHALL_UNMARSHALL_CONTEXT = JsonNodeMarshallUnmarshallContexts.basic(
         JsonNodeMarshallContexts.basic(),
         JsonNodeUnmarshallContexts.basic(
-            (String cc) -> {
-                throw new UnsupportedOperationException();
-            },
-            (String lt) -> {
-                throw new UnsupportedOperationException();
-            },
             ExpressionNumberKind.DEFAULT,
+            CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
             CONVERTER_CONTEXT.mathContext()
         )
     );

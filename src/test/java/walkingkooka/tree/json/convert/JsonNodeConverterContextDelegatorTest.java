@@ -19,6 +19,7 @@ package walkingkooka.tree.json.convert;
 
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
+import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
@@ -168,13 +169,8 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
                 JsonNodeMarshallUnmarshallContexts.basic(
                     JsonNodeMarshallContexts.basic(),
                     JsonNodeUnmarshallContexts.basic(
-                        (String cc) -> {
-                            throw new UnsupportedOperationException();
-                        },
-                        (String lt) -> {
-                            throw new UnsupportedOperationException();
-                        },
                         numberKind,
+                        CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
                         MATH_CONTEXT
                     )
                 )

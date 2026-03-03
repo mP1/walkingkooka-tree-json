@@ -22,6 +22,7 @@ import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.convert.Converter;
 import walkingkooka.convert.Converters;
+import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.FakeExpressionNumberConverterContext;
@@ -31,8 +32,6 @@ import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContexts;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 
 import java.math.MathContext;
-import java.util.Locale;
-import java.util.Optional;
 
 public final class JsonNodeConverterJsonNodeToTest extends JsonNodeConverterTestCase<JsonNodeConverterJsonNodeTo<JsonNodeConverterContext>, JsonNodeConverterContext> {
 
@@ -113,13 +112,8 @@ public final class JsonNodeConverterJsonNodeToTest extends JsonNodeConverterTest
             JsonNodeMarshallUnmarshallContexts.basic(
                 JsonNodeMarshallContexts.basic(),
                 JsonNodeUnmarshallContexts.basic(
-                    (String cc) -> {
-                        throw new UnsupportedOperationException();
-                    },
-                    (String languageTag) -> Optional.of(
-                        Locale.forLanguageTag(languageTag)
-                    ),
                     kind,
+                    CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
                     MathContext.DECIMAL32
                 )
             )

@@ -22,6 +22,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.ToStringTesting;
+import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.reflect.ThrowableTesting;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
@@ -189,13 +190,8 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
 
     private JsonNodeUnmarshallContext unmarshallContext() {
         return JsonNodeUnmarshallContexts.basic(
-            (cc) -> {
-                throw new UnsupportedOperationException();
-            },
-            (lt) -> {
-                throw new UnsupportedOperationException();
-            },
             ExpressionNumberKind.DEFAULT,
+            CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
             MathContext.DECIMAL32
         );
     }

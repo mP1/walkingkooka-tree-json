@@ -21,8 +21,8 @@ import walkingkooka.Cast;
 import walkingkooka.collect.list.ImmutableList;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
-import walkingkooka.currency.CanCurrencyForCurrencyCode;
-import walkingkooka.locale.CanLocaleForLanguageTag;
+import walkingkooka.currency.CurrencyCodeLanguageTagContext;
+import walkingkooka.currency.CurrencyCodeLanguageTagContextDelegator;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
@@ -31,10 +31,8 @@ import walkingkooka.tree.json.JsonObject;
 import java.math.MathContext;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Currency;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -43,24 +41,22 @@ import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implements JsonNodeUnmarshallContext {
+final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implements JsonNodeUnmarshallContext,
+    CurrencyCodeLanguageTagContextDelegator {
 
     /**
      * Factory
      */
-    static BasicJsonNodeUnmarshallContext with(final CanCurrencyForCurrencyCode canCurrencyForCurrencyCode,
-                                               final CanLocaleForLanguageTag canLocaleForLanguageTag,
-                                               final ExpressionNumberKind kind,
+    static BasicJsonNodeUnmarshallContext with(final ExpressionNumberKind kind,
+                                               final CurrencyCodeLanguageTagContext currencyCodeLanguageTagContext,
                                                final MathContext mathContext) {
-        Objects.requireNonNull(canCurrencyForCurrencyCode, "canCurrencyForCurrencyCode");
-        Objects.requireNonNull(canLocaleForLanguageTag, "canLocaleForLanguageTag");
         Objects.requireNonNull(kind, "kind");
+        Objects.requireNonNull(currencyCodeLanguageTagContext, "currencyCodeLanguageTagContext");
         Objects.requireNonNull(mathContext, "mathContext");
 
         return new BasicJsonNodeUnmarshallContext(
-            canCurrencyForCurrencyCode,
-            canLocaleForLanguageTag,
             kind,
+            currencyCodeLanguageTagContext,
             mathContext,
             JsonNodeUnmarshallContext.PRE_PROCESSOR
         );
@@ -69,36 +65,25 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     /**
      * Private ctor
      */
-    private BasicJsonNodeUnmarshallContext(final CanCurrencyForCurrencyCode canCurrencyForCurrencyCode,
-                                           final CanLocaleForLanguageTag canLocaleForLanguageTag,
-                                           final ExpressionNumberKind kind,
+    private BasicJsonNodeUnmarshallContext(final ExpressionNumberKind kind,
+                                           final CurrencyCodeLanguageTagContext currencyCodeLanguageTagContext,
                                            final MathContext mathContext,
                                            final JsonNodeUnmarshallContextPreProcessor processor) {
         super();
-        this.canCurrencyForCurrencyCode = canCurrencyForCurrencyCode;
-        this.canLocaleForLanguageTag = canLocaleForLanguageTag;
         this.kind = kind;
+        this.currencyCodeLanguageTagContext = currencyCodeLanguageTagContext;
         this.mathContext = mathContext;
         this.processor = processor;
     }
 
-    // CanCurrencyForCurrencyCode.......................................................................................
+    // CurrencyCodeLanguageTagContextDelegator..........................................................................
 
     @Override
-    public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
-        return this.canCurrencyForCurrencyCode.currencyForCurrencyCode(currencyCode);
+    public CurrencyCodeLanguageTagContext currencyCodeLanguageTagContext() {
+        return this.currencyCodeLanguageTagContext;
     }
 
-    private final CanCurrencyForCurrencyCode canCurrencyForCurrencyCode;
-
-    // CanLocaleForLanguageTag..........................................................................................
-
-    @Override
-    public Optional<Locale> localeForLanguageTag(final String languageTag) {
-        return this.canLocaleForLanguageTag.localeForLanguageTag(languageTag);
-    }
-
-    private final CanLocaleForLanguageTag canLocaleForLanguageTag;
+    private final CurrencyCodeLanguageTagContext currencyCodeLanguageTagContext;
 
     // HasExpressionNumberKind..........................................................................................
 
@@ -127,9 +112,8 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
         return this.processor.equals(processor) ?
             this :
             new BasicJsonNodeUnmarshallContext(
-                this.canCurrencyForCurrencyCode,
-                this.canLocaleForLanguageTag,
                 this.kind,
+                this.currencyCodeLanguageTagContext,
                 this.mathContext,
                 processor
             );

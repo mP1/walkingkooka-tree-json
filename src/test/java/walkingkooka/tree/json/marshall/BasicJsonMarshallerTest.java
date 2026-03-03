@@ -21,6 +21,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.json.JsonNode;
@@ -33,8 +34,6 @@ import java.math.MathContext;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Currency;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
@@ -343,13 +342,8 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
         this.checkEquals(
             value,
             JsonNodeUnmarshallContexts.basic(
-                (String cc) -> Optional.ofNullable(
-                    Currency.getInstance(cc)
-                ),
-                (lt) -> Optional.of(
-                    Locale.forLanguageTag(lt)
-                ),
                 EXPRESSION_NUMBER_KIND,
+                CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
                 MathContext.DECIMAL32
             ).unmarshall(json, value.getClass()),
             () -> "roundtrip " + value + "\n" + json);

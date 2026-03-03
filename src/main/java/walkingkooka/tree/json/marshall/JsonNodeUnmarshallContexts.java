@@ -17,8 +17,7 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.currency.CanCurrencyForCurrencyCode;
-import walkingkooka.locale.CanLocaleForLanguageTag;
+import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 
@@ -32,14 +31,12 @@ public final class JsonNodeUnmarshallContexts implements PublicStaticHelper {
     /**
      * {@see BasicJsonNodeUnmarshallContext}
      */
-    public static JsonNodeUnmarshallContext basic(final CanCurrencyForCurrencyCode canCurrencyForCurrencyCode,
-                                                  final CanLocaleForLanguageTag canLocaleForLanguageTag,
-                                                  final ExpressionNumberKind kind,
+    public static JsonNodeUnmarshallContext basic(final ExpressionNumberKind kind,
+                                                  final CurrencyCodeLanguageTagContext currencyCodeLanguageTagContext,
                                                   final MathContext mathContext) {
         return BasicJsonNodeUnmarshallContext.with(
-            canCurrencyForCurrencyCode,
-            canLocaleForLanguageTag,
             kind,
+            currencyCodeLanguageTagContext,
             mathContext
         );
     }

@@ -21,8 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
-import walkingkooka.currency.CanCurrencyForCurrencyCode;
-import walkingkooka.locale.CanLocaleForLanguageTag;
+import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
@@ -42,47 +41,40 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeContextTestCase<BasicJsonNodeUnmarshallContext>
     implements JsonNodeUnmarshallContextTesting<BasicJsonNodeUnmarshallContext> {
 
-    private final CanCurrencyForCurrencyCode CAN_CURRENCY_FOR_CURRENCY_CODE = (String cc) -> Optional.ofNullable(
-        Currency.getInstance(cc)
-    );
+    private final CurrencyCodeLanguageTagContext CURRENCY_CODE_LANGUAGE_TAG_CONTEXT = new CurrencyCodeLanguageTagContext() {
+        @Override
+        public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+            return Optional.ofNullable(
+                Currency.getInstance(currencyCode)
+            );
+        }
 
-    private final CanLocaleForLanguageTag CAN_LOCALE_FOR_LANGUAGE_TAG = (String lt) -> Optional.of(
-        Locale.forLanguageTag(lt)
-    );
-    
-    @Test
-    public void testWithNullCanCurrencyForCurrencyCodeFails() {
-        assertThrows(
-            java.lang.NullPointerException.class,
-            () -> BasicJsonNodeUnmarshallContext.with(
-                null,
-                CAN_LOCALE_FOR_LANGUAGE_TAG,
-                ExpressionNumberKind.BIG_DECIMAL,
-                MathContext.DECIMAL32
-            )
-        );
-    }
-
-    @Test
-    public void testWithNullCanLocaleForLanguageTagFails() {
-        assertThrows(
-            java.lang.NullPointerException.class,
-            () -> BasicJsonNodeUnmarshallContext.with(
-                CAN_CURRENCY_FOR_CURRENCY_CODE,
-                null,
-                ExpressionNumberKind.BIG_DECIMAL,
-                MathContext.DECIMAL32
-            )
-        );
-    }
+        @Override
+        public Optional<Locale> localeForLanguageTag(final String languageTag) {
+            return Optional.of(
+                Locale.forLanguageTag(languageTag)
+            );
+        }
+    };
 
     @Test
     public void testWithNullKindFails() {
         assertThrows(
             java.lang.NullPointerException.class,
             () -> BasicJsonNodeUnmarshallContext.with(
-                CAN_CURRENCY_FOR_CURRENCY_CODE,
-                CAN_LOCALE_FOR_LANGUAGE_TAG,
+                null,
+                CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
+                MathContext.DECIMAL32
+            )
+        );
+    }
+
+    @Test
+    public void testWithNullCurrencyCodeLanguageTagContextFails() {
+        assertThrows(
+            java.lang.NullPointerException.class,
+            () -> BasicJsonNodeUnmarshallContext.with(
+                ExpressionNumberKind.BIG_DECIMAL,
                 null,
                 MathContext.DECIMAL32
             )
@@ -90,13 +82,12 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     }
 
     @Test
-    public void testWithNullContextFails() {
+    public void testWithNullMathContextFails() {
         assertThrows(
             java.lang.NullPointerException.class,
             () -> BasicJsonNodeUnmarshallContext.with(
-                CAN_CURRENCY_FOR_CURRENCY_CODE,
-                CAN_LOCALE_FOR_LANGUAGE_TAG,
                 ExpressionNumberKind.DEFAULT,
+                CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
                 null
             )
         );
@@ -975,9 +966,8 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     @Override
     public BasicJsonNodeUnmarshallContext createContext() {
         return BasicJsonNodeUnmarshallContext.with(
-            CAN_CURRENCY_FOR_CURRENCY_CODE,
-            CAN_LOCALE_FOR_LANGUAGE_TAG,
             ExpressionNumberKind.DEFAULT,
+            CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
             MathContext.DECIMAL32
         );
     }

@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json;
 
+import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContexts;
@@ -34,13 +35,8 @@ public final class TreeJsonStartup implements PublicStaticHelper {
         JsonNodeMarshallUnmarshallContexts.basic(
             JsonNodeMarshallContexts.basic(),
             JsonNodeUnmarshallContexts.basic(
-                (cc) -> {
-                    throw new UnsupportedOperationException();
-                },
-                (lt) -> {
-                    throw new UnsupportedOperationException();
-                },
                 ExpressionNumberKind.BIG_DECIMAL,
+                CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
                 MathContext.DECIMAL32
             )
         );

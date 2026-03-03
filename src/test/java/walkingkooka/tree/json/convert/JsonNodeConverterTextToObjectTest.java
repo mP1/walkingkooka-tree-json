@@ -22,6 +22,7 @@ import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.convert.Converter;
 import walkingkooka.convert.Converters;
+import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
@@ -175,13 +176,8 @@ public final class JsonNodeConverterTextToObjectTest extends JsonNodeConverterTe
             }
 
             private final JsonNodeUnmarshallContext context = JsonNodeUnmarshallContexts.basic(
-                (String cc) -> {
-                    throw new UnsupportedOperationException();
-                },
-                (String lt) -> {
-                    throw new UnsupportedOperationException();
-                },
                 ExpressionNumberKind.BIG_DECIMAL,
+                CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
                 MathContext.DECIMAL32
             );
         };

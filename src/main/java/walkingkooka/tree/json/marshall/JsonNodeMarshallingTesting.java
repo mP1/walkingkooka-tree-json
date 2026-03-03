@@ -23,6 +23,7 @@ import walkingkooka.collect.list.ImmutableList;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
+import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.reflect.MethodAttributes;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.printer.TreePrintableTesting;
@@ -321,13 +322,23 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
 
     default JsonNodeUnmarshallContext unmarshallContext() {
         return JsonNodeUnmarshallContexts.basic(
-            (cc) -> Optional.ofNullable(
-                Currency.getInstance(cc)
-            ),
-            (lt) -> Optional.of(
-                Locale.forLanguageTag(lt)
-            ),
             ExpressionNumberKind.DEFAULT,
+            new CurrencyCodeLanguageTagContext() {
+
+                @Override
+                public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+                    return Optional.of(
+                        Currency.getInstance(currencyCode)
+                    );
+                }
+
+                @Override
+                public Optional<Locale> localeForLanguageTag(final String languageTag) {
+                    return Optional.of(
+                        Locale.forLanguageTag(languageTag)
+                    );
+                }
+            },
             MathContext.DECIMAL32
         );
     }

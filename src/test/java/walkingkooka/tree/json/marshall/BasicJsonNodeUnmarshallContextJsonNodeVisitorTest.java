@@ -19,15 +19,13 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonNodeVisitorTesting;
 
 import java.math.MathContext;
-import java.util.Currency;
-import java.util.Locale;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -124,13 +122,8 @@ public final class BasicJsonNodeUnmarshallContextJsonNodeVisitorTest implements 
 
     private JsonNodeUnmarshallContext context() {
         return BasicJsonNodeUnmarshallContext.with(
-            (String cc) -> Optional.ofNullable(
-                Currency.getInstance(cc)
-            ),
-            (lt) -> Optional.of(
-                Locale.forLanguageTag(lt)
-            ),
             ExpressionNumberKind.DEFAULT,
+            CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
             MathContext.DECIMAL32
         );
     }

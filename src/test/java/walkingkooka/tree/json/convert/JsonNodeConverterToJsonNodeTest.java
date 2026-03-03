@@ -19,6 +19,7 @@ package walkingkooka.tree.json.convert;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.convert.Converters;
+import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.FakeExpressionNumberConverterContext;
@@ -95,13 +96,8 @@ public final class JsonNodeConverterToJsonNodeTest extends JsonNodeConverterTest
             JsonNodeMarshallUnmarshallContexts.basic(
                 JsonNodeMarshallContexts.basic(),
                 JsonNodeUnmarshallContexts.basic(
-                    (String cc) -> {
-                        throw new UnsupportedOperationException();
-                    },
-                    (String lt) -> {
-                        throw new UnsupportedOperationException();
-                    },
                     kind,
+                    CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
                     MathContext.DECIMAL32
                 )
             )

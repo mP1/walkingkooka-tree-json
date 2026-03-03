@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextDelegatorTest.TestJsonNodeMarshallUnmarshallContextDelegator;
 
@@ -24,6 +25,11 @@ import java.math.MathContext;
 import java.util.Objects;
 
 public final class JsonNodeMarshallUnmarshallContextDelegatorTest implements JsonNodeMarshallUnmarshallContextTesting<TestJsonNodeMarshallUnmarshallContextDelegator> {
+
+    @Override
+    public void testLocaleForLanguageTagWithNullFails() {
+        throw new UnsupportedOperationException();
+    }
 
     @Override
     public void testSetObjectPostProcessor() {
@@ -87,14 +93,8 @@ public final class JsonNodeMarshallUnmarshallContextDelegatorTest implements Jso
             return JsonNodeMarshallUnmarshallContexts.basic(
                 JsonNodeMarshallContexts.basic(),
                 JsonNodeUnmarshallContexts.basic(
-                    (cc) -> {
-                        throw new UnsupportedOperationException();
-                    },
-                    (lt) -> {
-                        Objects.requireNonNull(lt, "languageTag");
-                        throw new UnsupportedOperationException();
-                    },
                     ExpressionNumberKind.BIG_DECIMAL,
+                    CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
                     MathContext.DECIMAL64
                 )
             );

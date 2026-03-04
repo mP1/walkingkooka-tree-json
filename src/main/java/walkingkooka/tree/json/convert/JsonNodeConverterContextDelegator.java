@@ -24,12 +24,19 @@ import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContext;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextDelegator;
 
 import java.math.MathContext;
+import java.util.Currency;
 import java.util.Locale;
 import java.util.Optional;
 
 public interface JsonNodeConverterContextDelegator extends JsonNodeConverterContext,
     ExpressionNumberConverterContextDelegator,
     JsonNodeMarshallUnmarshallContextDelegator {
+
+    @Override
+    default Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+        return this.jsonNodeConverterContext()
+            .currencyForCurrencyCode(currencyCode);
+    }
 
     @Override
     default Optional<Locale> localeForLanguageTag(final String languageTag) {

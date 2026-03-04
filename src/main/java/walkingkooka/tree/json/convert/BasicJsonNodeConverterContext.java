@@ -30,6 +30,7 @@ import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContext;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
 
 import java.math.MathContext;
+import java.util.Currency;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
@@ -83,6 +84,11 @@ final class BasicJsonNodeConverterContext implements JsonNodeConverterContext,
     }
 
     // ConverterContextDelegator........................................................................................
+
+    @Override
+    public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+        return this.converterContext.currencyForCurrencyCode(currencyCode);
+    }
 
     @Override
     public ConverterContext converterContext() {

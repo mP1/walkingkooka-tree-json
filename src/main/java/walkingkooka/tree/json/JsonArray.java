@@ -321,6 +321,37 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
             .get(index);
     }
 
+    public JsonArray set(final int index,
+                         final boolean value) {
+        return this.setChild(
+            index,
+            JsonNode.booleanNode(value)
+        );
+    }
+
+    public JsonArray set(final int index,
+                         final double value) {
+        return this.setChild(
+            index,
+            JsonNode.number(value)
+        );
+    }
+
+    public JsonArray set(final int index,
+                         final String value) {
+        return this.setChild(
+            index,
+            JsonNode.string(value)
+        );
+    }
+
+    public JsonArray setNull(final int index) {
+        return this.setChild(
+            index,
+            JsonNode.nullNode()
+        );
+    }
+
     @Override
     JsonArray replace0(final JsonPropertyName name,
                        final int index,

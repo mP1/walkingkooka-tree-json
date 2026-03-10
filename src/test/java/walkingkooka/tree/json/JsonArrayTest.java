@@ -126,6 +126,102 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         );
     }
 
+    @Test
+    public void testInsertBooleanTrue() {
+        final int index = 0;
+        final boolean value = true;
+
+        final JsonArray array = JsonNode.array()
+            .append("first");;
+
+        this.checkEquals(
+            array.insertChild(
+                    index,
+                    JsonNode.booleanNode(value)
+                ),
+            array.insert(
+                    index,
+                    value
+                )
+        );
+    }
+
+    @Test
+    public void testInsertBooleanFalse() {
+        final int index = 0;
+        final boolean value = false;
+
+        final JsonArray array = JsonNode.array()
+            .append("first");;
+
+        this.checkEquals(
+            array.insertChild(
+                index,
+                JsonNode.booleanNode(value)
+            ),
+            array.insert(
+                index,
+                value
+            )
+        );
+    }
+
+    @Test
+    public void testInsertNumber() {
+        final int index = 0;
+        final double value = 02.5;
+
+        final JsonArray array = JsonNode.array()
+            .append("first");;
+
+        this.checkEquals(
+            array.insertChild(
+                index,
+                JsonNode.number(value)
+            ),
+            array.insert(
+                index,
+                value
+            )
+        );
+    }
+
+    @Test
+    public void testInsertString() {
+        final int index = 0;
+        final String value = "abc";
+
+        final JsonArray array = JsonNode.array()
+            .append("first");;
+
+        this.checkEquals(
+            array.insertChild(
+                index,
+                JsonNode.string(value)
+            ),
+            array.insert(
+                index,
+                value
+            )
+        );
+    }
+
+    @Test
+    public void testInsertNull() {
+        final int index = 0;
+
+        final JsonArray array = JsonNode.array()
+            .append("first");;
+
+        this.checkEquals(
+            array.insertChild(
+                index,
+                JsonNode.nullNode()
+            ),
+            array.insertNull(index)
+        );
+    }
+
     // appendChild......................................................................................................
 
     @Test

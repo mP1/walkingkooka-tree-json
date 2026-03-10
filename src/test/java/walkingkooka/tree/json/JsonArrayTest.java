@@ -126,10 +126,10 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         );
     }
 
-    // append...........................................................................................................
+    // appendChild......................................................................................................
 
     @Test
-    public void testAppendEmptyArray() {
+    public void testAppendChildWithEmptyArray() {
         this.appendChildAndCheck(
             this.createJsonNode(),
             JsonNode.array()
@@ -137,7 +137,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     }
 
     @Test
-    public void testAppendBoolean() {
+    public void testAppendChildWithBoolean() {
         this.appendChildAndCheck(
             this.createJsonNode(),
             JsonNode.booleanNode(true)
@@ -145,7 +145,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     }
 
     @Test
-    public void testAppendNumber() {
+    public void testAppendChildWithNumber() {
         this.appendChildAndCheck(
             this.createJsonNode(),
             JsonNode.number(123)
@@ -153,7 +153,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     }
 
     @Test
-    public void testAppendNull() {
+    public void testAppendChildWithNull() {
         this.appendChildAndCheck(
             this.createJsonNode(),
             JsonNode.nullNode()
@@ -161,7 +161,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     }
 
     @Test
-    public void testAppendEmptyObject() {
+    public void testAppendChildWithEmptyObject() {
         this.appendChildAndCheck(
             this.createJsonNode(),
             JsonNode.object()
@@ -169,7 +169,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     }
 
     @Test
-    public void testAppendString() {
+    public void testAppendChildWithString() {
         this.appendChildAndCheck(
             this.createJsonNode(),
             JsonNode.string("string-abc-123")

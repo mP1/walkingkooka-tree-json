@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.expression;
 
+import walkingkooka.environment.EnvironmentValueWatcher;
 import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
 
 public class FakeJsonNodeExpressionEvaluationContext extends FakeExpressionEvaluationContext
@@ -24,5 +25,15 @@ public class FakeJsonNodeExpressionEvaluationContext extends FakeExpressionEvalu
 
     public FakeJsonNodeExpressionEvaluationContext() {
         super();
+    }
+
+    @Override
+    public Runnable addEnvironmentValueWatcher(final EnvironmentValueWatcher watcher) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Runnable addEnvironmentValueWatcherOnce(final EnvironmentValueWatcher watcher) {
+        throw new UnsupportedOperationException();
     }
 }

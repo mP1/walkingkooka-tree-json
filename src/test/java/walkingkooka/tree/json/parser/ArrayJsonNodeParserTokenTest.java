@@ -121,14 +121,30 @@ public final class ArrayJsonNodeParserTokenTest extends ParentJsonNodeParserToke
 
     @Test
     public void testMarshall() {
-        this.checkEquals(Optional.of(JsonNode.array().appendChild(JsonNode.number(123))),
-            array(number(123)).toJsonNode());
+        this.checkEquals(
+            Optional.of(
+                JsonNode.array()
+                    .append(123)
+            ),
+            array(
+                number(123)
+            ).toJsonNode()
+        );
     }
 
     @Test
     public void testMarshallWhitespace() {
-        this.checkEquals(Optional.of(JsonNode.array().appendChild(JsonNode.number(123))),
-            array(number(123), whitespace(), whitespace()).toJsonNode());
+        this.checkEquals(
+            Optional.of(
+                JsonNode.array()
+                    .append(123)
+            ),
+            array(
+                number(123),
+                whitespace(),
+                whitespace()
+            ).toJsonNode()
+        );
     }
 
     @Override

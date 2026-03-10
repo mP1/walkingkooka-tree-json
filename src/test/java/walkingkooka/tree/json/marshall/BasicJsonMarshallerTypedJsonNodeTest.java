@@ -27,9 +27,7 @@ public final class BasicJsonMarshallerTypedJsonNodeTest extends BasicJsonMarshal
     public void testUnmarshallArrayRemovesParent() {
         this.unmarshallRemovesParentCheck(
             JsonNode.array()
-                .appendChild(
-                    JsonNode.string("1a")
-                )
+                .append("1a")
         );
     }
 

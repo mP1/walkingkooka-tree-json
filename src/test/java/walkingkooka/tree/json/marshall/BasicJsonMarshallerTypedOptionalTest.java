@@ -64,8 +64,8 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
     public void testUnmarshallArrayTwoElementsFails() {
         this.unmarshallFailed(
             JsonNode.array()
-                .appendChild(JsonNode.number(1))
-                .appendChild(JsonNode.number(2)),
+                .append(1)
+                .append(2),
             JsonNodeUnmarshallException.class
         );
     }
@@ -77,26 +77,38 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
 
     @Test
     public void testUnmarshallArrayWithBooleanTrue() {
-        this.unmarshallAndCheck(JsonNode.array().appendChild(JsonNode.booleanNode(true)),
-            Optional.of(true));
+        this.unmarshallAndCheck(
+            JsonNode.array()
+                .append(true),
+            Optional.of(true)
+        );
     }
 
     @Test
     public void testUnmarshallArrayWithBooleanFalse() {
-        this.unmarshallAndCheck(JsonNode.array().appendChild(JsonNode.booleanNode(false)),
-            Optional.of(false));
+        this.unmarshallAndCheck(
+            JsonNode.array()
+                .append(false),
+            Optional.of(false)
+        );
     }
 
     @Test
     public void testUnmarshallArrayWithNumber() {
-        this.unmarshallAndCheck(JsonNode.array().appendChild(JsonNode.number(1.5)),
-            Optional.of(1.5));
+        this.unmarshallAndCheck(
+            JsonNode.array()
+                .append(1.5),
+            Optional.of(1.5)
+        );
     }
 
     @Test
     public void testUnmarshallArrayWithString() {
-        this.unmarshallAndCheck(JsonNode.array().appendChild(JsonNode.string("abc123")),
-            Optional.of("abc123"));
+        this.unmarshallAndCheck(
+            JsonNode.array()
+                .append("abc123"),
+            Optional.of("abc123")
+        );
     }
 
     @Test
@@ -204,7 +216,8 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
 
     @Override
     JsonNode node() {
-        return JsonNode.array().appendChild(JsonNode.string(JAVA_VALUE));
+        return JsonNode.array().
+            append(JAVA_VALUE);
     }
 
     private final static String JAVA_VALUE = "abc123";

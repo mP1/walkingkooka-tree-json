@@ -37,9 +37,9 @@ public final class BasicJsonMarshallerTypedStringListTest extends BasicJsonMarsh
     @Override
     JsonNode node() {
         return JsonNode.array()
-            .appendChild(JsonNode.string("111"))
-            .appendChild(JsonNode.string("\"222\""))
-            .appendChild(JsonNode.nullNode());
+            .append("111")
+            .append("\"222\"")
+            .appendNull();
     }
 
     @Override

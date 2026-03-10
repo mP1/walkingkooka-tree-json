@@ -202,6 +202,30 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
         ).cast(JsonArray.class);
     }
 
+    public JsonArray append(final boolean value) {
+        return this.appendChild(
+            JsonNode.booleanNode(value)
+        );
+    }
+
+    public JsonArray append(final double value) {
+        return this.appendChild(
+            JsonNode.number(value)
+        );
+    }
+
+    public JsonArray append(final String value) {
+        return this.appendChild(
+            JsonNode.string(value)
+        );
+    }
+
+    public JsonArray appendNull() {
+        return this.appendChild(
+            JsonNode.nullNode()
+        );
+    }
+
     /**
      * Removes the child at the given index.
      */

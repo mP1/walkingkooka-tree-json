@@ -208,6 +208,76 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         return newParent;
     }
 
+    // append...........................................................................................................
+
+    @Test
+    public void testAppendBooleanTrue() {
+        final boolean value = true;
+
+        this.checkEquals(
+            JsonNode.array()
+                .appendChild(
+                    JsonNode.booleanNode(value)
+                ),
+            JsonNode.array()
+                .append(value)
+        );
+    }
+
+    @Test
+    public void testAppendBooleanFalse() {
+        final boolean value = false;
+
+        this.checkEquals(
+            JsonNode.array()
+                .appendChild(
+                    JsonNode.booleanNode(value)
+                ),
+            JsonNode.array()
+                .append(value)
+        );
+    }
+
+    @Test
+    public void testAppendDouble() {
+        final double value = 1.0;
+
+        this.checkEquals(
+            JsonNode.array()
+                .appendChild(
+                    JsonNode.number(value)
+                ),
+            JsonNode.array()
+                .append(value)
+        );
+    }
+
+    @Test
+    public void testAppendStringNonNull() {
+        final String value = "abc123";
+
+        this.checkEquals(
+            JsonNode.array()
+                .appendChild(
+                    JsonNode.string(value)
+                ),
+            JsonNode.array()
+                .append(value)
+        );
+    }
+
+    @Test
+    public void testAppendNull() {
+        this.checkEquals(
+            JsonNode.array()
+                .appendChild(
+                    JsonNode.nullNode()
+                ),
+            JsonNode.array()
+                .appendNull()
+        );
+    }
+
     // set..............................................................................................................
 
     @Test

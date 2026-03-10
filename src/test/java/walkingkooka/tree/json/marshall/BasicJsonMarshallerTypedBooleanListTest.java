@@ -37,9 +37,9 @@ public final class BasicJsonMarshallerTypedBooleanListTest extends BasicJsonMars
     @Override
     JsonNode node() {
         return JsonNode.array()
-            .appendChild(JsonNode.booleanNode(true))
-            .appendChild(JsonNode.booleanNode(false))
-            .appendChild(JsonNode.nullNode());
+            .append(true)
+            .append(false)
+            .appendNull();
     }
 
     @Override

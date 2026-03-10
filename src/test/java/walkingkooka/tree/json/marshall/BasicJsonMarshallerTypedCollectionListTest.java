@@ -85,11 +85,16 @@ public final class BasicJsonMarshallerTypedCollectionListTest extends BasicJsonM
     @Override
     JsonNode node() {
         return JsonNode.array()
-            .appendChild(JsonNode.nullNode())
-            .appendChild(JsonNode.booleanNode(true))
-            .appendChild(JsonNode.number(123.5))
-            .appendChild(JsonNode.string("abc123"))
-            .appendChild(this.marshallContext().marshallWithType(TestJsonNodeValue.with("test-has-json-node")));
+            .appendNull()
+            .append(true)
+            .append(123.5)
+            .append("abc123")
+            .appendChild(
+                this.marshallContext()
+                    .marshallWithType(
+                        TestJsonNodeValue.with("test-has-json-node")
+                    )
+            );
     }
 
     @Override

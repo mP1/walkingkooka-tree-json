@@ -78,9 +78,9 @@ public final class JsonNodeConverterTextToJsonNodeTest extends JsonNodeConverter
     public void testConvertStringToJsonArray() {
         this.convertStringAndCheck(
             JsonNode.array()
-                .appendChild(JsonNode.booleanNode(true))
-                .appendChild(JsonNode.nullNode())
-                .appendChild(JsonNode.number(123))
+                .append(true)
+                .appendNull()
+                .append(123)
         );
     }
 

@@ -29,10 +29,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<JsonNode>> {
 
-    // insert...........................................................................................................
+    // insertChild......................................................................................................
 
     @Test
-    public void testInsertIndexLessThanZeroFails() {
+    public void testInsertChildIndexLessThanZeroFails() {
         final IndexOutOfBoundsException thrown = assertThrows(
             IndexOutOfBoundsException.class,
             () -> JsonNode.array()
@@ -49,7 +49,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     }
 
     @Test
-    public void testInsertIndexGreaterThanLengthFails() {
+    public void testInsertChildIndexGreaterThanLengthFails() {
         final IndexOutOfBoundsException thrown = assertThrows(
             IndexOutOfBoundsException.class,
             () -> JsonNode.array()
@@ -66,7 +66,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     }
 
     @Test
-    public void testInsert() {
+    public void testInsertChild() {
         final JsonNode first = JsonNode.string("1A");
         final JsonNode second = JsonNode.string("2B");
         final JsonNode third = JsonNode.string("3C");
@@ -94,7 +94,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
     }
 
     @Test
-    public void testInsert2() {
+    public void testInsertChild2() {
         final JsonNode first = JsonNode.string("1A");
         final JsonNode second = JsonNode.string("2B");
         final JsonNode third = JsonNode.string("3C");

@@ -185,6 +185,37 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
             .cast(JsonArray.class);
     }
 
+    public JsonArray insert(final int index,
+                            final boolean value) {
+        return this.insertChild(
+            index,
+            JsonNode.booleanNode(value)
+        );
+    }
+
+    public JsonArray insert(final int index,
+                            final double value) {
+        return this.insertChild(
+            index,
+            JsonNode.number(value)
+        );
+    }
+
+    public JsonArray insert(final int index,
+                            final String value) {
+        return this.insertChild(
+            index,
+            JsonNode.string(value)
+        );
+    }
+
+    public JsonArray insertNull(final int index) {
+        return this.insertChild(
+            index,
+            JsonNode.nullNode()
+        );
+    }
+
     /**
      * Appends the given element returning a new instance.
      */

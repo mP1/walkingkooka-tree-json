@@ -278,7 +278,7 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         );
     }
 
-    // set..............................................................................................................
+    // get..............................................................................................................
 
     @Test
     public void testGet() {
@@ -307,6 +307,8 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         this.parentMissingCheck(first);
         this.parentMissingCheck(second);
     }
+
+    // set..............................................................................................................
 
     @Test
     @Override
@@ -439,9 +441,13 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
 
         final String differentValue = "different-1";
         final JsonNode differentChild = JsonNode.string(differentValue);
-        final JsonArray different = array.set(1, differentChild);
+        final JsonArray different = array.set(
+            1,
+            differentChild
+        );
 
         assertNotSame(array, different);
+
         this.childrenCheck(different);
         this.checkEquals(
             VALUE1,
@@ -472,16 +478,32 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonNode second = JsonNode.nullNode();
         final JsonNode third = this.value3();
 
-        this.checkEqualsAndHashCode(JsonNode.array().appendChild(first).appendChild(second).appendChild(third),
-            JsonNode.array().set(2, third));
+        this.checkEqualsAndHashCode(
+            JsonNode.array()
+                .appendChild(first)
+                .appendChild(second)
+                .appendChild(third),
+            JsonNode.array()
+                .set(
+                    2,
+                    third
+                )
+        );
     }
 
     @Test
     public void testSetExpands2() {
         final JsonNode first = this.value1();
 
-        this.checkEqualsAndHashCode(JsonNode.array().appendChild(first),
-            JsonNode.array().set(0, first));
+        this.checkEqualsAndHashCode(
+            JsonNode.array()
+                .appendChild(first),
+            JsonNode.array()
+                .set(
+                    0,
+                    first
+                )
+        );
     }
 
     @Test
@@ -490,7 +512,8 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonNode second = JsonNode.nullNode();
         final JsonNode third = this.value3();
 
-        final JsonArray array = JsonNode.array().appendChild(first);
+        final JsonArray array = JsonNode.array()
+            .appendChild(first);
 
         this.checkEqualsAndHashCode(
             JsonNode.array()
@@ -508,7 +531,8 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonNode third = JsonNode.nullNode();
         final JsonNode fourth = this.value4();
 
-        final JsonArray array = JsonNode.array().appendChild(first);
+        final JsonArray array = JsonNode.array()
+            .appendChild(first);
 
         this.checkEqualsAndHashCode(
             JsonNode.array()
@@ -571,7 +595,10 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         final JsonArray array = JsonNode.array()
             .appendChild(this.value1())
             .appendChild(this.value2());
-        assertThrows(IndexOutOfBoundsException.class, () -> array.remove(2));
+        assertThrows(
+            IndexOutOfBoundsException.class,
+            () -> array.remove(2)
+        );
         this.childrenCheck(array);
         this.childCountCheck(
             array,
@@ -588,8 +615,10 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
             .appendChild(this.value1());
         this.childCountCheck(root, 1);
 
-        final JsonArray updated = root.replaceChild(root.get(0), this.value2())
-            .cast(JsonArray.class);
+        final JsonArray updated = root.replaceChild(
+            root.get(0),
+            this.value2()
+        ).cast(JsonArray.class);
 
         this.childCountCheck(updated, 1);
         this.checkEquals(
@@ -612,12 +641,17 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
 
         final JsonNode grandChild1New = JsonNode.string("GC1-new");
         final JsonArray updatedChild = root.get(1)
-            .setChildren(Lists.of(grandChild1New))
-            .cast(JsonArray.class);
+            .setChildren(
+                Lists.of(grandChild1New)
+            ).cast(JsonArray.class);
         this.childCountCheck(updatedChild, 1);
 
-        final JsonArray updatedRoot = updatedChild.parentOrFail().cast(JsonArray.class);
-        this.childCountCheck(updatedRoot, 2);
+        final JsonArray updatedRoot = updatedChild.parentOrFail()
+            .cast(JsonArray.class);
+        this.childCountCheck(
+            updatedRoot,
+            2
+        );
         this.checkEquals(
             JsonNode.array()
                 .appendChild(child1)
@@ -783,14 +817,17 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
 
         final JsonArray node = JsonNode.array()
             .appendChild(this.value1())
-            .appendChild(JsonNode.array()
-                .appendChild(this.value2()));
+            .appendChild(
+                JsonNode.array()
+                    .appendChild(this.value2())
+            );
 
         final int index = 1;
         this.replaceAndCheck(
             node.get(index),
             value4,
-            node.set(index, value4).get(index)
+            node.set(index, value4)
+                .get(index)
         );
     }
 
@@ -848,13 +885,18 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
 
     @Test
     public void testTextOffset3() {
-        this.textOffsetAndCheck(JsonArray.EMPTY
+        this.textOffsetAndCheck(
+            JsonArray.EMPTY
                 .appendChild(JsonNode.string("a1"))
-                .appendChild(JsonArray.EMPTY
-                    .appendChild(JsonNode.string("b2!")))
-                .appendChild(JsonNode.string("c3!!"))
-                .get(1),
-            2);
+                .appendChild(
+                    JsonArray.EMPTY.appendChild(
+                        JsonNode.string("b2!")
+                    )
+                ).appendChild(
+                    JsonNode.string("c3!!")
+                ).get(1),
+            2
+        );
     }
 
     // Visitor .........................................................................................................

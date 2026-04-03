@@ -136,6 +136,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedCsvStringList.instance(),
             BasicJsonMarshallerTypedCsvStringSet.instance(),
             BasicJsonMarshallerTypedCurrency.instance(),
+            BasicJsonMarshallerTypedCurrencyCode.instance(),
             BasicJsonMarshallerTypedDateTimeSymbols.instance(),
             BasicJsonMarshallerTypedDataUrl.instance(),
             BasicJsonMarshallerTypedDecimalNumberSymbols.instance(),

@@ -62,7 +62,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
 
         CONVERTER_CONTEXT = ExpressionNumberConverterContexts.basic(
             ExpressionNumberConverters.toNumberOrExpressionNumber(
-                Converters.stringToNumber(
+                Converters.textToNumber(
                     (dnc) -> (DecimalFormat) DecimalFormat.getInstance()
                 )
             ),

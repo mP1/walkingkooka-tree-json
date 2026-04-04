@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.Currency;
@@ -35,9 +36,25 @@ public final class BasicJsonMarshallerTypedCurrencyTest extends BasicJsonMarshal
             JsonNode.string(currencyCode),
             new FakeJsonNodeUnmarshallContext() {
                 @Override
-                public Optional<Currency> currencyForCurrencyCode(final String cc) {
-                    checkEquals(currencyCode, cc, "currencyCode");
+                public Optional<Currency> currencyForCurrencyCode(final CurrencyCode cc) {
+                    checkEquals(
+                        currencyCode,
+                        cc.value(),
+                        "currencyCode"
+                    );
                     return Optional.of(currency);
+                }
+
+                @Override
+                public <T> T unmarshall(final JsonNode node,
+                                        final Class<T> type) {
+                    return type.cast(
+                        BasicJsonMarshallerTypedCurrencyCode.instance()
+                            .unmarshall(
+                                node,
+                                this
+                            )
+                    );
                 }
             },
             currency

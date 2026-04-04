@@ -19,6 +19,7 @@ package walkingkooka.tree.json.convert;
 
 import walkingkooka.convert.ConverterContext;
 import walkingkooka.convert.ConverterContextDelegator;
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContext;
@@ -86,7 +87,7 @@ final class BasicJsonNodeConverterContext implements JsonNodeConverterContext,
     // ConverterContextDelegator........................................................................................
 
     @Override
-    public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+    public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
         return this.converterContext.currencyForCurrencyCode(currencyCode);
     }
 

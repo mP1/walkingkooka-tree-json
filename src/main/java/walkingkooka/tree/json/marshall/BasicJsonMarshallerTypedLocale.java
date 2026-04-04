@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.Locale;
@@ -58,7 +59,10 @@ final class BasicJsonMarshallerTypedLocale extends BasicJsonMarshallerTyped<Loca
     Locale unmarshallNonNull(final JsonNode node,
                              final JsonNodeUnmarshallContext context) {
         return context.localeForLanguageTagOrFail(
-            node.stringOrFail()
+            context.unmarshall(
+                node,
+                LocaleLanguageTag.class
+            )
         );
     }
 

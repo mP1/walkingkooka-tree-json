@@ -25,6 +25,7 @@ import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.reflect.MethodAttributes;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.printer.TreePrintableTesting;
@@ -336,9 +337,11 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
                 }
 
                 @Override
-                public Optional<Locale> localeForLanguageTag(final String languageTag) {
+                public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
                     return Optional.of(
-                        Locale.forLanguageTag(languageTag)
+                        Locale.forLanguageTag(
+                            languageTag.value()
+                        )
                     );
                 }
             },

@@ -28,6 +28,7 @@ import walkingkooka.datetime.LocalDateList;
 import walkingkooka.datetime.LocalDateTimeList;
 import walkingkooka.datetime.LocalTimeList;
 import walkingkooka.environment.EnvironmentValueNameSet;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.NumberList;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
@@ -399,9 +400,11 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
                 }
 
                 @Override
-                public Optional<Locale> localeForLanguageTag(final String languageTag) {
+                public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
                     return Optional.of(
-                        Locale.forLanguageTag(languageTag)
+                        Locale.forLanguageTag(
+                            languageTag.value()
+                        )
                     );
                 }
             },

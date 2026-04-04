@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 
@@ -115,7 +116,7 @@ public class FakeJsonNodeMarshallUnmarshallContext extends FakeJsonNodeMarshallC
     }
 
     @Override
-    public Optional<Locale> localeForLanguageTag(final String languageTag) {
+    public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
         throw new UnsupportedOperationException();
     }
 

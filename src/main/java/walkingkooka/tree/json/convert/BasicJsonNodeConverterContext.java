@@ -20,6 +20,7 @@ package walkingkooka.tree.json.convert;
 import walkingkooka.convert.ConverterContext;
 import walkingkooka.convert.ConverterContextDelegator;
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContext;
@@ -115,7 +116,7 @@ final class BasicJsonNodeConverterContext implements JsonNodeConverterContext,
     }
 
     @Override
-    public Optional<Locale> localeForLanguageTag(final String languageTag) {
+    public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
         return this.converterContext.localeForLanguageTag(languageTag);
     }
 

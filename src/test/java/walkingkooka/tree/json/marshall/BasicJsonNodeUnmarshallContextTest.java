@@ -23,6 +23,7 @@ import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
@@ -53,9 +54,11 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         }
 
         @Override
-        public Optional<Locale> localeForLanguageTag(final String languageTag) {
+        public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
             return Optional.of(
-                Locale.forLanguageTag(languageTag)
+                Locale.forLanguageTag(
+                    languageTag.value()
+                )
             );
         }
     };

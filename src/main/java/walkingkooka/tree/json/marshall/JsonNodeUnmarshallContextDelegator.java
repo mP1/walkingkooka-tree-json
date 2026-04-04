@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 
@@ -149,7 +150,7 @@ public interface JsonNodeUnmarshallContextDelegator extends JsonNodeUnmarshallCo
     }
 
     @Override
-    default Optional<Locale> localeForLanguageTag(final String languageTag) {
+    default Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
         return this.jsonNodeUnmarshallContext()
             .localeForLanguageTag(languageTag);
     }

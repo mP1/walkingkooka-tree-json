@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 
@@ -136,7 +137,7 @@ public interface JsonNodeUnmarshallContextDelegator extends JsonNodeUnmarshallCo
     }
 
     @Override
-    default Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+    default Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
         return this.jsonNodeUnmarshallContext()
             .currencyForCurrencyCode(currencyCode);
     }

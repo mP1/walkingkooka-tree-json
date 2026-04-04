@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.convert;
 
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContext;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContextDelegator;
@@ -33,7 +34,7 @@ public interface JsonNodeConverterContextDelegator extends JsonNodeConverterCont
     JsonNodeMarshallUnmarshallContextDelegator {
 
     @Override
-    default Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+    default Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
         return this.jsonNodeConverterContext()
             .currencyForCurrencyCode(currencyCode);
     }

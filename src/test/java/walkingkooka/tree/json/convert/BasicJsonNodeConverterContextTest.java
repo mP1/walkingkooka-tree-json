@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
@@ -75,7 +76,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
                 new FakeCurrencyContext() {
 
                     @Override
-                    public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+                    public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
                         Objects.requireNonNull(currencyCode, "currencyCode");
                         throw new UnsupportedOperationException();
                     }

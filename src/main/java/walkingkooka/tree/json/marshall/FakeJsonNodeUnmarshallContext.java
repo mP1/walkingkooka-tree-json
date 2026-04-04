@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 
@@ -115,7 +116,7 @@ public class FakeJsonNodeUnmarshallContext extends FakeJsonNodeContext implement
     // CanCurrencyForCurrencyCode.......................................................................................
 
     @Override
-    public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+    public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
         throw new UnsupportedOperationException();
     }
 

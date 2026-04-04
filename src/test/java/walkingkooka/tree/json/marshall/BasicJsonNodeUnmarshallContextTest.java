@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
@@ -43,9 +44,11 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     private final CurrencyCodeLanguageTagContext CURRENCY_CODE_LANGUAGE_TAG_CONTEXT = new CurrencyCodeLanguageTagContext() {
         @Override
-        public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+        public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
             return Optional.ofNullable(
-                Currency.getInstance(currencyCode)
+                Currency.getInstance(
+                    currencyCode.value()
+                )
             );
         }
 

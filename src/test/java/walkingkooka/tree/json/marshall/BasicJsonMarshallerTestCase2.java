@@ -22,6 +22,7 @@ import walkingkooka.ToStringTesting;
 import walkingkooka.collect.list.CsvStringList;
 import walkingkooka.collect.list.StringList;
 import walkingkooka.collect.set.CsvStringSet;
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.datetime.LocalDateList;
 import walkingkooka.datetime.LocalDateTimeList;
@@ -389,9 +390,11 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             ExpressionNumberKind.DEFAULT,
             new CurrencyCodeLanguageTagContext() {
                 @Override
-                public Optional<Currency> currencyForCurrencyCode(final String currencyCode) {
+                public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
                     return Optional.ofNullable(
-                        Currency.getInstance(currencyCode)
+                        Currency.getInstance(
+                            currencyCode.value()
+                        )
                     );
                 }
 

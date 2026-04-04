@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.marshall;
 
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.Currency;
@@ -55,7 +56,10 @@ final class BasicJsonMarshallerTypedCurrency extends BasicJsonMarshallerTyped<Cu
     Currency unmarshallNonNull(final JsonNode node,
                                final JsonNodeUnmarshallContext context) {
         return context.currencyForCurrencyCodeOrFail(
-            node.stringOrFail()
+            context.unmarshall(
+                node,
+                CurrencyCode.class
+            )
         );
     }
 

@@ -24,6 +24,7 @@ import walkingkooka.collect.list.StringList;
 import walkingkooka.collect.set.CsvStringSet;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
+import walkingkooka.currency.CurrencyCodeSet;
 import walkingkooka.datetime.LocalDateList;
 import walkingkooka.datetime.LocalDateTimeList;
 import walkingkooka.datetime.LocalTimeList;
@@ -230,7 +231,8 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     }
 
     private static Class<?> type(final Object value) {
-        return value instanceof CsvStringList ||
+        return value instanceof CurrencyCodeSet ||
+            value instanceof CsvStringList ||
             value instanceof CsvStringSet ||
             value instanceof EnvironmentValueNameSet ||
             value instanceof LocalDateList ||

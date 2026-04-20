@@ -319,7 +319,7 @@ abstract class BasicJsonMarshaller<T> {
             return node.isNull() ?
                 this.unmarshallNull(context) :
                 this.unmarshallNonNull(node, context);
-        } catch (final JsonNodeException | java.lang.NullPointerException cause) {
+        } catch (final JsonNodeException | java.lang.NullPointerException | UnsupportedOperationException cause) {
             throw cause;
         } catch (final RuntimeException cause) {
             final String message = cause.getMessage();

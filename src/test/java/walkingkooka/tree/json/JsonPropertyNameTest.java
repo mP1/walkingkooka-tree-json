@@ -70,7 +70,10 @@ public final class JsonPropertyNameTest implements ClassTesting2<JsonPropertyNam
 
     @Test
     public void testIndex() {
-        this.checkEquals("123", JsonPropertyName.index(123).value());
+        this.valueAndCheck(
+            JsonPropertyName.index(123),
+            "123"
+        );
     }
 
     @Test

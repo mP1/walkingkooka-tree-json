@@ -41,8 +41,10 @@ public abstract class ParentJsonNodeParserTokenTestCase<T extends ParentJsonNode
         final String text = this.text();
         final T token = this.createToken(text, tokens);
         this.textAndCheck(token, text);
-        this.checkEquals(tokens, token.value(), "tokens");
-        this.checkEquals(tokens, token.value(), "tokens");
+        this.valueAndCheck(
+            token,
+            tokens
+        );
     }
 
     @Override

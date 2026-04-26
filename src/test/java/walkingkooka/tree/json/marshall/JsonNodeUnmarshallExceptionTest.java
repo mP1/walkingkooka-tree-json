@@ -39,14 +39,25 @@ public final class JsonNodeUnmarshallExceptionTest implements StandardThrowableT
     @Test
     public void testWithMessageAndNode() {
         final JsonNodeUnmarshallException exception = this.createThrowable(MESSAGE);
-        checkThrowable(exception, MESSAGE, null);
+        this.getMessageAndCauseAndCheck(
+            exception,
+            MESSAGE,
+            null
+        );
         checkNode(exception);
     }
 
     @Test
     public void testWithMessageAndNodeAndCause() {
-        final JsonNodeUnmarshallException exception = this.createThrowable(MESSAGE, CAUSE);
-        checkThrowable(exception, MESSAGE, CAUSE);
+        final JsonNodeUnmarshallException exception = this.createThrowable(
+            MESSAGE,
+            CAUSE
+        );
+        this.getMessageAndCauseAndCheck(
+            exception,
+            MESSAGE,
+            CAUSE
+        );
         checkNode(exception);
     }
 
@@ -62,15 +73,31 @@ public final class JsonNodeUnmarshallExceptionTest implements StandardThrowableT
 
     @Test
     public void testWithNullMessageNodeAndCause() {
-        final JsonNodeUnmarshallException exception = new JsonNodeUnmarshallException(null, this.node(), CAUSE);
-        checkThrowable(exception, JsonNodeUnmarshallException.DEFAULT_MESSAGE, CAUSE);
+        final JsonNodeUnmarshallException exception = new JsonNodeUnmarshallException(
+            null,
+            this.node(),
+            CAUSE
+        );
+        this.getMessageAndCauseAndCheck(
+            exception,
+            JsonNodeUnmarshallException.DEFAULT_MESSAGE,
+            CAUSE
+        );
         checkNode(exception);
     }
 
     @Test
     public void testWithEmptyMessageNodeAndCause() {
-        final JsonNodeUnmarshallException exception = new JsonNodeUnmarshallException("", this.node(), CAUSE);
-        checkThrowable(exception, JsonNodeUnmarshallException.DEFAULT_MESSAGE, CAUSE);
+        final JsonNodeUnmarshallException exception = new JsonNodeUnmarshallException(
+            "",
+            this.node(),
+            CAUSE
+        );
+        this.getMessageAndCauseAndCheck(
+            exception,
+            JsonNodeUnmarshallException.DEFAULT_MESSAGE,
+            CAUSE
+        );
         checkNode(exception);
     }
 

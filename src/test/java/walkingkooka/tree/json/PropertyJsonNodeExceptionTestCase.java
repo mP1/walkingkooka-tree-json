@@ -49,7 +49,7 @@ public abstract class PropertyJsonNodeExceptionTestCase<T extends PropertyJsonNo
 
         final JsonPropertyName property = JsonPropertyName.with("abc");
         final T thrown = this.create(property, json);
-        this.checkMessage(
+        this.getMessageAndCheck(
             thrown,
             this.messagePrefix() + " \"" + property + "\""
         );

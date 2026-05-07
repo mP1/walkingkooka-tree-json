@@ -18,7 +18,6 @@
 package walkingkooka.tree.json;
 
 import walkingkooka.Cast;
-import walkingkooka.HasValue;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.naming.Name;
 import walkingkooka.text.CharSequences;
@@ -51,8 +50,7 @@ import java.util.function.Predicate;
 public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name, Object>,
     HasText,
     TraversableHasTextOffset<JsonNode>,
-    TreePrintable,
-    HasValue<Object> {
+    TreePrintable {
 
     /**
      * Tests if the given {@link Class} is a {@link JsonNode} or sub-class.
@@ -251,10 +249,9 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         throw new UnsupportedOperationException();
     }
 
-    // Value<Object>....................................................................................................
+    // Only JsonLeafNode implements HasValue
 
-    @Override
-    public abstract Object value();
+    abstract Object value();
 
     // cast.............................................................................................................
 

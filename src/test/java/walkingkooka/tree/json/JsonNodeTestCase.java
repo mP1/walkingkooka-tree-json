@@ -19,7 +19,7 @@ package walkingkooka.tree.json;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
-import walkingkooka.ValueTesting;
+import walkingkooka.HasValueTesting;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.naming.Name;
 import walkingkooka.reflect.BeanPropertiesTesting;
@@ -46,7 +46,7 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     HasTextTesting,
     IsMethodTesting<N>,
     NodeTesting<JsonNode, JsonPropertyName, Name, Object>,
-    ValueTesting {
+    HasValueTesting {
 
     JsonNodeTestCase() {
         super();

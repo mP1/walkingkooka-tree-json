@@ -17,7 +17,7 @@
 package walkingkooka.tree.json.parser;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.ValueTesting;
+import walkingkooka.HasValueTesting;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.IsMethodTesting;
@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken> implements ClassTesting2<T>,
     IsMethodTesting<T>,
     ParserTokenTesting<T>,
-    ValueTesting {
+    HasValueTesting {
 
     JsonNodeParserTokenTestCase() {
         super();

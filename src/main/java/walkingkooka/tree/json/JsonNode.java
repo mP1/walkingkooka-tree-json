@@ -18,7 +18,7 @@
 package walkingkooka.tree.json;
 
 import walkingkooka.Cast;
-import walkingkooka.Value;
+import walkingkooka.HasValue;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.naming.Name;
 import walkingkooka.text.CharSequences;
@@ -52,7 +52,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     HasText,
     TraversableHasTextOffset<JsonNode>,
     TreePrintable,
-    Value<Object> {
+    HasValue<Object> {
 
     /**
      * Tests if the given {@link Class} is a {@link JsonNode} or sub-class.

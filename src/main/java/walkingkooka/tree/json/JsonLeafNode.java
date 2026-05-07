@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json;
 
+import walkingkooka.HasValue;
 import walkingkooka.NeverError;
 import walkingkooka.collect.list.Lists;
 
@@ -26,7 +27,7 @@ import java.util.Objects;
 /**
  * Base type for all the leaf json nodes that hold a simple value, including null.
  */
-abstract class JsonLeafNode<V> extends JsonNode {
+abstract class JsonLeafNode<V> extends JsonNode implements HasValue<Object> {
 
     JsonLeafNode(final JsonPropertyName name,
                  final int index,

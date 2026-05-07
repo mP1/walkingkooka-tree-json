@@ -91,10 +91,8 @@ abstract class JsonParentNode<C extends List<JsonNode>> extends JsonNode {
                                         final int index,
                                         final C children);
 
-    // Value............................................................................................................
-
     @Override
-    public final Object value() {
+    final Object value() {
         throw new UnsupportedOperationException();
     }
 

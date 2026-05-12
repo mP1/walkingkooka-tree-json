@@ -22,7 +22,6 @@ import walkingkooka.ToStringTesting;
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
 import walkingkooka.currency.CurrencyCode;
-import walkingkooka.currency.CurrencyExchangeRaters;
 import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
@@ -74,7 +73,6 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
                 LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
-                CurrencyExchangeRaters.fake(),
                 new FakeCurrencyContext() {
 
                     @Override

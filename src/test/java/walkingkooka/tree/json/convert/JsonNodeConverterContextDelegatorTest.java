@@ -20,6 +20,7 @@ package walkingkooka.tree.json.convert;
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.currency.CurrencyExchangeRaters;
 import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
@@ -144,6 +145,7 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
                         LineEnding.NL,
                         ',', // valueSeparator
                         Converters.fake(),
+                        CurrencyExchangeRaters.fake(),
                         new FakeCurrencyContext() {
 
                             @Override

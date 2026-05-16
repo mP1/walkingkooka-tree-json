@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.convert;
 
+import walkingkooka.convert.BinaryNumberConverterFunctions;
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
 import walkingkooka.currency.CurrencyCode;
@@ -137,6 +138,7 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
             return JsonNodeConverterContexts.basic(
                 ExpressionNumberConverterContexts.basic(
                     Converters.fake(),
+                    BinaryNumberConverterFunctions.multiply(), // multiplier
                     ConverterContexts.basic(
                         false, // canNumbersHaveGroupSeparator
                         0, // dateOffset
@@ -144,6 +146,7 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
                         LineEnding.NL,
                         ',', // valueSeparator
                         Converters.fake(),
+                        BinaryNumberConverterFunctions.fake(), // multiplier
                         new FakeCurrencyContext() {
 
                             @Override

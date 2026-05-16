@@ -19,6 +19,7 @@ package walkingkooka.tree.json.convert;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
+import walkingkooka.convert.BinaryNumberConverterFunctions;
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
 import walkingkooka.currency.CurrencyCode;
@@ -66,6 +67,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
                     (dnc) -> (DecimalFormat) DecimalFormat.getInstance()
                 )
             ),
+            BinaryNumberConverterFunctions.multiply(), // multiplier
             ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
                 Converters.JAVA_EPOCH_OFFSET,
@@ -73,6 +75,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
                 LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
+                BinaryNumberConverterFunctions.fake(), // multiplier
                 new FakeCurrencyContext() {
 
                     @Override

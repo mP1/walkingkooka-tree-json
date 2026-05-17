@@ -21,6 +21,7 @@ import walkingkooka.convert.BinaryNumberConverterFunctions;
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.currency.CurrencyExchange;
 import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
@@ -148,6 +149,15 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
                         Converters.fake(),
                         BinaryNumberConverterFunctions.fake(), // multiplier
                         new FakeCurrencyContext() {
+
+                            @Override
+                            public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
+                                                                         final Optional<LocalDateTime> dateTime) {
+                                Objects.requireNonNull(currencyExchange, "currencyExchange");
+                                Objects.requireNonNull(dateTime, "dateTime");
+
+                                throw new UnsupportedOperationException();
+                            }
 
                             @Override
                             public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {

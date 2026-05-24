@@ -42,6 +42,7 @@ import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 
 import java.math.MathContext;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.util.Currency;
@@ -142,6 +143,7 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
                     BinaryNumberConverterFunctions.multiply(), // multiplier
                     ConverterContexts.basic(
                         false, // canNumbersHaveGroupSeparator
+                        StandardCharsets.UTF_8,
                         0, // dateOffset
                         Indentation.SPACES2,
                         LineEnding.NL,

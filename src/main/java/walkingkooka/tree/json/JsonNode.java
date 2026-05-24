@@ -20,6 +20,8 @@ package walkingkooka.tree.json;
 import walkingkooka.Cast;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.naming.Name;
+import walkingkooka.net.header.HasContentType;
+import walkingkooka.net.header.MediaType;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.HasText;
 import walkingkooka.text.Indentation;
@@ -48,6 +50,7 @@ import java.util.function.Predicate;
  * actually returns a new graph of nodes as would be expected including all parents and the root.
  */
 public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name, Object>,
+    HasContentType,
     HasText,
     TraversableHasTextOffset<JsonNode>,
     TreePrintable {
@@ -495,4 +498,13 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
             JsonNode.class
         );
     }
+
+    // HasContentType...................................................................................................
+
+    @Override
+    public final Optional<MediaType> contentType() {
+        return Optional.of(CONTENT_TYPE);
+    }
+
+    private final static MediaType CONTENT_TYPE = MediaType.APPLICATION_JSON;
 }

@@ -49,7 +49,8 @@ abstract class JsonLeafNode<V> extends JsonNode implements HasValue<Object> {
             this.replaceValue(value);
     }
 
-    @SuppressWarnings("unchecked") final JsonLeafNode<V> replaceValue(final V value) {
+    @SuppressWarnings("unchecked") //
+    final JsonLeafNode<V> replaceValue(final V value) {
         return this.replace0(this.name, this.index, value)
             .replaceChild(this.parent(), this.index)
             .cast(JsonLeafNode.class);

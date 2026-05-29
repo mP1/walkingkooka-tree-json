@@ -17,6 +17,8 @@
 
 package walkingkooka.tree.json;
 
+import walkingkooka.Binary;
+import walkingkooka.CanBinary;
 import walkingkooka.Cast;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.naming.Name;
@@ -40,6 +42,7 @@ import walkingkooka.tree.json.parser.JsonNodeParsers;
 import walkingkooka.tree.select.NodeSelector;
 import walkingkooka.tree.select.parser.ExpressionNodeSelectorParserToken;
 
+import java.nio.charset.Charset;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -50,6 +53,7 @@ import java.util.function.Predicate;
  * actually returns a new graph of nodes as would be expected including all parents and the root.
  */
 public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name, Object>,
+    CanBinary,
     HasContentType,
     HasText,
     TraversableHasTextOffset<JsonNode>,
@@ -507,4 +511,16 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     }
 
     private final static MediaType CONTENT_TYPE = MediaType.APPLICATION_JSON;
+
+    // CanBinary........................................................................................................
+
+    @Override
+    public Binary binary(final Charset charset) {
+        Objects.requireNonNull(charset, "charset");
+
+        return Binary.with(
+            this.toString()
+                .getBytes(charset)
+        );
+    }
 }

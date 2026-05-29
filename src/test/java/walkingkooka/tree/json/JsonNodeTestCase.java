@@ -18,6 +18,8 @@
 package walkingkooka.tree.json;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.Binary;
+import walkingkooka.CanBinaryTesting;
 import walkingkooka.Cast;
 import walkingkooka.HasValueTesting;
 import walkingkooka.collect.map.Maps;
@@ -34,6 +36,8 @@ import walkingkooka.text.printer.Printers;
 import walkingkooka.tree.HasTextOffsetTesting;
 import walkingkooka.tree.NodeTesting;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -42,6 +46,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanPropertiesTesting,
     ClassTesting2<JsonNode>,
+    CanBinaryTesting,
     HasTextOffsetTesting,
     HasTextTesting,
     IsMethodTesting<N>,
@@ -315,6 +320,23 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
             typeName,
             "Json",
             ""
+        );
+    }
+
+    // CanBinary........................................................................................................
+
+    @Test
+    public final void testBinary() {
+        final N node = this.createJsonNode();
+        final Charset charset = StandardCharsets.UTF_8;
+
+        this.binaryAndCheck(
+            node,
+            charset,
+            Binary.with(
+                node.toString()
+                    .getBytes(charset)
+            )
         );
     }
 

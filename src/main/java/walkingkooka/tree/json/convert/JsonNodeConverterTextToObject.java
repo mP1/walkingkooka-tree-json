@@ -77,6 +77,6 @@ final class JsonNodeConverterTextToObject<C extends JsonNodeConverterContext> ex
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName();
+        return "Json " + TEXT + " to " + Object.class.getSimpleName();
     }
 }

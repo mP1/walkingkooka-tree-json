@@ -189,7 +189,7 @@ public final class JsonNodeConverterTextToObjectTest extends JsonNodeConverterTe
     public void testToString() {
         this.toStringAndCheck(
             JsonNodeConverterTextToObject.instance(),
-            JsonNodeConverterTextToObject.class.getSimpleName()
+            "Json TEXT to Object"
         );
     }
 

@@ -64,6 +64,6 @@ final class JsonNodeConverterTextToJsonNode<C extends JsonNodeConverterContext> 
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName();
+        return TEXT + " to " + JsonNode.class.getSimpleName();
     }
 }

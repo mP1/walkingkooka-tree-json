@@ -210,6 +210,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedRoundingMode.instance(),
             BasicJsonMarshallerTypedStringList.instance(),
             BasicJsonMarshallerTypedStringName.instance(),
+            BasicJsonMarshallerTypedTsvStringList.instance(),
             BasicJsonMarshallerTypedUrl.instance(),
             BasicJsonMarshallerTypedZoneOffset.instance()
         ).forEach(BasicJsonMarshaller::register);

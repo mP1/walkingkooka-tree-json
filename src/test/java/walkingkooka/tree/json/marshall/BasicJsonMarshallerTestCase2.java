@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 import walkingkooka.collect.list.CsvStringList;
 import walkingkooka.collect.list.StringList;
+import walkingkooka.collect.list.TsvStringList;
 import walkingkooka.collect.set.CsvStringSet;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
@@ -241,7 +242,8 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             value instanceof LocalDateTimeList ||
             value instanceof LocalTimeList ||
             value instanceof NumberList ||
-            value instanceof StringList ?
+            value instanceof StringList ||
+            value instanceof TsvStringList ?
             value.getClass() :
             value instanceof List ?
                 List.class :

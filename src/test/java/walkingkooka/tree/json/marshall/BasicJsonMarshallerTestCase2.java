@@ -80,6 +80,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         );
     }
 
+    // not final
     @Test
     public void testUnmarshallJsonNullNode() {
         this.unmarshallAndCheck(
@@ -200,7 +201,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     }
 
     @Test
-    public void testRoundtripOptional() {
+    public final void testRoundtripOptional() {
         final T value = this.value();
         final Optional<T> optional = Optional.of(value);
 
@@ -219,7 +220,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     }
 
     @Test
-    public void testRoundtripOptionalWithType() {
+    public final void testRoundtripOptionalWithType() {
         final T value = this.value();
         final Optional<T> optional = Optional.of(value);
 
@@ -234,6 +235,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         );
     }
 
+    // not final
     @Test
     public void testRoundtripList() {
         final T value = this.value();
@@ -253,6 +255,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         );
     }
 
+    // not final
     @Test
     public void testRoundtripSet() {
         final T value = this.value();
@@ -273,7 +276,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     }
 
     @Test
-    public void testRoundtripMapStringKey() {
+    public final void testRoundtripMapStringKey() {
         final T value = this.value();
 
         final Map<String, T> map = Map.of(
@@ -297,7 +300,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     }
 
     @Test
-    public void testRoundtripMapNonStringKey() {
+    public final void testRoundtripMapNonStringKey() {
         final T value = this.value();
 
         final Map<Integer, T> map = Map.of(123, value);
@@ -340,7 +343,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     }
 
     @Test
-    public void testRoundtripTypeList() {
+    public final void testRoundtripTypeList() {
         final List<T> list = List.of(this.value());
 
         final JsonNode jsonNode = this.marshallContext().marshallCollectionWithType(list);
@@ -354,7 +357,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     }
 
     @Test
-    public void testRoundtripTypeSet() {
+    public final void testRoundtripTypeSet() {
         final Set<T> set = Set.of(this.value());
 
         final JsonNode jsonNode = this.marshallContext().marshallCollectionWithType(set);
@@ -367,7 +370,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     }
 
     @Test
-    public void testRoundtripTypeMap() {
+    public final void testRoundtripTypeMap() {
         final Map<String, T> map = Map.of("key1", this.value());
 
         final JsonNode jsonNode = this.marshallContext().marshallMapWithType(map);

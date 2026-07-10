@@ -67,7 +67,7 @@ public final class BasicJsonMarshallerTypedCollectionSetTest extends BasicJsonMa
     }
 
     @Test
-    public void testMarshallEmptyList() {
+    public void testMarshallEmptySet() {
         this.marshallWithTypeAndCheck(
             Sets.empty(),
             typeAndValue(

@@ -20,6 +20,7 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
+import walkingkooka.collect.set.Sets;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
@@ -97,6 +98,22 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         this.marshallCollectionAndCheck(
             null,
             JsonNode.nullNode()
+        );
+    }
+
+    @Test
+    public void testMarshallCollectionWithEmptyList() {
+        this.marshallCollectionAndCheck(
+            Lists.empty(),
+            JsonNode.array()
+        );
+    }
+
+    @Test
+    public void testMarshallCollectionWithEmptySet() {
+        this.marshallCollectionAndCheck(
+            Sets.empty(),
+            JsonNode.array()
         );
     }
 

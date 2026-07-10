@@ -60,12 +60,20 @@ public final class BasicJsonMarshallerTypedCollectionSetTest extends BasicJsonMa
 
     @Test
     public void testUnmarshallEmptyArray() {
-        this.unmarshallAndCheck(JsonNode.array(), Sets.empty());
+        this.unmarshallAndCheck(
+            JsonNode.array(),
+            Sets.empty()
+        );
     }
 
     @Test
     public void testMarshallEmptyList() {
-        this.marshallWithTypeAndCheck(Sets.empty(), typeAndValue(JsonNode.array()));
+        this.marshallWithTypeAndCheck(
+            Sets.empty(),
+            typeAndValue(
+                JsonNode.array()
+            )
+        );
     }
 
     @Override
@@ -75,7 +83,13 @@ public final class BasicJsonMarshallerTypedCollectionSetTest extends BasicJsonMa
 
     @Override
     Set<?> value() {
-        return Sets.of(null, true, 123.5, "abc123", TestJsonNodeValue.with("test-TestJsonNodeValue-a1"));
+        return Sets.of(
+            null,
+            true,
+            123.5,
+            "abc123",
+            TestJsonNodeValue.with("test-TestJsonNodeValue-a1")
+        );
     }
 
     @Override

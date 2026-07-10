@@ -17,8 +17,6 @@
 
 package walkingkooka.tree.json.marshall;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.set.Sets;
@@ -26,17 +24,7 @@ import walkingkooka.tree.json.JsonNode;
 
 import java.util.Set;
 
-public final class BasicJsonMarshallerTypedCollectionSetTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedCollectionSet, Set<?>> {
-
-    @BeforeAll
-    public static void beforeAll() {
-        TestJsonNodeValue.register();
-    }
-
-    @AfterAll
-    public static void afterAll() {
-        TestJsonNodeValue.unregister();
-    }
+public final class BasicJsonMarshallerTypedCollectionSetTest extends BasicJsonMarshallerTypedCollectionTestCase<BasicJsonMarshallerTypedCollectionSet, Set<?>> {
 
     @Test
     public void testUnmarshallBooleanFails() {

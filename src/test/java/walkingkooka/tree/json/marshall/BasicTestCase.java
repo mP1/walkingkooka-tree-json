@@ -31,10 +31,10 @@ public abstract class BasicTestCase<T> implements ClassTesting2<T>, TypeNameTest
         super();
     }
 
-    final JsonObject typeAndValue(final String type,
-                                  final JsonNode value) {
+    static JsonObject typeAndValue(final String type,
+                                   final JsonNode value) {
         return JsonNode.object()
-            .set(BasicJsonNodeContext.TYPE, JsonNode.string(type))
+            .set(BasicJsonNodeContext.TYPE, type)
             .set(BasicJsonNodeContext.VALUE, value);
     }
 
@@ -44,5 +44,4 @@ public abstract class BasicTestCase<T> implements ClassTesting2<T>, TypeNameTest
     public final JavaVisibility typeVisibility() {
         return JavaVisibility.PACKAGE_PRIVATE;
     }
-
 }

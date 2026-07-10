@@ -480,7 +480,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         final byte value = 123;
         this.marshallWithTypeAndCheck(
             value,
-            this.typeAndValue(
+            typeAndValue(
                 "byte",
                 JsonNode.number(value)
             )
@@ -492,7 +492,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         final short value = 123;
         this.marshallWithTypeAndCheck(
             value,
-            this.typeAndValue(
+            typeAndValue(
                 "short",
                 JsonNode.number(value)
             )
@@ -504,7 +504,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         final int value = 123;
         this.marshallWithTypeAndCheck(
             value,
-            this.typeAndValue(
+            typeAndValue(
                 "int",
                 JsonNode.number(value)
             )
@@ -516,7 +516,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         final long value = 123;
         this.marshallWithTypeAndCheck(
             value,
-            this.typeAndValue(
+            typeAndValue(
                 "long",
                 JsonNode.string(
                     String.valueOf(value)
@@ -530,7 +530,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         final float value = 123.5f;
         this.marshallWithTypeAndCheck(
             value,
-            this.typeAndValue(
+            typeAndValue(
                 "float",
                 JsonNode.number(value)
             )
@@ -551,7 +551,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         final Locale value = Locale.ENGLISH;
         this.marshallWithTypeAndCheck(
             value,
-            this.typeAndValue(
+            typeAndValue(
                 "locale",
                 JsonNode.string(
                     value.toLanguageTag()
@@ -576,7 +576,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         this.marshallWithTypeAndCheck(
             this.contextWithProcessor(),
             value,
-            this.typeAndValue(
+            typeAndValue(
                 TestJsonNodeValue.TYPE_NAME,
                 value.marshall(
                     JsonNodeMarshallContexts.fake()
@@ -634,7 +634,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         this.marshallCollectionWithTypeAndCheck(
             Lists.of(value),
             this.list(
-                this.typeAndValue(
+                typeAndValue(
                     "byte",
                     JsonNode.number(value)
                 )
@@ -648,7 +648,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         this.marshallCollectionWithTypeAndCheck(
             Lists.of(value),
             this.list(
-                this.typeAndValue(
+                typeAndValue(
                     "short",
                     JsonNode.number(value)
                 )
@@ -662,7 +662,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         this.marshallCollectionWithTypeAndCheck(
             Lists.of(value),
             this.list(
-                this.typeAndValue(
+                typeAndValue(
                     "int",
                     JsonNode.number(value)
                 )
@@ -676,7 +676,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         this.marshallCollectionWithTypeAndCheck(
             Lists.of(value),
             this.list(
-                this.typeAndValue(
+                typeAndValue(
                     "long",
                     JsonNode.string(
                         String.valueOf(value)
@@ -692,7 +692,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         this.marshallCollectionWithTypeAndCheck(
             Lists.of(value),
             this.list(
-                this.typeAndValue(
+                typeAndValue(
                     "float",
                     JsonNode.number(value)
                 )
@@ -717,7 +717,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
         this.marshallCollectionWithTypeAndCheck(
             Lists.of(value),
             this.list(
-                this.typeAndValue(
+                typeAndValue(
                     "locale",
                     JsonNode.string(
                         value.toLanguageTag()
@@ -747,7 +747,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
             this.contextWithProcessor(),
             Lists.of(value),
             this.list(
-                this.typeAndValue(
+                typeAndValue(
                     TestJsonNodeValue.TYPE_NAME,
                     value.marshall(
                         JsonNodeMarshallContexts.fake()
@@ -838,7 +838,7 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
                 .appendChild(JsonNode.object()
                     .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, JsonNode.string(key))
                     .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE,
-                        this.typeAndValue(
+                        typeAndValue(
                             TestJsonNodeValue.TYPE_NAME,
                             value.marshall(
                                 JsonNodeMarshallContexts.fake()

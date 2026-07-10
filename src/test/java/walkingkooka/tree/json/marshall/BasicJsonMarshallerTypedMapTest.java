@@ -77,7 +77,7 @@ public final class BasicJsonMarshallerTypedMapTest extends BasicJsonMarshallerTy
 
     @Test
     public void testMarshallEmptyMap() {
-        this.marshallWithTypeAndCheck(Maps.empty(), this.typeAndValue(JsonNode.array()));
+        this.marshallWithTypeAndCheck(Maps.empty(), typeAndValue(JsonNode.array()));
     }
 
     @Override

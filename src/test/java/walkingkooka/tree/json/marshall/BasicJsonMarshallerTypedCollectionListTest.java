@@ -69,7 +69,7 @@ public final class BasicJsonMarshallerTypedCollectionListTest extends BasicJsonM
 
     @Test
     public void testMarshallEmptyList() {
-        this.marshallWithTypeAndCheck(Lists.empty(), this.typeAndValue(JsonNode.array()));
+        this.marshallWithTypeAndCheck(Lists.empty(), typeAndValue(JsonNode.array()));
     }
 
     @Override

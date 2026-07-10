@@ -77,7 +77,7 @@ public final class BasicJsonMarshallerTypedExpressionReferenceExpressionTest ext
 
     @Override
     JsonNode node() {
-        return this.typeAndValue(REFERENCE_TYPE_NAME, REFERENCE_JSON);
+        return typeAndValue(REFERENCE_TYPE_NAME, REFERENCE_JSON);
     }
 
     @Override

@@ -304,7 +304,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     final JsonNode nodeWithType() {
         final JsonNode node = this.node();
         return this.requiresTypeName() ?
-            this.typeAndValue(node) :
+            typeAndValue(node) :
             node;
     }
 
@@ -391,7 +391,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     abstract String typeName();
 
     final JsonObject typeAndValue(final JsonNode value) {
-        return this.typeAndValue(this.typeName(), value);
+        return typeAndValue(this.typeName(), value);
     }
 
     final JsonNodeUnmarshallContext unmarshallContext() {

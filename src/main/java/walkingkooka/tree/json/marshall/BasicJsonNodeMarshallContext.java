@@ -33,7 +33,6 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
 /**
@@ -86,7 +85,7 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
             json;
     }
 
-    private final BiFunction<Object, JsonObject, JsonObject> processor;
+    private final JsonNodeMarshallContextObjectPostProcessor processor;
 
     /**
      * Accepts a {@link Collection} of elements which are assumed to be the same type and creates a {@link JsonArray}.

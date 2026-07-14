@@ -43,7 +43,6 @@ import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 
 import java.math.MathContext;
-import java.nio.charset.StandardCharsets;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.util.Currency;
@@ -151,7 +150,7 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
                         TextPrinting.with(
                                 Indentation.SPACES2,
                                 LineEnding.NL)
-                            .setCharset(StandardCharsets.UTF_8),
+                            .setCharset(CHARSET),
                         new FakeCurrencyContext() {
 
                             @Override

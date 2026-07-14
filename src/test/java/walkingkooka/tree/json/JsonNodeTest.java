@@ -23,6 +23,7 @@ import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextPrinting;
 import walkingkooka.tree.HasTextOffsetTesting;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -344,26 +345,11 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
     // toJsonText.......................................................................................................
 
     @Test
-    public void testToJsonTextWithNullIndentationFails() {
+    public void testToJsonTextWithNullContextFails() {
         assertThrows(
             NullPointerException.class,
             () -> JsonNode.nullNode()
-                .toJsonText(
-                    null,
-                    LineEnding.NONE
-                )
-        );
-    }
-
-    @Test
-    public void testToJsonTextWithNullLineEndingFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> JsonNode.nullNode()
-                .toJsonText(
-                    Indentation.SPACES2,
-                    null
-                )
+                .toJsonText(null)
         );
     }
 
@@ -404,8 +390,10 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
         this.checkEquals(
             expected,
             json.toJsonText(
-                indentation,
-                lineEnding
+                TextPrinting.with(
+                    indentation,
+                    lineEnding
+                )
             ),
             json::toString
         );

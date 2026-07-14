@@ -28,6 +28,8 @@ import walkingkooka.text.CharSequences;
 import walkingkooka.text.HasText;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextContext;
+import walkingkooka.text.TextPrinting;
 import walkingkooka.text.cursor.parser.Parser;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.Printers;
@@ -443,22 +445,22 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     @Override
     public final String toString() {
-        return this.toJsonText(
-            INDENTATION,
-            LineEnding.SYSTEM
-        );
+        return this.toJsonText(TEXT_CONTEXT);
     }
+
+    private final static TextContext TEXT_CONTEXT = TextPrinting.with(
+        INDENTATION,
+        LineEnding.SYSTEM
+    );
 
     /**
      * Helper that returns this node in json, supporting indentation and using the selected line ending.
      */
-    public final String toJsonText(final Indentation indentation,
-                                   final LineEnding lineEnding) {
-        Objects.requireNonNull(indentation, "indentation");
-        Objects.requireNonNull(lineEnding, "lineEnding");
+    public final String toJsonText(final TextContext context) {
+        Objects.requireNonNull(context, "context");
 
         final StringBuilder b = new StringBuilder();
-        try (final IndentingPrinter printer = Printers.stringBuilder(b, lineEnding).indenting(indentation)) {
+        try (final IndentingPrinter printer = Printers.stringBuilder(b, context.lineEnding()).indenting(context.indentation())) {
             this.printJson(printer);
         }
         return b.toString();

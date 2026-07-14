@@ -65,10 +65,7 @@ final class JsonNodeConverterToJsonNodeText<C extends JsonNodeConverterContext> 
         return this.successfulConversion(
             context.convertOrFail(
                 context.marshall(value)
-                    .toJsonText(
-                        context.indentation(),
-                        context.lineEnding()
-                    ),
+                    .toJsonText(context),
                 type
             ),
             type

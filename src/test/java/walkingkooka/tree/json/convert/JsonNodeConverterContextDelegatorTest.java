@@ -32,6 +32,7 @@ import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextPrinting;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContexts;
 import walkingkooka.tree.json.convert.JsonNodeConverterContextDelegatorTest.TestJsonNodeConverterContextDelegator;
@@ -143,13 +144,14 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
                     BinaryNumberConverterFunctions.multiply(), // multiplier
                     ConverterContexts.basic(
                         false, // canNumbersHaveGroupSeparator
-                        StandardCharsets.UTF_8,
                         0, // dateOffset
-                        Indentation.SPACES2,
-                        LineEnding.NL,
                         ',', // valueSeparator
                         Converters.fake(),
                         BinaryNumberConverterFunctions.fake(), // multiplier
+                        TextPrinting.with(
+                                Indentation.SPACES2,
+                                LineEnding.NL)
+                            .setCharset(StandardCharsets.UTF_8),
                         new FakeCurrencyContext() {
 
                             @Override

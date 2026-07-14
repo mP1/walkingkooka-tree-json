@@ -32,7 +32,6 @@ import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
-import walkingkooka.text.LineEnding;
 import walkingkooka.text.TextPrinting;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.ExpressionNumberKind;
@@ -77,7 +76,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
                 BinaryNumberConverterFunctions.fake(), // multiplier
                 TextPrinting.with(
                         INDENTATION,
-                        LineEnding.NL
+                        LINE_ENDING
                     ).setCharset(CHARSET),
                 new FakeCurrencyContext() {
 

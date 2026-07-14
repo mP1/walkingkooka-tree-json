@@ -34,6 +34,7 @@ import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextPrinting;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContext;
@@ -72,13 +73,14 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
             BinaryNumberConverterFunctions.multiply(), // multiplier
             ConverterContexts.basic(
                 false, // canNumbersHaveGroupSeparator
-                StandardCharsets.UTF_8,
                 Converters.JAVA_EPOCH_OFFSET,
-                Indentation.SPACES2,
-                LineEnding.NL,
                 ',', // valueSeparator
                 Converters.fake(),
                 BinaryNumberConverterFunctions.fake(), // multiplier
+                TextPrinting.with(
+                        Indentation.SPACES2,
+                        LineEnding.NL)
+                    .setCharset(StandardCharsets.UTF_8),
                 new FakeCurrencyContext() {
 
                     @Override

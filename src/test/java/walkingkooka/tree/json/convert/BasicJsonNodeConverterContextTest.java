@@ -58,8 +58,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
     DecimalNumberContextDelegator {
 
     static {
-        final Locale locale = Locale.forLanguageTag("EN-AU");
-        final LocaleContext localeContext = LocaleContexts.jre(locale);
+        final LocaleContext localeContext = LocaleContexts.jre(LOCALE);
 
         CONVERTER_CONTEXT = ExpressionNumberConverterContexts.basic(
             ExpressionNumberConverters.toNumberOrExpressionNumber(
@@ -103,9 +102,9 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
                     }
                 }.setLocaleContext(localeContext),
                 DateTimeContexts.basic(
-                    localeContext.dateTimeSymbolsForLocale(locale)
+                    localeContext.dateTimeSymbolsForLocale(LOCALE)
                         .get(),
-                    locale,
+                    LOCALE,
                     1950,
                     50,
                     LocalDateTime::now

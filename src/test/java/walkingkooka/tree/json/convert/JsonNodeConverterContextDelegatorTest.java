@@ -100,8 +100,6 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
         return DECIMAL_NUMBER_CONTEXT;
     }
 
-    private final static MathContext MATH_CONTEXT = MathContext.DECIMAL128;
-
     private final static DecimalNumberContext DECIMAL_NUMBER_CONTEXT = DecimalNumberContexts.american(MATH_CONTEXT);
 
     @Override

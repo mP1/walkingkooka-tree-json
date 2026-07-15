@@ -20,13 +20,10 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.Test;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionFunctionName;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.NamedFunctionExpression;
 import walkingkooka.tree.json.JsonNode;
 
 public final class BasicJsonMarshallerTypedExpressionNamedFunctionExpressionTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionNamedFunctionExpression, NamedFunctionExpression> {
-
-    private final static ExpressionNumberKind KIND = ExpressionNumberKind.DEFAULT;
 
     @Test
     public void testUnmarshallBooleanFails() {

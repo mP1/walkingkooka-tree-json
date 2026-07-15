@@ -20,7 +20,6 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.ValueExpression;
 import walkingkooka.tree.json.JsonNode;
 
@@ -43,7 +42,7 @@ public final class BasicJsonMarshallerTypedExpressionValueExpressionTest extends
     @Test
     public void testRoundtripExpressionNumber() {
         this.roundTripAndCheck(
-            ExpressionNumberKind.DEFAULT.create(123)
+            EXPRESSION_NUMBER_KIND.create(123)
         );
     }
 

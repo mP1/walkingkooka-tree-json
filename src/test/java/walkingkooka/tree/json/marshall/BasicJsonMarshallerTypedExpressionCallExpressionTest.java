@@ -22,15 +22,12 @@ import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.expression.CallExpression;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionFunctionName;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.NamedFunctionExpression;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
 
 public final class BasicJsonMarshallerTypedExpressionCallExpressionTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionCallExpression, CallExpression> {
-
-    private final static ExpressionNumberKind KIND = ExpressionNumberKind.DEFAULT;
 
     @Test
     public void testUnmarshallBooleanFails() {
@@ -78,11 +75,11 @@ public final class BasicJsonMarshallerTypedExpressionCallExpressionTest extends 
 
     private List<Expression> parameters() {
         return Lists.of(
-            Expression.value(KIND.create(11)),
+            Expression.value(EXPRESSION_NUMBER_KIND.create(11)),
             Expression.value("b2"),
             Expression.add(
-                Expression.value(KIND.create(3)),
-                Expression.value(KIND.create(33))
+                Expression.value(EXPRESSION_NUMBER_KIND.create(3)),
+                Expression.value(EXPRESSION_NUMBER_KIND.create(33))
             )
         );
     }

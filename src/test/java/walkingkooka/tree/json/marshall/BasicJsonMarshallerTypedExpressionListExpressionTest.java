@@ -20,15 +20,12 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.ListExpression;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
 
 public final class BasicJsonMarshallerTypedExpressionListExpressionTest extends BasicJsonMarshallerTypedExpressionTestCase<BasicJsonMarshallerTypedExpressionListExpression, ListExpression> {
-
-    private final static ExpressionNumberKind KIND = ExpressionNumberKind.DEFAULT;
 
     @Test
     public void testUnmarshallBooleanFails() {
@@ -69,11 +66,11 @@ public final class BasicJsonMarshallerTypedExpressionListExpressionTest extends 
 
     private List<Expression> elements() {
         return Lists.of(
-            Expression.value(KIND.create(11)),
+            Expression.value(EXPRESSION_NUMBER_KIND.create(11)),
             Expression.value("b2"),
             Expression.add(
-                Expression.value(KIND.create(3)),
-                Expression.value(KIND.create(33))
+                Expression.value(EXPRESSION_NUMBER_KIND.create(3)),
+                Expression.value(EXPRESSION_NUMBER_KIND.create(33))
             )
         );
     }

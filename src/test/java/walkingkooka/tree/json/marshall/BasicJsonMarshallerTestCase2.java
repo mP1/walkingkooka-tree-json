@@ -34,7 +34,6 @@ import walkingkooka.environment.EnvironmentValueNameSet;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.locale.LocaleLanguageTagSet;
 import walkingkooka.math.NumberList;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonNodeException;
 import walkingkooka.tree.json.JsonObject;
@@ -513,7 +512,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
 
     final JsonNodeUnmarshallContext unmarshallContext() {
         return BasicJsonNodeUnmarshallContext.with(
-            ExpressionNumberKind.DEFAULT,
+            EXPRESSION_NUMBER_KIND,
             new CurrencyCodeLanguageTagContext() {
                 @Override
                 public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {

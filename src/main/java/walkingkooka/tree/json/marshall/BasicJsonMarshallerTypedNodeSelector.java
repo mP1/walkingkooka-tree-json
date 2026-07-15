@@ -241,7 +241,10 @@ final class BasicJsonMarshallerTypedNodeSelector extends BasicJsonMarshallerType
         return parser.parse(TextCursors.charSequence(expression), NodeSelectorParserContexts.basic(context.expressionNumberKind(), context.mathContext()))
             .get()
             .cast(PredicateNodeSelectorParserToken.class)
-            .toExpression(Predicates.always());
+            .toExpression(
+                Predicates.always(),
+                () -> context.expressionNumberKind()
+            );
     }
 
     /**

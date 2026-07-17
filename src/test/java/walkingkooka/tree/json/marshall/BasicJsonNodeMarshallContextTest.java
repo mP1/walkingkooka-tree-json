@@ -37,7 +37,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContextTestCase<BasicJsonNodeMarshallContext>
-    implements JsonNodeMarshallContextTesting<BasicJsonNodeMarshallContext> {
+    implements JsonNodeMarshallContextTesting2<BasicJsonNodeMarshallContext> {
 
     // marshall.........................................................................................................
 

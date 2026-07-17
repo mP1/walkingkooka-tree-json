@@ -21,7 +21,7 @@ import walkingkooka.Context;
 
 public interface JsonNodeMarshallUnmarshallContextTesting<C extends JsonNodeMarshallUnmarshallContext> extends
     JsonNodeMarshallContextTesting2<C>,
-    JsonNodeUnmarshallContextTesting<C> {
+    JsonNodeUnmarshallContextTesting2<C> {
 
     // TypeNameTesting..................................................................................................
 

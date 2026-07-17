@@ -41,7 +41,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeContextTestCase<BasicJsonNodeUnmarshallContext>
-    implements JsonNodeUnmarshallContextTesting<BasicJsonNodeUnmarshallContext> {
+    implements JsonNodeUnmarshallContextTesting2<BasicJsonNodeUnmarshallContext> {
 
     private final CurrencyCodeLanguageTagContext CURRENCY_CODE_LANGUAGE_TAG_CONTEXT = new CurrencyCodeLanguageTagContext() {
         @Override

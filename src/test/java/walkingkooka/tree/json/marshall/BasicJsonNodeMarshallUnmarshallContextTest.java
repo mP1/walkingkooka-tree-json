@@ -28,7 +28,7 @@ import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class BasicJsonNodeMarshallUnmarshallContextTest implements JsonNodeMarshallUnmarshallContextTesting<BasicJsonNodeMarshallUnmarshallContext>,
+public final class BasicJsonNodeMarshallUnmarshallContextTest implements JsonNodeMarshallUnmarshallContextTesting2<BasicJsonNodeMarshallUnmarshallContext>,
     ToStringTesting<BasicJsonNodeMarshallUnmarshallContext> {
 
     @Test

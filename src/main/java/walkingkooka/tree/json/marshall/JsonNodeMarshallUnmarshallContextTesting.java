@@ -17,16 +17,7 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.Context;
-
-public interface JsonNodeMarshallUnmarshallContextTesting<C extends JsonNodeMarshallUnmarshallContext> extends
-    JsonNodeMarshallContextTesting2<C>,
-    JsonNodeUnmarshallContextTesting2<C> {
-
-    // TypeNameTesting..................................................................................................
-
-    @Override
-    default String typeNameSuffix() {
-        return Context.class.getSimpleName();
-    }
+public interface JsonNodeMarshallUnmarshallContextTesting extends
+    JsonNodeMarshallContextTesting,
+    JsonNodeUnmarshallContextTesting {
 }

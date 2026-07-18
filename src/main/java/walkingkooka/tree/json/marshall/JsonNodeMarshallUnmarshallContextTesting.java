@@ -20,4 +20,9 @@ package walkingkooka.tree.json.marshall;
 public interface JsonNodeMarshallUnmarshallContextTesting extends
     JsonNodeMarshallContextTesting,
     JsonNodeUnmarshallContextTesting {
+
+    JsonNodeMarshallUnmarshallContext JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT = JsonNodeMarshallUnmarshallContexts.basic(
+        JSON_NODE_MARSHALL_CONTEXT,
+        JSON_NODE_UNMARSHALL_CONTEXT
+    );
 }

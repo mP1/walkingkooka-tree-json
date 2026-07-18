@@ -27,6 +27,8 @@ import java.util.Set;
 
 public interface JsonNodeMarshallContextTesting extends TreePrintableTesting {
 
+    JsonNodeMarshallContext JSON_NODE_MARSHALL_CONTEXT = JsonNodeMarshallContexts.basic();
+
     default void marshallAndCheck(final JsonNodeMarshallContext context,
                                   final Object value,
                                   final JsonNode expected) {

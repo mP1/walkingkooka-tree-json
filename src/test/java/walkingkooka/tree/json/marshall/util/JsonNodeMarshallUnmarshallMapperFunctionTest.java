@@ -20,19 +20,16 @@ package walkingkooka.tree.json.marshall.util;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.ToStringTesting;
-import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContext;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContextTesting;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContext;
-import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
+import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextTesting;
 import walkingkooka.util.FunctionTesting;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -40,14 +37,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements FunctionTesting<JsonNodeMarshallUnmarshallMapperFunction<BigDecimal, String>, JsonNode, JsonNode>,
     ClassTesting<JsonNodeMarshallUnmarshallMapperFunction<BigDecimal, String>>,
     JsonNodeMarshallContextTesting,
+    JsonNodeUnmarshallContextTesting,
     ToStringTesting<JsonNodeMarshallUnmarshallMapperFunction<BigDecimal, String>> {
 
-    private final static JsonNodeUnmarshallContext UNMARSHALL_CONTEXT = JsonNodeUnmarshallContexts.basic(
-        ExpressionNumberKind.BIG_DECIMAL,
-        CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
-        MathContext.DECIMAL32
-    );
-    
+
     private final static Function<BigDecimal, String> MAPPER = (b) -> b.toPlainString();
 
 // with.............................................................................................................
@@ -56,7 +49,7 @@ public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements Funct
     public void testWithNullTypeFails() {
         withFails(
             null,
-            UNMARSHALL_CONTEXT,
+            JSON_NODE_UNMARSHALL_CONTEXT,
             JSON_NODE_MARSHALL_CONTEXT,
             MAPPER
         );
@@ -76,7 +69,7 @@ public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements Funct
     public void testWithNullMarshallContextFails() {
         withFails(
             BigDecimal.class,
-            UNMARSHALL_CONTEXT,
+            JSON_NODE_UNMARSHALL_CONTEXT,
             null,
             MAPPER
         );
@@ -86,7 +79,7 @@ public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements Funct
     public void testWithNullMapperFails() {
         withFails(
             BigDecimal.class,
-            UNMARSHALL_CONTEXT,
+            JSON_NODE_UNMARSHALL_CONTEXT,
             JSON_NODE_MARSHALL_CONTEXT,
             null
         );
@@ -122,7 +115,7 @@ public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements Funct
     public JsonNodeMarshallUnmarshallMapperFunction<BigDecimal, String> createFunction() {
         return JsonNodeMarshallUnmarshallMapperFunction.with(
             BigDecimal.class,
-            UNMARSHALL_CONTEXT,
+            JSON_NODE_UNMARSHALL_CONTEXT,
             JSON_NODE_MARSHALL_CONTEXT,
             MAPPER
         );

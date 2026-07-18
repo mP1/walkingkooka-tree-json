@@ -174,4 +174,22 @@ public final class JsonBooleanTest extends JsonLeafNonNullNodeTestCase<JsonBoole
             PARENT_OR_FAIL,
             STRING_OR_FAIL);
     }
+
+    // TreePrintable....................................................................................................
+
+    @Test
+    public void testTreePrintTrue() {
+        this.treePrintAndCheck(
+            JsonNode.booleanNode(true),
+            "true\n"
+        );
+    }
+
+    @Test
+    public void testTreePrintFalse() {
+        this.treePrintAndCheck(
+            JsonNode.booleanNode(false),
+            "false\n"
+        );
+    }
 }

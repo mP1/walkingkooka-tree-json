@@ -33,6 +33,7 @@ import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
 import walkingkooka.text.printer.IndentingPrinter;
 import walkingkooka.text.printer.Printers;
+import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.HasTextOffsetTesting;
 import walkingkooka.tree.NodeTesting;
 
@@ -51,7 +52,8 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
     HasTextTesting,
     IsMethodTesting<N>,
     NodeTesting<JsonNode, JsonPropertyName, Name, Object>,
-    HasValueTesting {
+    HasValueTesting,
+    TreePrintableTesting {
 
     JsonNodeTestCase() {
         super();

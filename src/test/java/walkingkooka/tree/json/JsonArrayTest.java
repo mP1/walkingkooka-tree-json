@@ -1411,4 +1411,45 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
                 "]"
         );
     }
+
+    // TreePrintable....................................................................................................
+
+    @Test
+    public void testTreePrintEmptyArray() {
+        this.treePrintAndCheck(
+            JsonNode.array(),
+            "[]\n"
+        );
+    }
+
+    @Test
+    public void testTreePrintNotEmptyArray() {
+        this.treePrintAndCheck(
+            JsonNode.array()
+                .appendChild(
+                    JsonNode.nullNode()
+                ).appendChild(
+                    JsonNode.booleanNode(true)
+                ).appendChild(
+                    JsonNode.number(1)
+                ).appendChild(
+                    JsonNode.string("Hello")
+                ).appendChild(
+                    JsonNode.object()
+                        .set(
+                            JsonPropertyName.with("Hello"),
+                            "World123"
+                        )
+                ),
+            "[\n" +
+                "  null,\n" +
+                "  true,\n" +
+                "  1,\n" +
+                "  \"Hello\",\n" +
+                "  {\n" +
+                "    \"Hello\": \"World123\"\n" +
+                "  }\n" +
+                "]\n"
+        );
+    }
 }

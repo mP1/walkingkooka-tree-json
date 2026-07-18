@@ -17,7 +17,9 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.text.printer.TreePrintableTesting;
+import walkingkooka.currency.CurrencyLocaleContextTesting;
+import walkingkooka.math.HasMathContextTesting;
+import walkingkooka.tree.expression.HasExpressionNumberKindTesting;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.List;
@@ -25,7 +27,15 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-public interface JsonNodeUnmarshallContextTesting extends TreePrintableTesting {
+public interface JsonNodeUnmarshallContextTesting extends CurrencyLocaleContextTesting,
+    HasExpressionNumberKindTesting,
+    HasMathContextTesting {
+
+    JsonNodeUnmarshallContext JSON_NODE_UNMARSHALL_CONTEXT = JsonNodeUnmarshallContexts.basic(
+        EXPRESSION_NUMBER_KIND,
+        CURRENCY_LOCALE_CONTEXT,
+        MATH_CONTEXT
+    );
 
     default <T> void unmarshallAndCheck(final JsonNodeUnmarshallContext context,
                                         final JsonNode node,

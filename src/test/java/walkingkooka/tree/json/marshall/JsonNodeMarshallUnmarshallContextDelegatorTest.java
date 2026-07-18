@@ -24,7 +24,7 @@ import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextDelegato
 import java.math.MathContext;
 import java.util.Objects;
 
-public final class JsonNodeMarshallUnmarshallContextDelegatorTest implements JsonNodeMarshallUnmarshallContextTesting<TestJsonNodeMarshallUnmarshallContextDelegator> {
+public final class JsonNodeMarshallUnmarshallContextDelegatorTest implements JsonNodeMarshallUnmarshallContextTesting2<TestJsonNodeMarshallUnmarshallContextDelegator> {
 
     @Override
     public void testLocaleForLanguageTagWithNullFails() {

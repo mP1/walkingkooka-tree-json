@@ -171,4 +171,14 @@ public final class JsonNumberTest extends JsonLeafNonNullNodeTestCase<JsonNumber
             PARENT_OR_FAIL,
             STRING_OR_FAIL);
     }
+
+    // TreePrintable....................................................................................................
+
+    @Test
+    public void testTreePrint() {
+        this.treePrintAndCheck(
+            this.createJsonNode(),
+            "1.5\n"
+        );
+    }
 }

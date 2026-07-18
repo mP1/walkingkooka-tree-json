@@ -1340,4 +1340,54 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
     public Map<JsonPropertyName, JsonNode> createMap() {
         return JsonNode.object().asMap();
     }
+
+    // TreePrintable....................................................................................................
+
+    @Test
+    public void testTreePrintEmptyObject() {
+        this.treePrintAndCheck(
+            JsonNode.object(),
+            "{}\n"
+        );
+    }
+
+    @Test
+    public void testTreePrintNotEmptyArray() {
+        this.treePrintAndCheck(
+            JsonNode.object()
+                .set(
+                    JsonPropertyName.with("null1"),
+                    true
+                ).set(
+                    JsonPropertyName.with("boolean2"),
+                    true
+                ).set(
+                    JsonPropertyName.with("number3"),
+                    33
+                ).set(
+                    JsonPropertyName.with("string4"),
+                    "Hello World 444"
+                ).set(
+                    JsonPropertyName.with("array5"),
+                    JsonNode.array()
+                ).set(
+                    JsonPropertyName.with("object6"),
+                    JsonNode.object()
+                        .set(
+                            JsonPropertyName.with("boolean7"),
+                            false
+                        )
+                ),
+            "{\n" +
+                "  \"null1\": true,\n" +
+                "  \"boolean2\": true,\n" +
+                "  \"number3\": 33,\n" +
+                "  \"string4\": \"Hello World 444\",\n" +
+                "  \"array5\": [],\n" +
+                "  \"object6\": {\n" +
+                "    \"boolean7\": false\n" +
+                "  }\n" +
+                "}\n"
+        );
+    }
 }

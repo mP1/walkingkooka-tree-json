@@ -414,6 +414,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     @Override
     public final void printTree(final IndentingPrinter printer) {
         this.printJson(printer);
+        printer.println();
     }
 
     // Object ..........................................................................................................

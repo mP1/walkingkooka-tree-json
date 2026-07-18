@@ -132,4 +132,14 @@ public final class JsonNullTest extends JsonLeafNodeTestCase<JsonNull, Void> {
             STRING_OR_FAIL,
             VALUE);
     }
+
+    // TreePrintable....................................................................................................
+
+    @Test
+    public void testTreePrint() {
+        this.treePrintAndCheck(
+            this.createJsonNode(),
+            "null\n"
+        );
+    }
 }

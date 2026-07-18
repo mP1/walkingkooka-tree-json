@@ -26,7 +26,7 @@ import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContext;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallContexts;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallContextTesting;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContext;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 import walkingkooka.util.FunctionTesting;
@@ -39,6 +39,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements FunctionTesting<JsonNodeMarshallUnmarshallMapperFunction<BigDecimal, String>, JsonNode, JsonNode>,
     ClassTesting<JsonNodeMarshallUnmarshallMapperFunction<BigDecimal, String>>,
+    JsonNodeMarshallContextTesting,
     ToStringTesting<JsonNodeMarshallUnmarshallMapperFunction<BigDecimal, String>> {
 
     private final static JsonNodeUnmarshallContext UNMARSHALL_CONTEXT = JsonNodeUnmarshallContexts.basic(
@@ -46,9 +47,7 @@ public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements Funct
         CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
         MathContext.DECIMAL32
     );
-
-    private final static JsonNodeMarshallContext MARSHALL_CONTEXT = JsonNodeMarshallContexts.basic();
-
+    
     private final static Function<BigDecimal, String> MAPPER = (b) -> b.toPlainString();
 
 // with.............................................................................................................
@@ -58,7 +57,7 @@ public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements Funct
         withFails(
             null,
             UNMARSHALL_CONTEXT,
-            MARSHALL_CONTEXT,
+            JSON_NODE_MARSHALL_CONTEXT,
             MAPPER
         );
     }
@@ -68,7 +67,7 @@ public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements Funct
         withFails(
             BigDecimal.class,
             null,
-            MARSHALL_CONTEXT,
+            JSON_NODE_MARSHALL_CONTEXT,
             MAPPER
         );
     }
@@ -88,7 +87,7 @@ public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements Funct
         withFails(
             BigDecimal.class,
             UNMARSHALL_CONTEXT,
-            MARSHALL_CONTEXT,
+            JSON_NODE_MARSHALL_CONTEXT,
             null
         );
     }
@@ -109,8 +108,8 @@ public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements Funct
     @Test
     public void testApply() {
         this.applyAndCheck(
-            MARSHALL_CONTEXT.marshall(BigDecimal.valueOf(10.5)),
-            MARSHALL_CONTEXT.marshall("10.5")
+            JSON_NODE_MARSHALL_CONTEXT.marshall(BigDecimal.valueOf(10.5)),
+            JSON_NODE_MARSHALL_CONTEXT.marshall("10.5")
         );
     }
 
@@ -124,7 +123,7 @@ public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements Funct
         return JsonNodeMarshallUnmarshallMapperFunction.with(
             BigDecimal.class,
             UNMARSHALL_CONTEXT,
-            MARSHALL_CONTEXT,
+            JSON_NODE_MARSHALL_CONTEXT,
             MAPPER
         );
     }

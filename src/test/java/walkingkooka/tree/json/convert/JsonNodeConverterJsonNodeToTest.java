@@ -52,6 +52,22 @@ public final class JsonNodeConverterJsonNodeToTest extends JsonNodeConverterTest
     }
 
     @Test
+    public void testConvertInvalidJsonTextToJsonNodeFails() {
+        this.convertFails(
+            "{ invalid json",
+            JsonNode.class
+        );
+    }
+
+    @Test
+    public void testConvertInvalidJsonTextToNumberFails() {
+        this.convertFails(
+            "123 invalid json number",
+            Long.class
+        );
+    }
+
+    @Test
     public void testConvertTextToJsonNodeTo() {
         final JsonNodeConverterContext context = this.createContext();
         final JsonNodeConverterJsonNodeTo<JsonNodeConverterContext> converter = this.createConverter();

@@ -57,13 +57,24 @@ final class JsonNodeConverterJsonNodeTo<C extends JsonNodeConverterContext> exte
     public <T> Either<T, String> doConvert(final Object value,
                                            final Class<T> type,
                                            final C context) {
-        return this.successfulConversion(
-            context.unmarshall(
-                (JsonNode) value,
+        Either<T, String> result;
+
+        try {
+            result = this.successfulConversion(
+                context.unmarshall(
+                    (JsonNode) value,
+                    type
+                ),
                 type
-            ),
-            type
-        );
+            );
+        } catch (final RuntimeException cause) {
+            result = this.failConversion(
+                value,
+                type
+            );
+        }
+
+        return result;
     }
 
     @Override

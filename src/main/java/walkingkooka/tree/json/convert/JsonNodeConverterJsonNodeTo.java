@@ -67,6 +67,8 @@ final class JsonNodeConverterJsonNodeTo<C extends JsonNodeConverterContext> exte
                 ),
                 type
             );
+        } catch (final UnsupportedOperationException rethrow) {
+            throw rethrow;
         } catch (final RuntimeException cause) {
             result = this.failConversion(
                 value,

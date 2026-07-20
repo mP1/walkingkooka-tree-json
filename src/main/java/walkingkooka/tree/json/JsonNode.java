@@ -516,7 +516,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         return Optional.of(CONTENT_TYPE);
     }
 
-    private final static MediaType CONTENT_TYPE = MediaType.APPLICATION_JSON;
+    public final static MediaType CONTENT_TYPE = MediaType.APPLICATION_JSON;
 
     // CanBinary........................................................................................................
 

@@ -19,15 +19,13 @@ package walkingkooka.tree.json.convert;
 
 import walkingkooka.Cast;
 import walkingkooka.convert.Converter;
-import walkingkooka.convert.TextToTryingShortCircuitingConverter;
 import walkingkooka.tree.json.JsonNode;
 
 /**
  * A {@link Converter} that supports converting a {@link String} to one of the {@link JsonNode} sub-classes, using {@link JsonNode#parse(String)}.
  * If parsing fails an {@link IllegalArgumentException} will be thrown.
  */
-final class JsonNodeConverterTextToJsonNode<C extends JsonNodeConverterContext> extends JsonNodeConverter<C>
-    implements TextToTryingShortCircuitingConverter<C> {
+final class JsonNodeConverterTextToJsonNode<C extends JsonNodeConverterContext> extends JsonNodeConverterTextTo<C> {
 
     /**
      * Type safe getter.

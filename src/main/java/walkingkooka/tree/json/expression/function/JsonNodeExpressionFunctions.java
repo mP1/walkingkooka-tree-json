@@ -25,7 +25,7 @@ import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
 public final class JsonNodeExpressionFunctions implements PublicStaticHelper {
 
     /**
-     * {@see TreeTextExpressionFunctionFlag}
+     * {@see JsonNodeExpressionFunctionJson}
      */
     public static <C extends JsonNodeExpressionEvaluationContext> ExpressionFunction<JsonNode, C> json() {
         return JsonNodeExpressionFunctionJson.instance();

@@ -19,15 +19,13 @@ package walkingkooka.tree.json.convert;
 
 import walkingkooka.Cast;
 import walkingkooka.convert.Converter;
-import walkingkooka.convert.TextToTryingShortCircuitingConverter;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.json.JsonNode;
 
 /**
  * A {@link Converter} that supports unmarshalling text holding json to a requested {@link Class}.
  */
-final class JsonNodeConverterTextToObject<C extends JsonNodeConverterContext> extends JsonNodeConverter<C>
-    implements TextToTryingShortCircuitingConverter<C> {
+final class JsonNodeConverterTextToObject<C extends JsonNodeConverterContext> extends JsonNodeConverterTextTo<C> {
 
     /**
      * Type safe getter.

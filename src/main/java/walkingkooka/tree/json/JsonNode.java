@@ -455,6 +455,8 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         LineEnding.SYSTEM
     );
 
+    // HasJsonText......................................................................................................
+
     /**
      * Helper that returns this node in json, supporting indentation and using the selected line ending.
      */
@@ -467,6 +469,8 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         }
         return b.toString();
     }
+
+    // printJson........................................................................................................
 
     /**
      * Prints this node to the printer.<br>

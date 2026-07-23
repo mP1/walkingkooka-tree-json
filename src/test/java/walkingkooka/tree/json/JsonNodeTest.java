@@ -23,12 +23,12 @@ import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
-import walkingkooka.text.TextPrinting;
 import walkingkooka.tree.HasTextOffsetTesting;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class JsonNodeTest implements ClassTesting2<JsonNode>,
+    HasJsonTextTesting,
     HasTextOffsetTesting,
     ParseStringTesting<JsonNode> {
 
@@ -380,22 +380,6 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
             Indentation.EMPTY,
             LineEnding.NONE,
             "{\"Hello\": 123}"
-        );
-    }
-
-    private void toJsonTextAndCheck(final JsonNode json,
-                                    final Indentation indentation,
-                                    final LineEnding lineEnding,
-                                    final String expected) {
-        this.checkEquals(
-            expected,
-            json.toJsonText(
-                TextPrinting.with(
-                    indentation,
-                    lineEnding
-                )
-            ),
-            json::toString
         );
     }
 

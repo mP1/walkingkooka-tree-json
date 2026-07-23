@@ -58,6 +58,7 @@ import java.util.function.Predicate;
 public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name, Object>,
     CanBinary,
     HasContentType,
+    HasJsonText,
     HasText,
     TraversableHasTextOffset<JsonNode>,
     TreePrintable {
@@ -460,6 +461,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
     /**
      * Helper that returns this node in json, supporting indentation and using the selected line ending.
      */
+    @Override
     public final String toJsonText(final TextContext context) {
         Objects.requireNonNull(context, "context");
 

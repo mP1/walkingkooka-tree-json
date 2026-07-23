@@ -30,3 +30,4 @@ A quality and feature first json library that provides basic and many quality of
 A collection of JSON oriented functions.
 
 - [json](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJson.java)
+- [jsonText](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJsonText.java)

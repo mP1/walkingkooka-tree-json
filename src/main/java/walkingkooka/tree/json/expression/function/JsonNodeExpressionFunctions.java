@@ -32,6 +32,13 @@ public final class JsonNodeExpressionFunctions implements PublicStaticHelper {
     }
 
     /**
+     * {@see JsonNodeExpressionFunctionJsonText}
+     */
+    public static <C extends JsonNodeExpressionEvaluationContext> ExpressionFunction<String, C> jsonText() {
+        return JsonNodeExpressionFunctionJsonText.instance();
+    }
+
+    /**
      * Stop creation
      */
     private JsonNodeExpressionFunctions() {

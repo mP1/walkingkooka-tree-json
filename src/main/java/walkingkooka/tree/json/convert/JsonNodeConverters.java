@@ -54,6 +54,13 @@ public final class JsonNodeConverters implements PublicStaticHelper {
     }
 
     /**
+     * {@see JsonNodeConverterTextToJsonSelector}
+     */
+    public static <C extends JsonNodeConverterContext> Converter<C> textToJsonSelector() {
+        return JsonNodeConverterTextToJsonSelector.instance();
+    }
+
+    /**
      * {@see JsonNodeConverterToJsonNode}
      */
     public static <C extends JsonNodeConverterContext> Converter<C> toJsonNode() {

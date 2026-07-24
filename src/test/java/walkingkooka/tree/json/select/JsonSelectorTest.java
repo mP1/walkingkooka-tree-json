@@ -30,7 +30,6 @@ import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.FakeExpressionFunction;
-import walkingkooka.tree.expression.function.UnknownExpressionFunctionException;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.util.BiFunctionTesting;
 
@@ -117,7 +116,7 @@ public final class JsonSelectorTest implements BiFunctionTesting<JsonSelector, J
                             };
                         }
 
-                        throw new UnknownExpressionFunctionException(name);
+                        throw name.unknownExpressionFunctionException();
                     }
 
                     private final ExpressionFunctionName NAME = ExpressionFunctionName.with("isWorld");

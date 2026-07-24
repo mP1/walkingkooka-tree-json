@@ -226,4 +226,24 @@ final class BasicJsonNodeMarshallContext extends BasicJsonNodeContext implements
     public JsonNode marshallMapWithType(final Map<?, ?> map) {
         return BasicJsonMarshallerTypedMap.instance().marshall(map, this);
     }
+
+    // Object...........................................................................................................
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+            this.processor
+        );
+    }
+
+    @Override
+    public boolean equals(final Object other) {
+        return this == other ||
+            other instanceof BasicJsonNodeMarshallContext &&
+                this.equals0(Cast.to(other));
+    }
+
+    private boolean equals0(final BasicJsonNodeMarshallContext other) {
+        return Objects.equals(this.processor, other.processor);
+    }
 }

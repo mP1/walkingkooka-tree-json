@@ -23,6 +23,7 @@ import walkingkooka.ToStringTesting;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
@@ -41,7 +42,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class JsonSelectorTest implements BiFunctionTesting<JsonSelector, JsonNode, JsonSelectorContext, List<JsonNode>>,
     ClassTesting2<JsonSelector>,
     HashCodeEqualsDefinedTesting2<JsonSelector>,
-    ToStringTesting<JsonSelector> {
+    ToStringTesting<JsonSelector>,
+    TreePrintableTesting {
 
     // with.............................................................................................................
 
@@ -145,6 +147,26 @@ public final class JsonSelectorTest implements BiFunctionTesting<JsonSelector, J
         this.toStringAndCheck(
             this.createBiFunction(),
             "/hello"
+        );
+    }
+
+    // TreePrintable....................................................................................................
+
+    @Test
+    public void testTreePrintable() {
+        this.treePrintAndCheck(
+            JsonSelector.parse("/hello/world[\"true\"]"),
+            "JsonSelector\n" +
+                "  CustomToStringNodeSelector\n" +
+                "    \"/hello/world[\\\"true\\\"]\"\n" +
+                "      Absolute\n" +
+                "        Children\n" +
+                "          Named\n" +
+                "            Children\n" +
+                "              Named\n" +
+                "                Expression\n" +
+                "                  ValueExpression \"true\" (java.lang.String)\n" +
+                "                  Terminal\n"
         );
     }
 

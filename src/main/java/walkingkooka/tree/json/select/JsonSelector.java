@@ -23,6 +23,8 @@ import walkingkooka.predicate.Predicates;
 import walkingkooka.text.cursor.parser.Parser;
 import walkingkooka.text.cursor.parser.ParserReporters;
 import walkingkooka.text.cursor.parser.ParserToken;
+import walkingkooka.text.printer.IndentingPrinter;
+import walkingkooka.text.printer.TreePrintable;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.HasExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
@@ -42,7 +44,8 @@ import java.util.stream.Collectors;
 /**
  * Wraps a {@link NodeSelector}, supporting XPATH selection of {@link JsonNode}.
  */
-public final class JsonSelector implements BiFunction<JsonNode, JsonSelectorContext, List<JsonNode>> {
+public final class JsonSelector implements BiFunction<JsonNode, JsonSelectorContext, List<JsonNode>>,
+    TreePrintable {
 
     private final static ExpressionNumberKind EXPRESSION_NUMBER_KIND = ExpressionNumberKind.DEFAULT;
 
@@ -119,5 +122,17 @@ public final class JsonSelector implements BiFunction<JsonNode, JsonSelectorCont
     @Override
     public String toString() {
         return this.nodeSelector.toString();
+    }
+
+    // TreePrintable....................................................................................................
+
+    @Override
+    public void printTree(final IndentingPrinter printer) {
+        printer.println(this.getClass().getSimpleName());
+        printer.indent();
+        {
+            this.nodeSelector.printTree(printer);
+        }
+        printer.outdent();
     }
 }

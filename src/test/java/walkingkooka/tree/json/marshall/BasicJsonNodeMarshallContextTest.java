@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
@@ -37,7 +38,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContextTestCase<BasicJsonNodeMarshallContext>
-    implements JsonNodeMarshallContextTesting2<BasicJsonNodeMarshallContext> {
+    implements JsonNodeMarshallContextTesting2<BasicJsonNodeMarshallContext>,
+    HashCodeEqualsDefinedTesting2<BasicJsonNodeMarshallContext> {
 
     // marshall.........................................................................................................
 
@@ -891,6 +893,24 @@ public final class BasicJsonNodeMarshallContextTest extends BasicJsonNodeContext
 
     private final static JsonPropertyName POST = JsonPropertyName.with("post");
     private final static JsonNode POST_VALUE = JsonNode.booleanNode(true);
+
+    // hashCode/equals..................................................................................................
+
+    @Test
+    public void testEqualsDifferentProcessor() {
+        this.checkNotEquals(
+            BasicJsonNodeMarshallContext.INSTANCE.setObjectPostProcessor(
+                (value, jsonObject) -> jsonObject
+            )
+        );
+    }
+
+    @Override
+    public BasicJsonNodeMarshallContext createObject() {
+        return BasicJsonNodeMarshallContext.INSTANCE;
+    }
+
+    // class............................................................................................................
 
     @Override
     public Class<BasicJsonNodeMarshallContext> type() {

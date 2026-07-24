@@ -33,13 +33,6 @@ public final class JsonNodeConverters implements PublicStaticHelper {
     }
 
     /**
-     * {@see JsonNodeConverterTextToObject}
-     */
-    public static <C extends JsonNodeConverterContext> Converter<C> textToObject() {
-        return JsonNodeConverterTextToObject.instance();
-    }
-
-    /**
      * {@see JsonNodeConverterTextToJsonNode}
      */
     public static <C extends JsonNodeConverterContext> Converter<C> textToJsonNode() {
@@ -58,6 +51,13 @@ public final class JsonNodeConverters implements PublicStaticHelper {
      */
     public static <C extends JsonNodeConverterContext> Converter<C> textToJsonSelector() {
         return JsonNodeConverterTextToJsonSelector.instance();
+    }
+
+    /**
+     * {@see JsonNodeConverterTextToObject}
+     */
+    public static <C extends JsonNodeConverterContext> Converter<C> textToObject() {
+        return JsonNodeConverterTextToObject.instance();
     }
 
     /**

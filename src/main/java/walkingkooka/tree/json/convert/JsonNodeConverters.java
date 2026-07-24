@@ -47,7 +47,7 @@ public final class JsonNodeConverters implements PublicStaticHelper {
     }
 
     /**
-     * {@see JsonPointerConverterTextToJsonPointer}
+     * {@see JsonNodeConverterTextToJsonPointer}
      */
     public static <C extends JsonNodeConverterContext> Converter<C> textToJsonPointer() {
         return JsonNodeConverterTextToJsonPointer.instance();

@@ -31,7 +31,6 @@ import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Currency;
 import java.util.EnumSet;
@@ -70,7 +69,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
             () -> BasicJsonNodeUnmarshallContext.with(
                 null,
                 CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
-                MathContext.DECIMAL32
+                MATH_CONTEXT
             )
         );
     }
@@ -82,7 +81,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
             () -> BasicJsonNodeUnmarshallContext.with(
                 ExpressionNumberKind.BIG_DECIMAL,
                 null,
-                MathContext.DECIMAL32
+                MATH_CONTEXT
             )
         );
     }
@@ -92,7 +91,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         assertThrows(
             java.lang.NullPointerException.class,
             () -> BasicJsonNodeUnmarshallContext.with(
-                ExpressionNumberKind.DEFAULT,
+                EXPRESSION_NUMBER_KIND,
                 CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
                 null
             )
@@ -972,9 +971,9 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     @Override
     public BasicJsonNodeUnmarshallContext createContext() {
         return BasicJsonNodeUnmarshallContext.with(
-            ExpressionNumberKind.DEFAULT,
+            EXPRESSION_NUMBER_KIND,
             CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
-            MathContext.DECIMAL32
+            MATH_CONTEXT
         );
     }
 

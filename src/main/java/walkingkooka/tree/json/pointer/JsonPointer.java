@@ -18,6 +18,8 @@
 package walkingkooka.tree.json.pointer;
 
 import walkingkooka.Cast;
+import walkingkooka.text.printer.IndentingPrinter;
+import walkingkooka.text.printer.TreePrintable;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.tree.pointer.NodePointer;
@@ -28,7 +30,8 @@ import java.util.function.Function;
 /**
  * Type safe {@link JsonNode} wrapper around {@link NodePointer}.
  */
-public final class JsonPointer implements Function<JsonNode, Optional<JsonNode>> {
+public final class JsonPointer implements Function<JsonNode, Optional<JsonNode>>,
+    TreePrintable {
 
     public static JsonPointer parse(final String pointer) {
         return new JsonPointer(
@@ -74,5 +77,17 @@ public final class JsonPointer implements Function<JsonNode, Optional<JsonNode>>
     @Override
     public String toString() {
         return this.nodePointer.toString();
+    }
+
+    // TreePrintable....................................................................................................
+
+    @Override
+    public void printTree(final IndentingPrinter printer) {
+        printer.println(this.getClass().getSimpleName());
+        printer.indent();
+        {
+            this.nodePointer.printTree(printer);
+        }
+        printer.outdent();
     }
 }

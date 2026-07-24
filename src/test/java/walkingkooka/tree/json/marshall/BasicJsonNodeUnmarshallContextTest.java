@@ -31,7 +31,6 @@ import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Currency;
 import java.util.EnumSet;
@@ -70,7 +69,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
             () -> BasicJsonNodeUnmarshallContext.with(
                 null,
                 CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
-                MathContext.DECIMAL32
+                MATH_CONTEXT
             )
         );
     }
@@ -82,7 +81,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
             () -> BasicJsonNodeUnmarshallContext.with(
                 ExpressionNumberKind.BIG_DECIMAL,
                 null,
-                MathContext.DECIMAL32
+                MATH_CONTEXT
             )
         );
     }
@@ -92,7 +91,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         assertThrows(
             java.lang.NullPointerException.class,
             () -> BasicJsonNodeUnmarshallContext.with(
-                ExpressionNumberKind.DEFAULT,
+                EXPRESSION_NUMBER_KIND,
                 CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
                 null
             )
@@ -119,54 +118,68 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     @Test
     public void testUnmarshallBooleanTrue() {
-        this.unmarshallAndCheck(JsonNode.booleanNode(true),
+        this.unmarshallAndCheck(
+            JsonNode.booleanNode(true),
             Boolean.class,
-            true);
+            true
+        );
     }
 
     @Test
     public void testUnmarshallBooleanFalse() {
-        this.unmarshallAndCheck(JsonNode.booleanNode(false),
+        this.unmarshallAndCheck(
+            JsonNode.booleanNode(false),
             Boolean.class,
-            false);
+            false
+        );
     }
 
     @Test
     public void testUnmarshallNull() {
-        this.unmarshallAndCheck(JsonNode.nullNode(),
+        this.unmarshallAndCheck(
+            JsonNode.nullNode(),
             Boolean.class,
-            null);
+            null
+        );
     }
 
     @Test
     public void testUnmarshallNumber() {
         final double value = 1.25;
-        this.unmarshallAndCheck(JsonNode.number(value),
+        this.unmarshallAndCheck(
+            JsonNode.number(value),
             Double.class,
-            value);
+            value
+        );
     }
 
     @Test
     public void testUnmarshallString() {
         final String value = "abc123";
-        this.unmarshallAndCheck(JsonNode.string(value),
+        this.unmarshallAndCheck(
+            JsonNode.string(value),
             String.class,
-            value);
+            value
+        );
     }
 
     @Test
     public void testUnmarshallObject() {
-        this.unmarshallAndCheck(this.jsonNode(),
+        this.unmarshallAndCheck(
+            this.jsonNode(),
             TestJsonNodeValue.class,
-            this.value());
+            this.value()
+        );
     }
 
     @Test
     public void testUnmarshallObjectWithObjectPreProcessor() {
-        this.unmarshallAndCheck(this.contextWithPreProcessor(),
+        this.unmarshallAndCheck(
+            this.contextWithPreProcessor(),
             this.jsonNode2(),
             TestJsonNodeValue.class,
-            this.value());
+            this.value()
+        );
     }
 
     // unmarshallEnumSet................................................................................................
@@ -194,7 +207,10 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         this.unmarshallEnumSetAndCheck(
             JsonNode.string("CEILING,FLOOR"),
             RoundingMode.class,
-            EnumSet.of(RoundingMode.CEILING, RoundingMode.FLOOR)
+            EnumSet.of(
+                RoundingMode.CEILING,
+                RoundingMode.FLOOR
+            )
         );
     }
 
@@ -322,116 +338,183 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     @Test
     public void testUnmarshallListBooleanTrue() {
-        this.unmarshallListAndCheck(list(JsonNode.booleanNode(true)),
+        this.unmarshallListAndCheck(
+            list(
+                JsonNode.booleanNode(true)
+            ),
             Boolean.class,
-            Lists.of(true));
+            Lists.of(true)
+        );
     }
 
     @Test
     public void testUnmarshallListBooleanFalse() {
-        this.unmarshallListAndCheck(list(JsonNode.booleanNode(false)),
+        this.unmarshallListAndCheck(
+            list(
+                JsonNode.booleanNode(false)
+            ),
             Boolean.class,
-            Lists.of(false));
+            Lists.of(false)
+        );
     }
 
     @Test
     public void testUnmarshallListNull() {
-        this.unmarshallListAndCheck(list(JsonNode.nullNode()),
+        this.unmarshallListAndCheck(
+            list(
+                JsonNode.nullNode()
+            ),
             Boolean.class,
-            Lists.of((Boolean) null));
+            Lists.of((Boolean) null)
+        );
     }
 
     @Test
     public void testUnmarshallListNumber() {
         final double value = 1.25;
-        this.unmarshallListAndCheck(list(JsonNode.number(value)),
+        this.unmarshallListAndCheck(
+            list(
+                JsonNode.number(value)
+            ),
             Double.class,
-            Lists.of(value));
+            Lists.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallListString() {
         final String value = "abc123";
-        this.unmarshallListAndCheck(list(JsonNode.string(value)),
+        this.unmarshallListAndCheck(
+            list(
+                JsonNode.string(value)
+            ),
             String.class,
-            Lists.of(value));
+            Lists.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallList() {
-        this.unmarshallListAndCheck(this.list(this.jsonNode()),
+        this.unmarshallListAndCheck(
+            this.list(
+                this.jsonNode()
+            ),
             TestJsonNodeValue.class,
-            Lists.of(this.value()));
+            Lists.of(
+                this.value()
+            )
+        );
     }
 
     @Test
     public void testUnmarshallListObjectWithObjectPreProcessor() {
-        this.unmarshallListAndCheck(this.contextWithPreProcessor(),
-            this.list(this.jsonNode2()),
+        this.unmarshallListAndCheck(
+            this.contextWithPreProcessor(),
+            this.list(
+                this.jsonNode2()
+            ),
             TestJsonNodeValue.class,
-            Lists.of(this.value()));
+            Lists.of(
+                this.value()
+            )
+        );
     }
 
-    private JsonArray list(final JsonNode element) {
-        return JsonNode.array().appendChild(element);
+    private static JsonArray list(final JsonNode element) {
+        return JsonNode.array()
+            .appendChild(element);
     }
 
-    // unmarshallSet..................................................................................................
+    // unmarshallSet....................................................................................................
 
     @Test
     public void testUnmarshallSetBooleanTrue() {
-        this.unmarshallSetAndCheck(set(JsonNode.booleanNode(true)),
+        this.unmarshallSetAndCheck(
+            set(
+                JsonNode.booleanNode(true)
+            ),
             Boolean.class,
-            Sets.of(true));
+            Sets.of(true)
+        );
     }
 
     @Test
     public void testUnmarshallSetBooleanFalse() {
-        this.unmarshallSetAndCheck(set(JsonNode.booleanNode(false)),
+        this.unmarshallSetAndCheck(
+            set(
+                JsonNode.booleanNode(false)
+            ),
             Boolean.class,
-            Sets.of(false));
+            Sets.of(false)
+        );
     }
 
     @Test
     public void testUnmarshallSetNull() {
-        this.unmarshallSetAndCheck(set(JsonNode.nullNode()),
+        this.unmarshallSetAndCheck(
+            set(
+                JsonNode.nullNode()
+            ),
             Boolean.class,
-            Sets.of((Boolean) null));
+            Sets.of(
+                (Boolean) null)
+        );
     }
 
     @Test
     public void testUnmarshallSetNumber() {
         final double value = 1.25;
-        this.unmarshallSetAndCheck(set(JsonNode.number(value)),
+        this.unmarshallSetAndCheck(
+            set(
+                JsonNode.number(value)
+            ),
             Double.class,
-            Sets.of(value));
+            Sets.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallSetString() {
         final String value = "abc123";
-        this.unmarshallSetAndCheck(set(JsonNode.string(value)),
+        this.unmarshallSetAndCheck(
+            set(
+                JsonNode.string(value)
+            ),
             String.class,
-            Sets.of(value));
+            Sets.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallSetObject() {
-        this.unmarshallSetAndCheck(this.set(this.jsonNode()),
+        this.unmarshallSetAndCheck(
+            this.set(
+                this.jsonNode()
+            ),
             TestJsonNodeValue.class,
-            Sets.of(this.value()));
+            Sets.of(
+                this.value()
+            )
+        );
     }
 
     @Test
     public void testUnmarshallSetObjectWithObjectPreProcessor() {
-        this.unmarshallSetAndCheck(this.contextWithPreProcessor(),
-            this.set(this.jsonNode2()),
+        this.unmarshallSetAndCheck(
+            this.contextWithPreProcessor(),
+            this.set(
+                this.jsonNode2()
+            ),
             TestJsonNodeValue.class,
-            Sets.of(this.value()));
+            Sets.of(
+                this.value()
+            )
+        );
     }
 
-    private JsonArray set(final JsonNode element) {
-        return JsonNode.array().appendChild(element);
+    private static JsonArray set(final JsonNode element) {
+        return JsonNode.array()
+            .appendChild(element);
     }
 
     // unmarshallMap....................................................................................................
@@ -557,6 +640,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     @Test
     public void testUnmarshallMapNonStringKeyNumber() {
         final double value = 1.25;
+
         this.unmarshallMapNonStringKeyAndCheck(
             JsonNode.number(value),
             Double.class,
@@ -567,6 +651,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     @Test
     public void testUnmarshallMapNonStringKeyString() {
         final String value = "abc123";
+
         this.unmarshallMapNonStringKeyAndCheck(
             JsonNode.string(value),
             String.class,
@@ -618,7 +703,10 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
                     .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, value)),
             Integer.class,
             valueType,
-            Maps.of(key, javaValue)
+            Maps.of(
+                key,
+                javaValue
+            )
         );
     }
 
@@ -626,76 +714,141 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     @Test
     public void testUnmarshallWithTypeBooleanTrue() {
-        this.unmarshallWithTypeAndCheck(typeAndValue("boolean", JsonNode.booleanNode(true)),
-            true);
+        this.unmarshallWithTypeAndCheck(
+            typeAndValue(
+                "boolean",
+                JsonNode.booleanNode(true)
+            ),
+            true
+        );
     }
 
     @Test
     public void testUnmarshallWithTypeBooleanFalse() {
-        this.unmarshallWithTypeAndCheck(typeAndValue("boolean", JsonNode.booleanNode(false)),
-            false);
+        this.unmarshallWithTypeAndCheck(
+            typeAndValue(
+                "boolean",
+                JsonNode.booleanNode(false)
+            ),
+            false
+        );
     }
 
     @Test
     public void testUnmarshallWithTypeNull() {
-        this.unmarshallWithTypeAndCheck(typeAndValue("boolean", JsonNode.nullNode()),
-            null);
+        this.unmarshallWithTypeAndCheck(
+            typeAndValue(
+                "boolean",
+                JsonNode.nullNode()
+            ),
+            null
+        );
     }
 
     @Test
     public void testUnmarshallWithTypeNumberByte() {
         final byte value = 123;
-        this.unmarshallWithTypeAndCheck(typeAndValue("byte", JsonNode.number(value)),
-            value);
+
+        this.unmarshallWithTypeAndCheck(
+            typeAndValue(
+                "byte",
+                JsonNode.number(value)
+            ),
+            value
+        );
     }
 
     @Test
     public void testUnmarshallWithTypeNumberShort() {
         final short value = 123;
-        this.unmarshallWithTypeAndCheck(typeAndValue("short", JsonNode.number(value)),
-            value);
+
+        this.unmarshallWithTypeAndCheck(
+            typeAndValue(
+                "short",
+                JsonNode.number(value)
+            ),
+            value
+        );
     }
 
     @Test
     public void testUnmarshallWithTypeNumberInteger() {
         final int value = 123;
-        this.unmarshallWithTypeAndCheck(typeAndValue("int", JsonNode.number(value)),
-            value);
+
+        this.unmarshallWithTypeAndCheck(
+            typeAndValue(
+                "int",
+                JsonNode.number(value)
+            ),
+            value
+        );
     }
 
     @Test
     public void testUnmarshallWithTypeNumberLong() {
         final long value = 123;
-        this.unmarshallWithTypeAndCheck(typeAndValue("long", JsonNode.number(value)),
-            value);
+
+        this.unmarshallWithTypeAndCheck(
+            typeAndValue(
+                "long",
+                JsonNode.number(value)
+            ),
+            value
+        );
     }
 
     @Test
     public void testUnmarshallWithTypeNumberFloat() {
         final float value = 123.5f;
-        this.unmarshallWithTypeAndCheck(typeAndValue("float", JsonNode.number(value)),
-            value);
+
+        this.unmarshallWithTypeAndCheck(
+            typeAndValue(
+                "float",
+                JsonNode.number(value)
+            ),
+            value
+        );
     }
 
     @Test
     public void testUnmarshallWithTypeNumberDouble() {
         final double value = 1.25;
-        this.unmarshallWithTypeAndCheck(typeAndValue("double", JsonNode.number(value)),
-            value);
+
+        this.unmarshallWithTypeAndCheck(
+            typeAndValue(
+                "double",
+                JsonNode.number(value)
+            ),
+            value
+        );
     }
 
     @Test
     public void testUnmarshallWithTypeObject() {
         final Locale value = Locale.ENGLISH;
-        this.unmarshallWithTypeAndCheck(typeAndValue("locale", JsonNode.string(value.toLanguageTag())),
-            value);
+
+        this.unmarshallWithTypeAndCheck(
+            typeAndValue(
+                "locale",
+                JsonNode.string(
+                    value.toLanguageTag()
+                )
+            ),
+            value
+        );
     }
 
     @Test
     public void testUnmarshallWithTypeString() {
         final String value = "abc123";
-        this.unmarshallWithTypeAndCheck(typeAndValue("string", JsonNode.string(value)),
-            value);
+
+        this.unmarshallWithTypeAndCheck(
+            typeAndValue(
+                "string",
+                JsonNode.string(value)
+            ),
+            value
+        );
     }
 
     @Test
@@ -720,124 +873,228 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
 
     @Test
     public void testUnmarshallWithTypeObjectWithObjectPreProcessor() {
-        this.unmarshallWithTypeAndCheck(this.contextWithPreProcessor(),
-            typeAndValue(TestJsonNodeValue.TYPE_NAME, this.jsonNode2()),
-            this.value());
+        this.unmarshallWithTypeAndCheck(
+            this.contextWithPreProcessor(),
+            typeAndValue(
+                TestJsonNodeValue.TYPE_NAME,
+                this.jsonNode2()
+            ),
+            this.value()
+        );
     }
 
     // unmarshallWithTypeList.........................................................................................
 
     @Test
     public void testUnmarshallListWithTypeBooleanTrue() {
-        this.unmarshallListWithTypeAndCheck(this.listWithType("boolean", JsonNode.booleanNode(true)),
-            Lists.of(true));
+        this.unmarshallListWithTypeAndCheck(
+            this.listWithType(
+                "boolean",
+                JsonNode.booleanNode(true)
+            ),
+            Lists.of(true)
+        );
     }
 
     @Test
     public void testUnmarshallListWithTypeBooleanFalse() {
-        this.unmarshallListWithTypeAndCheck(this.listWithType("boolean", JsonNode.booleanNode(false)),
-            Lists.of(false));
+        this.unmarshallListWithTypeAndCheck(
+            this.listWithType(
+                "boolean",
+                JsonNode.booleanNode(false)
+            ),
+            Lists.of(false)
+        );
     }
 
     @Test
     public void testUnmarshallListWithTypeNull() {
-        this.unmarshallListWithTypeAndCheck(this.listWithType("boolean", JsonNode.nullNode()),
-            Lists.of((Object) null));
+        this.unmarshallListWithTypeAndCheck(
+            this.listWithType(
+                "boolean",
+                JsonNode.nullNode()
+            ),
+            Lists.of((Object) null)
+        );
     }
 
     @Test
     public void testUnmarshallListWithTypeNumberByte() {
         final byte value = 1;
-        this.unmarshallListWithTypeAndCheck(this.listWithType("byte", JsonNode.number(value)),
-            Lists.of(value));
+
+        this.unmarshallListWithTypeAndCheck(
+            this.listWithType(
+                "byte",
+                JsonNode.number(value)
+            ),
+            Lists.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallListWithTypeNumberShort() {
         final short value = 1;
-        this.unmarshallListWithTypeAndCheck(this.listWithType("short", JsonNode.number(value)),
-            Lists.of(value));
+
+        this.unmarshallListWithTypeAndCheck(
+            this.listWithType(
+                "short",
+                JsonNode.number(value)
+            ),
+            Lists.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallListWithTypeNumberInteger() {
         final int value = 123;
-        this.unmarshallListWithTypeAndCheck(this.listWithType("int", JsonNode.number(value)),
-            Lists.of(value));
+
+        this.unmarshallListWithTypeAndCheck(
+            this.listWithType(
+                "int",
+                JsonNode.number(value)
+            ),
+            Lists.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallListWithTypeNumberLong() {
         final long value = 123;
-        this.unmarshallListWithTypeAndCheck(this.listWithType("long", JsonNode.number(value)),
-            Lists.of(value));
+
+        this.unmarshallListWithTypeAndCheck(
+            this.listWithType(
+                "long",
+                JsonNode.number(value)
+            ),
+            Lists.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallListWithTypeNumberFloat() {
         final float value = 1.25f;
-        this.unmarshallListWithTypeAndCheck(this.listWithType("float", JsonNode.number(value)),
-            Lists.of(value));
+
+        this.unmarshallListWithTypeAndCheck(
+            this.listWithType(
+                "float",
+                JsonNode.number(value)
+            ),
+            Lists.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallListWithTypeNumberDouble() {
         final double value = 1.25;
-        this.unmarshallListWithTypeAndCheck(this.listWithType("double", JsonNode.number(value)),
-            Lists.of(value));
+
+        this.unmarshallListWithTypeAndCheck(
+            this.listWithType(
+                "double",
+                JsonNode.number(value)
+            ),
+            Lists.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallListWithTypeObject() {
         final Locale value = Locale.ENGLISH;
-        this.unmarshallListWithTypeAndCheck(this.listWithType("locale", JsonNode.string(value.toLanguageTag())),
-            Lists.of(value));
+
+        this.unmarshallListWithTypeAndCheck(
+            this.listWithType(
+                "locale",
+                JsonNode.string(
+                    value.toLanguageTag()
+                )
+            ),
+            Lists.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallListWithTypeString() {
         final String value = "abc123";
-        this.unmarshallListWithTypeAndCheck(this.listWithType("string", JsonNode.string(value)),
-            Lists.of(value));
+
+        this.unmarshallListWithTypeAndCheck(
+            this.listWithType(
+                "string",
+                JsonNode.string(value)
+            ),
+            Lists.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallListWithTypeObjectWithObjectPreProcessorWithType() {
-        this.unmarshallListWithTypeAndCheck(this.contextWithPreProcessor(),
-            this.listWithType(TestJsonNodeValue.TYPE_NAME, this.jsonNode2()),
-            Lists.of(this.value()));
+        this.unmarshallListWithTypeAndCheck(
+            this.contextWithPreProcessor(),
+            this.listWithType(
+                TestJsonNodeValue.TYPE_NAME,
+                this.jsonNode2()
+            ),
+            Lists.of(
+                this.value()
+            )
+        );
     }
 
     private JsonNode listWithType(final String typeName,
                                   final JsonNode node) {
-        return JsonNode.array().appendChild(typeAndValue(typeName, node));
+        return JsonNode.array()
+            .appendChild(
+                typeAndValue(
+                    typeName,
+                    node
+                )
+            );
     }
 
-    // unmarshallWithTypeSet.........................................................................................
+    // unmarshallWithTypeSet........///.................................................................................
 
     @Test
     public void testUnmarshallSetWithTypeBooleanTrue() {
-        this.unmarshallSetWithTypeAndCheck(this.setWithType("boolean", JsonNode.booleanNode(true)),
-            Sets.of(true));
+        this.unmarshallSetWithTypeAndCheck(
+            this.setWithType(
+                "boolean",
+                JsonNode.booleanNode(true)
+            ),
+            Sets.of(true)
+        );
     }
 
     @Test
     public void testUnmarshallSetWithTypeBooleanFalse() {
-        this.unmarshallSetWithTypeAndCheck(this.setWithType("boolean", JsonNode.booleanNode(false)),
-            Sets.of(false));
+        this.unmarshallSetWithTypeAndCheck(
+            this.setWithType(
+                "boolean",
+                JsonNode.booleanNode(false)
+            ),
+            Sets.of(false)
+        );
     }
 
     @Test
     public void testUnmarshallSetWithTypeNull() {
-        this.unmarshallSetWithTypeAndCheck(this.setWithType("boolean", JsonNode.nullNode()),
-            Sets.of((Object) null));
+        this.unmarshallSetWithTypeAndCheck(
+            this.setWithType(
+                "boolean",
+                JsonNode.nullNode()
+            ),
+            Sets.of((Object) null)
+        );
     }
 
     @Test
     public void testUnmarshallSetWithTypeNumberByte() {
         final byte value = 1;
-        this.unmarshallSetWithTypeAndCheck(this.setWithType("byte", JsonNode.number(value)),
-            Sets.of(value));
+
+        this.unmarshallSetWithTypeAndCheck(
+            this.setWithType(
+                "byte",
+                JsonNode.number(value)
+            ),
+            Sets.of(value)
+        );
     }
 
     @Test
@@ -850,131 +1107,212 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     @Test
     public void testUnmarshallSetWithTypeNumberInteger() {
         final int value = 123;
-        this.unmarshallSetWithTypeAndCheck(this.setWithType("int", JsonNode.number(value)),
-            Sets.of(value));
+
+        this.unmarshallSetWithTypeAndCheck(
+            this.setWithType(
+                "int",
+                JsonNode.number(value)
+            ),
+            Sets.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallSetWithTypeNumberLong() {
         final long value = 123;
-        this.unmarshallSetWithTypeAndCheck(this.setWithType("long", JsonNode.number(value)),
-            Sets.of(value));
+
+        this.unmarshallSetWithTypeAndCheck(
+            this.setWithType(
+                "long",
+                JsonNode.number(value)
+            ),
+            Sets.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallSetWithTypeNumberFloat() {
         final float value = 1.25f;
-        this.unmarshallSetWithTypeAndCheck(this.setWithType("float", JsonNode.number(value)),
-            Sets.of(value));
+
+        this.unmarshallSetWithTypeAndCheck(
+            this.setWithType(
+                "float",
+                JsonNode.number(value)
+            ),
+            Sets.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallSetWithTypeNumberDouble() {
         final double value = 1.25;
-        this.unmarshallSetWithTypeAndCheck(this.setWithType("double", JsonNode.number(value)),
-            Sets.of(value));
+
+        this.unmarshallSetWithTypeAndCheck(
+            this.setWithType(
+                "double",
+                JsonNode.number(value)
+            ),
+            Sets.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallSetWithTypeObject() {
         final Locale value = Locale.ENGLISH;
-        this.unmarshallSetWithTypeAndCheck(this.setWithType("locale", JsonNode.string(value.toLanguageTag())),
-            Sets.of(value));
+
+        this.unmarshallSetWithTypeAndCheck(
+            this.setWithType(
+                "locale",
+                JsonNode.string(
+                    value.toLanguageTag()
+                )
+            ),
+            Sets.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallSetWithTypeString() {
         final String value = "abc123";
-        this.unmarshallSetWithTypeAndCheck(this.setWithType("string", JsonNode.string(value)),
-            Sets.of(value));
+
+        this.unmarshallSetWithTypeAndCheck(
+            this.setWithType(
+                "string",
+                JsonNode.string(value)
+            ),
+            Sets.of(value)
+        );
     }
 
     @Test
     public void testUnmarshallSetWithTypeObjectWithObjectPreProcessorWithType() {
-        this.unmarshallSetWithTypeAndCheck(this.contextWithPreProcessor(),
-            this.setWithType(TestJsonNodeValue.TYPE_NAME, this.jsonNode2()),
-            Sets.of(this.value()));
+        this.unmarshallSetWithTypeAndCheck(
+            this.contextWithPreProcessor(),
+            this.setWithType(
+                TestJsonNodeValue.TYPE_NAME,
+                this.jsonNode2()
+            ),
+            Sets.of(
+                this.value()
+            )
+        );
     }
 
     private JsonNode setWithType(final String typeName,
                                  final JsonNode node) {
-        return JsonNode.array().appendChild(typeAndValue(typeName, node));
+        return JsonNode.array()
+            .appendChild(
+                typeAndValue(
+                    typeName,
+                    node
+                )
+            );
     }
 
-    // unmarshallWithTypeMap...........................................................................................
+    // unmarshallWithTypeMap........../.................................................................................
 
     @Test
     public void testUnmarshallMapWithTypeBooleanTrue() {
-        this.unmarshallMapWithTypeAndCheck3(JsonNode.booleanNode(true),
-            true);
+        this.unmarshallMapWithTypeAndCheck3(
+            JsonNode.booleanNode(true),
+            true
+        );
     }
 
     @Test
     public void testUnmarshallMapWithTypeBooleanFalse() {
-        this.unmarshallMapWithTypeAndCheck3(JsonNode.booleanNode(false),
-            false);
+        this.unmarshallMapWithTypeAndCheck3(
+            JsonNode.booleanNode(false),
+            false
+        );
     }
 
     @Test
     public void testUnmarshallMapWithTypeNull() {
-        this.unmarshallMapWithTypeAndCheck3(JsonNode.nullNode(),
-            null);
+        this.unmarshallMapWithTypeAndCheck3(
+            JsonNode.nullNode(),
+            null
+        );
     }
 
     @Test
     public void testUnmarshallMapWithTypeNumber() {
         final double value = 1.25;
-        this.unmarshallMapWithTypeAndCheck3(JsonNode.number(value),
-            value);
+
+        this.unmarshallMapWithTypeAndCheck3(
+            JsonNode.number(value),
+            value
+        );
     }
 
     @Test
     public void testUnmarshallMapWithTypeString() {
         final String value = "abc123";
-        this.unmarshallMapWithTypeAndCheck3(JsonNode.string(value),
-            value);
+
+        this.unmarshallMapWithTypeAndCheck3(
+            JsonNode.string(value),
+            value
+        );
     }
 
     @Test
     public void testUnmarshallMapWithTypeObject() {
-        this.unmarshallMapWithTypeAndCheck3(this.createContext(),
-            typeAndValue(TestJsonNodeValue.TYPE_NAME, this.jsonNode()),
-            this.value());
+        this.unmarshallMapWithTypeAndCheck3(
+            this.createContext(),
+            typeAndValue(
+                TestJsonNodeValue.TYPE_NAME,
+                this.jsonNode()
+            ),
+            this.value()
+        );
     }
 
     @Test
     public void testUnmarshallMapWithTypeStringObjectWithObjectPreProcessorWithType() {
-        this.unmarshallMapWithTypeAndCheck3(this.contextWithPreProcessor(),
-            typeAndValue(TestJsonNodeValue.TYPE_NAME, this.jsonNode2()),
-            this.value());
+        this.unmarshallMapWithTypeAndCheck3(
+            this.contextWithPreProcessor(),
+            typeAndValue(
+                TestJsonNodeValue.TYPE_NAME,
+                this.jsonNode2()
+            ),
+            this.value()
+        );
     }
 
     private <VV> void unmarshallMapWithTypeAndCheck3(final JsonNode jsonValue,
                                                      final VV javaValue) {
-        this.unmarshallMapWithTypeAndCheck3(this.createContext(),
+        this.unmarshallMapWithTypeAndCheck3(
+            this.createContext(),
             jsonValue,
-            javaValue);
+            javaValue
+        );
     }
 
     private <VV> void unmarshallMapWithTypeAndCheck3(final JsonNodeUnmarshallContext context,
                                                      final JsonNode jsonValue,
                                                      final VV javaValue) {
-        this.unmarshallMapWithTypeAndCheck(context,
+        this.unmarshallMapWithTypeAndCheck(
+            context,
             JsonNode.array()
                 .appendChild(JsonNode.object()
                     .set(BasicJsonMarshallerTypedMap.ENTRY_KEY, JsonNode.string(KEY))
-                    .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, jsonValue)),
-            Maps.of(KEY, javaValue));
+                    .set(BasicJsonMarshallerTypedMap.ENTRY_VALUE, jsonValue)
+                ),
+            Maps.of(
+                KEY,
+                javaValue
+            )
+        );
     }
 
-    // JsonNodeUnmarshallContext..............................................................................................
+    // JsonNodeUnmarshallContext........................................................................................
 
     @Override
     public BasicJsonNodeUnmarshallContext createContext() {
         return BasicJsonNodeUnmarshallContext.with(
-            ExpressionNumberKind.DEFAULT,
+            EXPRESSION_NUMBER_KIND,
             CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
-            MathContext.DECIMAL32
+            MATH_CONTEXT
         );
     }
 

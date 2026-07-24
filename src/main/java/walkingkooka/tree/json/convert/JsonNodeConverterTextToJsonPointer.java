@@ -48,9 +48,6 @@ final class JsonNodeConverterTextToJsonPointer<C extends JsonNodeConverterContex
         return JsonPointer.class == type;
     }
 
-    /**
-     * Unmarshalls the json text.
-     */
     @Override
     public Object parseText(final String text,
                             final Class<?> type,

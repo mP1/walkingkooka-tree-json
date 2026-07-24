@@ -384,4 +384,30 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     }
 
     private final JsonNodeUnmarshallContextPreProcessor processor;
+
+    // Object...........................................................................................................
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+            this.kind,
+            this.currencyCodeLanguageTagContext,
+            this.mathContext,
+            this.processor
+        );
+    }
+
+    @Override
+    public boolean equals(final Object other) {
+        return this == other ||
+            other instanceof BasicJsonNodeUnmarshallContext &&
+                this.equals0(Cast.to(other));
+    }
+
+    private boolean equals0(final BasicJsonNodeUnmarshallContext other) {
+        return this.kind.equals(other.kind) &&
+            this.currencyCodeLanguageTagContext.equals(other.currencyCodeLanguageTagContext) &&
+            this.mathContext.equals(other.mathContext) &&
+            Objects.equals(this.processor, other.processor);
+    }
 }

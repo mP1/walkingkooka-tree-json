@@ -22,6 +22,7 @@ import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.ToStringTesting;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.util.FunctionTesting;
 
@@ -32,7 +33,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class JsonPointerTest implements FunctionTesting<JsonPointer, JsonNode, Optional<JsonNode>>,
     ClassTesting2<JsonPointer>,
     HashCodeEqualsDefinedTesting2<JsonPointer>,
-    ToStringTesting<JsonPointer> {
+    ToStringTesting<JsonPointer>,
+    TreePrintableTesting {
 
     // with.............................................................................................................
 
@@ -83,6 +85,21 @@ public final class JsonPointerTest implements FunctionTesting<JsonPointer, JsonN
         this.toStringAndCheck(
             this.createFunction(),
             "/hello"
+        );
+    }
+
+    // TreePrintable....................................................................................................
+
+    @Test
+    public void testTreePrintable() {
+        this.treePrintAndCheck(
+            JsonPointer.parse("/hello/world/[0]"),
+            "JsonPointer\n" +
+                "  NodePointerNamedChild\n" +
+                "    NamedChild\n" +
+                "      /world\n" +
+                "        NamedChild\n" +
+                "          /[0]\n"
         );
     }
 

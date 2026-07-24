@@ -18,11 +18,13 @@
 package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
+import walkingkooka.currency.FakeCurrencyLocaleContext;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
@@ -31,6 +33,7 @@ import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 
+import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Currency;
 import java.util.EnumSet;
@@ -40,7 +43,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeContextTestCase<BasicJsonNodeUnmarshallContext>
-    implements JsonNodeUnmarshallContextTesting2<BasicJsonNodeUnmarshallContext> {
+    implements JsonNodeUnmarshallContextTesting2<BasicJsonNodeUnmarshallContext>,
+    HashCodeEqualsDefinedTesting2<BasicJsonNodeUnmarshallContext> {
 
     private final CurrencyCodeLanguageTagContext CURRENCY_CODE_LANGUAGE_TAG_CONTEXT = new CurrencyCodeLanguageTagContext() {
         @Override
@@ -1349,6 +1353,48 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     private final static JsonNode POST_VALUE = JsonNode.booleanNode(true);
     private final static String VALUE = "abc123";
     private final static String KEY = "key1";
+
+    // hashCode/equals..................................................................................................
+
+    @Test
+    public void testEqualsDifferentExpressionNumberKind() {
+        this.checkNotEquals(
+            BasicJsonNodeUnmarshallContext.with(
+                DIFFERENT_EXPRESSION_NUMBER_KIND,
+                CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
+                MathContext.DECIMAL32
+            )
+        );
+    }
+
+    @Test
+    public void testEqualsDifferentCurrencyCodeLanguageTagContext() {
+        this.checkNotEquals(
+            BasicJsonNodeUnmarshallContext.with(
+                DIFFERENT_EXPRESSION_NUMBER_KIND,
+                new FakeCurrencyLocaleContext(),
+                MATH_CONTEXT
+            )
+        );
+    }
+
+    @Test
+    public void testEqualsDifferentMathContext() {
+        this.checkNotEquals(
+            BasicJsonNodeUnmarshallContext.with(
+                EXPRESSION_NUMBER_KIND,
+                CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
+                DIFFERENT_MATH_CONTEXT
+            )
+        );
+    }
+
+    @Override
+    public BasicJsonNodeUnmarshallContext createObject() {
+        return this.createContext();
+    }
+
+    // class............................................................................................................
 
     @Override
     public Class<BasicJsonNodeUnmarshallContext> type() {

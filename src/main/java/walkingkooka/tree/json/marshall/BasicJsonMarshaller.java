@@ -145,6 +145,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedEmailAddress.instance(),
             BasicJsonMarshallerTypedEnvironmentValueName.instance(),
             BasicJsonMarshallerTypedEnvironmentValueNameSet.instance(),
+            BasicJsonMarshallerTypedETagList.instance(),
             BasicJsonMarshallerTypedExpression.value(),
             BasicJsonMarshallerTypedExpression.binary(Expression::add, AddExpression.class),
             BasicJsonMarshallerTypedExpression.binary(Expression::and, AndExpression.class),

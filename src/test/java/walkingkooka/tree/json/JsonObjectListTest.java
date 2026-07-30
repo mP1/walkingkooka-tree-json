@@ -78,6 +78,27 @@ public final class JsonObjectListTest implements ImmutableListTesting<JsonObject
         );
     }
 
+    // firstOrEmpty.....................................................................................................
+
+    @Test
+    public void testFirstOrEmptyWhenEmpty() {
+        this.firstOrEmptyAndCheck(
+            JsonObjectList.EMPTY
+        );
+    }
+
+    @Test
+    public void testFirstOrEmptyWhenNotEmpty() {
+        final JsonNode first = JsonNode.string("111");
+
+        this.firstOrEmptyAndCheck(
+            JsonObjectList.EMPTY.concat(first),
+            first
+        );
+    }
+
+    // class............................................................................................................
+
     @Override
     public Class<JsonObjectList> type() {
         return JsonObjectList.class;

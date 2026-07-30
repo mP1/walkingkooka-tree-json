@@ -34,6 +34,7 @@ import walkingkooka.environment.EnvironmentValueNameSet;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.locale.LocaleLanguageTagSet;
 import walkingkooka.math.NumberList;
+import walkingkooka.net.header.ETagList;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonNodeException;
 import walkingkooka.tree.json.JsonObject;
@@ -324,6 +325,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             value instanceof CsvStringList ||
             value instanceof CsvStringSet ||
             value instanceof EnvironmentValueNameSet ||
+            value instanceof ETagList ||
             value instanceof LocaleLanguageTagSet ||
             value instanceof LocalDateList ||
             value instanceof LocalDateTimeList ||

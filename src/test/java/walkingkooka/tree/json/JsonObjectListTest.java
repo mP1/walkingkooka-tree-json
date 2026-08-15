@@ -97,6 +97,39 @@ public final class JsonObjectListTest implements ImmutableListTesting<JsonObject
         );
     }
 
+    // reversed.........................................................................................................
+
+    @Test
+    @Override
+    public void testReversed() {
+        this.checkEquals(
+            JsonObjectList.EMPTY
+                .concat(
+                    JsonNode.booleanNode(false)
+                        .setName(
+                            JsonPropertyName.with("first")
+                        )
+                ).concat(
+                    JsonNode.booleanNode(true)
+                        .setName(
+                            JsonPropertyName.with("second")
+                        )
+                ).reverse(),
+            JsonObjectList.EMPTY
+                .concat(
+                    JsonNode.booleanNode(false)
+                        .setName(
+                            JsonPropertyName.with("first")
+                        )
+                ).concat(
+                    JsonNode.booleanNode(true)
+                        .setName(
+                            JsonPropertyName.with("second")
+                        )
+                )
+        );
+    }
+
     // class............................................................................................................
 
     @Override

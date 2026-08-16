@@ -17,9 +17,9 @@
 
 package walkingkooka.tree.json.expression;
 
-import walkingkooka.tree.expression.ExpressionEvaluationContextTesting;
+import walkingkooka.tree.expression.ExpressionEvaluationContextTesting2;
 
-public interface JsonNodeExpressionEvaluationContextTesting<C extends JsonNodeExpressionEvaluationContext> extends ExpressionEvaluationContextTesting<C> {
+public interface JsonNodeExpressionEvaluationContextTesting<C extends JsonNodeExpressionEvaluationContext> extends ExpressionEvaluationContextTesting2<C> {
 
     @Override
     default String typeNameSuffix() {

@@ -47,7 +47,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 
-public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConverterContextTesting<TestJsonNodeConverterContextDelegator>,
+public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConverterContextTesting2<TestJsonNodeConverterContextDelegator>,
     DecimalNumberContextDelegator {
 
     @Override

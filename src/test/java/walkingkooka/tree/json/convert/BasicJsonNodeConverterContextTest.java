@@ -52,7 +52,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class BasicJsonNodeConverterContextTest implements JsonNodeConverterContextTesting<BasicJsonNodeConverterContext>,
+public final class BasicJsonNodeConverterContextTest implements JsonNodeConverterContextTesting2<BasicJsonNodeConverterContext>,
     ToStringTesting<BasicJsonNodeConverterContext>,
     DecimalNumberContextDelegator {
 

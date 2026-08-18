@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface JsonNodeMarshallContextTesting2<C extends JsonNodeMarshallContext> extends JsonNodeMarshallContextTesting,
-    JsonNodeContextTesting<C> {
+    JsonNodeContextTesting2<C> {
 
     @Test
     default void testSetObjectPostProcessorNullFails() {

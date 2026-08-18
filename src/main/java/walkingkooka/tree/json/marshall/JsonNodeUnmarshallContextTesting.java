@@ -29,7 +29,8 @@ import java.util.Set;
 
 public interface JsonNodeUnmarshallContextTesting extends CurrencyLocaleContextTesting,
     HasExpressionNumberKindTesting,
-    HasMathContextTesting {
+    HasMathContextTesting,
+    JsonNodeContextTesting {
 
     JsonNodeUnmarshallContext JSON_NODE_UNMARSHALL_CONTEXT = JsonNodeUnmarshallContexts.basic(
         EXPRESSION_NUMBER_KIND,

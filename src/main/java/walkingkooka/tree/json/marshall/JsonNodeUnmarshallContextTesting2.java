@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface JsonNodeUnmarshallContextTesting2<C extends JsonNodeUnmarshallContext> extends JsonNodeUnmarshallContextTesting,
-    JsonNodeContextTesting<C>,
+    JsonNodeContextTesting2<C>,
     CanLocaleForLanguageTagTesting2<C> {
 
     // setPreProcessor..................................................................................................

@@ -17,7 +17,6 @@
 
 package walkingkooka.tree.json.marshall;
 
-import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.json.JsonNode;
 
 import java.util.Collection;
@@ -25,7 +24,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-public interface JsonNodeMarshallContextTesting extends TreePrintableTesting {
+public interface JsonNodeMarshallContextTesting extends JsonNodeContextTesting {
 
     JsonNodeMarshallContext JSON_NODE_MARSHALL_CONTEXT = JsonNodeMarshallContexts.basic();
 

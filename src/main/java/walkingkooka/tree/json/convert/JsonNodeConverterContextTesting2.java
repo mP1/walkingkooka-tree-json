@@ -17,7 +17,20 @@
 
 package walkingkooka.tree.json.convert;
 
-import walkingkooka.tree.expression.convert.ExpressionNumberConverterContextTesting;
+import walkingkooka.tree.expression.convert.ExpressionNumberConverterContextTesting2;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextTesting2;
 
-public interface JsonNodeConverterContextTesting extends ExpressionNumberConverterContextTesting {
+public interface JsonNodeConverterContextTesting2<C extends JsonNodeConverterContext> extends ExpressionNumberConverterContextTesting2<C>,
+    JsonNodeMarshallUnmarshallContextTesting2<C> {
+
+    @Override
+    default C createCanLocaleForLanguageTag() {
+        return this.createContext();
+    }
+
+    // necessary because the 3 Testing interface have different default impls
+    @Override
+    default String typeNameSuffix() {
+        return JsonNodeConverterContext.class.getSimpleName();
+    }
 }

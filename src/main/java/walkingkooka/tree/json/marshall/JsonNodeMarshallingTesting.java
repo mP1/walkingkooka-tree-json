@@ -147,18 +147,18 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
     }
 
     default void unmarshallFails(final String from) {
-        unmarshallFails(JsonNode.parse(from));
+        this.unmarshallFails(JsonNode.parse(from));
     }
 
     default void unmarshallFails(final String from,
                                  final Class<?> type) {
-        unmarshallFails(from, type, this.unmarshallContext());
+        this.unmarshallFails(from, type, this.unmarshallContext());
     }
 
     default void unmarshallFails(final String from,
                                  final Class<?> type,
                                  final JsonNodeUnmarshallContext context) {
-        unmarshallFails(JsonNode.parse(from), type, context);
+        this.unmarshallFails(JsonNode.parse(from), type, context);
     }
 
     default void unmarshallFails(final JsonNode from) {

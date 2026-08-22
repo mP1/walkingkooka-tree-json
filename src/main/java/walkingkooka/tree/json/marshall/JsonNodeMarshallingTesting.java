@@ -23,23 +23,15 @@ import walkingkooka.collect.list.ImmutableList;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
-import walkingkooka.currency.CurrencyCode;
-import walkingkooka.currency.CurrencyCodeLanguageTagContext;
-import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.reflect.MethodAttributes;
 import walkingkooka.text.CharSequences;
-import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.Node;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonNodeException;
 import walkingkooka.tree.json.JsonString;
 
-import java.math.MathContext;
 import java.util.Arrays;
-import java.util.Currency;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -47,7 +39,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
+public interface JsonNodeMarshallingTesting<V> extends JsonNodeMarshallUnmarshallContextTesting {
 
     @Test
     default void testRegistered() throws Exception {
@@ -78,15 +70,13 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
     default void testTypeNameFromClass() {
         final V value = this.createJsonNodeMarshallingValue();
 
-        final JsonNodeMarshallContext context = this.marshallContext();
-
-        final JsonNode node = context.marshallWithType(value);
+        final JsonNode node = JSON_NODE_MARSHALL_CONTEXT.marshallWithType(value);
         if (node.isObject()) {
             this.checkEquals(
                 node.objectOrFail()
                     .get(BasicJsonNodeContext.TYPE)
                     .map(Node::removeParent),
-                context.typeName(value.getClass()),
+                JSON_NODE_MARSHALL_CONTEXT.typeName(value.getClass()),
                 () -> value + " & " + node
             );
         }
@@ -96,10 +86,8 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
     default void testTypeNameAndRegisteredType() {
         this.createJsonNodeMarshallingValue(); // ensure static initializer is run...
 
-        final JsonNodeMarshallContext context = this.marshallContext();
-
         final Class<V> type = this.type();
-        final Optional<JsonString> maybeTypeName = context.typeName(type);
+        final Optional<JsonString> maybeTypeName = JSON_NODE_MARSHALL_CONTEXT.typeName(type);
         this.checkNotEquals(
             Optional.empty(),
             maybeTypeName,
@@ -107,7 +95,7 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
         );
 
         final JsonString typeName = maybeTypeName.get();
-        final Optional<Class<?>> maybeRegisteredType = context.registeredType(typeName);
+        final Optional<Class<?>> maybeRegisteredType = JSON_NODE_MARSHALL_CONTEXT.registeredType(typeName);
         this.checkNotEquals(
             Optional.empty(),
             maybeRegisteredType,
@@ -170,7 +158,7 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
         this.unmarshallFails(
             from,
             type,
-            this.unmarshallContext()
+            JSON_NODE_UNMARSHALL_CONTEXT
         );
     }
 
@@ -195,7 +183,7 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
         this.unmarshallFails(
             from,
             type,
-            this.unmarshallContext()
+            JSON_NODE_UNMARSHALL_CONTEXT
         );
     }
 
@@ -232,10 +220,8 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
 
         this.checkEquals(
             optional,
-            this.unmarshallContext()
-                .unmarshallOptional(
-                    this.marshallContext()
-                        .marshallOptional(optional),
+            JSON_NODE_UNMARSHALL_CONTEXT.unmarshallOptional(
+                    JSON_NODE_MARSHALL_CONTEXT.marshallOptional(optional),
                     value.getClass()
                 )
         );
@@ -247,10 +233,8 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
 
         this.checkEquals(
             list,
-            this.unmarshallContext()
-                .unmarshallListWithType(
-                    this.marshallContext()
-                        .marshallCollectionWithType(list)
+            JSON_NODE_UNMARSHALL_CONTEXT.unmarshallListWithType(
+                    JSON_NODE_MARSHALL_CONTEXT.marshallCollectionWithType(list)
                 ),
             () -> "Roundtrip to -> from -> to failed list=" + list
         );
@@ -262,10 +246,8 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
 
         this.checkEquals(
             set,
-            this.unmarshallContext()
-                .unmarshallSetWithType(
-                    this.marshallContext()
-                        .marshallCollectionWithType(set)
+            JSON_NODE_UNMARSHALL_CONTEXT.unmarshallSetWithType(
+                    JSON_NODE_MARSHALL_CONTEXT.marshallCollectionWithType(set)
                 ),
             () -> "Roundtrip to -> from -> to failed set=" + set
         );
@@ -280,10 +262,8 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
 
         this.checkEquals(
             map,
-            this.unmarshallContext()
-                .unmarshallMapWithType(
-                    this.marshallContext()
-                        .marshallMapWithType(map)
+            JSON_NODE_UNMARSHALL_CONTEXT.unmarshallMapWithType(
+                JSON_NODE_MARSHALL_CONTEXT.marshallMapWithType(map)
                 ),
             () -> "Roundtrip to -> from -> to failed marshall=" + map
         );
@@ -291,8 +271,8 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
 
     default V unmarshall(final JsonNode from) {
         return this.unmarshall(
-            from, 
-            this.unmarshallContext()
+            from,
+            JSON_NODE_UNMARSHALL_CONTEXT
         );
     }
 
@@ -315,7 +295,7 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
         this.marshallAndCheck(
             value,
             json,
-            this.marshallContext()
+            JSON_NODE_MARSHALL_CONTEXT
         );
     }
 
@@ -332,7 +312,7 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
     default void marshallRoundTripTwiceAndCheck(final Object value) {
         this.marshallRoundTripTwiceAndCheck(
             value,
-            this.marshallContext()
+            JSON_NODE_MARSHALL_CONTEXT
         );
     }
 
@@ -353,8 +333,8 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
     default void marshallWithTypeRoundTripTwiceAndCheck(final Object value) {
         this.marshallWithTypeRoundTripTwiceAndCheck(
             value,
-            this.unmarshallContext(),
-            this.marshallContext()
+            JSON_NODE_UNMARSHALL_CONTEXT,
+            JSON_NODE_MARSHALL_CONTEXT
         );
     }
 
@@ -380,37 +360,6 @@ public interface JsonNodeMarshallingTesting<V> extends TreePrintableTesting {
     }
 
     V createJsonNodeMarshallingValue();
-
-    default JsonNodeUnmarshallContext unmarshallContext() {
-        return JsonNodeUnmarshallContexts.basic(
-            ExpressionNumberKind.DEFAULT,
-            new CurrencyCodeLanguageTagContext() {
-
-                @Override
-                public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
-                    return Optional.of(
-                        Currency.getInstance(
-                            currencyCode.value()
-                        )
-                    );
-                }
-
-                @Override
-                public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
-                    return Optional.of(
-                        Locale.forLanguageTag(
-                            languageTag.value()
-                        )
-                    );
-                }
-            },
-            MathContext.DECIMAL32
-        );
-    }
-
-    default JsonNodeMarshallContext marshallContext() {
-        return JsonNodeMarshallContexts.basic();
-    }
 
     Class<V> type();
 }

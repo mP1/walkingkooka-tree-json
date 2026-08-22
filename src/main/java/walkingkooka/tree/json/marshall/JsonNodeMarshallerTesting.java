@@ -39,7 +39,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public interface JsonNodeMarshallingTesting<V> extends JsonNodeMarshallUnmarshallContextTesting {
+public interface JsonNodeMarshallerTesting<V> extends JsonNodeMarshallUnmarshallContextTesting {
 
     @Test
     default void testRegistered() throws Exception {

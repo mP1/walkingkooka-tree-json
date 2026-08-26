@@ -26,6 +26,7 @@ import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.currency.FakeCurrencyContext;
 import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.datetime.DateTimeSymbols;
+import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
@@ -48,7 +49,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConverterContextTesting2<TestJsonNodeConverterContextDelegator>,
-    DecimalNumberContextDelegator {
+    DecimalNumberContextDelegator,
+    EnvironmentContextTesting {
 
     @Override
     public void testSetObjectPostProcessor() {
@@ -133,6 +135,7 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
             final Locale locale = Locale.ENGLISH;
 
             return JsonNodeConverterContexts.basic(
+                ENVIRONMENT_CONTEXT, // CanParseEnvironmentValueName
                 ExpressionNumberConverterContexts.basic(
                     Converters.fake(),
                     BinaryNumberConverterFunctions.multiply(), // multiplier

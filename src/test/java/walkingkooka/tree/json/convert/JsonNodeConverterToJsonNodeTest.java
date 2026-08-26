@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.convert.Converters;
 import walkingkooka.currency.CurrencyLocaleContexts;
+import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.FakeExpressionNumberConverterContext;
@@ -30,7 +31,8 @@ import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 
 import java.math.MathContext;
 
-public final class JsonNodeConverterToJsonNodeTest extends JsonNodeConverterTestCase<JsonNodeConverterToJsonNode<JsonNodeConverterContext>, JsonNodeConverterContext> {
+public final class JsonNodeConverterToJsonNodeTest extends JsonNodeConverterTestCase<JsonNodeConverterToJsonNode<JsonNodeConverterContext>, JsonNodeConverterContext>
+    implements EnvironmentContextTesting {
 
     @Test
     public void testConvertToStringFails() {
@@ -86,6 +88,7 @@ public final class JsonNodeConverterToJsonNodeTest extends JsonNodeConverterTest
         final ExpressionNumberKind kind = ExpressionNumberKind.BIG_DECIMAL;
 
         return JsonNodeConverterContexts.basic(
+            ENVIRONMENT_CONTEXT, // CanParseEnvironmentValueName
             new FakeExpressionNumberConverterContext() {
 
                 @Override

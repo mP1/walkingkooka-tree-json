@@ -18,6 +18,8 @@
 package walkingkooka.tree.json.convert;
 
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.environment.CanParseEnvironmentValueName;
+import walkingkooka.environment.CanParseEnvironmentValueNameDelegator;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContext;
@@ -31,6 +33,7 @@ import java.util.Locale;
 import java.util.Optional;
 
 public interface JsonNodeConverterContextDelegator extends JsonNodeConverterContext,
+    CanParseEnvironmentValueNameDelegator,
     ExpressionNumberConverterContextDelegator,
     JsonNodeMarshallUnmarshallContextDelegator {
 
@@ -47,6 +50,13 @@ public interface JsonNodeConverterContextDelegator extends JsonNodeConverterCont
     }
 
     JsonNodeConverterContext jsonNodeConverterContext();
+
+    // CanParseEnvironmentValueNameDelegator............................................................................
+
+    @Override
+    default CanParseEnvironmentValueName canParseEnvironmentValueName() {
+        return this.jsonNodeConverterContext();
+    }
 
     // ExpressionNumberConverterContextDelegator........................................................................
 

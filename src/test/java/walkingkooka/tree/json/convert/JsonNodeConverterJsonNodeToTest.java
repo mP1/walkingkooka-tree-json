@@ -23,6 +23,7 @@ import walkingkooka.Either;
 import walkingkooka.convert.Converter;
 import walkingkooka.convert.Converters;
 import walkingkooka.currency.CurrencyLocaleContexts;
+import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.FakeExpressionNumberConverterContext;
@@ -33,7 +34,8 @@ import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 
 import java.math.MathContext;
 
-public final class JsonNodeConverterJsonNodeToTest extends JsonNodeConverterTestCase<JsonNodeConverterJsonNodeTo<JsonNodeConverterContext>, JsonNodeConverterContext> {
+public final class JsonNodeConverterJsonNodeToTest extends JsonNodeConverterTestCase<JsonNodeConverterJsonNodeTo<JsonNodeConverterContext>, JsonNodeConverterContext>
+    implements EnvironmentContextTesting {
 
     @Test
     public void testConvertJsonNodeTo() {
@@ -96,6 +98,7 @@ public final class JsonNodeConverterJsonNodeToTest extends JsonNodeConverterTest
         final ExpressionNumberKind kind = ExpressionNumberKind.BIG_DECIMAL;
 
         return JsonNodeConverterContexts.basic(
+            ENVIRONMENT_CONTEXT, // CanParseEnvironmentValueName
             new FakeExpressionNumberConverterContext() {
 
                 @Override

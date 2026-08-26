@@ -17,6 +17,7 @@
 
 package walkingkooka.tree.json.convert;
 
+import walkingkooka.environment.CanParseEnvironmentValueName;
 import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContext;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContext;
@@ -29,9 +30,11 @@ public final class JsonNodeConverterContexts implements PublicStaticHelper {
     /**
      * {@see BasicJsonNodeConverterContext}
      */
-    public static JsonNodeConverterContext basic(final ExpressionNumberConverterContext converterContext,
+    public static JsonNodeConverterContext basic(final CanParseEnvironmentValueName canParseEnvironmentValueName,
+                                                 final ExpressionNumberConverterContext converterContext,
                                                  final JsonNodeMarshallUnmarshallContext marshallUnmarshallContext) {
         return BasicJsonNodeConverterContext.with(
+            canParseEnvironmentValueName,
             converterContext,
             marshallUnmarshallContext
         );

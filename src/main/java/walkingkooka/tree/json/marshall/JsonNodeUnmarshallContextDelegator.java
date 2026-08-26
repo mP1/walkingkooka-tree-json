@@ -18,6 +18,8 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.environment.CanParseEnvironmentValueName;
+import walkingkooka.environment.CanParseEnvironmentValueNameDelegator;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
@@ -36,7 +38,17 @@ import java.util.function.Function;
  * forcing implementations to implement.
  */
 public interface JsonNodeUnmarshallContextDelegator extends JsonNodeUnmarshallContext,
+    CanParseEnvironmentValueNameDelegator,
     JsonNodeContextDelegator {
+
+    // CanParseEnvironmentValueNameDelegator............................................................................
+
+    @Override
+    default CanParseEnvironmentValueName canParseEnvironmentValueName() {
+        return this.jsonNodeUnmarshallContext();
+    }
+
+    // JsonNodeContextDelegator.........................................................................................
 
     @Override
     default <T> T unmarshall(final JsonNode node,

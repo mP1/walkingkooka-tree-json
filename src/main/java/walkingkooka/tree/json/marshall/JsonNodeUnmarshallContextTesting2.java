@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.environment.CanParseEnvironmentValueNameTesting2;
 import walkingkooka.locale.CanLocaleForLanguageTagTesting2;
 import walkingkooka.tree.json.JsonNode;
 
@@ -32,7 +33,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public interface JsonNodeUnmarshallContextTesting2<C extends JsonNodeUnmarshallContext> extends JsonNodeUnmarshallContextTesting,
     JsonNodeContextTesting2<C>,
-    CanLocaleForLanguageTagTesting2<C> {
+    CanLocaleForLanguageTagTesting2<C>,
+    CanParseEnvironmentValueNameTesting2<C> {
 
     // setPreProcessor..................................................................................................
 
@@ -283,8 +285,17 @@ public interface JsonNodeUnmarshallContextTesting2<C extends JsonNodeUnmarshallC
         );
     }
 
+    // CanLocaleForLanguageTagTesting2..................................................................................
+
     @Override
     default C createCanLocaleForLanguageTag() {
+        return this.createContext();
+    }
+
+    // CanParseEnvironmentValueNameTesting2.............................................................................
+
+    @Override
+    default C createCanParseEnvironmentValueName() {
         return this.createContext();
     }
 

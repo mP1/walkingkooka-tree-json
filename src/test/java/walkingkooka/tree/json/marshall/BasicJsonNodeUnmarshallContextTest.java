@@ -24,6 +24,8 @@ import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.currency.FakeCurrencyLocaleContext;
+import walkingkooka.environment.CanParseEnvironmentValueName;
+import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
@@ -39,15 +41,32 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeContextTestCase<BasicJsonNodeUnmarshallContext>
     implements JsonNodeUnmarshallContextTesting2<BasicJsonNodeUnmarshallContext>,
+    EnvironmentContextTesting,
     HashCodeEqualsDefinedTesting2<BasicJsonNodeUnmarshallContext> {
+
+    private final static CanParseEnvironmentValueName CAN_PARSE_ENVIRONMENT_VALUE_NAME = ENVIRONMENT_CONTEXT;
 
     private final CurrencyCodeLanguageTagContext CURRENCY_CODE_LANGUAGE_TAG_CONTEXT = CURRENCY_LOCALE_CONTEXT;
 
     @Test
-    public void testWithNullKindFails() {
+    public void testWithNullExpressionNumberKindFails() {
         assertThrows(
             java.lang.NullPointerException.class,
             () -> BasicJsonNodeUnmarshallContext.with(
+                null,
+                CAN_PARSE_ENVIRONMENT_VALUE_NAME,
+                CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
+                MATH_CONTEXT
+            )
+        );
+    }
+
+    @Test
+    public void testWithNullCanParseEnvironmentValueNameFails() {
+        assertThrows(
+            java.lang.NullPointerException.class,
+            () -> BasicJsonNodeUnmarshallContext.with(
+                EXPRESSION_NUMBER_KIND,
                 null,
                 CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
                 MATH_CONTEXT
@@ -61,6 +80,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
             java.lang.NullPointerException.class,
             () -> BasicJsonNodeUnmarshallContext.with(
                 EXPRESSION_NUMBER_KIND,
+                CAN_PARSE_ENVIRONMENT_VALUE_NAME,
                 null,
                 MATH_CONTEXT
             )
@@ -73,6 +93,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
             java.lang.NullPointerException.class,
             () -> BasicJsonNodeUnmarshallContext.with(
                 EXPRESSION_NUMBER_KIND,
+                CAN_PARSE_ENVIRONMENT_VALUE_NAME,
                 CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
                 null
             )
@@ -1292,6 +1313,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     public BasicJsonNodeUnmarshallContext createContext() {
         return BasicJsonNodeUnmarshallContext.with(
             EXPRESSION_NUMBER_KIND,
+            CAN_PARSE_ENVIRONMENT_VALUE_NAME,
             CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
             MATH_CONTEXT
         );
@@ -1338,6 +1360,21 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         this.checkNotEquals(
             BasicJsonNodeUnmarshallContext.with(
                 DIFFERENT_EXPRESSION_NUMBER_KIND,
+                CAN_PARSE_ENVIRONMENT_VALUE_NAME,
+                CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
+                MATH_CONTEXT
+            )
+        );
+    }
+
+    @Test
+    public void testEqualsDifferentCanParseEnvironmentValue() {
+        this.checkNotEquals(
+            BasicJsonNodeUnmarshallContext.with(
+                DIFFERENT_EXPRESSION_NUMBER_KIND,
+                (String name) -> {
+                    throw new UnsupportedOperationException();
+                },
                 CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
                 MATH_CONTEXT
             )
@@ -1349,6 +1386,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         this.checkNotEquals(
             BasicJsonNodeUnmarshallContext.with(
                 DIFFERENT_EXPRESSION_NUMBER_KIND,
+                CAN_PARSE_ENVIRONMENT_VALUE_NAME,
                 new FakeCurrencyLocaleContext(),
                 MATH_CONTEXT
             )
@@ -1360,6 +1398,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         this.checkNotEquals(
             BasicJsonNodeUnmarshallContext.with(
                 EXPRESSION_NUMBER_KIND,
+                CAN_PARSE_ENVIRONMENT_VALUE_NAME,
                 CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
                 DIFFERENT_MATH_CONTEXT
             )

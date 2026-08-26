@@ -20,6 +20,7 @@ package walkingkooka.tree.json.marshall;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import walkingkooka.currency.CurrencyLocaleContexts;
+import walkingkooka.environment.CanParseEnvironmentValueNameTesting;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
@@ -29,7 +30,8 @@ import java.math.MathContext;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class BasicJsonNodeUnmarshallContextJsonNodeVisitorTest implements JsonNodeVisitorTesting<BasicJsonNodeUnmarshallContextJsonNodeVisitor> {
+public final class BasicJsonNodeUnmarshallContextJsonNodeVisitorTest implements JsonNodeVisitorTesting<BasicJsonNodeUnmarshallContextJsonNodeVisitor>,
+    CanParseEnvironmentValueNameTesting {
 
     @AfterEach
     public void afterEach() {
@@ -123,6 +125,7 @@ public final class BasicJsonNodeUnmarshallContextJsonNodeVisitorTest implements 
     private JsonNodeUnmarshallContext context() {
         return BasicJsonNodeUnmarshallContext.with(
             ExpressionNumberKind.DEFAULT,
+            CAN_PARSE_ENVIRONMENT_VALUE_NAME,
             CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
             MathContext.DECIMAL32
         );

@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
@@ -36,6 +37,15 @@ public class FakeJsonNodeMarshallUnmarshallContext extends FakeJsonNodeMarshallC
     public FakeJsonNodeMarshallUnmarshallContext() {
         super();
     }
+
+    // CanParseEnvironmentValueName.....................................................................................
+
+    @Override
+    public EnvironmentValueName<?> parseEnvironmentValueName(final String name) {
+        throw new UnsupportedOperationException();
+    }
+
+    // JsonNodeMarshallUnmarshallContext................................................................................
 
     @Override
     public JsonNodeMarshallUnmarshallContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor) {

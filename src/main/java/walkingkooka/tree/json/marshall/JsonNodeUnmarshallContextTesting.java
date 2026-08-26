@@ -18,6 +18,8 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.currency.CurrencyLocaleContextTesting;
+import walkingkooka.environment.CanParseEnvironmentValueNameTesting;
+import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.math.HasMathContextTesting;
 import walkingkooka.tree.expression.HasExpressionNumberKindTesting;
 import walkingkooka.tree.json.JsonNode;
@@ -27,13 +29,16 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-public interface JsonNodeUnmarshallContextTesting extends CurrencyLocaleContextTesting,
+public interface JsonNodeUnmarshallContextTesting extends CanParseEnvironmentValueNameTesting,
+    CurrencyLocaleContextTesting,
+    EnvironmentContextTesting,
     HasExpressionNumberKindTesting,
     HasMathContextTesting,
     JsonNodeContextTesting {
 
     JsonNodeUnmarshallContext JSON_NODE_UNMARSHALL_CONTEXT = JsonNodeUnmarshallContexts.basic(
         EXPRESSION_NUMBER_KIND,
+        ENVIRONMENT_CONTEXT, // CanParseEnvironmentValueName
         CURRENCY_LOCALE_CONTEXT,
         MATH_CONTEXT
     );

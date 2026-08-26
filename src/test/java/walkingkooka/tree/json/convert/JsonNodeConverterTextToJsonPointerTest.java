@@ -24,7 +24,7 @@ import walkingkooka.convert.Converter;
 import walkingkooka.convert.Converters;
 import walkingkooka.tree.json.pointer.JsonPointer;
 
-public final class JsonNodeConverterTextToJsonPointerTest extends JsonNodeConverterTestCase<JsonNodeConverterTextToJsonPointer<FakeJsonNodeConverterContext>, FakeJsonNodeConverterContext> {
+public final class JsonNodeConverterTextToJsonPointerTest extends JsonNodeConverterTextToTestCase<JsonNodeConverterTextToJsonPointer<FakeJsonNodeConverterContext>, FakeJsonNodeConverterContext> {
 
     @Test
     public void testConvertStringToUnsupportedClassFails() {

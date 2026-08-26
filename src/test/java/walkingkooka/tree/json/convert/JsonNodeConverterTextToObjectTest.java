@@ -31,7 +31,7 @@ import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextTesting;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-public final class JsonNodeConverterTextToObjectTest extends JsonNodeConverterTestCase<JsonNodeConverterTextToObject<FakeJsonNodeConverterContext>, FakeJsonNodeConverterContext>
+public final class JsonNodeConverterTextToObjectTest extends JsonNodeConverterTextToTestCase<JsonNodeConverterTextToObject<FakeJsonNodeConverterContext>, FakeJsonNodeConverterContext>
     implements JsonNodeMarshallUnmarshallContextTesting {
 
     @Test

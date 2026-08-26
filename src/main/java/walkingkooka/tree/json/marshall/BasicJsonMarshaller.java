@@ -129,6 +129,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedBigInteger.instance(),
             BasicJsonMarshallerTypedBinary.instance(),
             BasicJsonMarshallerTypedCharacter.instance(),
+            BasicJsonMarshallerTypedCharset.instance(),
             BasicJsonMarshallerTypedClass.instance(),
             BasicJsonMarshallerTypedCollectionCollection.instance(),
             BasicJsonMarshallerTypedCollectionList.instance(),

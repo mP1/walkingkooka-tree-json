@@ -73,7 +73,7 @@ public final class BasicJsonMarshallerTypedCollectionCollectionTest extends Basi
             .append(123.5)
             .append("abc123")
             .appendChild(
-                this.marshallContext()
+                JSON_NODE_MARSHALL_CONTEXT
                     .marshallWithType(
                         TestJsonNodeValue.with("test-has-json-node")
                     )

@@ -80,7 +80,7 @@ public final class BasicJsonMarshallerTypedExpressionFunctionParameterTest exten
             .set(BasicJsonMarshallerTypedExpressionFunctionParameter.CARDINALITY_PROPERTY, JsonNode.string("REQUIRED"))
             .set(
                 BasicJsonMarshallerTypedExpressionFunctionParameter.DEFAULT_VALUE_PROPERTY,
-                marshallContext()
+                JSON_NODE_MARSHALL_CONTEXT
                     .marshallOptionalWithType(DEFAULT_VALUE)
             ).set(BasicJsonMarshallerTypedExpressionFunctionParameter.KINDS_PROPERTY, JsonNode.string("CONVERT,EVALUATE"));
     }

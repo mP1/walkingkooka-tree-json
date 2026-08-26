@@ -86,11 +86,11 @@ public final class BasicJsonMarshallerTypedClassTest extends BasicJsonMarshaller
     }
 
     private void roundtripAndCheck(final Class<?> classs) {
-        final JsonNode json = this.marshallContext()
+        final JsonNode json = JSON_NODE_MARSHALL_CONTEXT
             .marshall(classs);
         this.checkEquals(
             classs,
-            this.unmarshallContext()
+            JSON_NODE_UNMARSHALL_CONTEXT
                 .unmarshall(
                     json,
                     Class.class

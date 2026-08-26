@@ -148,7 +148,7 @@ public final class BasicJsonMarshallerTypedRangeTest extends BasicJsonMarshaller
     }
 
     private JsonNode valueWithType(final Integer value) {
-        return this.marshallContext()
+        return JSON_NODE_MARSHALL_CONTEXT
             .marshallWithType(value);
     }
 

@@ -99,7 +99,7 @@ public final class BasicJsonMarshallerTypedExpressionLambdaFunctionExpressionTes
 
     @Override
     JsonNode node() {
-        final JsonNodeMarshallContext marshallContext = this.marshallContext();
+        final JsonNodeMarshallContext marshallContext = JSON_NODE_MARSHALL_CONTEXT;
 
         return JsonNode.object()
             .set(BasicJsonMarshallerTypedExpressionLambdaFunctionExpression.PARAMETERS_JSON_PROPERTY, marshallContext.marshallCollection(PARAMETERS))

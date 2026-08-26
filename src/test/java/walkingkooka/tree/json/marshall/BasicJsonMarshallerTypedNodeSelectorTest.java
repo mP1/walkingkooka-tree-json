@@ -386,7 +386,7 @@ public final class BasicJsonMarshallerTypedNodeSelectorTest extends BasicJsonMar
     }
 
     private void jsonRoundtripAndCheck(final NodeSelector<TestNode, StringName, StringName, Object> selector) {
-        final JsonNode jsonNode = this.marshallContext()
+        final JsonNode jsonNode = JSON_NODE_MARSHALL_CONTEXT
             .marshall(selector);
         this.unmarshallAndCheck(jsonNode, selector);
     }

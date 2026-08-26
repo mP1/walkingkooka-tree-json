@@ -24,14 +24,11 @@ import walkingkooka.collect.list.StringList;
 import walkingkooka.collect.list.TsvStringList;
 import walkingkooka.collect.set.CsvStringSet;
 import walkingkooka.collect.set.TsvStringSet;
-import walkingkooka.currency.CurrencyCode;
-import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.currency.CurrencyCodeSet;
 import walkingkooka.datetime.LocalDateList;
 import walkingkooka.datetime.LocalDateTimeList;
 import walkingkooka.datetime.LocalTimeList;
 import walkingkooka.environment.EnvironmentValueNameSet;
-import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.locale.LocaleLanguageTagSet;
 import walkingkooka.math.NumberList;
 import walkingkooka.net.header.ETagList;
@@ -39,10 +36,7 @@ import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonNodeException;
 import walkingkooka.tree.json.JsonObject;
 
-import java.math.MathContext;
-import java.util.Currency;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -50,7 +44,8 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller<T>, T> extends BasicJsonMarshallerTestCase<M>
-    implements ToStringTesting<M> {
+    implements JsonNodeMarshallUnmarshallContextTesting,
+    ToStringTesting<M> {
 
     BasicJsonMarshallerTestCase2() {
         super();
@@ -75,7 +70,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             () -> this.marshaller()
                 .unmarshall(
                     null,
-                    this.unmarshallContext()
+                    JSON_NODE_UNMARSHALL_CONTEXT
                 )
         );
     }
@@ -151,11 +146,11 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             final JsonNode json = this.marshaller()
                 .marshallWithType(
                     value,
-                    this.marshallContext()
+                    JSON_NODE_MARSHALL_CONTEXT
                 );
 
             this.checkEquals(value,
-                this.unmarshallContext()
+                JSON_NODE_UNMARSHALL_CONTEXT
                     .unmarshallWithType(json),
                 () -> "roundtrip starting with value failed fromValue: " + value + " -> json: " + json
             );
@@ -167,14 +162,14 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         if (false == this instanceof BasicJsonMarshallerTypedCollectionCollectionTest) {
             final JsonNode json = this.nodeWithType();
 
-            final T value = this.unmarshallContext().
+            final T value = JSON_NODE_UNMARSHALL_CONTEXT.
                 unmarshallWithType(json);
 
             this.checkEquals(json,
                 this.marshaller()
                     .marshallWithType(
                         value,
-                        this.marshallContext()
+                        JSON_NODE_MARSHALL_CONTEXT
                     ),
                 () -> "roundtrip starting with node failed, json: " + json + " -> value:: " + value
             );
@@ -189,11 +184,11 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             final JsonNode json = this.marshaller()
                 .marshallWithType(
                     value,
-                    this.marshallContext()
+                    JSON_NODE_MARSHALL_CONTEXT
                 );
 
             this.checkEquals(value,
-                this.unmarshallContext()
+                JSON_NODE_UNMARSHALL_CONTEXT
                     .unmarshallWithType(json),
                 () -> "roundtrip starting with value failed, value: " + value + " -> json: " + json
             );
@@ -205,12 +200,12 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         final T value = this.value();
         final Optional<T> optional = Optional.of(value);
 
-        final JsonNode jsonNode = this.marshallContext()
+        final JsonNode jsonNode = JSON_NODE_MARSHALL_CONTEXT
             .marshallOptional(optional);
 
         this.checkEquals(
             optional,
-            this.unmarshallContext()
+            JSON_NODE_UNMARSHALL_CONTEXT
                 .unmarshallOptional(
                     jsonNode,
                     type(value)
@@ -224,12 +219,12 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         final T value = this.value();
         final Optional<T> optional = Optional.of(value);
 
-        final JsonNode jsonNode = this.marshallContext()
+        final JsonNode jsonNode = JSON_NODE_MARSHALL_CONTEXT
             .marshallOptionalWithType(optional);
 
         this.checkEquals(
             optional,
-            this.unmarshallContext()
+            JSON_NODE_UNMARSHALL_CONTEXT
                 .unmarshallOptionalWithType(jsonNode),
             () -> "roundtrip optional: " + optional + " -> json: " + jsonNode
         );
@@ -241,12 +236,12 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         final T value = this.value();
         final List<T> list = List.of(value);
 
-        final JsonNode jsonNode = this.marshallContext()
+        final JsonNode jsonNode = JSON_NODE_MARSHALL_CONTEXT
             .marshallCollection(list);
 
         this.checkEquals(
             list,
-            this.unmarshallContext()
+            JSON_NODE_UNMARSHALL_CONTEXT
                 .unmarshallList(
                     jsonNode,
                     type(value)
@@ -261,12 +256,12 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         final T value = this.value();
         final Set<T> set = Set.of(value);
 
-        final JsonNode jsonNode = this.marshallContext()
+        final JsonNode jsonNode = JSON_NODE_MARSHALL_CONTEXT
             .marshallCollection(set);
 
         this.checkEquals(
             set,
-            this.unmarshallContext()
+            JSON_NODE_UNMARSHALL_CONTEXT
                 .unmarshallSet(
                     jsonNode,
                     type(value)
@@ -284,12 +279,12 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             value
         );
 
-        final JsonNode jsonNode = this.marshallContext()
+        final JsonNode jsonNode = JSON_NODE_MARSHALL_CONTEXT
             .marshallMap(map);
 
         this.checkEquals(
             map,
-            this.unmarshallContext()
+            JSON_NODE_UNMARSHALL_CONTEXT
                 .unmarshallMap(
                     jsonNode,
                     String.class,
@@ -305,12 +300,12 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
 
         final Map<Integer, T> map = Map.of(123, value);
 
-        final JsonNode jsonNode = this.marshallContext()
+        final JsonNode jsonNode = JSON_NODE_MARSHALL_CONTEXT
             .marshallMap(map);
 
         this.checkEquals(
             map,
-            this.unmarshallContext()
+            JSON_NODE_UNMARSHALL_CONTEXT
                 .unmarshallMap(
                     jsonNode,
                     Integer.class,
@@ -347,11 +342,11 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     public final void testRoundtripTypeList() {
         final List<T> list = List.of(this.value());
 
-        final JsonNode jsonNode = this.marshallContext().marshallCollectionWithType(list);
+        final JsonNode jsonNode = JSON_NODE_MARSHALL_CONTEXT.marshallCollectionWithType(list);
 
         this.checkEquals(
             list,
-            this.unmarshallContext()
+            JSON_NODE_UNMARSHALL_CONTEXT
                 .unmarshallListWithType(jsonNode),
             () -> "roundtrip list: " + list + " -> json: " + jsonNode
         );
@@ -361,11 +356,11 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     public final void testRoundtripTypeSet() {
         final Set<T> set = Set.of(this.value());
 
-        final JsonNode jsonNode = this.marshallContext().marshallCollectionWithType(set);
+        final JsonNode jsonNode = JSON_NODE_MARSHALL_CONTEXT.marshallCollectionWithType(set);
 
         this.checkEquals(
             set,
-            this.unmarshallContext().unmarshallSetWithType(jsonNode),
+            JSON_NODE_UNMARSHALL_CONTEXT.unmarshallSetWithType(jsonNode),
             () -> "roundtrip set: " + set + " -> json: " + jsonNode
         );
     }
@@ -374,11 +369,11 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
     public final void testRoundtripTypeMap() {
         final Map<String, T> map = Map.of("key1", this.value());
 
-        final JsonNode jsonNode = this.marshallContext().marshallMapWithType(map);
+        final JsonNode jsonNode = JSON_NODE_MARSHALL_CONTEXT.marshallMapWithType(map);
 
         this.checkEquals(
             map,
-            this.unmarshallContext().unmarshallMapWithType(jsonNode),
+            JSON_NODE_UNMARSHALL_CONTEXT.unmarshallMapWithType(jsonNode),
             () -> "roundtrip marshall: " + map + " -> json: " + jsonNode
         );
     }
@@ -408,8 +403,6 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
 
     final <T extends Throwable> void unmarshallFailed(final JsonNode node,
                                                       final Class<T> thrown) {
-        final JsonNodeUnmarshallContext context = this.unmarshallContext();
-
         Class<? extends Throwable> reallyThrown = JsonNodeUnmarshallException.class;
         if (JsonNodeException.class.isAssignableFrom(thrown) || java.lang.NullPointerException.class == thrown) {
             reallyThrown = thrown;
@@ -420,7 +413,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             () -> this.marshaller()
                 .unmarshall(
                     node,
-                    context
+                    JSON_NODE_UNMARSHALL_CONTEXT
                 )
         );
     }
@@ -435,7 +428,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
         this.unmarshallAndCheck(
             marshaller,
             node,
-            this.unmarshallContext(),
+            JSON_NODE_UNMARSHALL_CONTEXT,
             value
         );
     }
@@ -457,7 +450,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
                                           final T value) {
         this.checkEquals(
             value,
-            this.unmarshallContext()
+            JSON_NODE_UNMARSHALL_CONTEXT
                 .unmarshallWithType(node),
             () -> "unmarshall failed " + node
         );
@@ -475,7 +468,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             node,
             marshaller.marshall(
                 value,
-                this.marshallContext()
+                JSON_NODE_MARSHALL_CONTEXT
             ),
             () -> "marshall failed " + node
         );
@@ -497,7 +490,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             node,
             marshaller.marshallWithType(
                 value,
-                this.marshallContext()
+                JSON_NODE_MARSHALL_CONTEXT
             ),
             () -> "marshallWithType failed " + node
         );
@@ -510,35 +503,5 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             this.typeName(),
             value
         );
-    }
-
-    final JsonNodeUnmarshallContext unmarshallContext() {
-        return BasicJsonNodeUnmarshallContext.with(
-            EXPRESSION_NUMBER_KIND,
-            new CurrencyCodeLanguageTagContext() {
-                @Override
-                public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
-                    return Optional.ofNullable(
-                        Currency.getInstance(
-                            currencyCode.value()
-                        )
-                    );
-                }
-
-                @Override
-                public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
-                    return Optional.of(
-                        Locale.forLanguageTag(
-                            languageTag.value()
-                        )
-                    );
-                }
-            },
-            MathContext.DECIMAL32
-        );
-    }
-
-    final JsonNodeMarshallContext marshallContext() {
-        return BasicJsonNodeMarshallContext.INSTANCE;
     }
 }

@@ -77,7 +77,7 @@ public final class BasicJsonMarshallerTypedExpressionListExpressionTest extends 
 
     @Override
     JsonNode node() {
-        final JsonNodeMarshallContext context = this.marshallContext();
+        final JsonNodeMarshallContext context = JSON_NODE_MARSHALL_CONTEXT;
 
         return JsonNode.object()
             .set(

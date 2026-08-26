@@ -37,7 +37,6 @@ public final class JsonNodeExpressionFunctionJsonTextTest extends JsonNodeExpres
     JsonNodeMarshallUnmarshallContextTesting {
 
     private final static JsonNodeConverterContext CONVERTER_CONTEXT = JsonNodeConverterContexts.basic(
-        ENVIRONMENT_CONTEXT, // CanParseEnvironmentValueName
         ExpressionNumberConverterContexts.basic(
             Converters.fake(),
             BinaryNumberConverterFunctions.multiply(), // multiplier

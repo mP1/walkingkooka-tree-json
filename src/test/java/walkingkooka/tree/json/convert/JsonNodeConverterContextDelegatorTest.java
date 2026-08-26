@@ -108,7 +108,6 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
         @Override
         public JsonNodeConverterContext jsonNodeConverterContext() {
             return JsonNodeConverterContexts.basic(
-                ENVIRONMENT_CONTEXT, // CanParseEnvironmentValueName
                 ExpressionNumberConverterContexts.basic(
                     Converters.fake(),
                     BinaryNumberConverterFunctions.multiply(), // multiplier

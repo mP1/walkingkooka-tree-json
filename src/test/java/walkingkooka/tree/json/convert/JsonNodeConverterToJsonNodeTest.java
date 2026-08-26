@@ -82,7 +82,6 @@ public final class JsonNodeConverterToJsonNodeTest extends JsonNodeConverterTest
     @Override
     public JsonNodeConverterContext createContext() {
         return JsonNodeConverterContexts.basic(
-            ENVIRONMENT_CONTEXT, // CanParseEnvironmentValueName
             new FakeExpressionNumberConverterContext() {
 
                 @Override

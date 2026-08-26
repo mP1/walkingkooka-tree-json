@@ -22,7 +22,6 @@ import walkingkooka.ToStringTesting;
 import walkingkooka.convert.BinaryNumberConverterFunctions;
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
-import walkingkooka.environment.CanParseEnvironmentValueName;
 import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
@@ -40,8 +39,6 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
     ToStringTesting<BasicJsonNodeConverterContext>,
     DecimalNumberContextDelegator,
     EnvironmentContextTesting {
-
-    private final static CanParseEnvironmentValueName CAN_PARSE_ENVIRONMENT_VALUE_NAME = ENVIRONMENT_CONTEXT;
 
     private final static ExpressionNumberConverterContext CONVERTER_CONTEXT = ExpressionNumberConverterContexts.basic(
         ExpressionNumberConverters.toNumberOrExpressionNumber(
@@ -65,23 +62,10 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
     );
 
     @Test
-    public void testWithNullCanParseEnvironmentValueNameFails() {
-        assertThrows(
-            NullPointerException.class,
-            () -> BasicJsonNodeConverterContext.with(
-                null,
-                CONVERTER_CONTEXT,
-                JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
-            )
-        );
-    }
-
-    @Test
     public void testWithNullConverterContextFails() {
         assertThrows(
             NullPointerException.class,
             () -> BasicJsonNodeConverterContext.with(
-                CAN_PARSE_ENVIRONMENT_VALUE_NAME,
                 null,
                 JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
             )
@@ -93,7 +77,6 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
         assertThrows(
             NullPointerException.class,
             () -> BasicJsonNodeConverterContext.with(
-                CAN_PARSE_ENVIRONMENT_VALUE_NAME,
                 CONVERTER_CONTEXT,
                 null
             )
@@ -103,7 +86,6 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
     @Override
     public BasicJsonNodeConverterContext createContext() {
         return BasicJsonNodeConverterContext.with(
-            CAN_PARSE_ENVIRONMENT_VALUE_NAME,
             CONVERTER_CONTEXT,
             JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
         );
@@ -155,7 +137,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
     public void testToString() {
         this.toStringAndCheck(
             this.createContext(),
-            CAN_PARSE_ENVIRONMENT_VALUE_NAME + " " + CONVERTER_CONTEXT + " " + JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
+            CONVERTER_CONTEXT + " " + JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
         );
     }
 

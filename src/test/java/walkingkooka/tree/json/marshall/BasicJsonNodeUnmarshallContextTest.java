@@ -22,20 +22,15 @@ import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
-import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.currency.FakeCurrencyLocaleContext;
-import walkingkooka.locale.LocaleLanguageTag;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 
-import java.math.MathContext;
 import java.math.RoundingMode;
-import java.util.Currency;
 import java.util.EnumSet;
 import java.util.Locale;
 import java.util.Optional;
@@ -46,25 +41,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
     implements JsonNodeUnmarshallContextTesting2<BasicJsonNodeUnmarshallContext>,
     HashCodeEqualsDefinedTesting2<BasicJsonNodeUnmarshallContext> {
 
-    private final CurrencyCodeLanguageTagContext CURRENCY_CODE_LANGUAGE_TAG_CONTEXT = new CurrencyCodeLanguageTagContext() {
-        @Override
-        public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
-            return Optional.ofNullable(
-                Currency.getInstance(
-                    currencyCode.value()
-                )
-            );
-        }
-
-        @Override
-        public Optional<Locale> localeForLanguageTag(final LocaleLanguageTag languageTag) {
-            return Optional.of(
-                Locale.forLanguageTag(
-                    languageTag.value()
-                )
-            );
-        }
-    };
+    private final CurrencyCodeLanguageTagContext CURRENCY_CODE_LANGUAGE_TAG_CONTEXT = CURRENCY_LOCALE_CONTEXT;
 
     @Test
     public void testWithNullKindFails() {
@@ -83,7 +60,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
         assertThrows(
             java.lang.NullPointerException.class,
             () -> BasicJsonNodeUnmarshallContext.with(
-                ExpressionNumberKind.BIG_DECIMAL,
+                EXPRESSION_NUMBER_KIND,
                 null,
                 MATH_CONTEXT
             )
@@ -1362,7 +1339,7 @@ public final class BasicJsonNodeUnmarshallContextTest extends BasicJsonNodeConte
             BasicJsonNodeUnmarshallContext.with(
                 DIFFERENT_EXPRESSION_NUMBER_KIND,
                 CURRENCY_CODE_LANGUAGE_TAG_CONTEXT,
-                MathContext.DECIMAL32
+                MATH_CONTEXT
             )
         );
     }

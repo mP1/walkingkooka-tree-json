@@ -50,7 +50,7 @@ public final class BasicJsonMarshallerTypedGenericTest extends BasicJsonMarshall
 
     @Override
     JsonNode node() {
-        return this.marshallContext().marshall(this.value());
+        return JSON_NODE_MARSHALL_CONTEXT.marshall(this.value());
     }
 
     @Override

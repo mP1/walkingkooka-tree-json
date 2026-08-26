@@ -71,7 +71,7 @@ public final class BasicJsonMarshallerTypedExpressionBinaryExpressionTest extend
 
     @Override
     JsonNode node() {
-        final JsonNodeMarshallContext context = this.marshallContext();
+        final JsonNodeMarshallContext context = JSON_NODE_MARSHALL_CONTEXT;
 
         return JsonNode.array()
             .appendChild(context.marshallWithType(this.leftValue()))

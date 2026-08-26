@@ -100,7 +100,7 @@ public final class BasicJsonMarshallerTypedCollectionSetTest extends BasicJsonMa
             .append(123.5)
             .append("abc123")
             .appendChild(
-                this.marshallContext()
+                JSON_NODE_MARSHALL_CONTEXT
                     .marshallWithType(
                         TestJsonNodeValue.with("test-TestJsonNodeValue-a1")
                     )

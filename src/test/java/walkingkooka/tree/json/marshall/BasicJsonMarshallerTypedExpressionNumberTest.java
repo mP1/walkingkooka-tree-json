@@ -59,7 +59,7 @@ public final class BasicJsonMarshallerTypedExpressionNumberTest extends BasicJso
     }
 
     private void roundtripAndCheck(final ExpressionNumber number) {
-        final JsonNode json = this.marshallContext().marshall(number);
+        final JsonNode json = JSON_NODE_MARSHALL_CONTEXT.marshall(number);
         this.unmarshallAndCheck(json, number);
     }
 

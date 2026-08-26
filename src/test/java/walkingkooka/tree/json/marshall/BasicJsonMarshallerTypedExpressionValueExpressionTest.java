@@ -74,7 +74,7 @@ public final class BasicJsonMarshallerTypedExpressionValueExpressionTest extends
 
     private void roundTripAndCheck(final Object value) {
         final ValueExpression<Object> expression = Expression.value(value);
-        final JsonNode json = this.marshallContext()
+        final JsonNode json = JSON_NODE_MARSHALL_CONTEXT
             .marshall(expression);
         this.unmarshallAndCheck(json, expression);
     }

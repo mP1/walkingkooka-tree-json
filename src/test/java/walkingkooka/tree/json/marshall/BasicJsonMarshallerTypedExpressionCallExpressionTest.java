@@ -86,7 +86,7 @@ public final class BasicJsonMarshallerTypedExpressionCallExpressionTest extends 
 
     @Override
     JsonNode node() {
-        final JsonNodeMarshallContext context = this.marshallContext();
+        final JsonNodeMarshallContext context = JSON_NODE_MARSHALL_CONTEXT;
 
         return JsonNode.object()
             .set(BasicJsonMarshallerTypedExpressionCallExpression.CALLABLE_PROPERTY, context.marshallWithType(this.namedFunction()))

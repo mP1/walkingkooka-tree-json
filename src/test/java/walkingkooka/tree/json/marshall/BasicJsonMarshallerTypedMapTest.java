@@ -97,7 +97,7 @@ public final class BasicJsonMarshallerTypedMapTest extends BasicJsonMarshallerTy
         return JsonNode.array()
             .appendChild(entry(JsonNode.booleanNode(Boolean.TRUE), JsonNode.nullNode()))
             .appendChild(entry(JsonNode.number(123.5), JsonNode.string("abc123")))
-            .appendChild(entry(this.marshallContext().marshallWithType(TestJsonNodeValue.with("test-has-json-node-a1")), JsonNode.booleanNode(Boolean.FALSE)));
+            .appendChild(entry(JSON_NODE_MARSHALL_CONTEXT.marshallWithType(TestJsonNodeValue.with("test-has-json-node-a1")), JsonNode.booleanNode(Boolean.FALSE)));
     }
 
     private JsonNode entry(final JsonNode key, final JsonNode value) {

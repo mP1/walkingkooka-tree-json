@@ -191,14 +191,14 @@ public final class BasicJsonMarshallerTypedOptionalTest extends BasicJsonMarshal
 
     private void roundtripAndCheck(final Optional<?> value) {
         final BasicJsonMarshallerTypedOptional marshaller = this.marshaller();
-        final JsonNode json = marshaller.marshall(value, this.marshallContext());
-        final Optional<?> from = marshaller.unmarshall(json, this.unmarshallContext());
+        final JsonNode json = marshaller.marshall(value, JSON_NODE_MARSHALL_CONTEXT);
+        final Optional<?> from = marshaller.unmarshall(json, JSON_NODE_UNMARSHALL_CONTEXT);
 
         this.checkEquals(value, from, () -> "json\n" + json);
 
-        final JsonNode jsonWithType = this.marshallContext()
+        final JsonNode jsonWithType = JSON_NODE_MARSHALL_CONTEXT
             .marshallWithType(value);
-        final Optional<?> from2 = this.unmarshallContext()
+        final Optional<?> from2 = JSON_NODE_UNMARSHALL_CONTEXT
             .unmarshallWithType(jsonWithType);
 
         this.checkEquals(value, from2, () -> "jsonWithType\n" + jsonWithType);

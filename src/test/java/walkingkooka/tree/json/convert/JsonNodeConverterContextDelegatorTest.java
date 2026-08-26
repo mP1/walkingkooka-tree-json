@@ -61,11 +61,6 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
     }
 
     @Override
-    public void testCheckToStringOverridden() {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public void testTypeNaming() {
         throw new UnsupportedOperationException();
     }
@@ -132,6 +127,11 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
                 ),
                 JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
             );
+        }
+
+        @Override
+        public String toString() {
+            return this.getClass().getSimpleName();
         }
     }
 }

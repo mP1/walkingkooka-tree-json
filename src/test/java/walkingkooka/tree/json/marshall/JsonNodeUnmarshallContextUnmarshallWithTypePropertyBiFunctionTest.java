@@ -22,16 +22,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.ToStringTesting;
-import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.reflect.ThrowableTesting;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
 import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.tree.json.UnsupportedTypeJsonNodeException;
 import walkingkooka.util.BiFunctionTesting;
-
-import java.math.MathContext;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -39,6 +35,7 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
     JsonNode,
     JsonNodeUnmarshallContext,
     TestJsonNodeValue>,
+    JsonNodeMarshallUnmarshallContextTesting,
     ThrowableTesting,
     ToStringTesting<JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<TestJsonNodeValue>> {
 
@@ -90,29 +87,33 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
         final TestJsonNodeValue value = this.value();
         final JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<TestJsonNodeValue> function = this.createBiFunction();
 
-        this.applyAndCheck(function,
-            value.marshall(this.marshallContext()),
-            this.unmarshallContext(),
-            value);
+        this.applyAndCheck(
+            function,
+            value.marshall(JSON_NODE_MARSHALL_CONTEXT),
+            JSON_NODE_UNMARSHALL_CONTEXT,
+            value
+        );
     }
 
     @Test
     public void testApplyTwice() {
         final TestJsonNodeValue value1 = this.value();
         final JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<TestJsonNodeValue> function = this.createBiFunction();
-
-        final JsonNodeMarshallContext context = this.marshallContext();
-
-        this.applyAndCheck(function,
-            value1.marshall(context),
-            this.unmarshallContext(),
-            value1);
+        
+        this.applyAndCheck(
+            function,
+            value1.marshall(JSON_NODE_MARSHALL_CONTEXT),
+            JSON_NODE_UNMARSHALL_CONTEXT,
+            value1
+        );
 
         final TestJsonNodeValue value2 = TestJsonNodeValue.with("test-JsonNodeMap-b2");
-        this.applyAndCheck(function,
-            value2.marshall(context),
-            this.unmarshallContext(),
-            value2);
+        this.applyAndCheck(
+            function,
+            value2.marshall(JSON_NODE_MARSHALL_CONTEXT),
+            JSON_NODE_UNMARSHALL_CONTEXT,
+            value2
+        );
     }
 
     @Test
@@ -124,9 +125,9 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
             ).apply(
                 this.value()
                     .marshall(
-                        this.marshallContext()
+                        JSON_NODE_MARSHALL_CONTEXT
                     ),
-                this.unmarshallContext()
+                JSON_NODE_UNMARSHALL_CONTEXT
             )
         );
         this.getMessageAndCheck(
@@ -153,7 +154,7 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
                 )
                 .apply(
                     JsonNode.object(),
-                    this.unmarshallContext()
+                    JSON_NODE_UNMARSHALL_CONTEXT
                 )
         );
         this.checkEquals(
@@ -187,7 +188,7 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
         return JsonNode.object()
             .set(
                 typeNameProperty(),
-                this.marshallContext()
+                JSON_NODE_MARSHALL_CONTEXT
                     .typeName(type)
                     .get()
             );
@@ -200,19 +201,7 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
     private Class<TestJsonNodeValue> valueType() {
         return TestJsonNodeValue.class;
     }
-
-    private JsonNodeUnmarshallContext unmarshallContext() {
-        return JsonNodeUnmarshallContexts.basic(
-            ExpressionNumberKind.DEFAULT,
-            CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
-            MathContext.DECIMAL32
-        );
-    }
-
-    private JsonNodeMarshallContext marshallContext() {
-        return JsonNodeMarshallContexts.basic();
-    }
-
+    
     // toString.........................................................................................................
 
     @Test

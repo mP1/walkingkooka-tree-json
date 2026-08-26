@@ -22,20 +22,17 @@ import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.convert.Converter;
 import walkingkooka.convert.Converters;
-import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.tree.expression.Expression;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonString;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContexts;
-import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContext;
-import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextTesting;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.util.Optional;
 
-public final class JsonNodeConverterTextToObjectTest extends JsonNodeConverterTestCase<JsonNodeConverterTextToObject<FakeJsonNodeConverterContext>, FakeJsonNodeConverterContext> {
+public final class JsonNodeConverterTextToObjectTest extends JsonNodeConverterTestCase<JsonNodeConverterTextToObject<FakeJsonNodeConverterContext>, FakeJsonNodeConverterContext>
+    implements JsonNodeMarshallUnmarshallContextTesting {
 
     @Test
     public void testConvertStringToUnsupportedClassFails() {
@@ -167,19 +164,13 @@ public final class JsonNodeConverterTextToObjectTest extends JsonNodeConverterTe
             @Override
             public <T> T unmarshall(final JsonNode json,
                                     final Class<T> type) {
-                return this.context.unmarshall(json, type);
+                return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.unmarshall(json, type);
             }
 
             @Override
             public Optional<JsonString> typeName(final Class<?> type) {
-                return this.context.typeName(type);
+                return JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT.typeName(type);
             }
-
-            private final JsonNodeUnmarshallContext context = JsonNodeUnmarshallContexts.basic(
-                ExpressionNumberKind.BIG_DECIMAL,
-                CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
-                MathContext.DECIMAL32
-            );
         };
     }
 

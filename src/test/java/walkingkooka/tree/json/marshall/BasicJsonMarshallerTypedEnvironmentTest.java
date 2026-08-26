@@ -17,12 +17,58 @@
 
 package walkingkooka.tree.json.marshall;
 
+import org.junit.jupiter.api.Test;
 import walkingkooka.environment.Environment;
+import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonPropertyName;
 
-public final class BasicJsonMarshallerTypedEnvironmentTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedEnvironment, Environment> {
+public final class BasicJsonMarshallerTypedEnvironmentTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedEnvironment, Environment>
+    implements EnvironmentContextTesting {
+
+    @Test
+    public void testMarshallEnvironmentContext() {
+        this.marshallAndCheck(
+            ENVIRONMENT_CONTEXT.environment(),
+            JsonNode.parse(
+                "{\n" +
+                    "  \"charset\": {\n" +
+                    "    \"type\": \"charset\",\n" +
+                    "    \"value\": \"UTF-8\"\n" +
+                    "  },\n" +
+                    "  \"currency\": {\n" +
+                    "    \"type\": \"currency\",\n" +
+                    "    \"value\": \"AUD\"\n" +
+                    "  },\n" +
+                    "  \"indentation\": {\n" +
+                    "    \"type\": \"indentation\",\n" +
+                    "    \"value\": \"  \"\n" +
+                    "  },\n" +
+                    "  \"lineEnding\": {\n" +
+                    "    \"type\": \"line-ending\",\n" +
+                    "    \"value\": \"NL\"\n" +
+                    "  },\n" +
+                    "  \"locale\": {\n" +
+                    "    \"type\": \"locale\",\n" +
+                    "    \"value\": \"en-AU\"\n" +
+                    "  },\n" +
+                    "  \"now\": {\n" +
+                    "    \"type\": \"local-date-time\",\n" +
+                    "    \"value\": \"1999-12-31T12:58:59\"\n" +
+                    "  },\n" +
+                    "  \"timeOffset\": {\n" +
+                    "    \"type\": \"zone-offset\",\n" +
+                    "    \"value\": \"Z\"\n" +
+                    "  },\n" +
+                    "  \"user\": {\n" +
+                    "    \"type\": \"email-address\",\n" +
+                    "    \"value\": \"user123@example.com\"\n" +
+                    "  }\n" +
+                    "}"
+            )
+        );
+    }
 
     @Override
     BasicJsonMarshallerTypedEnvironment marshaller() {

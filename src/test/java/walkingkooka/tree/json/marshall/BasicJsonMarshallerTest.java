@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.collect.list.Lists;
 import walkingkooka.currency.CurrencyLocaleContexts;
+import walkingkooka.environment.CanParseEnvironmentValueNameTesting;
 import walkingkooka.tree.expression.Expression;
 import walkingkooka.tree.expression.ExpressionFunctionName;
 import walkingkooka.tree.json.JsonNode;
@@ -40,7 +41,8 @@ import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<BasicJsonMarshaller<Void>> {
+public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<BasicJsonMarshaller<Void>>
+    implements CanParseEnvironmentValueNameTesting {
 
     @AfterEach
     public void afterEach() {
@@ -343,6 +345,7 @@ public final class BasicJsonMarshallerTest extends BasicJsonMarshallerTestCase<B
             value,
             JsonNodeUnmarshallContexts.basic(
                 EXPRESSION_NUMBER_KIND,
+                CAN_PARSE_ENVIRONMENT_VALUE_NAME,
                 CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
                 MathContext.DECIMAL32
             ).unmarshall(json, value.getClass()),

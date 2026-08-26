@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.marshall;
 
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
@@ -35,6 +36,11 @@ import java.util.function.Function;
  * A fake {@link JsonNodeUnmarshallContext}
  */
 public class FakeJsonNodeUnmarshallContext extends FakeJsonNodeContext implements JsonNodeUnmarshallContext {
+
+    @Override
+    public EnvironmentValueName<?> parseEnvironmentValueName(final String name) {
+        throw new UnsupportedOperationException();
+    }
 
     @Override
     public ExpressionNumberKind expressionNumberKind() {

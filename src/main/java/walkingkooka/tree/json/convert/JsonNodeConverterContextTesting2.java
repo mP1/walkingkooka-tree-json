@@ -30,6 +30,11 @@ public interface JsonNodeConverterContextTesting2<C extends JsonNodeConverterCon
         return this.createContext();
     }
 
+    @Override
+    default C createCanParseEnvironmentValueName() {
+        return this.createContext();
+    }
+
     // necessary because the 3 Testing interface have different default impls
     @Override
     default String typeNameSuffix() {

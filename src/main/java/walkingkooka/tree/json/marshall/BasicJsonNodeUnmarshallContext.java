@@ -23,6 +23,8 @@ import walkingkooka.collect.map.Maps;
 import walkingkooka.collect.set.Sets;
 import walkingkooka.currency.CurrencyCodeLanguageTagContext;
 import walkingkooka.currency.CurrencyCodeLanguageTagContextDelegator;
+import walkingkooka.environment.CanParseEnvironmentValueName;
+import walkingkooka.environment.CanParseEnvironmentValueNameDelegator;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.json.JsonArray;
 import walkingkooka.tree.json.JsonNode;
@@ -42,20 +44,24 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implements JsonNodeUnmarshallContext,
+    CanParseEnvironmentValueNameDelegator,
     CurrencyCodeLanguageTagContextDelegator {
 
     /**
      * Factory
      */
     static BasicJsonNodeUnmarshallContext with(final ExpressionNumberKind kind,
+                                               final CanParseEnvironmentValueName canParseEnvironmentValueName,
                                                final CurrencyCodeLanguageTagContext currencyCodeLanguageTagContext,
                                                final MathContext mathContext) {
         Objects.requireNonNull(kind, "kind");
+        Objects.requireNonNull(canParseEnvironmentValueName, "canParseEnvironmentValueName");
         Objects.requireNonNull(currencyCodeLanguageTagContext, "currencyCodeLanguageTagContext");
         Objects.requireNonNull(mathContext, "mathContext");
 
         return new BasicJsonNodeUnmarshallContext(
             kind,
+            canParseEnvironmentValueName,
             currencyCodeLanguageTagContext,
             mathContext,
             JsonNodeUnmarshallContext.PRE_PROCESSOR
@@ -66,15 +72,26 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
      * Private ctor
      */
     private BasicJsonNodeUnmarshallContext(final ExpressionNumberKind kind,
+                                           final CanParseEnvironmentValueName canParseEnvironmentValueName,
                                            final CurrencyCodeLanguageTagContext currencyCodeLanguageTagContext,
                                            final MathContext mathContext,
                                            final JsonNodeUnmarshallContextPreProcessor processor) {
         super();
         this.kind = kind;
+        this.canParseEnvironmentValueName = canParseEnvironmentValueName;
         this.currencyCodeLanguageTagContext = currencyCodeLanguageTagContext;
         this.mathContext = mathContext;
         this.processor = processor;
     }
+
+    // CanParseEnvironmentValueNameDelegator............................................................................
+
+    @Override
+    public CanParseEnvironmentValueName canParseEnvironmentValueName() {
+        return this.canParseEnvironmentValueName;
+    }
+
+    private final CanParseEnvironmentValueName canParseEnvironmentValueName;
 
     // CurrencyCodeLanguageTagContextDelegator..........................................................................
 
@@ -113,6 +130,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
             this :
             new BasicJsonNodeUnmarshallContext(
                 this.kind,
+                this.canParseEnvironmentValueName,
                 this.currencyCodeLanguageTagContext,
                 this.mathContext,
                 processor
@@ -391,6 +409,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
     public int hashCode() {
         return Objects.hash(
             this.kind,
+            this.canParseEnvironmentValueName,
             this.currencyCodeLanguageTagContext,
             this.mathContext,
             this.processor
@@ -406,6 +425,7 @@ final class BasicJsonNodeUnmarshallContext extends BasicJsonNodeContext implemen
 
     private boolean equals0(final BasicJsonNodeUnmarshallContext other) {
         return this.kind.equals(other.kind) &&
+            this.canParseEnvironmentValueName.equals(other.canParseEnvironmentValueName) &&
             this.currencyCodeLanguageTagContext.equals(other.currencyCodeLanguageTagContext) &&
             this.mathContext.equals(other.mathContext) &&
             Objects.equals(this.processor, other.processor);

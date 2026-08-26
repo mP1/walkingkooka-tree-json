@@ -181,6 +181,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedJsonNode.instance(),
             BasicJsonMarshallerTypedJsonPropertyName.instance(),
             BasicJsonMarshallerTypedLink.instance(),
+            BasicJsonMarshallerTypedLineEnding.instance(),
             BasicJsonMarshallerTypedLocalDate.instance(),
             BasicJsonMarshallerTypedLocalDateList.instance(),
             BasicJsonMarshallerTypedLocalDateTime.instance(),

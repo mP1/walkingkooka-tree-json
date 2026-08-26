@@ -22,20 +22,16 @@ import walkingkooka.Cast;
 import walkingkooka.Either;
 import walkingkooka.convert.Converter;
 import walkingkooka.convert.Converters;
-import walkingkooka.currency.CurrencyLocaleContexts;
 import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.FakeExpressionNumberConverterContext;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallContexts;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContexts;
-import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
-
-import java.math.MathContext;
+import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextTesting;
 
 public final class JsonNodeConverterJsonNodeToTest extends JsonNodeConverterTestCase<JsonNodeConverterJsonNodeTo<JsonNodeConverterContext>, JsonNodeConverterContext>
-    implements EnvironmentContextTesting {
+    implements EnvironmentContextTesting,
+    JsonNodeMarshallUnmarshallContextTesting {
 
     @Test
     public void testConvertJsonNodeTo() {
@@ -95,15 +91,13 @@ public final class JsonNodeConverterJsonNodeToTest extends JsonNodeConverterTest
 
     @Override
     public JsonNodeConverterContext createContext() {
-        final ExpressionNumberKind kind = ExpressionNumberKind.BIG_DECIMAL;
-
         return JsonNodeConverterContexts.basic(
             ENVIRONMENT_CONTEXT, // CanParseEnvironmentValueName
             new FakeExpressionNumberConverterContext() {
 
                 @Override
                 public ExpressionNumberKind expressionNumberKind() {
-                    return kind;
+                    return EXPRESSION_NUMBER_KIND;
                 }
 
                 @Override
@@ -128,14 +122,7 @@ public final class JsonNodeConverterJsonNodeToTest extends JsonNodeConverterTest
 
                 private final Converter<FakeExpressionNumberConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
             },
-            JsonNodeMarshallUnmarshallContexts.basic(
-                JsonNodeMarshallContexts.basic(),
-                JsonNodeUnmarshallContexts.basic(
-                    kind,
-                    CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
-                    MathContext.DECIMAL32
-                )
-            )
+            JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
         );
     }
 

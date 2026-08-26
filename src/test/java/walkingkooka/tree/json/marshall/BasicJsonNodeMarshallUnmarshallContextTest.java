@@ -19,12 +19,6 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
-import walkingkooka.currency.CurrencyContexts;
-import walkingkooka.locale.LocaleContexts;
-import walkingkooka.tree.expression.ExpressionNumberKind;
-
-import java.math.MathContext;
-import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -37,7 +31,7 @@ public final class BasicJsonNodeMarshallUnmarshallContextTest implements JsonNod
             java.lang.NullPointerException.class,
             () -> BasicJsonNodeMarshallUnmarshallContext.with(
                 null,
-                JsonNodeUnmarshallContexts.fake()
+                JSON_NODE_UNMARSHALL_CONTEXT
             )
         );
     }
@@ -47,7 +41,7 @@ public final class BasicJsonNodeMarshallUnmarshallContextTest implements JsonNod
         assertThrows(
             java.lang.NullPointerException.class,
             () -> BasicJsonNodeMarshallUnmarshallContext.with(
-                JsonNodeMarshallContexts.fake(),
+                JSON_NODE_MARSHALL_CONTEXT,
                 null
             )
         );
@@ -56,17 +50,8 @@ public final class BasicJsonNodeMarshallUnmarshallContextTest implements JsonNod
     @Override
     public BasicJsonNodeMarshallUnmarshallContext createContext() {
         return BasicJsonNodeMarshallUnmarshallContext.with(
-            JsonNodeMarshallContexts.basic(),
-            JsonNodeUnmarshallContexts.basic(
-                ExpressionNumberKind.BIG_DECIMAL,
-                CurrencyContexts.fake()
-                    .setLocaleContext(
-                        LocaleContexts.jre(
-                            Locale.ENGLISH
-                        )
-                    ), // CurrencyCodeLanguageTagContext
-                MathContext.DECIMAL32
-            )
+            JSON_NODE_MARSHALL_CONTEXT,
+            JSON_NODE_UNMARSHALL_CONTEXT
         );
     }
 
@@ -74,15 +59,12 @@ public final class BasicJsonNodeMarshallUnmarshallContextTest implements JsonNod
 
     @Test
     public void testToString() {
-        final JsonNodeMarshallContext marshallContext = JsonNodeMarshallContexts.fake();
-        final JsonNodeUnmarshallContext unmarshallContext = JsonNodeUnmarshallContexts.fake();
-
         this.toStringAndCheck(
             BasicJsonNodeMarshallUnmarshallContext.with(
-                marshallContext,
-                unmarshallContext
+                JSON_NODE_MARSHALL_CONTEXT,
+                JSON_NODE_UNMARSHALL_CONTEXT
             ),
-            marshallContext + " " + unmarshallContext
+            JSON_NODE_MARSHALL_CONTEXT + " " + JSON_NODE_UNMARSHALL_CONTEXT
         );
     }
 

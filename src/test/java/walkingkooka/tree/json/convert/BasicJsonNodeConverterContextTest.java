@@ -22,35 +22,17 @@ import walkingkooka.ToStringTesting;
 import walkingkooka.convert.BinaryNumberConverterFunctions;
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
-import walkingkooka.currency.CurrencyCode;
-import walkingkooka.currency.CurrencyExchange;
-import walkingkooka.currency.CurrencyLocaleContexts;
-import walkingkooka.currency.FakeCurrencyContext;
-import walkingkooka.datetime.DateTimeContexts;
 import walkingkooka.environment.CanParseEnvironmentValueName;
 import walkingkooka.environment.EnvironmentContextTesting;
-import walkingkooka.locale.LocaleContext;
-import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
-import walkingkooka.math.DecimalNumberContexts;
 import walkingkooka.tree.expression.ExpressionNumber;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContext;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContexts;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverters;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallContexts;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContext;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContexts;
-import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 
 import java.math.MathContext;
 import java.text.DecimalFormat;
-import java.time.LocalDateTime;
-import java.util.Currency;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -61,70 +43,25 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
 
     private final static CanParseEnvironmentValueName CAN_PARSE_ENVIRONMENT_VALUE_NAME = ENVIRONMENT_CONTEXT;
 
-    static {
-        final LocaleContext localeContext = LocaleContexts.jre(LOCALE);
-
-        CONVERTER_CONTEXT = ExpressionNumberConverterContexts.basic(
-            ExpressionNumberConverters.toNumberOrExpressionNumber(
-                Converters.textToNumber(
-                    (dnc) -> (DecimalFormat) DecimalFormat.getInstance()
-                )
-            ),
-            BinaryNumberConverterFunctions.multiply(), // multiplier
-            ConverterContexts.basic(
-                false, // canNumbersHaveGroupSeparator
-                Converters.JAVA_EPOCH_OFFSET,
-                ',', // valueSeparator
-                Converters.fake(),
-                BinaryNumberConverterFunctions.fake(), // multiplier
-                BINARY_TEXT_CONTEXT,
-                new FakeCurrencyContext() {
-
-                    @Override
-                    public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
-                                                                 final Optional<LocalDateTime> dateTime) {
-                        Objects.requireNonNull(currencyExchange, "currencyExchange");
-                        Objects.requireNonNull(dateTime, "dateTime");
-
-                        throw new UnsupportedOperationException();
-                    }
-
-                    @Override
-                    public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
-                        Objects.requireNonNull(currencyCode, "currencyCode");
-                        throw new UnsupportedOperationException();
-                    }
-
-                    @Override
-                    public Optional<Currency> currencyForLocale(final Locale locale) {
-                        return Optional.of(
-                            Currency.getInstance(locale)
-                        );
-                    }
-                }.setLocaleContext(localeContext),
-                DateTimeContexts.basic(
-                    localeContext.dateTimeSymbolsForLocale(LOCALE)
-                        .get(),
-                    LOCALE,
-                    1950,
-                    50,
-                    LocalDateTime::now
-                ),
-                DecimalNumberContexts.american(MathContext.DECIMAL32)
-            ),
-            ExpressionNumberKind.DEFAULT
-        );
-    }
-
-    private final static ExpressionNumberConverterContext CONVERTER_CONTEXT;
-
-    private final static JsonNodeMarshallUnmarshallContext MARSHALL_UNMARSHALL_CONTEXT = JsonNodeMarshallUnmarshallContexts.basic(
-        JsonNodeMarshallContexts.basic(),
-        JsonNodeUnmarshallContexts.basic(
-            ExpressionNumberKind.DEFAULT,
-            CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
-            CONVERTER_CONTEXT.mathContext()
-        )
+    private final static ExpressionNumberConverterContext CONVERTER_CONTEXT = ExpressionNumberConverterContexts.basic(
+        ExpressionNumberConverters.toNumberOrExpressionNumber(
+            Converters.textToNumber(
+                (dnc) -> (DecimalFormat) DecimalFormat.getInstance()
+            )
+        ),
+        BinaryNumberConverterFunctions.multiply(), // multiplier
+        ConverterContexts.basic(
+            false, // canNumbersHaveGroupSeparator
+            Converters.JAVA_EPOCH_OFFSET,
+            ',', // valueSeparator
+            Converters.fake(),
+            BinaryNumberConverterFunctions.fake(), // multiplier
+            BINARY_TEXT_CONTEXT,
+            CURRENCY_LOCALE_CONTEXT,
+            DATE_TIME_CONTEXT,
+            DECIMAL_NUMBER_CONTEXT
+        ),
+        EXPRESSION_NUMBER_KIND
     );
 
     @Test
@@ -134,7 +71,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
             () -> BasicJsonNodeConverterContext.with(
                 null,
                 CONVERTER_CONTEXT,
-                MARSHALL_UNMARSHALL_CONTEXT
+                JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
             )
         );
     }
@@ -146,7 +83,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
             () -> BasicJsonNodeConverterContext.with(
                 CAN_PARSE_ENVIRONMENT_VALUE_NAME,
                 null,
-                MARSHALL_UNMARSHALL_CONTEXT
+                JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
             )
         );
     }
@@ -168,7 +105,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
         return BasicJsonNodeConverterContext.with(
             CAN_PARSE_ENVIRONMENT_VALUE_NAME,
             CONVERTER_CONTEXT,
-            MARSHALL_UNMARSHALL_CONTEXT
+            JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
         );
     }
 
@@ -218,7 +155,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
     public void testToString() {
         this.toStringAndCheck(
             this.createContext(),
-            CAN_PARSE_ENVIRONMENT_VALUE_NAME + " " + CONVERTER_CONTEXT + " " + MARSHALL_UNMARSHALL_CONTEXT
+            CAN_PARSE_ENVIRONMENT_VALUE_NAME + " " + CONVERTER_CONTEXT + " " + JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
         );
     }
 

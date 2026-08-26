@@ -20,33 +20,16 @@ package walkingkooka.tree.json.convert;
 import walkingkooka.convert.BinaryNumberConverterFunctions;
 import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
-import walkingkooka.currency.CurrencyCode;
-import walkingkooka.currency.CurrencyExchange;
-import walkingkooka.currency.CurrencyLocaleContexts;
-import walkingkooka.currency.FakeCurrencyContext;
-import walkingkooka.datetime.DateTimeContexts;
-import walkingkooka.datetime.DateTimeSymbols;
 import walkingkooka.environment.EnvironmentContextTesting;
-import walkingkooka.locale.LocaleContexts;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
-import walkingkooka.math.DecimalNumberContexts;
-import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContexts;
 import walkingkooka.tree.json.convert.JsonNodeConverterContextDelegatorTest.TestJsonNodeConverterContextDelegator;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContextObjectPostProcessor;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallContexts;
-import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContexts;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
-import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContexts;
 
 import java.math.MathContext;
-import java.text.DateFormatSymbols;
-import java.time.LocalDateTime;
-import java.util.Currency;
-import java.util.Locale;
 import java.util.Objects;
-import java.util.Optional;
 
 public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConverterContextTesting2<TestJsonNodeConverterContextDelegator>,
     DecimalNumberContextDelegator,
@@ -102,8 +85,6 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
         return DECIMAL_NUMBER_CONTEXT;
     }
 
-    private final static DecimalNumberContext DECIMAL_NUMBER_CONTEXT = DecimalNumberContexts.american(MATH_CONTEXT);
-
     @Override
     public MathContext mathContext() {
         return MATH_CONTEXT;
@@ -131,9 +112,6 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
 
         @Override
         public JsonNodeConverterContext jsonNodeConverterContext() {
-            final ExpressionNumberKind numberKind = ExpressionNumberKind.BIG_DECIMAL;
-            final Locale locale = Locale.ENGLISH;
-
             return JsonNodeConverterContexts.basic(
                 ENVIRONMENT_CONTEXT, // CanParseEnvironmentValueName
                 ExpressionNumberConverterContexts.basic(
@@ -146,53 +124,13 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
                         Converters.fake(),
                         BinaryNumberConverterFunctions.fake(), // multiplier
                         BINARY_TEXT_CONTEXT,
-                        new FakeCurrencyContext() {
-
-                            @Override
-                            public Optional<Number> currencyExchangeRate(final CurrencyExchange currencyExchange,
-                                                                         final Optional<LocalDateTime> dateTime) {
-                                Objects.requireNonNull(currencyExchange, "currencyExchange");
-                                Objects.requireNonNull(dateTime, "dateTime");
-
-                                throw new UnsupportedOperationException();
-                            }
-
-                            @Override
-                            public Optional<Currency> currencyForCurrencyCode(final CurrencyCode currencyCode) {
-                                Objects.requireNonNull(currencyCode, "currencyCode");
-                                throw new UnsupportedOperationException();
-                            }
-
-                            @Override
-                            public Optional<Currency> currencyForLocale(final Locale locale) {
-                                return Optional.of(
-                                    Currency.getInstance(locale)
-                                );
-                            }
-                        }.setLocaleContext(
-                            LocaleContexts.jre(locale)
-                        ),
-                        DateTimeContexts.basic(
-                            DateTimeSymbols.fromDateFormatSymbols(
-                                new DateFormatSymbols(locale)
-                            ),
-                            locale,
-                            1950, // defaultYear
-                            50, // twoDigitYear
-                            LocalDateTime::now
-                        ),
+                        CURRENCY_LOCALE_CONTEXT,
+                        DATE_TIME_CONTEXT,
                         DECIMAL_NUMBER_CONTEXT
                     ),
-                    numberKind
+                    EXPRESSION_NUMBER_KIND
                 ),
-                JsonNodeMarshallUnmarshallContexts.basic(
-                    JsonNodeMarshallContexts.basic(),
-                    JsonNodeUnmarshallContexts.basic(
-                        numberKind,
-                        CurrencyLocaleContexts.fake(), // CurrencyCodeLanguageTagContext
-                        MATH_CONTEXT
-                    )
-                )
+                JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
             );
         }
     }

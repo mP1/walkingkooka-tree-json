@@ -25,7 +25,7 @@ import walkingkooka.convert.Converters;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonPropertyName;
 
-public final class JsonNodeConverterTextToJsonNodeTest extends JsonNodeConverterTestCase<JsonNodeConverterTextToJsonNode<FakeJsonNodeConverterContext>, FakeJsonNodeConverterContext> {
+public final class JsonNodeConverterTextToJsonNodeTest extends JsonNodeConverterTextToTestCase<JsonNodeConverterTextToJsonNode<FakeJsonNodeConverterContext>, FakeJsonNodeConverterContext> {
 
     @Test
     public void testConvertStringToJsonNodeWithBadJsonFails() {

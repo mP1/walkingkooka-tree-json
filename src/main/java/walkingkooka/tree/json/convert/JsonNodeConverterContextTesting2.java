@@ -17,10 +17,12 @@
 
 package walkingkooka.tree.json.convert;
 
+import walkingkooka.environment.convert.EnvironmentConverterContextTesting2;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContextTesting2;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextTesting2;
 
-public interface JsonNodeConverterContextTesting2<C extends JsonNodeConverterContext> extends ExpressionNumberConverterContextTesting2<C>,
+public interface JsonNodeConverterContextTesting2<C extends JsonNodeConverterContext> extends EnvironmentConverterContextTesting2<C>,
+    ExpressionNumberConverterContextTesting2<C>,
     JsonNodeMarshallUnmarshallContextTesting2<C> {
 
     @Override

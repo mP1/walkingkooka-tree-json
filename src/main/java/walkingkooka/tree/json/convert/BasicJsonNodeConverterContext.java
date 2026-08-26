@@ -20,6 +20,8 @@ package walkingkooka.tree.json.convert;
 import walkingkooka.convert.ConverterContext;
 import walkingkooka.convert.ConverterContextDelegator;
 import walkingkooka.currency.CurrencyCode;
+import walkingkooka.environment.CanParseEnvironmentValueName;
+import walkingkooka.environment.CanParseEnvironmentValueNameDelegator;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.tree.expression.ExpressionNumberKind;
@@ -42,19 +44,26 @@ import java.util.Optional;
  * and {@link JsonNodeUnmarshallContext}. Note the {@link ExpressionNumberKind} returned for all context should be the same.
  */
 final class BasicJsonNodeConverterContext implements JsonNodeConverterContext,
+    CanParseEnvironmentValueNameDelegator,
     JsonNodeMarshallUnmarshallContextDelegator,
     ConverterContextDelegator {
 
-    static BasicJsonNodeConverterContext with(final ExpressionNumberConverterContext converterContext,
+    static BasicJsonNodeConverterContext with(final CanParseEnvironmentValueName canParseEnvironmentValueName,
+                                              final ExpressionNumberConverterContext converterContext,
                                               final JsonNodeMarshallUnmarshallContext marshallUnmarshallContext) {
         return new BasicJsonNodeConverterContext(
+            Objects.requireNonNull(canParseEnvironmentValueName, "canParseEnvironmentValueName"),
             Objects.requireNonNull(converterContext, "converterContext"),
             Objects.requireNonNull(marshallUnmarshallContext, "marshallUnmarshallContext")
         );
     }
 
-    private BasicJsonNodeConverterContext(final ExpressionNumberConverterContext converterContext,
+    private BasicJsonNodeConverterContext(final CanParseEnvironmentValueName canParseEnvironmentValueName,
+                                          final ExpressionNumberConverterContext converterContext,
                                           final JsonNodeMarshallUnmarshallContext marshallUnmarshallContext) {
+        super();
+
+        this.canParseEnvironmentValueName = canParseEnvironmentValueName;
         this.converterContext = converterContext;
         this.marshallUnmarshallContext = marshallUnmarshallContext;
     }
@@ -67,6 +76,7 @@ final class BasicJsonNodeConverterContext implements JsonNodeConverterContext,
         return before.equals(after) ?
             this :
             BasicJsonNodeConverterContext.with(
+                this.canParseEnvironmentValueName,
                 this.converterContext,
                 after
             );
@@ -80,10 +90,20 @@ final class BasicJsonNodeConverterContext implements JsonNodeConverterContext,
         return before.equals(after) ?
             this :
             BasicJsonNodeConverterContext.with(
+                this.canParseEnvironmentValueName,
                 this.converterContext,
                 after
             );
     }
+
+    // CanParseEnvironmentValueNameDelegator............................................................................
+
+    @Override
+    public CanParseEnvironmentValueName canParseEnvironmentValueName() {
+        return this.canParseEnvironmentValueName;
+    }
+
+    private final CanParseEnvironmentValueName canParseEnvironmentValueName;
 
     // ConverterContextDelegator........................................................................................
 
@@ -135,6 +155,6 @@ final class BasicJsonNodeConverterContext implements JsonNodeConverterContext,
 
     @Override
     public String toString() {
-        return this.converterContext + " " + this.marshallUnmarshallContext;
+        return this.canParseEnvironmentValueName + " " + this.converterContext + " " + this.marshallUnmarshallContext;
     }
 }

@@ -10,6 +10,8 @@ import walkingkooka.convert.ConverterContexts;
 import walkingkooka.convert.Converters;
 import walkingkooka.currency.CurrencyLocaleContextTesting;
 import walkingkooka.datetime.DateTimeContextTesting;
+import walkingkooka.environment.CanParseEnvironmentValueNameTesting;
+import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.math.DecimalNumberContextTesting;
 import walkingkooka.text.BinaryTextContextTesting;
 import walkingkooka.text.Indentation;
@@ -26,13 +28,16 @@ import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextTesting;
 
 public final class JsonNodeExpressionFunctionJsonTextTest extends JsonNodeExpressionFunctionTestCase<JsonNodeExpressionFunctionJsonText<JsonNodeExpressionEvaluationContext>, String>
     implements BinaryTextContextTesting,
+    CanParseEnvironmentValueNameTesting,
     CurrencyLocaleContextTesting,
     DateTimeContextTesting,
     DecimalNumberContextTesting,
+    EnvironmentContextTesting,
     HasExpressionNumberKindTesting,
     JsonNodeMarshallUnmarshallContextTesting {
 
     private final static JsonNodeConverterContext CONVERTER_CONTEXT = JsonNodeConverterContexts.basic(
+        ENVIRONMENT_CONTEXT, // CanParseEnvironmentValueName
         ExpressionNumberConverterContexts.basic(
             Converters.fake(),
             BinaryNumberConverterFunctions.multiply(), // multiplier

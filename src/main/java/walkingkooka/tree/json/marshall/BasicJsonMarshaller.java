@@ -303,7 +303,9 @@ abstract class BasicJsonMarshaller<T> {
      */
     final synchronized void registerWithTypeName(final String typeName) {
         final BasicJsonMarshaller<?> previous = TYPENAME_TO_MARSHALLER.get(typeName);
-        if (null != previous) {
+
+        // In GWT some charsets appear to register same "instance" more than once.
+        if (null != previous && false == this.equals(previous)) {
             throw new IllegalArgumentException(
                 "Type " +
                     CharSequences.quote(typeName) +

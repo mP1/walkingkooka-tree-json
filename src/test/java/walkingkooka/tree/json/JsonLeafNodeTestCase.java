@@ -19,6 +19,7 @@ package walkingkooka.tree.json;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.predicate.Predicates;
 
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -149,6 +150,14 @@ public abstract class JsonLeafNodeTestCase<N extends JsonLeafNode<V>, V> extends
 
     @Override
     public void testParentWithoutChild() {
+    }
+
+    @Test
+    public final void testRemoveIfWithTrue() {
+        this.removeIfAndCheck(
+            this.createJsonNode(),
+            Predicates.always()
+        );
     }
 
     @Test

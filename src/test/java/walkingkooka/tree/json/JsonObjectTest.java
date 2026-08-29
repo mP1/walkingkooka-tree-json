@@ -1007,6 +1007,31 @@ public final class JsonObjectTest extends JsonParentNodeTestCase<JsonObject, Jso
         );
     }
 
+    // removeIf.........................................................................................................
+
+    @Test
+    public void testRemoveIf() {
+        final JsonObject object = JsonNode.object()
+            .set(
+                JsonPropertyName.with("111"),
+                111
+            ).set(
+                JsonPropertyName.with("222"),
+                "222"
+            ).set(
+                JsonPropertyName.with("333"),
+                333
+            );
+
+        this.removeIfAndCheck(
+            object,
+            (JsonNode child) -> child.isString(),
+            object.remove(
+                JsonPropertyName.with("222")
+            )
+        );
+    }
+
     // equals.......................................................................................................
 
     @Test

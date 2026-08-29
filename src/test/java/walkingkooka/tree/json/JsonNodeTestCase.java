@@ -246,6 +246,48 @@ public abstract class JsonNodeTestCase<N extends JsonNode> implements BeanProper
         );
     }
 
+    // removeIf.........................................................................................................
+
+    @Test
+    public final void testRemoveIfWithNullPredicateFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> this.createJsonNode()
+                .removeIf(null)
+        );
+    }
+
+    final void removeIfAndCheck(final JsonNode node,
+                                final Predicate<JsonNode> predicate) {
+        final JsonNode removed = node.removeFalseLike();
+
+        assertSame(
+            node,
+            removed,
+            () -> "removeFalseLike " + node
+        );
+    }
+
+    final void removeIfAndCheck(final JsonNode node,
+                                final Predicate<JsonNode> predicate,
+                                final JsonNode expected) {
+        final JsonNode removed = node.removeIf(predicate);
+
+        if (node.equals(expected)) {
+            assertSame(
+                node,
+                removed,
+                () -> "removeIf " + node + " " + predicate
+            );
+        } else {
+            this.checkEquals(
+                expected,
+                removed,
+                () -> "removeIf " + node + " " + predicate
+            );
+        }
+    }
+
     @Override
     public JsonNode createNode() {
         return this.createJsonNode();

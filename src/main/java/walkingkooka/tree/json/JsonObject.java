@@ -29,6 +29,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * Represents an immutable json object
@@ -405,6 +406,22 @@ public final class JsonObject extends JsonParentNode<JsonObjectList> {
                 .stream()
                 .filter(JsonNode::isNotFalseLike)
                 .map(JsonNode::removeFalseLike)
+                .collect(ImmutableList.collector())
+        );
+    }
+
+    // removeIf.........................................................................................................
+
+    @Override
+    public JsonObject removeIf(final Predicate<JsonNode> predicate) {
+        Objects.requireNonNull(predicate, "predicate");
+
+        final Predicate<JsonNode> filterIf = predicate.negate();
+
+        return this.setChildren(
+            this.children()
+                .stream()
+                .filter(filterIf)
                 .collect(ImmutableList.collector())
         );
     }

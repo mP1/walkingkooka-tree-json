@@ -1257,6 +1257,22 @@ public final class JsonArrayTest extends JsonParentNodeTestCase<JsonArray, List<
         );
     }
 
+    // removeIf.........................................................................................................
+
+    @Test
+    public void testRemoveIf() {
+        final JsonArray array = JsonNode.array()
+            .append(111)
+            .append("222")
+            .append(true);
+
+        this.removeIfAndCheck(
+            array,
+            (JsonNode child) -> child.isString(),
+            array.remove(1)
+        );
+    }
+
     // HashCodeAnddEqualityDefined......................................................................................
 
     @Test

@@ -26,6 +26,7 @@ import walkingkooka.visit.Visiting;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * Represents an immutable json array
@@ -413,6 +414,22 @@ public final class JsonArray extends JsonParentNode<List<JsonNode>> {
             this.children()
                 .stream()
                 .map(JsonNode::removeFalseLike)
+                .collect(ImmutableList.collector())
+        );
+    }
+
+    // removeIf.........................................................................................................
+
+    @Override
+    public JsonArray removeIf(final Predicate<JsonNode> predicate) {
+        Objects.requireNonNull(predicate, "predicate");
+
+        final Predicate<JsonNode> filterIf = predicate.negate();
+
+        return this.setChildren(
+            this.children()
+                .stream()
+                .filter(filterIf)
                 .collect(ImmutableList.collector())
         );
     }

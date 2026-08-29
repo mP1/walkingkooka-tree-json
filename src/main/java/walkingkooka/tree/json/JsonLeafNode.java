@@ -23,6 +23,7 @@ import walkingkooka.collect.list.Lists;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 /**
  * Base type for all the leaf json nodes that hold a simple value, including null.
@@ -112,6 +113,14 @@ abstract class JsonLeafNode<V> extends JsonNode implements HasValue<Object> {
 
     @Override
     public JsonNode removeFalseLike() {
+        return this;
+    }
+
+    // removeIf.........................................................................................................
+
+    @Override
+    public final JsonNode removeIf(final Predicate<JsonNode> predicate) {
+        Objects.requireNonNull(predicate, "predicate");
         return this;
     }
 

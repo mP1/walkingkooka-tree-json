@@ -410,6 +410,11 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     public abstract JsonNode removeFalseLike();
 
+    /**
+     * Removes any children that match the given {@link Predicate}
+     */
+    public abstract JsonNode removeIf(final Predicate<JsonNode> predicate);
+
     // TreePrintable....................................................................................................
 
     @Override

@@ -55,7 +55,7 @@ public final class JsonNodeExpressionFunctionJsonPointerTest extends JsonNodeExp
 
     @Test
     public void testApplyWithJsonPointer() {
-        final JsonPointer pointer = JsonPointer.parse("Hello");
+        final JsonPointer pointer = JsonPointer.parse("/Hello");
 
         this.applyAndCheck(
             Lists.of(pointer),

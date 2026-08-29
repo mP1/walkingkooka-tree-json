@@ -100,7 +100,7 @@ public abstract class JsonParentNodeTestCase<N extends JsonParentNode<C>, C exte
     }
 
     @Override
-    public void testParentWithoutChild() {
+    public final void testParentWithoutChild() {
     }
 
     final JsonString value1() {

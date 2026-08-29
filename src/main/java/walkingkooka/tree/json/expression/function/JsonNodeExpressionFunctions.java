@@ -21,6 +21,7 @@ import walkingkooka.reflect.PublicStaticHelper;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
+import walkingkooka.tree.json.pointer.JsonPointer;
 import walkingkooka.tree.json.select.JsonSelector;
 
 public final class JsonNodeExpressionFunctions implements PublicStaticHelper {
@@ -32,6 +33,13 @@ public final class JsonNodeExpressionFunctions implements PublicStaticHelper {
         return JsonNodeExpressionFunctionJson.instance();
     }
 
+    /**
+     * {@see JsonNodeExpressionFunctionJsonPointer}
+     */
+    public static <C extends JsonNodeExpressionEvaluationContext> ExpressionFunction<JsonPointer, C> jsonPointer() {
+        return JsonNodeExpressionFunctionJsonPointer.instance();
+    }
+    
     /**
      * {@see JsonNodeExpressionFunctionJsonSelector}
      */

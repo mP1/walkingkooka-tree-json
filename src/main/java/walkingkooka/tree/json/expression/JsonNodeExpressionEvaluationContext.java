@@ -19,5 +19,6 @@ package walkingkooka.tree.json.expression;
 
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 
-public interface JsonNodeExpressionEvaluationContext extends ExpressionEvaluationContext {
+public interface JsonNodeExpressionEvaluationContext extends ExpressionEvaluationContext,
+    CanJsonNodeExpressionEvaluationContext {
 }

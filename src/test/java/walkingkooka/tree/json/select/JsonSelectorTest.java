@@ -26,11 +26,12 @@ import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.expression.ExpressionFunctionName;
-import walkingkooka.tree.expression.FakeExpressionEvaluationContext;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.FakeExpressionFunction;
 import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.expression.FakeJsonNodeExpressionEvaluationContext;
+import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
 import walkingkooka.util.BiFunctionTesting;
 
 import java.util.List;
@@ -89,8 +90,8 @@ public final class JsonSelectorTest implements BiFunctionTesting<JsonSelector, J
         return new JsonSelectorContext() {
 
             @Override
-            public ExpressionEvaluationContext expressionEvaluationContext(final JsonNode node) {
-                return new FakeExpressionEvaluationContext() {
+            public JsonNodeExpressionEvaluationContext jsonNodeExpressionEvaluationContext(final JsonNode node) {
+                return new FakeJsonNodeExpressionEvaluationContext() {
                     @Override
                     public ExpressionFunction<?, ExpressionEvaluationContext> expressionFunction(final ExpressionFunctionName name) {
                         if(name.equals(NAME)) {

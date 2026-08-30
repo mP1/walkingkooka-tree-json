@@ -18,18 +18,13 @@
 package walkingkooka.tree.json.select;
 
 import walkingkooka.Context;
-import walkingkooka.tree.expression.ExpressionEvaluationContext;
 import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.expression.CanJsonNodeExpressionEvaluationContext;
 
 /**
  * The {@link Context} that accompanies {@link JsonSelector#apply(JsonNode, JsonSelectorContext)}, providing
  * support for executing any functions within a selector.
  */
-public interface JsonSelectorContext extends Context {
-
-    /**
-     * Creates a {@link ExpressionEvaluationContext} with the given {@link JsonNode} which will be used during
-     * function evaluation.
-     */
-    ExpressionEvaluationContext expressionEvaluationContext(final JsonNode node);
+public interface JsonSelectorContext extends Context,
+    CanJsonNodeExpressionEvaluationContext {
 }

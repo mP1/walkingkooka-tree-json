@@ -8,6 +8,8 @@ import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
+import walkingkooka.tree.json.pointer.JsonPointer;
+import walkingkooka.tree.json.select.JsonSelector;
 
 import java.util.Optional;
 
@@ -35,6 +37,14 @@ abstract class JsonNodeExpressionFunction<C extends JsonNodeExpressionEvaluation
 
     final static ExpressionFunctionParameter<JsonNode> JSON = ExpressionFunctionParameterName.with("json")
         .required(JsonNode.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+
+    final static ExpressionFunctionParameter<JsonPointer> POINTER = ExpressionFunctionParameterName.with("pointer")
+        .required(JsonPointer.class)
+        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
+
+    final static ExpressionFunctionParameter<JsonSelector> SELECTOR = ExpressionFunctionParameterName.with("selector")
+        .required(JsonSelector.class)
         .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     // Object...........................................................................................................

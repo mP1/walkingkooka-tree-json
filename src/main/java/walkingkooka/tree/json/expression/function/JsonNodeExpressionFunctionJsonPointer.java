@@ -2,8 +2,6 @@ package walkingkooka.tree.json.expression.function;
 
 import walkingkooka.Cast;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
-import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
-import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
 import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
 import walkingkooka.tree.json.pointer.JsonPointer;
 
@@ -32,10 +30,6 @@ final class JsonNodeExpressionFunctionJsonPointer<C extends JsonNodeExpressionEv
     public List<ExpressionFunctionParameter<?>> parameters(final int count) {
         return PARAMETERS;
     }
-
-    final static ExpressionFunctionParameter<JsonPointer> POINTER = ExpressionFunctionParameterName.with("pointer")
-        .required(JsonPointer.class)
-        .setKinds(ExpressionFunctionParameterKind.CONVERT_EVALUATE);
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(POINTER);
 

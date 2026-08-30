@@ -39,6 +39,13 @@ public final class JsonNodeExpressionFunctions implements PublicStaticHelper {
     public static <C extends JsonNodeExpressionEvaluationContext> ExpressionFunction<JsonPointer, C> jsonPointer() {
         return JsonNodeExpressionFunctionJsonPointer.instance();
     }
+
+    /**
+     * {@see JsonNodeExpressionFunctionJsonPointerEval}
+     */
+    public static <C extends JsonNodeExpressionEvaluationContext> ExpressionFunction<JsonNode, C> jsonPointerEval() {
+        return JsonNodeExpressionFunctionJsonPointerEval.instance();
+    }
     
     /**
      * {@see JsonNodeExpressionFunctionJsonSelector}

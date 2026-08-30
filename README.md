@@ -33,5 +33,6 @@ A collection of JSON oriented functions.
 
 - [json](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJson.java)
 - [jsonPointer](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJsonPointer.java)
+- [jsonPointerEval](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJsonPointerEval.java)
 - [jsonSelector](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJsonSelector.java)
 - [jsonText](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunctionJsonText.java)

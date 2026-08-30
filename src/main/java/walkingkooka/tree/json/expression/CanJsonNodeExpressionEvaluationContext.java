@@ -28,5 +28,5 @@ public interface CanJsonNodeExpressionEvaluationContext {
     /**
      * Creates an {@link ExpressionEvaluationContext} with the given {@link JsonNode} as the current node.
      */
-    JsonNodeExpressionEvaluationContext expressionEvaluationContext(final JsonNode node);
+    JsonNodeExpressionEvaluationContext jsonNodeExpressionEvaluationContext(final JsonNode node);
 }

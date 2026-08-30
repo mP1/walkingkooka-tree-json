@@ -50,8 +50,8 @@ final class JsonNodeExpressionFunctionJsonPointerEval<C extends JsonNodeExpressi
     }
 
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(
-        JSON,
-        POINTER
+        POINTER,
+        JSON
     );
 
     @Override

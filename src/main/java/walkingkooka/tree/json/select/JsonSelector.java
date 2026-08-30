@@ -92,7 +92,7 @@ public final class JsonSelector implements BiFunction<JsonNode, JsonSelectorCont
                                 final JsonSelectorContext context) {
         return this.nodeSelector.stream(
             node,
-            (NodeSelectorContext<JsonNode, JsonPropertyName, Name, Object> nodeSelectorContext) -> context.expressionEvaluationContext(
+            (NodeSelectorContext<JsonNode, JsonPropertyName, Name, Object> nodeSelectorContext) -> context.jsonNodeExpressionEvaluationContext(
                 nodeSelectorContext.node()
             ),
             JsonNode.class

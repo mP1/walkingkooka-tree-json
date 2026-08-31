@@ -17,12 +17,12 @@
 
 package walkingkooka.tree.json.parser;
 
-import walkingkooka.text.cursor.parser.ParserContextTesting;
+import walkingkooka.text.cursor.parser.ParserContextTesting2;
 
 /**
  * Mixing testing interface for {@link JsonNodeParserContext}
  */
-public interface JsonNodeParserContextTesting<C extends JsonNodeParserContext> extends ParserContextTesting<C> {
+public interface JsonNodeParserContextTesting<C extends JsonNodeParserContext> extends ParserContextTesting2<C> {
 
     @Override
     default String typeNameSuffix() {

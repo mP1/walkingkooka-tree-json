@@ -24,6 +24,8 @@ import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
 import walkingkooka.tree.json.pointer.JsonPointer;
 import walkingkooka.tree.json.select.JsonSelector;
 
+import java.util.List;
+
 public final class JsonNodeExpressionFunctions implements PublicStaticHelper {
 
     /**
@@ -52,6 +54,13 @@ public final class JsonNodeExpressionFunctions implements PublicStaticHelper {
      */
     public static <C extends JsonNodeExpressionEvaluationContext> ExpressionFunction<JsonSelector, C> jsonSelector() {
         return JsonNodeExpressionFunctionJsonSelector.instance();
+    }
+
+    /**
+     * {@see JsonNodeExpressionFunctionJsonSelectorEval}
+     */
+    public static <C extends JsonNodeExpressionEvaluationContext> ExpressionFunction<List<JsonNode>, C> jsonSelectorEval() {
+        return JsonNodeExpressionFunctionJsonSelectorEval.instance();
     }
 
     /**

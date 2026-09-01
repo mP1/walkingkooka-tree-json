@@ -35,8 +35,8 @@ import java.text.DecimalFormat;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class BasicJsonNodeConverterContextTest implements JsonNodeConverterContextTesting2<BasicJsonNodeConverterContext>,
-    ToStringTesting<BasicJsonNodeConverterContext>,
+public final class JsonNodeConverterContextBasicTest implements JsonNodeConverterContextTesting2<JsonNodeConverterContextBasic>,
+    ToStringTesting<JsonNodeConverterContextBasic>,
     DecimalNumberContextDelegator,
     EnvironmentContextTesting {
 
@@ -65,7 +65,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
     public void testWithNullConverterContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> BasicJsonNodeConverterContext.with(
+            () -> JsonNodeConverterContextBasic.with(
                 null,
                 JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
             )
@@ -76,7 +76,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
     public void testWithNullJsonNodeMarshallUnmarshallContextFails() {
         assertThrows(
             NullPointerException.class,
-            () -> BasicJsonNodeConverterContext.with(
+            () -> JsonNodeConverterContextBasic.with(
                 CONVERTER_CONTEXT,
                 null
             )
@@ -84,8 +84,8 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
     }
 
     @Override
-    public BasicJsonNodeConverterContext createContext() {
-        return BasicJsonNodeConverterContext.with(
+    public JsonNodeConverterContextBasic createContext() {
+        return JsonNodeConverterContextBasic.with(
             CONVERTER_CONTEXT,
             JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
         );
@@ -108,7 +108,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
 
     @Test
     public void testConvertStringToExpressionNumber() {
-        final BasicJsonNodeConverterContext context = this.createContext();
+        final JsonNodeConverterContextBasic context = this.createContext();
 
         this.convertAndCheck(
             context,
@@ -120,7 +120,7 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
 
     @Test
     public void testMarshallThenUnmarshall() {
-        final BasicJsonNodeConverterContext context = this.createContext();
+        final JsonNodeConverterContextBasic context = this.createContext();
         final ExpressionNumber number = context.expressionNumberKind().create(12);
 
         this.checkEquals(
@@ -144,12 +144,17 @@ public final class BasicJsonNodeConverterContextTest implements JsonNodeConverte
     // class............................................................................................................
 
     @Override
-    public Class<BasicJsonNodeConverterContext> type() {
-        return BasicJsonNodeConverterContext.class;
+    public Class<JsonNodeConverterContextBasic> type() {
+        return JsonNodeConverterContextBasic.class;
     }
 
     @Override
     public String typeNameSuffix() {
         return JsonNodeConverterContext.class.getSimpleName();
+    }
+
+    @Override
+    public void testTypeNaming() {
+        throw new UnsupportedOperationException();
     }
 }

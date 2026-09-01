@@ -30,7 +30,6 @@ import walkingkooka.tree.expression.HasExpressionNumberKind;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.tree.select.NodeSelector;
-import walkingkooka.tree.select.NodeSelectorContext;
 import walkingkooka.tree.select.parser.ExpressionNodeSelectorParserToken;
 import walkingkooka.tree.select.parser.NodeSelectorParserContext;
 import walkingkooka.tree.select.parser.NodeSelectorParserContexts;
@@ -92,9 +91,7 @@ public final class JsonSelector implements BiFunction<JsonNode, JsonSelectorCont
                                 final JsonSelectorContext context) {
         return this.nodeSelector.stream(
             node,
-            (NodeSelectorContext<JsonNode, JsonPropertyName, Name, Object> nodeSelectorContext) -> context.jsonNodeExpressionEvaluationContext(
-                nodeSelectorContext.node()
-            ),
+            context,
             JsonNode.class
         ).collect(Collectors.toList());
     }

@@ -18,13 +18,14 @@
 package walkingkooka.tree.json.select;
 
 import walkingkooka.Context;
+import walkingkooka.naming.Name;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.expression.CanJsonNodeExpressionEvaluationContext;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.select.NodeSelectorContext;
 
 /**
  * The {@link Context} that accompanies {@link JsonSelector#apply(JsonNode, JsonSelectorContext)}, providing
  * support for executing any functions within a selector.
  */
-public interface JsonSelectorContext extends Context,
-    CanJsonNodeExpressionEvaluationContext {
+public interface JsonSelectorContext extends NodeSelectorContext<JsonNode, JsonPropertyName, Name, Object> {
 }

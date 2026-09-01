@@ -17,7 +17,15 @@
 
 package walkingkooka.tree.json.select;
 
-import walkingkooka.tree.select.NodeSelectorContextTesting;
+import walkingkooka.naming.Name;
+import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.select.FakeNodeSelectorContext;
 
-public interface JsonSelectorContextTesting extends NodeSelectorContextTesting {
+public class FakeJsonSelectorContext extends FakeNodeSelectorContext<JsonNode, JsonPropertyName, Name, Object>
+    implements JsonSelectorContext {
+
+    public FakeJsonSelectorContext() {
+        super();
+    }
 }

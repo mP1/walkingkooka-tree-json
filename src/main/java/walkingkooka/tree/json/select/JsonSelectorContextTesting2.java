@@ -18,15 +18,13 @@
 package walkingkooka.tree.json.select;
 
 import walkingkooka.ContextTesting;
-import walkingkooka.tree.json.expression.CanJsonNodeExpressionEvaluationContextTesting2;
+import walkingkooka.naming.Name;
+import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.select.NodeSelectorContextTesting2;
 
-public interface JsonSelectorContextTesting2<C extends JsonSelectorContext> extends CanJsonNodeExpressionEvaluationContextTesting2<C>,
+public interface JsonSelectorContextTesting2<C extends JsonSelectorContext> extends NodeSelectorContextTesting2<C, JsonNode, JsonPropertyName, Name, Object>,
     ContextTesting<C> {
-
-    @Override
-    default C createCanJsonNodeExpressionEvaluationContext() {
-        return this.createContext();
-    }
 
     @Override
     default String typeNameSuffix() {

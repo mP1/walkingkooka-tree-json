@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.HashCodeEqualsDefinedTesting2;
 import walkingkooka.ToStringTesting;
 import walkingkooka.collect.list.Lists;
+import walkingkooka.naming.Name;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.printer.TreePrintableTesting;
@@ -30,8 +31,9 @@ import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.FakeExpressionFunction;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.expression.FakeJsonNodeExpressionEvaluationContext;
-import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.select.FakeNodeSelectorExpressionEvaluationContext;
+import walkingkooka.tree.select.NodeSelectorExpressionEvaluationContext;
 import walkingkooka.util.BiFunctionTesting;
 
 import java.util.List;
@@ -87,14 +89,19 @@ public final class JsonSelectorTest implements BiFunctionTesting<JsonSelector, J
     }
 
     public JsonSelectorContext createContext() {
-        return new JsonSelectorContext() {
-
+        return new FakeJsonSelectorContext() {
             @Override
-            public JsonNodeExpressionEvaluationContext jsonNodeExpressionEvaluationContext(final JsonNode node) {
-                return new FakeJsonNodeExpressionEvaluationContext() {
+            public NodeSelectorExpressionEvaluationContext<JsonNode, JsonPropertyName, Name, Object> expressionEvaluationContext(final JsonNode node) {
+                return new FakeNodeSelectorExpressionEvaluationContext<>() {
+
+                    @Override
+                    public JsonNode node() {
+                        return node;
+                    }
+
                     @Override
                     public ExpressionFunction<?, ExpressionEvaluationContext> expressionFunction(final ExpressionFunctionName name) {
-                        if(name.equals(NAME)) {
+                        if (name.equals(NAME)) {
                             return new FakeExpressionFunction<>() {
 
                                 @Override

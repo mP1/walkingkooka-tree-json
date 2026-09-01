@@ -17,11 +17,11 @@
 
 package walkingkooka.tree.json.select;
 
+import walkingkooka.naming.Name;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
+import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.tree.json.select.JsonSelectorContextTesting2Test.TestJsonSelectorContext;
-
-import java.util.Objects;
+import walkingkooka.tree.select.FakeNodeSelectorContext;
 
 public final class JsonSelectorContextTesting2Test implements JsonSelectorContextTesting2<TestJsonSelectorContext> {
     @Override
@@ -29,13 +29,8 @@ public final class JsonSelectorContextTesting2Test implements JsonSelectorContex
         return new TestJsonSelectorContext();
     }
 
-    final static class TestJsonSelectorContext implements JsonSelectorContext {
-        @Override
-        public JsonNodeExpressionEvaluationContext jsonNodeExpressionEvaluationContext(final JsonNode node) {
-            Objects.requireNonNull(node, "node");
-
-            throw new UnsupportedOperationException();
-        }
+    final static class TestJsonSelectorContext extends FakeNodeSelectorContext<JsonNode, JsonPropertyName, Name, Object>
+        implements JsonSelectorContext {
 
         @Override
         public String toString() {

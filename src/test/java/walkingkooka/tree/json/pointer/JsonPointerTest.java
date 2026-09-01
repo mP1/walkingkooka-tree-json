@@ -24,13 +24,13 @@ import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.json.JsonNode;
-import walkingkooka.util.FunctionTesting;
+import walkingkooka.util.FunctionTesting2;
 
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class JsonPointerTest implements FunctionTesting<JsonPointer, JsonNode, Optional<JsonNode>>,
+public final class JsonPointerTest implements FunctionTesting2<JsonPointer, JsonNode, Optional<JsonNode>>,
     ClassTesting2<JsonPointer>,
     HashCodeEqualsDefinedTesting2<JsonPointer>,
     ToStringTesting<JsonPointer>,

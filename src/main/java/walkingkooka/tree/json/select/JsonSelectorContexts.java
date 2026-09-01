@@ -17,9 +17,20 @@
 
 package walkingkooka.tree.json.select;
 
+import walkingkooka.naming.Name;
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.tree.json.JsonNode;
+import walkingkooka.tree.json.JsonPropertyName;
+import walkingkooka.tree.select.NodeSelectorContext;
 
 public final class JsonSelectorContexts implements PublicStaticHelper {
+
+    /**
+     * {@link JsonSelectorContextBasic}
+     */
+    public static JsonSelectorContext basic(final NodeSelectorContext<JsonNode, JsonPropertyName, Name, Object> context) {
+        return JsonSelectorContextBasic.with(context);
+    }
 
     /**
      * {@link FakeJsonSelectorContext}

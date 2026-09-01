@@ -18,6 +18,8 @@
 package walkingkooka.tree.json.expression;
 
 import walkingkooka.tree.expression.ExpressionEvaluationContext;
+import walkingkooka.tree.json.select.HasJsonSelectorContext;
 
-public interface JsonNodeExpressionEvaluationContext extends ExpressionEvaluationContext {
+public interface JsonNodeExpressionEvaluationContext extends ExpressionEvaluationContext,
+    HasJsonSelectorContext {
 }

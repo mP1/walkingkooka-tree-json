@@ -27,14 +27,14 @@ import walkingkooka.tree.json.marshall.JsonNodeMarshallContext;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContextTesting;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContext;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextTesting;
-import walkingkooka.util.FunctionTesting;
+import walkingkooka.util.FunctionTesting2;
 
 import java.math.BigDecimal;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements FunctionTesting<JsonNodeMarshallUnmarshallMapperFunction<BigDecimal, String>, JsonNode, JsonNode>,
+public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements FunctionTesting2<JsonNodeMarshallUnmarshallMapperFunction<BigDecimal, String>, JsonNode, JsonNode>,
     ClassTesting<JsonNodeMarshallUnmarshallMapperFunction<BigDecimal, String>>,
     JsonNodeMarshallContextTesting,
     JsonNodeUnmarshallContextTesting,

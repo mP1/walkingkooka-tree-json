@@ -42,20 +42,20 @@ import java.util.Optional;
  * A {@link JsonNodeConverterContext} that uses given {@link ExpressionNumberConverterContext}, {@link JsonNodeMarshallContext}
  * and {@link JsonNodeUnmarshallContext}. Note the {@link ExpressionNumberKind} returned for all context should be the same.
  */
-final class BasicJsonNodeConverterContext implements JsonNodeConverterContext,
+final class JsonNodeConverterContextBasic implements JsonNodeConverterContext,
     CanParseEnvironmentValueNameDelegator,
     JsonNodeMarshallUnmarshallContextDelegator,
     ConverterContextDelegator {
 
-    static BasicJsonNodeConverterContext with(final ExpressionNumberConverterContext converterContext,
+    static JsonNodeConverterContextBasic with(final ExpressionNumberConverterContext converterContext,
                                               final JsonNodeMarshallUnmarshallContext marshallUnmarshallContext) {
-        return new BasicJsonNodeConverterContext(
+        return new JsonNodeConverterContextBasic(
             Objects.requireNonNull(converterContext, "converterContext"),
             Objects.requireNonNull(marshallUnmarshallContext, "marshallUnmarshallContext")
         );
     }
 
-    private BasicJsonNodeConverterContext(final ExpressionNumberConverterContext converterContext,
+    private JsonNodeConverterContextBasic(final ExpressionNumberConverterContext converterContext,
                                           final JsonNodeMarshallUnmarshallContext marshallUnmarshallContext) {
         super();
 
@@ -70,7 +70,7 @@ final class BasicJsonNodeConverterContext implements JsonNodeConverterContext,
 
         return before.equals(after) ?
             this :
-            BasicJsonNodeConverterContext.with(
+            JsonNodeConverterContextBasic.with(
                 this.converterContext,
                 after
             );
@@ -83,7 +83,7 @@ final class BasicJsonNodeConverterContext implements JsonNodeConverterContext,
 
         return before.equals(after) ?
             this :
-            BasicJsonNodeConverterContext.with(
+            JsonNodeConverterContextBasic.with(
                 this.converterContext,
                 after
             );

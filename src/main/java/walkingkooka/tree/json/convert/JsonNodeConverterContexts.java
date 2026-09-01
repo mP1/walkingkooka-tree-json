@@ -31,7 +31,7 @@ public final class JsonNodeConverterContexts implements PublicStaticHelper {
      */
     public static JsonNodeConverterContext basic(final ExpressionNumberConverterContext converterContext,
                                                  final JsonNodeMarshallUnmarshallContext marshallUnmarshallContext) {
-        return BasicJsonNodeConverterContext.with(
+        return JsonNodeConverterContextBasic.with(
             converterContext,
             marshallUnmarshallContext
         );

@@ -20,9 +20,9 @@ package walkingkooka.tree.json.marshall;
 import walkingkooka.reflect.TypeNameTesting;
 import walkingkooka.text.printer.TreePrintableTesting;
 import walkingkooka.tree.json.JsonObject;
-import walkingkooka.util.BiFunctionTesting;
+import walkingkooka.util.BiFunctionTesting2;
 
-public interface JsonNodeMarshallContextObjectPostProcessorTesting<F extends JsonNodeMarshallContextObjectPostProcessor> extends BiFunctionTesting<F, Object, JsonObject, JsonObject>,
+public interface JsonNodeMarshallContextObjectPostProcessorTesting<F extends JsonNodeMarshallContextObjectPostProcessor> extends BiFunctionTesting2<F, Object, JsonObject, JsonObject>,
     TypeNameTesting<F>,
     TreePrintableTesting {
 

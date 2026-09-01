@@ -34,14 +34,14 @@ import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonPropertyName;
 import walkingkooka.tree.select.FakeNodeSelectorExpressionEvaluationContext;
 import walkingkooka.tree.select.NodeSelectorExpressionEvaluationContext;
-import walkingkooka.util.BiFunctionTesting;
+import walkingkooka.util.BiFunctionTesting2;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class JsonSelectorTest implements BiFunctionTesting<JsonSelector, JsonNode, JsonSelectorContext, List<JsonNode>>,
+public final class JsonSelectorTest implements BiFunctionTesting2<JsonSelector, JsonNode, JsonSelectorContext, List<JsonNode>>,
     ClassTesting2<JsonSelector>,
     HashCodeEqualsDefinedTesting2<JsonSelector>,
     ToStringTesting<JsonSelector>,

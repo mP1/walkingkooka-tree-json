@@ -16,6 +16,7 @@ import walkingkooka.math.DecimalNumberContextTesting;
 import walkingkooka.text.BinaryTextContextTesting;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.MultiLineText;
 import walkingkooka.tree.expression.HasExpressionNumberKindTesting;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContexts;
 import walkingkooka.tree.json.JsonNode;
@@ -26,7 +27,7 @@ import walkingkooka.tree.json.expression.FakeJsonNodeExpressionEvaluationContext
 import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextTesting;
 
-public final class JsonNodeExpressionFunctionJsonTextTest extends JsonNodeExpressionFunctionTestCase<JsonNodeExpressionFunctionJsonText<JsonNodeExpressionEvaluationContext>, String>
+public final class JsonNodeExpressionFunctionJsonTextTest extends JsonNodeExpressionFunctionTestCase<JsonNodeExpressionFunctionJsonText<JsonNodeExpressionEvaluationContext>, MultiLineText>
     implements BinaryTextContextTesting,
     CanParseEnvironmentValueNameTesting,
     CurrencyLocaleContextTesting,
@@ -100,7 +101,7 @@ public final class JsonNodeExpressionFunctionJsonTextTest extends JsonNodeExpres
     public void testApplyWithNull() {
         this.applyAndCheck(
             Lists.of((Object)null),
-            "null"
+            MultiLineText.with("null")
         );
     }
 

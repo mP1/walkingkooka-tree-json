@@ -1,6 +1,7 @@
 package walkingkooka.tree.json.expression.function;
 
 import walkingkooka.text.HasMultiLineText;
+import walkingkooka.text.MultiLineText;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
@@ -12,7 +13,7 @@ import java.util.List;
 /**
  * A function that returns a {@link JsonNode}, with the input parameter possibly being converted to {@link JsonNode}.
  */
-final class JsonNodeExpressionFunctionJsonText<C extends JsonNodeExpressionEvaluationContext> extends JsonNodeExpressionFunction<C, String> {
+final class JsonNodeExpressionFunctionJsonText<C extends JsonNodeExpressionEvaluationContext> extends JsonNodeExpressionFunction<C, MultiLineText> {
 
     /**
      * Type safe getter.
@@ -43,13 +44,13 @@ final class JsonNodeExpressionFunctionJsonText<C extends JsonNodeExpressionEvalu
     final static List<ExpressionFunctionParameter<?>> PARAMETERS = ExpressionFunctionParameter.list(VALUE);
 
     @Override
-    public Class<String> returnType() {
-        return String.class;
+    public Class<MultiLineText> returnType() {
+        return MultiLineText.class;
     }
 
     @Override
-    public String apply(final List<Object> parameters,
-                        final C context) {
+    public MultiLineText apply(final List<Object> parameters,
+                               final C context) {
         this.checkParameterCount(parameters);
 
         Object value = VALUE.getOrFail(parameters, 0);

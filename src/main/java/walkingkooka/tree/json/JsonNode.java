@@ -29,6 +29,7 @@ import walkingkooka.text.HasMultiLineText;
 import walkingkooka.text.HasText;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.MultiLineText;
 import walkingkooka.text.TextContext;
 import walkingkooka.text.TextPrinting;
 import walkingkooka.text.cursor.parser.Parser;
@@ -454,7 +455,8 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     @Override
     public final String toString() {
-        return this.multiLineText(TEXT_CONTEXT);
+        return this.multiLineText(TEXT_CONTEXT)
+            .toString();
     }
 
     private final static TextContext TEXT_CONTEXT = TextPrinting.with(
@@ -468,14 +470,16 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      * Helper that returns this node in json, supporting indentation and using the selected line ending.
      */
     @Override
-    public final String multiLineText(final TextContext context) {
+    public final MultiLineText multiLineText(final TextContext context) {
         Objects.requireNonNull(context, "context");
 
         final StringBuilder b = new StringBuilder();
         try (final IndentingPrinter printer = Printers.stringBuilder(b, context.lineEnding()).indenting(context.indentation())) {
             this.printJson(printer);
         }
-        return b.toString();
+        return MultiLineText.with(
+            b.toString()
+        );
     }
 
     // printJson........................................................................................................

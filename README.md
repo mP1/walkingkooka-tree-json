@@ -25,7 +25,6 @@ A quality and feature first json library that provides basic and many quality of
 - [textToJsonPointer](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/convert/JsonNodeConverterTextToJsonPointer.java)
 - [textToJsonSelector](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/convert/JsonNodeConverterTextToJsonSelector.java)
 - [ToJsonNode](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/convert/JsonNodeConverterToJsonNode.java)
-- [toJsonText](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/convert/JsonNodeConverterToJsonNodeText.java)
 
 ## [Functions](https://github.com/mP1/walkingkooka-tree-json/blob/master/src/main/java/walkingkooka/tree/json/expression/function/JsonNodeExpressionFunction.java)
 

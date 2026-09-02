@@ -24,19 +24,19 @@ import walkingkooka.text.printer.TreePrintableTesting;
 
 public interface HasJsonTextTesting extends TreePrintableTesting {
 
-    default void toJsonTextAndCheck(final JsonNode json,
+    default void toJsonTextAndCheck(final HasJsonText has,
                                     final Indentation indentation,
                                     final LineEnding lineEnding,
                                     final String expected) {
         this.checkEquals(
             expected,
-            json.toJsonText(
+            has.toJsonText(
                 TextPrinting.with(
                     indentation,
                     lineEnding
                 )
             ),
-            json::toString
+            has::toString
         );
     }
 }

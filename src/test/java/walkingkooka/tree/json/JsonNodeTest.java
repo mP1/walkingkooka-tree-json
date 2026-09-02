@@ -21,14 +21,18 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.test.ParseStringTesting;
+import walkingkooka.text.HasMultiLineTextTesting;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
+import walkingkooka.text.TextPrinting;
 import walkingkooka.tree.HasTextOffsetTesting;
+import walkingkooka.tree.json.select.HasJsonSelectorContextTesting;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class JsonNodeTest implements ClassTesting2<JsonNode>,
-    HasJsonTextTesting,
+    HasJsonSelectorContextTesting,
+    HasMultiLineTextTesting,
     HasTextOffsetTesting,
     ParseStringTesting<JsonNode> {
 
@@ -342,27 +346,29 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
             "a1b2c3");
     }
 
-    // toJsonText.......................................................................................................
+    // HasMultiLineText.................................................................................................
 
     @Test
-    public void testToJsonTextWithNullContextFails() {
+    public void testMultiLineTextWithNullContextFails() {
         assertThrows(
             NullPointerException.class,
             () -> JsonNode.nullNode()
-                .toJsonText(null)
+                .multiLineText(null)
         );
     }
 
     @Test
-    public void testToJsonTextWithIndentationAndNlLineEnding() {
-        this.toJsonTextAndCheck(
+    public void testMultiLineTextWithIndentationAndNlLineEnding() {
+        this.multiLineTextAndCheck(
             JsonNode.object()
                 .set(
                     JsonPropertyName.with("Hello"),
                     JsonNode.number(123)
                 ),
-            Indentation.SPACES2,
-            LineEnding.NL,
+            TextPrinting.with(
+                Indentation.SPACES2,
+                LineEnding.NL
+            ),
             "{\n" +
                 "  \"Hello\": 123\n" +
                 "}"
@@ -370,15 +376,17 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
     }
 
     @Test
-    public void testToJsonTextWithNoIndentationAndLineEndingNone() {
-        this.toJsonTextAndCheck(
+    public void testMultiLineTextWithNoIndentationAndLineEndingNone() {
+        this.multiLineTextAndCheck(
             JsonNode.object()
                 .set(
                     JsonPropertyName.with("Hello"),
                     JsonNode.number(123)
                 ),
-            Indentation.EMPTY,
-            LineEnding.NONE,
+            TextPrinting.with(
+                Indentation.EMPTY,
+                LineEnding.NONE
+            ),
             "{\"Hello\": 123}"
         );
     }

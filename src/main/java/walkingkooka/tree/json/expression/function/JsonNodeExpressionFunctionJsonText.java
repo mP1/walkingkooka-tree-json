@@ -1,9 +1,9 @@
 package walkingkooka.tree.json.expression.function;
 
+import walkingkooka.text.HasMultiLineText;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameter;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterKind;
 import walkingkooka.tree.expression.function.ExpressionFunctionParameterName;
-import walkingkooka.tree.json.HasJsonText;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
 
@@ -54,15 +54,15 @@ final class JsonNodeExpressionFunctionJsonText<C extends JsonNodeExpressionEvalu
 
         Object value = VALUE.getOrFail(parameters, 0);
 
-        if (false == value instanceof HasJsonText) {
+        if (false == value instanceof HasMultiLineText) {
             value = context.convertOrFail(
                 value,
                 JsonNode.class
             );
         }
 
-        return value instanceof HasJsonText ?
-            ((HasJsonText) value).toJsonText(context) :
+        return value instanceof HasMultiLineText ?
+            ((HasMultiLineText) value).multiLineText(context) :
             null;
     }
 }

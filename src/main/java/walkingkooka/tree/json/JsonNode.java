@@ -25,6 +25,7 @@ import walkingkooka.naming.Name;
 import walkingkooka.net.header.HasContentType;
 import walkingkooka.net.header.MediaType;
 import walkingkooka.text.CharSequences;
+import walkingkooka.text.HasMultiLineText;
 import walkingkooka.text.HasText;
 import walkingkooka.text.Indentation;
 import walkingkooka.text.LineEnding;
@@ -58,7 +59,7 @@ import java.util.function.Predicate;
 public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name, Object>,
     CanBinary,
     HasContentType,
-    HasJsonText,
+    HasMultiLineText,
     HasText,
     TraversableHasTextOffset<JsonNode>,
     TreePrintable {
@@ -453,7 +454,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
      */
     @Override
     public final String toString() {
-        return this.toJsonText(TEXT_CONTEXT);
+        return this.multiLineText(TEXT_CONTEXT);
     }
 
     private final static TextContext TEXT_CONTEXT = TextPrinting.with(
@@ -461,13 +462,13 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         LineEnding.SYSTEM
     );
 
-    // HasJsonText......................................................................................................
+    // HasMultiLineText.................................................................................................
 
     /**
      * Helper that returns this node in json, supporting indentation and using the selected line ending.
      */
     @Override
-    public final String toJsonText(final TextContext context) {
+    public final String multiLineText(final TextContext context) {
         Objects.requireNonNull(context, "context");
 
         final StringBuilder b = new StringBuilder();

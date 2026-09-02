@@ -109,7 +109,7 @@ public final class JsonNodeExpressionFunctionJsonTextTest extends JsonNodeExpres
         this.applyAndCheck(
             Lists.of(DECIMAL_NUMBER_SYMBOLS),
             JSON_NODE_MARSHALL_CONTEXT.marshall(DECIMAL_NUMBER_SYMBOLS)
-                .toJsonText(CONTEXT)
+                .multiLineText(CONTEXT)
         );
     }
 
@@ -119,7 +119,7 @@ public final class JsonNodeExpressionFunctionJsonTextTest extends JsonNodeExpres
 
         this.applyAndCheck(
             Lists.of(json),
-            json.toJsonText(CONTEXT)
+            json.multiLineText(CONTEXT)
         );
     }
 
@@ -130,7 +130,7 @@ public final class JsonNodeExpressionFunctionJsonTextTest extends JsonNodeExpres
         this.applyAndCheck(
             Lists.of(string),
             JsonNode.string(string)
-                .toJsonText(CONTEXT)
+                .multiLineText(CONTEXT)
         );
     }
 

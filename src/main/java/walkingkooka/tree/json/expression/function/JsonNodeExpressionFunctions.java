@@ -18,6 +18,7 @@
 package walkingkooka.tree.json.expression.function;
 
 import walkingkooka.reflect.PublicStaticHelper;
+import walkingkooka.text.MultiLineText;
 import walkingkooka.tree.expression.function.ExpressionFunction;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
@@ -66,7 +67,7 @@ public final class JsonNodeExpressionFunctions implements PublicStaticHelper {
     /**
      * {@see JsonNodeExpressionFunctionJsonText}
      */
-    public static <C extends JsonNodeExpressionEvaluationContext> ExpressionFunction<String, C> jsonText() {
+    public static <C extends JsonNodeExpressionEvaluationContext> ExpressionFunction<MultiLineText, C> jsonText() {
         return JsonNodeExpressionFunctionJsonText.instance();
     }
 

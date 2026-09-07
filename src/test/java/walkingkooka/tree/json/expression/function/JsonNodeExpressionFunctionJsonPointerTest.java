@@ -20,6 +20,7 @@ public final class JsonNodeExpressionFunctionJsonPointerTest extends JsonNodeExp
 
     private final static JsonNodeConverterContext CONVERTER_CONTEXT = JsonNodeConverterContexts.basic(
         ExpressionNumberConverterContexts.fake(),
+        ENVIRONMENT_CONTEXT,
         JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
     );
 

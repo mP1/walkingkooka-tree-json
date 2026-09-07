@@ -18,7 +18,6 @@
 package walkingkooka.tree.json.expression.function;
 
 import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
 import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
 
@@ -30,11 +29,6 @@ public abstract class JsonNodeExpressionFunctionTestCase<F extends JsonNodeExpre
     }
 
     // class............................................................................................................
-
-    @Override
-    public final JavaVisibility typeVisibility() {
-        return JavaVisibility.PACKAGE_PRIVATE;
-    }
 
     @Override
     public final String typeNamePrefix() {

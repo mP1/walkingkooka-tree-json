@@ -67,6 +67,19 @@ public final class JsonNodeConverterContextBasicTest implements JsonNodeConverte
             NullPointerException.class,
             () -> JsonNodeConverterContextBasic.with(
                 null,
+                ENVIRONMENT_CONTEXT,
+                JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
+            )
+        );
+    }
+
+    @Test
+    public void testWithNullEnvironmentContextFails() {
+        assertThrows(
+            NullPointerException.class,
+            () -> JsonNodeConverterContextBasic.with(
+                CONVERTER_CONTEXT,
+                null,
                 JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
             )
         );
@@ -78,8 +91,17 @@ public final class JsonNodeConverterContextBasicTest implements JsonNodeConverte
             NullPointerException.class,
             () -> JsonNodeConverterContextBasic.with(
                 CONVERTER_CONTEXT,
+                ENVIRONMENT_CONTEXT,
                 null
             )
+        );
+    }
+
+    @Test
+    public void testUser() {
+        this.userAndCheck(
+            this.createContext(),
+            USER
         );
     }
 
@@ -87,6 +109,7 @@ public final class JsonNodeConverterContextBasicTest implements JsonNodeConverte
     public JsonNodeConverterContextBasic createContext() {
         return JsonNodeConverterContextBasic.with(
             CONVERTER_CONTEXT,
+            ENVIRONMENT_CONTEXT,
             JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
         );
     }
@@ -137,7 +160,7 @@ public final class JsonNodeConverterContextBasicTest implements JsonNodeConverte
     public void testToString() {
         this.toStringAndCheck(
             this.createContext(),
-            CONVERTER_CONTEXT + " " + JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
+            CONVERTER_CONTEXT + " " + ENVIRONMENT_CONTEXT + " " + JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
         );
     }
 

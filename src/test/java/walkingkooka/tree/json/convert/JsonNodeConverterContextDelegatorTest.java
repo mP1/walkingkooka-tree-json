@@ -124,6 +124,7 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
                     ),
                     EXPRESSION_NUMBER_KIND
                 ),
+                ENVIRONMENT_CONTEXT,
                 JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
             );
         }

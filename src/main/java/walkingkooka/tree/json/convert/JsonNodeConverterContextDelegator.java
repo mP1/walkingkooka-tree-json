@@ -21,6 +21,7 @@ import walkingkooka.currency.CurrencyCode;
 import walkingkooka.environment.CanParseEnvironmentValueName;
 import walkingkooka.environment.CanParseEnvironmentValueNameDelegator;
 import walkingkooka.locale.LocaleLanguageTag;
+import walkingkooka.net.email.EmailAddress;
 import walkingkooka.tree.expression.ExpressionNumberKind;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContext;
 import walkingkooka.tree.expression.convert.ExpressionNumberConverterContextDelegator;
@@ -75,6 +76,14 @@ public interface JsonNodeConverterContextDelegator extends JsonNodeConverterCont
     default MathContext mathContext() {
         return this.expressionNumberConverterContext()
             .mathContext();
+    }
+
+    // HasUser..........................................................................................................
+
+    @Override
+    default Optional<EmailAddress> user() {
+        return this.jsonNodeConverterContext()
+            .user();
     }
 
     // JsonNodeMarshallUnmarshallContextDelegator.......................................................................

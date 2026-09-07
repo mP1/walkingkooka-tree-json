@@ -121,6 +121,7 @@ public final class JsonNodeConverterJsonNodeToTest extends JsonNodeConverterTest
 
                 private final Converter<FakeExpressionNumberConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
             },
+            ENVIRONMENT_CONTEXT,
             JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT
         );
     }

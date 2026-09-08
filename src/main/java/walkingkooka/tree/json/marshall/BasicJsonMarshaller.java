@@ -139,6 +139,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedCurrency.instance(),
             BasicJsonMarshallerTypedCurrencyCode.instance(),
             BasicJsonMarshallerTypedCurrencyCodeSet.instance(),
+            BasicJsonMarshallerTypedCurrencyExchange.instance(),
             BasicJsonMarshallerTypedCurrencyValue.instance(),
             BasicJsonMarshallerTypedDateTimeSymbols.instance(),
             BasicJsonMarshallerTypedDataUrl.instance(),

@@ -42,4 +42,14 @@ public final class JsonSelectorContextTesting2Test implements JsonSelectorContex
     public Class<TestJsonSelectorContext> type() {
         return TestJsonSelectorContext.class;
     }
+
+    @Override
+    public void testClassVisibility() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
 }

@@ -66,6 +66,11 @@ public final class JsonNodeConverterContextDelegatorTest implements JsonNodeConv
     }
 
     @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public TestJsonNodeConverterContextDelegator createContext() {
         return new TestJsonNodeConverterContextDelegator();
     }

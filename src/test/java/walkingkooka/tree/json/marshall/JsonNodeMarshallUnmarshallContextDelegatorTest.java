@@ -58,6 +58,11 @@ public final class JsonNodeMarshallUnmarshallContextDelegatorTest implements Jso
         throw new UnsupportedOperationException();
     }
 
+    @Override
+    public void testTestNaming() {
+        throw new UnsupportedOperationException();
+    }
+
     // JsonNodeMarshallUnmarshallContext................................................................................
 
     @Override

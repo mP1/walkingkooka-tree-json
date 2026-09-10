@@ -195,6 +195,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedLocaleLanguageTagSet.instance(),
             BasicJsonMarshallerTypedLocalTime.instance(),
             BasicJsonMarshallerTypedLocalTimeList.instance(),
+            BasicJsonMarshallerTypedLoggingLevel.instance(),
             BasicJsonMarshallerTypedMailToUrl.instance(),
             BasicJsonMarshallerTypedMap.instance(),
             BasicJsonMarshallerTypedMathContext.instance(),

@@ -53,6 +53,10 @@ public final class BasicJsonMarshallerTypedEnvironmentTest extends BasicJsonMars
                     "    \"type\": \"locale\",\n" +
                     "    \"value\": \"en-AU\"\n" +
                     "  },\n" +
+                    "  \"loggingLevel\": {\n" +
+                    "    \"type\": \"logging-level\",\n" +
+                    "    \"value\": \"NONE\"\n" +
+                    "  },\n" +
                     "  \"now\": {\n" +
                     "    \"type\": \"local-date-time\",\n" +
                     "    \"value\": \"1999-12-31T12:58:59\"\n" +

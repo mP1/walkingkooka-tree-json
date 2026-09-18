@@ -19,7 +19,6 @@ package walkingkooka.tree.json.parser;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.cursor.parser.Parser;
@@ -623,10 +622,5 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     @Override
     public boolean canHavePublicTypes(final Method method) {
         return false;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }

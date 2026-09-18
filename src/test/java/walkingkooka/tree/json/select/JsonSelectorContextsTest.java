@@ -17,7 +17,6 @@
 
 package walkingkooka.tree.json.select;
 
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
@@ -31,10 +30,5 @@ public final class JsonSelectorContextsTest implements PublicStaticHelperTesting
     @Override
     public Class<JsonSelectorContexts> type() {
         return JsonSelectorContexts.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }

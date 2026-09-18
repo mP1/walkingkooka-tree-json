@@ -17,7 +17,6 @@
 
 package walkingkooka.tree.json.expression.function;
 
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
@@ -27,11 +26,6 @@ public final class JsonNodeExpressionFunctionsTest implements PublicStaticHelper
     @Override
     public Class<JsonNodeExpressionFunctions> type() {
         return JsonNodeExpressionFunctions.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 
     @Override

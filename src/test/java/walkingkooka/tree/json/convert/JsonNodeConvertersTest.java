@@ -17,7 +17,6 @@
 
 package walkingkooka.tree.json.convert;
 
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
@@ -26,11 +25,6 @@ public final class JsonNodeConvertersTest implements PublicStaticHelperTesting<J
     @Override
     public Class<JsonNodeConverters> type() {
         return JsonNodeConverters.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 
     @Override

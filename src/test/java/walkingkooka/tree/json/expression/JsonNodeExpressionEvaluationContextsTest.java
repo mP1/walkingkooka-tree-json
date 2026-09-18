@@ -17,7 +17,6 @@
 
 package walkingkooka.tree.json.expression;
 
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
@@ -27,11 +26,6 @@ public final class JsonNodeExpressionEvaluationContextsTest implements PublicSta
     @Override
     public Class<JsonNodeExpressionEvaluationContexts> type() {
         return JsonNodeExpressionEvaluationContexts.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 
     @Override

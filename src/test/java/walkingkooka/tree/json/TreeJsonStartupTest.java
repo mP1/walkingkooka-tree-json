@@ -17,7 +17,6 @@
 
 package walkingkooka.tree.json;
 
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PublicStaticHelperTesting;
 
 import java.lang.reflect.Method;
@@ -31,10 +30,5 @@ public final class TreeJsonStartupTest implements PublicStaticHelperTesting<Tree
     @Override
     public Class<TreeJsonStartup> type() {
         return TreeJsonStartup.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }

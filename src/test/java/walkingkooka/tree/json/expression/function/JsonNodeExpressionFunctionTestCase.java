@@ -18,10 +18,10 @@
 package walkingkooka.tree.json.expression.function;
 
 import walkingkooka.reflect.ClassTesting;
-import walkingkooka.tree.expression.function.ExpressionFunctionTesting;
+import walkingkooka.tree.expression.function.ExpressionFunctionTesting2;
 import walkingkooka.tree.json.expression.JsonNodeExpressionEvaluationContext;
 
-public abstract class JsonNodeExpressionFunctionTestCase<F extends JsonNodeExpressionFunction<JsonNodeExpressionEvaluationContext, T>, T> implements ExpressionFunctionTesting<F, T, JsonNodeExpressionEvaluationContext>,
+public abstract class JsonNodeExpressionFunctionTestCase<F extends JsonNodeExpressionFunction<JsonNodeExpressionEvaluationContext, T>, T> implements ExpressionFunctionTesting2<F, T, JsonNodeExpressionEvaluationContext>,
     ClassTesting<F> {
 
     JsonNodeExpressionFunctionTestCase() {

@@ -17,10 +17,31 @@
 
 package walkingkooka.tree.json.marshall;
 
+import org.junit.jupiter.api.Test;
+import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.locale.LocaleLanguageTagSet;
 import walkingkooka.tree.json.JsonNode;
 
+import java.util.stream.Collectors;
+
 public final class BasicJsonMarshallerTypedLocaleLanguageTagSetTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedLocaleLanguageTagSet, LocaleLanguageTagSet> {
+
+    @Test
+    public void testUnmarshallAllLocales() {
+        final LocaleLanguageTagSet set = LocaleLanguageTagSet.EMPTY.setElements(
+            LOCALE_CONTEXT.availableLocales()
+                .stream()
+                .map(LocaleLanguageTag::fromLocale)
+                .collect(Collectors.toList())
+        );
+
+        this.unmarshallAndCheck(
+            BasicJsonMarshallerTypedLocaleLanguageTagSet.instance(),
+            JsonNode.string(set.text()),
+            JsonNodeUnmarshallContexts.fake(),
+            set
+        );
+    }
 
     @Override
     BasicJsonMarshallerTypedLocaleLanguageTagSet marshaller() {

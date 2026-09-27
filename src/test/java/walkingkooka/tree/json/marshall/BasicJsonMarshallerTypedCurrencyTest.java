@@ -61,6 +61,20 @@ public final class BasicJsonMarshallerTypedCurrencyTest extends BasicJsonMarshal
         );
     }
 
+    @Test
+    public void testUnmarshallAllCurrencies() {
+        for (final CurrencyCode currencyCode : CURRENCY_CONTEXT.availableCurrencies()) {
+            this.unmarshallAndCheck(
+                BasicJsonMarshallerTypedCurrency.instance(),
+                JsonNode.string(currencyCode.value()),
+                JSON_NODE_UNMARSHALL_CONTEXT,
+                Currency.getInstance(
+                    currencyCode.value()
+                )
+            );
+        }
+    }
+
     @Override
     BasicJsonMarshallerTypedCurrency marshaller() {
         return BasicJsonMarshallerTypedCurrency.instance();

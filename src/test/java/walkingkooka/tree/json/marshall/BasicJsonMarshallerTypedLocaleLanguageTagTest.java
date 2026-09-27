@@ -21,6 +21,8 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.tree.json.JsonNode;
 
+import java.util.Locale;
+
 public final class BasicJsonMarshallerTypedLocaleLanguageTagTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedLocaleLanguageTag, LocaleLanguageTag> {
 
     @Test
@@ -33,6 +35,20 @@ public final class BasicJsonMarshallerTypedLocaleLanguageTagTest extends BasicJs
             JsonNodeUnmarshallContexts.fake(),
             localeLanguageTag
         );
+    }
+
+    @Test
+    public void testUnmarshallAllLocales() {
+        for (final Locale locale : LOCALE_CONTEXT.availableLocales()) {
+            final String languageTag = locale.toLanguageTag();
+
+            this.unmarshallAndCheck(
+                BasicJsonMarshallerTypedLocaleLanguageTag.instance(),
+                JsonNode.string(languageTag),
+                JsonNodeUnmarshallContexts.fake(),
+                LocaleLanguageTag.parse(languageTag)
+            );
+        }
     }
 
     @Override

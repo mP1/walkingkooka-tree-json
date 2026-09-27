@@ -44,6 +44,20 @@ public final class BasicJsonMarshallerTypedLocaleTest extends BasicJsonMarshalle
         this.unmarshallFailed(JsonNode.array(), ClassCastException.class);
     }
 
+    @Test
+    public void testUnmarshallAllLocales() {
+        for (final Locale locale : LOCALE_CONTEXT.availableLocales()) {
+            final String languageTag = locale.toLanguageTag();
+
+            this.unmarshallAndCheck(
+                BasicJsonMarshallerTypedLocale.instance(),
+                JsonNode.string(languageTag),
+                JSON_NODE_UNMARSHALL_CONTEXT,
+                Locale.forLanguageTag(languageTag)
+            );
+        }
+    }
+
     @Override
     BasicJsonMarshallerTypedLocale marshaller() {
         return BasicJsonMarshallerTypedLocale.instance();

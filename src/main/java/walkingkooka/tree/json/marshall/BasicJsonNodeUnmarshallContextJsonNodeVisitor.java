@@ -91,7 +91,7 @@ final class BasicJsonNodeUnmarshallContextJsonNodeVisitor extends JsonNodeVisito
                         () -> new JsonNodeUnmarshallException("Missing json unmarshaller for " + type, node)
                     )
             );
-        } catch (final java.lang.NullPointerException | JsonNodeUnmarshallException cause) {
+        } catch (final java.lang.NullPointerException | JsonNodeUnmarshallException | UnsupportedOperationException cause) {
             throw cause;
         } catch (final RuntimeException cause) {
             throw new JsonNodeUnmarshallException("Failed to unmarshall json object", node, cause);

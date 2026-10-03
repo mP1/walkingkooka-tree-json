@@ -19,9 +19,8 @@ package walkingkooka.tree.json.parser;
 import org.junit.jupiter.api.Test;
 import walkingkooka.HasValueTesting;
 import walkingkooka.collect.list.Lists;
-import walkingkooka.reflect.ClassTesting2;
 import walkingkooka.reflect.IsMethodTesting;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PublicClassTesting;
 import walkingkooka.reflect.PublicStaticFactoryTesting;
 import walkingkooka.text.CharSequences;
 import walkingkooka.text.cursor.parser.ParserToken;
@@ -31,7 +30,7 @@ import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken> implements ClassTesting2<T>,
+public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken> implements PublicClassTesting<T>,
     IsMethodTesting<T>,
     ParserTokenTesting<T>,
     HasValueTesting {
@@ -152,12 +151,5 @@ public abstract class JsonNodeParserTokenTestCase<T extends JsonNodeParserToken>
             "", // prefix
             JsonNodeParserToken.class.getSimpleName() // suffix
         );
-    }
-
-    // class............................................................................................................
-
-    @Override
-    public final JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }

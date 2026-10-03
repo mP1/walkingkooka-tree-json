@@ -157,14 +157,22 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testParseNumber() {
         final String text = "123";
 
-        this.parseAndCheck(text, number(123), text);
+        this.parseAndCheck(
+            text,
+            number(123),
+            text
+        );
     }
 
     @Test
     public void testParseNumber2() {
         final String text = "-123";
 
-        this.parseAndCheck(text, number(-123), text);
+        this.parseAndCheck(
+            text,
+            number(-123),
+            text
+        );
     }
 
     @Test
@@ -223,21 +231,33 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testParseString() {
         final String text = "\"abc-123\"";
 
-        this.parseAndCheck(text, string("abc-123"), text);
+        this.parseAndCheck(
+            text,
+            string("abc-123"),
+            text
+        );
     }
 
     @Test
     public void testParseStringWithTab() {
         final String text = "\"abc\t123\"";
 
-        this.parseAndCheck(text, string("abc\t123", "\"abc\t123\""), text);
+        this.parseAndCheck(
+            text,
+            string("abc\t123", "\"abc\t123\""),
+            text
+        );
     }
 
     @Test
     public void testParseStringWithEscapedBackslash() {
         final String text = "\"abc\\\\123\"";
 
-        this.parseAndCheck(text, string("abc\\123", "\"abc\\\\123\""), text);
+        this.parseAndCheck(
+            text,
+            string("abc\\123", "\"abc\\\\123\""),
+            text
+        );
     }
 
     @Test
@@ -252,126 +272,201 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testParseArrayEmpty() {
         final String text = "[]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseArrayEmptyWhitespace() {
         final String text = "[  ]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, WHITESPACE, ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, WHITESPACE, ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseArrayBooleanFalse() {
         final String text = "[false]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, FALSE, ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, FALSE, ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseArrayBooleanTrue() {
         final String text = "[true]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, TRUE, ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, TRUE, ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseArrayWhitespaceBooleanWhitespaceTrue() {
         final String text = "[  true  ]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, WHITESPACE, TRUE, WHITESPACE, ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, WHITESPACE, TRUE, WHITESPACE, ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseArrayNull() {
         final String text = "[null]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, NULL, ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, NULL, ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseArrayWhitespaceNullWhitespaceTrue() {
         final String text = "[  null  ]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, WHITESPACE, NULL, WHITESPACE, ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, WHITESPACE, NULL, WHITESPACE, ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseArrayNumber() {
         final String text = "[123]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, number(123), ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, number(123), ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseArrayWhitespaceNumberWhitespaceTrue() {
         final String text = "[  123  ]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, WHITESPACE, number(123), WHITESPACE, ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, WHITESPACE, number(123), WHITESPACE, ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseArrayString() {
         final String text = "[\"abc\"]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, string("abc"), ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, string("abc"), ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseArrayWhitespaceStringWhitespaceTrue() {
         final String text = "[  \"abc\"  ]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, WHITESPACE, string("abc"), WHITESPACE, ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, WHITESPACE, string("abc"), WHITESPACE, ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseArrayArrayString() {
         final String text = "[[\"abc\"]]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, array(ARRAY_BEGIN, string("abc"), ARRAY_END), ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN,
+                array(ARRAY_BEGIN, string("abc"), ARRAY_END),
+                ARRAY_END
+            ),
+            text
+        );
     }
 
     @Test
     public void testParseArrayNumberNumber() {
         final String text = "[123,456]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, number(123), SEPARATOR, number(456), ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, number(123), SEPARATOR, number(456), ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseArrayNumberWhitespaceNumber() {
         final String text = "[123  ,  456]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, number(123), WHITESPACE, SEPARATOR, WHITESPACE, number(456), ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, number(123), WHITESPACE, SEPARATOR, WHITESPACE, number(456), ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseArrayNumberNumberBooleanTrue() {
         final String text = "[123,456,true]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, number(123), SEPARATOR, number(456), SEPARATOR, TRUE, ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, number(123), SEPARATOR, number(456), SEPARATOR, TRUE, ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseArrayNumberNumberBooleanTrueString() {
         final String text = "[123,456,true,\"abc\"]";
 
-        this.parseAndCheck(text, array(ARRAY_BEGIN, number(123), SEPARATOR, number(456), SEPARATOR, TRUE, SEPARATOR, string("abc"), ARRAY_END), text);
+        this.parseAndCheck(
+            text,
+            array(ARRAY_BEGIN, number(123), SEPARATOR, number(456), SEPARATOR, TRUE, SEPARATOR, string("abc"), ARRAY_END),
+            text
+        );
     }
 
     @Test
     public void testParseObjectEmpty() {
         final String text = "{}";
 
-        this.parseAndCheck(text, object(OBJECT_BEGIN, OBJECT_END), text);
+        this.parseAndCheck(
+            text,
+            object(OBJECT_BEGIN, OBJECT_END),
+            text
+        );
     }
 
     @Test
     public void testParseObjectEmptyWhitespace() {
         final String text = "{  }";
 
-        this.parseAndCheck(text, object(OBJECT_BEGIN, WHITESPACE, OBJECT_END), text);
+        this.parseAndCheck(
+            text,
+            object(OBJECT_BEGIN, WHITESPACE, OBJECT_END),
+            text
+        );
     }
 
     @Test
@@ -402,51 +497,85 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
     public void testParseObjectBooleanTrue() {
         final String text = "{\"key1\":true}";
 
-        this.parseAndCheck(text, object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, TRUE, OBJECT_END), text);
+        this.parseAndCheck(
+            text,
+            object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, TRUE, OBJECT_END),
+            text
+        );
     }
 
     @Test
     public void testParseObjectBooleanFalse() {
         final String text = "{\"key1\":false}";
 
-        this.parseAndCheck(text, object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, FALSE, OBJECT_END), text);
+        this.parseAndCheck(
+            text,
+            object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, FALSE, OBJECT_END),
+            text
+        );
     }
 
     @Test
     public void testParseObjectNull() {
         final String text = "{\"key1\":null}";
 
-        this.parseAndCheck(text, object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, NULL, OBJECT_END), text);
+        this.parseAndCheck(
+            text,
+            object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, NULL, OBJECT_END),
+            text
+        );
     }
 
     @Test
     public void testParseObjectNumber() {
         final String text = "{\"key1\":123}";
 
-        this.parseAndCheck(text, object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, number(123), OBJECT_END), text);
+        this.parseAndCheck(
+            text,
+            object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, number(123), OBJECT_END),
+            text
+        );
     }
 
     @Test
     public void testParseObjectString() {
         final String text = "{\"key1\":\"abc\"}";
 
-        this.parseAndCheck(text, object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, string("abc"), OBJECT_END), text);
+        this.parseAndCheck(
+            text,
+            object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, string("abc"), OBJECT_END),
+            text
+        );
     }
 
     @Test
     public void testParseObjectArrayTrue() {
         final String text = "{\"key1\":[true]}";
 
-        final JsonNodeParserToken array = array(ARRAY_BEGIN, TRUE, ARRAY_END);
-        this.parseAndCheck(text, object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, array, OBJECT_END), text);
+        this.parseAndCheck(
+            text,
+            object(
+                OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT,
+                array(ARRAY_BEGIN, TRUE, ARRAY_END),
+                OBJECT_END
+            ),
+            text
+        );
     }
 
     @Test
     public void testParseObjectNested() {
         final String text = "{\"key1\":{\"key2\":true}}";
 
-        final JsonNodeParserToken nested = object(OBJECT_BEGIN, KEY2, OBJECT_ASSIGNMENT, TRUE, OBJECT_END);
-        this.parseAndCheck(text, object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, nested, OBJECT_END), text);
+        this.parseAndCheck(
+            text,
+            object(
+                OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT,
+                object(OBJECT_BEGIN, KEY2, OBJECT_ASSIGNMENT, TRUE, OBJECT_END),
+                OBJECT_END
+            ),
+            text
+        );
     }
 
     @Test
@@ -455,36 +584,54 @@ public final class JsonNodeParsersTest implements PublicStaticHelperTesting<Json
 
         final JsonNodeParserToken nested2 = object(OBJECT_BEGIN, KEY3, OBJECT_ASSIGNMENT, TRUE, OBJECT_END);
         final JsonNodeParserToken nested = object(OBJECT_BEGIN, KEY2, OBJECT_ASSIGNMENT, nested2, OBJECT_END);
-        this.parseAndCheck(text, object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, nested, OBJECT_END), text);
+        this.parseAndCheck(
+            text,
+            object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, nested, OBJECT_END),
+            text
+        );
     }
 
     @Test
     public void testParseObjectBooleanTrueBooleanFalse() {
         final String text = "{\"key1\":true,\"key2\":false}";
 
-        this.parseAndCheck(text, object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, TRUE, SEPARATOR, KEY2, OBJECT_ASSIGNMENT, FALSE, OBJECT_END), text);
+        this.parseAndCheck(
+            text,
+            object(OBJECT_BEGIN, KEY1, OBJECT_ASSIGNMENT, TRUE, SEPARATOR, KEY2, OBJECT_ASSIGNMENT, FALSE, OBJECT_END),
+            text
+        );
     }
 
     @Test
     public void testParseObjectWhitespaceKeyWhitespaceAssignmentWhitespaceValueWhitespace() {
         final String text = "{  \"key1\"  :  null  }";
 
-        this.parseAndCheck(text,
-            object(OBJECT_BEGIN,
+        this.parseAndCheck(
+            text,
+            object(
+                OBJECT_BEGIN,
                 WHITESPACE, KEY1, WHITESPACE, OBJECT_ASSIGNMENT, WHITESPACE, NULL, WHITESPACE,
-                OBJECT_END),
-            text);
+                OBJECT_END
+            ),
+            text
+        );
     }
 
     @Test
     public void testParseObjectBooleanTrueBooleanFalseNul() {
         final String text = "{\"key1\":true,\"key2\":false,\"key3\":null}";
 
-        this.parseAndCheck(text, object(OBJECT_BEGIN,
-            KEY1, OBJECT_ASSIGNMENT, TRUE, SEPARATOR,
-            KEY2, OBJECT_ASSIGNMENT, FALSE, SEPARATOR,
-            KEY3, OBJECT_ASSIGNMENT, NULL,
-            OBJECT_END), text);
+        this.parseAndCheck(
+            text,
+            object(
+                OBJECT_BEGIN,
+                KEY1, OBJECT_ASSIGNMENT, TRUE, SEPARATOR,
+                KEY2, OBJECT_ASSIGNMENT, FALSE, SEPARATOR,
+                KEY3, OBJECT_ASSIGNMENT, NULL,
+                OBJECT_END
+            ),
+            text
+        );
     }
 
     @Test

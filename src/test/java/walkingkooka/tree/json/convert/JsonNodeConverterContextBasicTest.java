@@ -46,6 +46,7 @@ public final class JsonNodeConverterContextBasicTest implements JsonNodeConverte
                 (dnc) -> (DecimalFormat) DecimalFormat.getInstance()
             )
         ),
+        EXPRESSION_NUMBER_KIND,
         BinaryNumberConverterFunctions.multiply(), // multiplier
         ConverterContexts.basic(
             false, // canNumbersHaveGroupSeparator
@@ -57,8 +58,7 @@ public final class JsonNodeConverterContextBasicTest implements JsonNodeConverte
             CURRENCY_LOCALE_CONTEXT,
             DATE_TIME_CONTEXT,
             DECIMAL_NUMBER_CONTEXT
-        ),
-        EXPRESSION_NUMBER_KIND
+        )
     );
 
     @Test

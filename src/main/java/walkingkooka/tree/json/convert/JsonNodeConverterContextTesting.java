@@ -18,8 +18,8 @@
 package walkingkooka.tree.json.convert;
 
 import walkingkooka.environment.convert.EnvironmentConverterContextTesting;
-import walkingkooka.tree.expression.convert.ExpressionNumberConverterContextTesting;
+import walkingkooka.tree.expression.convert.TreeConverterContextTesting;
 
 public interface JsonNodeConverterContextTesting extends EnvironmentConverterContextTesting,
-    ExpressionNumberConverterContextTesting {
+    TreeConverterContextTesting {
 }

@@ -25,7 +25,7 @@ import walkingkooka.convert.Converters;
 import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.tree.expression.ExpressionNumber;
 import walkingkooka.tree.expression.ExpressionNumberKind;
-import walkingkooka.tree.expression.convert.FakeExpressionNumberConverterContext;
+import walkingkooka.tree.expression.convert.FakeTreeConverterContext;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextTesting;
 
@@ -92,7 +92,7 @@ public final class JsonNodeConverterJsonNodeToTest extends JsonNodeConverterTest
     @Override
     public JsonNodeConverterContext createContext() {
         return JsonNodeConverterContexts.basic(
-            new FakeExpressionNumberConverterContext() {
+            new FakeTreeConverterContext() {
 
                 @Override
                 public ExpressionNumberKind expressionNumberKind() {
@@ -119,7 +119,7 @@ public final class JsonNodeConverterJsonNodeToTest extends JsonNodeConverterTest
                     );
                 }
 
-                private final Converter<FakeExpressionNumberConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
+                private final Converter<FakeTreeConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
             },
             ENVIRONMENT_CONTEXT,
             JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT

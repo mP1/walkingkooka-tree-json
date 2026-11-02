@@ -26,9 +26,9 @@ import walkingkooka.environment.EnvironmentContextTesting;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.math.DecimalNumberContextDelegator;
 import walkingkooka.tree.expression.ExpressionNumber;
-import walkingkooka.tree.expression.convert.ExpressionNumberConverterContext;
-import walkingkooka.tree.expression.convert.ExpressionNumberConverterContexts;
-import walkingkooka.tree.expression.convert.ExpressionNumberConverters;
+import walkingkooka.tree.expression.convert.TreeConverterContext;
+import walkingkooka.tree.expression.convert.TreeConverterContexts;
+import walkingkooka.tree.expression.convert.TreeConverters;
 
 import java.math.MathContext;
 import java.text.DecimalFormat;
@@ -40,8 +40,8 @@ public final class JsonNodeConverterContextBasicTest implements JsonNodeConverte
     DecimalNumberContextDelegator,
     EnvironmentContextTesting {
 
-    private final static ExpressionNumberConverterContext CONVERTER_CONTEXT = ExpressionNumberConverterContexts.basic(
-        ExpressionNumberConverters.toNumberOrExpressionNumber(
+    private final static TreeConverterContext CONVERTER_CONTEXT = TreeConverterContexts.basic(
+        TreeConverters.toNumberOrExpressionNumber(
             Converters.textToNumber(
                 (dnc) -> (DecimalFormat) DecimalFormat.getInstance()
             )

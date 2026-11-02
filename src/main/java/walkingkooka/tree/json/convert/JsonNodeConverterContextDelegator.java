@@ -23,8 +23,8 @@ import walkingkooka.environment.CanParseEnvironmentValueNameDelegator;
 import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.tree.expression.ExpressionNumberKind;
-import walkingkooka.tree.expression.convert.ExpressionNumberConverterContext;
-import walkingkooka.tree.expression.convert.ExpressionNumberConverterContextDelegator;
+import walkingkooka.tree.expression.convert.TreeConverterContext;
+import walkingkooka.tree.expression.convert.TreeConverterContextDelegator;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContext;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContextDelegator;
 
@@ -35,7 +35,7 @@ import java.util.Optional;
 
 public interface JsonNodeConverterContextDelegator extends JsonNodeConverterContext,
     CanParseEnvironmentValueNameDelegator,
-    ExpressionNumberConverterContextDelegator,
+    TreeConverterContextDelegator,
     JsonNodeMarshallUnmarshallContextDelegator {
 
     @Override
@@ -59,22 +59,22 @@ public interface JsonNodeConverterContextDelegator extends JsonNodeConverterCont
         return this.jsonNodeConverterContext();
     }
 
-    // ExpressionNumberConverterContextDelegator........................................................................
+    // TreeConverterContextDelegator........................................................................
 
     @Override
-    default ExpressionNumberConverterContext expressionNumberConverterContext() {
+    default TreeConverterContext treeConverterContext() {
         return this.jsonNodeConverterContext();
     }
 
     @Override
     default ExpressionNumberKind expressionNumberKind() {
-        return this.expressionNumberConverterContext()
+        return this.treeConverterContext()
             .expressionNumberKind();
     }
 
     @Override
     default MathContext mathContext() {
-        return this.expressionNumberConverterContext()
+        return this.treeConverterContext()
             .mathContext();
     }
 

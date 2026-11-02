@@ -21,7 +21,7 @@ import walkingkooka.currency.CurrencyCode;
 import walkingkooka.environment.EnvironmentValueName;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.tree.expression.ExpressionNumberKind;
-import walkingkooka.tree.expression.convert.FakeExpressionNumberConverterContext;
+import walkingkooka.tree.expression.convert.FakeTreeConverterContext;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonString;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContextObjectPostProcessor;
@@ -35,7 +35,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 
-public class FakeJsonNodeConverterContext extends FakeExpressionNumberConverterContext implements JsonNodeConverterContext {
+public class FakeJsonNodeConverterContext extends FakeTreeConverterContext implements JsonNodeConverterContext {
 
     @Override
     public JsonNodeConverterContext setObjectPostProcessor(final JsonNodeMarshallContextObjectPostProcessor processor) {

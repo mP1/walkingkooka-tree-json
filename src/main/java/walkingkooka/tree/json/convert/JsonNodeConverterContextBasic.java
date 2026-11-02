@@ -25,7 +25,7 @@ import walkingkooka.locale.LocaleLanguageTag;
 import walkingkooka.math.DecimalNumberContext;
 import walkingkooka.net.email.EmailAddress;
 import walkingkooka.tree.expression.ExpressionNumberKind;
-import walkingkooka.tree.expression.convert.ExpressionNumberConverterContext;
+import walkingkooka.tree.expression.convert.TreeConverterContext;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContext;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContextObjectPostProcessor;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContext;
@@ -40,14 +40,14 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * A {@link JsonNodeConverterContext} that uses given {@link ExpressionNumberConverterContext}, {@link JsonNodeMarshallContext}
+ * A {@link JsonNodeConverterContext} that uses given {@link TreeConverterContext}, {@link JsonNodeMarshallContext}
  * and {@link JsonNodeUnmarshallContext}. Note the {@link ExpressionNumberKind} returned for all context should be the same.
  */
 final class JsonNodeConverterContextBasic implements JsonNodeConverterContext,
     JsonNodeMarshallUnmarshallContextDelegator,
     ConverterContextDelegator {
 
-    static JsonNodeConverterContextBasic with(final ExpressionNumberConverterContext converterContext,
+    static JsonNodeConverterContextBasic with(final TreeConverterContext converterContext,
                                               final EnvironmentContext environmentContext,
                                               final JsonNodeMarshallUnmarshallContext marshallUnmarshallContext) {
         return new JsonNodeConverterContextBasic(
@@ -57,7 +57,7 @@ final class JsonNodeConverterContextBasic implements JsonNodeConverterContext,
         );
     }
 
-    private JsonNodeConverterContextBasic(final ExpressionNumberConverterContext converterContext,
+    private JsonNodeConverterContextBasic(final TreeConverterContext converterContext,
                                           final EnvironmentContext environmentContext,
                                           final JsonNodeMarshallUnmarshallContext marshallUnmarshallContext) {
         super();
@@ -111,7 +111,7 @@ final class JsonNodeConverterContextBasic implements JsonNodeConverterContext,
 
     @Override
     public ExpressionNumberKind expressionNumberKind() {
-        // prefer to source ExpressionNumberKind from ExpressionNumberConverterContext rather than JsonNodeUnmarshallContext
+        // prefer to source ExpressionNumberKind from TreeConverterContext rather than JsonNodeUnmarshallContext
         return this.converterContext.expressionNumberKind();
     }
 
@@ -130,7 +130,7 @@ final class JsonNodeConverterContextBasic implements JsonNodeConverterContext,
         return this.converterContext.localeForLanguageTag(languageTag);
     }
 
-    private final ExpressionNumberConverterContext converterContext;
+    private final TreeConverterContext converterContext;
 
     // EnvironmentContext...............................................................................................
 

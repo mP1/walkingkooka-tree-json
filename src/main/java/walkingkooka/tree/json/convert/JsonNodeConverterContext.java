@@ -19,7 +19,7 @@ package walkingkooka.tree.json.convert;
 
 import walkingkooka.convert.ConverterContext;
 import walkingkooka.environment.convert.EnvironmentConverterContext;
-import walkingkooka.tree.expression.convert.ExpressionNumberConverterContext;
+import walkingkooka.tree.expression.convert.TreeConverterContext;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallContextObjectPostProcessor;
 import walkingkooka.tree.json.marshall.JsonNodeMarshallUnmarshallContext;
 import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
@@ -28,7 +28,7 @@ import walkingkooka.tree.json.marshall.JsonNodeUnmarshallContextPreProcessor;
  * A {@link ConverterContext} that adds additional methods to support marshalling/unmarshaling {@link walkingkooka.tree.json.JsonNode}.
  */
 public interface JsonNodeConverterContext extends EnvironmentConverterContext,
-    ExpressionNumberConverterContext,
+    TreeConverterContext,
     JsonNodeMarshallUnmarshallContext {
 
     @Override

@@ -82,7 +82,7 @@ public final class JsonNodeConverterTextToJsonSelectorTest extends JsonNodeConve
                 );
             }
 
-            private final Converter<FakeJsonNodeConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
+            private final Converter<FakeJsonNodeConverterContext> converter = Converters.toText();
         };
     }
 

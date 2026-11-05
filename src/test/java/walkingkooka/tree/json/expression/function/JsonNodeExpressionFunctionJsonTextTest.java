@@ -82,7 +82,7 @@ public final class JsonNodeExpressionFunctionJsonTextTest extends JsonNodeExpres
 
         private final Converter<JsonNodeConverterContext> converter = Converters.collection(
             Lists.of(
-                Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
+                Converters.toText(),
                 JsonNodeConverters.toJsonNode()
             )
         );

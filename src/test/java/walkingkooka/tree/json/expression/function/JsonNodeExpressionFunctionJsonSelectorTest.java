@@ -48,7 +48,7 @@ public final class JsonNodeExpressionFunctionJsonSelectorTest extends JsonNodeEx
 
         private final Converter<JsonNodeConverterContext> converter = Converters.collection(
             Lists.of(
-                Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
+                Converters.toText(),
                 JsonNodeConverters.textToJsonSelector()
             )
         );

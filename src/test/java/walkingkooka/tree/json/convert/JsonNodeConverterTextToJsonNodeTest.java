@@ -137,7 +137,7 @@ public final class JsonNodeConverterTextToJsonNodeTest extends JsonNodeConverter
                 );
             }
 
-            private final Converter<FakeJsonNodeConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
+            private final Converter<FakeJsonNodeConverterContext> converter = Converters.toText();
         };
     }
 

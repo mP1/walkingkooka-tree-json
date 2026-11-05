@@ -48,7 +48,7 @@ public final class JsonNodeExpressionFunctionJsonPointerTest extends JsonNodeExp
 
         private final Converter<JsonNodeConverterContext> converter = Converters.collection(
             Lists.of(
-                Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString(),
+                Converters.toText(),
                 JsonNodeConverters.textToJsonPointer()
             )
         );

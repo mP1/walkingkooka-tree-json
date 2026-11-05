@@ -119,7 +119,7 @@ public final class JsonNodeConverterJsonNodeToTest extends JsonNodeConverterTest
                     );
                 }
 
-                private final Converter<FakeTreeConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
+                private final Converter<FakeTreeConverterContext> converter = Converters.toText();
             },
             ENVIRONMENT_CONTEXT,
             JSON_NODE_MARSHALL_UNMARSHALL_CONTEXT

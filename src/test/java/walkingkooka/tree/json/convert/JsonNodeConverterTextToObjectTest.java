@@ -159,7 +159,7 @@ public final class JsonNodeConverterTextToObjectTest extends JsonNodeConverterTe
                 );
             }
 
-            private final Converter<FakeJsonNodeConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
+            private final Converter<FakeJsonNodeConverterContext> converter = Converters.toText();
 
             @Override
             public <T> T unmarshall(final JsonNode json,

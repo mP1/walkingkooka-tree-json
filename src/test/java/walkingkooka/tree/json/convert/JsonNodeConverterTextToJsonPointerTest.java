@@ -81,7 +81,7 @@ public final class JsonNodeConverterTextToJsonPointerTest extends JsonNodeConver
                 );
             }
 
-            private final Converter<FakeJsonNodeConverterContext> converter = Converters.characterOrCharSequenceOrHasTextOrStringToCharacterOrCharSequenceOrString();
+            private final Converter<FakeJsonNodeConverterContext> converter = Converters.toText();
         };
     }
 

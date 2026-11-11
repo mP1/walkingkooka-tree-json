@@ -19,14 +19,11 @@ package walkingkooka.tree.json;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.naming.NameTesting;
-import walkingkooka.reflect.ClassTesting2;
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.text.CaseSensitivity;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class JsonPropertyNameTest implements ClassTesting2<JsonPropertyName>,
-    NameTesting<JsonPropertyName, JsonPropertyName> {
+public final class JsonPropertyNameTest implements NameTesting<JsonPropertyName, JsonPropertyName> {
 
     @Test
     public void testWithNegativeIndexFails() {
@@ -121,10 +118,5 @@ public final class JsonPropertyNameTest implements ClassTesting2<JsonPropertyNam
     @Override
     public Class<JsonPropertyName> type() {
         return JsonPropertyName.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }

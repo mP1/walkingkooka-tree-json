@@ -25,7 +25,7 @@ import walkingkooka.ToStringTesting;
 
 public abstract class BasicJsonNodeContextTestCase<C extends JsonNodeContext> extends BasicTestCase<C>
     implements ContextTesting<C>,
-    ToStringTesting<C> {
+    ToStringTesting {
 
     BasicJsonNodeContextTestCase() {
         super();

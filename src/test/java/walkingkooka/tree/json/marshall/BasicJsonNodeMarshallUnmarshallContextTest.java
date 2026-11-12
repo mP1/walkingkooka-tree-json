@@ -23,7 +23,7 @@ import walkingkooka.ToStringTesting;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class BasicJsonNodeMarshallUnmarshallContextTest implements JsonNodeMarshallUnmarshallContextTesting2<BasicJsonNodeMarshallUnmarshallContext>,
-    ToStringTesting<BasicJsonNodeMarshallUnmarshallContext> {
+    ToStringTesting {
 
     @Test
     public void testWithNullJsonNodeMarshallContextFails() {

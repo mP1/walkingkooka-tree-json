@@ -44,7 +44,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class JsonSelectorTest implements BiFunctionTesting2<JsonSelector, JsonNode, JsonSelectorContext, List<JsonNode>>,
     ClassTesting2<JsonSelector>,
     HashCodeEqualsDefinedTesting2<JsonSelector>,
-    ToStringTesting<JsonSelector>,
+    ToStringTesting,
     TreePrintableTesting {
 
     // with.............................................................................................................

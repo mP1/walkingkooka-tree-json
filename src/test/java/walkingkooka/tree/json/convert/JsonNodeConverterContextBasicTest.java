@@ -36,7 +36,7 @@ import java.text.DecimalFormat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class JsonNodeConverterContextBasicTest implements JsonNodeConverterContextTesting2<JsonNodeConverterContextBasic>,
-    ToStringTesting<JsonNodeConverterContextBasic>,
+    ToStringTesting,
     DecimalNumberContextDelegator,
     EnvironmentContextTesting {
 

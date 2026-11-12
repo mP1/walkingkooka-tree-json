@@ -46,7 +46,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller<T>, T> extends BasicJsonMarshallerTestCase<M>
     implements JsonNodeMarshallUnmarshallContextTesting,
-    ToStringTesting<M> {
+    ToStringTesting {
 
     BasicJsonMarshallerTestCase2() {
         super();

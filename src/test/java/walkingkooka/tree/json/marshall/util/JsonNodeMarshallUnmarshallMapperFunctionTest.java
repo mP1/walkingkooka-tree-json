@@ -38,7 +38,7 @@ public final class JsonNodeMarshallUnmarshallMapperFunctionTest implements Funct
     ClassTesting<JsonNodeMarshallUnmarshallMapperFunction<BigDecimal, String>>,
     JsonNodeMarshallContextTesting,
     JsonNodeUnmarshallContextTesting,
-    ToStringTesting<JsonNodeMarshallUnmarshallMapperFunction<BigDecimal, String>> {
+    ToStringTesting {
 
 
     private final static Function<BigDecimal, String> MAPPER = (b) -> b.toPlainString();

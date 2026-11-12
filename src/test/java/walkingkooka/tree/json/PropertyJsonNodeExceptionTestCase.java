@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public abstract class PropertyJsonNodeExceptionTestCase<T extends PropertyJsonNodeException> implements ThrowableTesting2<T>,
-    ToStringTesting<T> {
+    ToStringTesting {
 
     @Override
     public final void testIfClassIsFinalIfAllConstructorsArePrivate() {

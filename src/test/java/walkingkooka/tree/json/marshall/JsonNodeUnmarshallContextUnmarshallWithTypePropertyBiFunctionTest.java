@@ -22,6 +22,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import walkingkooka.Cast;
 import walkingkooka.ToStringTesting;
+import walkingkooka.reflect.PackagePrivateClassTesting;
 import walkingkooka.reflect.ThrowableTesting;
 import walkingkooka.tree.json.JsonNode;
 import walkingkooka.tree.json.JsonObject;
@@ -36,8 +37,9 @@ public final class JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction
     JsonNodeUnmarshallContext,
     TestJsonNodeValue>,
     JsonNodeMarshallUnmarshallContextTesting,
+    PackagePrivateClassTesting<JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<TestJsonNodeValue>>,
     ThrowableTesting,
-    ToStringTesting<JsonNodeUnmarshallContextUnmarshallWithTypePropertyBiFunction<TestJsonNodeValue>> {
+    ToStringTesting {
 
     @BeforeAll
     public static void beforeAll() {

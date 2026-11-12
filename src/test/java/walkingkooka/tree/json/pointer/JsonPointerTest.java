@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public final class JsonPointerTest implements FunctionTesting2<JsonPointer, JsonNode, Optional<JsonNode>>,
     ClassTesting2<JsonPointer>,
     HashCodeEqualsDefinedTesting2<JsonPointer>,
-    ToStringTesting<JsonPointer>,
+    ToStringTesting,
     TreePrintableTesting {
 
     // with.............................................................................................................

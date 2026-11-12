@@ -28,7 +28,7 @@ import walkingkooka.text.cursor.parser.ParserTesting2;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class JsonNodeParsersStringParserTest implements ParserTesting2<JsonNodeParsersStringParser, ParserContext>, ToStringTesting<JsonNodeParsersStringParser>,
+public final class JsonNodeParsersStringParserTest implements ParserTesting2<JsonNodeParsersStringParser, ParserContext>, ToStringTesting,
     TypeNameTesting<JsonNodeParsersStringParser> {
 
     @Test

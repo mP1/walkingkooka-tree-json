@@ -21,7 +21,7 @@ import walkingkooka.ToStringTesting;
 import walkingkooka.convert.ConverterTesting2;
 
 public abstract class JsonNodeConverterTestCase<C extends JsonNodeConverter<CC>, CC extends JsonNodeConverterContext> implements ConverterTesting2<C, CC>,
-    ToStringTesting<C> {
+    ToStringTesting {
 
     JsonNodeConverterTestCase() {
         super();

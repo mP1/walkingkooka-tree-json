@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import walkingkooka.ToStringTesting;
 
 public final class BasicJsonMarshallerTypedGenericRunnableTest extends BasicJsonMarshallerTestCase<BasicJsonMarshallerTypedGenericRunnable>
-    implements ToStringTesting<BasicJsonMarshallerTypedGenericRunnable> {
+    implements ToStringTesting {
 
     @SuppressWarnings("unchecked")
     @Test

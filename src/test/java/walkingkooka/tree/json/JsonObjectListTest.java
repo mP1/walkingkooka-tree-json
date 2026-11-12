@@ -23,7 +23,7 @@ import walkingkooka.collect.list.ImmutableListTesting;
 import walkingkooka.collect.map.Maps;
 
 public final class JsonObjectListTest implements ImmutableListTesting<JsonObjectList, JsonNode>,
-    ToStringTesting<JsonObjectList> {
+    ToStringTesting {
 
     @Test
     public void testJsonObject() {

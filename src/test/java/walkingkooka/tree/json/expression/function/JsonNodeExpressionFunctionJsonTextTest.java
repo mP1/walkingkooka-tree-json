@@ -102,7 +102,7 @@ public final class JsonNodeExpressionFunctionJsonTextTest extends JsonNodeExpres
     public void testApplyWithNull() {
         this.applyAndCheck(
             Lists.of((Object)null),
-            MultiLineText.with("null")
+            MultiLineText.EMPTY.setText("null")
         );
     }
 

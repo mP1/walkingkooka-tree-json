@@ -477,7 +477,7 @@ public abstract class JsonNode implements Node<JsonNode, JsonPropertyName, Name,
         try (final IndentingPrinter printer = Printers.stringBuilder(b, context.lineEnding()).indenting(context.indentation())) {
             this.printJson(printer);
         }
-        return MultiLineText.with(
+        return MultiLineText.EMPTY.setText(
             b.toString()
         );
     }

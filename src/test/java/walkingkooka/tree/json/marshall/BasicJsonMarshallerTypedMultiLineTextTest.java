@@ -29,7 +29,7 @@ public final class BasicJsonMarshallerTypedMultiLineTextTest extends BasicJsonMa
 
     @Override
     MultiLineText value() {
-        return MultiLineText.with("{\n  \"Hello\": \"World123\"\n}");
+        return MultiLineText.EMPTY.setText("{\n  \"Hello\": \"World123\"\n}");
     }
 
     @Override

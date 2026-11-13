@@ -56,7 +56,7 @@ final class BasicJsonMarshallerTypedMultiLineText extends BasicJsonMarshallerTyp
     @Override
     MultiLineText unmarshallNonNull(final JsonNode node,
                                     final JsonNodeUnmarshallContext context) {
-        return MultiLineText.with(
+        return MultiLineText.EMPTY.setText(
             node.stringOrFail()
         );
     }

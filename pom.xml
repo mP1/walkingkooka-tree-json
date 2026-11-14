@@ -132,6 +132,12 @@
             <groupId>walkingkooka</groupId>
             <artifactId>walkingkooka-tree</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>walkingkooka</groupId>
+                    <artifactId>walkingkooka-tree-json</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 

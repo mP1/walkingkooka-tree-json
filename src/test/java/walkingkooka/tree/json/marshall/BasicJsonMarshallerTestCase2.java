@@ -22,7 +22,6 @@ import walkingkooka.ToStringTesting;
 import walkingkooka.collect.list.CsvStringList;
 import walkingkooka.collect.list.StringList;
 import walkingkooka.collect.list.TsvStringList;
-import walkingkooka.collect.set.TsvStringSet;
 import walkingkooka.currency.CurrencyCodeSet;
 import walkingkooka.currency.CurrencyExchangeSet;
 import walkingkooka.datetime.LocalDateList;
@@ -327,8 +326,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             value instanceof LocalTimeList ||
             value instanceof NumberList ||
             value instanceof StringList ||
-            value instanceof TsvStringList ||
-            value instanceof TsvStringSet ?
+            value instanceof TsvStringList ?
             value.getClass() :
             value instanceof List ?
                 List.class :

@@ -219,7 +219,6 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedStringList.instance(),
             BasicJsonMarshallerTypedStringName.instance(),
             BasicJsonMarshallerTypedTsvStringList.instance(),
-            BasicJsonMarshallerTypedTsvStringSet.instance(),
             BasicJsonMarshallerTypedUrl.instance(),
             BasicJsonMarshallerTypedZoneOffset.instance()
         ).forEach(BasicJsonMarshaller::register);

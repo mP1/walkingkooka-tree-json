@@ -30,6 +30,7 @@ import walkingkooka.datetime.LocalDateTimeList;
 import walkingkooka.datetime.LocalTimeList;
 import walkingkooka.environment.EnvironmentValueNameSet;
 import walkingkooka.locale.LocaleLanguageTagSet;
+import walkingkooka.locale.LocaleList;
 import walkingkooka.math.NumberList;
 import walkingkooka.net.header.ETagList;
 import walkingkooka.tree.json.JsonNode;
@@ -323,6 +324,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             value instanceof EnvironmentValueNameSet ||
             value instanceof ETagList ||
             value instanceof LocaleLanguageTagSet ||
+            value instanceof LocaleList ||
             value instanceof LocalDateList ||
             value instanceof LocalDateTimeList ||
             value instanceof LocalTimeList ||

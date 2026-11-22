@@ -19,19 +19,24 @@ package walkingkooka.tree.json.marshall;
 
 import org.junit.jupiter.api.Test;
 import walkingkooka.collect.list.CsvStringList;
+import walkingkooka.currency.CurrencyCode;
 import walkingkooka.currency.CurrencyContextTesting;
 import walkingkooka.currency.CurrencyList;
 import walkingkooka.tree.json.JsonNode;
+
+import java.util.Currency;
+import java.util.stream.Collectors;
 
 public final class BasicJsonMarshallerTypedCurrencyListTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedCurrencyList, CurrencyList>
     implements CurrencyContextTesting {
 
     @Test
     public void testUnmarshallAllCurrencies() {
-        final CurrencyList currencyList = CurrencyList.EMPTY.concat(
-            CURRENCY
-        ).concat(
-            DIFFERENT_CURRENCY
+        final CurrencyList currencyList = CurrencyList.EMPTY.setElements(
+            CURRENCY_CONTEXT.availableCurrencies()
+                .stream()
+                .map((CurrencyCode currencyCode) -> Currency.getInstance(currencyCode.value()))
+                .collect(Collectors.toList())
         );
 
         this.unmarshallAndCheck(

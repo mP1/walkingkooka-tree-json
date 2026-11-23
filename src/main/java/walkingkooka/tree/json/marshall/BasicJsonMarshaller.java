@@ -146,6 +146,7 @@ abstract class BasicJsonMarshaller<T> {
             BasicJsonMarshallerTypedDateTimeSymbolsList.instance(),
             BasicJsonMarshallerTypedDataUrl.instance(),
             BasicJsonMarshallerTypedDecimalNumberSymbols.instance(),
+            BasicJsonMarshallerTypedDecimalNumberSymbolsList.instance(),
             BasicJsonMarshallerTypedEmailAddress.instance(),
             BasicJsonMarshallerTypedEnvironment.instance(),
             BasicJsonMarshallerTypedEnvironmentValueName.instance(),

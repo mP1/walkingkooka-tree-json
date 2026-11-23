@@ -27,7 +27,7 @@ import java.text.DateFormatSymbols;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-public final class BasicJsonMarshallerTypedDateTimeSymbolsListTest extends BasicJsonMarshallerTypedTestCase2<BasicJsonMarshallerTypedDateTimeSymbolsList, DateTimeSymbolsList>
+public final class BasicJsonMarshallerTypedDateTimeSymbolsListTest extends BasicJsonMarshallerTypedTestCase<BasicJsonMarshallerTypedDateTimeSymbolsList, DateTimeSymbolsList>
     implements HasDateTimeSymbolsTesting {
 
     @Test
@@ -43,10 +43,13 @@ public final class BasicJsonMarshallerTypedDateTimeSymbolsListTest extends Basic
 
         this.unmarshallAndCheck(
             BasicJsonMarshallerTypedDateTimeSymbolsList.instance(),
-            JsonNode.string(
-                list.csvStringList()
-                    .text()
-            ),
+            JsonNode.array()
+                .setChildren(
+                    list.csvStringList()
+                        .stream()
+                        .map(JsonNode::string)
+                        .collect(Collectors.toList())
+                ),
             JSON_NODE_UNMARSHALL_CONTEXT,
             list
         );
@@ -66,7 +69,12 @@ public final class BasicJsonMarshallerTypedDateTimeSymbolsListTest extends Basic
 
     @Override
     JsonNode node() {
-        return JsonNode.string("\"\"\"am,pm\"\",\"\"January,February,March,April,May,June,July,August,September,October,November,December\"\",\"\"Jan.,Feb.,Mar.,Apr.,May,Jun.,Jul.,Aug.,Sep.,Oct.,Nov.,Dec.\"\",\"\"Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday\"\",\"\"Sun.,Mon.,Tue.,Wed.,Thu.,Fri.,Sat.\"\"\",\"\"\"AM,PM\"\",\"\"January,February,March,April,May,June,July,August,September,October,November,December\"\",\"\"Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec\"\",\"\"Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday\"\",\"\"Sun,Mon,Tue,Wed,Thu,Fri,Sat\"\"\"");
+        return JsonNode.parse(
+        "[\n" +
+            "  \"\\\"am,pm\\\",\\\"January,February,March,April,May,June,July,August,September,October,November,December\\\",\\\"Jan.,Feb.,Mar.,Apr.,May,Jun.,Jul.,Aug.,Sep.,Oct.,Nov.,Dec.\\\",\\\"Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday\\\",\\\"Sun.,Mon.,Tue.,Wed.,Thu.,Fri.,Sat.\\\"\",\n" +
+            "  \"\\\"AM,PM\\\",\\\"January,February,March,April,May,June,July,August,September,October,November,December\\\",\\\"Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec\\\",\\\"Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday\\\",\\\"Sun,Mon,Tue,Wed,Thu,Fri,Sat\\\"\"\n" +
+            "]"
+        );
     }
 
     @Override

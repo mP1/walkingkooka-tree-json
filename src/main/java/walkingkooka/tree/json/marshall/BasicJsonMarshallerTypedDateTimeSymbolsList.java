@@ -22,8 +22,7 @@ import walkingkooka.datetime.DateTimeSymbolsList;
 import walkingkooka.tree.json.JsonNode;
 
 /**
- * A {@link BasicJsonMarshaller} that handles {@link DateTimeSymbolsList} producing a {@link walkingkooka.tree.json.JsonString}
- * which contains the {@link CsvStringList} equivalent for all {@link walkingkooka.datetime.DateTimeSymbols}.
+ * A {@link BasicJsonMarshaller} that handles {@link DateTimeSymbolsList} that handles {@link walkingkooka.tree.json.JsonArray} with each element representing a single {@link walkingkooka.datetime.DateTimeSymbols}.
  */
 final class BasicJsonMarshallerTypedDateTimeSymbolsList extends BasicJsonMarshallerTyped<DateTimeSymbolsList> {
 
@@ -59,19 +58,19 @@ final class BasicJsonMarshallerTypedDateTimeSymbolsList extends BasicJsonMarshal
     DateTimeSymbolsList unmarshallNonNull(final JsonNode node,
                                           final JsonNodeUnmarshallContext context) {
         return DateTimeSymbolsList.fromCsvStringList(
-            //CsvStringList.EMPTY.setElements(
-                context.unmarshall(
+            CsvStringList.EMPTY.setElements(
+                context.unmarshallList(
                     node,
-                    CsvStringList.class
+                    String.class
                 )
-            //)
+            )
         );
     }
 
     @Override
     JsonNode marshallNonNull(final DateTimeSymbolsList list,
                              final JsonNodeMarshallContext context) {
-        return context.marshall(
+        return context.marshallCollection(
             list.csvStringList()
         );
     }

@@ -25,6 +25,7 @@ import walkingkooka.collect.list.TsvStringList;
 import walkingkooka.currency.CurrencyCodeSet;
 import walkingkooka.currency.CurrencyExchangeSet;
 import walkingkooka.currency.CurrencyList;
+import walkingkooka.datetime.DateTimeSymbolsList;
 import walkingkooka.datetime.LocalDateList;
 import walkingkooka.datetime.LocalDateTimeList;
 import walkingkooka.datetime.LocalTimeList;
@@ -321,6 +322,7 @@ public abstract class BasicJsonMarshallerTestCase2<M extends BasicJsonMarshaller
             value instanceof CurrencyExchangeSet ||
             value instanceof CurrencyList ||
             value instanceof CsvStringList ||
+            value instanceof DateTimeSymbolsList ||
             value instanceof EnvironmentValueNameSet ||
             value instanceof ETagList ||
             value instanceof LocaleLanguageTagSet ||

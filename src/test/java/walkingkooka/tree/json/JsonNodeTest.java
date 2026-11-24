@@ -296,20 +296,6 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
         return JsonNode.parse(text);
     }
 
-    @Override
-    public RuntimeException parseStringFailedExpected(final RuntimeException expected) {
-        this.checkEquals(
-            expected instanceof IllegalArgumentException,
-            expected + " is not a sub class of " + IllegalArgumentException.class
-        );
-        return expected;
-    }
-
-    @Override
-    public Class<? extends RuntimeException> parseStringFailedExpected(final Class<? extends RuntimeException> expected) {
-        return IllegalArgumentException.class;
-    }
-
     // HasTextOffset.................................................................................................
 
     @Test

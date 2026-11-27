@@ -22,58 +22,132 @@ import walkingkooka.ToStringTesting;
 import walkingkooka.collect.list.ImmutableListTesting;
 import walkingkooka.collect.map.Maps;
 
+import java.util.Map;
+
 public final class JsonObjectListTest implements ImmutableListTesting<JsonObjectList, JsonNode>,
     ToStringTesting {
+
+    private final static JsonPropertyName PROPERTY_NAME1 = JsonPropertyName.with("propertyName111");
+    private final static JsonPropertyName PROPERTY_NAME2 = JsonPropertyName.with("propertyName222");
+    private final static JsonPropertyName PROPERTY_NAME3 = JsonPropertyName.with("propertyName333");
+    private final static JsonPropertyName PROPERTY_NAME4 = JsonPropertyName.with("propertyName444");
+    private final static JsonPropertyName PROPERTY_NAME5 = JsonPropertyName.with("propertyName555");
+
+    private final static JsonNode VALUE1 = JsonNode.booleanNode(true);
+    private final static JsonNode VALUE2 = JsonNode.number(222);
+    private final static JsonNode VALUE3 = JsonNode.number(333);
+    private final static JsonNode VALUE4 = JsonNode.number(444);
+    private final static JsonNode VALUE5 = JsonNode.number(555);
+
 
     @Test
     public void testJsonObject() {
         JsonObject object = JsonNode.object();
 
-        final JsonPropertyName first = JsonPropertyName.with("first");
-        final JsonPropertyName second = JsonPropertyName.with("second");
-
-        final JsonNode value1 = JsonNode.booleanNode(true);
-        final JsonNode value2 = JsonNode.number(22);
-
         object = object.set(
-            first,
-            value1
+            PROPERTY_NAME1,
+            VALUE1
         ).set(
-            second,
-            value2
+            PROPERTY_NAME2,
+            VALUE2
         );
 
         this.checkEquals(
             JsonObjectList.with(
                 Maps.of(
-                    first,
-                    value1.setName(first),
-                    second,
-                    value2.setName(second)
+                    PROPERTY_NAME1,
+                    VALUE1.setName(PROPERTY_NAME1),
+                    PROPERTY_NAME2,
+                    VALUE2.setName(PROPERTY_NAME2)
                 )
             ),
             object.children
         );
     }
 
+    // subList..........................................................................................................
+
+    private final static Map<JsonPropertyName, JsonNode> ELEMENTS = Maps.of(
+        PROPERTY_NAME1,
+        VALUE1,
+        PROPERTY_NAME2,
+        VALUE2,
+        PROPERTY_NAME3,
+        VALUE3,
+        PROPERTY_NAME4,
+        VALUE4,
+        PROPERTY_NAME5,
+        VALUE5
+    );
+
+    @Test
+    public void testSubList() {
+        this.subListAndCheck(
+            new JsonObjectList(ELEMENTS),
+            0,
+            2,
+            new JsonObjectList(
+                Maps.of(
+                    PROPERTY_NAME1,
+                    VALUE1,
+                    PROPERTY_NAME2,
+                    VALUE2
+                )
+            )
+        );
+    }
+
+    @Test
+    public void testSubList2() {
+        this.subListAndCheck(
+            new JsonObjectList(ELEMENTS),
+            2,
+            4,
+            new JsonObjectList(
+                Maps.of(
+                    PROPERTY_NAME3,
+                    VALUE3,
+                    PROPERTY_NAME4,
+                    VALUE4
+                )
+            )
+        );
+    }
+
+    @Test
+    public void testSubListSubList() {
+        this.subListAndCheck(
+            new JsonObjectList(ELEMENTS)
+                .subList(
+                    1,
+                    4
+                ), // 2, 3, 4
+            1,
+            3,
+            new JsonObjectList(
+                Maps.of(
+                    PROPERTY_NAME3,
+                    VALUE3,
+                    PROPERTY_NAME4,
+                    VALUE4
+                )
+            )
+        );
+    }
+
     @Test
     public void testToString() {
-        this.toStringAndCheck(this.createList(), "[first=true, second=false]");
+        this.toStringAndCheck(this.createList(), "[propertyName111=true, propertyName222=true]");
     }
 
     @Override
     public JsonObjectList createList() {
-        final JsonPropertyName first = JsonPropertyName.with("first");
-        final JsonPropertyName second = JsonPropertyName.with("second");
-
         return JsonObjectList.with(
             Maps.of(
-                first,
-                JsonNode.booleanNode(true)
-                    .setName(first),
-                second,
-                JsonNode.booleanNode(false)
-                    .setName(second)
+                PROPERTY_NAME1,
+                VALUE1.setName(PROPERTY_NAME1),
+                PROPERTY_NAME2,
+                VALUE1.setName(PROPERTY_NAME2)
             )
         );
     }

@@ -135,11 +135,6 @@ public final class JsonObjectListTest implements ImmutableListTesting<JsonObject
         );
     }
 
-    @Test
-    public void testToString() {
-        this.toStringAndCheck(this.createList(), "[propertyName111=true, propertyName222=true]");
-    }
-
     @Override
     public JsonObjectList createList() {
         return JsonObjectList.with(
@@ -149,6 +144,16 @@ public final class JsonObjectListTest implements ImmutableListTesting<JsonObject
                 PROPERTY_NAME2,
                 VALUE1.setName(PROPERTY_NAME2)
             )
+        );
+    }
+
+    // toString.........................................................................................................
+
+    @Test
+    public void testToString() {
+        this.toStringAndCheck(
+            this.createList(),
+            "[propertyName111=true, propertyName222=true]"
         );
     }
 

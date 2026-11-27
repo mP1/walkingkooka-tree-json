@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 
 /**
@@ -45,10 +46,8 @@ final class JsonObjectList extends AbstractList<JsonNode> implements ImmutableLi
         return new JsonObjectList(nameToValues);
     }
 
-    /**
-     * Private ctor use factory.
-     */
-    private JsonObjectList(final Map<JsonPropertyName, JsonNode> nameToValues) {
+    // @VisibleForTesting
+    JsonObjectList(final Map<JsonPropertyName, JsonNode> nameToValues) {
         super();
         this.nameToValues = nameToValues;
     }
@@ -61,6 +60,53 @@ final class JsonObjectList extends AbstractList<JsonNode> implements ImmutableLi
     @Override
     public int size() {
         return this.nameToValues.size();
+    }
+
+    @Override
+    public JsonObjectList subList(final int from,
+                                  final int to) {
+        if (from < 0) {
+            throw new IndexOutOfBoundsException("Invalid from index " + from + " < 0");
+        }
+
+        if (to < from) {
+            throw new IndexOutOfBoundsException("Invalid to index " + to + " < " + from);
+        }
+
+        final int size = this.size();
+        if (to > size) {
+            throw new IndexOutOfBoundsException("Invalid to index " + to + " > " + size);
+        }
+
+        final JsonObjectList jsonObjectList;
+
+        if (0 == from && this.size() == to) {
+            jsonObjectList = this;
+        } else {
+            if (from == to) {
+                jsonObjectList = EMPTY;
+            } else {
+                final Map<JsonPropertyName, JsonNode> copy = Maps.sorted();
+
+                int i = 0;
+                for (final Entry<JsonPropertyName, JsonNode> nameAndValue : this.nameToValues.entrySet()) {
+                    if (i >= to) {
+                        break;
+                    }
+                    if (i >= from) {
+                        copy.put(
+                            nameAndValue.getKey(),
+                            nameAndValue.getValue()
+                        );
+                    }
+                    i++;
+                }
+
+                jsonObjectList = new JsonObjectList(copy);
+            }
+        }
+
+        return jsonObjectList;
     }
 
     @Override

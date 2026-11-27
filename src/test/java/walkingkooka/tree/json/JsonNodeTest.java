@@ -18,8 +18,7 @@
 package walkingkooka.tree.json;
 
 import org.junit.jupiter.api.Test;
-import walkingkooka.reflect.ClassTesting2;
-import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PublicClassTesting;
 import walkingkooka.test.ParseStringTesting;
 import walkingkooka.text.HasMultiLineTextTesting;
 import walkingkooka.text.Indentation;
@@ -30,7 +29,7 @@ import walkingkooka.tree.json.select.HasJsonSelectorContextTesting;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class JsonNodeTest implements ClassTesting2<JsonNode>,
+public final class JsonNodeTest implements PublicClassTesting<JsonNode>,
     HasJsonSelectorContextTesting,
     HasMultiLineTextTesting,
     HasTextOffsetTesting,
@@ -377,15 +376,10 @@ public final class JsonNodeTest implements ClassTesting2<JsonNode>,
         );
     }
 
-    // ClassTesting.....................................................................................................
+    // Class............................................................................................................
 
     @Override
     public Class<JsonNode> type() {
         return JsonNode.class;
-    }
-
-    @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
     }
 }
